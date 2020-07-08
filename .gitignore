@@ -49,4 +49,9 @@ coverage.xml
 # Sphinx documentation
 docs/_build/
 
-
+# Pycharm stuff
+.DS_Store
+~*
+*~
+*.pyc
+ /.idea/
