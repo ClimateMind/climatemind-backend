@@ -1,0 +1,663 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://webprotege.stanford.edu/project/Bx50aIKwEALYNmYl0CFzNp#"
+     xml:base="http://webprotege.stanford.edu/project/Bx50aIKwEALYNmYl0CFzNp"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:webprotege="http://webprotege.stanford.edu/">
+    <owl:Ontology rdf:about="http://webprotege.stanford.edu/project/Bx50aIKwEALYNmYl0CFzNp"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://webprotege.stanford.edu/R9CwbN07KWclNYuuQZRcTVo -->
+
+    <owl:ObjectProperty rdf:about="http://webprotege.stanford.edu/R9CwbN07KWclNYuuQZRcTVo">
+        <rdfs:label xml:lang="en">inhibits/prevents/blocks/slows</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RC4Vw57ldiXcejEfZ16R7JR -->
+
+    <owl:ObjectProperty rdf:about="http://webprotege.stanford.edu/RC4Vw57ldiXcejEfZ16R7JR">
+        <rdfs:label xml:lang="en">causes/promotes</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RPW2kcaNWLZfWrO79rJQN8 -->
+
+    <owl:ObjectProperty rdf:about="http://webprotege.stanford.edu/RPW2kcaNWLZfWrO79rJQN8">
+        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topObjectProperty"/>
+        <rdfs:label xml:lang="en">increase</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://webprotege.stanford.edu/R6JpvDxdyRiJuzsK4hILCX -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/R6JpvDxdyRiJuzsK4hILCX">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/R9CwbN07KWclNYuuQZRcTVo"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/R7UB4CI7fUQbzF4PaF6O00a"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">indirect geoengineering</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7UB4CI7fUQbzF4PaF6O00a -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/R7UB4CI7fUQbzF4PaF6O00a">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/R9CwbN07KWclNYuuQZRcTVo"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/R8N2g0ligUTSMWQVGDx8Vj5"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">geoengineering barrier</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7mLbehY8dCnSQTN6qcKsrF -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/R7mLbehY8dCnSQTN6qcKsrF">
+        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/R8ExCSgGUoA9vti6LQVUshw"/>
+        <rdfs:label xml:lang="en">main variability change</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7z96FoCUQ1jB6KXH05nShh -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/R7z96FoCUQ1jB6KXH05nShh">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/RC4Vw57ldiXcejEfZ16R7JR"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCC7sD6MYtFG2Q2U5dja4IL"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">increase in atmospheric greenhouse gas</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R838w4SBo4dM5MSU3oylFcu -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/R838w4SBo4dM5MSU3oylFcu">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:label xml:lang="en">other negative effect from greenhouse gas emission</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8ExCSgGUoA9vti6LQVUshw -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/R8ExCSgGUoA9vti6LQVUshw">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:label xml:lang="en">core climate change</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8N2g0ligUTSMWQVGDx8Vj5 -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/R8N2g0ligUTSMWQVGDx8Vj5">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/R9CwbN07KWclNYuuQZRcTVo"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCC7sD6MYtFG2Q2U5dja4IL"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">geoengineering</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8UAlvCDloJpXl8adS8Oc1u -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/R8UAlvCDloJpXl8adS8Oc1u">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:label xml:lang="en">downstream negative effect</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R9znb9l72NQ6E3Io5DswBia -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/R9znb9l72NQ6E3Io5DswBia">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/R9CwbN07KWclNYuuQZRcTVo"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/Ruw5LBoKiKZQAzttiwXnHh"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">indirect adaptation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBtRa4l2THuYophTFTPolF -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RBtRa4l2THuYophTFTPolF">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:label xml:lang="en">root cause</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RCBzNhkuW51hKlUIUPew7nS -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RCBzNhkuW51hKlUIUPew7nS">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/R9CwbN07KWclNYuuQZRcTVo"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RwoKwNZT3QTuebU5w6qWcL"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">indirect mitigation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RCC7sD6MYtFG2Q2U5dja4IL -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RCC7sD6MYtFG2Q2U5dja4IL">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/RC4Vw57ldiXcejEfZ16R7JR"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/R8ExCSgGUoA9vti6LQVUshw"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">global warming</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RCTESypCGDMrvu4pgWxsPWA -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RCTESypCGDMrvu4pgWxsPWA">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/RC4Vw57ldiXcejEfZ16R7JR"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCC7sD6MYtFG2Q2U5dja4IL"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">feedback loop</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RCfPh2b9dT7ukFZtEfHQGbi -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RCfPh2b9dT7ukFZtEfHQGbi">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/R9CwbN07KWclNYuuQZRcTVo"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCC7sD6MYtFG2Q2U5dja4IL"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">mitigation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RDU8PoqNskq6aftdwHoEoRR -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RDU8PoqNskq6aftdwHoEoRR">
+        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/R8ExCSgGUoA9vti6LQVUshw"/>
+        <rdfs:label xml:lang="en">water cycle change</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RDwySsxG3L3mQX7WHXhwIZe -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RDwySsxG3L3mQX7WHXhwIZe">
+        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/R8ExCSgGUoA9vti6LQVUshw"/>
+        <rdfs:label xml:lang="en">main ocean change</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RGbm42IftQVoguYsFJQDSl -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RGbm42IftQVoguYsFJQDSl">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:label xml:lang="en">adaptation</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RLo3QuYrdNauylrd7VWUBL -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RLo3QuYrdNauylrd7VWUBL">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:label xml:lang="en">other negative effect from root cause</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RiaN0yHy7S0de3jPmDffcH -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RiaN0yHy7S0de3jPmDffcH">
+        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/R8ExCSgGUoA9vti6LQVUshw"/>
+        <rdfs:label xml:lang="en">main atmospheric change</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RkuZYclpOLJQdACnY01awU -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RkuZYclpOLJQdACnY01awU">
+        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/R8ExCSgGUoA9vti6LQVUshw"/>
+        <rdfs:label xml:lang="en">main ice change</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/Ruw5LBoKiKZQAzttiwXnHh -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/Ruw5LBoKiKZQAzttiwXnHh">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/R9CwbN07KWclNYuuQZRcTVo"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RGbm42IftQVoguYsFJQDSl"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">adaptation barrier</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RvMRYLggkmwiiB4T1jsTTX -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RvMRYLggkmwiiB4T1jsTTX">
+        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/R8UAlvCDloJpXl8adS8Oc1u"/>
+        <rdfs:label xml:lang="en">wildfire</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RwoKwNZT3QTuebU5w6qWcL -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RwoKwNZT3QTuebU5w6qWcL">
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/R9CwbN07KWclNYuuQZRcTVo"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCfPh2b9dT7ukFZtEfHQGbi"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
+        <rdfs:label xml:lang="en">mitigation barrier</rdfs:label>
+    </owl:Class>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://webprotege.stanford.edu/R1d2BVvduMHLTUVxQ9qdpd -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R1d2BVvduMHLTUVxQ9qdpd">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R7mLbehY8dCnSQTN6qcKsrF"/>
+        <rdfs:label xml:lang="en">increase in extreme precipitation</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R4g51Eq3Q7uVWg9V5F5BTC -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R4g51Eq3Q7uVWg9V5F5BTC">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8UAlvCDloJpXl8adS8Oc1u"/>
+        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me"/>
+        <rdfs:label xml:lang="en">increase in vegetation during wet season</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R5hC8Ud8449ZsdtwYdskf1 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R5hC8Ud8449ZsdtwYdskf1">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RBtRa4l2THuYophTFTPolF"/>
+        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RBJi2ztbJiaIwcTQTScEKNx"/>
+        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RJNGfc0g7HO0V3kCM2R8bA"/>
+        <rdfs:label xml:lang="en">coal mining</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R5kluaMVlhzpGZEWgAsy1 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R5kluaMVlhzpGZEWgAsy1">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R838w4SBo4dM5MSU3oylFcu"/>
+        <rdfs:label xml:lang="en">more acidic oceans (increased dissolved CO2)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7lbzoBwBLouLZawIp4Dioy -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7lbzoBwBLouLZawIp4Dioy">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RDU8PoqNskq6aftdwHoEoRR"/>
+        <rdfs:label xml:lang="en">lower salinity in freshwater</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7yY9aSXNoealJHEP1iluxl -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7yY9aSXNoealJHEP1iluxl">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R7mLbehY8dCnSQTN6qcKsrF"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/RC4Vw57ldiXcejEfZ16R7JR"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RvMRYLggkmwiiB4T1jsTTX"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdfs:label xml:lang="en">decrease in frequency of cold days and nights</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7zeFSAP7x3PT5rG0i1BLVe -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7zeFSAP7x3PT5rG0i1BLVe">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RDU8PoqNskq6aftdwHoEoRR"/>
+        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R8IAmadbnqneVdqnTnrLuIU"/>
+        <rdfs:label xml:lang="en">increase in evaporation</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R892KwVv6vE4ZDULk8mz8S4 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R892KwVv6vE4ZDULk8mz8S4">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RDwySsxG3L3mQX7WHXhwIZe"/>
+        <rdfs:label xml:lang="en">higher salinity in oceans (both surface and subsurface)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8GnjibSy3jN71u038XPlcj -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8GnjibSy3jN71u038XPlcj">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RiaN0yHy7S0de3jPmDffcH"/>
+        <rdfs:label xml:lang="en">lower stratospheric cooling</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8IAmadbnqneVdqnTnrLuIU -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8IAmadbnqneVdqnTnrLuIU">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8UAlvCDloJpXl8adS8Oc1u"/>
+        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me"/>
+        <rdfs:label xml:lang="en">drier vegetation during dry season</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8P9cXSqgHLWH3j4mSIxPUv -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8P9cXSqgHLWH3j4mSIxPUv">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R7z96FoCUQ1jB6KXH05nShh"/>
+        <rdfs:label xml:lang="en">increase in methane</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R9LbmQn2lAubsJN4nR1Sqzo -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9LbmQn2lAubsJN4nR1Sqzo">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RGbm42IftQVoguYsFJQDSl"/>
+        <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me"/>
+        <rdfs:label xml:lang="en">goats clearing brush</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R9lH3yD6ps7rK3PqJkTisYy -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9lH3yD6ps7rK3PqJkTisYy">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCC7sD6MYtFG2Q2U5dja4IL"/>
+        <rdfs:label xml:lang="en">increase in surface temperature</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R9vkBr0EApzeMGfa0rJGo9G -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9vkBr0EApzeMGfa0rJGo9G">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RLo3QuYrdNauylrd7VWUBL"/>
+        <rdfs:label xml:lang="en">air pollution</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBHHvT6sX3QbfYU2JlLhT5E -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBHHvT6sX3QbfYU2JlLhT5E">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RDU8PoqNskq6aftdwHoEoRR"/>
+        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R4g51Eq3Q7uVWg9V5F5BTC"/>
+        <rdfs:label xml:lang="en">increase in rain</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBJi2ztbJiaIwcTQTScEKNx -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBJi2ztbJiaIwcTQTScEKNx">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R7z96FoCUQ1jB6KXH05nShh"/>
+        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R5kluaMVlhzpGZEWgAsy1"/>
+        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RC9SyXE5PhiT6iKz1LaJFgf"/>
+        <rdfs:label xml:lang="en">increase in CO2</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBO6QoxuN2QiowzfoEIVfUT -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBO6QoxuN2QiowzfoEIVfUT">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RDwySsxG3L3mQX7WHXhwIZe"/>
+        <rdfs:label xml:lang="en">decrease in dissolved oxygen in oceans</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBYAEANbzZXfxcNfkPYS1Um -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBYAEANbzZXfxcNfkPYS1Um">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RkuZYclpOLJQdACnY01awU"/>
+        <rdfs:label xml:lang="en">melting Greenland ice sheet</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBraJKr6hbJU5awScQurmQE -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBraJKr6hbJU5awScQurmQE">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RkuZYclpOLJQdACnY01awU"/>
+        <rdfs:label xml:lang="en">permafrost melt</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBzyxPGEWn768HIJJhTxIG -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBzyxPGEWn768HIJJhTxIG">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RBtRa4l2THuYophTFTPolF"/>
+        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R8P9cXSqgHLWH3j4mSIxPUv"/>
+        <rdfs:label xml:lang="en">fracking leaks</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RC9SyXE5PhiT6iKz1LaJFgf -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RC9SyXE5PhiT6iKz1LaJFgf">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R838w4SBo4dM5MSU3oylFcu"/>
+        <rdfs:label xml:lang="en">negative effects on cognition</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RCDZl2bsYh3B1YlJUL7nRcM -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCDZl2bsYh3B1YlJUL7nRcM">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RDwySsxG3L3mQX7WHXhwIZe"/>
+        <rdfs:label xml:lang="en">increase in ocean surface temperature</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RCOKh8I57dfccKh5QTFhHB0 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCOKh8I57dfccKh5QTFhHB0">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RDwySsxG3L3mQX7WHXhwIZe"/>
+        <rdfs:label xml:lang="en">upper ocean warming</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RDDtV325vfj73RkGBtEJcwJ -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDDtV325vfj73RkGBtEJcwJ">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RkuZYclpOLJQdACnY01awU"/>
+        <rdfs:label xml:lang="en">lower Antarctic sea ice extent</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RDEwOyikZhK0P8OWbfhcxfe -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDEwOyikZhK0P8OWbfhcxfe">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RDU8PoqNskq6aftdwHoEoRR"/>
+        <rdfs:label xml:lang="en">increase in tropospheric specific humidity</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RDjJKpBW9PimroTaLftSZS8 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDjJKpBW9PimroTaLftSZS8">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RDwySsxG3L3mQX7WHXhwIZe"/>
+        <rdfs:label xml:lang="en">expansion of oceans</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RDudF9SBo28CKqKpRN9poYL -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDudF9SBo28CKqKpRN9poYL">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R7mLbehY8dCnSQTN6qcKsrF"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/RC4Vw57ldiXcejEfZ16R7JR"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RvMRYLggkmwiiB4T1jsTTX"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdfs:label xml:lang="en">increase in frequency of warm days and nights</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RJAL6Zu9F3EHB35HCs3cYD -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RJAL6Zu9F3EHB35HCs3cYD">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R7mLbehY8dCnSQTN6qcKsrF"/>
+        <rdf:type>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/RC4Vw57ldiXcejEfZ16R7JR"/>
+                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RvMRYLggkmwiiB4T1jsTTX"/>
+            </owl:Restriction>
+        </rdf:type>
+        <rdfs:label xml:lang="en">increase in frequency of heat waves</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RJNGfc0g7HO0V3kCM2R8bA -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RJNGfc0g7HO0V3kCM2R8bA">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RLo3QuYrdNauylrd7VWUBL"/>
+        <rdfs:label xml:lang="en">increase in risk of stomach cancer</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RvMRYLggkmwiiB4T1jsTTX"/>
+        <rdfs:label xml:lang="en">increase in area burned by wildfire</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RfkjEXa4fTJvsuzk6ushUu -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RfkjEXa4fTJvsuzk6ushUu">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RkuZYclpOLJQdACnY01awU"/>
+        <rdfs:label xml:lang="en">retreat of glaciers (glacier melt)</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RndlLhwHuWP9Ng5SgdZij3 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RndlLhwHuWP9Ng5SgdZij3">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RiaN0yHy7S0de3jPmDffcH"/>
+        <rdfs:label xml:lang="en">tropospheric warming</rdfs:label>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.13) https://github.com/owlcs/owlapi -->
+
