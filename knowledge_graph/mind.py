@@ -2,7 +2,7 @@ from owlready2 import get_ontology
 
 
 # class for storing ontology, load ontology method, queries
-from src.knowledge_graph import make_network
+from knowledge_graph import make_network
 
 
 class Mind:

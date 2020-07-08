@@ -2,8 +2,8 @@ from json import dumps
 
 from flask import request, make_response, abort, Response, Flask
 
-from src.knowledge_graph import make_network
-from src.knowledge_graph.mind import Mind
+from knowledge_graph import make_network
+from knowledge_graph.mind import Mind
 
 def abort_if_mind_doesnt_exist(m: Mind):
     if m.get_ontology() is None:
