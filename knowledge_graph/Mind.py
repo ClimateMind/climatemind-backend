@@ -34,7 +34,5 @@ class Mind:
     def search_mind(self, query: str) -> Results:
         try:
             return make_network.searchNode(self._get_ontology(), query)
-        except ValueError:
-            raise
-        except AttributeError:
+        except (ValueError, AttributeError):
             raise
