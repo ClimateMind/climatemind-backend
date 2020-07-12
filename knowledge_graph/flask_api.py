@@ -41,7 +41,7 @@ def query():
         for keyword in searchQueries:
             searchResults[keyword] = app.config["MIND"].search_mind(keyword)
 
-    except ValueError:
+    except (ValueError, AttributeError):
         return make_response("query keyword not found"), 400
 
     response = Response(dumps(searchResults))
