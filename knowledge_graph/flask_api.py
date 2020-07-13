@@ -44,6 +44,7 @@ def query():
             searchResults[keyword] = mind.search(keyword)
 
     except ValueError:
+        #todo: currently returns no results at all if 1 keyword in an array isn't found. fix this.
         return make_response("query keyword not found"), 400
 
     response = Response(dumps(searchResults))
