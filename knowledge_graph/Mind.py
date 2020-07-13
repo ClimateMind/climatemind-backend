@@ -17,10 +17,7 @@ class Mind:
             [make_network.giveAlias(x) for x in properties]
             return onto
 
-        except FileNotFoundError:
-            raise
-
-        except IsADirectoryError:
+        except (FileNotFoundError, IsADirectoryError, ValueError):
             raise
 
     def _get_ontology(self):
@@ -31,8 +28,8 @@ class Mind:
         except ValueError:
             raise
 
-    def search_mind(self, query: str) -> Results:
+    def search(self, query: str) -> Results:
         try:
             return make_network.searchNode(self._get_ontology(), query)
         except (ValueError, AttributeError):
-            raise
+            raise ValueError
