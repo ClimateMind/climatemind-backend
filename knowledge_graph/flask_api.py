@@ -16,7 +16,7 @@ class DevelopmentConfig(BaseConfig):
     TESTING = True
     try:
         app.config["MIND"] = Mind()
-    except:
+    except (FileNotFoundError, IsADirectoryError, ValueError):
         abort(404)
 
 
@@ -37,11 +37,13 @@ def query():
 
     searchResults = {}
 
+    mind = app.config["MIND"]
+
     try:
         for keyword in searchQueries:
-            searchResults[keyword] = app.config["MIND"].search_mind(keyword)
+            searchResults[keyword] = mind.search(keyword)
 
-    except (ValueError, AttributeError):
+    except ValueError:
         return make_response("query keyword not found"), 400
 
     response = Response(dumps(searchResults))
