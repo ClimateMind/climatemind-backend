@@ -1,29 +1,10 @@
+from knowledge_graph import app
+
 from json import dumps
 
-from flask import request, make_response, abort, Response, Flask
+from flask import request, make_response, abort, Response
 
 from knowledge_graph.Mind import Mind
-
-app = Flask(__name__)
-
-
-class BaseConfig(object):
-    DEBUG = False
-
-
-class DevelopmentConfig(BaseConfig):
-    DEBUG = True
-    TESTING = True
-    try:
-        app.config["MIND"] = Mind()
-    except (FileNotFoundError, IsADirectoryError, ValueError):
-        abort(404)
-
-
-class TestingConfig(BaseConfig):
-    DEBUG = False
-    TESTING = True
-    # todo: add mock mind here
 
 
 @app.route('/', methods=['GET'])
