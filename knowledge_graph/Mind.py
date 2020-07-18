@@ -1,13 +1,13 @@
 from owlready2 import get_ontology
-
-
-# class for storing ontology, load ontology method, queries
 from knowledge_graph import make_network
+from typing import List
+
+Results = List[str]
 
 
 class Mind:
-    def __init__(self, mind_source: str):
-        self.__ontology_source = mind_source
+    def __init__(self):
+        self.__ontology_source = "./climate_mind_ontology"
         self.__ontology = self.__load_ontology()
 
     def __load_ontology(self):
@@ -17,16 +17,19 @@ class Mind:
             [make_network.giveAlias(x) for x in properties]
             return onto
 
-        except FileNotFoundError:
-            return None
+        except (FileNotFoundError, IsADirectoryError, ValueError):
+            raise
 
-        except IsADirectoryError:
-            return None
-    
-    def get_ontology(self):
+    def _get_ontology(self):
         try:
             if self.__ontology is None:
                 raise ValueError
             return self.__ontology
         except ValueError:
-            return None
+            raise
+
+    def search(self, query: str) -> Results:
+        try:
+            return make_network.searchNode(self._get_ontology(), query)
+        except (ValueError, AttributeError):
+            raise ValueError
