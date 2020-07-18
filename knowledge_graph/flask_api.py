@@ -2,19 +2,28 @@ from json import dumps
 
 from flask import request, make_response, abort, Response, Flask
 
-from knowledge_graph import make_network
-from knowledge_graph.mind import Mind
+from knowledge_graph.Mind import Mind
 
-def abort_if_mind_doesnt_exist(m: Mind):
-    if m.get_ontology() is None:
+app = Flask(__name__)
+
+
+class BaseConfig(object):
+    DEBUG = False
+
+
+class DevelopmentConfig(BaseConfig):
+    DEBUG = True
+    TESTING = True
+    try:
+        app.config["MIND"] = Mind()
+    except (FileNotFoundError, IsADirectoryError, ValueError):
         abort(404)
 
 
-app = Flask(__name__)
-app.config["DEBUG"] = True
-
-
-m = Mind("./climate_mind_ontology")  # TODO: pass this in as an environment variable
+class TestingConfig(BaseConfig):
+    DEBUG = False
+    TESTING = True
+    # todo: add mock mind here
 
 
 @app.route('/', methods=['GET'])
@@ -24,18 +33,20 @@ def home():
 
 @app.route('/ontology', methods=['GET'])
 def query():
-    searchQuery = request.args.get('query')
+    searchQueries = request.args.getlist('query')
 
-    abort_if_mind_doesnt_exist(m)
+    searchResults = {}
+
+    mind = app.config["MIND"]
 
     try:
-        # passes ontology held in mind class to searchNode
-        searchResults = make_network.searchNode(m.get_ontology(), searchQuery)
-    except AttributeError:
+        for keyword in searchQueries:
+            searchResults[keyword] = mind.search(keyword)
+
+    except ValueError:
+        #todo: currently returns no results at all if 1 keyword in an array isn't found. fix this.
         return make_response("query keyword not found"), 400
 
     response = Response(dumps(searchResults))
     response.headers['Content-Type'] = 'application/json'
     return response, 200
-
-
