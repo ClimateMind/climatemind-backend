@@ -24,25 +24,20 @@ def giveAlias(property_object):
 
 def dfs_labeled_edges(ontology,source=None):
     """Produce edges in a depth-first-search (DFS) labeled by type.
-
     Parameters
     ----------
     ontology : OWL2 climate mind ontology file
-
     source : node, optional
        Specify starting node for depth-first search and return edges in
        the component reachable from source.
-
     Returns
     -------
     edges: generator
        A generator of edges in the depth-first-search labeled with the property relation.
-
     Notes
     -----
     Based on http://www.ics.uci.edu/~eppstein/PADS/DFS.py
     by D. Eppstein, July 2004.
-
     If a source is not specified then a source is chosen arbitrarily and
     repeatedly until all components in the graph are searched.
     """
@@ -138,7 +133,7 @@ def main(args):
     onto = get_ontology(ontoPath).load()
 
     #make pythonic alias names for all the properties 
-    properties = list(onto.properties())
+    properties = list(onto.object_properties())
     [giveAlias(x) for x in properties]
 
     #make list of edges along all paths leaving the target node
@@ -162,7 +157,7 @@ def mainFunction(targetNodeLabel, ontoPath):
     onto = get_ontology(ontoPath).load()
 
     #make pythonic alias names for all the properties 
-    properties = list(onto.properties())
+    properties = list(onto.object_properties())
     [giveAlias(x) for x in properties]
 
     #make list of edges along all paths leaving the target node
