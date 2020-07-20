@@ -57,6 +57,7 @@ def dfs_labeled_edges(ontology,source=None):
         nodes = [source]
     visited = set()
     for start in nodes:
+        print(start)
         if start in visited:
             continue
         visited.add(start)
@@ -147,7 +148,11 @@ def main(args):
 
     #save output to output Path as csv file. Later can change this to integrate well with API and front-end.
     df = pd.DataFrame([[i[0], i[1], i[2]] for i in edges],columns=['subject', 'object', 'predicate'])
-    df.to_csv(outputPath, index=False)
+    pd.set_option('display.max_columns', 500)
+    pd.set_option('display.max_rows', 500)
+    print(df)
+    print(df[df.duplicated(keep=False)])   
+    #df.to_csv(outputPath, index=False)
 
 def mainFunction(targetNodeLabel, ontoPath):
     """
