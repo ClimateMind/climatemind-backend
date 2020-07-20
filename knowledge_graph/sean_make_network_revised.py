@@ -37,15 +37,18 @@ def dfs_helper(ontology, nodes, result, visited, to_explore):
             if node not in visited:
                 if node in ontology.individuals():
                     to_explore.append((node, iter(node.causes_or_promotes)))
+                if node in ontology.classes():
+                    to_explore.append((node, iter(ontology.get_parents_of(node))))
                 while to_explore:
                     parent, children = to_explore.pop()
         
                     try:
                         child = next(children)
-                        result.append((parent.label[0], 
-                                        child.label[0], 
-                                        "causes_or_promotes"))
-                        add_node(parent, child, visited, to_explore, ontology, result)
+                        if child.label:
+                            result.append((parent.label[0], 
+                                            child.label[0], 
+                                            "causes_or_promotes"))
+                            add_node(parent, child, visited, to_explore, ontology, result)
                 
                     except StopIteration:
                         parents = ontology.get_parents_of(node)
