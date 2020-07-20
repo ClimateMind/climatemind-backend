@@ -3,12 +3,13 @@ import argparse
 import pandas as pd
 
 def add_node(parent, node, visited, to_explore, ontology, result):
-    
+    result.append((parent.label[0], node.label[0], "causes_or_promotes"))
     if node not in visited and node != owl.Thing:
         visited.add(node)
         to_explore.append((node, iter(node.causes_or_promotes)))
         if node in ontology.individuals():
-            result.append((parent.label[0], node.label[0], "causes_or_promotes"))
+            #result.append((parent.label[0], node.label[0], "causes_or_promotes"))
+            pass
     
         elif node in ontology.classes():
             to_explore.append((node, iter(ontology.get_parents_of(node)))) 
@@ -35,22 +36,19 @@ def dfs_helper(ontology, nodes, result, visited, to_explore):
     if nodes:
         for node in nodes:   
             if node not in visited:
+                visited.add(node)
                 if node in ontology.individuals():
                     to_explore.append((node, iter(node.causes_or_promotes)))
-                if node in ontology.classes():
-                    to_explore.append((node, iter(ontology.get_parents_of(node))))
                 while to_explore:
-                    parent, children = to_explore.pop()
-        
+                    parent, children = to_explore[-1]
+                    
                     try:
                         child = next(children)
                         if child.label:
-                            result.append((parent.label[0], 
-                                            child.label[0], 
-                                            "causes_or_promotes"))
                             add_node(parent, child, visited, to_explore, ontology, result)
                 
                     except StopIteration:
+                        to_explore.pop()
                         parents = ontology.get_parents_of(node)
                         dfs_helper(ontology, parents, result, visited, to_explore)
 
