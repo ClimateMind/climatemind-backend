@@ -4,16 +4,17 @@ from owlready2 import *
 import argparse
 import pandas as pd
 
-onto_path = "./climate_mind_ontology20200322.owl"
+onto_path = "../../Bx50alKwEALYNmYI0CFzNp.owx"
 
 #function to prepare and assign alias name only from supplying a property object.
 #Cleans up label names in the process to by python friendly
 #have python convert " " and "/" or any other special characters to "_" in the pythonic naming aliases.
 def giveAlias(property_object):
-    label_name = property_object.label[0]
-    label_name = label_name.replace("/","_or_")
-    label_name = label_name.replace(" ","_")
-    property_object.python_name = label_name
+    if property_object.label:
+        label_name = property_object.label[0]
+        label_name = label_name.replace("/","_or_")
+        label_name = label_name.replace(" ","_")
+        property_object.python_name = label_name
 
 #give Alias probably could use unit test of its own.
 
@@ -79,7 +80,7 @@ def dfs_labeled_edges(ontology,source=None):
                 else:
                     stackClasses = []
                     for newParent in newStart:
-                        if newParent != owl.Thing:
+                        if newParent != owl.Thing and newParent in ontology.individuals():
                             stackClasses.append((newParent,iter(newParent.causes_or_promotes)))
                             stackClasses.append((newParent,iter(ontology.get_parents_of(newParent))))
                     while stackClasses:
@@ -89,7 +90,7 @@ def dfs_labeled_edges(ontology,source=None):
                             child2 = next(children2)
                             if child2 not in ontology.classes() and child2 != owl.Thing and child2 in ontology.individuals():
                            #child2 is an individual so add it to regular stack
-                                yield parent.label[0],child2.label[0],"causes_or_promotes"
+                                yield parent2.label[0],child2.label[0],"causes_or_promotes"
                                 if child2 not in visited:
                                     visited.add(child2) #is this needed? or wrong? #what if that child is already visited??? should add code to avoid visiting child2?
                                     stack.append((child2,iter(child2.causes_or_promotes)))
@@ -146,7 +147,7 @@ def main(args):
 
     #save output to output Path as csv file. Later can change this to integrate well with API and front-end.
     df = pd.DataFrame([[i[0], i[1], i[2]] for i in edges],columns=['subject', 'object', 'predicate'])
-    df.to_csv(outputPath, index=False)
+    print(df)
 
 def mainFunction(targetNodeLabel, ontoPath):
     """
