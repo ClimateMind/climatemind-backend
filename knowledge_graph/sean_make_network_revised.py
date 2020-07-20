@@ -7,11 +7,8 @@ def add_node(parent, node, visited, to_explore, ontology, result):
     if node not in visited and node != owl.Thing:
         visited.add(node)
         to_explore.append((node, iter(node.causes_or_promotes)))
-        if node in ontology.individuals():
-            #result.append((parent.label[0], node.label[0], "causes_or_promotes"))
-            pass
-    
-        elif node in ontology.classes():
+
+        if node in ontology.classes():
             to_explore.append((node, iter(ontology.get_parents_of(node)))) 
 
 
