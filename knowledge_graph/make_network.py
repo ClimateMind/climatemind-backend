@@ -147,7 +147,7 @@ def main(args):
 
     #save output to output Path as csv file. Later can change this to integrate well with API and front-end.
     df = pd.DataFrame([[i[0], i[1], i[2]] for i in edges],columns=['subject', 'object', 'predicate'])
-    print(df)
+    df.to_csv(outputPath, index=False)
 
 def mainFunction(targetNodeLabel, ontoPath):
     """
