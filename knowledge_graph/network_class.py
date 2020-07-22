@@ -7,32 +7,70 @@ class Network:
         Parameters
         ----------
         ontology : OWL2 climate mind ontology file
-        edge_type : causes_or_promotes, is_inhibited_or_prevented_or_blocked_by        
-        start_point : node, optional
-           Specify starting node for depth-first search and return edges in
+
+           Completes a depth-first search for the ontology and return edges in
            the component reachable from source.    
     """
 
-    def __init__(self, ontology, edge_type, start_point):
+    def __init__(self, ontology):
         self.ontology = ontology
-        self.edge_type = edge_type
         self.result = []
         self.visited = set()
         self.node_family = []
-        if start_point:
-            self.source = start_point
-        else:
-            self.source = None
+        self.class_family = []
 
         
-    def add_child_to_result(self, child, parent):
+    def add_child_to_result(self, child, parent, edge_type):
         """ Adds a node to the results and if needed adds the node's family
         to node_family (a stack of nodes to continue exploring).
+            
+            Parameters
+            ----------
+            child: A node in the ontology
+            parent: A node in the ontology
+            edge_type: The relationship between child and parent 
+                        i.e. causes, inhibits, etc
         """
-        self.result.append((parent.label[0], child.label[0], self.edge_type))
+        self.result.append((parent.label[0], child.label[0], edge_type))
         if child not in self.visited:
             self.visited.add(child)
-            self.node_family.append((child, iter(getattr(child, self.edge_type)))) 
+            self.node_family.append((
+                        child, 
+                        iter(getattr(child, edge_type)),
+                        edge_type
+                        ))
+            
+    
+    def add_class_to_explore(self, class_name):
+        """ Adds all nodes related to a particular class. Some of these nodes
+        will not actually be a class, but that is irrelevant as they will get ignored.
+        
+            Parameters
+            ----------
+            class_name: A node in the ontology
+        """
+        try:
+            self.class_family.append((
+                    class_name, 
+                    iter(class_name.causes_or_promotes),
+                    "causes_or_promotes"
+                    ))
+        except: pass
+        try:
+            self.class_family.append((
+                    class_name, 
+                    iter(class_name.is_inhibited_or_prevented_or_blocked_or_slowed_by),
+                    "is_inhibited_or_prevented_or_blocked_or_slowed_by"
+                    ))
+        except: pass
+        try:
+            self.class_family.append((
+                    class_name, 
+                    iter(self.ontology.get_parents_of(class_name)),
+                    "is_a"
+                    )) # the class(es) of the ont_class
+        except: pass   
+            
 
     def dfs_for_classes(self, node):
         """ Performs a depth-first-search on parent classes from a node.
@@ -45,34 +83,27 @@ class Network:
         classes = self.ontology.get_parents_of(node)
         
         if classes:
-            class_family = []
             
             for ont_class in classes:
                 if ont_class != owl.Thing:
-                    try:
-                        class_family.append((ont_class, iter(getattr(ont_class, self.edge_type))))
-                        class_family.append((ont_class, iter(self.ontology.get_parents_of(ont_class))))
-                    except:
-                        pass # Restriction objects are causing an error, should investigate more
-           
-            while class_family:
-                parent2, children2 = class_family[-1]
-                visited_classes.add(parent2) #how do we know that parent2 is a class? it doesn't matter?
+                    self.add_class_to_explore(ont_class)
+                    
+            while self.class_family:
+                parent2, children2, edge_type2 = self.class_family[-1]
+                visited_classes.add(parent2) #these are not all classses
             
                 try:
                     child2 = next(children2)
                     if child2 != owl.Thing:
-                
+                        
                         if child2 in self.ontology.individuals():
-                            self.add_child_to_result(child2, node)
-                            
+                            self.add_child_to_result(child2, node, edge_type2)
                         elif child2 not in visited_classes and child2 in self.ontology.classes():
                             visited_classes.add(child2)
-                            class_family.append((child2, iter(getattr(child2, self.edge_type))))
-                            class_family.append((child2, iter(self.ontology.get_parents_of(child2))))
+                            self.add_class_to_explore(child2)
                         
                 except StopIteration:
-                    class_family.pop() 
+                    self.class_family.pop() 
             
                    
     def dfs_labeled_edges(self):
@@ -85,22 +116,30 @@ class Network:
         by D. Eppstein, July 2004.
         If a source is not specified then a source is chosen arbitrarily and
         repeatedly until all components in the graph are searched.
+        
+        TODO Find why a couple of duplicates are created
+        Example: increase in carbon capture,
+                  greenhouse-gas externality,
+                  is_inhibited_or_prevented_or_blocked_or_slowed_by
+
         """
-    
-        if self.source is None:
-            nodes = self.ontology.individuals()
-        else:
-            nodes = [self.source]
+
+        nodes = self.ontology.individuals()
     
         for node in nodes:
             if node not in self.visited:
                 self.visited.add(node)
-                self.node_family.append((node, iter(getattr(node, self.edge_type))))
+                self.node_family.append((node, iter(getattr(node, "causes_or_promotes")),"causes_or_promotes"))
+                self.node_family.append((node, iter(getattr(node, "is_inhibited_or_prevented_or_blocked_or_slowed_by")),"is_inhibited_or_prevented_or_blocked_or_slowed_by"))
+                
                 while self.node_family:
-                    parent, children = self.node_family[-1]
+                    parent, children, edge_type = self.node_family[-1]
+                    self.visited.add(parent)
+                    
                     try:
                         child = next(children)
-                        self.add_child_to_result(child, parent)
+                        self.add_child_to_result(child, parent, edge_type)
+                        
                     except StopIteration:
                         self.node_family.pop()
                         self.dfs_for_classes(parent)
