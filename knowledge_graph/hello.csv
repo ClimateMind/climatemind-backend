@@ -1,0 +1,134 @@
+subject,object,predicate
+coal mining,burning coal,causes_or_promotes
+burning coal,increase in toxic air pollutants (air pollution),causes_or_promotes
+increase in toxic air pollutants (air pollution),acute lower respiratory infection,causes_or_promotes
+acute lower respiratory infection,increase in death,causes_or_promotes
+increase in toxic air pollutants (air pollution),increase in lung cancer,causes_or_promotes
+increase in lung cancer,increase in death,causes_or_promotes
+increase in toxic air pollutants (air pollution),ischaemic heart disease,causes_or_promotes
+ischaemic heart disease,increase in death,causes_or_promotes
+increase in toxic air pollutants (air pollution),chronic obstructive pulmonary disease,causes_or_promotes
+chronic obstructive pulmonary disease,increase in death,causes_or_promotes
+increase in toxic air pollutants (air pollution),increase in asthma complications,causes_or_promotes
+increase in asthma complications,increase in death,causes_or_promotes
+increase in asthma complications,increase in disproportionate effects on children,causes_or_promotes
+increase in asthma complications,increase in disproportionate effects on minority groups,causes_or_promotes
+increase in toxic air pollutants (air pollution),increase in risk of stroke,causes_or_promotes
+increase in risk of stroke,increase in death,causes_or_promotes
+increase in toxic air pollutants (air pollution),increase in risk of heart attack,causes_or_promotes
+increase in risk of heart attack,increase in death,causes_or_promotes
+burning coal,increase in CO2,causes_or_promotes
+increase in CO2,more acidic oceans (increased dissolved CO2),causes_or_promotes
+increase in CO2,negative effects on cognition,causes_or_promotes
+increase in CO2,increase in greenhouse effect,causes_or_promotes
+increase in greenhouse effect,more heat absorbed by land,causes_or_promotes
+more heat absorbed by land,decrease in frequency of cold days and nights,causes_or_promotes
+decrease in frequency of cold days and nights,increase in evaporation,causes_or_promotes
+increase in evaporation,change in salinity in oceans (both surface and subsurface),causes_or_promotes
+increase in evaporation,increase in rain (and snow if cold enough) (precipitation),causes_or_promotes
+increase in rain (and snow if cold enough) (precipitation),increase in vegetation during wet season,causes_or_promotes
+increase in vegetation during wet season,increase in area burned by wildfire,causes_or_promotes
+increase in area burned by wildfire,increase in toxic air pollutants (air pollution),causes_or_promotes
+increase in area burned by wildfire,increase in CO2,causes_or_promotes
+increase in rain (and snow if cold enough) (precipitation),lower salinity in freshwater,causes_or_promotes
+increase in rain (and snow if cold enough) (precipitation),increase in arctic and glacier ice melted by rain,causes_or_promotes
+increase in arctic and glacier ice melted by rain,increase in freshwater added to ocean,causes_or_promotes
+increase in freshwater added to ocean,increase in sea level rise,causes_or_promotes
+increase in sea level rise,increase in environmental migrants,causes_or_promotes
+increase in freshwater added to ocean,less sinking of cooling ocean water,causes_or_promotes
+less sinking of cooling ocean water,weakened ocean circulation (AMOC),causes_or_promotes
+weakened ocean circulation (AMOC),change in salinity in oceans (both surface and subsurface),causes_or_promotes
+weakened ocean circulation (AMOC),less mixing of oxygenated water,causes_or_promotes
+less mixing of oxygenated water,decrease in dissolved oxygen in oceans,causes_or_promotes
+decrease in dissolved oxygen in oceans,increase in release of N2O and CH4 greenhouse gases,causes_or_promotes
+increase in release of N2O and CH4 greenhouse gases,increase in N2O,causes_or_promotes
+increase in N2O,increase in greenhouse effect,causes_or_promotes
+increase in release of N2O and CH4 greenhouse gases,increase in methane (CH4),causes_or_promotes
+increase in methane (CH4),increase in greenhouse effect,causes_or_promotes
+weakened ocean circulation (AMOC),reduction in oxygen producing sea organisms,causes_or_promotes
+reduction in oxygen producing sea organisms,decrease in dissolved oxygen in oceans,causes_or_promotes
+increase in rain (and snow if cold enough) (precipitation),wetter soil during wet season,causes_or_promotes
+wetter soil during wet season,increase in vegetation during wet season,causes_or_promotes
+increase in rain (and snow if cold enough) (precipitation),increase in flooding of land and property,causes_or_promotes
+increase in flooding of land and property,increase in destruction to US military bases,causes_or_promotes
+increase in flooding of land and property,increase in cholera infections,causes_or_promotes
+increase in cholera infections,increase in death,causes_or_promotes
+increase in flooding of land and property,increase in climate refugees,causes_or_promotes
+increase in climate refugees,increase in cholera infections,causes_or_promotes
+increase in climate refugees,increase in deforestation,causes_or_promotes
+increase in deforestation,increase in climate refugees,causes_or_promotes
+increase in deforestation,increase in CO2,causes_or_promotes
+increase in climate refugees,increase in physical violence,causes_or_promotes
+increase in physical violence,increase in death,causes_or_promotes
+increase in climate refugees,increase in sexual violence,causes_or_promotes
+increase in evaporation,drier soil during dry season,causes_or_promotes
+drier soil during dry season,drier vegetation during dry season,causes_or_promotes
+drier vegetation during dry season,increase in area burned by wildfire,causes_or_promotes
+drier soil during dry season,prolonged droughts,causes_or_promotes
+prolonged droughts,increase in climate refugees,causes_or_promotes
+decrease in frequency of cold days and nights,less freezing conditions during winter,causes_or_promotes
+less freezing conditions during winter,increase in tick winter survival,causes_or_promotes
+increase in tick winter survival,expansion in tick habitat,causes_or_promotes
+expansion in tick habitat,expansion of Lyme disease,causes_or_promotes
+expansion of Lyme disease,increase in Lyme disease infection,causes_or_promotes
+more heat absorbed by land,increase in evaporation,causes_or_promotes
+more heat absorbed by land,increase in frequency of warm days and nights,causes_or_promotes
+increase in frequency of warm days and nights,increase in ground-level ozone,causes_or_promotes
+increase in ground-level ozone,increase in toxic air pollutants (air pollution),causes_or_promotes
+increase in frequency of warm days and nights,increase in evaporation,causes_or_promotes
+increase in frequency of warm days and nights,decrease in learning (without air conditioner),causes_or_promotes
+increase in frequency of warm days and nights,increase in suicide,causes_or_promotes
+increase in suicide,increase in death,causes_or_promotes
+increase in frequency of warm days and nights,increase in physical violence,causes_or_promotes
+increase in frequency of warm days and nights,decrease in worker productivity,causes_or_promotes
+increase in frequency of warm days and nights,increase in sexual violence,causes_or_promotes
+increase in greenhouse effect,more heat absorbed by oceans,causes_or_promotes
+more heat absorbed by oceans,lower oxygen able to dissolve in ocean (solubility),causes_or_promotes
+lower oxygen able to dissolve in ocean (solubility),decrease in dissolved oxygen in oceans,causes_or_promotes
+more heat absorbed by oceans,warmer oceans,causes_or_promotes
+warmer oceans,increase in ocean surface temperature,causes_or_promotes
+increase in ocean surface temperature,increase in marine heatwaves,causes_or_promotes
+increase in marine heatwaves,increase in coral bleaching and destruction,causes_or_promotes
+increase in coral bleaching and destruction,decrease in tourism,causes_or_promotes
+increase in ocean surface temperature,increase in hurricane strength,causes_or_promotes
+increase in hurricane strength,increase in disaster costs,causes_or_promotes
+increase in hurricane strength,increase in destruction to US military bases,causes_or_promotes
+increase in hurricane strength,increase in flooding of land and property,causes_or_promotes
+warmer oceans,expansion of oceans,causes_or_promotes
+expansion of oceans,increase in sea level rise,causes_or_promotes
+increase in greenhouse effect,more heat absorbed by ice,causes_or_promotes
+more heat absorbed by ice,melting Greenland ice sheet,causes_or_promotes
+melting Greenland ice sheet,increase in freshwater added to ocean,causes_or_promotes
+more heat absorbed by ice,permafrost melt,causes_or_promotes
+permafrost melt,increase in methane (CH4),causes_or_promotes
+more heat absorbed by ice,lower Antarctic sea ice extent,causes_or_promotes
+lower Antarctic sea ice extent,less sinking of cooling ocean water,causes_or_promotes
+more heat absorbed by ice,retreat of glaciers (glacier melt),causes_or_promotes
+retreat of glaciers (glacier melt),increase in freshwater added to ocean,causes_or_promotes
+increase in greenhouse effect,more heat absorbed by air,causes_or_promotes
+more heat absorbed by air,warmer air and atmosphere (tropospheric warming),causes_or_promotes
+warmer air and atmosphere (tropospheric warming),decrease in frequency of cold days and nights,causes_or_promotes
+warmer air and atmosphere (tropospheric warming),increase in evaporation,causes_or_promotes
+warmer air and atmosphere (tropospheric warming),increase in toxic air pollutants (air pollution),causes_or_promotes
+warmer air and atmosphere (tropospheric warming),more moisture (water vapor) able to accumulate in air,causes_or_promotes
+more moisture (water vapor) able to accumulate in air,increase in extreme precipitation,causes_or_promotes
+increase in extreme precipitation,increase in flooding of land and property,causes_or_promotes
+more moisture (water vapor) able to accumulate in air,increase in H2O vapor,causes_or_promotes
+increase in H2O vapor,increase in greenhouse effect,causes_or_promotes
+warmer air and atmosphere (tropospheric warming),increase in frequency of warm days and nights,causes_or_promotes
+warmer air and atmosphere (tropospheric warming),increase in frequency of heatwaves,causes_or_promotes
+increase in frequency of heatwaves,decrease in test scores,causes_or_promotes
+increase in frequency of heatwaves,increase in health costs,causes_or_promotes
+increase in frequency of heatwaves,increase in evaporation,causes_or_promotes
+increase in frequency of heatwaves,decrease in population of moose available to hunt,causes_or_promotes
+increase in frequency of heatwaves,increase in suicide,causes_or_promotes
+increase in frequency of heatwaves,increase in toxic air pollutants (air pollution),causes_or_promotes
+increase in frequency of heatwaves,increase in heat stroke in marine corps,causes_or_promotes
+increase in frequency of heatwaves,decrease in GDP,causes_or_promotes
+increase in frequency of heatwaves,increase in worker absenteeism,causes_or_promotes
+increase in worker absenteeism,decrease in worker productivity,causes_or_promotes
+increase in frequency of heatwaves,increase in temperature of work environment,causes_or_promotes
+increase in temperature of work environment,decrease in worker productivity,causes_or_promotes
+increase in frequency of heatwaves,increase in risk of heart attack,causes_or_promotes
+coal mining,increase in risk of stomach cancer,causes_or_promotes
+increase in risk of stomach cancer,increase in death,causes_or_promotes
