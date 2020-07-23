@@ -35,9 +35,14 @@ class Network:
         if child not in self.visited:
             self.visited.add(child)
             self.node_family.append((
-                        child, 
-                        iter(getattr(child, edge_type)),
-                        edge_type
+                        child,
+                        iter(child.causes_or_promotes),
+                        "causes_or_promotes"
+                        ))
+            self.node_family.append((
+                        child,
+                        iter(child.is_inhibited_or_prevented_or_blocked_or_slowed_by),
+                        "is_inhibited_or_prevented_or_blocked_or_slowed_by"
                         ))
             
     
