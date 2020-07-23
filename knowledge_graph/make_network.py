@@ -8,7 +8,6 @@ def get_edges(ontology):
     node_network.dfs_labeled_edges()
     return node_network.get_results()
 
-
 def test_answer():
     assert search_node(get_ontology(onto_path).load()) == []
     #need to add in the answer to this unit test.
