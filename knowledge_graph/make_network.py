@@ -29,10 +29,12 @@ def give_alias(property_object):
 def main(args):
     """
     Main function to output all edges from a reference node. 
-    input:
-        args = args from the argument parser for the function (refNode, refOntologyPath, outputPath)
-    output:
-        Saves a csv file of the list of result edges (list of object, subject, predicate triples)
+    
+    input: args = args from the argument parser for the function 
+                  (refNode, refOntologyPath, outputPath)
+    output: Saves a csv file of the list of result edges 
+            (list of object, subject, predicate triples)
+    
     example: python3 make_network.py "coal mining" "./climate_mind_ontology20200721.owl" "output.csv"
     """
     
@@ -48,7 +50,6 @@ def main(args):
     [give_alias(x) for x in obj_properties]
     annot_properties = list(onto.annotation_properties())
     [give_alias(x) for x in annot_properties]
-    
 
     #make list of edges along all paths leaving the target node
     edges = get_edges(onto)
@@ -62,8 +63,6 @@ def main(args):
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description='get ontology edge from reference node')
-    # parser.add_argument("refNode", type=str,
-    #                     help='exact node string that exists in the ontology')
     parser.add_argument("refOntologyPath", type=str,
                         help='path to reference OWL2 ontology')
     parser.add_argument("outputPath", type=str,
