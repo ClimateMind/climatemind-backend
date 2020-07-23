@@ -23,6 +23,7 @@ def give_alias(property_object):
     label_name = property_object.label[0]
     label_name = label_name.replace("/","_or_")
     label_name = label_name.replace(" ","_")
+    label_name = label_name.replace(":","_")
     property_object.python_name = label_name
 
 def main(args):
@@ -43,8 +44,11 @@ def main(args):
     onto = get_ontology(onto_path).load()
 
     #make pythonic alias names for all the properties 
-    properties = list(onto.object_properties())
-    [give_alias(x) for x in properties]
+    obj_properties = list(onto.object_properties())
+    [give_alias(x) for x in obj_properties]
+    annot_properties = list(onto.annotation_properties())
+    [give_alias(x) for x in annot_properties]
+    
 
     #make list of edges along all paths leaving the target node
     edges = get_edges(onto)
