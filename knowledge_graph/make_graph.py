@@ -1,3 +1,8 @@
+import networkx as nx
+import pandas as pd
+from make_network import give_alias
+from owlready2 import *
+
 # Load ontology and format into Python readable names
 onto = get_ontology("../../Bx50aIKwEALYNmYl0CFzNp.owl").load()
 obj_properties = list(onto.object_properties())
