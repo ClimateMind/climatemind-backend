@@ -114,7 +114,7 @@ edges = convert_dataframe_to_edges()
 add_edges_to_graph(edges, G)
 add_ontology_data_to_graph_nodes(G)
 to_remove = get_edge_properties(G)
-remove_edge_properties_from_nodes(to_remove)
+remove_edge_properties_from_nodes(G, to_remove)
 save_graph_to_pickle(G)
 
 
