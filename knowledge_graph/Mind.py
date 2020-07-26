@@ -1,6 +1,7 @@
 from owlready2 import get_ontology
 from knowledge_graph import make_network
 from typing import List
+import sys
 
 Results = List[str]
 
@@ -14,7 +15,7 @@ class Mind:
         try:
             onto = get_ontology(self.__ontology_source).load()
             properties = list(onto.properties())
-            [make_network.giveAlias(x) for x in properties]
+            [make_network.give_alias(x) for x in properties]
             return onto
 
         except (FileNotFoundError, IsADirectoryError, ValueError):
@@ -30,6 +31,12 @@ class Mind:
 
     def search(self, query: str) -> Results:
         try:
-            return make_network.searchNode(self._get_ontology(), query)
+            return make_network.get_edges(self._get_ontology(), query)
+        except (ValueError, AttributeError):
+            raise ValueError
+    
+    def multiParameterSearch(self) -> Results:
+        try:
+            return make_network.get_edges(self._get_ontology(), None)
         except (ValueError, AttributeError):
             raise ValueError

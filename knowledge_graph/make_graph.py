@@ -1,6 +1,6 @@
 import networkx as nx
 import pandas as pd
-from make_network import give_alias
+from knowledge_graph.make_network import give_alias
 from owlready2 import *
 import json
 import pickle
@@ -11,6 +11,7 @@ obj_properties = list(onto.object_properties())
 annot_properties = list(onto.annotation_properties())
 [give_alias(x) for x in obj_properties]
 [give_alias(x) for x in annot_properties]
+
 
 def convert_dataframe_to_edges():
     edges = []

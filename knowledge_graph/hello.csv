@@ -18,8 +18,30 @@ increase in risk of stroke,increase in death,causes_or_promotes
 increase in toxic air pollutants (air pollution),increase in risk of heart attack,causes_or_promotes
 increase in risk of heart attack,increase in death,causes_or_promotes
 burning coal,increase in CO2,causes_or_promotes
-increase in CO2,more acidic oceans (increased dissolved CO2),causes_or_promotes
-increase in CO2,negative effects on cognition,causes_or_promotes
+increase in CO2,increase in restoration of abandoned farmland,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,increase in multistrata agroforestry,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,increase in managed grazing,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,increase in tree intercropping,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,increase in conservation agriculture,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,increase in tropical forest restoration,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,eating lower down the foodchain (plant-rich diets),is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,increase in restoration of temperate forests,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,increase in carbon capture,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in carbon capture,greenhouse-gas externality,is_inhibited_or_prevented_or_blocked_or_slowed_by
+greenhouse-gas externality,enact carbon tax policy (revenue neutral),is_inhibited_or_prevented_or_blocked_or_slowed_by
+enact carbon tax policy (revenue neutral),political polarization,is_inhibited_or_prevented_or_blocked_or_slowed_by
+political polarization,effective communication framing,is_inhibited_or_prevented_or_blocked_or_slowed_by
+political polarization,enact ranked-choice voting policy,is_inhibited_or_prevented_or_blocked_or_slowed_by
+greenhouse-gas externality,enact cap and trade policy,is_inhibited_or_prevented_or_blocked_or_slowed_by
+enact cap and trade policy,political polarization,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,increase in tree plantations (on degraded land),is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,increase in silvopasture,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,increase in bamboo production,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,increase in regenerative annual cropping,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,increase in perennial staple crops,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,establish a federal green jobs program,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,enact cap and trade policy,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,enact carbon tax policy (revenue neutral),is_inhibited_or_prevented_or_blocked_or_slowed_by
 increase in CO2,increase in greenhouse effect,causes_or_promotes
 increase in greenhouse effect,more heat absorbed by land,causes_or_promotes
 more heat absorbed by land,decrease in frequency of cold days and nights,causes_or_promotes
@@ -27,7 +49,9 @@ decrease in frequency of cold days and nights,increase in evaporation,causes_or_
 increase in evaporation,change in salinity in oceans (both surface and subsurface),causes_or_promotes
 increase in evaporation,increase in rain (and snow if cold enough) (precipitation),causes_or_promotes
 increase in rain (and snow if cold enough) (precipitation),increase in vegetation during wet season,causes_or_promotes
+increase in vegetation during wet season,increase in goats clearing brush,is_inhibited_or_prevented_or_blocked_or_slowed_by
 increase in vegetation during wet season,increase in area burned by wildfire,causes_or_promotes
+increase in area burned by wildfire,increase in goats clearing brush,is_inhibited_or_prevented_or_blocked_or_slowed_by
 increase in area burned by wildfire,increase in toxic air pollutants (air pollution),causes_or_promotes
 increase in area burned by wildfire,increase in CO2,causes_or_promotes
 increase in rain (and snow if cold enough) (precipitation),lower salinity in freshwater,causes_or_promotes
@@ -42,16 +66,29 @@ weakened ocean circulation (AMOC),less mixing of oxygenated water,causes_or_prom
 less mixing of oxygenated water,decrease in dissolved oxygen in oceans,causes_or_promotes
 decrease in dissolved oxygen in oceans,increase in release of N2O and CH4 greenhouse gases,causes_or_promotes
 increase in release of N2O and CH4 greenhouse gases,increase in N2O,causes_or_promotes
+increase in N2O,establish a federal green jobs program,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in N2O,enact cap and trade policy,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in N2O,enact carbon tax policy (revenue neutral),is_inhibited_or_prevented_or_blocked_or_slowed_by
 increase in N2O,increase in greenhouse effect,causes_or_promotes
 increase in release of N2O and CH4 greenhouse gases,increase in methane (CH4),causes_or_promotes
+increase in methane (CH4),establish a federal green jobs program,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in methane (CH4),enact cap and trade policy,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in methane (CH4),enact carbon tax policy (revenue neutral),is_inhibited_or_prevented_or_blocked_or_slowed_by
 increase in methane (CH4),increase in greenhouse effect,causes_or_promotes
 weakened ocean circulation (AMOC),reduction in oxygen producing sea organisms,causes_or_promotes
 reduction in oxygen producing sea organisms,decrease in dissolved oxygen in oceans,causes_or_promotes
 increase in rain (and snow if cold enough) (precipitation),wetter soil during wet season,causes_or_promotes
 wetter soil during wet season,increase in vegetation during wet season,causes_or_promotes
 increase in rain (and snow if cold enough) (precipitation),increase in flooding of land and property,causes_or_promotes
+increase in flooding of land and property,avoid building on land that is or will become a floodplain,is_inhibited_or_prevented_or_blocked_or_slowed_by
+avoid building on land that is or will become a floodplain,builders are not required to check before building on a floodplain,is_inhibited_or_prevented_or_blocked_or_slowed_by
+builders are not required to check before building on a floodplain,regulation/laws that require assessment of floodplains for new buildings,is_inhibited_or_prevented_or_blocked_or_slowed_by
+regulation/laws that require assessment of floodplains for new buildings,deregulation,is_inhibited_or_prevented_or_blocked_or_slowed_by
+deregulation,vote in elections,is_inhibited_or_prevented_or_blocked_or_slowed_by
+deregulation,call representative,is_inhibited_or_prevented_or_blocked_or_slowed_by
 increase in flooding of land and property,increase in destruction to US military bases,causes_or_promotes
 increase in flooding of land and property,increase in cholera infections,causes_or_promotes
+increase in cholera infections,increase in cholera vaccines,is_inhibited_or_prevented_or_blocked_or_slowed_by
 increase in cholera infections,increase in death,causes_or_promotes
 increase in flooding of land and property,increase in climate refugees,causes_or_promotes
 increase in climate refugees,increase in cholera infections,causes_or_promotes
@@ -77,7 +114,9 @@ increase in frequency of warm days and nights,increase in ground-level ozone,cau
 increase in ground-level ozone,increase in toxic air pollutants (air pollution),causes_or_promotes
 increase in frequency of warm days and nights,increase in evaporation,causes_or_promotes
 increase in frequency of warm days and nights,decrease in learning (without air conditioner),causes_or_promotes
+decrease in learning (without air conditioner),increase in air conditioning,is_inhibited_or_prevented_or_blocked_or_slowed_by
 increase in frequency of warm days and nights,increase in suicide,causes_or_promotes
+increase in suicide,increase in funding for suicide prevention,is_inhibited_or_prevented_or_blocked_or_slowed_by
 increase in suicide,increase in death,causes_or_promotes
 increase in frequency of warm days and nights,increase in physical violence,causes_or_promotes
 increase in frequency of warm days and nights,decrease in worker productivity,causes_or_promotes
@@ -114,6 +153,9 @@ warmer air and atmosphere (tropospheric warming),more moisture (water vapor) abl
 more moisture (water vapor) able to accumulate in air,increase in extreme precipitation,causes_or_promotes
 increase in extreme precipitation,increase in flooding of land and property,causes_or_promotes
 more moisture (water vapor) able to accumulate in air,increase in H2O vapor,causes_or_promotes
+increase in H2O vapor,establish a federal green jobs program,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in H2O vapor,enact cap and trade policy,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in H2O vapor,enact carbon tax policy (revenue neutral),is_inhibited_or_prevented_or_blocked_or_slowed_by
 increase in H2O vapor,increase in greenhouse effect,causes_or_promotes
 warmer air and atmosphere (tropospheric warming),increase in frequency of warm days and nights,causes_or_promotes
 warmer air and atmosphere (tropospheric warming),increase in frequency of heatwaves,causes_or_promotes
@@ -125,10 +167,14 @@ increase in frequency of heatwaves,increase in suicide,causes_or_promotes
 increase in frequency of heatwaves,increase in toxic air pollutants (air pollution),causes_or_promotes
 increase in frequency of heatwaves,increase in heat stroke in marine corps,causes_or_promotes
 increase in frequency of heatwaves,decrease in GDP,causes_or_promotes
+decrease in GDP,Increase in investment,is_inhibited_or_prevented_or_blocked_or_slowed_by
 increase in frequency of heatwaves,increase in worker absenteeism,causes_or_promotes
 increase in worker absenteeism,decrease in worker productivity,causes_or_promotes
 increase in frequency of heatwaves,increase in temperature of work environment,causes_or_promotes
 increase in temperature of work environment,decrease in worker productivity,causes_or_promotes
 increase in frequency of heatwaves,increase in risk of heart attack,causes_or_promotes
+establish a federal green jobs program,political polarization,is_inhibited_or_prevented_or_blocked_or_slowed_by
+increase in CO2,more acidic oceans (increased dissolved CO2),causes_or_promotes
+increase in CO2,negative effects on cognition,causes_or_promotes
 coal mining,increase in risk of stomach cancer,causes_or_promotes
 increase in risk of stomach cancer,increase in death,causes_or_promotes
