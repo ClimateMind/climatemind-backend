@@ -1,10 +1,11 @@
 import argparse
 import pandas as pd
+
 from .network_class import Network
 from owlready2 import *
 
-def get_edges(ontology):
-    node_network = Network(ontology)
+def get_edges(ontology, source):
+    node_network = Network(ontology, source)
     node_network.dfs_labeled_edges()
     return node_network.get_results()
 
@@ -40,6 +41,7 @@ def main(args):
     #set argument variables
     onto_path = args.refOntologyPath
     output_path = args.outputPath
+    source = args.source
     
     #load ontology
     onto = get_ontology(onto_path).load()
@@ -51,7 +53,7 @@ def main(args):
     [give_alias(x) for x in annot_properties]
 
     #make list of edges along all paths leaving the target node
-    edges = get_edges(onto)
+    edges = get_edges(onto, source)
 
     #save output to output Path as csv file. Later can change this to integrate well with API and front-end.
     df = pd.DataFrame([[i[0], i[1], i[2]] for i in edges],
@@ -62,6 +64,8 @@ def main(args):
 
 if __name__=="__main__":
     parser = argparse.ArgumentParser(description='get ontology edge from reference node')
+    parser.add_argument("-source", type=str,
+                        help='the node you want to start from in the ontology, if None, it will use entire ontology')
     parser.add_argument("refOntologyPath", type=str,
                         help='path to reference OWL2 ontology')
     parser.add_argument("outputPath", type=str,
