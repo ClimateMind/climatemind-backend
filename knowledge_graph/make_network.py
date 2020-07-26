@@ -1,13 +1,13 @@
 import argparse
 import pandas as pd
-from knowledge_graph.network_class import Network
+
+from .network_class import Network
 from owlready2 import *
 
 def get_edges(ontology, source):
     node_network = Network(ontology, source)
     node_network.dfs_labeled_edges()
     return node_network.get_results()
-
 
 def test_answer():
     assert search_node(get_ontology(onto_path).load()) == []
