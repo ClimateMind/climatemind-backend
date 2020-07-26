@@ -1,6 +1,6 @@
 import argparse
 import pandas as pd
-from network_class import Network
+from .network_class import Network
 from owlready2 import *
 
 def get_edges(ontology):
