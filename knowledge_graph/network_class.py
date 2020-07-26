@@ -12,12 +12,16 @@ class Network:
            the component reachable from source.    
     """
 
-    def __init__(self, ontology):
+    def __init__(self, ontology, source=None):
         self.ontology = ontology
         self.result = []
         self.visited = set()
         self.node_family = []
         self.class_family = []
+        if source:
+            self.source = source
+        else:
+            self.source = None
 
         
     def add_child_to_result(self, child, parent, edge_type):
@@ -128,8 +132,10 @@ class Network:
                   is_inhibited_or_prevented_or_blocked_or_slowed_by
 
         """
-
-        nodes = self.ontology.individuals()
+        if self.source:
+            nodes = [self.ontology.search_one(label=self.source)]
+        else:
+            nodes = self.ontology.individuals()
     
         for node in nodes:
             if node not in self.visited:

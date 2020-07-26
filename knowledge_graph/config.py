@@ -1,3 +1,7 @@
+from knowledge_graph.Mind import Mind
+from flask import abort
+from knowledge_graph import app
+
 class BaseConfig(object):
     DEBUG = False
 
