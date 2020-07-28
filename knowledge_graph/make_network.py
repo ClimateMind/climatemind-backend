@@ -25,6 +25,7 @@ def give_alias(property_object):
     label_name = label_name.replace(" ","_")
     label_name = label_name.replace(":","_")
     property_object.python_name = label_name
+#TODO: remove this code and only have it be in the network_class.py code ? Currently, breaks endpoints though if do this.
 
 def main(args):
     """
@@ -45,12 +46,6 @@ def main(args):
     
     #load ontology
     onto = get_ontology(onto_path).load()
-
-    #make pythonic alias names for all the properties 
-    obj_properties = list(onto.object_properties())
-    [give_alias(x) for x in obj_properties]
-    annot_properties = list(onto.annotation_properties())
-    [give_alias(x) for x in annot_properties]
 
     #make list of edges along all paths leaving the target node
     edges = get_edges(onto, source)
