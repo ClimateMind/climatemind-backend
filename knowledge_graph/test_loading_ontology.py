@@ -1,5 +1,6 @@
 import unittest
-from .mind import Mind
+
+from knowledge_graph.Mind import Mind
 
 
 class TestLoadingOntology(unittest.TestCase):

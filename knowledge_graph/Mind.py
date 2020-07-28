@@ -1,7 +1,10 @@
-from owlready2 import get_ontology
-from knowledge_graph import make_network
-from typing import List
 import sys
+
+from owlready2 import get_ontology
+from typing import List
+
+from knowledge_graph import make_network
+
 
 Results = List[str]
 
