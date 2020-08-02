@@ -1,6 +1,7 @@
 import networkx as nx
 import pandas as pd
 from knowledge_graph.make_network import give_alias
+from networkx.readwrite import json_graph
 from owlready2 import *
 import json
 import pickle
@@ -46,12 +47,12 @@ def add_ontology_data_to_graph_nodes(G):
         
         G.add_nodes_from([node], individual = str(ontology_node))
         G.add_nodes_from([node], comment = str(ontology_node.comment))
-        G.add_nodes_from([node], classes = set([str(parent.label[0]) for parent in class_objects if parent in onto.classes()])) #the if statement is needed to avoid the Restriction objects
+        G.add_nodes_from([node], classes = [str(parent.label[0]) for parent in class_objects if parent in onto.classes()]) #the if statement is needed to avoid the Restriction objects
         #still don't know why Restriction Objects are in our ontology!
         #technically each class could have multiple labels, but this way just pulling 1st label
         annot_properties_dict={}
         for prop in annot_properties:
-            annot_properties_dict[prop] = set(eval("ontology_node."+prop))
+            annot_properties_dict[prop] = list(eval("ontology_node."+prop))
         G.add_nodes_from([node], properties = annot_properties_dict)
 
 
@@ -69,10 +70,10 @@ def set_edge_properties(G):
         node_a = edge[0]
         node_b = edge[1]
         for prop in G.nodes[node_a]["properties"].keys():
-            intersection = G.nodes[node_a]["properties"][prop] & G.nodes[node_b]["properties"][prop]
+            intersection = set(G.nodes[node_a]["properties"][prop]) & set(G.nodes[node_b]["properties"][prop])
             #add intersection to edge property dictionary
             if intersection:
-                G.add_edge(node_a,node_b,properties={prop:intersection})
+                G.add_edge(node_a,node_b,properties={prop:list(intersection)})
                 if (node_a,prop) in to_remove.keys():
                     to_remove[(node_a,prop)] = to_remove[(node_a,prop)]|intersection
                 else:
@@ -81,7 +82,7 @@ def set_edge_properties(G):
                     to_remove[(node_b,prop)] = to_remove[(node_b,prop)]|intersection
                 else:
                     to_remove[(node_b,prop)] = intersection
-    return to_remove
+    return list(to_remove)
 
 
 def remove_edge_properties_from_nodes(G, to_remove):
@@ -93,12 +94,12 @@ def remove_edge_properties_from_nodes(G, to_remove):
         G: A networkx graph
         to_remove: A dictionary of nodes and properties
         """
-    for item in to_remove.keys():
+    for item in to_remove:
         node = item[0]
         prop = item[1]
-        to_delete = to_remove[item]
-        G.nodes[node]["properties"][prop] = set(G.nodes[node]["properties"][prop]
-                                                - set(to_delete))
+        to_delete = item
+        G.nodes[node]["properties"][prop] = [node for node in list(G.nodes[node]["properties"][prop])
+                                                if node not in list(to_delete)]
 
 def save_graph_to_pickle(G):
     with open('Climate_Mind_DiGraph.gpickle', 'wb') as outfile:
@@ -117,9 +118,12 @@ def save_graph_to_graphml(G):
         nx.write_graphml(G, outfile)
 
 def save_graph_to_yaml(G):
-    with open('Climate_Mind_DiGraph.yaml', 'wb') as outfile:
+    with open('Climate_Mind_DiGraph.yaml', 'w') as outfile:
         nx.write_yaml(G, outfile)
 
+def save_graph_to_json(G):
+    with open('Climate_Mind_DiGraph.json', 'w') as outfile:
+        outfile.write(json.dumps(json_graph.jit_data(G)))
 
 # Read in the triples data
 df = pd.read_csv('../../output.csv')
@@ -137,7 +141,17 @@ save_graph_to_pickle(G)
 #save_graph_to_gexf(G)
 #save_graph_to_gml(G)
 #save_graph_to_graphml(G)
-#save_graph_to_yaml(G)
+save_graph_to_yaml(G)
+save_graph_to_json(G)
 
+# Read the JSON file back
+def read_json_file(filename):
+    with open(filename) as f:
+        js_graph = json.load(f)
+    return json_graph.jit_graph(js_graph)
+
+# Test reading JSON file & print the nodes
+G2 = read_json_file("Climate_Mind_DiGraph.json")
+print(G.nodes(data=True))
 
 
