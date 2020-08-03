@@ -124,6 +124,10 @@ def save_graph_to_yaml(G):
 def save_graph_to_json(G):
     with open('Climate_Mind_DiGraph.json', 'w') as outfile:
         outfile.write(json_graph.jit_data(G, indent=4))
+        
+def save_test_ontology_to_json(G):
+    with open('Climate_Mind_Digraph_Test_Ont.json', 'w') as outfile:
+        outfile.write(json_graph.jit_data(G, indent=4))
 
 # Read in the triples data
 df = pd.read_csv('../../output.csv')
@@ -144,17 +148,95 @@ save_graph_to_pickle(G)
 save_graph_to_yaml(G)
 save_graph_to_json(G)
 
+valid_test_ont = {
+    "test ontology",
+    "personal value",
+    "achievement",
+    "benevolence",
+    "benevolence caring",
+    "benevolence dependability",
+    "conformity",
+    "conformity interpersonal",
+    "conformity rules",
+    "face",
+    "hedonism",
+    "humility",
+    "power",
+    "power dominance",
+    "power resources",
+    "security",
+    "security personal",
+    "security societal",
+    "self-direction",
+    "self-direction autonomy of action",
+    "self-direction autonomy of thought",
+    "stimulation",
+    "tradition",
+    "universalism",
+    "universalism concern",
+    "universalism nature",
+    "universalism tolerance"
+}
+
+not_test_ont = {
+    "value uncategorized (to do)",
+    "risk solution",
+    "adaptation",
+    "geoengineering",
+    "indirect adaptation",
+    "indirect geoengineering",
+    "indirect mitigration",
+    "carbon pricing",
+    "carbon tax",
+    "emissions trading",
+    "mitigation",
+    "solution to indirect adaptation barrier",
+    "solution to indirect mitigation barrier",
+    "solution uncategorized (to do)"
+}
+
+def remove_non_test_nodes(G, node):
+    if node in G.nodes:
+        is_test_ont = False
+        for c in G.nodes[node]["classes"]:
+            if c in valid_test_ont:
+                is_test_ont = True
+            if c in not_test_ont:
+                is_test_ont = False
+                break
+        if not is_test_ont:
+            G.remove_node(node)
+        else:
+            is_test_ont = False    
+
+def get_test_ontology(G):
+    for edge in list(G.edges):
+        node_a = edge[0]
+        node_b = edge[1]
+        remove_non_test_nodes(G, node_a)
+        remove_non_test_nodes(G, node_b)
+
+get_test_ontology(G)
+for node in G.nodes:
+    print(node)
+    print(G.nodes[node]["classes"])
+
+        
+save_test_ontology_to_json(G)
+
 # Read the JSON file back
 def read_json_file(filename):
     with open(filename) as f:
         js_graph = json.load(f)
     return js_graph
-    #return json_graph.jit_graph(js_graph)
 
 # Test reading JSON file & print the nodes
-G2 = read_json_file("Climate_Mind_DiGraph.json")
+#G2 = read_json_file("Climate_Mind_DiGraph.json")
+#print(json.dumps(G2, indent=4, sort_keys=True))
+
+# Test reading JSON file & print the nodes for Test Ontology Only
+G2 = read_json_file("Climate_Mind_DiGraph_Test_Ont.json")
 print(json.dumps(G2, indent=4, sort_keys=True))
-#print(G.nodes(data=True))
 
 
 
