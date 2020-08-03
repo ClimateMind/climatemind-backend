@@ -17,6 +17,8 @@ import pygraphviz
 import math
 import numpy as np
 
+import io
+
 import matplotlib.pyplot as plt
 from scipy.special import binom
 
@@ -56,17 +58,23 @@ N.edge_attr.update(splines="curved",directed=True)
 N.layout(prog='dot')
 
 #output the graphviz graph layout details as a string file to parse and vizualize using native python plotly and dash
-s = N.string() #this string contains the coordinates for the edges so they aren't just straight lines but curve to avoid going through other nodes
+f = N.string() #this string contains the coordinates for the edges so they aren't just straight lines but curve to avoid going through other nodes
+
+#use python's in-memory text stream so string is the same across systems
+#... so universal newline decoding is performed when reading the string
+s = io.StringIO(f)
 
 #option to save graphviz graph file if desired. Not necessary though.
 #N.write('edges_spline_layout_coordinates.txt') #this file also has the coordinates for the splines for the edges that curve around the nodes instead of going through the nodes
 
 #parse the graphviz graph string for the layout information we need
-data = s.split(";\n")
+data = s.getvalue().split(";\n")
 #remove header and footer content
 header = data[0:3]
 content = data[3:len(data)-1]
 
+#close the in memory file
+s.close()
 
 #go through each item in 'content', and separate into either node or edge object
 N_nodes = []
