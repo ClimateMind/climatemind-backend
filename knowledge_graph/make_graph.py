@@ -123,7 +123,7 @@ def save_graph_to_yaml(G):
 
 def save_graph_to_json(G):
     with open('Climate_Mind_DiGraph.json', 'w') as outfile:
-        outfile.write(json.dumps(json_graph.jit_data(G)))
+        outfile.write(json_graph.jit_data(G, indent=4))
 
 # Read in the triples data
 df = pd.read_csv('../../output.csv')
@@ -148,10 +148,14 @@ save_graph_to_json(G)
 def read_json_file(filename):
     with open(filename) as f:
         js_graph = json.load(f)
-    return json_graph.jit_graph(js_graph)
+    return js_graph
+    #return json_graph.jit_graph(js_graph)
 
 # Test reading JSON file & print the nodes
 G2 = read_json_file("Climate_Mind_DiGraph.json")
-print(G.nodes(data=True))
+print(json.dumps(G2, indent=4, sort_keys=True))
+#print(G.nodes(data=True))
+
+
 
 
