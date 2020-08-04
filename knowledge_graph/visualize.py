@@ -62,7 +62,7 @@ f = N.string() #this string contains the coordinates for the edges so they aren'
 
 #use python's in-memory text stream so string is the same across systems
 #... so universal newline decoding is performed when reading the string
-s = io.StringIO(f)
+s = io.StringIO(f, newline=None)
 
 #option to save graphviz graph file if desired. Not necessary though.
 #N.write('edges_spline_layout_coordinates.txt') #this file also has the coordinates for the splines for the edges that curve around the nodes instead of going through the nodes
@@ -235,9 +235,9 @@ fig.update_yaxes(range=[0, 1404])
                     #            scaleratio = /1404,
 #            ))
 
-#add scroll zooming as a feature
-config = dict({'scrollZoom': True})
-fig.show(config=config)
+# #add scroll zooming as a feature
+# config = dict({'scrollZoom': True})
+# fig.show(config=config)
 
 
 ################### START OF DASH APP ###################
