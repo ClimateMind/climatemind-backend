@@ -103,7 +103,7 @@ for edge in N_edges:
     node1,node2 = edge.split('\t')[1].split(' -> ')
     node1 = node1.strip("\"")
     node2 = node2.strip("\"")
-    position = edge.split('\t')[2].replace(" [pos=\"e,","").replace("\\","").replace("\n","").strip("\",").split(" ")
+    position = edge.split('\t')[2].replace("[pos=\"e,","").replace("\\","").replace("\n","").strip("\",").split(" ")
     position = [[float(thing.split(",")[0]),float(thing.split(",")[1])] for thing in position]
     type = edge.split('\n\t\t')[2].replace("type=","").strip(']')
     N_edge_details.append([node1,node2,position,type])
