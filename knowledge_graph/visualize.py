@@ -89,20 +89,19 @@ for item in content:
 N_node_details = []
 for N_node in N_nodes:
     name = N_node.split('\t')[1].strip("\"")
-    height = float(N_node.split('\n\t\t')[2].replace("height=","").strip(','))
-    position = N_node.split('\n\t\t')[4].replace("pos=\"","").strip('",').split(",")
-    position = [float(thing) for thing in position]
-    width = float(N_node.split('\n\t\t')[6].replace("width=","").strip(']'))
+    node_attrs = N.get_node(name).attr
+    height = node_attrs.get("height", 0)
+    width = node_attrs.get("width", 0)
+    position = node_attrs.get("pos", []).split(",")
     node_properties = G.nodes.get(name).get("properties")
     node_properties_hovertext = "<br>".join([f"<b>{key}</b>: {val}" for (key, val) in node_properties.items()])
     n_details = {
     	"name": name,
-    	"position": {"x":position[0], "y":position[1]},
-    	"height": height,
-    	"width": width,
+    	"position": {"x":float(position[0]), "y":float(position[1])},
+    	"height": float(height),
+    	"width": float(width),
     	"node_properties_hovertext": node_properties_hovertext,
     }
-
     N_node_details.append(n_details)
 
 
@@ -112,13 +111,19 @@ for edge in N_edges:
     node1,node2 = edge.split('\t')[1].split(' -> ')
     node1 = node1.strip("\"")
     node2 = node2.strip("\"")
-    position = edge.split('\t')[2].replace(" [pos=\"e,","").replace("\\","").replace("\n","").strip("\",").split(" ")
-    position = [[float(thing.split(",")[0]),float(thing.split(",")[1])] for thing in position]
-    edge_type = edge.split('\n\t\t')[2].replace("type=","").strip(']')
+
+    edge_attrs = N.get_edge(node1, node2).attr
+    positions = edge_attrs.get("pos")\
+        .replace('e,', '')\
+        .replace('\\', '')\
+        .replace('r', '')\
+        .replace('n', '')
+    positions = [[float(x),float(y)] for (x,y) in [cp.split(",") for cp in positions.split(" ")]]
+    edge_type = edge_attrs.get("type")
     edge_details = {
     	"node1": node1,
     	"node2": node2,
-    	"position": position,
+    	"positions": positions,
     	"edge_type": edge_type,
     }
     N_edge_details.append(edge_details)
@@ -190,7 +195,7 @@ def get_gigure():
 
 	#adding edges (and arrows and tees to edges)
 	for edge in N_edge_details:
-	    edge_position = edge.get("position")
+	    edge_position = edge.get("positions")
 	    start = edge_position[0]
 	    end = edge_position[1]
 	    backwards = edge_position[2:][::-1]
