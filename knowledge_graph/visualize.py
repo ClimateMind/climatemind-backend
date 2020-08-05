@@ -95,7 +95,16 @@ for N_node in N_nodes:
     width = float(N_node.split('\n\t\t')[6].replace("width=","").strip(']'))
     node_properties = G.nodes.get(name).get("properties")
     node_properties_hovertext = "<br>".join([f"<b>{key}</b>: {val}" for (key, val) in node_properties.items()])
-    N_node_details.append([name,height,position,width,node_properties_hovertext])
+    n_details = {
+    	"name": name,
+    	"position": {"x":position[0], "y":position[1]},
+    	"height": height,
+    	"width": width,
+    	"node_properties_hovertext": node_properties_hovertext,
+    }
+
+    N_node_details.append(n_details)
+
 
 #populate edge graph layout details from graphviz
 N_edge_details = []
@@ -103,19 +112,24 @@ for edge in N_edges:
     node1,node2 = edge.split('\t')[1].split(' -> ')
     node1 = node1.strip("\"")
     node2 = node2.strip("\"")
-    position = edge.split('\t')[2].replace("[pos=\"e,","").replace("\\","").replace("\n","").strip("\",").split(" ")
+    position = edge.split('\t')[2].replace(" [pos=\"e,","").replace("\\","").replace("\n","").strip("\",").split(" ")
     position = [[float(thing.split(",")[0]),float(thing.split(",")[1])] for thing in position]
-    type = edge.split('\n\t\t')[2].replace("type=","").strip(']')
-    N_edge_details.append([node1,node2,position,type])
+    edge_type = edge.split('\n\t\t')[2].replace("type=","").strip(']')
+    edge_details = {
+    	"node1": node1,
+    	"node2": node2,
+    	"position": position,
+    	"edge_type": edge_type,
+    }
+    N_edge_details.append(edge_details)
 
 
 #divide the x and y coordinates into separate lists
 node_x_list = []
-for node in N_node_details:
-    node_x_list.append(node[2][0])
 node_y_list = []
 for node in N_node_details:
-    node_y_list.append(node[2][1])
+    node_x_list.append(node.get("position").get("x"))
+    node_y_list.append(node.get("position").get("y"))
 
 
 #divide graphviz edge curve coordinates into groups of coordinates to help draw edges as correct spline curves (cubic B splines)
@@ -151,8 +165,8 @@ def get_gigure():
 	                         x=node_x_list,
 	                         y=node_y_list,
 							 # https://plotly.com/python/hover-text-and-formatting/#customizing-hover-text-with-a-hovertemplate    
-	                         hovertemplate=[node[4] for node in N_node_details],
-	                         text=[node[0] for node in N_node_details],
+	                         hovertemplate=[node.get("node_properties_hovertext") for node in N_node_details],
+	                         text=[node.get("name") for node in N_node_details],
 	                         mode="text",
 	                         textfont=dict(
 	                                       color="black",
@@ -166,19 +180,20 @@ def get_gigure():
 	for node in N_node_details:
 	    fig.add_shape(
 	                  type="circle",
-	                  x0=node[2][0]-0.5*node[3]*72,
-	                  y0=node[2][1]-0.5*node[1]*72,
-	                  x1=node[2][0]+0.5*node[3]*72,
-	                  y1=node[2][1]+0.5*node[1]*72
+	                  x0=node.get("position").get("x")-0.5*node.get("width")*72,
+	                  y0=node.get("position").get("y")-0.5*node.get("height")*72,
+	                  x1=node.get("position").get("x")+0.5*node.get("width")*72,
+	                  y1=node.get("position").get("y")+0.5*node.get("height")*72
 	                  )
 
 
 
 	#adding edges (and arrows and tees to edges)
 	for edge in N_edge_details:
-	    start = edge[2][0]
-	    end = edge[2][1]
-	    backwards = edge[2][2:][::-1]
+	    edge_position = edge.get("position")
+	    start = edge_position[0]
+	    end = edge_position[1]
+	    backwards = edge_position[2:][::-1]
 	    edge_fix = [start]+backwards+[end] #graphviz has weird edge coordinate format that doesn't have coordinates in correct order
 	    #approximate the B spline curve
 	    #see the following websites to better understand:
@@ -197,7 +212,7 @@ def get_gigure():
 	        path = path + curve.tolist()
 
 	    #add arrow adornment using linear algebra
-	    if edge[3] == 'causes_or_promotes':
+	    if edge.get("edge_type") == 'causes_or_promotes':
 	        #A,B = [path[-20],path[-1]]
 	        A,B = [path[20],path[0]]
 	        A = np.array(A)
@@ -215,7 +230,7 @@ def get_gigure():
 	        fig.add_trace(go.Scatter(x=xpoint,y=ypoint, line_shape='linear',mode='lines'))
 
 	    #add tee adornment using linear algebra
-	    if edge[3] == 'is_inhibited_or_prevented_or_blocked_or_slowed_by':
+	    if edge.get("edge_type") == 'is_inhibited_or_prevented_or_blocked_or_slowed_by':
 	        #B,A = [path[0],path[1]]
 	        B,A = [path[-1],path[2]]
 	        A = np.array(A)
