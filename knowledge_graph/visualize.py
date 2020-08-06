@@ -149,10 +149,23 @@ def unit_vector(v):
     return v / np.linalg.norm(v)
 
 
+def get_filtered_data(edge_type=None):
+	if edge_type is None:
+		# By default display everything
+		nodes_to_display = [n.get("name") for n in N_node_details]
+		edges_to_display = [N.get_edge(e["node1"], e["node2"]) for e in N_edge_details]
+	else:
+		nodes_to_display = []
+		edges_to_display = []
 
+		for edge in G.edges:
+			if G.edges.get(edge).get("type") == edge_type:
+				node1, node2 = [edge[0], edge[1]]
+				edges_to_display.append(edge)
+				nodes_to_display.append(node1)
+				nodes_to_display.append(node2)
 
-
-
+	return nodes_to_display, edges_to_display
 
 
 #links to help undertand dash better if needed
@@ -161,28 +174,19 @@ def unit_vector(v):
 #radio icons and dropdown menus
 #https://www.datacamp.com/community/tutorials/learn-build-dash-python
 
-def get_gigure():
+def get_figure(edge_type=None):
+	the_nodes_to_display, the_edges_to_display = get_filtered_data(edge_type)
 	#blank figure object
 	fig = go.Figure()
 
-	#add scatter trace of text labels to the figure object
-	fig.add_trace(go.Scatter(
-	                         x=node_x_list,
-	                         y=node_y_list,
-							 # https://plotly.com/python/hover-text-and-formatting/#customizing-hover-text-with-a-hovertemplate    
-	                         hovertemplate=[node.get("node_properties_hovertext") for node in N_node_details],
-	                         text=[node.get("name") for node in N_node_details],
-	                         mode="text",
-	                         textfont=dict(
-	                                       color="black",
-	                                       size=8.5,
-	                                       family="sans-serif",
-	                                       )
-	                         ))
 
 	#Add node traces as ovals to the figure object
 	#Note how 72 is the conversion of graphviz point scale to inches scale
 	for node in N_node_details:
+	    # Do not show the nodes not in the_nodes_to_display
+	    if node.get("name") not in the_nodes_to_display:
+	    	continue
+
 	    fig.add_shape(
 	                  type="circle",
 	                  x0=node.get("position").get("x")-0.5*node.get("width")*72,
@@ -192,10 +196,31 @@ def get_gigure():
 	                  )
 
 
+	    #add scatter trace of text labels to the figure object
+	    fig.add_trace(go.Scatter(
+	                             x=[node.get("position").get("x")],
+	                             y=[node.get("position").get("y")],
+	                             # https://plotly.com/python/hover-text-and-formatting/#customizing-hover-text-with-a-hovertemplate    
+	                             hovertemplate=node.get("node_properties_hovertext"),
+	                             text=node.get("name"),
+	                             mode="text",
+	                             textfont=dict(
+	                                           color="black",
+	                                           size=8.5,
+	                                           family="sans-serif",
+	                                           )
+	                             ))
+
 
 	#adding edges (and arrows and tees to edges)
 	for edge in N_edge_details:
 	    edge_position = edge.get("positions")
+
+	    # # Do not show the edges not in edges_to_display
+	    o_edge = N.get_edge(edge["node1"], edge["node2"])
+	    if o_edge not in the_edges_to_display:
+	    	continue
+
 	    start = edge_position[0]
 	    end = edge_position[1]
 	    backwards = edge_position[2:][::-1]
@@ -216,6 +241,7 @@ def get_gigure():
 	        curve = Bezier(chunk,200)
 	        path = path + curve.tolist()
 
+	    edge_color = "black"
 	    #add arrow adornment using linear algebra
 	    if edge.get("edge_type") == 'causes_or_promotes':
 	        #A,B = [path[-20],path[-1]]
@@ -232,7 +258,8 @@ def get_gigure():
 	        adornment_to_add = [v1.tolist()]+[B]+[v2.tolist()]
 	        xpoint = [ coordinate[0] for coordinate in adornment_to_add ]
 	        ypoint = [ coordinate[1] for coordinate in adornment_to_add ]
-	        fig.add_trace(go.Scatter(x=xpoint,y=ypoint, line_shape='linear',mode='lines'))
+	        fig.add_trace(go.Scatter(x=xpoint,y=ypoint,line_shape='linear',mode='lines'))
+	        edge_color = "blue"
 
 	    #add tee adornment using linear algebra
 	    if edge.get("edge_type") == 'is_inhibited_or_prevented_or_blocked_or_slowed_by':
@@ -250,11 +277,12 @@ def get_gigure():
 	        xpoint = [ coordinate[0] for coordinate in adornment_to_add ]
 	        ypoint = [ coordinate[1] for coordinate in adornment_to_add ]
 	        fig.add_trace(go.Scatter(x=xpoint,y=ypoint, line_shape='linear',mode='lines'))
+	        edge_color = "red"
 
 	    #add edge spline trace to the figure object
 	    xp = [ coordinate[0] for coordinate in path ]
 	    yp = [ coordinate[1] for coordinate in path ]
-	    fig.add_trace(go.Scatter(x=xp,y=yp, line_shape='spline'))
+	    fig.add_trace(go.Scatter(x=xp,y=yp,marker=dict(color=edge_color), line_shape='spline'))
 
 
 
@@ -263,6 +291,7 @@ def get_gigure():
 	#change the x and y axis ranges to be the values found in the 'header' of the graphviz graph layout string
 	fig.update_xaxes(range=[0, 8395.7])
 	fig.update_yaxes(range=[0, 1404])
+	print("get_figure! FIG IS RETURNING")
 	return fig
 #may need to add this back in later to help adjust the first look of the dashboard
 #fig.update_layout(
@@ -286,16 +315,42 @@ app = dash.Dash()
 
 # NEED TO ADD HTML formating and maybe CSS
 app.layout = html.Div(children=[
-                                html.H1(children='Climate Mind DiGraph'),
-                                dcc.Graph(
-                                          id='graph',
-                                          figure=get_gigure()
-                                          )
-                                ])
+    html.H1(children='Climate Mind DiGraph'),
+    dcc.Graph(
+        id='graph',
+        figure=get_figure()
+    ),
+    dcc.RadioItems(
+         id='edge-type-filter',
+         options=[
+             {'label': u'causes_or_promotes', 'value': 'causes_or_promotes'},
+             {'label': u'is_inhibited_or_prevented_or_blocked_or_slowed_by', 'value': 'is_inhibited_or_prevented_or_blocked_or_slowed_by'},
+             {'label': u'All', 'value': 'all'},
+         ],
+         value='all'
+    ),                                
+])
 
 
 
 # NEED TO ADD in callback features to make the dashboard interactive!!!
+
+@app.callback(
+    dash.dependencies.Output('graph', 'figure'),
+    [dash.dependencies.Input('edge-type-filter', 'value')])
+def display_click_data(value):
+    print("display_click_data!")
+    # import ipdb
+    # ipdb.set_trace()
+    if not value:
+        # Nothing has to happen.
+        # otherwise the callback is called in some load/init cases
+        raise dash.exceptions.PreventUpdate
+    if value == "all":
+        value=None
+    print(f"display_click_data! FILTER VALUE = {value}")
+    return get_figure(value)
+
 
 
 
