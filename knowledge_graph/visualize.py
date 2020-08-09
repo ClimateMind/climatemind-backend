@@ -258,8 +258,9 @@ def get_figure(edge_type=None):
 			adornment_to_add = [v1.tolist()]+[B]+[v2.tolist()]
 			xpoint = [ coordinate[0] for coordinate in adornment_to_add ]
 			ypoint = [ coordinate[1] for coordinate in adornment_to_add ]
-			fig.add_trace(go.Scatter(x=xpoint,y=ypoint,line_shape='linear',mode='lines'))
 			edge_color = "blue"
+			fig.add_trace(go.Scatter(x=xpoint,y=ypoint,line_shape='linear',mode='lines',line=dict(color=edge_color)))
+
 
 		#add tee adornment using linear algebra
 		if edge.get("edge_type") == 'is_inhibited_or_prevented_or_blocked_or_slowed_by':
@@ -276,8 +277,8 @@ def get_figure(edge_type=None):
 			adornment_to_add = [v1.tolist()]+[B]+[v2.tolist()]
 			xpoint = [ coordinate[0] for coordinate in adornment_to_add ]
 			ypoint = [ coordinate[1] for coordinate in adornment_to_add ]
-			fig.add_trace(go.Scatter(x=xpoint,y=ypoint, line_shape='linear',mode='lines'))
 			edge_color = "red"
+			fig.add_trace(go.Scatter(x=xpoint,y=ypoint, line_shape='linear',mode='lines',line=dict(color=edge_color)))
 
 		#add edge spline trace to the figure object
 		xp = [ coordinate[0] for coordinate in path ]
