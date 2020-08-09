@@ -1,5 +1,7 @@
 from knowledge_graph import app
 
+import json
+
 from json import dumps
 
 from flask import request, make_response, abort, Response
@@ -30,4 +32,21 @@ def query():
 
     response = Response(dumps(searchResults))
     response.headers['Content-Type'] = 'application/json'
+    
     return response, 200
+    
+
+@app.route('/get_questions', methods=['GET'])
+def get_questions():
+    try:
+        with open('schwartz_questions.json') as json_file:
+            data = json.load(json_file)
+    except FileNotFoundError:
+        return make_response("Schwartz Questions not Found"), 400
+    
+    response = Response(dumps(data))
+    response.headers['Content-Type'] = 'application/json'
+    
+    return response, 200
+        
+    
