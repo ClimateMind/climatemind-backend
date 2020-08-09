@@ -1,0 +1,2302 @@
+[
+    {
+        "id": "increase in greenhouse effect",
+        "name": "increase in greenhouse effect",
+        "data": {
+            "individual": "webprotege.stanford.edu.R8tO6zSdeJRRUSPaznZIbKU",
+            "comment": "[]",
+            "classes": [
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "more heat absorbed by land",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "more heat absorbed by oceans",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "more heat absorbed by air",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "more heat absorbed by land",
+        "name": "more heat absorbed by land",
+        "data": {
+            "individual": "webprotege.stanford.edu.R5eVKPmEff8f7D8VBAEEC8",
+            "comment": "[]",
+            "classes": [
+                "main land change",
+                "test ontology",
+                "global warming"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in evaporation",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in frequency of warm days and nights",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in evaporation",
+        "name": "increase in evaporation",
+        "data": {
+            "individual": "webprotege.stanford.edu.R7zeFSAP7x3PT5rG0i1BLVe",
+            "comment": "[]",
+            "classes": [
+                "test ontology",
+                "water cycle change"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [
+                    "https://doi.org/10.3354/cr00953"
+                ],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://climaterealityproject.org/blog/climate-change-impacting-water-cycle",
+                    "https://eos.org/research-spotlights/extreme-precipitation-expected-to-increase-with-warming-planet"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in rain (and snow if cold enough) (precipitation)",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_organizationSource": [
+                            "https://eos.org/research-spotlights/extreme-precipitation-expected-to-increase-with-warming-planet"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "drier soil during dry season",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in rain (and snow if cold enough) (precipitation)",
+        "name": "increase in rain (and snow if cold enough) (precipitation)",
+        "data": {
+            "individual": "webprotege.stanford.edu.RBHHvT6sX3QbfYU2JlLhT5E",
+            "comment": "[]",
+            "classes": [
+                "test ontology",
+                "water cycle change"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://eos.org/research-spotlights/extreme-precipitation-expected-to-increase-with-warming-planet"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in vegetation during wet season",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "wetter soil during wet season",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in flooding of land and property",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in vegetation during wet season",
+        "name": "increase in vegetation during wet season",
+        "data": {
+            "individual": "webprotege.stanford.edu.R4g51Eq3Q7uVWg9V5F5BTC",
+            "comment": "[]",
+            "classes": [
+                "downstream negative effect",
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in area burned by wildfire",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in area burned by wildfire",
+        "name": "increase in area burned by wildfire",
+        "data": {
+            "individual": "webprotege.stanford.edu.RLc1ySxaRs4HWkW4m5w2Me",
+            "comment": "[]",
+            "classes": [
+                "review needed - values",
+                "universalism concern",
+                "downstream negative effect",
+                "universalism nature",
+                "security societal",
+                "test ontology",
+                "security personal",
+                "wildfire change"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in toxic air pollutants (air pollution)",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in CO2",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in toxic air pollutants (air pollution)",
+        "name": "increase in toxic air pollutants (air pollution)",
+        "data": {
+            "individual": "webprotege.stanford.edu.R9vkBr0EApzeMGfa0rJGo9G",
+            "comment": "[]",
+            "classes": [
+                "downstream negative effect",
+                "test ontology",
+                "other negative effect from root cause"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [
+                    "https://www.eia.gov/energyexplained/coal/coal-and-the-environment.php",
+                    "https://www.epa.gov/sciencematters/linking-air-pollution-and-heart-disease"
+                ],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://www.cancer.org/latest-news/world-health-organization-outdoor-air-pollution-causes-cancer.html",
+                    "https://www.climatecentral.org/news/climate-change-is-threatening-air-quality-across-the-country-2019"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in lung cancer",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_organizationSource": [
+                            "https://www.cancer.org/latest-news/world-health-organization-outdoor-air-pollution-causes-cancer.html"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "increase in asthma complications",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in risk of stroke",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in risk of heart attack",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_governmentSource": [
+                            "https://www.epa.gov/sciencematters/linking-air-pollution-and-heart-disease"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in lung cancer",
+        "name": "increase in lung cancer",
+        "data": {
+            "individual": "webprotege.stanford.edu.RB6zclWNN2qJW6OSyWjyfFz",
+            "comment": "[]",
+            "classes": [
+                "other negative effect from greenhouse gas emission",
+                "universalism concern",
+                "approved - values",
+                "downstream negative effect",
+                "security societal",
+                "test ontology",
+                "security personal",
+                "health change"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://www.cancer.org/latest-news/world-health-organization-outdoor-air-pollution-causes-cancer.html"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "increase in asthma complications",
+        "name": "increase in asthma complications",
+        "data": {
+            "individual": "webprotege.stanford.edu.RO1J1OifvuO602qTIrSXdB",
+            "comment": "[]",
+            "classes": [
+                "other negative effect from greenhouse gas emission",
+                "universalism concern",
+                "approved - values",
+                "downstream negative effect",
+                "self-direction autonomy of action",
+                "security societal",
+                "test ontology",
+                "security personal",
+                "health change",
+                "stimulation"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution",
+                    "https://www.cnn.com/2018/10/29/health/air-pollution-children-health-who-india-intl/index.html",
+                    "https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma",
+                    "https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution",
+                    "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in disproportionate effects on children",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "dc_source": [
+                            "https://www.cnn.com/2018/10/29/health/air-pollution-children-health-who-india-intl/index.html",
+                            "https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution",
+                            "https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "increase in disproportionate effects on minority groups",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "dc_source": [
+                            "https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma",
+                            "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in disproportionate effects on children",
+        "name": "increase in disproportionate effects on children",
+        "data": {
+            "individual": "webprotege.stanford.edu.RB7k7p2iQQgKdQrkRP2MZWM",
+            "comment": "[]",
+            "classes": [
+                "other negative effect from greenhouse gas emission",
+                "universalism concern",
+                "approved - values",
+                "downstream negative effect",
+                "benevolence caring",
+                "frame uncategorized (to do)",
+                "security societal",
+                "test ontology",
+                "security personal",
+                "other negative effect from root cause"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution",
+                    "https://www.cnn.com/2018/10/29/health/air-pollution-children-health-who-india-intl/index.html",
+                    "https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "increase in disproportionate effects on minority groups",
+        "name": "increase in disproportionate effects on minority groups",
+        "data": {
+            "individual": "webprotege.stanford.edu.Ra98BRMZ0HlUpobb3Z0C5r",
+            "comment": "[]",
+            "classes": [
+                "review needed - values",
+                "universalism concern",
+                "risk or effect uncategorized (to do)",
+                "justice change",
+                "security societal",
+                "test ontology",
+                "security personal"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma",
+                    "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "increase in risk of stroke",
+        "name": "increase in risk of stroke",
+        "data": {
+            "individual": "webprotege.stanford.edu.RrH4kPiYwZ0tSRSz4lnaYW",
+            "comment": "[]",
+            "classes": [
+                "universalism concern",
+                "approved - values",
+                "downstream negative effect",
+                "security societal",
+                "test ontology",
+                "security personal",
+                "health change"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "increase in risk of heart attack",
+        "name": "increase in risk of heart attack",
+        "data": {
+            "individual": "webprotege.stanford.edu.RzalB19SQSGGVxprHL33Ik",
+            "comment": "[]",
+            "classes": [
+                "universalism concern",
+                "approved - values",
+                "downstream negative effect",
+                "security societal",
+                "test ontology",
+                "security personal",
+                "health change"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [
+                    "https://www.epa.gov/sciencematters/linking-air-pollution-and-heart-disease"
+                ],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "increase in CO2",
+        "name": "increase in CO2",
+        "data": {
+            "individual": "webprotege.stanford.edu.RBJi2ztbJiaIwcTQTScEKNx",
+            "comment": "[]",
+            "classes": [
+                "increase in atmospheric greenhouse gas",
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://www.eia.gov/energyexplained/coal/coal-and-the-environment.php"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://drawdown.org/solutions/abandoned-farmland-restoration",
+                    "https://drawdown.org/solutions/bamboo-production",
+                    "https://drawdown.org/solutions/conservation-agriculture",
+                    "https://drawdown.org/solutions/managed-grazing",
+                    "https://drawdown.org/solutions/multistrata-agroforestry",
+                    "https://drawdown.org/solutions/perennial-staple-crops",
+                    "https://drawdown.org/solutions/plant-rich-diets",
+                    "https://drawdown.org/solutions/regenerative-annual-cropping",
+                    "https://drawdown.org/solutions/silvopasture",
+                    "https://drawdown.org/solutions/temperate-forest-restoration",
+                    "https://drawdown.org/solutions/tree-intercropping",
+                    "https://drawdown.org/solutions/tree-plantations-on-degraded-land",
+                    "https://drawdown.org/solutions/tropical-forest-restoration"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": [
+                    "Increase in carbon dioxide in the Earth's atmosphere."
+                ]
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in greenhouse effect",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "greenhouse-gas externality",
+        "name": "greenhouse-gas externality",
+        "data": {
+            "individual": "webprotege.stanford.edu.R9EmN8lJbIyQi0t6oj8e1w4",
+            "comment": "[]",
+            "classes": [
+                "test ontology",
+                "mitigation barrier"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "http://www.lse.ac.uk/granthaminstitute/explainers/why-do-economists-describe-climate-change-as-a-market-failure/#:~:text=Many%20economists%EF%BB%BF%20have%20described,'greenhouse%2Dgas%20externality'.&text=As%20a%20result%2C%20the%20market,by%20over%2Dproducing%20greenhouse%20gases."
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": [
+                    "The costs associated with climate change are not paid for by those generating greenhouse gases (market failure). The cost associated with global warming are not included in the cost of generating greenhouse gases. The adverse effects of greenhouse gases are therefore \u2018external\u2019 to the market, which means there is usually only an ethical \u2013 rather than an economic \u2013 incentive for businesses and consumers to reduce their emissions. As a result, the market fails by over-producing greenhouse gases."
+                ]
+            }
+        }
+    },
+    {
+        "id": "increase in methane (CH4)",
+        "name": "increase in methane (CH4)",
+        "data": {
+            "individual": "webprotege.stanford.edu.RBQIDI6zYf94WmhdxbT6WQ3",
+            "comment": "[]",
+            "classes": [
+                "increase in atmospheric greenhouse gas",
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [
+                    "https://ichef.bbci.co.uk/news/624/cpsprodpb/14A87/production/_104751648_range_chart_640_v2_3x-optimised-nc.png"
+                ],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in greenhouse effect",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "wetter soil during wet season",
+        "name": "wetter soil during wet season",
+        "data": {
+            "individual": "webprotege.stanford.edu.RBHUIy2I4ZBJSRGAvuInERX",
+            "comment": "[]",
+            "classes": [
+                "main land change",
+                "test ontology",
+                "water cycle change"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in vegetation during wet season",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in flooding of land and property",
+        "name": "increase in flooding of land and property",
+        "data": {
+            "individual": "webprotege.stanford.edu.RnbPKhyIQNnShkRKHqGrGm",
+            "comment": "[]",
+            "classes": [
+                "review needed - values",
+                "universalism concern",
+                "downstream negative effect",
+                "universalism nature",
+                "benevolence caring",
+                "security societal",
+                "test ontology",
+                "benevolence dependability",
+                "security personal"
+            ],
+            "properties": {
+                "dc_source": [
+                    "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
+                    "https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689",
+                    "https://www.nature.com/articles/s41612-019-0074-8",
+                    "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html",
+                    "https://www.sciencedirect.com/science/article/pii/S0962629807000601"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in destruction to US military bases",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in destruction to US military bases",
+        "name": "increase in destruction to US military bases",
+        "data": {
+            "individual": "webprotege.stanford.edu.R8uV2oTMZHslQ6qiGWJ8OQO",
+            "comment": "[]",
+            "classes": [
+                "approved - values",
+                "downstream negative effect",
+                "frame uncategorized (to do)",
+                "security societal",
+                "test ontology",
+                "power dominance"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://www.capitalgazette.com/environment/ac-cn-proceedings-except-20191013-43rodczawne7ziviweim72cvmq-story.html",
+                    "https://www.military.com/daily-news/2017/06/02/trump-may-doubt-climate-change-pentagon-sees-it-looming-threat.html",
+                    "https://www.rollcall.com/2019/06/12/military-bases-unprepared-for-gathering-climate-change-storm",
+                    "https://www.un.org/en/chronicle/article/greatest-threat-global-security-climate-change-not-merely-environmental-problem"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [
+                    "https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689",
+                    "https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095"
+                ],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "increase in physical violence",
+        "name": "increase in physical violence",
+        "data": {
+            "individual": "webprotege.stanford.edu.RDavliTi6W93xwahwtUnUtG",
+            "comment": "[]",
+            "classes": [
+                "approved - values",
+                "downstream negative effect",
+                "self-direction autonomy of action",
+                "security societal",
+                "test ontology",
+                "security personal",
+                "conformity rules",
+                "hedonism",
+                "conformity interpersonal"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [
+                    "https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16"
+                ],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://www.psychologicalscience.org/observer/global-warming-and-violent-behavior"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "drier soil during dry season",
+        "name": "drier soil during dry season",
+        "data": {
+            "individual": "webprotege.stanford.edu.RByBIDdhul7eNMQVP3bYnfg",
+            "comment": "[]",
+            "classes": [
+                "main land change",
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "drier vegetation during dry season",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "drier vegetation during dry season",
+        "name": "drier vegetation during dry season",
+        "data": {
+            "individual": "webprotege.stanford.edu.R8IAmadbnqneVdqnTnrLuIU",
+            "comment": "[]",
+            "classes": [
+                "main land change",
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in area burned by wildfire",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in frequency of warm days and nights",
+        "name": "increase in frequency of warm days and nights",
+        "data": {
+            "individual": "webprotege.stanford.edu.RDudF9SBo28CKqKpRN9poYL",
+            "comment": "[]",
+            "classes": [
+                "main variability change",
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [
+                    "https://doi.org/10.3354/cr00953"
+                ],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [
+                    "https://www.forbes.com/sites/traversmark/2020/02/07/new-research-quantifies-the-impact-of-extreme-heat-on-learning/#5825504f3d57",
+                    "https://www.motherjones.com/environment/2019/02/climate-change-isnt-just-frying-the-planet-its-fraying-our-nerves",
+                    "https://www.npr.org/2020/04/21/838641963/climate-change-undercuts-air-pollution-improvements"
+                ],
+                "schema_organizationSource": [
+                    "https://climaterealityproject.org/blog/climate-change-impacting-water-cycle",
+                    "https://news.harvard.edu/gazette/story/2019/11/researcher-analyzes-effects-of-climate-change-on-productivity",
+                    "https://news.stanford.edu/2019/03/29/effects-climate-change-suicide-rates",
+                    "https://www.climatecentral.org/news/climate-change-is-threatening-air-quality-across-the-country-2019",
+                    "https://www.psychologicalscience.org/observer/global-warming-and-violent-behavior"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in evaporation",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_organizationSource": [
+                            "https://climaterealityproject.org/blog/climate-change-impacting-water-cycle"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "decrease in learning (without air conditioner)",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_mediaSource": [
+                            "https://www.forbes.com/sites/traversmark/2020/02/07/new-research-quantifies-the-impact-of-extreme-heat-on-learning/#5825504f3d57"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "increase in suicide",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_organizationSource": [
+                            "https://news.stanford.edu/2019/03/29/effects-climate-change-suicide-rates"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "increase in physical violence",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_organizationSource": [
+                            "https://www.psychologicalscience.org/observer/global-warming-and-violent-behavior"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "decrease in worker productivity",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_organizationSource": [
+                            "https://news.harvard.edu/gazette/story/2019/11/researcher-analyzes-effects-of-climate-change-on-productivity"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "id": "decrease in learning (without air conditioner)",
+        "name": "decrease in learning (without air conditioner)",
+        "data": {
+            "individual": "webprotege.stanford.edu.R8Fa34SNdEwdj93hXO0oMS",
+            "comment": "[]",
+            "classes": [
+                "achievement",
+                "approved - values",
+                "downstream negative effect",
+                "test ontology",
+                "self-direction autonomy of thought",
+                "education change"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [
+                    "https://www.forbes.com/sites/traversmark/2020/02/07/new-research-quantifies-the-impact-of-extreme-heat-on-learning/#5825504f3d57"
+                ],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "increase in suicide",
+        "name": "increase in suicide",
+        "data": {
+            "individual": "webprotege.stanford.edu.R8t0oNsG3WgnupXsBVSjMHZ",
+            "comment": "[]",
+            "classes": [
+                "universalism concern",
+                "approved - values",
+                "downstream negative effect",
+                "mental health change",
+                "benevolence caring",
+                "frame uncategorized (to do)",
+                "security societal",
+                "test ontology",
+                "security personal",
+                "tradition"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [
+                    "https://www.motherjones.com/environment/2019/02/climate-change-isnt-just-frying-the-planet-its-fraying-our-nerves"
+                ],
+                "schema_organizationSource": [
+                    "https://news.stanford.edu/2019/03/29/effects-climate-change-suicide-rates"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "decrease in worker productivity",
+        "name": "decrease in worker productivity",
+        "data": {
+            "individual": "webprotege.stanford.edu.RDuEdzMOhOt76COW2RVxZdP",
+            "comment": "[]",
+            "classes": [
+                "achievement",
+                "approved - values",
+                "downstream negative effect",
+                "power resources",
+                "frame uncategorized (to do)",
+                "self-direction autonomy of action",
+                "test ontology",
+                "power dominance"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [
+                    "https://www.richmondfed.org/-/media/richmondfedorg/publications/research/economic_brief/2018/pdf/eb_18-08.pdf"
+                ],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://news.harvard.edu/gazette/story/2019/11/researcher-analyzes-effects-of-climate-change-on-productivity"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "more heat absorbed by oceans",
+        "name": "more heat absorbed by oceans",
+        "data": {
+            "individual": "webprotege.stanford.edu.R8vDHwP7soRN6c6XWYDjJkH",
+            "comment": "[]",
+            "classes": [
+                "test ontology",
+                "global warming",
+                "main ocean change"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "warmer oceans",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "warmer oceans",
+        "name": "warmer oceans",
+        "data": {
+            "individual": "webprotege.stanford.edu.RCOKh8I57dfccKh5QTFhHB0",
+            "comment": "[]",
+            "classes": [
+                "test ontology",
+                "main ocean change"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in ocean surface temperature",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in ocean surface temperature",
+        "name": "increase in ocean surface temperature",
+        "data": {
+            "individual": "webprotege.stanford.edu.RCDZl2bsYh3B1YlJUL7nRcM",
+            "comment": "[]",
+            "classes": [
+                "test ontology",
+                "main ocean change"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in marine heatwaves",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in hurricane strength",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in marine heatwaves",
+        "name": "increase in marine heatwaves",
+        "data": {
+            "individual": "webprotege.stanford.edu.R1kRDiL29pcyXoNOkHduKB",
+            "comment": "[]",
+            "classes": [
+                "downstream negative effect",
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://www.sciencenewsforstudents.org/article/ocean-heat-waves-are-rise-and-killing-coral"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in coral bleaching and destruction",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "dc_source": [
+                            "https://www.sciencenewsforstudents.org/article/ocean-heat-waves-are-rise-and-killing-coral"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in coral bleaching and destruction",
+        "name": "increase in coral bleaching and destruction",
+        "data": {
+            "individual": "webprotege.stanford.edu.R9x3oCu22QJK9ebw5xL7NvB",
+            "comment": "[]",
+            "classes": [
+                "approved - values",
+                "downstream negative effect",
+                "universalism nature",
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://www.facebook.com/watch/?v=10156746453050024",
+                    "https://www.sciencenewsforstudents.org/article/ocean-heat-waves-are-rise-and-killing-coral",
+                    "https://www.youtube.com/watch?v=MUAsFZuFQvQ",
+                    "https://www.youtube.com/watch?v=_ZfGIKiSwwQ",
+                    "https://www.youtube.com/watch?v=fA6mpexcyN4",
+                    "https://www.youtube.com/watch?v=dcWlVN02kDQ&feature=emb_title"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "decrease in tourism",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "decrease in tourism",
+        "name": "decrease in tourism",
+        "data": {
+            "individual": "webprotege.stanford.edu.R9JAWzfiZ9haeNhHiCpTWkr",
+            "comment": "[]",
+            "classes": [
+                "approved - values",
+                "downstream negative effect",
+                "frame uncategorized (to do)",
+                "test ontology",
+                "hedonism",
+                "stimulation"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://www.researchgate.net/profile/Bas_Amelung/publication/249701105_Implications_of_Global_Climate_Change_for_Tourism_Flows_and_Seasonality/links/0f3175362279bd6b6b000000.pdf",
+                    "https://www.travelpulse.com/news/destinations/how-climate-change-is-affecting-tourism.html"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "increase in hurricane strength",
+        "name": "increase in hurricane strength",
+        "data": {
+            "individual": "webprotege.stanford.edu.RcIHdxpjQwjr8EG8yMhEYV",
+            "comment": "[]",
+            "classes": [
+                "downstream negative effect",
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [
+                    "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
+                    "https://amp.theguardian.com/commentisfree/2019/sep/04/climate-crisis-hurricane-dorian-floods-bahamas",
+                    "https://insideclimatenews.org/american-climate/essay/hurricane-climate-change?fbclid=IwAR0EVBJH4d4chQ4CTvq43xr_FGoCCzQc_BMAebzZZWHpKPLyndDO4deczms",
+                    "https://www.bloomberg.com/news/articles/2019-09-09/the-massive-cost-of-not-adapting-to-climate-change",
+                    "https://www.capitalgazette.com/environment/ac-cn-proceedings-except-20191013-43rodczawne7ziviweim72cvmq-story.html",
+                    "https://www.climate.gov/news-features/blogs/beyond-data/2018s-billion-dollar-disasters-context",
+                    "https://www.nature.com/articles/s41612-019-0074-8",
+                    "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html",
+                    "https://www.nytimes.com/2019/09/03/opinion/hurricane-dorian-climate-change.html",
+                    "https://www.rollcall.com/2019/06/12/military-bases-unprepared-for-gathering-climate-change-storm",
+                    "https://www.sciencedirect.com/science/article/pii/S0962629807000601",
+                    "https://www.un.org/en/chronicle/article/greatest-threat-global-security-climate-change-not-merely-environmental-problem"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [
+                    "https://www.youtube.com/watch?v=RZ-DCyP1RBc"
+                ],
+                "schema_mediaSourceForConservatives": [
+                    "https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689",
+                    "https://www.foxbusiness.com/economy/costliest-hurricanes-us-history",
+                    "https://www.foxnews.com/world/hurricanes-strength-climate-change-intensity-tropical-cyclone-storm-activity",
+                    "https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095"
+                ],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in disaster costs",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_mediaSourceForConservatives": [
+                            "https://www.foxbusiness.com/economy/costliest-hurricanes-us-history"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "increase in destruction to US military bases",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_mediaSourceForConservatives": [
+                            "https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095",
+                            "https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "increase in flooding of land and property",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "dc_source": [
+                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
+                            "https://www.nature.com/articles/s41612-019-0074-8",
+                            "https://www.sciencedirect.com/science/article/pii/S0962629807000601",
+                            "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in disaster costs",
+        "name": "increase in disaster costs",
+        "data": {
+            "individual": "webprotege.stanford.edu.R8JoXNnKTYqERwU7fblKTWB",
+            "comment": "[]",
+            "classes": [
+                "approved - values",
+                "downstream negative effect",
+                "power resources",
+                "frame uncategorized (to do)",
+                "security societal",
+                "test ontology",
+                "security personal",
+                "hedonism"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://amp.theguardian.com/commentisfree/2019/sep/04/climate-crisis-hurricane-dorian-floods-bahamas",
+                    "https://www.bloomberg.com/news/articles/2019-09-09/the-massive-cost-of-not-adapting-to-climate-change",
+                    "https://www.climate.gov/news-features/blogs/beyond-data/2018s-billion-dollar-disasters-context",
+                    "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [
+                    "https://www.foxbusiness.com/economy/costliest-hurricanes-us-history"
+                ],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "more heat absorbed by air",
+        "name": "more heat absorbed by air",
+        "data": {
+            "individual": "webprotege.stanford.edu.Rtzkdtty1BHKfI8whB6qWR",
+            "comment": "[]",
+            "classes": [
+                "test ontology",
+                "global warming",
+                "main atmospheric change"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "warmer air and atmosphere (tropospheric warming)",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "warmer air and atmosphere (tropospheric warming)",
+        "name": "warmer air and atmosphere (tropospheric warming)",
+        "data": {
+            "individual": "webprotege.stanford.edu.RndlLhwHuWP9Ng5SgdZij3",
+            "comment": "[]",
+            "classes": [
+                "test ontology",
+                "main atmospheric change"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [
+                    "https://upload.wikimedia.org/wikipedia/commons/6/6c/20190907_STACKED_global_warming_stripes_%28large_legends%29_-_derived_from_Ed_Hawkins.png",
+                    "https://www.ncdc.noaa.gov/monitoring-content/sotc/global/2014/ann/timeseries/annualtempanom_1880-2014_large.png"
+                ],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in evaporation",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in toxic air pollutants (air pollution)",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in frequency of warm days and nights",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in frequency of heatwaves",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in frequency of heatwaves",
+        "name": "increase in frequency of heatwaves",
+        "data": {
+            "individual": "webprotege.stanford.edu.RJAL6Zu9F3EHB35HCs3cYD",
+            "comment": "[]",
+            "classes": [
+                "main variability change",
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://blog.ucsusa.org/kristy-dahl/military-extreme-heat",
+                    "https://insideclimatenews.org/news/11112019/military-heat-risk-climate-change-basic-training-bases-union-concerned-scientists-report",
+                    "https://www.nrdc.org/sites/default/files/accountingcosts.pdf",
+                    "https://www.nwf.org/~/media/PDFs/Global-Warming/Reports/NowheretoRun-BigGameWildlife-LowResFinal_110613.ashx"
+                ],
+                "schema_academicBook": [
+                    "https://soh.iums.ac.ir/uploads/0415237920_95689.pdf"
+                ],
+                "schema_academicSourceWithPaywall": [
+                    "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019GH000202",
+                    "https://scholar.harvard.edu/files/jisungpark/files/paper_nyc_aejep.pdf",
+                    "https://www.richmondfed.org/-/media/richmondfedorg/publications/research/economic_brief/2018/pdf/eb_18-08.pdf"
+                ],
+                "schema_academicSourceNoPaywall": [
+                    "https://academic.oup.com/reep/article/10/2/347/1753081",
+                    "https://bfi.uchicago.edu/wp-content/uploads/BFI-WP_2018-69.pdf",
+                    "https://www.sciencedirect.com/science/article/pii/S2542519618302377?via%3Dihub"
+                ],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [
+                    "https://epic.uchicago.edu/news/hot-temperatures-decrease-worker-productivity-economic-output",
+                    "https://phys.org/news/2018-08-temperatures-worker-productivity-global-losses.html",
+                    "https://www.entrepreneur.com/article/319479",
+                    "https://www.forbes.com/sites/ucenergy/2018/08/29/heat-makes-people-less-productive-spelling-trouble-for-the-economy-and-future/#5287dc267bb1",
+                    "https://www.washingtonpost.com/business/2018/07/17/heat-makes-you-dumb-four-charts"
+                ],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "decrease in test scores",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_mediaSource": [
+                            "https://www.washingtonpost.com/business/2018/07/17/heat-makes-you-dumb-four-charts"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "increase in health costs",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_academicSourceWithPaywall": [
+                            "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019GH000202"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "increase in evaporation",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "decrease in population of moose available to hunt",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "dc_source": [
+                            "https://www.nwf.org/~/media/PDFs/Global-Warming/Reports/NowheretoRun-BigGameWildlife-LowResFinal_110613.ashx"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "increase in suicide",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in toxic air pollutants (air pollution)",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in heat stroke in marine corps",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "dc_source": [
+                            "https://insideclimatenews.org/news/11112019/military-heat-risk-climate-change-basic-training-bases-union-concerned-scientists-report",
+                            "https://blog.ucsusa.org/kristy-dahl/military-extreme-heat"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "decrease in GDP",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in risk of heart attack",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "decrease in test scores",
+        "name": "decrease in test scores",
+        "data": {
+            "individual": "webprotege.stanford.edu.R7Yo5FYFleUwkbXjCU3xo4E",
+            "comment": "[]",
+            "classes": [
+                "achievement",
+                "approved - values",
+                "downstream negative effect",
+                "frame uncategorized (to do)",
+                "test ontology",
+                "self-direction autonomy of thought"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [
+                    "https://scholar.harvard.edu/files/jisungpark/files/paper_nyc_aejep.pdf"
+                ],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [
+                    "https://www.washingtonpost.com/business/2018/07/17/heat-makes-you-dumb-four-charts"
+                ],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "increase in health costs",
+        "name": "increase in health costs",
+        "data": {
+            "individual": "webprotege.stanford.edu.R7pS7MtLuEDp8HhEyf1VtOE",
+            "comment": "[]",
+            "classes": [
+                "other negative effect from greenhouse gas emission",
+                "universalism concern",
+                "approved - values",
+                "downstream negative effect",
+                "frame uncategorized (to do)",
+                "self-direction autonomy of action",
+                "test ontology",
+                "hedonism",
+                "other negative effect from root cause"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://www.nrdc.org/sites/default/files/accountingcosts.pdf"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [
+                    "https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019GH000202"
+                ],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "decrease in population of moose available to hunt",
+        "name": "decrease in population of moose available to hunt",
+        "data": {
+            "individual": "webprotege.stanford.edu.R8epBa4UvcieLTynfK3E84u",
+            "comment": "[]",
+            "classes": [
+                "review needed - values",
+                "achievement",
+                "downstream negative effect",
+                "universalism nature",
+                "power resources",
+                "frame uncategorized (to do)",
+                "test ontology",
+                "stimulation"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://www.nwf.org/~/media/PDFs/Global-Warming/Reports/NowheretoRun-BigGameWildlife-LowResFinal_110613.ashx"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "increase in heat stroke in marine corps",
+        "name": "increase in heat stroke in marine corps",
+        "data": {
+            "individual": "webprotege.stanford.edu.RBqibfoxaYmRDDRiBzSVS0N",
+            "comment": "[]",
+            "classes": [
+                "approved - values",
+                "downstream negative effect",
+                "security societal",
+                "national security change",
+                "test ontology",
+                "power dominance"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://blog.ucsusa.org/kristy-dahl/military-extreme-heat",
+                    "https://insideclimatenews.org/news/11112019/military-heat-risk-climate-change-basic-training-bases-union-concerned-scientists-report"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "decrease in GDP",
+        "name": "decrease in GDP",
+        "data": {
+            "individual": "webprotege.stanford.edu.RBvy0CVizhdMfXbtJIc2En",
+            "comment": "[]",
+            "classes": [
+                "approved - values",
+                "downstream negative effect",
+                "power resources",
+                "frame uncategorized (to do)",
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "coal mining",
+        "name": "coal mining",
+        "data": {
+            "individual": "webprotege.stanford.edu.R5hC8Ud8449ZsdtwYdskf1",
+            "comment": "[]",
+            "classes": [
+                "test ontology",
+                "root cause linked to humans"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "burning coal",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "burning coal",
+        "name": "burning coal",
+        "data": {
+            "individual": "webprotege.stanford.edu.RBIjeqALTDlfCzVLfBMq4EC",
+            "comment": "[]",
+            "classes": [
+                "test ontology",
+                "root cause linked to humans"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [
+                    "https://www.eia.gov/energyexplained/coal/coal-and-the-environment.php"
+                ],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://www.ucsusa.org/resources/how-coal-works"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in toxic air pollutants (air pollution)",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_governmentSource": [
+                            "https://www.eia.gov/energyexplained/coal/coal-and-the-environment.php"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "increase in CO2",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "buildings and their construction, materials, gas heating, cooling, and refrigeration",
+        "name": "buildings and their construction, materials, gas heating, cooling, and refrigeration",
+        "data": {
+            "individual": "webprotege.stanford.edu.R8Es1gGVfBBLpoCGPWE48CV",
+            "comment": "['buildings produce 6% of heat-trapping emissions worldwide']",
+            "classes": [
+                "test ontology",
+                "root cause linked to humans"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://drawdown.org/sectors/buildings",
+                    "https://drawdown.org/solutions/biogas-for-cooking",
+                    "https://drawdown.org/solutions/high-efficiency-heat-pumps",
+                    "https://drawdown.org/solutions/high-performance-glass",
+                    "https://drawdown.org/solutions/improved-clean-cookstoves",
+                    "https://drawdown.org/solutions/insulation",
+                    "https://drawdown.org/solutions/smart-thermostats"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in CO2",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in HFCs and PFCs",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in HFCs and PFCs",
+        "name": "increase in HFCs and PFCs",
+        "data": {
+            "individual": "webprotege.stanford.edu.RBoKo0n5lpo1zk2uDMdZuab",
+            "comment": "[]",
+            "classes": [
+                "increase in atmospheric greenhouse gas",
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": [
+                    "Increase in atmospheric hydrofluorocarbons and perfluorocarbons (fluorocarbons)"
+                ]
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in greenhouse effect",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "industrial activity",
+        "name": "industrial activity",
+        "data": {
+            "individual": "webprotege.stanford.edu.R8kybnu8AkaNkF2CcKTtPMk",
+            "comment": "['industry directly responsible for 21% of all heat-trapping emissions']",
+            "classes": [
+                "test ontology",
+                "root cause linked to humans"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://drawdown.org/sectors/industry",
+                    "https://drawdown.org/solutions/alternative-cement",
+                    "https://drawdown.org/solutions/alternative-refrigerants",
+                    "https://drawdown.org/solutions/composting",
+                    "https://drawdown.org/solutions/methane-digesters",
+                    "https://drawdown.org/solutions/recycled-paper",
+                    "https://drawdown.org/solutions/recycling",
+                    "https://drawdown.org/solutions/refrigerant-management",
+                    "https://www.mckinsey.com/industries/chemicals/our-insights/laying-the-foundation-for-zero-carbon-cement#"
+                ],
+                "schema_video": [
+                    "https://youtu.be/SAf5Xdf98tA"
+                ],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in CO2",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "cattle cow burps",
+        "name": "cattle cow burps",
+        "data": {
+            "individual": "webprotege.stanford.edu.R9ULHB1n9QqrbQRX5vv01hs",
+            "comment": "[]",
+            "classes": [
+                "test ontology",
+                "root cause linked to humans"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://www.bbc.co.uk/newsround/49368462",
+                    "https://www.discovermagazine.com/environment/cows-burp-out-tons-of-methane-feeding-them-seaweed-could-help"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [
+                    "https://ichef.bbci.co.uk/news/624/cpsprodpb/14A87/production/_104751648_range_chart_640_v2_3x-optimised-nc.png"
+                ],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [
+                    "https://www.youtube.com/watch?v=MnRFUSGz_ZM"
+                ],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in methane (CH4)",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_image": [
+                            "https://ichef.bbci.co.uk/news/624/cpsprodpb/14A87/production/_104751648_range_chart_640_v2_3x-optimised-nc.png"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "id": "food waste, unhealthy agriculture, and deforestation",
+        "name": "food waste, unhealthy agriculture, and deforestation",
+        "data": {
+            "individual": "webprotege.stanford.edu.R9a1d8UGT12xJhW9F2fJ5Ql",
+            "comment": "['agriculture and forestry activities generate 24% of greenhouse gas emissions worldwide']",
+            "classes": [
+                "test ontology",
+                "root cause linked to humans"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://drawdown.org/sectors/food-agriculture-land-use",
+                    "https://drawdown.org/solutions/peatland-protection-and-rewetting",
+                    "https://drawdown.org/solutions/plant-rich-diets",
+                    "https://drawdown.org/solutions/reduced-food-waste"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in CO2",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_organizationSource": [
+                            "https://drawdown.org/solutions/plant-rich-diets"
+                        ]
+                    }
+                }
+            }
+        ]
+    },
+    {
+        "id": "human population growth",
+        "name": "human population growth",
+        "data": {
+            "individual": "webprotege.stanford.edu.RCpkare9aCROASttOpkDXpa",
+            "comment": "['Currently, we humans number 7.7 billion, and the United Nations estimates the human family will grow to between 9.4 billion and 10.1 billion in 2050. As we consider the future of climate solutions, it matters how many people will be eating, moving, plugging in, building, buying, using, wasting, and all the rest. Population interacts with the primary drivers of emissions: production and consumption, largely fossil-fueled.']",
+            "classes": [
+                "test ontology",
+                "root cause linked to humans"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://drawdown.org/sectors/health-and-education",
+                    "https://drawdown.org/solutions/health-and-education",
+                    "https://ourworldindata.org/world-population-growth#how-many-people-die-and-how-many-are-born-each-year"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "buildings and their construction, materials, gas heating, cooling, and refrigeration",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "industrial activity",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "food waste, unhealthy agriculture, and deforestation",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "transporting people and goods",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "burning fossil fuel for electricity production",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "transporting people and goods",
+        "name": "transporting people and goods",
+        "data": {
+            "individual": "webprotege.stanford.edu.RDjwXK2vPUuvsb5nJUvtTMC",
+            "comment": "['Transportation is responsible for 14% of global greenhouse gas emissions']",
+            "classes": [
+                "test ontology",
+                "root cause linked to humans"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://drawdown.org/sectors/transportation",
+                    "https://drawdown.org/solutions/carpooling",
+                    "https://drawdown.org/solutions/efficient-aviation",
+                    "https://drawdown.org/solutions/efficient-ocean-shipping",
+                    "https://drawdown.org/solutions/efficient-trucks",
+                    "https://drawdown.org/solutions/electric-cars",
+                    "https://drawdown.org/solutions/high-speed-rail",
+                    "https://drawdown.org/solutions/hybrid-cars",
+                    "https://drawdown.org/solutions/public-transit",
+                    "https://drawdown.org/solutions/telepresence"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in toxic air pollutants (air pollution)",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in CO2",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "burning fossil fuel for electricity production",
+        "name": "burning fossil fuel for electricity production",
+        "data": {
+            "individual": "webprotege.stanford.edu.RSqgmuB6RIAv04gEixDJOx",
+            "comment": "['electricity production gives rise to 25% of heat-trapping emissions globally.']",
+            "classes": [
+                "test ontology",
+                "root cause linked to humans"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://drawdown.org/sectors/electricity",
+                    "https://drawdown.org/solutions/concentrated-solar-power",
+                    "https://drawdown.org/solutions/distributed-solar-photovoltaics",
+                    "https://drawdown.org/solutions/led-lighting",
+                    "https://drawdown.org/solutions/offshore-wind-turbines",
+                    "https://drawdown.org/solutions/onshore-wind-turbines",
+                    "https://drawdown.org/solutions/utility-scale-solar-photovoltaics"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in CO2",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    }
+]
