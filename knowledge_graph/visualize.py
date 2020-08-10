@@ -1,7 +1,7 @@
 #visualize the networkx DiGraph using a Dash dashboard
 #General warning: Note that with this dashboard, the edge arrows drawn are infact symmetrical and angled correctly.
 #And are all the same distance/size… they just don't always look that way because the scaling of the x-axis
-#    isn't the same scaling of the y-axis all the time (depending on how the user draws the box to zoom and the default aspect ratios).
+#	isn't the same scaling of the y-axis all the time (depending on how the user draws the box to zoom and the default aspect ratios).
 
 
 
@@ -18,6 +18,7 @@ import math
 import numpy as np
 
 import io
+import json
 
 import matplotlib.pyplot as plt
 from scipy.special import binom
@@ -47,11 +48,24 @@ def Bezier(points, num=200):
 
 #load in networkx graph to access graph information
 G = nx.read_gpickle("Climate_Mind_DiGraph.gpickle")
+print(nx.info(G))
 
 #pos = nx.nx_agraph.graphviz_layout(G, prog='dot')
 
 #convert the network x graph to a graphviz graph
 N = nx.nx_agraph.to_agraph(G)
+
+
+# Class filter to go under the graph
+# Get all nodes classes...
+allclasses = set()
+for node in N.nodes():
+	nodeclasslist = eval(node.attr.get("classes"))
+	if isinstance(nodeclasslist, list):
+		allclasses.update([e for e in nodeclasslist])
+# build the filter items for the layout
+allclasses_filter_radioitems = [{"value": ee, "label":ee}  for ee in allclasses]
+allclasses_filter_radioitems.append({'label': u'None', 'value': 'none'})
 
 #change the graphviz graph settings to make the graph layout of edges and nodes as we want
 N.edge_attr.update(splines="curved",directed=True)
@@ -174,7 +188,7 @@ def get_filtered_data(edge_type=None):
 #radio icons and dropdown menus
 #https://www.datacamp.com/community/tutorials/learn-build-dash-python
 
-def get_figure(edge_type=None):
+def get_figure(edge_type=None, node_class=None):
 	the_nodes_to_display, the_edges_to_display = get_filtered_data(edge_type)
 	#blank figure object
 	fig = go.Figure()
@@ -187,25 +201,35 @@ def get_figure(edge_type=None):
 		if node.get("name") not in the_nodes_to_display:
 			continue
 
+		fillcolor = None
+		textcolor = "black"
+		if node_class:
+			node_class_list = eval(N.get_node(node.get("name")).attr.get("classes"))
+			if node_class in node_class_list:
+				fillcolor = "#aed9f6"
+				textcolor = "#0D3BF6"
+
 		fig.add_shape(
 					  type="circle",
+ 					  fillcolor=fillcolor,
+					  layer= 'below',
 					  x0=node.get("position").get("x")-0.5*node.get("width")*72,
 					  y0=node.get("position").get("y")-0.5*node.get("height")*72,
 					  x1=node.get("position").get("x")+0.5*node.get("width")*72,
-					  y1=node.get("position").get("y")+0.5*node.get("height")*72
+					  y1=node.get("position").get("y")+0.5*node.get("height")*72,
 					  )
 
-
+	
 		#add scatter trace of text labels to the figure object
 		fig.add_trace(go.Scatter(
 								 x=[node.get("position").get("x")],
 								 y=[node.get("position").get("y")],
-								 # https://plotly.com/python/hover-text-and-formatting/#customizing-hover-text-with-a-hovertemplate    
+								 # https://plotly.com/python/hover-text-and-formatting/#customizing-hover-text-with-a-hovertemplate	
 								 hovertemplate=node.get("node_properties_hovertext"),
 								 text=node.get("name"),
 								 mode="text",
 								 textfont=dict(
-											   color="black",
+											   color=textcolor,
 											   size=8.5,
 											   family="sans-serif",
 											   )
@@ -302,8 +326,8 @@ def get_figure(edge_type=None):
 					#height=1404,
 					#yaxis = dict(
 					#scaleanchor = "x",
-					#            scaleratio = /1404,
-#            ))
+					#			scaleratio = /1404,
+#			))
 
 # #add scroll zooming as a feature
 # config = dict({'scrollZoom': True})
@@ -323,38 +347,62 @@ app.layout = html.Div(children=[
 		figure=get_figure(),
 		config= dict({'scrollZoom': True})
 	),
-	dcc.RadioItems(
-		 id='edge-type-filter',
-		 options=[
-			 {'label': u'causes_or_promotes', 'value': 'causes_or_promotes'},
-			 {'label': u'is_inhibited_or_prevented_or_blocked_or_slowed_by', 'value': 'is_inhibited_or_prevented_or_blocked_or_slowed_by'},
-			 {'label': u'All', 'value': 'all'},
-		 ],
-		 value='all'
-	),                                
+	html.Div(children=[
+	html.Label('Display Nodes with following edges:'),
+		dcc.RadioItems(
+			 id='edge-type-filter',
+			 options=[
+				 {'label': u'causes_or_promotes', 'value': 'causes_or_promotes'},
+				 {'label': u'is_inhibited_or_prevented_or_blocked_or_slowed_by', 'value': 'is_inhibited_or_prevented_or_blocked_or_slowed_by'},
+				 {'label': u'All', 'value': 'all'},
+			 ],
+			 value='all'
+		)
+	]),
+	html.Div(children=[
+		html.Label('Higlight Nodes with the specific class:'),
+		dcc.Dropdown(
+			 id='node-class-filter',
+			 options=allclasses_filter_radioitems,
+			 value='none'
+		)
+	]),	
+	html.Div(
+		children=[
+			html.Label('Node Data (on click):'),
+			html.Pre(id='click-data')
+		],
+	),	  
 ])
 
+	
+@app.callback(
+	dash.dependencies.Output('click-data', 'children'),
+	[dash.dependencies.Input('graph', 'clickData')])
+def display_click_data(clickData):
+	return json.dumps(clickData, indent=2)
 
 
-# NEED TO ADD in callback features to make the dashboard interactive!!!
 
 @app.callback(
 	dash.dependencies.Output('graph', 'figure'),
-	[dash.dependencies.Input('edge-type-filter', 'value')])
-def display_click_data(value):
+	[
+	dash.dependencies.Input('edge-type-filter', 'value'),
+	dash.dependencies.Input('node-class-filter', 'value')
+	])
+def display_click_data(edge_type, node_class):
 	print("display_click_data!")
-	# import ipdb
-	# ipdb.set_trace()
-	if not value:
+
+	if not edge_type and not node_class:
 		# Nothing has to happen.
 		# otherwise the callback is called in some load/init cases
 		raise dash.exceptions.PreventUpdate
-	if value == "all":
-		value=None
-	print(f"display_click_data! FILTER VALUE = {value}")
-	return get_figure(value)
-
-
+	if edge_type == "all":
+		edge_type=None
+	if node_class == "none":
+		node_class = None
+	print(f"display_click_data! edge_type={edge_type}, node_class={node_class}")
+	return get_figure(edge_type, node_class)
 
 
 if __name__ == '__main__':
