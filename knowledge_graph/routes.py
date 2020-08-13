@@ -2,11 +2,24 @@ from knowledge_graph import app
 
 import json
 
-from json import dumps
+from json import dumps, load
 
 from flask import request, make_response, abort, Response
 
 from knowledge_graph.Mind import Mind
+
+value_id_map = { 
+    1 : "conformity",
+    2 : "tradition",
+    3 : "benevolence",
+    4 : "universalism",
+    5 : "self-direction",
+    6 : "stimulation",
+    7 : "hedonism",
+    8 : "achievement",
+    9 : "power",
+    10 : "security"
+}
 
 
 @app.route('/', methods=['GET'])
@@ -40,7 +53,7 @@ def query():
 def get_questions():
     try:
         with open('schwartz_questions.json') as json_file:
-            data = json.load(json_file)
+            data = load(json_file)
     except FileNotFoundError:
         return make_response("Schwartz Questions not Found"), 400
     
@@ -48,5 +61,62 @@ def get_questions():
     response.headers['Content-Type'] = 'application/json'
     
     return response, 200
+
+@app.route('/get_user_scores', methods=['POST'])
+def get_user_scores():
+    """ Users want to be able to get their score results after submitting
+        the survey. This method checks for a POST request from the front-end
+        containing a JSON object with the users scores.
+        
+        The user can answer 10 or 20 questions. If they answer 20, the scores
+        are averaged between the 10 additional and 10 original questions to get
+        10 corresponding value scores.
+        
+        Then to get a centered score for each value, each score value is subtracted 
+        from the overall average of all 10 or 20 questions. This is returned to the
+        front-end.
+    """
+    try:
+        parameter = request.json
+    except:
+        return make_response("Invalid User Response"), 400
+    
+    value_scores = {}
+    overall_sum = 0
+    num_of_responses = 10
+    
+    for value in parameter["SetOne"]:
+        id = value["id"]
+        score = value["score"]
+        overall_sum += score
+        value_scores[id] = { "name" : value_id_map[id], 
+                             "score" : score }
+    
+    if parameter["SetTwo"]:
+        num_of_responses += 10
+        for value in parameter["SetTwo"]:
+            id = value["id"]
+            score = value["score"]
+            avg_score = (value_scores[id]["score"] + score) / 2
+            overall_sum += score
+            value_scores[id] = { "name" : value_id_map[id],
+                                 "score" : avg_score }
+    
+    overall_avg = overall_sum / num_of_responses
+    print(overall_avg)
+    
+    for id, value in value_scores.items():
+        centered_score = value["score"] - overall_avg
+        value_scores[id] = { "name" : value["name"],
+                            "score" : centered_score}
+        
+    
+    response = Response(dumps(value_scores))
+    return response, 200
+    
+            
+    
+                
+        
         
     
