@@ -1,23 +1,18 @@
-FROM python:3.8-alpine
+FROM python:3.8.5-slim-buster
 
-EXPOSE 5000
+ENV FLASK_ENV=development
+RUN apt-get update
+RUN apt-get -y install gcc
 
-#RUN apt-get install graphviz
-WORKDIR ./
+WORKDIR /usr/src/app
 
-#COPY requirements.txt .
-COPY knowledge_graph/ .
+COPY requirements.txt ./
 
-RUN pip freeze > requirements.txt
-
-RUN pip install -r requirements.txt
+RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
 
 RUN ls
 
-RUN export FLASK_ENV=development
+COPY . .
 
-
-ENTRYPOINT [ "python" ]
-
-CMD [ "__init__.py" ]
-
+EXPOSE 5000
+CMD [ "python", "./climatemind.py" ]
