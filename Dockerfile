@@ -2,7 +2,7 @@ FROM python:3.8.5-slim-buster
 
 ENV FLASK_ENV=development
 RUN apt-get update
-RUN apt-get -y install gcc
+RUN apt-get -y install gcc graphviz-dev
 
 WORKDIR /usr/src/app
 
