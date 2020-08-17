@@ -45,6 +45,9 @@ def add_ontology_data_to_graph_nodes(G):
         class_objects = onto.get_parents_of(ontology_node)
         annot_properties = [thing.label[0].replace(":","_") for thing in list(onto.annotation_properties())]
         
+        #need to add here and replace the hard coding of 'classes' with each of the child classes of the class "Climate Mind". See http://owlready.8326.n8.nabble.com/Ontology-tree-td1178.html
+        #also need to add in automated reasoning so that the classes aren't nested.
+        
         G.add_nodes_from([node], individual = str(ontology_node))
         G.add_nodes_from([node], comment = str(ontology_node.comment))
         G.add_nodes_from([node], classes = [str(parent.label[0]) for parent in class_objects if parent in onto.classes()]) #the if statement is needed to avoid the Restriction objects
