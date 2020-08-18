@@ -1,5 +1,9 @@
 # Climatemind Backend
 
+## Running the application with Docker Compose
+
+    docker-compose up
+
 ## Running the application with Docker
 
 The Docker lifecycle is to build the image and run it only once. After that you can stop or start the image. 
