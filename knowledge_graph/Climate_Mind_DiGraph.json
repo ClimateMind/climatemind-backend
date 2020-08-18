@@ -524,47 +524,20 @@
         },
         "adjacencies": [
             {
-                "nodeTo": "increase in goats clearing brush",
-                "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
-                    "properties": null
-                }
-            },
-            {
                 "nodeTo": "increase in area burned by wildfire",
                 "data": {
                     "type": "causes_or_promotes",
                     "properties": null
                 }
+            },
+            {
+                "nodeTo": "increase in goats clearing brush",
+                "data": {
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "properties": null
+                }
             }
         ]
-    },
-    {
-        "id": "increase in goats clearing brush",
-        "name": "increase in goats clearing brush",
-        "data": {
-            "individual": "webprotege.stanford.edu.R9LbmQn2lAubsJN4nR1Sqzo",
-            "comment": "[]",
-            "classes": [
-                "frame uncategorized (to do)",
-                "test ontology",
-                "not finished - sources etc",
-                "adaptation"
-            ],
-            "properties": {
-                "dc_source": [],
-                "schema_academicBook": [],
-                "schema_academicSourceWithPaywall": [],
-                "schema_academicSourceNoPaywall": [],
-                "schema_governmentSource": [],
-                "schema_image": [],
-                "schema_mediaSource": [],
-                "schema_organizationSource": [],
-                "schema_video": [],
-                "schema_mediaSourceForConservatives": [],
-                "skos_definition": []
-            }
-        }
     },
     {
         "id": "increase in area burned by wildfire",
@@ -598,13 +571,6 @@
         },
         "adjacencies": [
             {
-                "nodeTo": "increase in goats clearing brush",
-                "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
-                    "properties": null
-                }
-            },
-            {
                 "nodeTo": "increase in toxic air pollutants (air pollution)",
                 "data": {
                     "type": "causes_or_promotes",
@@ -615,6 +581,13 @@
                 "nodeTo": "increase in CO2",
                 "data": {
                     "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in goats clearing brush",
+                "data": {
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
                     "properties": null
                 }
             }
@@ -936,8 +909,8 @@
                     "properties": {
                         "dc_source": [
                             "https://www.cnn.com/2018/10/29/health/air-pollution-children-health-who-india-intl/index.html",
-                            "https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution",
-                            "https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution"
+                            "https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution",
+                            "https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution"
                         ]
                     }
                 }
@@ -948,8 +921,8 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "dc_source": [
-                            "https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma",
-                            "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893"
+                            "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893",
+                            "https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma"
                         ]
                     }
                 }
@@ -1098,6 +1071,13 @@
         },
         "adjacencies": [
             {
+                "nodeTo": "elderly people",
+                "data": {
+                    "type": "population_affected",
+                    "properties": null
+                }
+            },
+            {
                 "nodeTo": "increase in death",
                 "data": {
                     "type": "causes_or_promotes",
@@ -1105,6 +1085,30 @@
                 }
             }
         ]
+    },
+    {
+        "id": "elderly people",
+        "name": "elderly people",
+        "data": {
+            "individual": "webprotege.stanford.edu.RDW2Jq9syvIdke0hdTNzGcu",
+            "comment": "[]",
+            "classes": [
+                "population affected"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
     },
     {
         "id": "increase in CO2",
@@ -1149,6 +1153,48 @@
             }
         },
         "adjacencies": [
+            {
+                "nodeTo": "increase in greenhouse effect",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "establish a federal green jobs program",
+                "data": {
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "enact cap and trade policy",
+                "data": {
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "enact carbon tax policy (revenue neutral)",
+                "data": {
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "more acidic oceans (increased dissolved CO2)",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "negative effects on cognition",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
             {
                 "nodeTo": "increase in restoration of abandoned farmland",
                 "data": {
@@ -1298,50 +1344,56 @@
                         ]
                     }
                 }
-            },
-            {
-                "nodeTo": "establish a federal green jobs program",
-                "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
-                    "properties": null
-                }
-            },
-            {
-                "nodeTo": "enact carbon tax policy (revenue neutral)",
-                "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
-                    "properties": null
-                }
-            },
-            {
-                "nodeTo": "enact cap and trade policy",
-                "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
-                    "properties": null
-                }
-            },
-            {
-                "nodeTo": "increase in greenhouse effect",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": null
-                }
-            },
-            {
-                "nodeTo": "more acidic oceans (increased dissolved CO2)",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": null
-                }
-            },
-            {
-                "nodeTo": "negative effects on cognition",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": null
-                }
             }
         ]
+    },
+    {
+        "id": "more acidic oceans (increased dissolved CO2)",
+        "name": "more acidic oceans (increased dissolved CO2)",
+        "data": {
+            "individual": "webprotege.stanford.edu.R5kluaMVlhzpGZEWgAsy1",
+            "comment": "[]",
+            "classes": [
+                "other negative effect from greenhouse gas emission"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "negative effects on cognition",
+        "name": "negative effects on cognition",
+        "data": {
+            "individual": "webprotege.stanford.edu.RC9SyXE5PhiT6iKz1LaJFgf",
+            "comment": "[]",
+            "classes": [
+                "other negative effect from greenhouse gas emission"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
     },
     {
         "id": "increase in restoration of abandoned farmland",
@@ -1690,6 +1742,39 @@
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
             }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "Farming, Fishing, and Forestry Occupations",
+                "data": {
+                    "type": "occupation_association",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "Farming, Fishing, and Forestry Occupations",
+        "name": "Farming, Fishing, and Forestry Occupations",
+        "data": {
+            "individual": "webprotege.stanford.edu.RCSp3Q6QJjaE6ehKKudHudg",
+            "comment": "[]",
+            "classes": [
+                "occupation"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
         }
     },
     {
@@ -1774,37 +1859,16 @@
         }
     },
     {
-        "id": "more acidic oceans (increased dissolved CO2)",
-        "name": "more acidic oceans (increased dissolved CO2)",
+        "id": "increase in goats clearing brush",
+        "name": "increase in goats clearing brush",
         "data": {
-            "individual": "webprotege.stanford.edu.R5kluaMVlhzpGZEWgAsy1",
+            "individual": "webprotege.stanford.edu.R9LbmQn2lAubsJN4nR1Sqzo",
             "comment": "[]",
             "classes": [
-                "other negative effect from greenhouse gas emission"
-            ],
-            "properties": {
-                "dc_source": [],
-                "schema_academicBook": [],
-                "schema_academicSourceWithPaywall": [],
-                "schema_academicSourceNoPaywall": [],
-                "schema_governmentSource": [],
-                "schema_image": [],
-                "schema_mediaSource": [],
-                "schema_organizationSource": [],
-                "schema_video": [],
-                "schema_mediaSourceForConservatives": [],
-                "skos_definition": []
-            }
-        }
-    },
-    {
-        "id": "negative effects on cognition",
-        "name": "negative effects on cognition",
-        "data": {
-            "individual": "webprotege.stanford.edu.RC9SyXE5PhiT6iKz1LaJFgf",
-            "comment": "[]",
-            "classes": [
-                "other negative effect from greenhouse gas emission"
+                "frame uncategorized (to do)",
+                "test ontology",
+                "not finished - sources etc",
+                "adaptation"
             ],
             "properties": {
                 "dc_source": [],
@@ -2194,14 +2258,14 @@
         },
         "adjacencies": [
             {
-                "nodeTo": "establish a federal green jobs program",
+                "nodeTo": "increase in greenhouse effect",
                 "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "type": "causes_or_promotes",
                     "properties": null
                 }
             },
             {
-                "nodeTo": "enact carbon tax policy (revenue neutral)",
+                "nodeTo": "establish a federal green jobs program",
                 "data": {
                     "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
                     "properties": null
@@ -2215,9 +2279,9 @@
                 }
             },
             {
-                "nodeTo": "increase in greenhouse effect",
+                "nodeTo": "enact carbon tax policy (revenue neutral)",
                 "data": {
-                    "type": "causes_or_promotes",
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
                     "properties": null
                 }
             }
@@ -2251,14 +2315,14 @@
         },
         "adjacencies": [
             {
-                "nodeTo": "establish a federal green jobs program",
+                "nodeTo": "increase in greenhouse effect",
                 "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "type": "causes_or_promotes",
                     "properties": null
                 }
             },
             {
-                "nodeTo": "enact carbon tax policy (revenue neutral)",
+                "nodeTo": "establish a federal green jobs program",
                 "data": {
                     "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
                     "properties": null
@@ -2272,9 +2336,9 @@
                 }
             },
             {
-                "nodeTo": "increase in greenhouse effect",
+                "nodeTo": "enact carbon tax policy (revenue neutral)",
                 "data": {
-                    "type": "causes_or_promotes",
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
                     "properties": null
                 }
             }
@@ -2388,13 +2452,6 @@
         },
         "adjacencies": [
             {
-                "nodeTo": "avoid building on land that is or will become a floodplain",
-                "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
-                    "properties": null
-                }
-            },
-            {
                 "nodeTo": "increase in destruction to US military bases",
                 "data": {
                     "type": "causes_or_promotes",
@@ -2414,13 +2471,319 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "dc_source": [
-                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
-                            "https://www.sciencedirect.com/science/article/pii/S0962629807000601"
+                            "https://www.sciencedirect.com/science/article/pii/S0962629807000601",
+                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155"
                         ]
                     }
                 }
+            },
+            {
+                "nodeTo": "avoid building on land that is or will become a floodplain",
+                "data": {
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "properties": null
+                }
             }
         ]
+    },
+    {
+        "id": "increase in destruction to US military bases",
+        "name": "increase in destruction to US military bases",
+        "data": {
+            "individual": "webprotege.stanford.edu.R8uV2oTMZHslQ6qiGWJ8OQO",
+            "comment": "[]",
+            "classes": [
+                "approved - values",
+                "downstream negative effect",
+                "frame uncategorized (to do)",
+                "security societal",
+                "test ontology",
+                "power dominance"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://www.capitalgazette.com/environment/ac-cn-proceedings-except-20191013-43rodczawne7ziviweim72cvmq-story.html",
+                    "https://www.military.com/daily-news/2017/06/02/trump-may-doubt-climate-change-pentagon-sees-it-looming-threat.html",
+                    "https://www.rollcall.com/2019/06/12/military-bases-unprepared-for-gathering-climate-change-storm",
+                    "https://www.un.org/en/chronicle/article/greatest-threat-global-security-climate-change-not-merely-environmental-problem"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [
+                    "https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689",
+                    "https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095"
+                ],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "increase in cholera infections",
+        "name": "increase in cholera infections",
+        "data": {
+            "individual": "webprotege.stanford.edu.R8xnqMTv1FH2zTsQT4ckrRi",
+            "comment": "[]",
+            "classes": [
+                "downstream negative effect",
+                "health change"
+            ],
+            "properties": {
+                "dc_source": [
+                    "https://www.ajtmh.org/content/journals/10.4269/ajtmh.2009.80.640",
+                    "https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in death",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in cholera vaccines",
+                "data": {
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in cholera vaccines",
+        "name": "increase in cholera vaccines",
+        "data": {
+            "individual": "webprotege.stanford.edu.RDUpv4M8PM4HOKbZuVIB8tT",
+            "comment": "[]",
+            "classes": [
+                "adaptation"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "increase in climate refugees",
+        "name": "increase in climate refugees",
+        "data": {
+            "individual": "webprotege.stanford.edu.R90voMtk6xBMoARwvKc2wuy",
+            "comment": "[]",
+            "classes": [
+                "downstream negative effect",
+                "economic change",
+                "agriculture change",
+                "national security change",
+                "health change"
+            ],
+            "properties": {
+                "dc_source": [
+                    "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
+                    "https://link.springer.com/chapter/10.1007/978-3-319-75777-3_5",
+                    "https://www.ajtmh.org/content/journals/10.4269/ajtmh.2009.80.640",
+                    "https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16",
+                    "https://www.sciencedirect.com/science/article/pii/S0962629807000601"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in cholera infections",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "dc_source": [
+                            "https://www.ajtmh.org/content/journals/10.4269/ajtmh.2009.80.640",
+                            "https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "increase in deforestation",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "dc_source": [
+                            "https://www.sciencedirect.com/science/article/pii/S0962629807000601",
+                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "increase in physical violence",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in sexual violence",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in deforestation",
+        "name": "increase in deforestation",
+        "data": {
+            "individual": "webprotege.stanford.edu.R9ah7PByb0OgSOa90WQQdjc",
+            "comment": "[]",
+            "classes": [
+                "core climate change",
+                "main land change"
+            ],
+            "properties": {
+                "dc_source": [
+                    "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
+                    "https://www.sciencedirect.com/science/article/pii/S0962629807000601"
+                ],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in climate refugees",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "dc_source": [
+                            "https://www.sciencedirect.com/science/article/pii/S0962629807000601",
+                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155"
+                        ]
+                    }
+                }
+            },
+            {
+                "nodeTo": "increase in CO2",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in physical violence",
+        "name": "increase in physical violence",
+        "data": {
+            "individual": "webprotege.stanford.edu.RDavliTi6W93xwahwtUnUtG",
+            "comment": "[]",
+            "classes": [
+                "approved - values",
+                "downstream negative effect",
+                "self-direction autonomy of action",
+                "security societal",
+                "test ontology",
+                "security personal",
+                "conformity rules",
+                "hedonism",
+                "conformity interpersonal"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [
+                    "https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16"
+                ],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://www.psychologicalscience.org/observer/global-warming-and-violent-behavior"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        },
+        "adjacencies": [
+            {
+                "nodeTo": "increase in death",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            }
+        ]
+    },
+    {
+        "id": "increase in sexual violence",
+        "name": "increase in sexual violence",
+        "data": {
+            "individual": "webprotege.stanford.edu.RtcWDD6Pcr6vIrMhOObmOE",
+            "comment": "[]",
+            "classes": [
+                "downstream negative effect"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [
+                    "https://link.springer.com/chapter/10.1007/978-3-319-75777-3_5"
+                ],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
     },
     {
         "id": "avoid building on land that is or will become a floodplain",
@@ -2622,305 +2985,6 @@
                 "dc_source": [],
                 "schema_academicBook": [],
                 "schema_academicSourceWithPaywall": [],
-                "schema_academicSourceNoPaywall": [],
-                "schema_governmentSource": [],
-                "schema_image": [],
-                "schema_mediaSource": [],
-                "schema_organizationSource": [],
-                "schema_video": [],
-                "schema_mediaSourceForConservatives": [],
-                "skos_definition": []
-            }
-        }
-    },
-    {
-        "id": "increase in destruction to US military bases",
-        "name": "increase in destruction to US military bases",
-        "data": {
-            "individual": "webprotege.stanford.edu.R8uV2oTMZHslQ6qiGWJ8OQO",
-            "comment": "[]",
-            "classes": [
-                "approved - values",
-                "downstream negative effect",
-                "frame uncategorized (to do)",
-                "security societal",
-                "test ontology",
-                "power dominance"
-            ],
-            "properties": {
-                "dc_source": [
-                    "https://www.capitalgazette.com/environment/ac-cn-proceedings-except-20191013-43rodczawne7ziviweim72cvmq-story.html",
-                    "https://www.military.com/daily-news/2017/06/02/trump-may-doubt-climate-change-pentagon-sees-it-looming-threat.html",
-                    "https://www.rollcall.com/2019/06/12/military-bases-unprepared-for-gathering-climate-change-storm",
-                    "https://www.un.org/en/chronicle/article/greatest-threat-global-security-climate-change-not-merely-environmental-problem"
-                ],
-                "schema_academicBook": [],
-                "schema_academicSourceWithPaywall": [],
-                "schema_academicSourceNoPaywall": [],
-                "schema_governmentSource": [],
-                "schema_image": [],
-                "schema_mediaSource": [],
-                "schema_organizationSource": [],
-                "schema_video": [],
-                "schema_mediaSourceForConservatives": [
-                    "https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689",
-                    "https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095"
-                ],
-                "skos_definition": []
-            }
-        }
-    },
-    {
-        "id": "increase in cholera infections",
-        "name": "increase in cholera infections",
-        "data": {
-            "individual": "webprotege.stanford.edu.R8xnqMTv1FH2zTsQT4ckrRi",
-            "comment": "[]",
-            "classes": [
-                "downstream negative effect",
-                "health change"
-            ],
-            "properties": {
-                "dc_source": [
-                    "https://www.ajtmh.org/content/journals/10.4269/ajtmh.2009.80.640",
-                    "https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16"
-                ],
-                "schema_academicBook": [],
-                "schema_academicSourceWithPaywall": [],
-                "schema_academicSourceNoPaywall": [],
-                "schema_governmentSource": [],
-                "schema_image": [],
-                "schema_mediaSource": [],
-                "schema_organizationSource": [],
-                "schema_video": [],
-                "schema_mediaSourceForConservatives": [],
-                "skos_definition": []
-            }
-        },
-        "adjacencies": [
-            {
-                "nodeTo": "increase in cholera vaccines",
-                "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
-                    "properties": null
-                }
-            },
-            {
-                "nodeTo": "increase in death",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": null
-                }
-            }
-        ]
-    },
-    {
-        "id": "increase in cholera vaccines",
-        "name": "increase in cholera vaccines",
-        "data": {
-            "individual": "webprotege.stanford.edu.RDUpv4M8PM4HOKbZuVIB8tT",
-            "comment": "[]",
-            "classes": [
-                "adaptation"
-            ],
-            "properties": {
-                "dc_source": [],
-                "schema_academicBook": [],
-                "schema_academicSourceWithPaywall": [],
-                "schema_academicSourceNoPaywall": [],
-                "schema_governmentSource": [],
-                "schema_image": [],
-                "schema_mediaSource": [],
-                "schema_organizationSource": [],
-                "schema_video": [],
-                "schema_mediaSourceForConservatives": [],
-                "skos_definition": []
-            }
-        }
-    },
-    {
-        "id": "increase in climate refugees",
-        "name": "increase in climate refugees",
-        "data": {
-            "individual": "webprotege.stanford.edu.R90voMtk6xBMoARwvKc2wuy",
-            "comment": "[]",
-            "classes": [
-                "downstream negative effect",
-                "economic change",
-                "agriculture change",
-                "national security change",
-                "health change"
-            ],
-            "properties": {
-                "dc_source": [
-                    "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
-                    "https://link.springer.com/chapter/10.1007/978-3-319-75777-3_5",
-                    "https://www.ajtmh.org/content/journals/10.4269/ajtmh.2009.80.640",
-                    "https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16",
-                    "https://www.sciencedirect.com/science/article/pii/S0962629807000601"
-                ],
-                "schema_academicBook": [],
-                "schema_academicSourceWithPaywall": [],
-                "schema_academicSourceNoPaywall": [],
-                "schema_governmentSource": [],
-                "schema_image": [],
-                "schema_mediaSource": [],
-                "schema_organizationSource": [],
-                "schema_video": [],
-                "schema_mediaSourceForConservatives": [],
-                "skos_definition": []
-            }
-        },
-        "adjacencies": [
-            {
-                "nodeTo": "increase in cholera infections",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": {
-                        "dc_source": [
-                            "https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16",
-                            "https://www.ajtmh.org/content/journals/10.4269/ajtmh.2009.80.640"
-                        ]
-                    }
-                }
-            },
-            {
-                "nodeTo": "increase in deforestation",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": {
-                        "dc_source": [
-                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
-                            "https://www.sciencedirect.com/science/article/pii/S0962629807000601"
-                        ]
-                    }
-                }
-            },
-            {
-                "nodeTo": "increase in physical violence",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": null
-                }
-            },
-            {
-                "nodeTo": "increase in sexual violence",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": null
-                }
-            }
-        ]
-    },
-    {
-        "id": "increase in deforestation",
-        "name": "increase in deforestation",
-        "data": {
-            "individual": "webprotege.stanford.edu.R9ah7PByb0OgSOa90WQQdjc",
-            "comment": "[]",
-            "classes": [
-                "core climate change",
-                "main land change"
-            ],
-            "properties": {
-                "dc_source": [
-                    "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
-                    "https://www.sciencedirect.com/science/article/pii/S0962629807000601"
-                ],
-                "schema_academicBook": [],
-                "schema_academicSourceWithPaywall": [],
-                "schema_academicSourceNoPaywall": [],
-                "schema_governmentSource": [],
-                "schema_image": [],
-                "schema_mediaSource": [],
-                "schema_organizationSource": [],
-                "schema_video": [],
-                "schema_mediaSourceForConservatives": [],
-                "skos_definition": []
-            }
-        },
-        "adjacencies": [
-            {
-                "nodeTo": "increase in climate refugees",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": {
-                        "dc_source": [
-                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
-                            "https://www.sciencedirect.com/science/article/pii/S0962629807000601"
-                        ]
-                    }
-                }
-            },
-            {
-                "nodeTo": "increase in CO2",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": null
-                }
-            }
-        ]
-    },
-    {
-        "id": "increase in physical violence",
-        "name": "increase in physical violence",
-        "data": {
-            "individual": "webprotege.stanford.edu.RDavliTi6W93xwahwtUnUtG",
-            "comment": "[]",
-            "classes": [
-                "approved - values",
-                "downstream negative effect",
-                "self-direction autonomy of action",
-                "security societal",
-                "test ontology",
-                "security personal",
-                "conformity rules",
-                "hedonism",
-                "conformity interpersonal"
-            ],
-            "properties": {
-                "dc_source": [],
-                "schema_academicBook": [],
-                "schema_academicSourceWithPaywall": [],
-                "schema_academicSourceNoPaywall": [],
-                "schema_governmentSource": [
-                    "https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16"
-                ],
-                "schema_image": [],
-                "schema_mediaSource": [],
-                "schema_organizationSource": [
-                    "https://www.psychologicalscience.org/observer/global-warming-and-violent-behavior"
-                ],
-                "schema_video": [],
-                "schema_mediaSourceForConservatives": [],
-                "skos_definition": []
-            }
-        },
-        "adjacencies": [
-            {
-                "nodeTo": "increase in death",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": null
-                }
-            }
-        ]
-    },
-    {
-        "id": "increase in sexual violence",
-        "name": "increase in sexual violence",
-        "data": {
-            "individual": "webprotege.stanford.edu.RtcWDD6Pcr6vIrMhOObmOE",
-            "comment": "[]",
-            "classes": [
-                "downstream negative effect"
-            ],
-            "properties": {
-                "dc_source": [],
-                "schema_academicBook": [],
-                "schema_academicSourceWithPaywall": [
-                    "https://link.springer.com/chapter/10.1007/978-3-319-75777-3_5"
-                ],
                 "schema_academicSourceNoPaywall": [],
                 "schema_governmentSource": [],
                 "schema_image": [],
@@ -3463,16 +3527,16 @@
         },
         "adjacencies": [
             {
-                "nodeTo": "increase in funding for suicide prevention",
+                "nodeTo": "increase in death",
                 "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "type": "causes_or_promotes",
                     "properties": null
                 }
             },
             {
-                "nodeTo": "increase in death",
+                "nodeTo": "increase in funding for suicide prevention",
                 "data": {
-                    "type": "causes_or_promotes",
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
                     "properties": null
                 }
             }
@@ -3884,10 +3948,10 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "dc_source": [
-                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
-                            "https://www.nature.com/articles/s41612-019-0074-8",
                             "https://www.sciencedirect.com/science/article/pii/S0962629807000601",
-                            "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html"
+                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
+                            "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html",
+                            "https://www.nature.com/articles/s41612-019-0074-8"
                         ]
                     }
                 }
@@ -4359,14 +4423,14 @@
         },
         "adjacencies": [
             {
-                "nodeTo": "establish a federal green jobs program",
+                "nodeTo": "increase in greenhouse effect",
                 "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "type": "causes_or_promotes",
                     "properties": null
                 }
             },
             {
-                "nodeTo": "enact carbon tax policy (revenue neutral)",
+                "nodeTo": "establish a federal green jobs program",
                 "data": {
                     "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
                     "properties": null
@@ -4380,9 +4444,9 @@
                 }
             },
             {
-                "nodeTo": "increase in greenhouse effect",
+                "nodeTo": "enact carbon tax policy (revenue neutral)",
                 "data": {
-                    "type": "causes_or_promotes",
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
                     "properties": null
                 }
             }
@@ -4513,9 +4577,9 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "schema_mediaSource": [
+                            "https://www.entrepreneur.com/article/319479",
                             "https://phys.org/news/2018-08-temperatures-worker-productivity-global-losses.html",
-                            "https://epic.uchicago.edu/news/hot-temperatures-decrease-worker-productivity-economic-output",
-                            "https://www.entrepreneur.com/article/319479"
+                            "https://epic.uchicago.edu/news/hot-temperatures-decrease-worker-productivity-economic-output"
                         ]
                     }
                 }
@@ -4979,6 +5043,20 @@
         },
         "adjacencies": [
             {
+                "nodeTo": "increase in CO2",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in HFCs and PFCs",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
                 "nodeTo": "installing smart thermostats",
                 "data": {
                     "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
@@ -5043,18 +5121,61 @@
                         ]
                     }
                 }
-            },
+            }
+        ]
+    },
+    {
+        "id": "increase in HFCs and PFCs",
+        "name": "increase in HFCs and PFCs",
+        "data": {
+            "individual": "webprotege.stanford.edu.RBoKo0n5lpo1zk2uDMdZuab",
+            "comment": "[]",
+            "classes": [
+                "increase in atmospheric greenhouse gas",
+                "test ontology"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": [
+                    "Increase in atmospheric hydrofluorocarbons and perfluorocarbons (fluorocarbons)"
+                ]
+            }
+        },
+        "adjacencies": [
             {
-                "nodeTo": "increase in CO2",
+                "nodeTo": "increase in greenhouse effect",
                 "data": {
                     "type": "causes_or_promotes",
                     "properties": null
                 }
             },
             {
-                "nodeTo": "increase in HFCs and PFCs",
+                "nodeTo": "establish a federal green jobs program",
                 "data": {
-                    "type": "causes_or_promotes",
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "enact cap and trade policy",
+                "data": {
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "enact carbon tax policy (revenue neutral)",
+                "data": {
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
                     "properties": null
                 }
             }
@@ -5223,63 +5344,6 @@
         }
     },
     {
-        "id": "increase in HFCs and PFCs",
-        "name": "increase in HFCs and PFCs",
-        "data": {
-            "individual": "webprotege.stanford.edu.RBoKo0n5lpo1zk2uDMdZuab",
-            "comment": "[]",
-            "classes": [
-                "increase in atmospheric greenhouse gas",
-                "test ontology"
-            ],
-            "properties": {
-                "dc_source": [],
-                "schema_academicBook": [],
-                "schema_academicSourceWithPaywall": [],
-                "schema_academicSourceNoPaywall": [],
-                "schema_governmentSource": [],
-                "schema_image": [],
-                "schema_mediaSource": [],
-                "schema_organizationSource": [],
-                "schema_video": [],
-                "schema_mediaSourceForConservatives": [],
-                "skos_definition": [
-                    "Increase in atmospheric hydrofluorocarbons and perfluorocarbons (fluorocarbons)"
-                ]
-            }
-        },
-        "adjacencies": [
-            {
-                "nodeTo": "establish a federal green jobs program",
-                "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
-                    "properties": null
-                }
-            },
-            {
-                "nodeTo": "enact carbon tax policy (revenue neutral)",
-                "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
-                    "properties": null
-                }
-            },
-            {
-                "nodeTo": "enact cap and trade policy",
-                "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
-                    "properties": null
-                }
-            },
-            {
-                "nodeTo": "increase in greenhouse effect",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": null
-                }
-            }
-        ]
-    },
-    {
         "id": "lower stratospheric cooling",
         "name": "lower stratospheric cooling",
         "data": {
@@ -5349,6 +5413,13 @@
             }
         },
         "adjacencies": [
+            {
+                "nodeTo": "increase in CO2",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
             {
                 "nodeTo": "composting",
                 "data": {
@@ -5424,13 +5495,6 @@
                             "https://drawdown.org/solutions/refrigerant-management"
                         ]
                     }
-                }
-            },
-            {
-                "nodeTo": "increase in CO2",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": null
                 }
             }
         ]
@@ -5698,13 +5762,6 @@
         },
         "adjacencies": [
             {
-                "nodeTo": "include 1% seaweed in diet for cows cattle",
-                "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
-                    "properties": null
-                }
-            },
-            {
                 "nodeTo": "increase in methane (CH4)",
                 "data": {
                     "type": "causes_or_promotes",
@@ -5713,6 +5770,13 @@
                             "https://ichef.bbci.co.uk/news/624/cpsprodpb/14A87/production/_104751648_range_chart_640_v2_3x-optimised-nc.png"
                         ]
                     }
+                }
+            },
+            {
+                "nodeTo": "include 1% seaweed in diet for cows cattle",
+                "data": {
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "properties": null
                 }
             }
         ]
@@ -5782,6 +5846,17 @@
         },
         "adjacencies": [
             {
+                "nodeTo": "increase in CO2",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": {
+                        "schema_organizationSource": [
+                            "https://drawdown.org/solutions/plant-rich-diets"
+                        ]
+                    }
+                }
+            },
+            {
                 "nodeTo": "protecting and rewetting peatland",
                 "data": {
                     "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
@@ -5810,17 +5885,6 @@
                     "properties": {
                         "schema_organizationSource": [
                             "https://drawdown.org/solutions/reduced-food-waste"
-                        ]
-                    }
-                }
-            },
-            {
-                "nodeTo": "increase in CO2",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": {
-                        "schema_organizationSource": [
-                            "https://drawdown.org/solutions/plant-rich-diets"
                         ]
                     }
                 }
@@ -5945,17 +6009,6 @@
         },
         "adjacencies": [
             {
-                "nodeTo": "improving health and education",
-                "data": {
-                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
-                    "properties": {
-                        "schema_organizationSource": [
-                            "https://drawdown.org/solutions/health-and-education"
-                        ]
-                    }
-                }
-            },
-            {
                 "nodeTo": "buildings and their construction, materials, gas heating, cooling, and refrigeration",
                 "data": {
                     "type": "causes_or_promotes",
@@ -5989,35 +6042,19 @@
                     "type": "causes_or_promotes",
                     "properties": null
                 }
+            },
+            {
+                "nodeTo": "improving health and education",
+                "data": {
+                    "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
+                    "properties": {
+                        "schema_organizationSource": [
+                            "https://drawdown.org/solutions/health-and-education"
+                        ]
+                    }
+                }
             }
         ]
-    },
-    {
-        "id": "improving health and education",
-        "name": "improving health and education",
-        "data": {
-            "individual": "webprotege.stanford.edu.R97nKRRZWNs0SIxDhgsFAbe",
-            "comment": "['It is critical that human rights are always centered, that gender equality is the aim, and that benefits to the planet are understood as positive ripple effects of access and agency. Project Drawdown modeled the influence of two rights-based solutions on global population: universal education and family planning. Increased access to and quality of voluntary reproductive healthcare, family planning resources, and 12-13 years of schooling are essential components to achieve the United Nations\u2019 2015 medium global population projection of 9.7 billion people by 2050. If investment and support of these fundamental human rights-centered solutions does not materialize, the world\u2019s population could come closer to the higher projection, adding another 1 billion people to the planet.\\n\\nProject Drawdown models the impact of this population difference in more-developed as well as least-and less-developed countries, in terms of how much energy, building space, food, waste, and transportation would be used. The resulting emissions reductions across the entire system could be as high as 85.4 gigatons of carbon dioxide, just within the window of 2020-2050. Health & Education have a compounding impact, however, with greater climate impacts into the future.']",
-            "classes": [
-                "test ontology",
-                "risk solution"
-            ],
-            "properties": {
-                "dc_source": [],
-                "schema_academicBook": [],
-                "schema_academicSourceWithPaywall": [],
-                "schema_academicSourceNoPaywall": [],
-                "schema_governmentSource": [],
-                "schema_image": [],
-                "schema_mediaSource": [],
-                "schema_organizationSource": [
-                    "https://drawdown.org/solutions/health-and-education"
-                ],
-                "schema_video": [],
-                "schema_mediaSourceForConservatives": [],
-                "skos_definition": []
-            }
-        }
     },
     {
         "id": "transporting people and goods",
@@ -6055,6 +6092,20 @@
             }
         },
         "adjacencies": [
+            {
+                "nodeTo": "increase in toxic air pollutants (air pollution)",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
+                "nodeTo": "increase in CO2",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
             {
                 "nodeTo": "carpooling",
                 "data": {
@@ -6152,20 +6203,6 @@
                             "https://drawdown.org/solutions/telepresence"
                         ]
                     }
-                }
-            },
-            {
-                "nodeTo": "increase in toxic air pollutants (air pollution)",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": null
-                }
-            },
-            {
-                "nodeTo": "increase in CO2",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": null
                 }
             }
         ]
@@ -6447,6 +6484,13 @@
         },
         "adjacencies": [
             {
+                "nodeTo": "increase in CO2",
+                "data": {
+                    "type": "causes_or_promotes",
+                    "properties": null
+                }
+            },
+            {
                 "nodeTo": "producing electricity via offshore wind turbines",
                 "data": {
                     "type": "is_inhibited_or_prevented_or_blocked_or_slowed_by",
@@ -6510,13 +6554,6 @@
                             "https://drawdown.org/solutions/concentrated-solar-power"
                         ]
                     }
-                }
-            },
-            {
-                "nodeTo": "increase in CO2",
-                "data": {
-                    "type": "causes_or_promotes",
-                    "properties": null
                 }
             }
         ]
@@ -6649,6 +6686,33 @@
                 "schema_mediaSource": [],
                 "schema_organizationSource": [
                     "https://drawdown.org/solutions/concentrated-solar-power"
+                ],
+                "schema_video": [],
+                "schema_mediaSourceForConservatives": [],
+                "skos_definition": []
+            }
+        }
+    },
+    {
+        "id": "improving health and education",
+        "name": "improving health and education",
+        "data": {
+            "individual": "webprotege.stanford.edu.R97nKRRZWNs0SIxDhgsFAbe",
+            "comment": "['It is critical that human rights are always centered, that gender equality is the aim, and that benefits to the planet are understood as positive ripple effects of access and agency. Project Drawdown modeled the influence of two rights-based solutions on global population: universal education and family planning. Increased access to and quality of voluntary reproductive healthcare, family planning resources, and 12-13 years of schooling are essential components to achieve the United Nations\u2019 2015 medium global population projection of 9.7 billion people by 2050. If investment and support of these fundamental human rights-centered solutions does not materialize, the world\u2019s population could come closer to the higher projection, adding another 1 billion people to the planet.\\n\\nProject Drawdown models the impact of this population difference in more-developed as well as least-and less-developed countries, in terms of how much energy, building space, food, waste, and transportation would be used. The resulting emissions reductions across the entire system could be as high as 85.4 gigatons of carbon dioxide, just within the window of 2020-2050. Health & Education have a compounding impact, however, with greater climate impacts into the future.']",
+            "classes": [
+                "test ontology",
+                "risk solution"
+            ],
+            "properties": {
+                "dc_source": [],
+                "schema_academicBook": [],
+                "schema_academicSourceWithPaywall": [],
+                "schema_academicSourceNoPaywall": [],
+                "schema_governmentSource": [],
+                "schema_image": [],
+                "schema_mediaSource": [],
+                "schema_organizationSource": [
+                    "https://drawdown.org/solutions/health-and-education"
                 ],
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],

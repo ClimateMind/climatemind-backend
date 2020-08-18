@@ -418,8 +418,8 @@
                     "properties": {
                         "dc_source": [
                             "https://www.cnn.com/2018/10/29/health/air-pollution-children-health-who-india-intl/index.html",
-                            "https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution",
-                            "https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution"
+                            "https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution",
+                            "https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution"
                         ]
                     }
                 }
@@ -430,8 +430,8 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "dc_source": [
-                            "https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma",
-                            "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893"
+                            "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893",
+                            "https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma"
                         ]
                     }
                 }
@@ -1406,10 +1406,10 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "dc_source": [
-                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
-                            "https://www.nature.com/articles/s41612-019-0074-8",
                             "https://www.sciencedirect.com/science/article/pii/S0962629807000601",
-                            "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html"
+                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
+                            "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html",
+                            "https://www.nature.com/articles/s41612-019-0074-8"
                         ]
                     }
                 }
