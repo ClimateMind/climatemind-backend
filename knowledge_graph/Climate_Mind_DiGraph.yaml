@@ -1,95 +1,96 @@
 !!python/object:networkx.classes.digraph.DiGraph
-_adj: &id235
+_adj: &id237
+  Farming, Fishing, and Forestry Occupations: {}
   Increase in investment: {}
   acute lower respiratory infection:
-    increase in death: &id089
+    increase in death: &id091
       properties: null
       type: causes_or_promotes
   avoid building on land that is or will become a floodplain:
-    builders are not required to check before building on a floodplain: &id005
+    builders are not required to check before building on a floodplain: &id006
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   being telepresent or teleworking: {}
   builders are not required to check before building on a floodplain:
-    regulation/laws that require assessment of floodplains for new buildings: &id214
+    regulation/laws that require assessment of floodplains for new buildings: &id216
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   buildings and their construction, materials, gas heating, cooling, and refrigeration:
-    increase in CO2: &id061
+    increase in CO2: &id063
       properties: null
       type: causes_or_promotes
-    increase in HFCs and PFCs: &id070
+    increase in HFCs and PFCs: &id072
       properties: null
       type: causes_or_promotes
-    installing smart thermostats: &id177
+    installing smart thermostats: &id179
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/smart-thermostats
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    insulating buildings better: &id178
+    insulating buildings better: &id180
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/insulation
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    using biogas for cooking: &id220
+    using biogas for cooking: &id222
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/biogas-for-cooking
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    using high-efficiency heat pumps: &id222
+    using high-efficiency heat pumps: &id224
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/high-efficiency-heat-pumps
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    using high-performance glass in windows: &id223
+    using high-performance glass in windows: &id225
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/high-performance-glass
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    using improved clean cookstoves: &id226
+    using improved clean cookstoves: &id228
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/improved-clean-cookstoves
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   burning coal:
-    increase in CO2: &id062
+    increase in CO2: &id064
       properties: null
       type: causes_or_promotes
-    increase in toxic air pollutants (air pollution): &id164
+    increase in toxic air pollutants (air pollution): &id166
       properties:
         schema_governmentSource:
         - https://www.eia.gov/energyexplained/coal/coal-and-the-environment.php
       type: causes_or_promotes
   burning fossil fuel for electricity production:
-    increase in CO2: &id063
+    increase in CO2: &id065
       properties: null
       type: causes_or_promotes
-    producing electricity via concentrated solar power: &id203
+    producing electricity via concentrated solar power: &id205
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/concentrated-solar-power
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    producing electricity via distributed solar photovoltaics: &id204
+    producing electricity via distributed solar photovoltaics: &id206
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/distributed-solar-photovoltaics
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    producing electricity via offshore wind turbines: &id205
+    producing electricity via offshore wind turbines: &id207
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/offshore-wind-turbines
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    producing electricity via onshore wind turbines: &id206
+    producing electricity via onshore wind turbines: &id208
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/onshore-wind-turbines
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    producing electricity via utility-scale solar photovoltaics: &id207
+    producing electricity via utility-scale solar photovoltaics: &id209
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/utility-scale-solar-photovoltaics
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    switching to LED light bulbs: &id216
+    switching to LED light bulbs: &id218
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/led-lighting
@@ -97,44 +98,44 @@ _adj: &id235
   call representative: {}
   carpooling: {}
   cattle cow burps:
-    include 1% seaweed in diet for cows cattle: &id060
+    include 1% seaweed in diet for cows cattle: &id062
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in methane (CH4): &id137
+    increase in methane (CH4): &id139
       properties:
         schema_image:
         - https://ichef.bbci.co.uk/news/624/cpsprodpb/14A87/production/_104751648_range_chart_640_v2_3x-optimised-nc.png
       type: causes_or_promotes
   change in salinity in oceans (both surface and subsurface): {}
   chronic obstructive pulmonary disease:
-    increase in death: &id090
+    increase in death: &id092
       properties: null
       type: causes_or_promotes
   coal mining:
-    burning coal: &id007
+    burning coal: &id008
       properties: null
       type: causes_or_promotes
-    increase in risk of stomach cancer: &id153
+    increase in risk of stomach cancer: &id155
       properties: null
       type: causes_or_promotes
   composting: {}
   decrease in GDP:
-    Increase in investment: &id001
+    Increase in investment: &id002
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   decrease in dissolved oxygen in oceans:
-    increase in release of N2O and CH4 greenhouse gases: &id148
+    increase in release of N2O and CH4 greenhouse gases: &id150
       properties: null
       type: causes_or_promotes
   decrease in frequency of cold days and nights:
-    increase in evaporation: &id107
+    increase in evaporation: &id109
       properties: null
       type: causes_or_promotes
-    less freezing conditions during winter: &id180
+    less freezing conditions during winter: &id182
       properties: null
       type: causes_or_promotes
   decrease in learning (without air conditioner):
-    increase in air conditioning: &id073
+    increase in air conditioning: &id075
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   decrease in population of moose available to hunt: {}
@@ -142,209 +143,115 @@ _adj: &id235
   decrease in tourism: {}
   decrease in worker productivity: {}
   deregulation:
-    call representative: &id009
+    call representative: &id010
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    vote in elections: &id229
+    vote in elections: &id231
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   drier soil during dry season:
-    drier vegetation during dry season: &id030
+    drier vegetation during dry season: &id031
       properties: null
       type: causes_or_promotes
-    prolonged droughts: &id208
+    prolonged droughts: &id210
       properties: null
       type: causes_or_promotes
   drier vegetation during dry season:
-    increase in area burned by wildfire: &id075
+    increase in area burned by wildfire: &id077
       properties: null
       type: causes_or_promotes
   eating lower down the foodchain (plant-rich diets): {}
   effective communication framing: {}
+  elderly people: {}
   enact cap and trade policy:
-    political polarization: &id200
+    political polarization: &id202
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   enact carbon tax policy (revenue neutral):
-    political polarization: &id201
+    political polarization: &id203
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   enact ranked-choice voting policy: {}
   establish a federal green jobs program:
-    political polarization: &id202
+    political polarization: &id204
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   expansion in tick habitat:
-    expansion of Lyme disease: &id053
+    expansion of Lyme disease: &id055
       properties: null
       type: causes_or_promotes
   expansion of Lyme disease:
-    increase in Lyme disease infection: &id071
+    increase in Lyme disease infection: &id073
       properties: null
       type: causes_or_promotes
   expansion of oceans:
-    increase in sea level rise: &id155
+    increase in sea level rise: &id157
       properties: null
       type: causes_or_promotes
   food waste, unhealthy agriculture, and deforestation:
-    eating lower down the foodchain (plant-rich diets): &id031
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/plant-rich-diets
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in CO2: &id064
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/plant-rich-diets
-      type: causes_or_promotes
-    protecting and rewetting peatland: &id209
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/peatland-protection-and-rewetting
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    reducing food waste: &id212
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/reduced-food-waste
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-  fracking leaks:
-    increase in methane (CH4): &id138
-      properties: null
-      type: causes_or_promotes
-  greenhouse-gas externality:
-    enact cap and trade policy: &id034
-      properties: null
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    enact carbon tax policy (revenue neutral): &id040
-      properties: null
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-  human population growth:
-    buildings and their construction, materials, gas heating, cooling, and refrigeration: &id006
-      properties: null
-      type: causes_or_promotes
-    burning fossil fuel for electricity production: &id008
-      properties: null
-      type: causes_or_promotes
-    food waste, unhealthy agriculture, and deforestation: &id055
-      properties: null
-      type: causes_or_promotes
-    improving health and education: &id059
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/health-and-education
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    industrial activity: &id176
-      properties: null
-      type: causes_or_promotes
-    transporting people and goods: &id217
-      properties: null
-      type: causes_or_promotes
-  improving health and education: {}
-  include 1% seaweed in diet for cows cattle:
-    greenhouse-gas externality: &id056
-      properties: null
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-  increase in CO2:
     eating lower down the foodchain (plant-rich diets): &id032
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/plant-rich-diets
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    enact cap and trade policy: &id035
-      properties: null
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    enact carbon tax policy (revenue neutral): &id041
-      properties: null
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    establish a federal green jobs program: &id047
-      properties: null
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in bamboo production: &id079
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/bamboo-production
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in carbon capture: &id080
-      properties: null
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in conservation agriculture: &id087
+    increase in CO2: &id066
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/plant-rich-diets
+      type: causes_or_promotes
+    protecting and rewetting peatland: &id211
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/peatland-protection-and-rewetting
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in greenhouse effect: &id125
+    reducing food waste: &id214
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/reduced-food-waste
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+  fracking leaks:
+    increase in methane (CH4): &id140
       properties: null
       type: causes_or_promotes
-    increase in managed grazing: &id135
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/managed-grazing
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in multistrata agroforestry: &id141
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/multistrata-agroforestry
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in perennial staple crops: &id143
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/perennial-staple-crops
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in regenerative annual cropping: &id147
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/regenerative-annual-cropping
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in restoration of abandoned farmland: &id149
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/abandoned-farmland-restoration
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in restoration of temperate forests: &id150
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/temperate-forest-restoration
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in silvopasture: &id159
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/silvopasture
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in tree intercropping: &id170
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/tree-intercropping
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in tree plantations (on degraded land): &id171
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/tree-plantations-on-degraded-land
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in tropical forest restoration: &id172
-      properties:
-        schema_organizationSource:
-        - https://drawdown.org/solutions/tropical-forest-restoration
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    more acidic oceans (increased dissolved CO2): &id192
-      properties: null
-      type: causes_or_promotes
-    negative effects on cognition: &id198
-      properties: null
-      type: causes_or_promotes
-  increase in H2O vapor:
+  greenhouse-gas externality:
     enact cap and trade policy: &id036
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
     enact carbon tax policy (revenue neutral): &id042
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    establish a federal green jobs program: &id048
-      properties: null
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in greenhouse effect: &id126
+  human population growth:
+    buildings and their construction, materials, gas heating, cooling, and refrigeration: &id007
       properties: null
       type: causes_or_promotes
-  increase in HFCs and PFCs:
+    burning fossil fuel for electricity production: &id009
+      properties: null
+      type: causes_or_promotes
+    food waste, unhealthy agriculture, and deforestation: &id057
+      properties: null
+      type: causes_or_promotes
+    improving health and education: &id061
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/health-and-education
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    industrial activity: &id178
+      properties: null
+      type: causes_or_promotes
+    transporting people and goods: &id219
+      properties: null
+      type: causes_or_promotes
+  improving health and education: {}
+  include 1% seaweed in diet for cows cattle:
+    greenhouse-gas externality: &id058
+      properties: null
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+  increase in CO2:
+    eating lower down the foodchain (plant-rich diets): &id033
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/plant-rich-diets
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
     enact cap and trade policy: &id037
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
@@ -354,11 +261,79 @@ _adj: &id235
     establish a federal green jobs program: &id049
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in bamboo production: &id081
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/bamboo-production
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in carbon capture: &id082
+      properties: null
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in conservation agriculture: &id089
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/plant-rich-diets
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
     increase in greenhouse effect: &id127
       properties: null
       type: causes_or_promotes
-  increase in Lyme disease infection: {}
-  increase in N2O:
+    increase in managed grazing: &id137
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/managed-grazing
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in multistrata agroforestry: &id143
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/multistrata-agroforestry
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in perennial staple crops: &id145
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/perennial-staple-crops
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in regenerative annual cropping: &id149
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/regenerative-annual-cropping
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in restoration of abandoned farmland: &id151
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/abandoned-farmland-restoration
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in restoration of temperate forests: &id152
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/temperate-forest-restoration
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in silvopasture: &id161
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/silvopasture
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in tree intercropping: &id172
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/tree-intercropping
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in tree plantations (on degraded land): &id173
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/tree-plantations-on-degraded-land
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in tropical forest restoration: &id174
+      properties:
+        schema_organizationSource:
+        - https://drawdown.org/solutions/tropical-forest-restoration
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    more acidic oceans (increased dissolved CO2): &id194
+      properties: null
+      type: causes_or_promotes
+    negative effects on cognition: &id200
+      properties: null
+      type: causes_or_promotes
+  increase in H2O vapor:
     enact cap and trade policy: &id038
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
@@ -371,266 +346,7 @@ _adj: &id235
     increase in greenhouse effect: &id128
       properties: null
       type: causes_or_promotes
-  increase in air conditioning: {}
-  increase in arctic and glacier ice melted by rain:
-    increase in freshwater added to ocean: &id119
-      properties: null
-      type: causes_or_promotes
-  increase in area burned by wildfire:
-    increase in CO2: &id065
-      properties: null
-      type: causes_or_promotes
-    increase in goats clearing brush: &id123
-      properties: null
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in toxic air pollutants (air pollution): &id165
-      properties: null
-      type: causes_or_promotes
-  increase in asthma complications:
-    increase in death: &id091
-      properties: null
-      type: causes_or_promotes
-    increase in disproportionate effects on children: &id104
-      properties:
-        dc_source:
-        - https://www.cnn.com/2018/10/29/health/air-pollution-children-health-who-india-intl/index.html
-        - https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution
-        - https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution
-      type: causes_or_promotes
-    increase in disproportionate effects on minority groups: &id105
-      properties:
-        dc_source:
-        - https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma
-        - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893
-      type: causes_or_promotes
-  increase in bamboo production: {}
-  increase in carbon capture:
-    greenhouse-gas externality: &id057
-      properties: null
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-  increase in cholera infections:
-    increase in cholera vaccines: &id083
-      properties: null
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in death: &id092
-      properties: null
-      type: causes_or_promotes
-  increase in cholera vaccines: {}
-  increase in climate refugees:
-    increase in cholera infections: &id081
-      properties:
-        dc_source:
-        - https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16
-        - https://www.ajtmh.org/content/journals/10.4269/ajtmh.2009.80.640
-      type: causes_or_promotes
-    increase in deforestation: &id100
-      properties:
-        dc_source:
-        - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
-        - https://www.sciencedirect.com/science/article/pii/S0962629807000601
-      type: causes_or_promotes
-    increase in physical violence: &id144
-      properties: null
-      type: causes_or_promotes
-    increase in sexual violence: &id157
-      properties: null
-      type: causes_or_promotes
-  increase in conservation agriculture: {}
-  increase in coral bleaching and destruction:
-    decrease in tourism: &id024
-      properties: null
-      type: causes_or_promotes
-  increase in death: {}
-  increase in deforestation:
-    increase in CO2: &id066
-      properties: null
-      type: causes_or_promotes
-    increase in climate refugees: &id084
-      properties:
-        dc_source:
-        - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
-        - https://www.sciencedirect.com/science/article/pii/S0962629807000601
-      type: causes_or_promotes
-  increase in destruction to US military bases: {}
-  increase in disaster costs: {}
-  increase in disproportionate effects on children: {}
-  increase in disproportionate effects on minority groups: {}
-  increase in environmental migrants: {}
-  increase in evaporation:
-    change in salinity in oceans (both surface and subsurface): &id011
-      properties: null
-      type: causes_or_promotes
-    drier soil during dry season: &id029
-      properties: null
-      type: causes_or_promotes
-    increase in rain (and snow if cold enough) (precipitation): &id146
-      properties:
-        schema_organizationSource:
-        - https://eos.org/research-spotlights/extreme-precipitation-expected-to-increase-with-warming-planet
-      type: causes_or_promotes
-  increase in extreme precipitation:
-    increase in flooding of land and property: &id113
-      properties: null
-      type: causes_or_promotes
-  increase in flooding of land and property:
-    avoid building on land that is or will become a floodplain: &id003
-      properties: null
-      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in cholera infections: &id082
-      properties: null
-      type: causes_or_promotes
-    increase in climate refugees: &id085
-      properties:
-        dc_source:
-        - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
-        - https://www.sciencedirect.com/science/article/pii/S0962629807000601
-      type: causes_or_promotes
-    increase in destruction to US military bases: &id101
-      properties: null
-      type: causes_or_promotes
-  increase in frequency of heatwaves:
-    decrease in GDP: &id015
-      properties: null
-      type: causes_or_promotes
-    decrease in population of moose available to hunt: &id022
-      properties:
-        dc_source:
-        - https://www.nwf.org/~/media/PDFs/Global-Warming/Reports/NowheretoRun-BigGameWildlife-LowResFinal_110613.ashx
-      type: causes_or_promotes
-    decrease in test scores: &id023
-      properties:
-        schema_mediaSource:
-        - https://www.washingtonpost.com/business/2018/07/17/heat-makes-you-dumb-four-charts
-      type: causes_or_promotes
-    increase in evaporation: &id108
-      properties: null
-      type: causes_or_promotes
-    increase in health costs: &id131
-      properties:
-        schema_academicSourceWithPaywall:
-        - https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019GH000202
-      type: causes_or_promotes
-    increase in heat stroke in marine corps: &id132
-      properties:
-        dc_source:
-        - https://insideclimatenews.org/news/11112019/military-heat-risk-climate-change-basic-training-bases-union-concerned-scientists-report
-        - https://blog.ucsusa.org/kristy-dahl/military-extreme-heat
-      type: causes_or_promotes
-    increase in risk of heart attack: &id151
-      properties: null
-      type: causes_or_promotes
-    increase in suicide: &id160
-      properties: null
-      type: causes_or_promotes
-    increase in temperature of work environment: &id162
-      properties: null
-      type: causes_or_promotes
-    increase in toxic air pollutants (air pollution): &id166
-      properties: null
-      type: causes_or_promotes
-    increase in worker absenteeism: &id175
-      properties:
-        schema_mediaSource:
-        - https://phys.org/news/2018-08-temperatures-worker-productivity-global-losses.html
-        - https://epic.uchicago.edu/news/hot-temperatures-decrease-worker-productivity-economic-output
-        - https://www.entrepreneur.com/article/319479
-      type: causes_or_promotes
-  increase in frequency of warm days and nights:
-    decrease in learning (without air conditioner): &id021
-      properties:
-        schema_mediaSource:
-        - https://www.forbes.com/sites/traversmark/2020/02/07/new-research-quantifies-the-impact-of-extreme-heat-on-learning/#5825504f3d57
-      type: causes_or_promotes
-    decrease in worker productivity: &id025
-      properties:
-        schema_organizationSource:
-        - https://news.harvard.edu/gazette/story/2019/11/researcher-analyzes-effects-of-climate-change-on-productivity
-      type: causes_or_promotes
-    increase in evaporation: &id109
-      properties:
-        schema_organizationSource:
-        - https://climaterealityproject.org/blog/climate-change-impacting-water-cycle
-      type: causes_or_promotes
-    increase in ground-level ozone: &id130
-      properties:
-        schema_organizationSource:
-        - https://www.climatecentral.org/news/climate-change-is-threatening-air-quality-across-the-country-2019
-      type: causes_or_promotes
-    increase in physical violence: &id145
-      properties:
-        schema_organizationSource:
-        - https://www.psychologicalscience.org/observer/global-warming-and-violent-behavior
-      type: causes_or_promotes
-    increase in sexual violence: &id158
-      properties: null
-      type: causes_or_promotes
-    increase in suicide: &id161
-      properties:
-        schema_organizationSource:
-        - https://news.stanford.edu/2019/03/29/effects-climate-change-suicide-rates
-      type: causes_or_promotes
-  increase in freshwater added to ocean:
-    increase in sea level rise: &id156
-      properties: null
-      type: causes_or_promotes
-    less sinking of cooling ocean water: &id182
-      properties: null
-      type: causes_or_promotes
-  increase in funding for suicide prevention: {}
-  increase in goats clearing brush: {}
-  increase in greenhouse effect:
-    more heat absorbed by air: &id193
-      properties: null
-      type: causes_or_promotes
-    more heat absorbed by ice: &id194
-      properties: null
-      type: causes_or_promotes
-    more heat absorbed by land: &id195
-      properties: null
-      type: causes_or_promotes
-    more heat absorbed by oceans: &id196
-      properties: null
-      type: causes_or_promotes
-  increase in ground-level ozone:
-    increase in toxic air pollutants (air pollution): &id167
-      properties:
-        schema_organizationSource:
-        - https://www.climatecentral.org/news/climate-change-is-threatening-air-quality-across-the-country-2019
-      type: causes_or_promotes
-  increase in health costs: {}
-  increase in heat stroke in marine corps: {}
-  increase in hurricane strength:
-    increase in destruction to US military bases: &id102
-      properties:
-        schema_mediaSourceForConservatives:
-        - https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095
-        - https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689
-      type: causes_or_promotes
-    increase in disaster costs: &id103
-      properties:
-        schema_mediaSourceForConservatives:
-        - https://www.foxbusiness.com/economy/costliest-hurricanes-us-history
-      type: causes_or_promotes
-    increase in flooding of land and property: &id114
-      properties:
-        dc_source:
-        - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
-        - https://www.nature.com/articles/s41612-019-0074-8
-        - https://www.sciencedirect.com/science/article/pii/S0962629807000601
-        - https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html
-      type: causes_or_promotes
-  increase in lung cancer:
-    increase in death: &id093
-      properties: null
-      type: causes_or_promotes
-  increase in managed grazing: {}
-  increase in marine heatwaves:
-    increase in coral bleaching and destruction: &id088
-      properties:
-        dc_source:
-        - https://www.sciencenewsforstudents.org/article/ocean-heat-waves-are-rise-and-killing-coral
-      type: causes_or_promotes
-  increase in methane (CH4):
+  increase in HFCs and PFCs:
     enact cap and trade policy: &id039
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
@@ -643,157 +359,449 @@ _adj: &id235
     increase in greenhouse effect: &id129
       properties: null
       type: causes_or_promotes
-  increase in multistrata agroforestry: {}
-  increase in ocean surface temperature:
-    increase in hurricane strength: &id133
+  increase in Lyme disease infection: {}
+  increase in N2O:
+    enact cap and trade policy: &id040
+      properties: null
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    enact carbon tax policy (revenue neutral): &id046
+      properties: null
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    establish a federal green jobs program: &id052
+      properties: null
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in greenhouse effect: &id130
       properties: null
       type: causes_or_promotes
-    increase in marine heatwaves: &id136
+  increase in air conditioning: {}
+  increase in arctic and glacier ice melted by rain:
+    increase in freshwater added to ocean: &id121
+      properties: null
+      type: causes_or_promotes
+  increase in area burned by wildfire:
+    increase in CO2: &id067
+      properties: null
+      type: causes_or_promotes
+    increase in goats clearing brush: &id125
+      properties: null
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in toxic air pollutants (air pollution): &id167
+      properties: null
+      type: causes_or_promotes
+  increase in asthma complications:
+    increase in death: &id093
+      properties: null
+      type: causes_or_promotes
+    increase in disproportionate effects on children: &id106
+      properties:
+        dc_source:
+        - https://www.cnn.com/2018/10/29/health/air-pollution-children-health-who-india-intl/index.html
+        - https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution
+        - https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution
+      type: causes_or_promotes
+    increase in disproportionate effects on minority groups: &id107
+      properties:
+        dc_source:
+        - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893
+        - https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma
+      type: causes_or_promotes
+  increase in bamboo production: {}
+  increase in carbon capture:
+    greenhouse-gas externality: &id059
+      properties: null
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+  increase in cholera infections:
+    increase in cholera vaccines: &id085
+      properties: null
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in death: &id094
+      properties: null
+      type: causes_or_promotes
+  increase in cholera vaccines: {}
+  increase in climate refugees:
+    increase in cholera infections: &id083
+      properties:
+        dc_source:
+        - https://www.ajtmh.org/content/journals/10.4269/ajtmh.2009.80.640
+        - https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16
+      type: causes_or_promotes
+    increase in deforestation: &id102
+      properties:
+        dc_source:
+        - https://www.sciencedirect.com/science/article/pii/S0962629807000601
+        - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
+      type: causes_or_promotes
+    increase in physical violence: &id146
+      properties: null
+      type: causes_or_promotes
+    increase in sexual violence: &id159
+      properties: null
+      type: causes_or_promotes
+  increase in conservation agriculture: {}
+  increase in coral bleaching and destruction:
+    decrease in tourism: &id025
+      properties: null
+      type: causes_or_promotes
+  increase in death: {}
+  increase in deforestation:
+    increase in CO2: &id068
+      properties: null
+      type: causes_or_promotes
+    increase in climate refugees: &id086
+      properties:
+        dc_source:
+        - https://www.sciencedirect.com/science/article/pii/S0962629807000601
+        - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
+      type: causes_or_promotes
+  increase in destruction to US military bases: {}
+  increase in disaster costs: {}
+  increase in disproportionate effects on children: {}
+  increase in disproportionate effects on minority groups: {}
+  increase in environmental migrants: {}
+  increase in evaporation:
+    change in salinity in oceans (both surface and subsurface): &id012
+      properties: null
+      type: causes_or_promotes
+    drier soil during dry season: &id030
+      properties: null
+      type: causes_or_promotes
+    increase in rain (and snow if cold enough) (precipitation): &id148
+      properties:
+        schema_organizationSource:
+        - https://eos.org/research-spotlights/extreme-precipitation-expected-to-increase-with-warming-planet
+      type: causes_or_promotes
+  increase in extreme precipitation:
+    increase in flooding of land and property: &id115
+      properties: null
+      type: causes_or_promotes
+  increase in flooding of land and property:
+    avoid building on land that is or will become a floodplain: &id004
+      properties: null
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in cholera infections: &id084
+      properties: null
+      type: causes_or_promotes
+    increase in climate refugees: &id087
+      properties:
+        dc_source:
+        - https://www.sciencedirect.com/science/article/pii/S0962629807000601
+        - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
+      type: causes_or_promotes
+    increase in destruction to US military bases: &id103
+      properties: null
+      type: causes_or_promotes
+  increase in frequency of heatwaves:
+    decrease in GDP: &id016
+      properties: null
+      type: causes_or_promotes
+    decrease in population of moose available to hunt: &id023
+      properties:
+        dc_source:
+        - https://www.nwf.org/~/media/PDFs/Global-Warming/Reports/NowheretoRun-BigGameWildlife-LowResFinal_110613.ashx
+      type: causes_or_promotes
+    decrease in test scores: &id024
+      properties:
+        schema_mediaSource:
+        - https://www.washingtonpost.com/business/2018/07/17/heat-makes-you-dumb-four-charts
+      type: causes_or_promotes
+    increase in evaporation: &id110
+      properties: null
+      type: causes_or_promotes
+    increase in health costs: &id133
+      properties:
+        schema_academicSourceWithPaywall:
+        - https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019GH000202
+      type: causes_or_promotes
+    increase in heat stroke in marine corps: &id134
+      properties:
+        dc_source:
+        - https://insideclimatenews.org/news/11112019/military-heat-risk-climate-change-basic-training-bases-union-concerned-scientists-report
+        - https://blog.ucsusa.org/kristy-dahl/military-extreme-heat
+      type: causes_or_promotes
+    increase in risk of heart attack: &id153
+      properties: null
+      type: causes_or_promotes
+    increase in suicide: &id162
+      properties: null
+      type: causes_or_promotes
+    increase in temperature of work environment: &id164
+      properties: null
+      type: causes_or_promotes
+    increase in toxic air pollutants (air pollution): &id168
+      properties: null
+      type: causes_or_promotes
+    increase in worker absenteeism: &id177
+      properties:
+        schema_mediaSource:
+        - https://www.entrepreneur.com/article/319479
+        - https://phys.org/news/2018-08-temperatures-worker-productivity-global-losses.html
+        - https://epic.uchicago.edu/news/hot-temperatures-decrease-worker-productivity-economic-output
+      type: causes_or_promotes
+  increase in frequency of warm days and nights:
+    decrease in learning (without air conditioner): &id022
+      properties:
+        schema_mediaSource:
+        - https://www.forbes.com/sites/traversmark/2020/02/07/new-research-quantifies-the-impact-of-extreme-heat-on-learning/#5825504f3d57
+      type: causes_or_promotes
+    decrease in worker productivity: &id026
+      properties:
+        schema_organizationSource:
+        - https://news.harvard.edu/gazette/story/2019/11/researcher-analyzes-effects-of-climate-change-on-productivity
+      type: causes_or_promotes
+    increase in evaporation: &id111
+      properties:
+        schema_organizationSource:
+        - https://climaterealityproject.org/blog/climate-change-impacting-water-cycle
+      type: causes_or_promotes
+    increase in ground-level ozone: &id132
+      properties:
+        schema_organizationSource:
+        - https://www.climatecentral.org/news/climate-change-is-threatening-air-quality-across-the-country-2019
+      type: causes_or_promotes
+    increase in physical violence: &id147
+      properties:
+        schema_organizationSource:
+        - https://www.psychologicalscience.org/observer/global-warming-and-violent-behavior
+      type: causes_or_promotes
+    increase in sexual violence: &id160
+      properties: null
+      type: causes_or_promotes
+    increase in suicide: &id163
+      properties:
+        schema_organizationSource:
+        - https://news.stanford.edu/2019/03/29/effects-climate-change-suicide-rates
+      type: causes_or_promotes
+  increase in freshwater added to ocean:
+    increase in sea level rise: &id158
+      properties: null
+      type: causes_or_promotes
+    less sinking of cooling ocean water: &id184
+      properties: null
+      type: causes_or_promotes
+  increase in funding for suicide prevention: {}
+  increase in goats clearing brush: {}
+  increase in greenhouse effect:
+    more heat absorbed by air: &id195
+      properties: null
+      type: causes_or_promotes
+    more heat absorbed by ice: &id196
+      properties: null
+      type: causes_or_promotes
+    more heat absorbed by land: &id197
+      properties: null
+      type: causes_or_promotes
+    more heat absorbed by oceans: &id198
+      properties: null
+      type: causes_or_promotes
+  increase in ground-level ozone:
+    increase in toxic air pollutants (air pollution): &id169
+      properties:
+        schema_organizationSource:
+        - https://www.climatecentral.org/news/climate-change-is-threatening-air-quality-across-the-country-2019
+      type: causes_or_promotes
+  increase in health costs: {}
+  increase in heat stroke in marine corps: {}
+  increase in hurricane strength:
+    increase in destruction to US military bases: &id104
+      properties:
+        schema_mediaSourceForConservatives:
+        - https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095
+        - https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689
+      type: causes_or_promotes
+    increase in disaster costs: &id105
+      properties:
+        schema_mediaSourceForConservatives:
+        - https://www.foxbusiness.com/economy/costliest-hurricanes-us-history
+      type: causes_or_promotes
+    increase in flooding of land and property: &id116
+      properties:
+        dc_source:
+        - https://www.sciencedirect.com/science/article/pii/S0962629807000601
+        - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
+        - https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html
+        - https://www.nature.com/articles/s41612-019-0074-8
+      type: causes_or_promotes
+  increase in lung cancer:
+    increase in death: &id095
+      properties: null
+      type: causes_or_promotes
+  increase in managed grazing: {}
+  increase in marine heatwaves:
+    increase in coral bleaching and destruction: &id090
+      properties:
+        dc_source:
+        - https://www.sciencenewsforstudents.org/article/ocean-heat-waves-are-rise-and-killing-coral
+      type: causes_or_promotes
+  increase in methane (CH4):
+    enact cap and trade policy: &id041
+      properties: null
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    enact carbon tax policy (revenue neutral): &id047
+      properties: null
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    establish a federal green jobs program: &id053
+      properties: null
+      type: is_inhibited_or_prevented_or_blocked_or_slowed_by
+    increase in greenhouse effect: &id131
+      properties: null
+      type: causes_or_promotes
+  increase in multistrata agroforestry: {}
+  increase in ocean surface temperature:
+    increase in hurricane strength: &id135
+      properties: null
+      type: causes_or_promotes
+    increase in marine heatwaves: &id138
       properties: null
       type: causes_or_promotes
   increase in perennial staple crops: {}
   increase in physical violence:
-    increase in death: &id094
+    increase in death: &id096
       properties: null
       type: causes_or_promotes
   increase in pollen released by plants:
-    increase in asthma complications: &id077
+    increase in asthma complications: &id079
       properties: null
       type: causes_or_promotes
   increase in rain (and snow if cold enough) (precipitation):
-    increase in arctic and glacier ice melted by rain: &id074
+    increase in arctic and glacier ice melted by rain: &id076
       properties: null
       type: causes_or_promotes
-    increase in flooding of land and property: &id115
+    increase in flooding of land and property: &id117
       properties: null
       type: causes_or_promotes
-    increase in vegetation during wet season: &id173
+    increase in vegetation during wet season: &id175
       properties: null
       type: causes_or_promotes
-    lower salinity in freshwater: &id186
+    lower salinity in freshwater: &id188
       properties: null
       type: causes_or_promotes
-    wetter soil during wet season: &id234
+    wetter soil during wet season: &id236
       properties: null
       type: causes_or_promotes
   increase in regenerative annual cropping: {}
   increase in release of N2O and CH4 greenhouse gases:
-    increase in N2O: &id072
+    increase in N2O: &id074
       properties: null
       type: causes_or_promotes
-    increase in methane (CH4): &id139
+    increase in methane (CH4): &id141
       properties: null
       type: causes_or_promotes
   increase in restoration of abandoned farmland: {}
   increase in restoration of temperate forests: {}
   increase in risk of heart attack:
-    increase in death: &id095
+    elderly people: &id035
       properties: null
-      type: causes_or_promotes
-  increase in risk of stomach cancer:
-    increase in death: &id096
-      properties: null
-      type: causes_or_promotes
-  increase in risk of stroke:
+      type: population_affected
     increase in death: &id097
       properties: null
       type: causes_or_promotes
-  increase in sea level rise:
-    increase in environmental migrants: &id106
-      properties: null
-      type: causes_or_promotes
-  increase in sexual violence: {}
-  increase in silvopasture: {}
-  increase in suicide:
+  increase in risk of stomach cancer:
     increase in death: &id098
       properties: null
       type: causes_or_promotes
-    increase in funding for suicide prevention: &id122
+  increase in risk of stroke:
+    increase in death: &id099
+      properties: null
+      type: causes_or_promotes
+  increase in sea level rise:
+    increase in environmental migrants: &id108
+      properties: null
+      type: causes_or_promotes
+  increase in sexual violence: {}
+  increase in silvopasture:
+    Farming, Fishing, and Forestry Occupations: &id001
+      properties: null
+      type: occupation_association
+  increase in suicide:
+    increase in death: &id100
+      properties: null
+      type: causes_or_promotes
+    increase in funding for suicide prevention: &id124
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   increase in temperature of work environment:
-    decrease in worker productivity: &id026
+    decrease in worker productivity: &id027
       properties: null
       type: causes_or_promotes
   increase in tick winter survival:
-    expansion in tick habitat: &id052
+    expansion in tick habitat: &id054
       properties: null
       type: causes_or_promotes
   increase in toxic air pollutants (air pollution):
-    acute lower respiratory infection: &id002
+    acute lower respiratory infection: &id003
       properties: null
       type: causes_or_promotes
-    chronic obstructive pulmonary disease: &id013
+    chronic obstructive pulmonary disease: &id014
       properties: null
       type: causes_or_promotes
-    increase in asthma complications: &id078
+    increase in asthma complications: &id080
       properties: null
       type: causes_or_promotes
-    increase in lung cancer: &id134
+    increase in lung cancer: &id136
       properties:
         schema_organizationSource:
         - https://www.cancer.org/latest-news/world-health-organization-outdoor-air-pollution-causes-cancer.html
       type: causes_or_promotes
-    increase in risk of heart attack: &id152
+    increase in risk of heart attack: &id154
       properties:
         schema_governmentSource:
         - https://www.epa.gov/sciencematters/linking-air-pollution-and-heart-disease
       type: causes_or_promotes
-    increase in risk of stroke: &id154
+    increase in risk of stroke: &id156
       properties: null
       type: causes_or_promotes
-    ischaemic heart disease: &id179
+    ischaemic heart disease: &id181
       properties: null
       type: causes_or_promotes
   increase in tree intercropping: {}
   increase in tree plantations (on degraded land): {}
   increase in tropical forest restoration: {}
   increase in vegetation during wet season:
-    increase in area burned by wildfire: &id076
+    increase in area burned by wildfire: &id078
       properties: null
       type: causes_or_promotes
-    increase in goats clearing brush: &id124
+    increase in goats clearing brush: &id126
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   increase in worker absenteeism:
-    decrease in worker productivity: &id027
+    decrease in worker productivity: &id028
       properties: null
       type: causes_or_promotes
   industrial activity:
-    composting: &id014
+    composting: &id015
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/composting
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in CO2: &id067
+    increase in CO2: &id069
       properties: null
       type: causes_or_promotes
-    managing refrigerants better: &id190
+    managing refrigerants better: &id192
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/refrigerant-management
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    recycling: &id210
+    recycling: &id212
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/recycling
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    recycling paper: &id211
+    recycling paper: &id213
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/recycled-paper
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    using alternative cement: &id218
+    using alternative cement: &id220
       properties:
         schema_video:
         - https://youtu.be/SAf5Xdf98tA
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    using alternative refrigerants: &id219
+    using alternative refrigerants: &id221
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/alternative-refrigerants
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    using methane digesters: &id227
+    using methane digesters: &id229
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/methane-digesters
@@ -801,32 +809,32 @@ _adj: &id235
   installing smart thermostats: {}
   insulating buildings better: {}
   ischaemic heart disease:
-    increase in death: &id099
+    increase in death: &id101
       properties: null
       type: causes_or_promotes
   less freezing conditions during winter:
-    increase in tick winter survival: &id163
+    increase in tick winter survival: &id165
       properties: null
       type: causes_or_promotes
   less mixing of oxygenated water:
-    decrease in dissolved oxygen in oceans: &id016
+    decrease in dissolved oxygen in oceans: &id017
       properties: null
       type: causes_or_promotes
   less sinking of cooling ocean water:
-    weakened ocean circulation (AMOC): &id233
+    weakened ocean circulation (AMOC): &id235
       properties: null
       type: causes_or_promotes
   lower Antarctic sea ice extent:
-    less sinking of cooling ocean water: &id183
+    less sinking of cooling ocean water: &id185
       properties: null
       type: causes_or_promotes
   lower oxygen able to dissolve in ocean (solubility):
-    decrease in dissolved oxygen in oceans: &id017
+    decrease in dissolved oxygen in oceans: &id018
       properties: null
       type: causes_or_promotes
   lower salinity in freshwater: {}
   lower stratospheric cooling:
-    warmer air and atmosphere (tropospheric warming): &id230
+    warmer air and atmosphere (tropospheric warming): &id232
       properties: null
       type: causes_or_promotes
   making aviation more efficient: {}
@@ -834,61 +842,61 @@ _adj: &id235
   making trucks more efficient: {}
   managing refrigerants better: {}
   melting Greenland ice sheet:
-    increase in freshwater added to ocean: &id120
+    increase in freshwater added to ocean: &id122
       properties: null
       type: causes_or_promotes
   more acidic oceans (increased dissolved CO2): {}
   more heat absorbed by air:
-    warmer air and atmosphere (tropospheric warming): &id231
+    warmer air and atmosphere (tropospheric warming): &id233
       properties: null
       type: causes_or_promotes
   more heat absorbed by ice:
-    lower Antarctic sea ice extent: &id184
+    lower Antarctic sea ice extent: &id186
       properties: null
       type: causes_or_promotes
-    melting Greenland ice sheet: &id191
+    melting Greenland ice sheet: &id193
       properties: null
       type: causes_or_promotes
-    permafrost melt: &id199
+    permafrost melt: &id201
       properties: null
       type: causes_or_promotes
-    retreat of glaciers (glacier melt): &id215
+    retreat of glaciers (glacier melt): &id217
       properties: null
       type: causes_or_promotes
   more heat absorbed by land:
-    decrease in frequency of cold days and nights: &id019
+    decrease in frequency of cold days and nights: &id020
       properties: null
       type: causes_or_promotes
-    increase in evaporation: &id110
+    increase in evaporation: &id112
       properties: null
       type: causes_or_promotes
-    increase in frequency of warm days and nights: &id117
+    increase in frequency of warm days and nights: &id119
       properties: null
       type: causes_or_promotes
   more heat absorbed by oceans:
-    lower oxygen able to dissolve in ocean (solubility): &id185
+    lower oxygen able to dissolve in ocean (solubility): &id187
       properties: null
       type: causes_or_promotes
-    warmer oceans: &id232
+    warmer oceans: &id234
       properties: null
       type: causes_or_promotes
   more moisture (water vapor) able to accumulate in air:
-    increase in H2O vapor: &id069
+    increase in H2O vapor: &id071
       properties: null
       type: causes_or_promotes
-    increase in extreme precipitation: &id112
+    increase in extreme precipitation: &id114
       properties: null
       type: causes_or_promotes
   negative effects on cognition: {}
   permafrost melt:
-    increase in methane (CH4): &id140
+    increase in methane (CH4): &id142
       properties: null
       type: causes_or_promotes
   political polarization:
-    effective communication framing: &id033
+    effective communication framing: &id034
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    enact ranked-choice voting policy: &id046
+    enact ranked-choice voting policy: &id048
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   producing electricity via concentrated solar power: {}
@@ -896,11 +904,11 @@ _adj: &id235
   producing electricity via offshore wind turbines: {}
   producing electricity via onshore wind turbines: {}
   producing electricity via utility-scale solar photovoltaics:
-    greenhouse-gas externality: &id058
+    greenhouse-gas externality: &id060
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   prolonged droughts:
-    increase in climate refugees: &id086
+    increase in climate refugees: &id088
       properties:
         dc_source:
         - https://www.sciencedirect.com/science/article/pii/S0962629807000601
@@ -910,66 +918,66 @@ _adj: &id235
   recycling paper: {}
   reducing food waste: {}
   reduction in oxygen producing sea organisms:
-    decrease in dissolved oxygen in oceans: &id018
+    decrease in dissolved oxygen in oceans: &id019
       properties: null
       type: causes_or_promotes
   regulation/laws that require assessment of floodplains for new buildings:
-    deregulation: &id028
+    deregulation: &id029
       properties: null
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
   retreat of glaciers (glacier melt):
-    increase in freshwater added to ocean: &id121
+    increase in freshwater added to ocean: &id123
       properties: null
       type: causes_or_promotes
   switching to LED light bulbs: {}
   transporting people and goods:
-    being telepresent or teleworking: &id004
+    being telepresent or teleworking: &id005
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/telepresence
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    carpooling: &id010
+    carpooling: &id011
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/carpooling
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    increase in CO2: &id068
+    increase in CO2: &id070
       properties: null
       type: causes_or_promotes
-    increase in toxic air pollutants (air pollution): &id168
+    increase in toxic air pollutants (air pollution): &id170
       properties: null
       type: causes_or_promotes
-    making aviation more efficient: &id187
+    making aviation more efficient: &id189
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/efficient-aviation
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    making ocean shipping more efficient: &id188
+    making ocean shipping more efficient: &id190
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/efficient-ocean-shipping
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    making trucks more efficient: &id189
+    making trucks more efficient: &id191
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/efficient-trucks
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    using electric cars: &id221
+    using electric cars: &id223
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/electric-cars
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    using high-speed rail: &id224
+    using high-speed rail: &id226
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/high-speed-rail
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    using hybrid cars: &id225
+    using hybrid cars: &id227
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/hybrid-cars
       type: is_inhibited_or_prevented_or_blocked_or_slowed_by
-    using public transit: &id228
+    using public transit: &id230
       properties:
         schema_organizationSource:
         - https://drawdown.org/solutions/public-transit
@@ -987,46 +995,63 @@ _adj: &id235
   using public transit: {}
   vote in elections: {}
   warmer air and atmosphere (tropospheric warming):
-    decrease in frequency of cold days and nights: &id020
+    decrease in frequency of cold days and nights: &id021
       properties: null
       type: causes_or_promotes
-    increase in evaporation: &id111
+    increase in evaporation: &id113
       properties: null
       type: causes_or_promotes
-    increase in frequency of heatwaves: &id116
+    increase in frequency of heatwaves: &id118
       properties: null
       type: causes_or_promotes
-    increase in frequency of warm days and nights: &id118
+    increase in frequency of warm days and nights: &id120
       properties: null
       type: causes_or_promotes
-    increase in toxic air pollutants (air pollution): &id169
+    increase in toxic air pollutants (air pollution): &id171
       properties: null
       type: causes_or_promotes
-    more moisture (water vapor) able to accumulate in air: &id197
+    more moisture (water vapor) able to accumulate in air: &id199
       properties: null
       type: causes_or_promotes
   warmer oceans:
-    expansion of oceans: &id054
+    expansion of oceans: &id056
       properties: null
       type: causes_or_promotes
-    increase in ocean surface temperature: &id142
+    increase in ocean surface temperature: &id144
       properties: null
       type: causes_or_promotes
   weakened ocean circulation (AMOC):
-    change in salinity in oceans (both surface and subsurface): &id012
+    change in salinity in oceans (both surface and subsurface): &id013
       properties: null
       type: causes_or_promotes
-    less mixing of oxygenated water: &id181
+    less mixing of oxygenated water: &id183
       properties: null
       type: causes_or_promotes
-    reduction in oxygen producing sea organisms: &id213
+    reduction in oxygen producing sea organisms: &id215
       properties: null
       type: causes_or_promotes
   wetter soil during wet season:
-    increase in vegetation during wet season: &id174
+    increase in vegetation during wet season: &id176
       properties: null
       type: causes_or_promotes
-_node: &id237
+_node: &id239
+  Farming, Fishing, and Forestry Occupations:
+    classes:
+    - occupation
+    comment: '[]'
+    individual: webprotege.stanford.edu.RCSp3Q6QJjaE6ehKKudHudg
+    properties:
+      dc_source: []
+      schema_academicBook: []
+      schema_academicSourceNoPaywall: []
+      schema_academicSourceWithPaywall: []
+      schema_governmentSource: []
+      schema_image: []
+      schema_mediaSource: []
+      schema_mediaSourceForConservatives: []
+      schema_organizationSource: []
+      schema_video: []
+      skos_definition: []
   Increase in investment:
     classes:
     - frame uncategorized (to do)
@@ -1632,6 +1657,23 @@ _node: &id237
     - solution to indirect mitigation barrier
     comment: '[]'
     individual: webprotege.stanford.edu.RCFcpfKKeKFTkyBttzYtl1P
+    properties:
+      dc_source: []
+      schema_academicBook: []
+      schema_academicSourceNoPaywall: []
+      schema_academicSourceWithPaywall: []
+      schema_governmentSource: []
+      schema_image: []
+      schema_mediaSource: []
+      schema_mediaSourceForConservatives: []
+      schema_organizationSource: []
+      schema_video: []
+      skos_definition: []
+  elderly people:
+    classes:
+    - population affected
+    comment: '[]'
+    individual: webprotege.stanford.edu.RDW2Jq9syvIdke0hdTNzGcu
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4734,409 +4776,413 @@ _node: &id237
       schema_video: []
       skos_definition: []
 _pred:
+  Farming, Fishing, and Forestry Occupations:
+    increase in silvopasture: *id001
   Increase in investment:
-    decrease in GDP: *id001
+    decrease in GDP: *id002
   acute lower respiratory infection:
-    increase in toxic air pollutants (air pollution): *id002
+    increase in toxic air pollutants (air pollution): *id003
   avoid building on land that is or will become a floodplain:
-    increase in flooding of land and property: *id003
+    increase in flooding of land and property: *id004
   being telepresent or teleworking:
-    transporting people and goods: *id004
+    transporting people and goods: *id005
   builders are not required to check before building on a floodplain:
-    avoid building on land that is or will become a floodplain: *id005
+    avoid building on land that is or will become a floodplain: *id006
   buildings and their construction, materials, gas heating, cooling, and refrigeration:
-    human population growth: *id006
+    human population growth: *id007
   burning coal:
-    coal mining: *id007
+    coal mining: *id008
   burning fossil fuel for electricity production:
-    human population growth: *id008
+    human population growth: *id009
   call representative:
-    deregulation: *id009
+    deregulation: *id010
   carpooling:
-    transporting people and goods: *id010
+    transporting people and goods: *id011
   cattle cow burps: {}
   change in salinity in oceans (both surface and subsurface):
-    increase in evaporation: *id011
-    weakened ocean circulation (AMOC): *id012
+    increase in evaporation: *id012
+    weakened ocean circulation (AMOC): *id013
   chronic obstructive pulmonary disease:
-    increase in toxic air pollutants (air pollution): *id013
+    increase in toxic air pollutants (air pollution): *id014
   coal mining: {}
   composting:
-    industrial activity: *id014
+    industrial activity: *id015
   decrease in GDP:
-    increase in frequency of heatwaves: *id015
+    increase in frequency of heatwaves: *id016
   decrease in dissolved oxygen in oceans:
-    less mixing of oxygenated water: *id016
-    lower oxygen able to dissolve in ocean (solubility): *id017
-    reduction in oxygen producing sea organisms: *id018
+    less mixing of oxygenated water: *id017
+    lower oxygen able to dissolve in ocean (solubility): *id018
+    reduction in oxygen producing sea organisms: *id019
   decrease in frequency of cold days and nights:
-    more heat absorbed by land: *id019
-    warmer air and atmosphere (tropospheric warming): *id020
+    more heat absorbed by land: *id020
+    warmer air and atmosphere (tropospheric warming): *id021
   decrease in learning (without air conditioner):
-    increase in frequency of warm days and nights: *id021
+    increase in frequency of warm days and nights: *id022
   decrease in population of moose available to hunt:
-    increase in frequency of heatwaves: *id022
-  decrease in test scores:
     increase in frequency of heatwaves: *id023
+  decrease in test scores:
+    increase in frequency of heatwaves: *id024
   decrease in tourism:
-    increase in coral bleaching and destruction: *id024
+    increase in coral bleaching and destruction: *id025
   decrease in worker productivity:
-    increase in frequency of warm days and nights: *id025
-    increase in temperature of work environment: *id026
-    increase in worker absenteeism: *id027
+    increase in frequency of warm days and nights: *id026
+    increase in temperature of work environment: *id027
+    increase in worker absenteeism: *id028
   deregulation:
-    regulation/laws that require assessment of floodplains for new buildings: *id028
+    regulation/laws that require assessment of floodplains for new buildings: *id029
   drier soil during dry season:
-    increase in evaporation: *id029
+    increase in evaporation: *id030
   drier vegetation during dry season:
-    drier soil during dry season: *id030
+    drier soil during dry season: *id031
   eating lower down the foodchain (plant-rich diets):
-    food waste, unhealthy agriculture, and deforestation: *id031
-    increase in CO2: *id032
+    food waste, unhealthy agriculture, and deforestation: *id032
+    increase in CO2: *id033
   effective communication framing:
-    political polarization: *id033
+    political polarization: *id034
+  elderly people:
+    increase in risk of heart attack: *id035
   enact cap and trade policy:
-    greenhouse-gas externality: *id034
-    increase in CO2: *id035
-    increase in H2O vapor: *id036
-    increase in HFCs and PFCs: *id037
-    increase in N2O: *id038
-    increase in methane (CH4): *id039
+    greenhouse-gas externality: *id036
+    increase in CO2: *id037
+    increase in H2O vapor: *id038
+    increase in HFCs and PFCs: *id039
+    increase in N2O: *id040
+    increase in methane (CH4): *id041
   enact carbon tax policy (revenue neutral):
-    greenhouse-gas externality: *id040
-    increase in CO2: *id041
-    increase in H2O vapor: *id042
-    increase in HFCs and PFCs: *id043
-    increase in N2O: *id044
-    increase in methane (CH4): *id045
+    greenhouse-gas externality: *id042
+    increase in CO2: *id043
+    increase in H2O vapor: *id044
+    increase in HFCs and PFCs: *id045
+    increase in N2O: *id046
+    increase in methane (CH4): *id047
   enact ranked-choice voting policy:
-    political polarization: *id046
+    political polarization: *id048
   establish a federal green jobs program:
-    increase in CO2: *id047
-    increase in H2O vapor: *id048
-    increase in HFCs and PFCs: *id049
-    increase in N2O: *id050
-    increase in methane (CH4): *id051
+    increase in CO2: *id049
+    increase in H2O vapor: *id050
+    increase in HFCs and PFCs: *id051
+    increase in N2O: *id052
+    increase in methane (CH4): *id053
   expansion in tick habitat:
-    increase in tick winter survival: *id052
+    increase in tick winter survival: *id054
   expansion of Lyme disease:
-    expansion in tick habitat: *id053
+    expansion in tick habitat: *id055
   expansion of oceans:
-    warmer oceans: *id054
+    warmer oceans: *id056
   food waste, unhealthy agriculture, and deforestation:
-    human population growth: *id055
+    human population growth: *id057
   fracking leaks: {}
   greenhouse-gas externality:
-    include 1% seaweed in diet for cows cattle: *id056
-    increase in carbon capture: *id057
-    producing electricity via utility-scale solar photovoltaics: *id058
+    include 1% seaweed in diet for cows cattle: *id058
+    increase in carbon capture: *id059
+    producing electricity via utility-scale solar photovoltaics: *id060
   human population growth: {}
   improving health and education:
-    human population growth: *id059
+    human population growth: *id061
   include 1% seaweed in diet for cows cattle:
-    cattle cow burps: *id060
+    cattle cow burps: *id062
   increase in CO2:
-    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id061
-    burning coal: *id062
-    burning fossil fuel for electricity production: *id063
-    food waste, unhealthy agriculture, and deforestation: *id064
-    increase in area burned by wildfire: *id065
-    increase in deforestation: *id066
-    industrial activity: *id067
-    transporting people and goods: *id068
+    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id063
+    burning coal: *id064
+    burning fossil fuel for electricity production: *id065
+    food waste, unhealthy agriculture, and deforestation: *id066
+    increase in area burned by wildfire: *id067
+    increase in deforestation: *id068
+    industrial activity: *id069
+    transporting people and goods: *id070
   increase in H2O vapor:
-    more moisture (water vapor) able to accumulate in air: *id069
+    more moisture (water vapor) able to accumulate in air: *id071
   increase in HFCs and PFCs:
-    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id070
+    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id072
   increase in Lyme disease infection:
-    expansion of Lyme disease: *id071
+    expansion of Lyme disease: *id073
   increase in N2O:
-    increase in release of N2O and CH4 greenhouse gases: *id072
+    increase in release of N2O and CH4 greenhouse gases: *id074
   increase in air conditioning:
-    decrease in learning (without air conditioner): *id073
+    decrease in learning (without air conditioner): *id075
   increase in arctic and glacier ice melted by rain:
-    increase in rain (and snow if cold enough) (precipitation): *id074
+    increase in rain (and snow if cold enough) (precipitation): *id076
   increase in area burned by wildfire:
-    drier vegetation during dry season: *id075
-    increase in vegetation during wet season: *id076
+    drier vegetation during dry season: *id077
+    increase in vegetation during wet season: *id078
   increase in asthma complications:
-    increase in pollen released by plants: *id077
-    increase in toxic air pollutants (air pollution): *id078
+    increase in pollen released by plants: *id079
+    increase in toxic air pollutants (air pollution): *id080
   increase in bamboo production:
-    increase in CO2: *id079
+    increase in CO2: *id081
   increase in carbon capture:
-    increase in CO2: *id080
+    increase in CO2: *id082
   increase in cholera infections:
-    increase in climate refugees: *id081
-    increase in flooding of land and property: *id082
+    increase in climate refugees: *id083
+    increase in flooding of land and property: *id084
   increase in cholera vaccines:
-    increase in cholera infections: *id083
+    increase in cholera infections: *id085
   increase in climate refugees:
-    increase in deforestation: *id084
-    increase in flooding of land and property: *id085
-    prolonged droughts: *id086
+    increase in deforestation: *id086
+    increase in flooding of land and property: *id087
+    prolonged droughts: *id088
   increase in conservation agriculture:
-    increase in CO2: *id087
+    increase in CO2: *id089
   increase in coral bleaching and destruction:
-    increase in marine heatwaves: *id088
+    increase in marine heatwaves: *id090
   increase in death:
-    acute lower respiratory infection: *id089
-    chronic obstructive pulmonary disease: *id090
-    increase in asthma complications: *id091
-    increase in cholera infections: *id092
-    increase in lung cancer: *id093
-    increase in physical violence: *id094
-    increase in risk of heart attack: *id095
-    increase in risk of stomach cancer: *id096
-    increase in risk of stroke: *id097
-    increase in suicide: *id098
-    ischaemic heart disease: *id099
+    acute lower respiratory infection: *id091
+    chronic obstructive pulmonary disease: *id092
+    increase in asthma complications: *id093
+    increase in cholera infections: *id094
+    increase in lung cancer: *id095
+    increase in physical violence: *id096
+    increase in risk of heart attack: *id097
+    increase in risk of stomach cancer: *id098
+    increase in risk of stroke: *id099
+    increase in suicide: *id100
+    ischaemic heart disease: *id101
   increase in deforestation:
-    increase in climate refugees: *id100
+    increase in climate refugees: *id102
   increase in destruction to US military bases:
-    increase in flooding of land and property: *id101
-    increase in hurricane strength: *id102
+    increase in flooding of land and property: *id103
+    increase in hurricane strength: *id104
   increase in disaster costs:
-    increase in hurricane strength: *id103
+    increase in hurricane strength: *id105
   increase in disproportionate effects on children:
-    increase in asthma complications: *id104
+    increase in asthma complications: *id106
   increase in disproportionate effects on minority groups:
-    increase in asthma complications: *id105
+    increase in asthma complications: *id107
   increase in environmental migrants:
-    increase in sea level rise: *id106
+    increase in sea level rise: *id108
   increase in evaporation:
-    decrease in frequency of cold days and nights: *id107
-    increase in frequency of heatwaves: *id108
-    increase in frequency of warm days and nights: *id109
-    more heat absorbed by land: *id110
-    warmer air and atmosphere (tropospheric warming): *id111
+    decrease in frequency of cold days and nights: *id109
+    increase in frequency of heatwaves: *id110
+    increase in frequency of warm days and nights: *id111
+    more heat absorbed by land: *id112
+    warmer air and atmosphere (tropospheric warming): *id113
   increase in extreme precipitation:
-    more moisture (water vapor) able to accumulate in air: *id112
+    more moisture (water vapor) able to accumulate in air: *id114
   increase in flooding of land and property:
-    increase in extreme precipitation: *id113
-    increase in hurricane strength: *id114
-    increase in rain (and snow if cold enough) (precipitation): *id115
+    increase in extreme precipitation: *id115
+    increase in hurricane strength: *id116
+    increase in rain (and snow if cold enough) (precipitation): *id117
   increase in frequency of heatwaves:
-    warmer air and atmosphere (tropospheric warming): *id116
-  increase in frequency of warm days and nights:
-    more heat absorbed by land: *id117
     warmer air and atmosphere (tropospheric warming): *id118
+  increase in frequency of warm days and nights:
+    more heat absorbed by land: *id119
+    warmer air and atmosphere (tropospheric warming): *id120
   increase in freshwater added to ocean:
-    increase in arctic and glacier ice melted by rain: *id119
-    melting Greenland ice sheet: *id120
-    retreat of glaciers (glacier melt): *id121
+    increase in arctic and glacier ice melted by rain: *id121
+    melting Greenland ice sheet: *id122
+    retreat of glaciers (glacier melt): *id123
   increase in funding for suicide prevention:
-    increase in suicide: *id122
+    increase in suicide: *id124
   increase in goats clearing brush:
-    increase in area burned by wildfire: *id123
-    increase in vegetation during wet season: *id124
+    increase in area burned by wildfire: *id125
+    increase in vegetation during wet season: *id126
   increase in greenhouse effect:
-    increase in CO2: *id125
-    increase in H2O vapor: *id126
-    increase in HFCs and PFCs: *id127
-    increase in N2O: *id128
-    increase in methane (CH4): *id129
+    increase in CO2: *id127
+    increase in H2O vapor: *id128
+    increase in HFCs and PFCs: *id129
+    increase in N2O: *id130
+    increase in methane (CH4): *id131
   increase in ground-level ozone:
-    increase in frequency of warm days and nights: *id130
+    increase in frequency of warm days and nights: *id132
   increase in health costs:
-    increase in frequency of heatwaves: *id131
+    increase in frequency of heatwaves: *id133
   increase in heat stroke in marine corps:
-    increase in frequency of heatwaves: *id132
+    increase in frequency of heatwaves: *id134
   increase in hurricane strength:
-    increase in ocean surface temperature: *id133
+    increase in ocean surface temperature: *id135
   increase in lung cancer:
-    increase in toxic air pollutants (air pollution): *id134
+    increase in toxic air pollutants (air pollution): *id136
   increase in managed grazing:
-    increase in CO2: *id135
+    increase in CO2: *id137
   increase in marine heatwaves:
-    increase in ocean surface temperature: *id136
+    increase in ocean surface temperature: *id138
   increase in methane (CH4):
-    cattle cow burps: *id137
-    fracking leaks: *id138
-    increase in release of N2O and CH4 greenhouse gases: *id139
-    permafrost melt: *id140
+    cattle cow burps: *id139
+    fracking leaks: *id140
+    increase in release of N2O and CH4 greenhouse gases: *id141
+    permafrost melt: *id142
   increase in multistrata agroforestry:
-    increase in CO2: *id141
-  increase in ocean surface temperature:
-    warmer oceans: *id142
-  increase in perennial staple crops:
     increase in CO2: *id143
+  increase in ocean surface temperature:
+    warmer oceans: *id144
+  increase in perennial staple crops:
+    increase in CO2: *id145
   increase in physical violence:
-    increase in climate refugees: *id144
-    increase in frequency of warm days and nights: *id145
+    increase in climate refugees: *id146
+    increase in frequency of warm days and nights: *id147
   increase in pollen released by plants: {}
   increase in rain (and snow if cold enough) (precipitation):
-    increase in evaporation: *id146
+    increase in evaporation: *id148
   increase in regenerative annual cropping:
-    increase in CO2: *id147
-  increase in release of N2O and CH4 greenhouse gases:
-    decrease in dissolved oxygen in oceans: *id148
-  increase in restoration of abandoned farmland:
     increase in CO2: *id149
+  increase in release of N2O and CH4 greenhouse gases:
+    decrease in dissolved oxygen in oceans: *id150
+  increase in restoration of abandoned farmland:
+    increase in CO2: *id151
   increase in restoration of temperate forests:
-    increase in CO2: *id150
+    increase in CO2: *id152
   increase in risk of heart attack:
-    increase in frequency of heatwaves: *id151
-    increase in toxic air pollutants (air pollution): *id152
-  increase in risk of stomach cancer:
-    coal mining: *id153
-  increase in risk of stroke:
+    increase in frequency of heatwaves: *id153
     increase in toxic air pollutants (air pollution): *id154
+  increase in risk of stomach cancer:
+    coal mining: *id155
+  increase in risk of stroke:
+    increase in toxic air pollutants (air pollution): *id156
   increase in sea level rise:
-    expansion of oceans: *id155
-    increase in freshwater added to ocean: *id156
+    expansion of oceans: *id157
+    increase in freshwater added to ocean: *id158
   increase in sexual violence:
-    increase in climate refugees: *id157
-    increase in frequency of warm days and nights: *id158
+    increase in climate refugees: *id159
+    increase in frequency of warm days and nights: *id160
   increase in silvopasture:
-    increase in CO2: *id159
+    increase in CO2: *id161
   increase in suicide:
-    increase in frequency of heatwaves: *id160
-    increase in frequency of warm days and nights: *id161
-  increase in temperature of work environment:
     increase in frequency of heatwaves: *id162
+    increase in frequency of warm days and nights: *id163
+  increase in temperature of work environment:
+    increase in frequency of heatwaves: *id164
   increase in tick winter survival:
-    less freezing conditions during winter: *id163
+    less freezing conditions during winter: *id165
   increase in toxic air pollutants (air pollution):
-    burning coal: *id164
-    increase in area burned by wildfire: *id165
-    increase in frequency of heatwaves: *id166
-    increase in ground-level ozone: *id167
-    transporting people and goods: *id168
-    warmer air and atmosphere (tropospheric warming): *id169
+    burning coal: *id166
+    increase in area burned by wildfire: *id167
+    increase in frequency of heatwaves: *id168
+    increase in ground-level ozone: *id169
+    transporting people and goods: *id170
+    warmer air and atmosphere (tropospheric warming): *id171
   increase in tree intercropping:
-    increase in CO2: *id170
-  increase in tree plantations (on degraded land):
-    increase in CO2: *id171
-  increase in tropical forest restoration:
     increase in CO2: *id172
+  increase in tree plantations (on degraded land):
+    increase in CO2: *id173
+  increase in tropical forest restoration:
+    increase in CO2: *id174
   increase in vegetation during wet season:
-    increase in rain (and snow if cold enough) (precipitation): *id173
-    wetter soil during wet season: *id174
+    increase in rain (and snow if cold enough) (precipitation): *id175
+    wetter soil during wet season: *id176
   increase in worker absenteeism:
-    increase in frequency of heatwaves: *id175
+    increase in frequency of heatwaves: *id177
   industrial activity:
-    human population growth: *id176
+    human population growth: *id178
   installing smart thermostats:
-    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id177
+    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id179
   insulating buildings better:
-    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id178
+    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id180
   ischaemic heart disease:
-    increase in toxic air pollutants (air pollution): *id179
+    increase in toxic air pollutants (air pollution): *id181
   less freezing conditions during winter:
-    decrease in frequency of cold days and nights: *id180
+    decrease in frequency of cold days and nights: *id182
   less mixing of oxygenated water:
-    weakened ocean circulation (AMOC): *id181
+    weakened ocean circulation (AMOC): *id183
   less sinking of cooling ocean water:
-    increase in freshwater added to ocean: *id182
-    lower Antarctic sea ice extent: *id183
+    increase in freshwater added to ocean: *id184
+    lower Antarctic sea ice extent: *id185
   lower Antarctic sea ice extent:
-    more heat absorbed by ice: *id184
+    more heat absorbed by ice: *id186
   lower oxygen able to dissolve in ocean (solubility):
-    more heat absorbed by oceans: *id185
+    more heat absorbed by oceans: *id187
   lower salinity in freshwater:
-    increase in rain (and snow if cold enough) (precipitation): *id186
+    increase in rain (and snow if cold enough) (precipitation): *id188
   lower stratospheric cooling: {}
   making aviation more efficient:
-    transporting people and goods: *id187
-  making ocean shipping more efficient:
-    transporting people and goods: *id188
-  making trucks more efficient:
     transporting people and goods: *id189
+  making ocean shipping more efficient:
+    transporting people and goods: *id190
+  making trucks more efficient:
+    transporting people and goods: *id191
   managing refrigerants better:
-    industrial activity: *id190
+    industrial activity: *id192
   melting Greenland ice sheet:
-    more heat absorbed by ice: *id191
+    more heat absorbed by ice: *id193
   more acidic oceans (increased dissolved CO2):
-    increase in CO2: *id192
+    increase in CO2: *id194
   more heat absorbed by air:
-    increase in greenhouse effect: *id193
-  more heat absorbed by ice:
-    increase in greenhouse effect: *id194
-  more heat absorbed by land:
     increase in greenhouse effect: *id195
-  more heat absorbed by oceans:
+  more heat absorbed by ice:
     increase in greenhouse effect: *id196
+  more heat absorbed by land:
+    increase in greenhouse effect: *id197
+  more heat absorbed by oceans:
+    increase in greenhouse effect: *id198
   more moisture (water vapor) able to accumulate in air:
-    warmer air and atmosphere (tropospheric warming): *id197
+    warmer air and atmosphere (tropospheric warming): *id199
   negative effects on cognition:
-    increase in CO2: *id198
+    increase in CO2: *id200
   permafrost melt:
-    more heat absorbed by ice: *id199
+    more heat absorbed by ice: *id201
   political polarization:
-    enact cap and trade policy: *id200
-    enact carbon tax policy (revenue neutral): *id201
-    establish a federal green jobs program: *id202
+    enact cap and trade policy: *id202
+    enact carbon tax policy (revenue neutral): *id203
+    establish a federal green jobs program: *id204
   producing electricity via concentrated solar power:
-    burning fossil fuel for electricity production: *id203
-  producing electricity via distributed solar photovoltaics:
-    burning fossil fuel for electricity production: *id204
-  producing electricity via offshore wind turbines:
     burning fossil fuel for electricity production: *id205
-  producing electricity via onshore wind turbines:
+  producing electricity via distributed solar photovoltaics:
     burning fossil fuel for electricity production: *id206
-  producing electricity via utility-scale solar photovoltaics:
+  producing electricity via offshore wind turbines:
     burning fossil fuel for electricity production: *id207
+  producing electricity via onshore wind turbines:
+    burning fossil fuel for electricity production: *id208
+  producing electricity via utility-scale solar photovoltaics:
+    burning fossil fuel for electricity production: *id209
   prolonged droughts:
-    drier soil during dry season: *id208
+    drier soil during dry season: *id210
   protecting and rewetting peatland:
-    food waste, unhealthy agriculture, and deforestation: *id209
+    food waste, unhealthy agriculture, and deforestation: *id211
   recycling:
-    industrial activity: *id210
+    industrial activity: *id212
   recycling paper:
-    industrial activity: *id211
+    industrial activity: *id213
   reducing food waste:
-    food waste, unhealthy agriculture, and deforestation: *id212
+    food waste, unhealthy agriculture, and deforestation: *id214
   reduction in oxygen producing sea organisms:
-    weakened ocean circulation (AMOC): *id213
+    weakened ocean circulation (AMOC): *id215
   regulation/laws that require assessment of floodplains for new buildings:
-    builders are not required to check before building on a floodplain: *id214
+    builders are not required to check before building on a floodplain: *id216
   retreat of glaciers (glacier melt):
-    more heat absorbed by ice: *id215
+    more heat absorbed by ice: *id217
   switching to LED light bulbs:
-    burning fossil fuel for electricity production: *id216
+    burning fossil fuel for electricity production: *id218
   transporting people and goods:
-    human population growth: *id217
+    human population growth: *id219
   using alternative cement:
-    industrial activity: *id218
+    industrial activity: *id220
   using alternative refrigerants:
-    industrial activity: *id219
+    industrial activity: *id221
   using biogas for cooking:
-    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id220
-  using electric cars:
-    transporting people and goods: *id221
-  using high-efficiency heat pumps:
     buildings and their construction, materials, gas heating, cooling, and refrigeration: *id222
+  using electric cars:
+    transporting people and goods: *id223
+  using high-efficiency heat pumps:
+    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id224
   using high-performance glass in windows:
-    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id223
+    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id225
   using high-speed rail:
-    transporting people and goods: *id224
+    transporting people and goods: *id226
   using hybrid cars:
-    transporting people and goods: *id225
+    transporting people and goods: *id227
   using improved clean cookstoves:
-    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id226
+    buildings and their construction, materials, gas heating, cooling, and refrigeration: *id228
   using methane digesters:
-    industrial activity: *id227
+    industrial activity: *id229
   using public transit:
-    transporting people and goods: *id228
+    transporting people and goods: *id230
   vote in elections:
-    deregulation: *id229
+    deregulation: *id231
   warmer air and atmosphere (tropospheric warming):
-    lower stratospheric cooling: *id230
-    more heat absorbed by air: *id231
+    lower stratospheric cooling: *id232
+    more heat absorbed by air: *id233
   warmer oceans:
-    more heat absorbed by oceans: *id232
+    more heat absorbed by oceans: *id234
   weakened ocean circulation (AMOC):
-    less sinking of cooling ocean water: *id233
+    less sinking of cooling ocean water: *id235
   wetter soil during wet season:
-    increase in rain (and snow if cold enough) (precipitation): *id234
-_succ: *id235
-adjlist_inner_dict_factory: &id236 !!python/name:builtins.dict ''
-adjlist_outer_dict_factory: *id236
-edge_attr_dict_factory: *id236
+    increase in rain (and snow if cold enough) (precipitation): *id236
+_succ: *id237
+adjlist_inner_dict_factory: &id238 !!python/name:builtins.dict ''
+adjlist_outer_dict_factory: *id238
+edge_attr_dict_factory: *id238
 graph: {}
-graph_attr_dict_factory: *id236
-node_attr_dict_factory: *id236
-node_dict_factory: *id236
+graph_attr_dict_factory: *id238
+node_attr_dict_factory: *id238
+node_dict_factory: *id238
 nodes: !!python/object:networkx.classes.reportviews.NodeView
-  _nodes: *id237
+  _nodes: *id239
