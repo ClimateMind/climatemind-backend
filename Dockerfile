@@ -6,13 +6,14 @@ RUN apt-get -y install gcc graphviz-dev
 
 WORKDIR /usr/src/app
 
-COPY requirements.txt ./
-
-RUN pip install --upgrade pip && pip install --no-cache-dir -r requirements.txt
-
-RUN ls
-
 COPY . .
 
+RUN pip install cython && \
+    pip install --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
+
 EXPOSE 5000
-CMD [ "python", "./climatemind.py" ]
+
+ENTRYPOINT [ "python" ]
+
+CMD [ "climatemind.py" ]
