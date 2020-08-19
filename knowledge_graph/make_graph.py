@@ -58,15 +58,65 @@ def add_ontology_data_to_graph_nodes(G, onto):
         #need to add here and replace the hard coding of 'classes' with each of the child classes of the class "Climate Mind". See http://owlready.8326.n8.nabble.com/Ontology-tree-td1178.html
         #also need to add in automated reasoning so that the classes aren't nested.
         
-        G.add_nodes_from([node], individual = str(ontology_node))
-        G.add_nodes_from([node], comment = str(ontology_node.comment))
-        G.add_nodes_from([node], classes = [str(parent.label[0]) for parent in class_objects if parent in onto.classes()]) #the if statement is needed to avoid the Restriction objects
+        #superclasses = list(Thing.subclasses())
+        #['status - source etc']
+        #['status - value']
+        #['climate mind']
+        #['misleading information']
+        
+        #CM_class = superclasses[2] #this is hard coded. would break if top structure of ontology changes... should probably just search for the class 'climate mind'.
+        cm_class = onto.search_one(label = 'climate mind')
+        superclasses = list(cm_class.subclasses())
+        superclass_labels = [superclass_object.label for superclass_object in superclasses]
+        #cm_class.ancestors()
+        #cm_class.descendants()
+        #cm_class.get_parents_of()
+        
+        
+        #make dictionary to add proper attributes to the node
+        
+        attributes_dict = {}
+        attributes_dict['label'] = str(ontology_node.label[0])
+        attributes_dict['iri'] = str(ontology_node)
+        attributes_dict['comment'] = str(ontology_node.comment)
+        attributes_dict['direct classes'] = [str(parent.label[0]) for parent in class_objects if parent in onto.classes()]
+        
+        all_classes = []
+        for parent in class_objects:
+            if parent in onto.classes():
+                all_classes.extend(parent.ancestors())
+
+        list_classes = [str(node_object.label[0]) for node_object in all_classes if node_object in onto.classes()]
+        list_classes = list(set(list_classes))
+        if 'climate mind' in list_classes:
+            list_classes.remove('climate mind')
+        attributes_dict['all classes'] = list_classes
+
+        #for each class in the classes associated with the node, list that class in the appropriate super_class in the attributes_dict and all of the ancestor classes of that class
+        for node_class in class_objects:
+            for super_class in superclasses:
+                if node_class in super_class.descendants():
+                    #descendants() includes self class, but excludes non-entity classes such as restrictions
+                    to_add = [str(thing.label[0]) for thing in node_class.ancestors() if thing in onto.classes()]
+                    if 'climate mind' in to_add:
+                        to_add.remove('climate mind')
+                    if super_class in attributes_dict.keys():
+                        attributes_dict[str(super_class.label[0])] = list(set(attributes_dict[super_class]) | set( to_add ))
+                    else:
+                        attributes_dict[str(super_class.label[0])] = to_add
+        #if there are multiple of the nested classes associated with the node in the ontology, code ensures it doesn't overwrite the other class.
+
+        G.add_nodes_from([(node, attributes_dict)])
+
+        #the if statement is needed to avoid the Restriction objects
         #still don't know why Restriction Objects are in our ontology!
         #technically each class could have multiple labels, but this way just pulling 1st label
+
         annot_properties_dict={}
         for prop in annot_properties:
             annot_properties_dict[prop] = list(eval("ontology_node."+prop))
         G.add_nodes_from([node], properties = annot_properties_dict)
+        import pdb; pdb.set_trace()
 
 
 def set_edge_properties(G):
@@ -146,7 +196,7 @@ def save_test_ontology_to_json(G):
 def remove_non_test_nodes(G, node, valid_test_ont, not_test_ont):
     if node in G.nodes:
         is_test_ont = False
-        for c in G.nodes[node]["classes"]:
+        for c in G.nodes[node]["direct classes"]:
             if c in valid_test_ont:
                 is_test_ont = True
             if c in not_test_ont:
@@ -205,7 +255,7 @@ def main(args):
     #run automated reasoning
     with onto:
         sync_reasoner()
-    
+    print(list(default_world.inconsistent_classes()))
     
     # Read in the triples data
     df = pd.read_csv(edge_path)
@@ -276,7 +326,7 @@ def main(args):
     get_test_ontology(G, valid_test_ont, not_test_ont)
     for node in G.nodes:
         print(node)
-        print(G.nodes[node]["classes"])
+        print(G.nodes[node]["direct classes"])
 
 
     save_test_ontology_to_json(G)

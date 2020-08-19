@@ -402,8 +402,8 @@ _adj: &id237
     increase in disproportionate effects on minority groups: &id107
       properties:
         dc_source:
-        - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893
         - https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma
+        - https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893
       type: causes_or_promotes
   increase in bamboo production: {}
   increase in carbon capture:
@@ -515,8 +515,8 @@ _adj: &id237
     increase in heat stroke in marine corps: &id134
       properties:
         dc_source:
-        - https://insideclimatenews.org/news/11112019/military-heat-risk-climate-change-basic-training-bases-union-concerned-scientists-report
         - https://blog.ucsusa.org/kristy-dahl/military-extreme-heat
+        - https://insideclimatenews.org/news/11112019/military-heat-risk-climate-change-basic-training-bases-union-concerned-scientists-report
       type: causes_or_promotes
     increase in risk of heart attack: &id153
       properties: null
@@ -533,8 +533,8 @@ _adj: &id237
     increase in worker absenteeism: &id177
       properties:
         schema_mediaSource:
-        - https://www.entrepreneur.com/article/319479
         - https://phys.org/news/2018-08-temperatures-worker-productivity-global-losses.html
+        - https://www.entrepreneur.com/article/319479
         - https://epic.uchicago.edu/news/hot-temperatures-decrease-worker-productivity-economic-output
       type: causes_or_promotes
   increase in frequency of warm days and nights:
@@ -605,8 +605,8 @@ _adj: &id237
     increase in destruction to US military bases: &id104
       properties:
         schema_mediaSourceForConservatives:
-        - https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095
         - https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689
+        - https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095
       type: causes_or_promotes
     increase in disaster costs: &id105
       properties:
@@ -617,9 +617,9 @@ _adj: &id237
       properties:
         dc_source:
         - https://www.sciencedirect.com/science/article/pii/S0962629807000601
-        - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
         - https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html
         - https://www.nature.com/articles/s41612-019-0074-8
+        - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
       type: causes_or_promotes
   increase in lung cancer:
     increase in death: &id095
@@ -1036,10 +1036,15 @@ _adj: &id237
       type: causes_or_promotes
 _node: &id239
   Farming, Fishing, and Forestry Occupations:
-    classes:
-    - occupation
+    all classes:
+    - - occupation
     comment: '[]'
-    individual: webprotege.stanford.edu.RCSp3Q6QJjaE6ehKKudHudg
+    direct classes:
+    - occupation
+    iri: webprotege.stanford.edu.RCSp3Q6QJjaE6ehKKudHudg
+    label: Farming, Fishing, and Forestry Occupations
+    occupation:
+    - occupation
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1053,13 +1058,29 @@ _node: &id239
       schema_video: []
       skos_definition: []
   Increase in investment:
-    classes:
+    all classes:
+    - - personal value
+      - status - source etc
+      - value uncategorized (to do)
+      - communication frame
+      - not finished - sources etc
+      - adaptation
+      - frame uncategorized (to do)
+      - risk solution
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - frame uncategorized (to do)
     - value uncategorized (to do)
     - not finished - sources etc
     - adaptation
-    comment: '[]'
-    individual: webprotege.stanford.edu.RKsHmIBffqClOO8UkcSmY3
+    iri: webprotege.stanford.edu.RKsHmIBffqClOO8UkcSmY3
+    label: Increase in investment
+    personal value:
+    - personal value
+    - value uncategorized (to do)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1072,12 +1093,25 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    - adaptation
   acute lower respiratory infection:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - health change
+      - communication frame
+      - effect
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - downstream negative effect
     - health change
-    comment: '[]'
-    individual: webprotege.stanford.edu.R80q6o2vAd7r3ywEGhwmbDb
+    iri: webprotege.stanford.edu.R80q6o2vAd7r3ywEGhwmbDb
+    label: acute lower respiratory infection
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1090,15 +1124,36 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
   avoid building on land that is or will become a floodplain:
-    classes:
+    all classes:
+    - - personal value
+      - status - source etc
+      - value uncategorized (to do)
+      - communication frame
+      - not finished - sources etc
+      - adaptation
+      - frame uncategorized (to do)
+      - test ontology
+      - risk solution
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - frame uncategorized (to do)
     - value uncategorized (to do)
     - test ontology
     - not finished - sources etc
     - adaptation
-    comment: '[]'
-    individual: webprotege.stanford.edu.RCxxWzxHUToYGLFTAH8Kntl
+    iri: webprotege.stanford.edu.RCxxWzxHUToYGLFTAH8Kntl
+    label: avoid building on land that is or will become a floodplain
+    personal value:
+    - personal value
+    - value uncategorized (to do)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1111,10 +1166,15 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
-  being telepresent or teleworking:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    - adaptation
+    test ontology:
+    - test ontology
+  being telepresent or teleworking:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['Telepresence integrates high-performance visual, audio, and network\
       \ technologies, so people can interact across geographies. It cuts down on travel\u2014\
       especially flying\u2014and its emissions. By avoiding emissions from business\
@@ -1124,7 +1184,11 @@ _node: &id239
       \ of $87-301 billion in telepresence systems pays off with $1.2 -4.4 trillion\
       \ worth of business travel savings and 107-143 billion fewer unproductive travel\
       \ hours.']"
-    individual: webprotege.stanford.edu.Rtctk1SGyY2raocnj6VJeg
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.Rtctk1SGyY2raocnj6VJeg
+    label: being telepresent or teleworking
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1138,15 +1202,37 @@ _node: &id239
       - https://drawdown.org/solutions/telepresence
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   builders are not required to check before building on a floodplain:
-    classes:
+    all classes:
+    - - risk
+      - personal value
+      - status - source etc
+      - adaptation barrier
+      - risk solution barrier
+      - value uncategorized (to do)
+      - communication frame
+      - not finished - sources etc
+      - frame uncategorized (to do)
+      - test ontology
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - frame uncategorized (to do)
     - value uncategorized (to do)
     - test ontology
     - not finished - sources etc
     - adaptation barrier
-    comment: '[]'
-    individual: webprotege.stanford.edu.RCtCTACPjLICXvxzHHsQ6o9
+    iri: webprotege.stanford.edu.RCtCTACPjLICXvxzHHsQ6o9
+    label: builders are not required to check before building on a floodplain
+    personal value:
+    - personal value
+    - value uncategorized (to do)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1159,12 +1245,24 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - adaptation barrier
+    - risk solution barrier
+    - risk
+    test ontology:
+    - test ontology
   buildings and their construction, materials, gas heating, cooling, and refrigeration:
-    classes:
+    all classes:
+    - - risk
+      - test ontology
+      - root cause linked to humans
+    comment: '[''buildings produce 6% of heat-trapping emissions worldwide'']'
+    direct classes:
     - test ontology
     - root cause linked to humans
-    comment: '[''buildings produce 6% of heat-trapping emissions worldwide'']'
-    individual: webprotege.stanford.edu.R8Es1gGVfBBLpoCGPWE48CV
+    iri: webprotege.stanford.edu.R8Es1gGVfBBLpoCGPWE48CV
+    label: buildings and their construction, materials, gas heating, cooling, and
+      refrigeration
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1184,12 +1282,22 @@ _node: &id239
       - https://drawdown.org/solutions/smart-thermostats
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - root cause linked to humans
+    test ontology:
+    - test ontology
   burning coal:
-    classes:
+    all classes:
+    - - risk
+      - test ontology
+      - root cause linked to humans
+    comment: '[]'
+    direct classes:
     - test ontology
     - root cause linked to humans
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBIjeqALTDlfCzVLfBMq4EC
+    iri: webprotege.stanford.edu.RBIjeqALTDlfCzVLfBMq4EC
+    label: burning coal
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1204,13 +1312,23 @@ _node: &id239
       - https://www.ucsusa.org/resources/how-coal-works
       schema_video: []
       skos_definition: []
-  burning fossil fuel for electricity production:
-    classes:
-    - test ontology
+    risk:
+    - risk
     - root cause linked to humans
+    test ontology:
+    - test ontology
+  burning fossil fuel for electricity production:
+    all classes:
+    - - risk
+      - test ontology
+      - root cause linked to humans
     comment: '[''electricity production gives rise to 25% of heat-trapping emissions
       globally.'']'
-    individual: webprotege.stanford.edu.RSqgmuB6RIAv04gEixDJOx
+    direct classes:
+    - test ontology
+    - root cause linked to humans
+    iri: webprotege.stanford.edu.RSqgmuB6RIAv04gEixDJOx
+    label: burning fossil fuel for electricity production
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1230,15 +1348,37 @@ _node: &id239
       - https://drawdown.org/solutions/utility-scale-solar-photovoltaics
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - root cause linked to humans
+    test ontology:
+    - test ontology
   call representative:
-    classes:
+    all classes:
+    - - solution to indirect adaptation barrier
+      - personal value
+      - status - source etc
+      - value uncategorized (to do)
+      - communication frame
+      - not finished - sources etc
+      - frame uncategorized (to do)
+      - test ontology
+      - risk solution
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - frame uncategorized (to do)
     - value uncategorized (to do)
     - test ontology
     - not finished - sources etc
     - solution to indirect adaptation barrier
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8ECf0I0zdW2MwEbGGbcBdK
+    iri: webprotege.stanford.edu.R8ECf0I0zdW2MwEbGGbcBdK
+    label: call representative
+    personal value:
+    - personal value
+    - value uncategorized (to do)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1251,10 +1391,15 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
-  carpooling:
-    classes:
-    - test ontology
+    risk solution:
+    - solution to indirect adaptation barrier
     - risk solution
+    test ontology:
+    - test ontology
+  carpooling:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '["When people share common origins, destinations, or stops en route,
       they can ride together. Carpooling uses seats and fuel more efficiently, cutting
       emissions. Project Drawdown''s projection for carpooling focuses on approaches
@@ -1263,7 +1408,11 @@ _node: &id239
       or 2.0 by 2050, assuming 3 passengers per carpool trip. Carpooling has no implementation
       costs and can reduce emissions by 4.2-7.7 gigatons of carbon dioxide while saving
       $2.8-$5.2 trillion in operating costs."]'
-    individual: webprotege.stanford.edu.R6zCdUFmA2mP62Gqfbm5sE
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.R6zCdUFmA2mP62Gqfbm5sE
+    label: carpooling
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1277,12 +1426,21 @@ _node: &id239
       - https://drawdown.org/solutions/carpooling
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   cattle cow burps:
-    classes:
+    all classes:
+    - - risk
+      - test ontology
+      - root cause linked to humans
+    comment: '[]'
+    direct classes:
     - test ontology
     - root cause linked to humans
-    comment: '[]'
-    individual: webprotege.stanford.edu.R9ULHB1n9QqrbQRX5vv01hs
+    iri: webprotege.stanford.edu.R9ULHB1n9QqrbQRX5vv01hs
+    label: cattle cow burps
     properties:
       dc_source:
       - https://www.bbc.co.uk/newsround/49368462
@@ -1299,11 +1457,21 @@ _node: &id239
       schema_video:
       - https://www.youtube.com/watch?v=MnRFUSGz_ZM
       skos_definition: []
+    risk:
+    - risk
+    - root cause linked to humans
+    test ontology:
+    - test ontology
   change in salinity in oceans (both surface and subsurface):
-    classes:
-    - main ocean change
+    all classes:
+    - - risk
+      - main ocean change
+      - core climate change
     comment: '[]'
-    individual: webprotege.stanford.edu.R892KwVv6vE4ZDULk8mz8S4
+    direct classes:
+    - main ocean change
+    iri: webprotege.stanford.edu.R892KwVv6vE4ZDULk8mz8S4
+    label: change in salinity in oceans (both surface and subsurface)
     properties:
       dc_source:
       - https://agupubs.onlinelibrary.wiley.com/doi/pdf/10.1029/2008GL035874
@@ -1319,12 +1487,26 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main ocean change
   chronic obstructive pulmonary disease:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - health change
+      - communication frame
+      - effect
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - downstream negative effect
     - health change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RGBfgwLkF3YDyhyGGb5HWL
+    iri: webprotege.stanford.edu.RGBfgwLkF3YDyhyGGb5HWL
+    label: chronic obstructive pulmonary disease
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1337,12 +1519,21 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
   coal mining:
-    classes:
+    all classes:
+    - - risk
+      - test ontology
+      - root cause linked to humans
+    comment: '[]'
+    direct classes:
     - test ontology
     - root cause linked to humans
-    comment: '[]'
-    individual: webprotege.stanford.edu.R5hC8Ud8449ZsdtwYdskf1
+    iri: webprotege.stanford.edu.R5hC8Ud8449ZsdtwYdskf1
+    label: coal mining
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1355,10 +1546,15 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
-  composting:
-    classes:
+    risk:
+    - risk
+    - root cause linked to humans
+    test ontology:
     - test ontology
-    - risk solution
+  composting:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Composting can range from backyard bins to industrial-scale operations.
       Regardless, it converts organic waste into soil carbon, averting landfill methane
       emissions in the process. In 2015, an estimated 38 percent of food waste was
@@ -1368,7 +1564,11 @@ _node: &id239
       equivalent to 2.1-3.1 gigatons of carbon dioxide by 2050. That total excludes
       additional gains from applying compost to soil. Compost facilities cost less
       to construct but more to operate, which is reflected in the financial results.'']'
-    individual: webprotege.stanford.edu.R7YYQegAXeBWrNAya5IhSuk
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.R7YYQegAXeBWrNAya5IhSuk
+    label: composting
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1382,15 +1582,39 @@ _node: &id239
       - https://drawdown.org/solutions/composting
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   decrease in GDP:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - personal value
+      - approved - values
+      - communication frame
+      - test ontology
+      - status - value
+      - power
+      - effect
+      - frame uncategorized (to do)
+      - power resources
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - approved - values
     - downstream negative effect
     - power resources
     - frame uncategorized (to do)
     - test ontology
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBvy0CVizhdMfXbtJIc2En
+    iri: webprotege.stanford.edu.RBvy0CVizhdMfXbtJIc2En
+    label: decrease in GDP
+    personal value:
+    - power
+    - personal value
+    - power resources
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1403,11 +1627,22 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   decrease in dissolved oxygen in oceans:
-    classes:
+    all classes:
+    - - risk
+      - main ocean change
+      - core climate change
+    comment: '[]'
+    direct classes:
     - main ocean change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBO6QoxuN2QiowzfoEIVfUT
+    iri: webprotege.stanford.edu.RBO6QoxuN2QiowzfoEIVfUT
+    label: decrease in dissolved oxygen in oceans
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1420,11 +1655,20 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main ocean change
   decrease in frequency of cold days and nights:
-    classes:
-    - main variability change
+    all classes:
+    - - main variability change
+      - risk
+      - core climate change
     comment: '[]'
-    individual: webprotege.stanford.edu.R7yY9aSXNoealJHEP1iluxl
+    direct classes:
+    - main variability change
+    iri: webprotege.stanford.edu.R7yY9aSXNoealJHEP1iluxl
+    label: decrease in frequency of cold days and nights
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1437,16 +1681,41 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - main variability change
+    - risk
+    - core climate change
   decrease in learning (without air conditioner):
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - education change
+      - achievement
+      - self-direction
+      - personal value
+      - approved - values
+      - self-direction autonomy of thought
+      - communication frame
+      - test ontology
+      - status - value
+      - effect
+    comment: '[]'
+    communication frame:
+    - education change
+    - communication frame
+    direct classes:
     - achievement
     - approved - values
     - downstream negative effect
     - test ontology
     - self-direction autonomy of thought
     - education change
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8Fa34SNdEwdj93hXO0oMS
+    iri: webprotege.stanford.edu.R8Fa34SNdEwdj93hXO0oMS
+    label: decrease in learning (without air conditioner)
+    personal value:
+    - self-direction autonomy of thought
+    - self-direction
+    - personal value
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1460,8 +1729,34 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   decrease in population of moose available to hunt:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - achievement
+      - personal value
+      - power resources
+      - communication frame
+      - test ontology
+      - review needed - values
+      - status - value
+      - universalism
+      - effect
+      - universalism nature
+      - power
+      - frame uncategorized (to do)
+      - stimulation
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - review needed - values
     - achievement
     - downstream negative effect
@@ -1470,8 +1765,11 @@ _node: &id239
     - frame uncategorized (to do)
     - test ontology
     - stimulation
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8epBa4UvcieLTynfK3E84u
+    iri: webprotege.stanford.edu.R8epBa4UvcieLTynfK3E84u
+    label: decrease in population of moose available to hunt
+    personal value:
+    - personal value
+    - stimulation
     properties:
       dc_source:
       - https://www.nwf.org/~/media/PDFs/Global-Warming/Reports/NowheretoRun-BigGameWildlife-LowResFinal_110613.ashx
@@ -1485,16 +1783,43 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   decrease in test scores:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - achievement
+      - self-direction
+      - personal value
+      - approved - values
+      - communication frame
+      - self-direction autonomy of thought
+      - test ontology
+      - status - value
+      - frame uncategorized (to do)
+      - effect
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - achievement
     - approved - values
     - downstream negative effect
     - frame uncategorized (to do)
     - test ontology
     - self-direction autonomy of thought
-    comment: '[]'
-    individual: webprotege.stanford.edu.R7Yo5FYFleUwkbXjCU3xo4E
+    iri: webprotege.stanford.edu.R7Yo5FYFleUwkbXjCU3xo4E
+    label: decrease in test scores
+    personal value:
+    - self-direction autonomy of thought
+    - self-direction
+    - personal value
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1509,16 +1834,41 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   decrease in tourism:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - hedonism
+      - personal value
+      - approved - values
+      - communication frame
+      - test ontology
+      - status - value
+      - frame uncategorized (to do)
+      - effect
+      - stimulation
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - approved - values
     - downstream negative effect
     - frame uncategorized (to do)
     - test ontology
     - hedonism
     - stimulation
-    comment: '[]'
-    individual: webprotege.stanford.edu.R9JAWzfiZ9haeNhHiCpTWkr
+    iri: webprotege.stanford.edu.R9JAWzfiZ9haeNhHiCpTWkr
+    label: decrease in tourism
+    personal value:
+    - personal value
+    - stimulation
     properties:
       dc_source:
       - https://www.researchgate.net/profile/Bas_Amelung/publication/249701105_Implications_of_Global_Climate_Change_for_Tourism_Flows_and_Seasonality/links/0f3175362279bd6b6b000000.pdf
@@ -1533,8 +1883,34 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   decrease in worker productivity:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - achievement
+      - self-direction
+      - personal value
+      - approved - values
+      - communication frame
+      - power dominance
+      - test ontology
+      - status - value
+      - power
+      - effect
+      - frame uncategorized (to do)
+      - power resources
+      - self-direction autonomy of action
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - achievement
     - approved - values
     - downstream negative effect
@@ -1543,8 +1919,12 @@ _node: &id239
     - self-direction autonomy of action
     - test ontology
     - power dominance
-    comment: '[]'
-    individual: webprotege.stanford.edu.RDuEdzMOhOt76COW2RVxZdP
+    iri: webprotege.stanford.edu.RDuEdzMOhOt76COW2RVxZdP
+    label: decrease in worker productivity
+    personal value:
+    - power dominance
+    - power
+    - personal value
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1559,15 +1939,39 @@ _node: &id239
       - https://news.harvard.edu/gazette/story/2019/11/researcher-analyzes-effects-of-climate-change-on-productivity
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   deregulation:
-    classes:
+    all classes:
+    - - risk
+      - personal value
+      - status - source etc
+      - risk solution barrier
+      - value uncategorized (to do)
+      - communication frame
+      - not finished - sources etc
+      - frame uncategorized (to do)
+      - test ontology
+      - indirect adaptation barrier
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - frame uncategorized (to do)
     - value uncategorized (to do)
     - test ontology
     - not finished - sources etc
     - indirect adaptation barrier
-    comment: '[]'
-    individual: webprotege.stanford.edu.RDnngs7q3R6klffYKrfIIcZ
+    iri: webprotege.stanford.edu.RDnngs7q3R6klffYKrfIIcZ
+    label: deregulation
+    personal value:
+    - personal value
+    - value uncategorized (to do)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1580,12 +1984,24 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk solution barrier
+    - risk
+    - indirect adaptation barrier
+    test ontology:
+    - test ontology
   drier soil during dry season:
-    classes:
+    all classes:
+    - - risk
+      - test ontology
+      - main land change
+      - core climate change
+    comment: '[]'
+    direct classes:
     - main land change
     - test ontology
-    comment: '[]'
-    individual: webprotege.stanford.edu.RByBIDdhul7eNMQVP3bYnfg
+    iri: webprotege.stanford.edu.RByBIDdhul7eNMQVP3bYnfg
+    label: drier soil during dry season
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1598,12 +2014,24 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - main land change
+    - risk
+    - core climate change
+    test ontology:
+    - test ontology
   drier vegetation during dry season:
-    classes:
+    all classes:
+    - - risk
+      - test ontology
+      - main land change
+      - core climate change
+    comment: '[]'
+    direct classes:
     - main land change
     - test ontology
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8IAmadbnqneVdqnTnrLuIU
+    iri: webprotege.stanford.edu.R8IAmadbnqneVdqnTnrLuIU
+    label: drier vegetation during dry season
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1616,10 +2044,16 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
-  eating lower down the foodchain (plant-rich diets):
-    classes:
+    risk:
+    - main land change
+    - risk
+    - core climate change
+    test ontology:
     - test ontology
-    - risk solution
+  eating lower down the foodchain (plant-rich diets):
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['Consumption of meat and dairy, as well as overall calories, often\
       \ exceeds nutritional recommendations. Paring down and favoring plant-based\
       \ foods reduces demand, thereby reducing land clearing, fertilizer use, burping\
@@ -1634,7 +2068,11 @@ _node: &id239
       \ change is included, an additional 21.8-23.5 gigatons of emissions could be\
       \ avoided, making healthy, plant-rich diets one of the most impactful solutions\
       \ at a total of 64.8-91.5 gigatons avoided.']"
-    individual: webprotege.stanford.edu.RBzQLT1NY7IWvJXCMxrPPTk
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RBzQLT1NY7IWvJXCMxrPPTk
+    label: eating lower down the foodchain (plant-rich diets)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1648,15 +2086,36 @@ _node: &id239
       - https://drawdown.org/solutions/plant-rich-diets
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   effective communication framing:
-    classes:
+    all classes:
+    - - personal value
+      - status - source etc
+      - value uncategorized (to do)
+      - communication frame
+      - not finished - sources etc
+      - solution to indirect mitigation barrier
+      - frame uncategorized (to do)
+      - test ontology
+      - risk solution
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - frame uncategorized (to do)
     - value uncategorized (to do)
     - test ontology
     - not finished - sources etc
     - solution to indirect mitigation barrier
-    comment: '[]'
-    individual: webprotege.stanford.edu.RCFcpfKKeKFTkyBttzYtl1P
+    iri: webprotege.stanford.edu.RCFcpfKKeKFTkyBttzYtl1P
+    label: effective communication framing
+    personal value:
+    - personal value
+    - value uncategorized (to do)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1669,11 +2128,21 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    - solution to indirect mitigation barrier
+    test ontology:
+    - test ontology
   elderly people:
-    classes:
-    - population affected
+    all classes:
+    - - population affected
     comment: '[]'
-    individual: webprotege.stanford.edu.RDW2Jq9syvIdke0hdTNzGcu
+    direct classes:
+    - population affected
+    iri: webprotege.stanford.edu.RDW2Jq9syvIdke0hdTNzGcu
+    label: elderly people
+    population affected:
+    - population affected
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1687,12 +2156,19 @@ _node: &id239
       schema_video: []
       skos_definition: []
   enact cap and trade policy:
-    classes:
+    all classes:
+    - - carbon pricing
+      - emissions trading
+      - indirect mitigation
+      - risk solution
+      - test ontology
+    comment: '[]'
+    direct classes:
     - emissions trading
     - test ontology
     - indirect mitigation
-    comment: '[]'
-    individual: webprotege.stanford.edu.RCyBGt3EhMba7KSfwkbu9Yu
+    iri: webprotege.stanford.edu.RCyBGt3EhMba7KSfwkbu9Yu
+    label: enact cap and trade policy
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1705,13 +2181,25 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    - indirect mitigation
+    test ontology:
+    - test ontology
   enact carbon tax policy (revenue neutral):
-    classes:
+    all classes:
+    - - carbon pricing
+      - indirect mitigation
+      - carbon tax
+      - risk solution
+      - test ontology
+    comment: '[]'
+    direct classes:
     - test ontology
     - indirect mitigation
     - carbon tax
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8WxponQcYpGf2zDnbsuVxG
+    iri: webprotege.stanford.edu.R8WxponQcYpGf2zDnbsuVxG
+    label: enact carbon tax policy (revenue neutral)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1724,15 +2212,39 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk solution:
+    - carbon tax
+    - carbon pricing
+    - indirect mitigation
+    - risk solution
+    test ontology:
+    - test ontology
   enact ranked-choice voting policy:
-    classes:
+    all classes:
+    - - personal value
+      - status - source etc
+      - value uncategorized (to do)
+      - communication frame
+      - not finished - sources etc
+      - solution to indirect mitigation barrier
+      - frame uncategorized (to do)
+      - test ontology
+      - risk solution
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - frame uncategorized (to do)
     - value uncategorized (to do)
     - test ontology
     - not finished - sources etc
     - solution to indirect mitigation barrier
-    comment: '[]'
-    individual: webprotege.stanford.edu.RGvNz4i9rN6i6s2DETRSKD
+    iri: webprotege.stanford.edu.RGvNz4i9rN6i6s2DETRSKD
+    label: enact ranked-choice voting policy
+    personal value:
+    - personal value
+    - value uncategorized (to do)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1745,15 +2257,37 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    - solution to indirect mitigation barrier
+    test ontology:
+    - test ontology
   establish a federal green jobs program:
-    classes:
+    all classes:
+    - - personal value
+      - status - source etc
+      - indirect mitigation
+      - value uncategorized (to do)
+      - communication frame
+      - not finished - sources etc
+      - frame uncategorized (to do)
+      - test ontology
+      - risk solution
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - frame uncategorized (to do)
     - value uncategorized (to do)
     - test ontology
     - indirect mitigation
     - not finished - sources etc
-    comment: '[]'
-    individual: webprotege.stanford.edu.R9iV4b31x0p1xmG7jvYhBtq
+    iri: webprotege.stanford.edu.R9iV4b31x0p1xmG7jvYhBtq
+    label: establish a federal green jobs program
+    personal value:
+    - personal value
+    - value uncategorized (to do)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1766,11 +2300,21 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    - indirect mitigation
+    test ontology:
+    - test ontology
   expansion in tick habitat:
-    classes:
-    - downstream negative effect
+    all classes:
+    - - risk
+      - downstream negative effect
+      - effect
     comment: '[]'
-    individual: webprotege.stanford.edu.RCbxy21PZJEKetM8Fk47kIM
+    direct classes:
+    - downstream negative effect
+    iri: webprotege.stanford.edu.RCbxy21PZJEKetM8Fk47kIM
+    label: expansion in tick habitat
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1783,12 +2327,26 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
   expansion of Lyme disease:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - health change
+      - communication frame
+      - effect
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - downstream negative effect
     - health change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RCy1sC1n7wY7RI3aIXYmhEX
+    iri: webprotege.stanford.edu.RCy1sC1n7wY7RI3aIXYmhEX
+    label: expansion of Lyme disease
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1801,11 +2359,20 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
   expansion of oceans:
-    classes:
-    - main ocean change
+    all classes:
+    - - risk
+      - main ocean change
+      - core climate change
     comment: '[]'
-    individual: webprotege.stanford.edu.RDjJKpBW9PimroTaLftSZS8
+    direct classes:
+    - main ocean change
+    iri: webprotege.stanford.edu.RDjJKpBW9PimroTaLftSZS8
+    label: expansion of oceans
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1818,13 +2385,22 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main ocean change
   food waste, unhealthy agriculture, and deforestation:
-    classes:
-    - test ontology
-    - root cause linked to humans
+    all classes:
+    - - risk
+      - test ontology
+      - root cause linked to humans
     comment: '[''agriculture and forestry activities generate 24% of greenhouse gas
       emissions worldwide'']'
-    individual: webprotege.stanford.edu.R9a1d8UGT12xJhW9F2fJ5Ql
+    direct classes:
+    - test ontology
+    - root cause linked to humans
+    iri: webprotege.stanford.edu.R9a1d8UGT12xJhW9F2fJ5Ql
+    label: food waste, unhealthy agriculture, and deforestation
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1841,12 +2417,22 @@ _node: &id239
       - https://drawdown.org/solutions/reduced-food-waste
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - root cause linked to humans
+    test ontology:
+    - test ontology
   fracking leaks:
-    classes:
+    all classes:
+    - - risk
+      - inefficiency
+      - root cause linked to humans
+    comment: '[]'
+    direct classes:
     - root cause linked to humans
     - inefficiency
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBzyxPGEWn768HIJJhTxIG
+    iri: webprotege.stanford.edu.RBzyxPGEWn768HIJJhTxIG
+    label: fracking leaks
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1859,12 +2445,22 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - inefficiency
+    - risk
+    - root cause linked to humans
   greenhouse-gas externality:
-    classes:
+    all classes:
+    - - risk
+      - risk solution barrier
+      - mitigation barrier
+      - test ontology
+    comment: '[]'
+    direct classes:
     - test ontology
     - mitigation barrier
-    comment: '[]'
-    individual: webprotege.stanford.edu.R9EmN8lJbIyQi0t6oj8e1w4
+    iri: webprotege.stanford.edu.R9EmN8lJbIyQi0t6oj8e1w4
+    label: greenhouse-gas externality
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1885,17 +2481,28 @@ _node: &id239
         \ which means there is usually only an ethical \u2013 rather than an economic\
         \ \u2013 incentive for businesses and consumers to reduce their emissions.\
         \ As a result, the market fails by over-producing greenhouse gases."
-  human population growth:
-    classes:
+    risk:
+    - risk solution barrier
+    - risk
+    - mitigation barrier
+    test ontology:
     - test ontology
-    - root cause linked to humans
+  human population growth:
+    all classes:
+    - - risk
+      - test ontology
+      - root cause linked to humans
     comment: '[''Currently, we humans number 7.7 billion, and the United Nations estimates
       the human family will grow to between 9.4 billion and 10.1 billion in 2050.
       As we consider the future of climate solutions, it matters how many people will
       be eating, moving, plugging in, building, buying, using, wasting, and all the
       rest. Population interacts with the primary drivers of emissions: production
       and consumption, largely fossil-fueled.'']'
-    individual: webprotege.stanford.edu.RCpkare9aCROASttOpkDXpa
+    direct classes:
+    - test ontology
+    - root cause linked to humans
+    iri: webprotege.stanford.edu.RCpkare9aCROASttOpkDXpa
+    label: human population growth
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1911,10 +2518,15 @@ _node: &id239
       - https://ourworldindata.org/world-population-growth#how-many-people-die-and-how-many-are-born-each-year
       schema_video: []
       skos_definition: []
-  improving health and education:
-    classes:
+    risk:
+    - risk
+    - root cause linked to humans
+    test ontology:
     - test ontology
-    - risk solution
+  improving health and education:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['It is critical that human rights are always centered, that gender\
       \ equality is the aim, and that benefits to the planet are understood as positive\
       \ ripple effects of access and agency. Project Drawdown modeled the influence\
@@ -1932,7 +2544,11 @@ _node: &id239
       \ could be as high as 85.4 gigatons of carbon dioxide, just within the window\
       \ of 2020-2050. Health & Education have a compounding impact, however, with\
       \ greater climate impacts into the future.']"
-    individual: webprotege.stanford.edu.R97nKRRZWNs0SIxDhgsFAbe
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.R97nKRRZWNs0SIxDhgsFAbe
+    label: improving health and education
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1946,12 +2562,21 @@ _node: &id239
       - https://drawdown.org/solutions/health-and-education
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   include 1% seaweed in diet for cows cattle:
-    classes:
+    all classes:
+    - - test ontology
+      - mitigation
+      - risk solution
+    comment: '[]'
+    direct classes:
     - test ontology
     - mitigation
-    comment: '[]'
-    individual: webprotege.stanford.edu.RCVZWPiALoEjnaCAwnkuB6k
+    iri: webprotege.stanford.edu.RCVZWPiALoEjnaCAwnkuB6k
+    label: include 1% seaweed in diet for cows cattle
     properties:
       dc_source: []
       schema_academicBook: []
@@ -1964,12 +2589,22 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    - mitigation
+    test ontology:
+    - test ontology
   increase in CO2:
-    classes:
+    all classes:
+    - - increase in atmospheric greenhouse gas
+      - risk
+      - test ontology
+    comment: '[]'
+    direct classes:
     - increase in atmospheric greenhouse gas
     - test ontology
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBJi2ztbJiaIwcTQTScEKNx
+    iri: webprotege.stanford.edu.RBJi2ztbJiaIwcTQTScEKNx
+    label: increase in CO2
     properties:
       dc_source:
       - https://www.eia.gov/energyexplained/coal/coal-and-the-environment.php
@@ -1997,11 +2632,20 @@ _node: &id239
       schema_video: []
       skos_definition:
       - Increase in carbon dioxide in the Earth's atmosphere.
-  increase in H2O vapor:
-    classes:
+    risk:
     - increase in atmospheric greenhouse gas
+    - risk
+    test ontology:
+    - test ontology
+  increase in H2O vapor:
+    all classes:
+    - - increase in atmospheric greenhouse gas
+      - risk
     comment: '[]'
-    individual: webprotege.stanford.edu.RscUzlKgdFQVS80E8cOyQZ
+    direct classes:
+    - increase in atmospheric greenhouse gas
+    iri: webprotege.stanford.edu.RscUzlKgdFQVS80E8cOyQZ
+    label: increase in H2O vapor
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2014,12 +2658,20 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - increase in atmospheric greenhouse gas
+    - risk
   increase in HFCs and PFCs:
-    classes:
+    all classes:
+    - - increase in atmospheric greenhouse gas
+      - risk
+      - test ontology
+    comment: '[]'
+    direct classes:
     - increase in atmospheric greenhouse gas
     - test ontology
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBoKo0n5lpo1zk2uDMdZuab
+    iri: webprotege.stanford.edu.RBoKo0n5lpo1zk2uDMdZuab
+    label: increase in HFCs and PFCs
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2033,12 +2685,27 @@ _node: &id239
       schema_video: []
       skos_definition:
       - Increase in atmospheric hydrofluorocarbons and perfluorocarbons (fluorocarbons)
+    risk:
+    - increase in atmospheric greenhouse gas
+    - risk
+    test ontology:
+    - test ontology
   increase in Lyme disease infection:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - health change
+      - communication frame
+      - effect
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - downstream negative effect
     - health change
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8L1XYnGtXh6s2DKVRE6ymu
+    iri: webprotege.stanford.edu.R8L1XYnGtXh6s2DKVRE6ymu
+    label: increase in Lyme disease infection
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2051,11 +2718,19 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
   increase in N2O:
-    classes:
-    - increase in atmospheric greenhouse gas
+    all classes:
+    - - increase in atmospheric greenhouse gas
+      - risk
     comment: '[]'
-    individual: webprotege.stanford.edu.R8ZTqebSrgr0Gg0fbTWSY3Y
+    direct classes:
+    - increase in atmospheric greenhouse gas
+    iri: webprotege.stanford.edu.R8ZTqebSrgr0Gg0fbTWSY3Y
+    label: increase in N2O
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2068,13 +2743,23 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - increase in atmospheric greenhouse gas
+    - risk
   increase in air conditioning:
-    classes:
+    all classes:
+    - - risk
+      - root cause linked to humans
+      - unmet clean energy demand
+      - adaptation
+      - risk solution
+    comment: '[]'
+    direct classes:
     - root cause linked to humans
     - adaptation
     - unmet clean energy demand
-    comment: '[]'
-    individual: webprotege.stanford.edu.R703RV857dpjFbW0mm37eW9
+    iri: webprotege.stanford.edu.R703RV857dpjFbW0mm37eW9
+    label: increase in air conditioning
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2087,12 +2772,25 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - unmet clean energy demand
+    - risk
+    - root cause linked to humans
+    risk solution:
+    - risk solution
+    - adaptation
   increase in arctic and glacier ice melted by rain:
-    classes:
+    all classes:
+    - - risk
+      - water cycle change
+      - main ice change
+      - core climate change
+    comment: '[]'
+    direct classes:
     - water cycle change
     - main ice change
-    comment: '[]'
-    individual: webprotege.stanford.edu.R9HodVa8KHkIzJV3HunJ7HC
+    iri: webprotege.stanford.edu.R9HodVa8KHkIzJV3HunJ7HC
+    label: increase in arctic and glacier ice melted by rain
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2105,8 +2803,32 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - main ice change
+    - core climate change
   increase in area burned by wildfire:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - security
+      - security societal
+      - personal value
+      - communication frame
+      - wildfire change
+      - test ontology
+      - review needed - values
+      - status - value
+      - universalism
+      - effect
+      - universalism nature
+      - universalism concern
+      - security personal
+    comment: '[]'
+    communication frame:
+    - communication frame
+    - wildfire change
+    direct classes:
     - review needed - values
     - universalism concern
     - downstream negative effect
@@ -2115,8 +2837,12 @@ _node: &id239
     - test ontology
     - security personal
     - wildfire change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RLc1ySxaRs4HWkW4m5w2Me
+    iri: webprotege.stanford.edu.RLc1ySxaRs4HWkW4m5w2Me
+    label: increase in area burned by wildfire
+    personal value:
+    - security
+    - personal value
+    - security personal
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2129,8 +2855,37 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   increase in asthma complications:
-    classes:
+    all classes:
+    - - health change
+      - security societal
+      - self-direction
+      - universalism
+      - stimulation
+      - security
+      - other negative effect from greenhouse gas emission
+      - communication frame
+      - universalism concern
+      - security personal
+      - personal value
+      - test ontology
+      - self-direction autonomy of action
+      - downstream negative effect
+      - risk
+      - approved - values
+      - status - value
+      - effect
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - other negative effect from greenhouse gas emission
     - universalism concern
     - approved - values
@@ -2141,8 +2896,11 @@ _node: &id239
     - security personal
     - health change
     - stimulation
-    comment: '[]'
-    individual: webprotege.stanford.edu.RO1J1OifvuO602qTIrSXdB
+    iri: webprotege.stanford.edu.RO1J1OifvuO602qTIrSXdB
+    label: increase in asthma complications
+    personal value:
+    - personal value
+    - stimulation
     properties:
       dc_source:
       - https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution
@@ -2160,10 +2918,16 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
-  increase in bamboo production:
-    classes:
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
     - test ontology
-    - risk solution
+  increase in bamboo production:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '["Bamboo rapidly sequesters carbon in biomass and soil and can thrive
       on degraded lands. Long-lived bamboo products can also store carbon over time.
       \nBamboo is planted on 33.52 million hectares today. We assume that it will
@@ -2176,7 +2940,11 @@ _node: &id239
       When bamboo is substituted for aluminum, concrete, plastic, or steel, there
       can be significant avoided emissions; however, these additional benefits are
       not included."]'
-    individual: webprotege.stanford.edu.RDuMXs0QujFAkNFKJHaJ3BN
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RDuMXs0QujFAkNFKJHaJ3BN
+    label: increase in bamboo production
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2190,12 +2958,21 @@ _node: &id239
       - https://drawdown.org/solutions/bamboo-production
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   increase in carbon capture:
-    classes:
+    all classes:
+    - - test ontology
+      - mitigation
+      - risk solution
+    comment: '[]'
+    direct classes:
     - test ontology
     - mitigation
-    comment: '[]'
-    individual: webprotege.stanford.edu.RDaR05qkCxdbQERBFVfmfFU
+    iri: webprotege.stanford.edu.RDaR05qkCxdbQERBFVfmfFU
+    label: increase in carbon capture
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2208,12 +2985,27 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    - mitigation
+    test ontology:
+    - test ontology
   increase in cholera infections:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - health change
+      - communication frame
+      - effect
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - downstream negative effect
     - health change
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8xnqMTv1FH2zTsQT4ckrRi
+    iri: webprotege.stanford.edu.R8xnqMTv1FH2zTsQT4ckrRi
+    label: increase in cholera infections
     properties:
       dc_source:
       - https://www.ajtmh.org/content/journals/10.4269/ajtmh.2009.80.640
@@ -2228,11 +3020,19 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
   increase in cholera vaccines:
-    classes:
-    - adaptation
+    all classes:
+    - - adaptation
+      - risk solution
     comment: '[]'
-    individual: webprotege.stanford.edu.RDUpv4M8PM4HOKbZuVIB8tT
+    direct classes:
+    - adaptation
+    iri: webprotege.stanford.edu.RDUpv4M8PM4HOKbZuVIB8tT
+    label: increase in cholera vaccines
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2245,15 +3045,31 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    - adaptation
   increase in climate refugees:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - health change
+      - communication frame
+      - national security change
+      - effect
+      - agriculture change
+      - economic change
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - downstream negative effect
     - economic change
     - agriculture change
     - national security change
     - health change
-    comment: '[]'
-    individual: webprotege.stanford.edu.R90voMtk6xBMoARwvKc2wuy
+    iri: webprotege.stanford.edu.R90voMtk6xBMoARwvKc2wuy
+    label: increase in climate refugees
     properties:
       dc_source:
       - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
@@ -2271,10 +3087,14 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
   increase in conservation agriculture:
-    classes:
-    - test ontology
-    - risk solution
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Conservation agriculture uses cover crops, crop rotation, and minimal
       tilling in the production of annual crops. It protects soil, avoids emissions,
       and sequesters carbon. \nBased on historic growth on large farming operations,
@@ -2290,7 +3110,11 @@ _node: &id239
       tons of carbon per hectare per year, depending on region. Establishment costs
       are low at $91.9-65.2 billion with a lifetime operational savings of $2.8-1.9
       trillion and lifetime net profit of $113.1-77.7 billion.'']'
-    individual: webprotege.stanford.edu.R9asiFQ7bVkymcqkQyMOpXn
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.R9asiFQ7bVkymcqkQyMOpXn
+    label: increase in conservation agriculture
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2304,14 +3128,33 @@ _node: &id239
       - https://drawdown.org/solutions/plant-rich-diets
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   increase in coral bleaching and destruction:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - personal value
+      - approved - values
+      - test ontology
+      - status - value
+      - universalism
+      - effect
+      - universalism nature
+    comment: '[]'
+    direct classes:
     - approved - values
     - downstream negative effect
     - universalism nature
     - test ontology
-    comment: '[]'
-    individual: webprotege.stanford.edu.R9x3oCu22QJK9ebw5xL7NvB
+    iri: webprotege.stanford.edu.R9x3oCu22QJK9ebw5xL7NvB
+    label: increase in coral bleaching and destruction
+    personal value:
+    - universalism
+    - universalism nature
+    - personal value
     properties:
       dc_source:
       - https://www.facebook.com/watch/?v=10156746453050024
@@ -2330,15 +3173,33 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   increase in death:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - health change
+      - other negative effect from greenhouse gas emission
+      - communication frame
+      - effect
+      - other negative effect from root cause
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - other negative effect from greenhouse gas emission
     - downstream negative effect
     - health change
     - other negative effect from root cause
     - effect
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8VWiAcECOGFY5bloP4988I
+    iri: webprotege.stanford.edu.R8VWiAcECOGFY5bloP4988I
+    label: increase in death
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2351,12 +3212,20 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
   increase in deforestation:
-    classes:
+    all classes:
+    - - risk
+      - core climate change
+      - main land change
+    comment: '[]'
+    direct classes:
     - core climate change
     - main land change
-    comment: '[]'
-    individual: webprotege.stanford.edu.R9ah7PByb0OgSOa90WQQdjc
+    iri: webprotege.stanford.edu.R9ah7PByb0OgSOa90WQQdjc
+    label: increase in deforestation
     properties:
       dc_source:
       - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
@@ -2371,16 +3240,42 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - main land change
+    - risk
+    - core climate change
   increase in destruction to US military bases:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - security
+      - security societal
+      - personal value
+      - approved - values
+      - communication frame
+      - power dominance
+      - test ontology
+      - status - value
+      - frame uncategorized (to do)
+      - effect
+      - power
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - approved - values
     - downstream negative effect
     - frame uncategorized (to do)
     - security societal
     - test ontology
     - power dominance
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8uV2oTMZHslQ6qiGWJ8OQO
+    iri: webprotege.stanford.edu.R8uV2oTMZHslQ6qiGWJ8OQO
+    label: increase in destruction to US military bases
+    personal value:
+    - power dominance
+    - power
+    - personal value
     properties:
       dc_source:
       - https://www.capitalgazette.com/environment/ac-cn-proceedings-except-20191013-43rodczawne7ziviweim72cvmq-story.html
@@ -2399,8 +3294,34 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   increase in disaster costs:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - security
+      - security societal
+      - hedonism
+      - personal value
+      - approved - values
+      - communication frame
+      - test ontology
+      - status - value
+      - power
+      - effect
+      - frame uncategorized (to do)
+      - power resources
+      - security personal
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - approved - values
     - downstream negative effect
     - power resources
@@ -2409,8 +3330,11 @@ _node: &id239
     - test ontology
     - security personal
     - hedonism
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8JoXNnKTYqERwU7fblKTWB
+    iri: webprotege.stanford.edu.R8JoXNnKTYqERwU7fblKTWB
+    label: increase in disaster costs
+    personal value:
+    - personal value
+    - hedonism
     properties:
       dc_source:
       - https://amp.theguardian.com/commentisfree/2019/sep/04/climate-crisis-hurricane-dorian-floods-bahamas
@@ -2428,8 +3352,37 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   increase in disproportionate effects on children:
-    classes:
+    all classes:
+    - - security societal
+      - universalism
+      - frame uncategorized (to do)
+      - security
+      - other negative effect from greenhouse gas emission
+      - communication frame
+      - universalism concern
+      - security personal
+      - personal value
+      - benevolence
+      - benevolence caring
+      - test ontology
+      - other negative effect from root cause
+      - downstream negative effect
+      - risk
+      - approved - values
+      - status - value
+      - effect
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - other negative effect from greenhouse gas emission
     - universalism concern
     - approved - values
@@ -2440,8 +3393,12 @@ _node: &id239
     - test ontology
     - security personal
     - other negative effect from root cause
-    comment: '[]'
-    individual: webprotege.stanford.edu.RB7k7p2iQQgKdQrkRP2MZWM
+    iri: webprotege.stanford.edu.RB7k7p2iQQgKdQrkRP2MZWM
+    label: increase in disproportionate effects on children
+    personal value:
+    - security
+    - personal value
+    - security personal
     properties:
       dc_source:
       - https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution
@@ -2457,8 +3414,32 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - other negative effect from root cause
+    test ontology:
+    - test ontology
   increase in disproportionate effects on minority groups:
-    classes:
+    all classes:
+    - - justice change
+      - risk
+      - security
+      - security societal
+      - personal value
+      - risk or effect uncategorized (to do)
+      - communication frame
+      - review needed - values
+      - status - value
+      - universalism
+      - test ontology
+      - universalism concern
+      - security personal
+    comment: '[]'
+    communication frame:
+    - communication frame
+    - justice change
+    direct classes:
     - review needed - values
     - universalism concern
     - risk or effect uncategorized (to do)
@@ -2466,8 +3447,12 @@ _node: &id239
     - security societal
     - test ontology
     - security personal
-    comment: '[]'
-    individual: webprotege.stanford.edu.Ra98BRMZ0HlUpobb3Z0C5r
+    iri: webprotege.stanford.edu.Ra98BRMZ0HlUpobb3Z0C5r
+    label: increase in disproportionate effects on minority groups
+    personal value:
+    - security
+    - personal value
+    - security personal
     properties:
       dc_source:
       - https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma
@@ -2482,15 +3467,33 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk or effect uncategorized (to do)
+    - risk
+    test ontology:
+    - test ontology
   increase in environmental migrants:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - health change
+      - communication frame
+      - national security change
+      - effect
+      - agriculture change
+      - economic change
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - downstream negative effect
     - economic change
     - agriculture change
     - national security change
     - health change
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8znJBKduM7l8XDXMalSWSl
+    iri: webprotege.stanford.edu.R8znJBKduM7l8XDXMalSWSl
+    label: increase in environmental migrants
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2503,12 +3506,22 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
   increase in evaporation:
-    classes:
+    all classes:
+    - - risk
+      - water cycle change
+      - test ontology
+      - core climate change
+    comment: '[]'
+    direct classes:
     - test ontology
     - water cycle change
-    comment: '[]'
-    individual: webprotege.stanford.edu.R7zeFSAP7x3PT5rG0i1BLVe
+    iri: webprotege.stanford.edu.R7zeFSAP7x3PT5rG0i1BLVe
+    label: increase in evaporation
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2524,11 +3537,22 @@ _node: &id239
       - https://eos.org/research-spotlights/extreme-precipitation-expected-to-increase-with-warming-planet
       schema_video: []
       skos_definition: []
+    risk:
+    - water cycle change
+    - risk
+    - core climate change
+    test ontology:
+    - test ontology
   increase in extreme precipitation:
-    classes:
-    - main variability change
+    all classes:
+    - - main variability change
+      - risk
+      - core climate change
     comment: '[]'
-    individual: webprotege.stanford.edu.R1d2BVvduMHLTUVxQ9qdpd
+    direct classes:
+    - main variability change
+    iri: webprotege.stanford.edu.R1d2BVvduMHLTUVxQ9qdpd
+    label: increase in extreme precipitation
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2541,8 +3565,30 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - main variability change
+    - risk
+    - core climate change
   increase in flooding of land and property:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - security
+      - security societal
+      - benevolence dependability
+      - personal value
+      - benevolence
+      - review needed - values
+      - benevolence caring
+      - status - value
+      - universalism
+      - effect
+      - universalism nature
+      - universalism concern
+      - test ontology
+      - security personal
+    comment: '[]'
+    direct classes:
     - review needed - values
     - universalism concern
     - downstream negative effect
@@ -2552,8 +3598,12 @@ _node: &id239
     - test ontology
     - benevolence dependability
     - security personal
-    comment: '[]'
-    individual: webprotege.stanford.edu.RnbPKhyIQNnShkRKHqGrGm
+    iri: webprotege.stanford.edu.RnbPKhyIQNnShkRKHqGrGm
+    label: increase in flooding of land and property
+    personal value:
+    - security
+    - personal value
+    - security personal
     properties:
       dc_source:
       - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
@@ -2571,12 +3621,24 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   increase in frequency of heatwaves:
-    classes:
+    all classes:
+    - - risk
+      - main variability change
+      - test ontology
+      - core climate change
+    comment: '[]'
+    direct classes:
     - main variability change
     - test ontology
-    comment: '[]'
-    individual: webprotege.stanford.edu.RJAL6Zu9F3EHB35HCs3cYD
+    iri: webprotege.stanford.edu.RJAL6Zu9F3EHB35HCs3cYD
+    label: increase in frequency of heatwaves
     properties:
       dc_source:
       - https://blog.ucsusa.org/kristy-dahl/military-extreme-heat
@@ -2605,12 +3667,24 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - main variability change
+    - risk
+    - core climate change
+    test ontology:
+    - test ontology
   increase in frequency of warm days and nights:
-    classes:
+    all classes:
+    - - risk
+      - main variability change
+      - test ontology
+      - core climate change
+    comment: '[]'
+    direct classes:
     - main variability change
     - test ontology
-    comment: '[]'
-    individual: webprotege.stanford.edu.RDudF9SBo28CKqKpRN9poYL
+    iri: webprotege.stanford.edu.RDudF9SBo28CKqKpRN9poYL
+    label: increase in frequency of warm days and nights
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2632,12 +3706,24 @@ _node: &id239
       - https://www.psychologicalscience.org/observer/global-warming-and-violent-behavior
       schema_video: []
       skos_definition: []
+    risk:
+    - main variability change
+    - risk
+    - core climate change
+    test ontology:
+    - test ontology
   increase in freshwater added to ocean:
-    classes:
+    all classes:
+    - - risk
+      - water cycle change
+      - main ocean change
+      - core climate change
+    comment: '[]'
+    direct classes:
     - water cycle change
     - main ocean change
-    comment: '[]'
-    individual: webprotege.stanford.edu.R7UaBVCzh2O54oDnVl30shn
+    iri: webprotege.stanford.edu.R7UaBVCzh2O54oDnVl30shn
+    label: increase in freshwater added to ocean
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2650,12 +3736,21 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main ocean change
   increase in funding for suicide prevention:
-    classes:
+    all classes:
+    - - test ontology
+      - adaptation
+      - risk solution
+    comment: '[]'
+    direct classes:
     - test ontology
     - adaptation
-    comment: '[]'
-    individual: webprotege.stanford.edu.RCkLLIxnjRrEwqFDLGw9Phk
+    iri: webprotege.stanford.edu.RCkLLIxnjRrEwqFDLGw9Phk
+    label: increase in funding for suicide prevention
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2668,14 +3763,31 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    - adaptation
+    test ontology:
+    - test ontology
   increase in goats clearing brush:
-    classes:
+    all classes:
+    - - status - source etc
+      - communication frame
+      - not finished - sources etc
+      - adaptation
+      - frame uncategorized (to do)
+      - test ontology
+      - risk solution
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - frame uncategorized (to do)
     - test ontology
     - not finished - sources etc
     - adaptation
-    comment: '[]'
-    individual: webprotege.stanford.edu.R9LbmQn2lAubsJN4nR1Sqzo
+    iri: webprotege.stanford.edu.R9LbmQn2lAubsJN4nR1Sqzo
+    label: increase in goats clearing brush
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2688,11 +3800,19 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
-  increase in greenhouse effect:
-    classes:
+    risk solution:
+    - risk solution
+    - adaptation
+    test ontology:
     - test ontology
+  increase in greenhouse effect:
+    all classes:
+    - - test ontology
     comment: '[]'
-    individual: webprotege.stanford.edu.R8tO6zSdeJRRUSPaznZIbKU
+    direct classes:
+    - test ontology
+    iri: webprotege.stanford.edu.R8tO6zSdeJRRUSPaznZIbKU
+    label: increase in greenhouse effect
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2705,12 +3825,19 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    test ontology:
+    - test ontology
   increase in ground-level ozone:
-    classes:
+    all classes:
+    - - risk
+      - downstream negative effect
+      - effect
+    comment: '[]'
+    direct classes:
     - downstream negative effect
     - effect
-    comment: '[]'
-    individual: webprotege.stanford.edu.R53XvTdJg0OnBAgtt0ldAm
+    iri: webprotege.stanford.edu.R53XvTdJg0OnBAgtt0ldAm
+    label: increase in ground-level ozone
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2725,8 +3852,32 @@ _node: &id239
       - https://www.climatecentral.org/news/climate-change-is-threatening-air-quality-across-the-country-2019
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
   increase in health costs:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - hedonism
+      - self-direction
+      - personal value
+      - approved - values
+      - other negative effect from greenhouse gas emission
+      - communication frame
+      - test ontology
+      - other negative effect from root cause
+      - status - value
+      - universalism
+      - effect
+      - frame uncategorized (to do)
+      - universalism concern
+      - self-direction autonomy of action
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - other negative effect from greenhouse gas emission
     - universalism concern
     - approved - values
@@ -2736,8 +3887,11 @@ _node: &id239
     - test ontology
     - hedonism
     - other negative effect from root cause
-    comment: '[]'
-    individual: webprotege.stanford.edu.R7pS7MtLuEDp8HhEyf1VtOE
+    iri: webprotege.stanford.edu.R7pS7MtLuEDp8HhEyf1VtOE
+    label: increase in health costs
+    personal value:
+    - personal value
+    - hedonism
     properties:
       dc_source:
       - https://www.nrdc.org/sites/default/files/accountingcosts.pdf
@@ -2752,16 +3906,44 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - other negative effect from root cause
+    test ontology:
+    - test ontology
   increase in heat stroke in marine corps:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - security
+      - security societal
+      - personal value
+      - approved - values
+      - communication frame
+      - national security change
+      - test ontology
+      - power dominance
+      - status - value
+      - power
+      - effect
+    comment: '[]'
+    communication frame:
+    - national security change
+    - communication frame
+    direct classes:
     - approved - values
     - downstream negative effect
     - security societal
     - national security change
     - test ontology
     - power dominance
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBqibfoxaYmRDDRiBzSVS0N
+    iri: webprotege.stanford.edu.RBqibfoxaYmRDDRiBzSVS0N
+    label: increase in heat stroke in marine corps
+    personal value:
+    - power dominance
+    - power
+    - personal value
     properties:
       dc_source:
       - https://blog.ucsusa.org/kristy-dahl/military-extreme-heat
@@ -2776,12 +3958,24 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   increase in hurricane strength:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - effect
+      - test ontology
+    comment: '[]'
+    direct classes:
     - downstream negative effect
     - test ontology
-    comment: '[]'
-    individual: webprotege.stanford.edu.RcIHdxpjQwjr8EG8yMhEYV
+    iri: webprotege.stanford.edu.RcIHdxpjQwjr8EG8yMhEYV
+    label: increase in hurricane strength
     properties:
       dc_source:
       - http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155
@@ -2811,8 +4005,34 @@ _node: &id239
       schema_video:
       - https://www.youtube.com/watch?v=RZ-DCyP1RBc
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   increase in lung cancer:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - security
+      - health change
+      - security societal
+      - personal value
+      - approved - values
+      - other negative effect from greenhouse gas emission
+      - communication frame
+      - test ontology
+      - status - value
+      - universalism
+      - effect
+      - universalism concern
+      - security personal
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - other negative effect from greenhouse gas emission
     - universalism concern
     - approved - values
@@ -2821,8 +4041,12 @@ _node: &id239
     - test ontology
     - security personal
     - health change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RB6zclWNN2qJW6OSyWjyfFz
+    iri: webprotege.stanford.edu.RB6zclWNN2qJW6OSyWjyfFz
+    label: increase in lung cancer
+    personal value:
+    - security
+    - personal value
+    - security personal
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2836,10 +4060,16 @@ _node: &id239
       - https://www.cancer.org/latest-news/world-health-organization-outdoor-air-pollution-causes-cancer.html
       schema_video: []
       skos_definition: []
-  increase in managed grazing:
-    classes:
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
     - test ontology
-    - risk solution
+  increase in managed grazing:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Managed grazing involves carefully controlling livestock density
       and timing and intensity of grazing. Compared with conventional pasture practices,
       it can improve the health of grassland soils, sequestering carbon. By enhancing
@@ -2850,7 +4080,11 @@ _node: &id239
       million hectares to 502.1-749.02 million hectares over thirty years. Financial
       lifetime returns are $2.1-3.4 trillion for net profit and 640.8-1010.8 billion
       for lifetime operational cost, on a $33.6-52.9 billion initial investment.'']'
-    individual: webprotege.stanford.edu.R8oAxwMu8mlvB2RXEW9dVDm
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.R8oAxwMu8mlvB2RXEW9dVDm
+    label: increase in managed grazing
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2864,12 +4098,22 @@ _node: &id239
       - https://drawdown.org/solutions/managed-grazing
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   increase in marine heatwaves:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - effect
+      - test ontology
+    comment: '[]'
+    direct classes:
     - downstream negative effect
     - test ontology
-    comment: '[]'
-    individual: webprotege.stanford.edu.R1kRDiL29pcyXoNOkHduKB
+    iri: webprotege.stanford.edu.R1kRDiL29pcyXoNOkHduKB
+    label: increase in marine heatwaves
     properties:
       dc_source:
       - https://www.sciencenewsforstudents.org/article/ocean-heat-waves-are-rise-and-killing-coral
@@ -2883,12 +4127,23 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   increase in methane (CH4):
-    classes:
+    all classes:
+    - - increase in atmospheric greenhouse gas
+      - risk
+      - test ontology
+    comment: '[]'
+    direct classes:
     - increase in atmospheric greenhouse gas
     - test ontology
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBQIDI6zYf94WmhdxbT6WQ3
+    iri: webprotege.stanford.edu.RBQIDI6zYf94WmhdxbT6WQ3
+    label: increase in methane (CH4)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2902,10 +4157,15 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
-  increase in multistrata agroforestry:
-    classes:
+    risk:
+    - increase in atmospheric greenhouse gas
+    - risk
+    test ontology:
     - test ontology
-    - risk solution
+  increase in multistrata agroforestry:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Multistrata agroforestry systems mimic natural forests in structure.
       Multiple layers of trees and crops achieve high rates of both carbon sequestration
       and food production. Multistrata agroforestry can be integrated into some existing
@@ -2915,7 +4175,11 @@ _node: &id239
       rate of 4.45 tons of carbon per hectare per year is strong, as is financial
       return: $1.7-3 trillion lifetime, on a $54-92 billion initial investment and
       lifetime operational cost of $142.9-245.4.'']'
-    individual: webprotege.stanford.edu.R8fP9mjl5SFWS1C4cgTogFw
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.R8fP9mjl5SFWS1C4cgTogFw
+    label: increase in multistrata agroforestry
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2929,12 +4193,22 @@ _node: &id239
       - https://drawdown.org/solutions/multistrata-agroforestry
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   increase in ocean surface temperature:
-    classes:
+    all classes:
+    - - risk
+      - main ocean change
+      - test ontology
+      - core climate change
+    comment: '[]'
+    direct classes:
     - test ontology
     - main ocean change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RCDZl2bsYh3B1YlJUL7nRcM
+    iri: webprotege.stanford.edu.RCDZl2bsYh3B1YlJUL7nRcM
+    label: increase in ocean surface temperature
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2947,10 +4221,16 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
-  increase in perennial staple crops:
-    classes:
+    risk:
+    - risk
+    - core climate change
+    - main ocean change
+    test ontology:
     - test ontology
-    - risk solution
+  increase in perennial staple crops:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['Perennial staple crops provide important foods, such as bananas, avocado,\
       \ and breadfruit. Compared to annual crops, they have similar yields but higher\
       \ rates of carbon sequestration. Perennial staple crops currently grow on approximately\
@@ -2962,7 +4242,11 @@ _node: &id239
       \ staples\u2014at 60 percent of the cost\u2014savings are significant ranging\
       \ from $1.4-3.3 trillion, with an establishment cost of $83-190 billion and\
       \ lifetime operational cost of $848-1922 billion.']"
-    individual: webprotege.stanford.edu.Rogalh6vEmPn4UqI4lP2FL
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.Rogalh6vEmPn4UqI4lP2FL
+    label: increase in perennial staple crops
     properties:
       dc_source: []
       schema_academicBook: []
@@ -2976,8 +4260,30 @@ _node: &id239
       - https://drawdown.org/solutions/perennial-staple-crops
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   increase in physical violence:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - security
+      - conformity rules
+      - security societal
+      - hedonism
+      - self-direction
+      - personal value
+      - conformity
+      - approved - values
+      - test ontology
+      - status - value
+      - effect
+      - security personal
+      - self-direction autonomy of action
+      - conformity interpersonal
+    comment: '[]'
+    direct classes:
     - approved - values
     - downstream negative effect
     - self-direction autonomy of action
@@ -2987,8 +4293,12 @@ _node: &id239
     - conformity rules
     - hedonism
     - conformity interpersonal
-    comment: '[]'
-    individual: webprotege.stanford.edu.RDavliTi6W93xwahwtUnUtG
+    iri: webprotege.stanford.edu.RDavliTi6W93xwahwtUnUtG
+    label: increase in physical violence
+    personal value:
+    - conformity interpersonal
+    - personal value
+    - conformity
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3003,11 +4313,22 @@ _node: &id239
       - https://www.psychologicalscience.org/observer/global-warming-and-violent-behavior
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   increase in pollen released by plants:
-    classes:
-    - other negative effect from greenhouse gas emission
+    all classes:
+    - - other negative effect from greenhouse gas emission
+      - risk
+      - effect
     comment: '[]'
-    individual: webprotege.stanford.edu.RDz5mIeKH8dVyDEr7S7wE3
+    direct classes:
+    - other negative effect from greenhouse gas emission
+    iri: webprotege.stanford.edu.RDz5mIeKH8dVyDEr7S7wE3
+    label: increase in pollen released by plants
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3020,12 +4341,22 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - other negative effect from greenhouse gas emission
+    - risk
   increase in rain (and snow if cold enough) (precipitation):
-    classes:
+    all classes:
+    - - risk
+      - water cycle change
+      - test ontology
+      - core climate change
+    comment: '[]'
+    direct classes:
     - test ontology
     - water cycle change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBHHvT6sX3QbfYU2JlLhT5E
+    iri: webprotege.stanford.edu.RBHHvT6sX3QbfYU2JlLhT5E
+    label: increase in rain (and snow if cold enough) (precipitation)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3039,10 +4370,16 @@ _node: &id239
       - https://eos.org/research-spotlights/extreme-precipitation-expected-to-increase-with-warming-planet
       schema_video: []
       skos_definition: []
-  increase in regenerative annual cropping:
-    classes:
+    risk:
+    - water cycle change
+    - risk
+    - core climate change
+    test ontology:
     - test ontology
-    - risk solution
+  increase in regenerative annual cropping:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Building on conservation agriculture with additional practices, regenerative
       annual cropping can include compost application, green manure, and organic production.
       It reduces emissions, increases soil organic matter, and sequesters carbon.
@@ -3055,7 +4392,11 @@ _node: &id239
       and reduced emissions. Regenerative annual cropping could provide a $2.3-3.5
       trillion lifetime operational cost savings and lifetime net profit gain of $135-206
       billion on an investment of $79-116 billion.'']'
-    individual: webprotege.stanford.edu.Rew83THb8xDe4QJVYuuf8M
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.Rew83THb8xDe4QJVYuuf8M
+    label: increase in regenerative annual cropping
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3069,12 +4410,22 @@ _node: &id239
       - https://drawdown.org/solutions/regenerative-annual-cropping
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   increase in release of N2O and CH4 greenhouse gases:
-    classes:
+    all classes:
+    - - risk
+      - main ocean change
+      - feedback loop
+      - core climate change
+    comment: '[]'
+    direct classes:
     - feedback loop
     - main ocean change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RPRQOAoTZgGhrsmVpnIIrn
+    iri: webprotege.stanford.edu.RPRQOAoTZgGhrsmVpnIIrn
+    label: increase in release of N2O and CH4 greenhouse gases
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3087,10 +4438,14 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main ocean change
   increase in restoration of abandoned farmland:
-    classes:
-    - test ontology
-    - risk solution
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Degraded farmland is often abandoned, but need not be. Restoration
       can bring these lands back into productivity and sequester carbon in the process.
       Currently, 0.4 billion hectares of farmland have been abandoned due to land
@@ -3100,7 +4455,11 @@ _node: &id239
       dioxide. This solution could provide a lifetime net profit of $2.6-4.3 trillion
       with an initial investment of $98-160 billion and lifetime operational cost
       of $3-5 trillion, while producing an additional 9.2-15 billion tons of food.'']'
-    individual: webprotege.stanford.edu.R7ulwwwhiWzwZBpdI7t5Z1F
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.R7ulwwwhiWzwZBpdI7t5Z1F
+    label: increase in restoration of abandoned farmland
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3114,10 +4473,14 @@ _node: &id239
       - https://drawdown.org/solutions/abandoned-farmland-restoration
       schema_video: []
       skos_definition: []
-  increase in restoration of temperate forests:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  increase in restoration of temperate forests:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['Almost all temperate forests have been altered in some way\u2014timbered,\
       \ converted to agriculture, disrupted by development. Restoring them sequesters\
       \ carbon in biomass and soil. Project Drawdown projects that temperate forest\
@@ -3125,7 +4488,11 @@ _node: &id239
       \ currently degraded land and allowing natural regrowth to occur. Though this\
       \ is much lower than the available area for tropical forest restoration, it\
       \ still sequesters 19.4-27.9 gigatons of carbon dioxide by 2050.']"
-    individual: webprotege.stanford.edu.RDXACa7DGh7OTyB1o1roCZO
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RDXACa7DGh7OTyB1o1roCZO
+    label: increase in restoration of temperate forests
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3139,8 +4506,31 @@ _node: &id239
       - https://drawdown.org/solutions/temperate-forest-restoration
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   increase in risk of heart attack:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - security
+      - health change
+      - security societal
+      - personal value
+      - approved - values
+      - communication frame
+      - test ontology
+      - status - value
+      - universalism
+      - effect
+      - universalism concern
+      - security personal
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - universalism concern
     - approved - values
     - downstream negative effect
@@ -3148,8 +4538,12 @@ _node: &id239
     - test ontology
     - security personal
     - health change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RzalB19SQSGGVxprHL33Ik
+    iri: webprotege.stanford.edu.RzalB19SQSGGVxprHL33Ik
+    label: increase in risk of heart attack
+    personal value:
+    - security
+    - personal value
+    - security personal
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3163,12 +4557,28 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   increase in risk of stomach cancer:
-    classes:
+    all classes:
+    - - risk
+      - health change
+      - communication frame
+      - effect
+      - other negative effect from root cause
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - health change
     - other negative effect from root cause
-    comment: '[]'
-    individual: webprotege.stanford.edu.RJNGfc0g7HO0V3kCM2R8bA
+    iri: webprotege.stanford.edu.RJNGfc0g7HO0V3kCM2R8bA
+    label: increase in risk of stomach cancer
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3181,8 +4591,31 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - other negative effect from root cause
   increase in risk of stroke:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - security
+      - health change
+      - security societal
+      - personal value
+      - approved - values
+      - communication frame
+      - test ontology
+      - status - value
+      - universalism
+      - effect
+      - universalism concern
+      - security personal
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - universalism concern
     - approved - values
     - downstream negative effect
@@ -3190,8 +4623,12 @@ _node: &id239
     - test ontology
     - security personal
     - health change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RrH4kPiYwZ0tSRSz4lnaYW
+    iri: webprotege.stanford.edu.RrH4kPiYwZ0tSRSz4lnaYW
+    label: increase in risk of stroke
+    personal value:
+    - security
+    - personal value
+    - security personal
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3204,12 +4641,25 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   increase in sea level rise:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - main ocean change
+      - effect
+      - core climate change
+    comment: '[]'
+    direct classes:
     - downstream negative effect
     - main ocean change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RC908yZ4NQO8OtHHyOhBgj
+    iri: webprotege.stanford.edu.RC908yZ4NQO8OtHHyOhBgj
+    label: increase in sea level rise
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3222,11 +4672,20 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main ocean change
   increase in sexual violence:
-    classes:
-    - downstream negative effect
+    all classes:
+    - - risk
+      - downstream negative effect
+      - effect
     comment: '[]'
-    individual: webprotege.stanford.edu.RtcWDD6Pcr6vIrMhOObmOE
+    direct classes:
+    - downstream negative effect
+    iri: webprotege.stanford.edu.RtcWDD6Pcr6vIrMhOObmOE
+    label: increase in sexual violence
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3240,10 +4699,14 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
   increase in silvopasture:
-    classes:
-    - test ontology
-    - risk solution
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['An agroforestry practice, silvopasture integrates trees, pasture,\
       \ and forage into a single system. Incorporating trees improves land health\
       \ and significantly increases carbon sequestration. Project Drawdown estimates\
@@ -3255,7 +4718,11 @@ _node: &id239
       \ per year in soil and biomass. Farmers could realize financial gains from revenue\
       \ diversification of $1.7-2.3 trillion, on investment of $206-273 billion and\
       \ lifetime operational cost of $2-3 trillion to implement.']"
-    individual: webprotege.stanford.edu.RDtjtNVivtpYdE8v55DyKrG
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RDtjtNVivtpYdE8v55DyKrG
+    label: increase in silvopasture
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3269,8 +4736,36 @@ _node: &id239
       - https://drawdown.org/solutions/silvopasture
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   increase in suicide:
-    classes:
+    all classes:
+    - - health change
+      - security societal
+      - universalism
+      - frame uncategorized (to do)
+      - tradition
+      - security
+      - communication frame
+      - universalism concern
+      - security personal
+      - personal value
+      - benevolence
+      - benevolence caring
+      - test ontology
+      - downstream negative effect
+      - risk
+      - approved - values
+      - status - value
+      - effect
+      - mental health change
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - universalism concern
     - approved - values
     - downstream negative effect
@@ -3281,8 +4776,11 @@ _node: &id239
     - test ontology
     - security personal
     - tradition
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8t0oNsG3WgnupXsBVSjMHZ
+    iri: webprotege.stanford.edu.R8t0oNsG3WgnupXsBVSjMHZ
+    label: increase in suicide
+    personal value:
+    - personal value
+    - tradition
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3297,15 +4795,39 @@ _node: &id239
       - https://news.stanford.edu/2019/03/29/effects-climate-change-suicide-rates
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   increase in temperature of work environment:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - personal value
+      - status - source etc
+      - value uncategorized (to do)
+      - communication frame
+      - not finished - sources etc
+      - test ontology
+      - frame uncategorized (to do)
+      - effect
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - downstream negative effect
     - frame uncategorized (to do)
     - value uncategorized (to do)
     - test ontology
     - not finished - sources etc
-    comment: '[]'
-    individual: webprotege.stanford.edu.RpOmwCPDUgT3EfGsy4qV4B
+    iri: webprotege.stanford.edu.RpOmwCPDUgT3EfGsy4qV4B
+    label: increase in temperature of work environment
+    personal value:
+    - personal value
+    - value uncategorized (to do)
     properties:
       dc_source:
       - https://www.one-tab.com/page/M4YO-jl3TCeMqMR590Bosg
@@ -3319,11 +4841,22 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
-  increase in tick winter survival:
-    classes:
+    risk:
+    - effect
+    - risk
     - downstream negative effect
+    test ontology:
+    - test ontology
+  increase in tick winter survival:
+    all classes:
+    - - risk
+      - downstream negative effect
+      - effect
     comment: '[]'
-    individual: webprotege.stanford.edu.RC1gWVzE8Q4jhyI84rXxuh8
+    direct classes:
+    - downstream negative effect
+    iri: webprotege.stanford.edu.RC1gWVzE8Q4jhyI84rXxuh8
+    label: increase in tick winter survival
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3336,13 +4869,24 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
   increase in toxic air pollutants (air pollution):
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - effect
+      - test ontology
+      - other negative effect from root cause
+    comment: '[]'
+    direct classes:
     - downstream negative effect
     - test ontology
     - other negative effect from root cause
-    comment: '[]'
-    individual: webprotege.stanford.edu.R9vkBr0EApzeMGfa0rJGo9G
+    iri: webprotege.stanford.edu.R9vkBr0EApzeMGfa0rJGo9G
+    label: increase in toxic air pollutants (air pollution)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3359,10 +4903,16 @@ _node: &id239
       - https://www.climatecentral.org/news/climate-change-is-threatening-air-quality-across-the-country-2019
       schema_video: []
       skos_definition: []
-  increase in tree intercropping:
-    classes:
+    risk:
+    - effect
+    - risk
+    - other negative effect from root cause
+    test ontology:
     - test ontology
-    - risk solution
+  increase in tree intercropping:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Growing trees and annual crops together is a form of agroforestry.
       Tree intercropping practices vary, but all increase biomass, soil organic matter,
       and carbon sequestration. Accounting for different sequestration rates across
@@ -3372,7 +4922,11 @@ _node: &id239
       globally. On an initial investment of $147-227 billion and lifetime operational
       costs of $698-1080 billion, the potential profit, inclusive of those costs,
       could be as high as $262-428 billion.'']'
-    individual: webprotege.stanford.edu.R9JRAY46e14dxAkfDjQdqgw
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.R9JRAY46e14dxAkfDjQdqgw
+    label: increase in tree intercropping
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3386,10 +4940,14 @@ _node: &id239
       - https://drawdown.org/solutions/tree-intercropping
       schema_video: []
       skos_definition: []
-  increase in tree plantations (on degraded land):
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  increase in tree plantations (on degraded land):
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Degraded lands present potential locations for tree plantations.
       Managed well, they can restore soil, sequester carbon, and produce wood resources
       in a more sustainable way. As of 2018, 294.1 million hectares of land were used
@@ -3400,7 +4958,11 @@ _node: &id239
       system. At an initial cost of cost of $17-72 billion and lifetime operational
       cost of $164.8-259.5 billion to implement, this additional area of timber plantations
       could produce a lifetime net profit of $2.1-3.4 trillion.'']'
-    individual: webprotege.stanford.edu.RDsBA6sw2PNZOr6WuF0MvpQ
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RDsBA6sw2PNZOr6WuF0MvpQ
+    label: increase in tree plantations (on degraded land)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3414,10 +4976,14 @@ _node: &id239
       - https://drawdown.org/solutions/tree-plantations-on-degraded-land
       schema_video: []
       skos_definition: []
-  increase in tropical forest restoration:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  increase in tropical forest restoration:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Tropical forests have suffered extensive clearing, fragmentation,
       degradation, and depletion of biodiversity. Restoring these forests also restores
       their function as carbon sinks. It is estimated that 287 million hectares of
@@ -3428,7 +4994,11 @@ _node: &id239
       and allowing natural regrowth occur, committed land could sequester 1.4 tons
       of carbon dioxide per acre annually, for a total of 54.5-85.1 gigatons of carbon
       dioxide by 2050.'']'
-    individual: webprotege.stanford.edu.RBC1YyRghNLYujOkJxKOxPM
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RBC1YyRghNLYujOkJxKOxPM
+    label: increase in tropical forest restoration
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3442,12 +5012,22 @@ _node: &id239
       - https://drawdown.org/solutions/tropical-forest-restoration
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   increase in vegetation during wet season:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - effect
+      - test ontology
+    comment: '[]'
+    direct classes:
     - downstream negative effect
     - test ontology
-    comment: '[]'
-    individual: webprotege.stanford.edu.R4g51Eq3Q7uVWg9V5F5BTC
+    iri: webprotege.stanford.edu.R4g51Eq3Q7uVWg9V5F5BTC
+    label: increase in vegetation during wet season
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3460,15 +5040,39 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   increase in worker absenteeism:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - personal value
+      - status - source etc
+      - value uncategorized (to do)
+      - communication frame
+      - not finished - sources etc
+      - test ontology
+      - frame uncategorized (to do)
+      - effect
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - downstream negative effect
     - frame uncategorized (to do)
     - value uncategorized (to do)
     - test ontology
     - not finished - sources etc
-    comment: '[]'
-    individual: webprotege.stanford.edu.RDfWjsojED1JhyonjjYn5T1
+    iri: webprotege.stanford.edu.RDfWjsojED1JhyonjjYn5T1
+    label: increase in worker absenteeism
+    personal value:
+    - personal value
+    - value uncategorized (to do)
     properties:
       dc_source: []
       schema_academicBook:
@@ -3489,12 +5093,23 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
+    test ontology:
+    - test ontology
   industrial activity:
-    classes:
+    all classes:
+    - - risk
+      - test ontology
+      - root cause linked to humans
+    comment: '[''industry directly responsible for 21% of all heat-trapping emissions'']'
+    direct classes:
     - test ontology
     - root cause linked to humans
-    comment: '[''industry directly responsible for 21% of all heat-trapping emissions'']'
-    individual: webprotege.stanford.edu.R8kybnu8AkaNkF2CcKTtPMk
+    iri: webprotege.stanford.edu.R8kybnu8AkaNkF2CcKTtPMk
+    label: industrial activity
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3517,10 +5132,15 @@ _node: &id239
       schema_video:
       - https://youtu.be/SAf5Xdf98tA
       skos_definition: []
-  installing smart thermostats:
-    classes:
+    risk:
+    - risk
+    - root cause linked to humans
+    test ontology:
     - test ontology
-    - risk solution
+  installing smart thermostats:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Thermostats are mission control for space heating and cooling. Smart
       thermostats use algorithms and sensors to become more energy efficient over
       time, lowering emissions. Project Drawdown projects that smart thermostats could
@@ -3529,7 +5149,11 @@ _node: &id239
       use could avoid 7.0-7.4 gigatons of carbon dioxide emissions for an investment
       of $155-172 billion. Return on investment is high: smart thermostats can save
       their owners $1.8-2.1 trillion on utility bills over the lifetime of the units.'']'
-    individual: webprotege.stanford.edu.RBCQdAOKui38ytAIKZlpPN6
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RBCQdAOKui38ytAIKZlpPN6
+    label: installing smart thermostats
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3543,10 +5167,14 @@ _node: &id239
       - https://drawdown.org/solutions/smart-thermostats
       schema_video: []
       skos_definition: []
-  insulating buildings better:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  insulating buildings better:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Insulation impedes unwanted airflow in or out of buildings. In new
       construction or retrofits, it makes heating and cooling more energy efficient,
       with lower emissions. Retrofitting buildings with insulation is a cost-effective
@@ -3556,7 +5184,11 @@ _node: &id239
       17-19 gigatons of emissions can be avoided at an implementation cost of $751-831
       billion. Over the lifetime of the building, heating and cooling savings could
       be $21- $24 trillion.'']'
-    individual: webprotege.stanford.edu.RDanTqMAQyQ4nGzlrt0j7Bm
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RDanTqMAQyQ4nGzlrt0j7Bm
+    label: insulating buildings better
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3570,12 +5202,26 @@ _node: &id239
       - https://drawdown.org/solutions/insulation
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   ischaemic heart disease:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - health change
+      - communication frame
+      - effect
+    comment: '[]'
+    communication frame:
+    - health change
+    - communication frame
+    direct classes:
     - downstream negative effect
     - health change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RC9893GbihwyuNWf6olyX2i
+    iri: webprotege.stanford.edu.RC9893GbihwyuNWf6olyX2i
+    label: ischaemic heart disease
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3588,11 +5234,19 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - risk
+    - downstream negative effect
   less freezing conditions during winter:
-    classes:
+    all classes:
+    - - risk
+      - core climate change
+    comment: '[]'
+    direct classes:
     - core climate change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBac6p7ap6Y8fZa4iZKUeG4
+    iri: webprotege.stanford.edu.RBac6p7ap6Y8fZa4iZKUeG4
+    label: less freezing conditions during winter
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3605,11 +5259,19 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
   less mixing of oxygenated water:
-    classes:
-    - main ocean change
+    all classes:
+    - - risk
+      - main ocean change
+      - core climate change
     comment: '[]'
-    individual: webprotege.stanford.edu.RCoV5c1RuP5EGJ74GfyySDB
+    direct classes:
+    - main ocean change
+    iri: webprotege.stanford.edu.RCoV5c1RuP5EGJ74GfyySDB
+    label: less mixing of oxygenated water
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3622,11 +5284,20 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main ocean change
   less sinking of cooling ocean water:
-    classes:
-    - main ocean change
+    all classes:
+    - - risk
+      - main ocean change
+      - core climate change
     comment: '[]'
-    individual: webprotege.stanford.edu.RDU23MRgHPOEAIMiIDo9xXj
+    direct classes:
+    - main ocean change
+    iri: webprotege.stanford.edu.RDU23MRgHPOEAIMiIDo9xXj
+    label: less sinking of cooling ocean water
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3639,11 +5310,20 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main ocean change
   lower Antarctic sea ice extent:
-    classes:
+    all classes:
+    - - risk
+      - core climate change
+      - main ice change
+    comment: '[]'
+    direct classes:
     - main ice change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RDDtV325vfj73RkGBtEJcwJ
+    iri: webprotege.stanford.edu.RDDtV325vfj73RkGBtEJcwJ
+    label: lower Antarctic sea ice extent
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3656,11 +5336,20 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - main ice change
+    - core climate change
   lower oxygen able to dissolve in ocean (solubility):
-    classes:
+    all classes:
+    - - risk
+      - main ocean change
+      - core climate change
+    comment: '[]'
+    direct classes:
     - main ocean change
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8qf6iSMjTV548UCPjK3rvf
+    iri: webprotege.stanford.edu.R8qf6iSMjTV548UCPjK3rvf
+    label: lower oxygen able to dissolve in ocean (solubility)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3673,11 +5362,20 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main ocean change
   lower salinity in freshwater:
-    classes:
-    - water cycle change
+    all classes:
+    - - risk
+      - water cycle change
+      - core climate change
     comment: '[]'
-    individual: webprotege.stanford.edu.R7lbzoBwBLouLZawIp4Dioy
+    direct classes:
+    - water cycle change
+    iri: webprotege.stanford.edu.R7lbzoBwBLouLZawIp4Dioy
+    label: lower salinity in freshwater
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3690,11 +5388,18 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - water cycle change
+    - risk
+    - core climate change
   lower stratospheric cooling:
-    classes:
-    - misleading information
+    all classes:
+    - - misleading information
     comment: '[]'
-    individual: webprotege.stanford.edu.R8GnjibSy3jN71u038XPlcj
+    direct classes:
+    - misleading information
+    iri: webprotege.stanford.edu.R8GnjibSy3jN71u038XPlcj
+    label: lower stratospheric cooling
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3708,9 +5413,9 @@ _node: &id239
       schema_video: []
       skos_definition: []
   making aviation more efficient:
-    classes:
-    - test ontology
-    - risk solution
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '["Various technologies and operational practices can lower airplane
       emissions to some degree. They include better engines, wingtips, and light weighting
       to improve fuel efficiency. Project Drawdown''s analysis focuses on adoption
@@ -3720,7 +5425,11 @@ _node: &id239
       of carbon dioxide emissions can be avoided, saving $2.5-3.6 trillion on lifetime
       jet-fuel and operating costs. Other efficiency measures could provide additional
       emissions reductions and savings as over 80 percent of aircraft are converted."]'
-    individual: webprotege.stanford.edu.RDSZw453Ge76hYTvYEsaAwU
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RDSZw453Ge76hYTvYEsaAwU
+    label: making aviation more efficient
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3734,10 +5443,14 @@ _node: &id239
       - https://drawdown.org/solutions/efficient-aviation
       schema_video: []
       skos_definition: []
-  making ocean shipping more efficient:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  making ocean shipping more efficient:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['Huge volumes of goods are shipped across oceans. Fuel-saving ship\
       \ design, onboard technologies, and operational practices can improve efficiency\
       \ and trim emissions. A combination of a selection of 17 ship technologies with\
@@ -3748,7 +5461,11 @@ _node: &id239
       \ lead to a 4.4-6.3 gigaton reduction of carbon dioxide emissions by 2050 at\
       \ cost of $530-733 billion. That could save $620-876 billion in fuel costs over\
       \ the life of the ships.']"
-    individual: webprotege.stanford.edu.RDZ1RURQFOc7YmgjswS5IW7
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RDZ1RURQFOc7YmgjswS5IW7
+    label: making ocean shipping more efficient
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3762,17 +5479,25 @@ _node: &id239
       - https://drawdown.org/solutions/efficient-ocean-shipping
       schema_video: []
       skos_definition: []
-  making trucks more efficient:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  making trucks more efficient:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Fuel-efficiency is critical to reduce road-freight emissions. Existing
       fleets can be retrofitted, while new trucks can be built to be more efficient
       or fully electric. \nIf adoption of fuel-saving technologies grows from 10 percent
       to 50-60 percent of trucks by 2050, this solution can deliver 4.6-9.7 gigatons
       of carbon dioxide emissions reductions. An investment of $486-797 billion to
       implement could save $3.5-6.1 trillion on fuel costs over truck lifetimes.'']'
-    individual: webprotege.stanford.edu.R8PIEqhm36x0Y9CvkgJlidT
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.R8PIEqhm36x0Y9CvkgJlidT
+    label: making trucks more efficient
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3786,10 +5511,14 @@ _node: &id239
       - https://drawdown.org/solutions/efficient-trucks
       schema_video: []
       skos_definition: []
-  managing refrigerants better:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  managing refrigerants better:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['Fluorinated gases have a potent greenhouse effect and are widely used\
       \ as refrigerants. Managing leaks and disposal of these chemicals can avoid\
       \ emissions in buildings and landfills. Substantial emissions reductions could\
@@ -3802,7 +5531,11 @@ _node: &id239
       \ recovery, destruction, and leak avoidance outweigh the financial benefit\u2014\
       meaning that refrigerant management, as modeled, could incur a net cost of $629.4\
       \ billion by 2050.']"
-    individual: webprotege.stanford.edu.RD2p6adaCZJE3WmtfZ0qrU7
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RD2p6adaCZJE3WmtfZ0qrU7
+    label: managing refrigerants better
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3816,11 +5549,20 @@ _node: &id239
       - https://drawdown.org/solutions/refrigerant-management
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   melting Greenland ice sheet:
-    classes:
+    all classes:
+    - - risk
+      - core climate change
+      - main ice change
+    comment: '[]'
+    direct classes:
     - main ice change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBYAEANbzZXfxcNfkPYS1Um
+    iri: webprotege.stanford.edu.RBYAEANbzZXfxcNfkPYS1Um
+    label: melting Greenland ice sheet
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3833,11 +5575,20 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - main ice change
+    - core climate change
   more acidic oceans (increased dissolved CO2):
-    classes:
-    - other negative effect from greenhouse gas emission
+    all classes:
+    - - other negative effect from greenhouse gas emission
+      - risk
+      - effect
     comment: '[]'
-    individual: webprotege.stanford.edu.R5kluaMVlhzpGZEWgAsy1
+    direct classes:
+    - other negative effect from greenhouse gas emission
+    iri: webprotege.stanford.edu.R5kluaMVlhzpGZEWgAsy1
+    label: more acidic oceans (increased dissolved CO2)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3850,13 +5601,24 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - other negative effect from greenhouse gas emission
+    - risk
   more heat absorbed by air:
-    classes:
+    all classes:
+    - - risk
+      - main atmospheric change
+      - global warming
+      - test ontology
+      - core climate change
+    comment: '[]'
+    direct classes:
     - test ontology
     - global warming
     - main atmospheric change
-    comment: '[]'
-    individual: webprotege.stanford.edu.Rtzkdtty1BHKfI8whB6qWR
+    iri: webprotege.stanford.edu.Rtzkdtty1BHKfI8whB6qWR
+    label: more heat absorbed by air
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3869,12 +5631,24 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main atmospheric change
+    test ontology:
+    - test ontology
   more heat absorbed by ice:
-    classes:
+    all classes:
+    - - risk
+      - global warming
+      - main ice change
+      - core climate change
+    comment: '[]'
+    direct classes:
     - global warming
     - main ice change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RoGet2DtXzFfCBQSjgRW3z
+    iri: webprotege.stanford.edu.RoGet2DtXzFfCBQSjgRW3z
+    label: more heat absorbed by ice
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3887,13 +5661,24 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - main ice change
+    - core climate change
   more heat absorbed by land:
-    classes:
+    all classes:
+    - - risk
+      - global warming
+      - test ontology
+      - main land change
+      - core climate change
+    comment: '[]'
+    direct classes:
     - main land change
     - test ontology
     - global warming
-    comment: '[]'
-    individual: webprotege.stanford.edu.R5eVKPmEff8f7D8VBAEEC8
+    iri: webprotege.stanford.edu.R5eVKPmEff8f7D8VBAEEC8
+    label: more heat absorbed by land
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3906,13 +5691,25 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - global warming
+    - risk
+    test ontology:
+    - test ontology
   more heat absorbed by oceans:
-    classes:
+    all classes:
+    - - risk
+      - main ocean change
+      - global warming
+      - test ontology
+      - core climate change
+    comment: '[]'
+    direct classes:
     - test ontology
     - global warming
     - main ocean change
-    comment: '[]'
-    individual: webprotege.stanford.edu.R8vDHwP7soRN6c6XWYDjJkH
+    iri: webprotege.stanford.edu.R8vDHwP7soRN6c6XWYDjJkH
+    label: more heat absorbed by oceans
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3925,12 +5722,24 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main ocean change
+    test ontology:
+    - test ontology
   more moisture (water vapor) able to accumulate in air:
-    classes:
+    all classes:
+    - - risk
+      - main atmospheric change
+      - feedback loop
+      - core climate change
+    comment: '[]'
+    direct classes:
     - feedback loop
     - main atmospheric change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBAJ46soLY6Nmd73XuHajVc
+    iri: webprotege.stanford.edu.RBAJ46soLY6Nmd73XuHajVc
+    label: more moisture (water vapor) able to accumulate in air
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3943,11 +5752,20 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main atmospheric change
   negative effects on cognition:
-    classes:
-    - other negative effect from greenhouse gas emission
+    all classes:
+    - - other negative effect from greenhouse gas emission
+      - risk
+      - effect
     comment: '[]'
-    individual: webprotege.stanford.edu.RC9SyXE5PhiT6iKz1LaJFgf
+    direct classes:
+    - other negative effect from greenhouse gas emission
+    iri: webprotege.stanford.edu.RC9SyXE5PhiT6iKz1LaJFgf
+    label: negative effects on cognition
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3960,12 +5778,22 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - effect
+    - other negative effect from greenhouse gas emission
+    - risk
   permafrost melt:
-    classes:
+    all classes:
+    - - risk
+      - main ice change
+      - feedback loop
+      - core climate change
+    comment: '[]'
+    direct classes:
     - feedback loop
     - main ice change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBraJKr6hbJU5awScQurmQE
+    iri: webprotege.stanford.edu.RBraJKr6hbJU5awScQurmQE
+    label: permafrost melt
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3978,15 +5806,37 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - main ice change
+    - core climate change
   political polarization:
-    classes:
+    all classes:
+    - - risk
+      - personal value
+      - status - source etc
+      - risk solution barrier
+      - value uncategorized (to do)
+      - communication frame
+      - not finished - sources etc
+      - frame uncategorized (to do)
+      - test ontology
+      - indirect mitigation barrier
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - frame uncategorized (to do)
     - value uncategorized (to do)
     - test ontology
     - not finished - sources etc
     - indirect mitigation barrier
-    comment: '[]'
-    individual: webprotege.stanford.edu.R9GgwNAE1EIyeCTZohpIThL
+    iri: webprotege.stanford.edu.R9GgwNAE1EIyeCTZohpIThL
+    label: political polarization
+    personal value:
+    - personal value
+    - value uncategorized (to do)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -3999,16 +5849,26 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
-  producing electricity via concentrated solar power:
-    classes:
+    risk:
+    - indirect mitigation barrier
+    - risk solution barrier
+    - risk
+    test ontology:
     - test ontology
-    - risk solution
+  producing electricity via concentrated solar power:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Concentrated solar power uses sunlight as a heat source. Arrays of
       mirrors concentrate incoming rays onto a receiver, to heat fluid, produce steam,
       and turn turbines. If this solution rose to 5.9-7.3 percent of world electricity
       generation by 2050, 18.6-24.0 gigatons of greenhouse gases emissions could be
       avoided.'']'
-    individual: webprotege.stanford.edu.RCsF77Q9uljIZkHshMgkbQP
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RCsF77Q9uljIZkHshMgkbQP
+    label: producing electricity via concentrated solar power
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4022,10 +5882,14 @@ _node: &id239
       - https://drawdown.org/solutions/concentrated-solar-power
       schema_video: []
       skos_definition: []
-  producing electricity via distributed solar photovoltaics:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  producing electricity via distributed solar photovoltaics:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Rooftop solar panels are one example of distributed solar photovoltaic
       systems. Whether grid-connected or part of standalone systems, they offer hyper-local,
       clean electricity generation. Widespread adoption of distributed solar panels
@@ -4033,7 +5897,11 @@ _node: &id239
       costs reducing by the day, over the lifetime of distributed photovoltaic technologies,
       it could save $7.9-13.5 trillion in associated operation and maintenance and
       fuel costs.'']'
-    individual: webprotege.stanford.edu.R8wipsAXfB4fo66FQYwubtd
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.R8wipsAXfB4fo66FQYwubtd
+    label: producing electricity via distributed solar photovoltaics
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4047,17 +5915,25 @@ _node: &id239
       - https://drawdown.org/solutions/distributed-solar-photovoltaics
       schema_video: []
       skos_definition: []
-  producing electricity via offshore wind turbines:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  producing electricity via offshore wind turbines:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Winds over sea are more consistent than those over land. Offshore
       wind turbines tap into that power to generate utility-scale electricity without
       emissions. Offshore wind turbines growing from the current estimated 60 TWh,
       to 1,918-2,256 TWh by 2050, could avoid 10.4-11.4 gigatons of greenhouse gases
       emissions. This solution can deliver lifetime savings of $673-794 billion over
       three decades.'']'
-    individual: webprotege.stanford.edu.R73ikCqnentdefiugeatpz8
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.R73ikCqnentdefiugeatpz8
+    label: producing electricity via offshore wind turbines
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4071,17 +5947,25 @@ _node: &id239
       - https://drawdown.org/solutions/offshore-wind-turbines
       schema_video: []
       skos_definition: []
-  producing electricity via onshore wind turbines:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  producing electricity via onshore wind turbines:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Onshore wind turbines generate electricity at a utility scale, comparable
       to power plants. They replace fossil fuels with emissions-free electricity.
       An increase in onshore wind turbines from 4.4 percent of world electricity generation
       to a wide range from 19.6-26.9 percent by 2050 could reduce emissions by 47-147
       gigatons of greenhouse gases. Costs the same in many places as natural gas.
       Costs get cheaper every year.'']'
-    individual: webprotege.stanford.edu.RCdoVWPmTIcdEyb6QfkEug0
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RCdoVWPmTIcdEyb6QfkEug0
+    label: producing electricity via onshore wind turbines
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4095,11 +5979,15 @@ _node: &id239
       - https://drawdown.org/solutions/onshore-wind-turbines
       schema_video: []
       skos_definition: []
-  producing electricity via utility-scale solar photovoltaics:
-    classes:
-    - test ontology
-    - mitigation
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  producing electricity via utility-scale solar photovoltaics:
+    all classes:
+    - - test ontology
+      - mitigation
+      - risk solution
     comment: "['Solar photovoltaics can be used at utility-scale\u2014with hundreds\
       \ or thousands of panels\u2014to tap the sun\u2019s clean, free fuel and replace\
       \ fossil-fuel electricity generation. Solar is now a cheaper source of electricity\
@@ -4107,7 +5995,12 @@ _node: &id239
       \ panels could avoid 44-119 gigatons of greenhouse gases emissions by 2050 if\
       \ it represents 20-25% of the electricity generation mix (currently only 1%\
       \ of the mix).']"
-    individual: webprotege.stanford.edu.R9R6552i4fn3XHKpoV8QTOx
+    direct classes:
+    - test ontology
+    - mitigation
+    - risk solution
+    iri: webprotege.stanford.edu.R9R6552i4fn3XHKpoV8QTOx
+    label: producing electricity via utility-scale solar photovoltaics
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4121,12 +6014,22 @@ _node: &id239
       - https://drawdown.org/solutions/utility-scale-solar-photovoltaics
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   prolonged droughts:
-    classes:
+    all classes:
+    - - risk
+      - water cycle change
+      - main land change
+      - core climate change
+    comment: '[]'
+    direct classes:
     - main land change
     - water cycle change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RCdI01J5CMbbjrTeJgTqHJv
+    iri: webprotege.stanford.edu.RCdI01J5CMbbjrTeJgTqHJv
+    label: prolonged droughts
     properties:
       dc_source:
       - https://www.sciencedirect.com/science/article/pii/S0962629807000601
@@ -4140,10 +6043,14 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - water cycle change
+    - risk
+    - core climate change
   protecting and rewetting peatland:
-    classes:
-    - test ontology
-    - risk solution
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['Forestry, farming, and fuel-extraction are among the threats to carbon-rich\
       \ peatlands. Protection and rewetting can reduce emissions from degradation,\
       \ while supporting peatlands\u2019 role as carbon sinks. \\n\\nIf the total\
@@ -4156,7 +6063,11 @@ _node: &id239
       \ an enormous amount of carbon. Project Drawdown analysis shows that rewetting\
       \ of 35.2-47.0 million hectares of currently degraded peatlands could avoid\
       \ additional 11.1-14.9 gigatons of carbon dioxide emissions.']"
-    individual: webprotege.stanford.edu.RBDaBHXLKs8slSr2bwVTl9v
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RBDaBHXLKs8slSr2bwVTl9v
+    label: protecting and rewetting peatland
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4170,10 +6081,14 @@ _node: &id239
       - https://drawdown.org/solutions/peatland-protection-and-rewetting
       schema_video: []
       skos_definition: []
-  recycling:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  recycling:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['To produce new products from recovered materials requires fewer raw\
       \ resources and less energy. That\u2019s how recycling household, commercial,\
       \ and industrial waste can cut emissions. \\nThe household and industrial recycling\
@@ -4185,7 +6100,11 @@ _node: &id239
       \ materials coming from households and rest from industry, if the average worldwide\
       \ recycling rate increases to 65-68 percent of total recyclable waste, household\
       \ recycling could avoid 5.5-6.0 gigatons of carbon dioxide emissions by 2050.']"
-    individual: webprotege.stanford.edu.RCg7BxIR9BolygeacF635tH
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RCg7BxIR9BolygeacF635tH
+    label: recycling
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4199,10 +6118,14 @@ _node: &id239
       - https://drawdown.org/solutions/recycling
       schema_video: []
       skos_definition: []
-  recycling paper:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  recycling paper:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['Recycled paper takes a circular journey, rather than a linear flow\
       \ from logging to landfill. Reprocessing used paper curtails extraction of virgin\
       \ feedstock and lowers emissions. Over thirty years, recycled paper can deliver\
@@ -4216,7 +6139,11 @@ _node: &id239
       \ feedstock. The emissions reductions for this solution do not include carbon\
       \ sequestration from standing trees that would not be harvested if the use of\
       \ recycled paper grows.']"
-    individual: webprotege.stanford.edu.RBeBCvukdLNSe5AtnlJpQ1k
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RBeBCvukdLNSe5AtnlJpQ1k
+    label: recycling paper
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4230,10 +6157,14 @@ _node: &id239
       - https://drawdown.org/solutions/recycled-paper
       schema_video: []
       skos_definition: []
-  reducing food waste:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  reducing food waste:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['Roughly a third of the world\u2019s food is never eaten, which means\
       \ land and resources used and greenhouse gases emitted in producing it were\
       \ unnecessary. Interventions can reduce loss and waste, as food moves from farm\
@@ -4246,7 +6177,11 @@ _node: &id239
       \ to 35 percent of food in high-income economies is thrown out by consumers;\
       \ in low-income economies, however, relatively little is wasted at the household\
       \ level.']"
-    individual: webprotege.stanford.edu.RfqwmaY5oYx5PSw5fhhfPi
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RfqwmaY5oYx5PSw5fhhfPi
+    label: reducing food waste
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4260,12 +6195,23 @@ _node: &id239
       - https://drawdown.org/solutions/reduced-food-waste
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   reduction in oxygen producing sea organisms:
-    classes:
+    all classes:
+    - - downstream negative effect
+      - risk
+      - main ocean change
+      - effect
+      - core climate change
+    comment: '[]'
+    direct classes:
     - downstream negative effect
     - main ocean change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RDykfcwgFQkAwb8h12H5RoJ
+    iri: webprotege.stanford.edu.RDykfcwgFQkAwb8h12H5RoJ
+    label: reduction in oxygen producing sea organisms
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4278,15 +6224,36 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main ocean change
   regulation/laws that require assessment of floodplains for new buildings:
-    classes:
+    all classes:
+    - - personal value
+      - status - source etc
+      - value uncategorized (to do)
+      - communication frame
+      - not finished - sources etc
+      - test ontology
+      - indirect adaptation
+      - risk solution
+      - frame uncategorized (to do)
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - frame uncategorized (to do)
     - indirect adaptation
     - value uncategorized (to do)
     - test ontology
     - not finished - sources etc
-    comment: '[]'
-    individual: webprotege.stanford.edu.R7yNIp2SSecEuyVj4gZxSHF
+    iri: webprotege.stanford.edu.R7yNIp2SSecEuyVj4gZxSHF
+    label: regulation/laws that require assessment of floodplains for new buildings
+    personal value:
+    - personal value
+    - value uncategorized (to do)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4299,27 +6266,41 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
-  retreat of glaciers (glacier melt):
-    classes:
-    - main ice change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RfkjEXa4fTJvsuzk6ushUu
-    properties:
-      dc_source: []
-      schema_academicBook: []
-      schema_academicSourceNoPaywall: []
-      schema_academicSourceWithPaywall: []
-      schema_governmentSource: []
-      schema_image: []
-      schema_mediaSource: []
-      schema_mediaSourceForConservatives: []
-      schema_organizationSource: []
-      schema_video: []
-      skos_definition: []
-  switching to LED light bulbs:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    - indirect adaptation
+    test ontology:
+    - test ontology
+  retreat of glaciers (glacier melt):
+    all classes:
+    - - risk
+      - core climate change
+      - main ice change
+    comment: '[]'
+    direct classes:
+    - main ice change
+    iri: webprotege.stanford.edu.RfkjEXa4fTJvsuzk6ushUu
+    label: retreat of glaciers (glacier melt)
+    properties:
+      dc_source: []
+      schema_academicBook: []
+      schema_academicSourceNoPaywall: []
+      schema_academicSourceWithPaywall: []
+      schema_governmentSource: []
+      schema_image: []
+      schema_mediaSource: []
+      schema_mediaSourceForConservatives: []
+      schema_organizationSource: []
+      schema_video: []
+      skos_definition: []
+    risk:
+    - risk
+    - main ice change
+    - core climate change
+  switching to LED light bulbs:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['LED light bulbs use 90 percent less energy than incandescent bulbs\
       \ for the same amount of light, and half as much as compact fluorescents, without\
       \ toxic mercury. By transferring most of their energy use into creating light\u2014\
@@ -4329,7 +6310,11 @@ _node: &id239
       \ as technology improves. As LEDs replace less-efficient lighting, 10.2-10.8\
       \ gigatons of carbon dioxide emissions could be avoided in residences and 5.9-6.7\
       \ gigatons in commercial buildings.']"
-    individual: webprotege.stanford.edu.RCYcuSVsndxr46dKMakicwT
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RCYcuSVsndxr46dKMakicwT
+    label: switching to LED light bulbs
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4343,12 +6328,21 @@ _node: &id239
       - https://drawdown.org/solutions/led-lighting
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   transporting people and goods:
-    classes:
+    all classes:
+    - - risk
+      - test ontology
+      - root cause linked to humans
+    comment: '[''Transportation is responsible for 14% of global greenhouse gas emissions'']'
+    direct classes:
     - test ontology
     - root cause linked to humans
-    comment: '[''Transportation is responsible for 14% of global greenhouse gas emissions'']'
-    individual: webprotege.stanford.edu.RDjwXK2vPUuvsb5nJUvtTMC
+    iri: webprotege.stanford.edu.RDjwXK2vPUuvsb5nJUvtTMC
+    label: transporting people and goods
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4371,17 +6365,26 @@ _node: &id239
       - https://drawdown.org/solutions/telepresence
       schema_video: []
       skos_definition: []
-  using alternative cement:
-    classes:
+    risk:
+    - risk
+    - root cause linked to humans
+    test ontology:
     - test ontology
-    - risk solution
+  using alternative cement:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Cement is a vital source of strength in infrastructure, second only
       to water as one of the most used substances in the world. It is also a source
       of emissions, generating 5 to 6 percent annually. Changing the composition of
       cement would keep it just as strong but reduce the amount of CO2 the process
       generates, avoiding up to 440 million tons of carbon dioxide emissions annually.
       By 2050 this could reduce CO2 emissions by about 8 gigatons.'']'
-    individual: webprotege.stanford.edu.RBPwaJUGpFPOUthNxvZoC3m
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RBPwaJUGpFPOUthNxvZoC3m
+    label: using alternative cement
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4398,10 +6401,14 @@ _node: &id239
       - https://www.youtube.com/watch?time_continue=32&v=_ryNsHHqaws&feature=emb_title
       - https://youtu.be/SAf5Xdf98tA
       skos_definition: []
-  using alternative refrigerants:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  using alternative refrigerants:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Fluorinated gases are not the only refrigerants available. Alternatives,
       such as ammonia or captured carbon dioxide, can replace these powerful greenhouse
       gases over time. Pursuant to the Kigali accord signed in 2016, the replacement
@@ -4411,7 +6418,11 @@ _node: &id239
       not yet modeled, current and emerging refrigerants and appliances (including
       ammonia, carbon dioxide, and propane) can replace between 67%-82% of HFC refrigerants
       by 2050.'']'
-    individual: webprotege.stanford.edu.RCweDCBg9pAFqwN7Q9K30tY
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RCweDCBg9pAFqwN7Q9K30tY
+    label: using alternative refrigerants
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4425,10 +6436,14 @@ _node: &id239
       - https://drawdown.org/solutions/alternative-refrigerants
       schema_video: []
       skos_definition: []
-  using biogas for cooking:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  using biogas for cooking:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Anaerobic digesters process backyard or farmyard organic waste into
       biogas and digestate fertilizer. Biogas stoves can reduce emissions when replacing
       biomass or kerosene for cooking. Small biogas reactors that can be installed
@@ -4439,7 +6454,11 @@ _node: &id239
       result: 4.6-9.7 gigatons of carbon dioxide emissions avoided at a net cost of
       $23-$49 billion. These stoves increase operating costs however by an additional
       $100-$209 billion over the lifetime of the reactors.'']'
-    individual: webprotege.stanford.edu.RvgK3RWRb6dVpRniUARv0a
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RvgK3RWRb6dVpRniUARv0a
+    label: using biogas for cooking
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4453,10 +6472,14 @@ _node: &id239
       - https://drawdown.org/solutions/biogas-for-cooking
       schema_video: []
       skos_definition: []
-  using electric cars:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  using electric cars:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "[\"Electric motors supplant gasoline or diesel engines, which are polluting\
       \ and less efficient. EVs always reduce car emissions\u2014dramatically so when\
       \ powered by renewable electricity. In 2018, 2 million electric cars were sold.\
@@ -4468,7 +6491,11 @@ _node: &id239
       \ cars. Electric cars are several thousand dollars more expensive, but Project\
       \ Drawdown includes slightly declining electric cars prices, expected due to\
       \ declining battery costs.\"]"
-    individual: webprotege.stanford.edu.R9SuseoJG7H6QeUEvZwLciQ
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.R9SuseoJG7H6QeUEvZwLciQ
+    label: using electric cars
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4482,10 +6509,14 @@ _node: &id239
       - https://drawdown.org/solutions/electric-cars
       schema_video: []
       skos_definition: []
-  using high-efficiency heat pumps:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  using high-efficiency heat pumps:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['Heat pumps extract heat from the air and transfer it\u2014from indoors\
       \ out for cooling, or from outdoors in for heating. With high efficiency, they\
       \ can dramatically lower building energy use. Heating and cooling of residential\
@@ -4500,7 +6531,11 @@ _node: &id239
       \ be spent on conventional technologies, operating savings could reach $1.1-2.5\
       \ trillion over the technology\u2019s lifetime. Emissions reductions in this\
       \ scenario come to 4.2-9.3 gigatons of carbon dioxide.']"
-    individual: webprotege.stanford.edu.RqffG0pylVR4qW85eGwoPl
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RqffG0pylVR4qW85eGwoPl
+    label: using high-efficiency heat pumps
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4514,10 +6549,14 @@ _node: &id239
       - https://drawdown.org/solutions/high-efficiency-heat-pumps
       schema_video: []
       skos_definition: []
-  using high-performance glass in windows:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  using high-performance glass in windows:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''High-performance glass improves window insulation and makes building
       heating and cooling more efficient. By minimizing unnecessary energy use, it
       curtails emissions. Many improvements in glass technology have been made over
@@ -4527,7 +6566,11 @@ _node: &id239
       annual retrofit rate, the emissions reduction can be 10-12.6 gigatons of carbon
       dioxide equivalent. Financials would be a challenge however since the total
       net costs would be $9.1-10.8 trillion for a lifetime saving of $3.4-3.9 trillion.'']'
-    individual: webprotege.stanford.edu.RCPtkdL8hc2qCEMAaSA3OO7
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RCPtkdL8hc2qCEMAaSA3OO7
+    label: using high-performance glass in windows
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4541,10 +6584,14 @@ _node: &id239
       - https://drawdown.org/solutions/high-performance-glass
       schema_video: []
       skos_definition: []
-  using high-speed rail:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  using high-speed rail:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''High-speed rail offers an alternative to trips otherwise made by
       car or airplane. It requires special, designated tracks, but can dramatically
       curtail emissions. Under some business-as-usual projections, 23 million hybrid
@@ -4554,7 +6601,11 @@ _node: &id239
       gigatons by 2050, saving owners $3.0-6.1 trillion in fuel and operating costs
       over the lifetime of the cars. This would cost an additional $1.6-3.4 trillion
       in net costs.'']'
-    individual: webprotege.stanford.edu.RDkaEppVGpX8sI5LgbzH7Eu
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RDkaEppVGpX8sI5LgbzH7Eu
+    label: using high-speed rail
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4568,10 +6619,14 @@ _node: &id239
       - https://drawdown.org/solutions/high-speed-rail
       schema_video: []
       skos_definition: []
-  using hybrid cars:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  using hybrid cars:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: "['A transitional technology, hybrid cars pair an electric motor and\
       \ battery with an internal combustion engine. The combination improves fuel\
       \ economy\u2014more miles on a gallon\u2014and lowers emissions. \\nUnder some\
@@ -4581,7 +6636,11 @@ _node: &id239
       \ cars can reduce carbon dioxide emissions by 4.6-7.9 gigatons by 2050, saving\
       \ owners $3.0-6.1 trillion in fuel and operating costs over the lifetime of\
       \ the cars.This would cost an additional $1.6-3.4 trillion in net costs.']"
-    individual: webprotege.stanford.edu.RItKzuJSSFw9hXydUSVEJX
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RItKzuJSSFw9hXydUSVEJX
+    label: using hybrid cars
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4595,10 +6654,14 @@ _node: &id239
       - https://drawdown.org/solutions/hybrid-cars
       schema_video: []
       skos_definition: []
-  using improved clean cookstoves:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  using improved clean cookstoves:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Improved clean cookstoves can address the pollution from burning
       wood or biomass in traditional stoves. Using various technologies, they reduce
       emissions and protect human health. As of 2018, clean cookstoves were used by
@@ -4613,7 +6676,11 @@ _node: &id239
       results include the reduction of black carbon, the second more impactful climate
       pollutant, by 8-20 gigatons of carbon dioxide equivalents. The additional benefits
       to the health of millions of households are not calculated here by Project Drawdown.'']'
-    individual: webprotege.stanford.edu.RCCli7m3xUZupUS871jEn0g
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RCCli7m3xUZupUS871jEn0g
+    label: using improved clean cookstoves
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4627,10 +6694,14 @@ _node: &id239
       - https://drawdown.org/solutions/improved-clean-cookstoves
       schema_video: []
       skos_definition: []
-  using methane digesters:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  using methane digesters:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Industrial-scale anaerobic digesters control decomposition of organic
       waste, and convert methane emissions into biogas, an alternative fuel, and digestate,
       a nutrient-rich fertilizer. Project Drawdown projects that large methane digesters
@@ -4638,7 +6709,11 @@ _node: &id239
       (around 100TWh) to 487-761 TWh by 2050. The cumulative results would range from
       6.2-9.8 gigatons of greenhouse gases emissions avoided at marginal first costs
       of $173-285 billion.'']'
-    individual: webprotege.stanford.edu.RCfL29vOLXc9ds8maBP7yyg
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RCfL29vOLXc9ds8maBP7yyg
+    label: using methane digesters
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4652,10 +6727,14 @@ _node: &id239
       - https://drawdown.org/solutions/methane-digesters
       schema_video: []
       skos_definition: []
-  using public transit:
-    classes:
-    - test ontology
+    risk solution:
     - risk solution
+    test ontology:
+    - test ontology
+  using public transit:
+    all classes:
+    - - test ontology
+      - risk solution
     comment: '[''Streetcars, buses, and subways offer alternative, efficient modes
       of transport. Public transit can keep car use to a minimum and avert greenhouse
       gases. Use of public transit is projected to decline significantly from 30 percent
@@ -4666,7 +6745,11 @@ _node: &id239
       diverse public transit options (bus, metro, tram, and commuter rail) and examines
       the costs that travelers pay (car purchase and use compared to buying transit
       tickets).'']'
-    individual: webprotege.stanford.edu.RDhpXXRQgYARY8ocN1e2tI
+    direct classes:
+    - test ontology
+    - risk solution
+    iri: webprotege.stanford.edu.RDhpXXRQgYARY8ocN1e2tI
+    label: using public transit
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4680,15 +6763,36 @@ _node: &id239
       - https://drawdown.org/solutions/public-transit
       schema_video: []
       skos_definition: []
+    risk solution:
+    - risk solution
+    test ontology:
+    - test ontology
   vote in elections:
-    classes:
+    all classes:
+    - - solution to indirect adaptation barrier
+      - personal value
+      - status - source etc
+      - value uncategorized (to do)
+      - communication frame
+      - not finished - sources etc
+      - frame uncategorized (to do)
+      - test ontology
+      - risk solution
+    comment: '[]'
+    communication frame:
+    - frame uncategorized (to do)
+    - communication frame
+    direct classes:
     - frame uncategorized (to do)
     - value uncategorized (to do)
     - test ontology
     - not finished - sources etc
     - solution to indirect adaptation barrier
-    comment: '[]'
-    individual: webprotege.stanford.edu.R7gVDW5GAY8MLHKOrp03FZQ
+    iri: webprotege.stanford.edu.R7gVDW5GAY8MLHKOrp03FZQ
+    label: vote in elections
+    personal value:
+    - personal value
+    - value uncategorized (to do)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4701,12 +6805,23 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk solution:
+    - solution to indirect adaptation barrier
+    - risk solution
+    test ontology:
+    - test ontology
   warmer air and atmosphere (tropospheric warming):
-    classes:
+    all classes:
+    - - risk
+      - main atmospheric change
+      - test ontology
+      - core climate change
+    comment: '[]'
+    direct classes:
     - test ontology
     - main atmospheric change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RndlLhwHuWP9Ng5SgdZij3
+    iri: webprotege.stanford.edu.RndlLhwHuWP9Ng5SgdZij3
+    label: warmer air and atmosphere (tropospheric warming)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4721,12 +6836,24 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main atmospheric change
+    test ontology:
+    - test ontology
   warmer oceans:
-    classes:
+    all classes:
+    - - risk
+      - main ocean change
+      - test ontology
+      - core climate change
+    comment: '[]'
+    direct classes:
     - test ontology
     - main ocean change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RCOKh8I57dfccKh5QTFhHB0
+    iri: webprotege.stanford.edu.RCOKh8I57dfccKh5QTFhHB0
+    label: warmer oceans
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4739,11 +6866,22 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
-  weakened ocean circulation (AMOC):
-    classes:
+    risk:
+    - risk
+    - core climate change
     - main ocean change
+    test ontology:
+    - test ontology
+  weakened ocean circulation (AMOC):
+    all classes:
+    - - risk
+      - main ocean change
+      - core climate change
     comment: '[]'
-    individual: webprotege.stanford.edu.R8NBM1WXVHFjSNY6t1zM7C
+    direct classes:
+    - main ocean change
+    iri: webprotege.stanford.edu.R8NBM1WXVHFjSNY6t1zM7C
+    label: weakened ocean circulation (AMOC)
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4756,13 +6894,24 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - risk
+    - core climate change
+    - main ocean change
   wetter soil during wet season:
-    classes:
+    all classes:
+    - - risk
+      - water cycle change
+      - test ontology
+      - main land change
+      - core climate change
+    comment: '[]'
+    direct classes:
     - main land change
     - test ontology
     - water cycle change
-    comment: '[]'
-    individual: webprotege.stanford.edu.RBHUIy2I4ZBJSRGAvuInERX
+    iri: webprotege.stanford.edu.RBHUIy2I4ZBJSRGAvuInERX
+    label: wetter soil during wet season
     properties:
       dc_source: []
       schema_academicBook: []
@@ -4775,6 +6924,12 @@ _node: &id239
       schema_organizationSource: []
       schema_video: []
       skos_definition: []
+    risk:
+    - water cycle change
+    - risk
+    - core climate change
+    test ontology:
+    - test ontology
 _pred:
   Farming, Fishing, and Forestry Occupations:
     increase in silvopasture: *id001
