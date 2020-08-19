@@ -2,7 +2,7 @@ version: 2
 jobs:
  build:  
    docker:
-     - image: circleci/golang:1.13-alpine 
+     - image: cimg/base:2020.01
    steps:
      - checkout
      # start proprietary DB using private Docker image
