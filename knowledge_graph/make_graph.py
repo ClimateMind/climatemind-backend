@@ -116,7 +116,6 @@ def add_ontology_data_to_graph_nodes(G, onto):
         for prop in annot_properties:
             annot_properties_dict[prop] = list(eval("ontology_node."+prop))
         G.add_nodes_from([node], properties = annot_properties_dict)
-        import pdb; pdb.set_trace()
 
 
 def set_edge_properties(G):
