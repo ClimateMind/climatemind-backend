@@ -40,10 +40,6 @@ plotly==4.9.0
 py2app==0.7.3
 pycparser==2.20
 pygraphviz==1.5
-pyobjc-core==6.2.2
-pyobjc-framework-Cocoa==6.2.2
-pyobjc-framework-CoreData==6.2.2
-pyobjc-framework-Quartz==6.2.2
 pyOpenSSL==17.5.0
 pyparsing==2.4.7
 pyrsistent==0.16.0
