@@ -2,7 +2,17 @@
 
 ## Running the application with Docker Compose
 
+Start in foreground (good for debugging flask and see the logs)
+ 
     docker-compose up
+    
+Start in background
+
+    docker-compose up -d
+    
+Stop
+
+    docker-compose down
 
 ## Running the application with Docker
 

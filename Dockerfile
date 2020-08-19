@@ -6,7 +6,7 @@ RUN apt-get -y install gcc graphviz-dev
 
 WORKDIR /app
 
-COPY requirements.txt requirements.txt
+COPY . .
 
 RUN pip install cython && \
     pip install --upgrade pip && \
