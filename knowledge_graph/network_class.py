@@ -22,8 +22,36 @@ class Network:
             self.source = source
         else:
             self.source = None
+        obj_props = list(self.ontology.object_properties())
+        self.obj_properties = self.make_alias_names_for_properties(obj_props)
+        annot_props = list(self.ontology.annotation_properties())
+        self.annot_properties = self.make_alias_names_for_properties(annot_props)
 
-        
+    def give_alias(self, property_object):
+        """ Adds labels the ontology object in a way that makes them pythonicly accessible through . invocation method.
+            
+            Parameters
+            ----------
+            property_object: ontology property object to make pythonicly accessible
+        """
+        label_name = property_object.label[0]
+        label_name = label_name.replace("/","_or_")
+        label_name = label_name.replace(" ","_")
+        label_name = label_name.replace(":","_")
+        property_object.python_name = label_name
+        return label_name
+
+    def make_alias_names_for_properties(self, properties):
+        """ Adds labels the ontology object in a way that makes them pythonicly accessible through . invocation method.
+            
+            Parameters
+            ----------
+            properties: list of ontology property objects to make pythonicly accessible
+            accessible_names = list of properties now accessible via . invocation method
+        """
+        new_names = [self.give_alias(x) for x in properties]
+        return new_names
+
     def add_child_to_result(self, child, parent, edge_type):
         """ Adds a node to the results and if needed adds the node's family
         to node_family (a stack of nodes to continue exploring).
@@ -38,17 +66,12 @@ class Network:
         self.result.append((parent.label[0], child.label[0], edge_type))
         if child not in self.visited:
             self.visited.add(child)
-            self.node_family.append((
-                        child,
-                        iter(child.causes_or_promotes),
-                        "causes_or_promotes"
-                        ))
-            self.node_family.append((
-                        child,
-                        iter(child.is_inhibited_or_prevented_or_blocked_or_slowed_by),
-                        "is_inhibited_or_prevented_or_blocked_or_slowed_by"
-                        ))
-            
+            for obj_prop in self.obj_properties:
+                self.node_family.append((
+                                        child,
+                                        eval("iter(child."+obj_prop+")"),
+                                        obj_prop
+                                        ))
     
     def add_class_to_explore(self, class_name):
         """ Adds all nodes related to a particular class. Some of these nodes
@@ -58,26 +81,20 @@ class Network:
             ----------
             class_name: A node in the ontology
         """
-        try:
-            self.class_family.append((
-                    class_name, 
-                    iter(class_name.causes_or_promotes),
-                    "causes_or_promotes"
+        for obj_prop in self.obj_properties:
+            try:
+                self.class_family.append((
+                    class_name,
+                    eval("iter(class_name."+obj_prop+")"),
+                    obj_prop
                     ))
-        except: pass
-        try:
-            self.class_family.append((
-                    class_name, 
-                    iter(class_name.is_inhibited_or_prevented_or_blocked_or_slowed_by),
-                    "is_inhibited_or_prevented_or_blocked_or_slowed_by"
-                    ))
-        except: pass
+            except: pass
         try:
             self.class_family.append((
                     class_name, 
                     iter(self.ontology.get_parents_of(class_name)),
                     "is_a"
-                    )) # the class(es) of the ont_class
+                    )) # the class(es) of the ont_class. This could pull classes that are just Restriction classes, so really should add code here that checks the class is found in self.ontology.classes() before adding it to the class_family.
         except: pass   
             
 
@@ -140,17 +157,13 @@ class Network:
         for node in nodes:
             if node not in self.visited:
                 self.visited.add(node)
-                self.node_family.append((
-                            node, 
-                            iter(node.causes_or_promotes),
-                            "causes_or_promotes"
+                for obj_prop in self.obj_properties:
+                    self.node_family.append((
+                            node,
+                            eval("iter(node."+obj_prop+")"),
+                            obj_prop
                             ))
-                self.node_family.append((
-                            node, 
-                            iter(node.is_inhibited_or_prevented_or_blocked_or_slowed_by),
-                            "is_inhibited_or_prevented_or_blocked_or_slowed_by"
-                            ))
-                
+
                 while self.node_family:
                     parent, children, edge_type = self.node_family[-1]
                     self.visited.add(parent)
