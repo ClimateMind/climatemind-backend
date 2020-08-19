@@ -1,8 +1,12 @@
 # Climatemind Backend
 
-## Running the application with Docker Compose
+Using Docker you need to install it first: https://www.docker.com/products/docker-desktop
 
-Start in foreground (good for debugging flask and see the logs)
+On Windows it is running in a strict secure mode. You need to add the source directory to the Docker Resources: Settings / Resources / File Sharing -> add the application root directory
+
+## Running the application with Docker Compose (for development)
+
+Start in foreground (good for debugging flask and see the logs). You can stop it with [CMD + C] on OSX or [CTRL + C] on Windows or Linux.
  
     docker-compose up
     
@@ -10,11 +14,11 @@ Start in background
 
     docker-compose up -d
     
-Stop
+Stop the container which is running in the background
 
     docker-compose down
 
-## Running the application with Docker
+## Running the application with Docker (for deployment)
 
 The Docker lifecycle is to build the image and run it only once. After that you can stop or start the image. 
 
