@@ -4,7 +4,7 @@ ENV FLASK_ENV=development
 RUN apt-get update
 RUN apt-get -y install gcc graphviz-dev
 
-WORKDIR /usr/src/app
+WORKDIR /app
 
 COPY . .
 

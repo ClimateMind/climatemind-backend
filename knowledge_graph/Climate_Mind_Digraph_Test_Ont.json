@@ -3,9 +3,18 @@
         "id": "increase in greenhouse effect",
         "name": "increase in greenhouse effect",
         "data": {
-            "individual": "webprotege.stanford.edu.R8tO6zSdeJRRUSPaznZIbKU",
+            "label": "increase in greenhouse effect",
+            "iri": "webprotege.stanford.edu.R8tO6zSdeJRRUSPaznZIbKU",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
+                "test ontology"
+            ],
+            "all classes": [
+                [
+                    "test ontology"
+                ]
+            ],
+            "test ontology": [
                 "test ontology"
             ],
             "properties": {
@@ -50,12 +59,29 @@
         "id": "more heat absorbed by land",
         "name": "more heat absorbed by land",
         "data": {
-            "individual": "webprotege.stanford.edu.R5eVKPmEff8f7D8VBAEEC8",
+            "label": "more heat absorbed by land",
+            "iri": "webprotege.stanford.edu.R5eVKPmEff8f7D8VBAEEC8",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "main land change",
                 "test ontology",
                 "global warming"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "global warming",
+                    "test ontology",
+                    "main land change",
+                    "core climate change"
+                ]
+            ],
+            "risk": [
+                "global warming",
+                "risk"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [],
@@ -92,11 +118,28 @@
         "id": "increase in evaporation",
         "name": "increase in evaporation",
         "data": {
-            "individual": "webprotege.stanford.edu.R7zeFSAP7x3PT5rG0i1BLVe",
+            "label": "increase in evaporation",
+            "iri": "webprotege.stanford.edu.R7zeFSAP7x3PT5rG0i1BLVe",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "test ontology",
                 "water cycle change"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "water cycle change",
+                    "test ontology",
+                    "core climate change"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "water cycle change",
+                "risk",
+                "core climate change"
             ],
             "properties": {
                 "dc_source": [],
@@ -142,11 +185,28 @@
         "id": "increase in rain (and snow if cold enough) (precipitation)",
         "name": "increase in rain (and snow if cold enough) (precipitation)",
         "data": {
-            "individual": "webprotege.stanford.edu.RBHHvT6sX3QbfYU2JlLhT5E",
+            "label": "increase in rain (and snow if cold enough) (precipitation)",
+            "iri": "webprotege.stanford.edu.RBHHvT6sX3QbfYU2JlLhT5E",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "test ontology",
                 "water cycle change"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "water cycle change",
+                    "test ontology",
+                    "core climate change"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "water cycle change",
+                "risk",
+                "core climate change"
             ],
             "properties": {
                 "dc_source": [],
@@ -192,10 +252,27 @@
         "id": "increase in vegetation during wet season",
         "name": "increase in vegetation during wet season",
         "data": {
-            "individual": "webprotege.stanford.edu.R4g51Eq3Q7uVWg9V5F5BTC",
+            "label": "increase in vegetation during wet season",
+            "iri": "webprotege.stanford.edu.R4g51Eq3Q7uVWg9V5F5BTC",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "downstream negative effect",
+                "test ontology"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "effect",
+                    "test ontology"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "test ontology": [
                 "test ontology"
             ],
             "properties": {
@@ -226,9 +303,10 @@
         "id": "increase in area burned by wildfire",
         "name": "increase in area burned by wildfire",
         "data": {
-            "individual": "webprotege.stanford.edu.RLc1ySxaRs4HWkW4m5w2Me",
+            "label": "increase in area burned by wildfire",
+            "iri": "webprotege.stanford.edu.RLc1ySxaRs4HWkW4m5w2Me",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "review needed - values",
                 "universalism concern",
                 "downstream negative effect",
@@ -236,6 +314,42 @@
                 "security societal",
                 "test ontology",
                 "security personal",
+                "wildfire change"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "security",
+                    "security societal",
+                    "personal value",
+                    "communication frame",
+                    "wildfire change",
+                    "test ontology",
+                    "review needed - values",
+                    "status - value",
+                    "universalism",
+                    "effect",
+                    "universalism nature",
+                    "universalism concern",
+                    "security personal"
+                ]
+            ],
+            "personal value": [
+                "security",
+                "personal value",
+                "security personal"
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "communication frame": [
+                "communication frame",
                 "wildfire change"
             ],
             "properties": {
@@ -273,12 +387,30 @@
         "id": "increase in toxic air pollutants (air pollution)",
         "name": "increase in toxic air pollutants (air pollution)",
         "data": {
-            "individual": "webprotege.stanford.edu.R9vkBr0EApzeMGfa0rJGo9G",
+            "label": "increase in toxic air pollutants (air pollution)",
+            "iri": "webprotege.stanford.edu.R9vkBr0EApzeMGfa0rJGo9G",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "downstream negative effect",
                 "test ontology",
                 "other negative effect from root cause"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "effect",
+                    "test ontology",
+                    "other negative effect from root cause"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "other negative effect from root cause"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [],
@@ -343,9 +475,10 @@
         "id": "increase in lung cancer",
         "name": "increase in lung cancer",
         "data": {
-            "individual": "webprotege.stanford.edu.RB6zclWNN2qJW6OSyWjyfFz",
+            "label": "increase in lung cancer",
+            "iri": "webprotege.stanford.edu.RB6zclWNN2qJW6OSyWjyfFz",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "other negative effect from greenhouse gas emission",
                 "universalism concern",
                 "approved - values",
@@ -354,6 +487,42 @@
                 "test ontology",
                 "security personal",
                 "health change"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "security",
+                    "health change",
+                    "security societal",
+                    "personal value",
+                    "approved - values",
+                    "other negative effect from greenhouse gas emission",
+                    "communication frame",
+                    "test ontology",
+                    "status - value",
+                    "universalism",
+                    "effect",
+                    "universalism concern",
+                    "security personal"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "personal value": [
+                "security",
+                "personal value",
+                "security personal"
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "communication frame": [
+                "health change",
+                "communication frame"
             ],
             "properties": {
                 "dc_source": [],
@@ -376,9 +545,10 @@
         "id": "increase in asthma complications",
         "name": "increase in asthma complications",
         "data": {
-            "individual": "webprotege.stanford.edu.RO1J1OifvuO602qTIrSXdB",
+            "label": "increase in asthma complications",
+            "iri": "webprotege.stanford.edu.RO1J1OifvuO602qTIrSXdB",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "other negative effect from greenhouse gas emission",
                 "universalism concern",
                 "approved - values",
@@ -389,6 +559,44 @@
                 "security personal",
                 "health change",
                 "stimulation"
+            ],
+            "all classes": [
+                [
+                    "health change",
+                    "security societal",
+                    "self-direction",
+                    "universalism",
+                    "stimulation",
+                    "security",
+                    "other negative effect from greenhouse gas emission",
+                    "communication frame",
+                    "universalism concern",
+                    "security personal",
+                    "personal value",
+                    "test ontology",
+                    "self-direction autonomy of action",
+                    "downstream negative effect",
+                    "risk",
+                    "approved - values",
+                    "status - value",
+                    "effect"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "personal value": [
+                "personal value",
+                "stimulation"
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "communication frame": [
+                "health change",
+                "communication frame"
             ],
             "properties": {
                 "dc_source": [
@@ -418,8 +626,8 @@
                     "properties": {
                         "dc_source": [
                             "https://www.cnn.com/2018/10/29/health/air-pollution-children-health-who-india-intl/index.html",
-                            "https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution",
-                            "https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution"
+                            "https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution",
+                            "https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution"
                         ]
                     }
                 }
@@ -442,9 +650,10 @@
         "id": "increase in disproportionate effects on children",
         "name": "increase in disproportionate effects on children",
         "data": {
-            "individual": "webprotege.stanford.edu.RB7k7p2iQQgKdQrkRP2MZWM",
+            "label": "increase in disproportionate effects on children",
+            "iri": "webprotege.stanford.edu.RB7k7p2iQQgKdQrkRP2MZWM",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "other negative effect from greenhouse gas emission",
                 "universalism concern",
                 "approved - values",
@@ -455,6 +664,45 @@
                 "test ontology",
                 "security personal",
                 "other negative effect from root cause"
+            ],
+            "all classes": [
+                [
+                    "security societal",
+                    "universalism",
+                    "frame uncategorized (to do)",
+                    "security",
+                    "other negative effect from greenhouse gas emission",
+                    "communication frame",
+                    "universalism concern",
+                    "security personal",
+                    "personal value",
+                    "benevolence",
+                    "benevolence caring",
+                    "test ontology",
+                    "other negative effect from root cause",
+                    "downstream negative effect",
+                    "risk",
+                    "approved - values",
+                    "status - value",
+                    "effect"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "other negative effect from root cause"
+            ],
+            "personal value": [
+                "security",
+                "personal value",
+                "security personal"
+            ],
+            "communication frame": [
+                "frame uncategorized (to do)",
+                "communication frame"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [
@@ -479,9 +727,10 @@
         "id": "increase in disproportionate effects on minority groups",
         "name": "increase in disproportionate effects on minority groups",
         "data": {
-            "individual": "webprotege.stanford.edu.Ra98BRMZ0HlUpobb3Z0C5r",
+            "label": "increase in disproportionate effects on minority groups",
+            "iri": "webprotege.stanford.edu.Ra98BRMZ0HlUpobb3Z0C5r",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "review needed - values",
                 "universalism concern",
                 "risk or effect uncategorized (to do)",
@@ -489,6 +738,39 @@
                 "security societal",
                 "test ontology",
                 "security personal"
+            ],
+            "all classes": [
+                [
+                    "justice change",
+                    "risk",
+                    "security",
+                    "security societal",
+                    "personal value",
+                    "risk or effect uncategorized (to do)",
+                    "communication frame",
+                    "review needed - values",
+                    "status - value",
+                    "universalism",
+                    "test ontology",
+                    "universalism concern",
+                    "security personal"
+                ]
+            ],
+            "personal value": [
+                "security",
+                "personal value",
+                "security personal"
+            ],
+            "risk": [
+                "risk or effect uncategorized (to do)",
+                "risk"
+            ],
+            "communication frame": [
+                "communication frame",
+                "justice change"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [
@@ -512,9 +794,10 @@
         "id": "increase in risk of stroke",
         "name": "increase in risk of stroke",
         "data": {
-            "individual": "webprotege.stanford.edu.RrH4kPiYwZ0tSRSz4lnaYW",
+            "label": "increase in risk of stroke",
+            "iri": "webprotege.stanford.edu.RrH4kPiYwZ0tSRSz4lnaYW",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "universalism concern",
                 "approved - values",
                 "downstream negative effect",
@@ -522,6 +805,41 @@
                 "test ontology",
                 "security personal",
                 "health change"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "security",
+                    "health change",
+                    "security societal",
+                    "personal value",
+                    "approved - values",
+                    "communication frame",
+                    "test ontology",
+                    "status - value",
+                    "universalism",
+                    "effect",
+                    "universalism concern",
+                    "security personal"
+                ]
+            ],
+            "personal value": [
+                "security",
+                "personal value",
+                "security personal"
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "communication frame": [
+                "health change",
+                "communication frame"
             ],
             "properties": {
                 "dc_source": [],
@@ -542,9 +860,10 @@
         "id": "increase in risk of heart attack",
         "name": "increase in risk of heart attack",
         "data": {
-            "individual": "webprotege.stanford.edu.RzalB19SQSGGVxprHL33Ik",
+            "label": "increase in risk of heart attack",
+            "iri": "webprotege.stanford.edu.RzalB19SQSGGVxprHL33Ik",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "universalism concern",
                 "approved - values",
                 "downstream negative effect",
@@ -552,6 +871,41 @@
                 "test ontology",
                 "security personal",
                 "health change"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "security",
+                    "health change",
+                    "security societal",
+                    "personal value",
+                    "approved - values",
+                    "communication frame",
+                    "test ontology",
+                    "status - value",
+                    "universalism",
+                    "effect",
+                    "universalism concern",
+                    "security personal"
+                ]
+            ],
+            "personal value": [
+                "security",
+                "personal value",
+                "security personal"
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "communication frame": [
+                "health change",
+                "communication frame"
             ],
             "properties": {
                 "dc_source": [],
@@ -574,10 +928,25 @@
         "id": "increase in CO2",
         "name": "increase in CO2",
         "data": {
-            "individual": "webprotege.stanford.edu.RBJi2ztbJiaIwcTQTScEKNx",
+            "label": "increase in CO2",
+            "iri": "webprotege.stanford.edu.RBJi2ztbJiaIwcTQTScEKNx",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "increase in atmospheric greenhouse gas",
+                "test ontology"
+            ],
+            "all classes": [
+                [
+                    "increase in atmospheric greenhouse gas",
+                    "risk",
+                    "test ontology"
+                ]
+            ],
+            "risk": [
+                "increase in atmospheric greenhouse gas",
+                "risk"
+            ],
+            "test ontology": [
                 "test ontology"
             ],
             "properties": {
@@ -626,10 +995,27 @@
         "id": "greenhouse-gas externality",
         "name": "greenhouse-gas externality",
         "data": {
-            "individual": "webprotege.stanford.edu.R9EmN8lJbIyQi0t6oj8e1w4",
+            "label": "greenhouse-gas externality",
+            "iri": "webprotege.stanford.edu.R9EmN8lJbIyQi0t6oj8e1w4",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "test ontology",
+                "mitigation barrier"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "risk solution barrier",
+                    "mitigation barrier",
+                    "test ontology"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk solution barrier",
+                "risk",
                 "mitigation barrier"
             ],
             "properties": {
@@ -655,10 +1041,25 @@
         "id": "increase in methane (CH4)",
         "name": "increase in methane (CH4)",
         "data": {
-            "individual": "webprotege.stanford.edu.RBQIDI6zYf94WmhdxbT6WQ3",
+            "label": "increase in methane (CH4)",
+            "iri": "webprotege.stanford.edu.RBQIDI6zYf94WmhdxbT6WQ3",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "increase in atmospheric greenhouse gas",
+                "test ontology"
+            ],
+            "all classes": [
+                [
+                    "increase in atmospheric greenhouse gas",
+                    "risk",
+                    "test ontology"
+                ]
+            ],
+            "risk": [
+                "increase in atmospheric greenhouse gas",
+                "risk"
+            ],
+            "test ontology": [
                 "test ontology"
             ],
             "properties": {
@@ -691,12 +1092,30 @@
         "id": "wetter soil during wet season",
         "name": "wetter soil during wet season",
         "data": {
-            "individual": "webprotege.stanford.edu.RBHUIy2I4ZBJSRGAvuInERX",
+            "label": "wetter soil during wet season",
+            "iri": "webprotege.stanford.edu.RBHUIy2I4ZBJSRGAvuInERX",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "main land change",
                 "test ontology",
                 "water cycle change"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "water cycle change",
+                    "test ontology",
+                    "main land change",
+                    "core climate change"
+                ]
+            ],
+            "risk": [
+                "water cycle change",
+                "risk",
+                "core climate change"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [],
@@ -726,9 +1145,10 @@
         "id": "increase in flooding of land and property",
         "name": "increase in flooding of land and property",
         "data": {
-            "individual": "webprotege.stanford.edu.RnbPKhyIQNnShkRKHqGrGm",
+            "label": "increase in flooding of land and property",
+            "iri": "webprotege.stanford.edu.RnbPKhyIQNnShkRKHqGrGm",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "review needed - values",
                 "universalism concern",
                 "downstream negative effect",
@@ -738,6 +1158,39 @@
                 "test ontology",
                 "benevolence dependability",
                 "security personal"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "security",
+                    "security societal",
+                    "benevolence dependability",
+                    "personal value",
+                    "benevolence",
+                    "review needed - values",
+                    "benevolence caring",
+                    "status - value",
+                    "universalism",
+                    "effect",
+                    "universalism nature",
+                    "universalism concern",
+                    "test ontology",
+                    "security personal"
+                ]
+            ],
+            "personal value": [
+                "security",
+                "personal value",
+                "security personal"
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [
@@ -773,15 +1226,50 @@
         "id": "increase in destruction to US military bases",
         "name": "increase in destruction to US military bases",
         "data": {
-            "individual": "webprotege.stanford.edu.R8uV2oTMZHslQ6qiGWJ8OQO",
+            "label": "increase in destruction to US military bases",
+            "iri": "webprotege.stanford.edu.R8uV2oTMZHslQ6qiGWJ8OQO",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "approved - values",
                 "downstream negative effect",
                 "frame uncategorized (to do)",
                 "security societal",
                 "test ontology",
                 "power dominance"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "security",
+                    "security societal",
+                    "personal value",
+                    "approved - values",
+                    "communication frame",
+                    "power dominance",
+                    "test ontology",
+                    "status - value",
+                    "frame uncategorized (to do)",
+                    "effect",
+                    "power"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "communication frame": [
+                "frame uncategorized (to do)",
+                "communication frame"
+            ],
+            "personal value": [
+                "power dominance",
+                "power",
+                "personal value"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [
@@ -810,9 +1298,10 @@
         "id": "increase in physical violence",
         "name": "increase in physical violence",
         "data": {
-            "individual": "webprotege.stanford.edu.RDavliTi6W93xwahwtUnUtG",
+            "label": "increase in physical violence",
+            "iri": "webprotege.stanford.edu.RDavliTi6W93xwahwtUnUtG",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "approved - values",
                 "downstream negative effect",
                 "self-direction autonomy of action",
@@ -822,6 +1311,39 @@
                 "conformity rules",
                 "hedonism",
                 "conformity interpersonal"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "security",
+                    "conformity rules",
+                    "security societal",
+                    "hedonism",
+                    "self-direction",
+                    "personal value",
+                    "conformity",
+                    "approved - values",
+                    "test ontology",
+                    "status - value",
+                    "effect",
+                    "security personal",
+                    "self-direction autonomy of action",
+                    "conformity interpersonal"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "personal value": [
+                "conformity interpersonal",
+                "personal value",
+                "conformity"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [],
@@ -846,10 +1368,27 @@
         "id": "drier soil during dry season",
         "name": "drier soil during dry season",
         "data": {
-            "individual": "webprotege.stanford.edu.RByBIDdhul7eNMQVP3bYnfg",
+            "label": "drier soil during dry season",
+            "iri": "webprotege.stanford.edu.RByBIDdhul7eNMQVP3bYnfg",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "main land change",
+                "test ontology"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "test ontology",
+                    "main land change",
+                    "core climate change"
+                ]
+            ],
+            "risk": [
+                "main land change",
+                "risk",
+                "core climate change"
+            ],
+            "test ontology": [
                 "test ontology"
             ],
             "properties": {
@@ -880,10 +1419,27 @@
         "id": "drier vegetation during dry season",
         "name": "drier vegetation during dry season",
         "data": {
-            "individual": "webprotege.stanford.edu.R8IAmadbnqneVdqnTnrLuIU",
+            "label": "drier vegetation during dry season",
+            "iri": "webprotege.stanford.edu.R8IAmadbnqneVdqnTnrLuIU",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "main land change",
+                "test ontology"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "test ontology",
+                    "main land change",
+                    "core climate change"
+                ]
+            ],
+            "risk": [
+                "main land change",
+                "risk",
+                "core climate change"
+            ],
+            "test ontology": [
                 "test ontology"
             ],
             "properties": {
@@ -914,10 +1470,27 @@
         "id": "increase in frequency of warm days and nights",
         "name": "increase in frequency of warm days and nights",
         "data": {
-            "individual": "webprotege.stanford.edu.RDudF9SBo28CKqKpRN9poYL",
+            "label": "increase in frequency of warm days and nights",
+            "iri": "webprotege.stanford.edu.RDudF9SBo28CKqKpRN9poYL",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "main variability change",
+                "test ontology"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "main variability change",
+                    "test ontology",
+                    "core climate change"
+                ]
+            ],
+            "risk": [
+                "main variability change",
+                "risk",
+                "core climate change"
+            ],
+            "test ontology": [
                 "test ontology"
             ],
             "properties": {
@@ -1008,15 +1581,49 @@
         "id": "decrease in learning (without air conditioner)",
         "name": "decrease in learning (without air conditioner)",
         "data": {
-            "individual": "webprotege.stanford.edu.R8Fa34SNdEwdj93hXO0oMS",
+            "label": "decrease in learning (without air conditioner)",
+            "iri": "webprotege.stanford.edu.R8Fa34SNdEwdj93hXO0oMS",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "achievement",
                 "approved - values",
                 "downstream negative effect",
                 "test ontology",
                 "self-direction autonomy of thought",
                 "education change"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "education change",
+                    "achievement",
+                    "self-direction",
+                    "personal value",
+                    "approved - values",
+                    "self-direction autonomy of thought",
+                    "communication frame",
+                    "test ontology",
+                    "status - value",
+                    "effect"
+                ]
+            ],
+            "personal value": [
+                "self-direction autonomy of thought",
+                "self-direction",
+                "personal value"
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "communication frame": [
+                "education change",
+                "communication frame"
             ],
             "properties": {
                 "dc_source": [],
@@ -1039,9 +1646,10 @@
         "id": "increase in suicide",
         "name": "increase in suicide",
         "data": {
-            "individual": "webprotege.stanford.edu.R8t0oNsG3WgnupXsBVSjMHZ",
+            "label": "increase in suicide",
+            "iri": "webprotege.stanford.edu.R8t0oNsG3WgnupXsBVSjMHZ",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "universalism concern",
                 "approved - values",
                 "downstream negative effect",
@@ -1052,6 +1660,45 @@
                 "test ontology",
                 "security personal",
                 "tradition"
+            ],
+            "all classes": [
+                [
+                    "health change",
+                    "security societal",
+                    "universalism",
+                    "frame uncategorized (to do)",
+                    "tradition",
+                    "security",
+                    "communication frame",
+                    "universalism concern",
+                    "security personal",
+                    "personal value",
+                    "benevolence",
+                    "benevolence caring",
+                    "test ontology",
+                    "downstream negative effect",
+                    "risk",
+                    "approved - values",
+                    "status - value",
+                    "effect",
+                    "mental health change"
+                ]
+            ],
+            "personal value": [
+                "personal value",
+                "tradition"
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "communication frame": [
+                "frame uncategorized (to do)",
+                "communication frame"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [],
@@ -1076,9 +1723,10 @@
         "id": "decrease in worker productivity",
         "name": "decrease in worker productivity",
         "data": {
-            "individual": "webprotege.stanford.edu.RDuEdzMOhOt76COW2RVxZdP",
+            "label": "decrease in worker productivity",
+            "iri": "webprotege.stanford.edu.RDuEdzMOhOt76COW2RVxZdP",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "achievement",
                 "approved - values",
                 "downstream negative effect",
@@ -1087,6 +1735,42 @@
                 "self-direction autonomy of action",
                 "test ontology",
                 "power dominance"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "achievement",
+                    "self-direction",
+                    "personal value",
+                    "approved - values",
+                    "communication frame",
+                    "power dominance",
+                    "test ontology",
+                    "status - value",
+                    "power",
+                    "effect",
+                    "frame uncategorized (to do)",
+                    "power resources",
+                    "self-direction autonomy of action"
+                ]
+            ],
+            "personal value": [
+                "power dominance",
+                "power",
+                "personal value"
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "communication frame": [
+                "frame uncategorized (to do)",
+                "communication frame"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [],
@@ -1111,11 +1795,29 @@
         "id": "more heat absorbed by oceans",
         "name": "more heat absorbed by oceans",
         "data": {
-            "individual": "webprotege.stanford.edu.R8vDHwP7soRN6c6XWYDjJkH",
+            "label": "more heat absorbed by oceans",
+            "iri": "webprotege.stanford.edu.R8vDHwP7soRN6c6XWYDjJkH",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "test ontology",
                 "global warming",
+                "main ocean change"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "main ocean change",
+                    "global warming",
+                    "test ontology",
+                    "core climate change"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
+                "core climate change",
                 "main ocean change"
             ],
             "properties": {
@@ -1146,10 +1848,27 @@
         "id": "warmer oceans",
         "name": "warmer oceans",
         "data": {
-            "individual": "webprotege.stanford.edu.RCOKh8I57dfccKh5QTFhHB0",
+            "label": "warmer oceans",
+            "iri": "webprotege.stanford.edu.RCOKh8I57dfccKh5QTFhHB0",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "test ontology",
+                "main ocean change"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "main ocean change",
+                    "test ontology",
+                    "core climate change"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
+                "core climate change",
                 "main ocean change"
             ],
             "properties": {
@@ -1180,10 +1899,27 @@
         "id": "increase in ocean surface temperature",
         "name": "increase in ocean surface temperature",
         "data": {
-            "individual": "webprotege.stanford.edu.RCDZl2bsYh3B1YlJUL7nRcM",
+            "label": "increase in ocean surface temperature",
+            "iri": "webprotege.stanford.edu.RCDZl2bsYh3B1YlJUL7nRcM",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "test ontology",
+                "main ocean change"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "main ocean change",
+                    "test ontology",
+                    "core climate change"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
+                "core climate change",
                 "main ocean change"
             ],
             "properties": {
@@ -1221,10 +1957,27 @@
         "id": "increase in marine heatwaves",
         "name": "increase in marine heatwaves",
         "data": {
-            "individual": "webprotege.stanford.edu.R1kRDiL29pcyXoNOkHduKB",
+            "label": "increase in marine heatwaves",
+            "iri": "webprotege.stanford.edu.R1kRDiL29pcyXoNOkHduKB",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "downstream negative effect",
+                "test ontology"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "effect",
+                    "test ontology"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "test ontology": [
                 "test ontology"
             ],
             "properties": {
@@ -1261,12 +2014,39 @@
         "id": "increase in coral bleaching and destruction",
         "name": "increase in coral bleaching and destruction",
         "data": {
-            "individual": "webprotege.stanford.edu.R9x3oCu22QJK9ebw5xL7NvB",
+            "label": "increase in coral bleaching and destruction",
+            "iri": "webprotege.stanford.edu.R9x3oCu22QJK9ebw5xL7NvB",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "approved - values",
                 "downstream negative effect",
                 "universalism nature",
+                "test ontology"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "personal value",
+                    "approved - values",
+                    "test ontology",
+                    "status - value",
+                    "universalism",
+                    "effect",
+                    "universalism nature"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "personal value": [
+                "universalism",
+                "universalism nature",
+                "personal value"
+            ],
+            "test ontology": [
                 "test ontology"
             ],
             "properties": {
@@ -1304,14 +2084,46 @@
         "id": "decrease in tourism",
         "name": "decrease in tourism",
         "data": {
-            "individual": "webprotege.stanford.edu.R9JAWzfiZ9haeNhHiCpTWkr",
+            "label": "decrease in tourism",
+            "iri": "webprotege.stanford.edu.R9JAWzfiZ9haeNhHiCpTWkr",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "approved - values",
                 "downstream negative effect",
                 "frame uncategorized (to do)",
                 "test ontology",
                 "hedonism",
+                "stimulation"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "hedonism",
+                    "personal value",
+                    "approved - values",
+                    "communication frame",
+                    "test ontology",
+                    "status - value",
+                    "frame uncategorized (to do)",
+                    "effect",
+                    "stimulation"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "communication frame": [
+                "frame uncategorized (to do)",
+                "communication frame"
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "personal value": [
+                "personal value",
                 "stimulation"
             ],
             "properties": {
@@ -1336,10 +2148,27 @@
         "id": "increase in hurricane strength",
         "name": "increase in hurricane strength",
         "data": {
-            "individual": "webprotege.stanford.edu.RcIHdxpjQwjr8EG8yMhEYV",
+            "label": "increase in hurricane strength",
+            "iri": "webprotege.stanford.edu.RcIHdxpjQwjr8EG8yMhEYV",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "downstream negative effect",
+                "test ontology"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "effect",
+                    "test ontology"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "test ontology": [
                 "test ontology"
             ],
             "properties": {
@@ -1394,8 +2223,8 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "schema_mediaSourceForConservatives": [
-                            "https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095",
-                            "https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689"
+                            "https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689",
+                            "https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095"
                         ]
                     }
                 }
@@ -1406,10 +2235,10 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "dc_source": [
-                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
-                            "https://www.nature.com/articles/s41612-019-0074-8",
                             "https://www.sciencedirect.com/science/article/pii/S0962629807000601",
-                            "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html"
+                            "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html",
+                            "https://www.nature.com/articles/s41612-019-0074-8",
+                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155"
                         ]
                     }
                 }
@@ -1420,9 +2249,10 @@
         "id": "increase in disaster costs",
         "name": "increase in disaster costs",
         "data": {
-            "individual": "webprotege.stanford.edu.R8JoXNnKTYqERwU7fblKTWB",
+            "label": "increase in disaster costs",
+            "iri": "webprotege.stanford.edu.R8JoXNnKTYqERwU7fblKTWB",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "approved - values",
                 "downstream negative effect",
                 "power resources",
@@ -1431,6 +2261,41 @@
                 "test ontology",
                 "security personal",
                 "hedonism"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "security",
+                    "security societal",
+                    "hedonism",
+                    "personal value",
+                    "approved - values",
+                    "communication frame",
+                    "test ontology",
+                    "status - value",
+                    "power",
+                    "effect",
+                    "frame uncategorized (to do)",
+                    "power resources",
+                    "security personal"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "personal value": [
+                "personal value",
+                "hedonism"
+            ],
+            "communication frame": [
+                "frame uncategorized (to do)",
+                "communication frame"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [
@@ -1458,11 +2323,29 @@
         "id": "more heat absorbed by air",
         "name": "more heat absorbed by air",
         "data": {
-            "individual": "webprotege.stanford.edu.Rtzkdtty1BHKfI8whB6qWR",
+            "label": "more heat absorbed by air",
+            "iri": "webprotege.stanford.edu.Rtzkdtty1BHKfI8whB6qWR",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "test ontology",
                 "global warming",
+                "main atmospheric change"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "main atmospheric change",
+                    "global warming",
+                    "test ontology",
+                    "core climate change"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
+                "core climate change",
                 "main atmospheric change"
             ],
             "properties": {
@@ -1493,10 +2376,27 @@
         "id": "warmer air and atmosphere (tropospheric warming)",
         "name": "warmer air and atmosphere (tropospheric warming)",
         "data": {
-            "individual": "webprotege.stanford.edu.RndlLhwHuWP9Ng5SgdZij3",
+            "label": "warmer air and atmosphere (tropospheric warming)",
+            "iri": "webprotege.stanford.edu.RndlLhwHuWP9Ng5SgdZij3",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "test ontology",
+                "main atmospheric change"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "main atmospheric change",
+                    "test ontology",
+                    "core climate change"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
+                "core climate change",
                 "main atmospheric change"
             ],
             "properties": {
@@ -1551,10 +2451,27 @@
         "id": "increase in frequency of heatwaves",
         "name": "increase in frequency of heatwaves",
         "data": {
-            "individual": "webprotege.stanford.edu.RJAL6Zu9F3EHB35HCs3cYD",
+            "label": "increase in frequency of heatwaves",
+            "iri": "webprotege.stanford.edu.RJAL6Zu9F3EHB35HCs3cYD",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "main variability change",
+                "test ontology"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "main variability change",
+                    "test ontology",
+                    "core climate change"
+                ]
+            ],
+            "risk": [
+                "main variability change",
+                "risk",
+                "core climate change"
+            ],
+            "test ontology": [
                 "test ontology"
             ],
             "properties": {
@@ -1653,8 +2570,8 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "dc_source": [
-                            "https://insideclimatenews.org/news/11112019/military-heat-risk-climate-change-basic-training-bases-union-concerned-scientists-report",
-                            "https://blog.ucsusa.org/kristy-dahl/military-extreme-heat"
+                            "https://blog.ucsusa.org/kristy-dahl/military-extreme-heat",
+                            "https://insideclimatenews.org/news/11112019/military-heat-risk-climate-change-basic-training-bases-union-concerned-scientists-report"
                         ]
                     }
                 }
@@ -1679,15 +2596,49 @@
         "id": "decrease in test scores",
         "name": "decrease in test scores",
         "data": {
-            "individual": "webprotege.stanford.edu.R7Yo5FYFleUwkbXjCU3xo4E",
+            "label": "decrease in test scores",
+            "iri": "webprotege.stanford.edu.R7Yo5FYFleUwkbXjCU3xo4E",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "achievement",
                 "approved - values",
                 "downstream negative effect",
                 "frame uncategorized (to do)",
                 "test ontology",
                 "self-direction autonomy of thought"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "achievement",
+                    "self-direction",
+                    "personal value",
+                    "approved - values",
+                    "communication frame",
+                    "self-direction autonomy of thought",
+                    "test ontology",
+                    "status - value",
+                    "frame uncategorized (to do)",
+                    "effect"
+                ]
+            ],
+            "personal value": [
+                "self-direction autonomy of thought",
+                "self-direction",
+                "personal value"
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "communication frame": [
+                "frame uncategorized (to do)",
+                "communication frame"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [],
@@ -1712,9 +2663,10 @@
         "id": "increase in health costs",
         "name": "increase in health costs",
         "data": {
-            "individual": "webprotege.stanford.edu.R7pS7MtLuEDp8HhEyf1VtOE",
+            "label": "increase in health costs",
+            "iri": "webprotege.stanford.edu.R7pS7MtLuEDp8HhEyf1VtOE",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "other negative effect from greenhouse gas emission",
                 "universalism concern",
                 "approved - values",
@@ -1724,6 +2676,42 @@
                 "test ontology",
                 "hedonism",
                 "other negative effect from root cause"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "hedonism",
+                    "self-direction",
+                    "personal value",
+                    "approved - values",
+                    "other negative effect from greenhouse gas emission",
+                    "communication frame",
+                    "test ontology",
+                    "other negative effect from root cause",
+                    "status - value",
+                    "universalism",
+                    "effect",
+                    "frame uncategorized (to do)",
+                    "universalism concern",
+                    "self-direction autonomy of action"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "other negative effect from root cause"
+            ],
+            "personal value": [
+                "personal value",
+                "hedonism"
+            ],
+            "communication frame": [
+                "frame uncategorized (to do)",
+                "communication frame"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [
@@ -1748,9 +2736,10 @@
         "id": "decrease in population of moose available to hunt",
         "name": "decrease in population of moose available to hunt",
         "data": {
-            "individual": "webprotege.stanford.edu.R8epBa4UvcieLTynfK3E84u",
+            "label": "decrease in population of moose available to hunt",
+            "iri": "webprotege.stanford.edu.R8epBa4UvcieLTynfK3E84u",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "review needed - values",
                 "achievement",
                 "downstream negative effect",
@@ -1759,6 +2748,41 @@
                 "frame uncategorized (to do)",
                 "test ontology",
                 "stimulation"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "achievement",
+                    "personal value",
+                    "power resources",
+                    "communication frame",
+                    "test ontology",
+                    "review needed - values",
+                    "status - value",
+                    "universalism",
+                    "effect",
+                    "universalism nature",
+                    "power",
+                    "frame uncategorized (to do)",
+                    "stimulation"
+                ]
+            ],
+            "personal value": [
+                "personal value",
+                "stimulation"
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "communication frame": [
+                "frame uncategorized (to do)",
+                "communication frame"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [
@@ -1781,15 +2805,50 @@
         "id": "increase in heat stroke in marine corps",
         "name": "increase in heat stroke in marine corps",
         "data": {
-            "individual": "webprotege.stanford.edu.RBqibfoxaYmRDDRiBzSVS0N",
+            "label": "increase in heat stroke in marine corps",
+            "iri": "webprotege.stanford.edu.RBqibfoxaYmRDDRiBzSVS0N",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "approved - values",
                 "downstream negative effect",
                 "security societal",
                 "national security change",
                 "test ontology",
                 "power dominance"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "security",
+                    "security societal",
+                    "personal value",
+                    "approved - values",
+                    "communication frame",
+                    "national security change",
+                    "test ontology",
+                    "power dominance",
+                    "status - value",
+                    "power",
+                    "effect"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "personal value": [
+                "power dominance",
+                "power",
+                "personal value"
+            ],
+            "communication frame": [
+                "national security change",
+                "communication frame"
+            ],
+            "test ontology": [
+                "test ontology"
             ],
             "properties": {
                 "dc_source": [
@@ -1813,13 +2872,46 @@
         "id": "decrease in GDP",
         "name": "decrease in GDP",
         "data": {
-            "individual": "webprotege.stanford.edu.RBvy0CVizhdMfXbtJIc2En",
+            "label": "decrease in GDP",
+            "iri": "webprotege.stanford.edu.RBvy0CVizhdMfXbtJIc2En",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "approved - values",
                 "downstream negative effect",
                 "power resources",
                 "frame uncategorized (to do)",
+                "test ontology"
+            ],
+            "all classes": [
+                [
+                    "downstream negative effect",
+                    "risk",
+                    "personal value",
+                    "approved - values",
+                    "communication frame",
+                    "test ontology",
+                    "status - value",
+                    "power",
+                    "effect",
+                    "frame uncategorized (to do)",
+                    "power resources"
+                ]
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "personal value": [
+                "power",
+                "personal value",
+                "power resources"
+            ],
+            "communication frame": [
+                "frame uncategorized (to do)",
+                "communication frame"
+            ],
+            "test ontology": [
                 "test ontology"
             ],
             "properties": {
@@ -1841,10 +2933,25 @@
         "id": "coal mining",
         "name": "coal mining",
         "data": {
-            "individual": "webprotege.stanford.edu.R5hC8Ud8449ZsdtwYdskf1",
+            "label": "coal mining",
+            "iri": "webprotege.stanford.edu.R5hC8Ud8449ZsdtwYdskf1",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "test ontology",
+                "root cause linked to humans"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "test ontology",
+                    "root cause linked to humans"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
                 "root cause linked to humans"
             ],
             "properties": {
@@ -1875,10 +2982,25 @@
         "id": "burning coal",
         "name": "burning coal",
         "data": {
-            "individual": "webprotege.stanford.edu.RBIjeqALTDlfCzVLfBMq4EC",
+            "label": "burning coal",
+            "iri": "webprotege.stanford.edu.RBIjeqALTDlfCzVLfBMq4EC",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "test ontology",
+                "root cause linked to humans"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "test ontology",
+                    "root cause linked to humans"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
                 "root cause linked to humans"
             ],
             "properties": {
@@ -1924,10 +3046,25 @@
         "id": "buildings and their construction, materials, gas heating, cooling, and refrigeration",
         "name": "buildings and their construction, materials, gas heating, cooling, and refrigeration",
         "data": {
-            "individual": "webprotege.stanford.edu.R8Es1gGVfBBLpoCGPWE48CV",
+            "label": "buildings and their construction, materials, gas heating, cooling, and refrigeration",
+            "iri": "webprotege.stanford.edu.R8Es1gGVfBBLpoCGPWE48CV",
             "comment": "['buildings produce 6% of heat-trapping emissions worldwide']",
-            "classes": [
+            "direct classes": [
                 "test ontology",
+                "root cause linked to humans"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "test ontology",
+                    "root cause linked to humans"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
                 "root cause linked to humans"
             ],
             "properties": {
@@ -1973,10 +3110,25 @@
         "id": "increase in HFCs and PFCs",
         "name": "increase in HFCs and PFCs",
         "data": {
-            "individual": "webprotege.stanford.edu.RBoKo0n5lpo1zk2uDMdZuab",
+            "label": "increase in HFCs and PFCs",
+            "iri": "webprotege.stanford.edu.RBoKo0n5lpo1zk2uDMdZuab",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "increase in atmospheric greenhouse gas",
+                "test ontology"
+            ],
+            "all classes": [
+                [
+                    "increase in atmospheric greenhouse gas",
+                    "risk",
+                    "test ontology"
+                ]
+            ],
+            "risk": [
+                "increase in atmospheric greenhouse gas",
+                "risk"
+            ],
+            "test ontology": [
                 "test ontology"
             ],
             "properties": {
@@ -2009,10 +3161,25 @@
         "id": "industrial activity",
         "name": "industrial activity",
         "data": {
-            "individual": "webprotege.stanford.edu.R8kybnu8AkaNkF2CcKTtPMk",
+            "label": "industrial activity",
+            "iri": "webprotege.stanford.edu.R8kybnu8AkaNkF2CcKTtPMk",
             "comment": "['industry directly responsible for 21% of all heat-trapping emissions']",
-            "classes": [
+            "direct classes": [
                 "test ontology",
+                "root cause linked to humans"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "test ontology",
+                    "root cause linked to humans"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
                 "root cause linked to humans"
             ],
             "properties": {
@@ -2055,10 +3222,25 @@
         "id": "cattle cow burps",
         "name": "cattle cow burps",
         "data": {
-            "individual": "webprotege.stanford.edu.R9ULHB1n9QqrbQRX5vv01hs",
+            "label": "cattle cow burps",
+            "iri": "webprotege.stanford.edu.R9ULHB1n9QqrbQRX5vv01hs",
             "comment": "[]",
-            "classes": [
+            "direct classes": [
                 "test ontology",
+                "root cause linked to humans"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "test ontology",
+                    "root cause linked to humans"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
                 "root cause linked to humans"
             ],
             "properties": {
@@ -2100,10 +3282,25 @@
         "id": "food waste, unhealthy agriculture, and deforestation",
         "name": "food waste, unhealthy agriculture, and deforestation",
         "data": {
-            "individual": "webprotege.stanford.edu.R9a1d8UGT12xJhW9F2fJ5Ql",
+            "label": "food waste, unhealthy agriculture, and deforestation",
+            "iri": "webprotege.stanford.edu.R9a1d8UGT12xJhW9F2fJ5Ql",
             "comment": "['agriculture and forestry activities generate 24% of greenhouse gas emissions worldwide']",
-            "classes": [
+            "direct classes": [
                 "test ontology",
+                "root cause linked to humans"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "test ontology",
+                    "root cause linked to humans"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
                 "root cause linked to humans"
             ],
             "properties": {
@@ -2143,10 +3340,25 @@
         "id": "human population growth",
         "name": "human population growth",
         "data": {
-            "individual": "webprotege.stanford.edu.RCpkare9aCROASttOpkDXpa",
+            "label": "human population growth",
+            "iri": "webprotege.stanford.edu.RCpkare9aCROASttOpkDXpa",
             "comment": "['Currently, we humans number 7.7 billion, and the United Nations estimates the human family will grow to between 9.4 billion and 10.1 billion in 2050. As we consider the future of climate solutions, it matters how many people will be eating, moving, plugging in, building, buying, using, wasting, and all the rest. Population interacts with the primary drivers of emissions: production and consumption, largely fossil-fueled.']",
-            "classes": [
+            "direct classes": [
                 "test ontology",
+                "root cause linked to humans"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "test ontology",
+                    "root cause linked to humans"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
                 "root cause linked to humans"
             ],
             "properties": {
@@ -2209,10 +3421,25 @@
         "id": "transporting people and goods",
         "name": "transporting people and goods",
         "data": {
-            "individual": "webprotege.stanford.edu.RDjwXK2vPUuvsb5nJUvtTMC",
+            "label": "transporting people and goods",
+            "iri": "webprotege.stanford.edu.RDjwXK2vPUuvsb5nJUvtTMC",
             "comment": "['Transportation is responsible for 14% of global greenhouse gas emissions']",
-            "classes": [
+            "direct classes": [
                 "test ontology",
+                "root cause linked to humans"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "test ontology",
+                    "root cause linked to humans"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
                 "root cause linked to humans"
             ],
             "properties": {
@@ -2261,10 +3488,25 @@
         "id": "burning fossil fuel for electricity production",
         "name": "burning fossil fuel for electricity production",
         "data": {
-            "individual": "webprotege.stanford.edu.RSqgmuB6RIAv04gEixDJOx",
+            "label": "burning fossil fuel for electricity production",
+            "iri": "webprotege.stanford.edu.RSqgmuB6RIAv04gEixDJOx",
             "comment": "['electricity production gives rise to 25% of heat-trapping emissions globally.']",
-            "classes": [
+            "direct classes": [
                 "test ontology",
+                "root cause linked to humans"
+            ],
+            "all classes": [
+                [
+                    "risk",
+                    "test ontology",
+                    "root cause linked to humans"
+                ]
+            ],
+            "test ontology": [
+                "test ontology"
+            ],
+            "risk": [
+                "risk",
                 "root cause linked to humans"
             ],
             "properties": {
