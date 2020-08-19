@@ -1,26 +1,16 @@
 version: 2
 jobs:
-  build:  
-    machine: true
-    steps:
-      - checkout          
-      # log into Docker registry
-      - run: echo "$DOCKER_PASS" | docker login $DOCKER_REGISTRY_NAME --username $DOCKER_USER --password-stdin
+ build:  
+   machine: true
+   steps:
+     - checkout          
+     # log into Docker registry
+     - run: |
+         echo "$DOCKER_PASS" | docker login $DOCKER_REGISTRY_NAME --username $DOCKER_USER --password-stdin
          
-      # build the application image
-      - run: docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BRANCH .
+     # build the application image
+     - run: |
+        docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
 
-  deploy:
-    machine: true
-    steps:
-      # deploy the image
-      - run: docker push $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BRANCH
-
-workflows:
-  version: 2
-  build-and-deploy:
-    jobs:
-      - build
-      - deploy:
-          requires:
-            - build
+     # push the image to the registry
+     - run: docker push $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM
