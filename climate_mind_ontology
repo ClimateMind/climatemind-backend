@@ -858,6 +858,12 @@
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/RCSp3Q6QJjaE6ehKKudHudg">
         <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/RftWPEDTNGrriaufjBA6oG"/>
+                <owl:hasValue rdf:resource="http://webprotege.stanford.edu/RDtjtNVivtpYdE8v55DyKrG"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="en">Farming, Fishing, and Forestry Occupations</rdfs:label>
     </owl:Class>
     
@@ -1365,6 +1371,15 @@
     
 
 
+    <!-- http://webprotege.stanford.edu/R6LHUV3DFggaE0N4sS85nP -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R6LHUV3DFggaE0N4sS85nP">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Transportation and Material Moving Occupations</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/R6zCdUFmA2mP62Gqfbm5sE -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R6zCdUFmA2mP62Gqfbm5sE">
@@ -1441,6 +1456,15 @@
     
 
 
+    <!-- http://webprotege.stanford.edu/R7d1FZLrHT7jiNDiQHltEdz -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7d1FZLrHT7jiNDiQHltEdz">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Farming, Fishing, and Forestry Occupations</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/R7gVDW5GAY8MLHKOrp03FZQ -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7gVDW5GAY8MLHKOrp03FZQ">
@@ -1459,6 +1483,24 @@
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7lbzoBwBLouLZawIp4Dioy">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDU8PoqNskq6aftdwHoEoRR"/>
         <rdfs:label xml:lang="en">lower salinity in freshwater</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7lrg5pJP7pVnLWxswl5Asu -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7lrg5pJP7pVnLWxswl5Asu">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Computer and Mathematical Occupations</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7okB6pZnpyZE0HnrRQ0JOC -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7okB6pZnpyZE0HnrRQ0JOC">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Food Preparation and Serving Related Occupations</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1496,6 +1538,15 @@
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/abandoned-farmland-restoration"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Degraded farmland is often abandoned, but need not be. Restoration can bring these lands back into productivity and sequester carbon in the process. Currently, 0.4 billion hectares of farmland have been abandoned due to land degradation. We estimate that by 2050 189-296 million hectares could be restored and converted to regenerative annual cropping, or other productive, carbon-friendly farming systems, for a combined emissions impact of 12.5-20.3 gigatons of carbon dioxide. This solution could provide a lifetime net profit of $2.6-4.3 trillion with an initial investment of $98-160 billion and lifetime operational cost of $3-5 trillion, while producing an additional 9.2-15 billion tons of food.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in restoration of abandoned farmland</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7vLe0Bp6yxGOmGFCJGxtmI -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7vLe0Bp6yxGOmGFCJGxtmI">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Military Specific Occupations</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1960,6 +2011,15 @@ If adoption of fuel-saving technologies grows from 10 percent to 50-60 percent o
     
 
 
+    <!-- http://webprotege.stanford.edu/R96yqIfb9AFiP4WzuHn2VhF -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R96yqIfb9AFiP4WzuHn2VhF">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Community and Social Service Occupations</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/R97nKRRZWNs0SIxDhgsFAbe -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R97nKRRZWNs0SIxDhgsFAbe">
@@ -2102,6 +2162,15 @@ Project Drawdown models the impact of this population difference in more-develop
     
 
 
+    <!-- http://webprotege.stanford.edu/R9VgJS8TA0xPDgBMFPftHEi -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9VgJS8TA0xPDgBMFPftHEi">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Architecture and Engineering Occupations</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/R9a1d8UGT12xJhW9F2fJ5Ql -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9a1d8UGT12xJhW9F2fJ5Ql">
@@ -2176,6 +2245,15 @@ Based on historic growth on large farming operations, the Project Drawdown analy
     
 
 
+    <!-- http://webprotege.stanford.edu/R9uO0kh9DXM2g3AsyL7Oo1F -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9uO0kh9DXM2g3AsyL7Oo1F">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Life, Physical, and Social Science Occupations</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/R9vkBr0EApzeMGfa0rJGo9G -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9vkBr0EApzeMGfa0rJGo9G">
@@ -2213,6 +2291,15 @@ Based on historic growth on large farming operations, the Project Drawdown analy
         <dc:source rdf:resource="https://www.youtube.com/watch?v=fA6mpexcyN4"/>
         <dc:source rdf:resource="https://www.youtube.com/watch?v=dcWlVN02kDQ&amp;feature=emb_title"/>
         <rdfs:label xml:lang="en">increase in coral bleaching and destruction</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RB03VLWD5sxkPoemrqMqj9G -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RB03VLWD5sxkPoemrqMqj9G">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Building and Grounds Cleaning and Maintenance Occupations</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2441,6 +2528,15 @@ If the total protected area of peatlands increases from 8.84 million hectares to
     
 
 
+    <!-- http://webprotege.stanford.edu/RBY95Va1sx2wWO2B46PACj1 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBY95Va1sx2wWO2B46PACj1">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Production Occupations</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/RBYAEANbzZXfxcNfkPYS1Um -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBYAEANbzZXfxcNfkPYS1Um">
@@ -2601,6 +2697,15 @@ If the total protected area of peatlands increases from 8.84 million hectares to
     
 
 
+    <!-- http://webprotege.stanford.edu/RCBwDh0uGgWmFnCcCWV0BW6 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCBwDh0uGgWmFnCcCWV0BW6">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Healthcare Practitioners and Technical Occupations</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/RCCli7m3xUZupUS871jEn0g -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCCli7m3xUZupUS871jEn0g">
@@ -2672,6 +2777,15 @@ If the total protected area of peatlands increases from 8.84 million hectares to
     
 
 
+    <!-- http://webprotege.stanford.edu/RCVkGYSl3uygfO7Z66NVm9h -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCVkGYSl3uygfO7Z66NVm9h">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Office and Administrative Support Occupations</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/RCYcuSVsndxr46dKMakicwT -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCYcuSVsndxr46dKMakicwT">
@@ -2680,6 +2794,24 @@ If the total protected area of peatlands increases from 8.84 million hectares to
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/led-lighting"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LED light bulbs use 90 percent less energy than incandescent bulbs for the same amount of light, and half as much as compact fluorescents, without toxic mercury. By transferring most of their energy use into creating light—rather than heat, like older technologies—LEDs reduce electricity consumption and air-conditioning loads. Although 2-3x more expensive than incandescent or fluorescent bulbs, they last much longer and are becoming cheaper to buy as technology improves. As LEDs replace less-efficient lighting, 10.2-10.8 gigatons of carbon dioxide emissions could be avoided in residences and 5.9-6.7 gigatons in commercial buildings.</rdfs:comment>
         <rdfs:label xml:lang="en">switching to LED light bulbs</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RCZ2LfFmpRhglZ9XrPai5sl -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCZ2LfFmpRhglZ9XrPai5sl">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Sales and Related Occupations</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RCZ3YfX012dNkEY4griFIa -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCZ3YfX012dNkEY4griFIa">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Installation, Maintenance, and Repair Occupations</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2858,6 +2990,15 @@ The household and industrial recycling solutions were modeled together and inclu
     
 
 
+    <!-- http://webprotege.stanford.edu/RD1d4KHRHMc4JV82PksYiZy -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RD1d4KHRHMc4JV82PksYiZy">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Educational Instruction and Library Occupations</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/RD2p6adaCZJE3WmtfZ0qrU7 -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RD2p6adaCZJE3WmtfZ0qrU7">
@@ -2895,6 +3036,15 @@ The household and industrial recycling solutions were modeled together and inclu
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCJEcx2UfX3O1O9fAa1QpcW"/>
         <rdfs:label xml:lang="en">increase rate of carbon tax</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RDPG8CtfbvxwbZ1P9eQeotT -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDPG8CtfbvxwbZ1P9eQeotT">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Construction and Extraction Occupations</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3001,6 +3151,15 @@ The household and industrial recycling solutions were modeled together and inclu
         <schema:governmentSource rdf:resource="https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16"/>
         <schema:organizationSource rdf:resource="https://www.psychologicalscience.org/observer/global-warming-and-violent-behavior"/>
         <rdfs:label xml:lang="en">increase in physical violence</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RDcvZQ941oyzzXIkBK7YVHK -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDcvZQ941oyzzXIkBK7YVHK">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Legal Occupations</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3139,12 +3298,7 @@ The household and industrial recycling solutions were modeled together and inclu
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDtjtNVivtpYdE8v55DyKrG">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
-        <rdf:type>
-            <owl:Restriction>
-                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/RftWPEDTNGrriaufjBA6oG"/>
-                <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCSp3Q6QJjaE6ehKKudHudg"/>
-            </owl:Restriction>
-        </rdf:type>
+        <webprotege:RftWPEDTNGrriaufjBA6oG rdf:resource="http://webprotege.stanford.edu/R7d1FZLrHT7jiNDiQHltEdz"/>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/silvopasture"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An agroforestry practice, silvopasture integrates trees, pasture, and forage into a single system. Incorporating trees improves land health and significantly increases carbon sequestration. Project Drawdown estimates that silvopasture is currently practiced on 550 million hectares of land globally. If adoption expands to 720-772 million hectares by 2050—out of the 823 million hectares theoretically suitable for silvopasture—carbon dioxide emissions can be reduced by 26.6-42.3 gigatons. This reduction is a result of the high annual carbon sequestration rate of 2.74 tons of carbon per hectare per year in soil and biomass. Farmers could realize financial gains from revenue diversification of $1.7-2.3 trillion, on investment of $206-273 billion and lifetime operational cost of $2-3 trillion to implement.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in silvopasture</rdfs:label>
@@ -3211,6 +3365,15 @@ Bamboo is planted on 33.52 million hectares today. We assume that it will be gro
         <schema:organizationSource rdf:resource="https://www.climatecentral.org/news/climate-change-is-threatening-air-quality-across-the-country-2019"/>
         <schema:organizationSource rdf:resource="https://www.psychologicalscience.org/observer/global-warming-and-violent-behavior"/>
         <rdfs:label xml:lang="en">increase in frequency of warm days and nights</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RDwilqWJBws8Ois2wBxXzTt -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDwilqWJBws8Ois2wBxXzTt">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Healthcare Support Occupations</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3306,6 +3469,15 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
         <schema:mediaSource rdf:resource="https://www.forbes.com/sites/ucenergy/2018/08/29/heat-makes-people-less-productive-spelling-trouble-for-the-economy-and-future/#5287dc267bb1"/>
         <schema:mediaSource rdf:resource="https://www.washingtonpost.com/business/2018/07/17/heat-makes-you-dumb-four-charts/"/>
         <rdfs:label xml:lang="en">increase in frequency of heatwaves</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RJDHAqntTKFBWhPJaTPuSF -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RJDHAqntTKFBWhPJaTPuSF">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Arts, Design, Entertainment, Sports, and Media Occupations</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3419,6 +3591,15 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RUb8DtReh9tSw5A7NxZmfc">
         <rdfs:label xml:lang="en">increase in ice melted by rain</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RYkJaK94XeX4IVAr2xSmRY -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RYkJaK94XeX4IVAr2xSmRY">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Personal Care and Service Occupations</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3660,6 +3841,15 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
     
 
 
+    <!-- http://webprotege.stanford.edu/Rto9D9nqc0xN8J6QnA0rcC -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/Rto9D9nqc0xN8J6QnA0rcC">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Management Occupation</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/Rtzkdtty1BHKfI8whB6qWR -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/Rtzkdtty1BHKfI8whB6qWR">
@@ -3672,6 +3862,15 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
     
 
 
+    <!-- http://webprotege.stanford.edu/RuwPaS1qZhtlTcPylMJErn -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RuwPaS1qZhtlTcPylMJErn">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Protective Service Occupations</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/RvgK3RWRb6dVpRniUARv0a -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RvgK3RWRb6dVpRniUARv0a">
@@ -3680,6 +3879,15 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/biogas-for-cooking"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anaerobic digesters process backyard or farmyard organic waste into biogas and digestate fertilizer. Biogas stoves can reduce emissions when replacing biomass or kerosene for cooking. Small biogas reactors that can be installed in homes and communities to enable cooking with biogas instead of wood and charcoal stoves which have health and environmental consequences. It is projected that by 2050, small biogas digesters that digest animal and crop wastes can replace 57-87 million inefficient cookstoves in countries in Asia and Africa. The cumulative result: 4.6-9.7 gigatons of carbon dioxide emissions avoided at a net cost of $23-$49 billion. These stoves increase operating costs however by an additional $100-$209 billion over the lifetime of the reactors.</rdfs:comment>
         <rdfs:label xml:lang="en">using biogas for cooking</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/Rx4bhKm6xCtfmwVIdtI3oJ -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/Rx4bhKm6xCtfmwVIdtI3oJ">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:label xml:lang="en">Business and Financial Operations Occupations</rdfs:label>
     </owl:NamedIndividual>
     
 
