@@ -1,12 +1,12 @@
 version: 2
 jobs:
- build:  
-   machine: true
-   steps:
-     - checkout          
+  build:  
+    machine: true
+    steps:
+      - checkout          
          
-     # build the application image
-     - run: docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
+      # build the application image
+      - run: docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
 
   push: 
     # push the image to the registry
