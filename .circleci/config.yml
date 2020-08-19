@@ -1,18 +1,26 @@
 version: 2
 jobs:
- build:  
-   docker:
-     - image: cimg/base:2020.01
-   steps:
-     - checkout
-     # start proprietary DB using private Docker image
-     # with credentials stored in the UI
-     - run: |
-         echo "$DOCKER_PASS" | docker login $DOCKER_REGISTRY_NAME --username $DOCKER_USER --password-stdin
+  build:  
+    machine: true
+    steps:
+      - checkout          
+      # log into Docker registry
+      - run: echo "$DOCKER_PASS" | docker login $DOCKER_REGISTRY_NAME --username $DOCKER_USER --password-stdin
          
-     # build the application image
-     - run: |
-        docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BRANCH .
+      # build the application image
+      - run: docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BRANCH .
 
-     # deploy the image
-     - run: docker push $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BRANCH
+  deploy:
+    machine: true
+    steps:
+      # deploy the image
+      - run: docker push $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BRANCH
+
+workflows:
+  version: 2
+  build-and-deploy:
+    jobs:
+      - build
+      - deploy:
+          requires:
+            - build
