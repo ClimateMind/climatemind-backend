@@ -11,10 +11,10 @@ jobs:
   push: 
     # push the image to the registry
     machine: true
-      steps:
-        # log into Docker registry
-        - run: echo "$DOCKER_PASS" | docker login $DOCKER_REGISTRY_NAME --username $DOCKER_USER --password-stdin
-        - run: docker push $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM
+    steps:
+      # log into Docker registry
+      - run: echo "$DOCKER_PASS" | docker login $DOCKER_REGISTRY_NAME --username $DOCKER_USER --password-stdin
+      - run: docker push $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM
 workflows:
   version: 2
   build_and_push:
