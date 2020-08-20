@@ -60,7 +60,7 @@ N = nx.nx_agraph.to_agraph(G)
 # Get all nodes classes...
 allclasses = set()
 for node in N.nodes():
-	nodeclasslist = eval(node.attr.get("classes"))
+	nodeclasslist = eval(node.attr.get("all classes"))
 	if isinstance(nodeclasslist, list) or isinstance(nodeclasslist, set):
 		allclasses.update([e for e in nodeclasslist])
 # build the filter items for the layout
