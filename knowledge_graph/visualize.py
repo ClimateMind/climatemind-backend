@@ -61,11 +61,12 @@ N = nx.nx_agraph.to_agraph(G)
 allclasses = set()
 for node in N.nodes():
 	nodeclasslist = eval(node.attr.get("classes"))
-	if isinstance(nodeclasslist, list):
+	if isinstance(nodeclasslist, list) or isinstance(nodeclasslist, set):
 		allclasses.update([e for e in nodeclasslist])
 # build the filter items for the layout
 allclasses_filter_radioitems = [{"value": ee, "label":ee}  for ee in allclasses]
 allclasses_filter_radioitems.append({'label': u'None', 'value': 'none'})
+
 
 #change the graphviz graph settings to make the graph layout of edges and nodes as we want
 N.edge_attr.update(splines="curved",directed=True)
