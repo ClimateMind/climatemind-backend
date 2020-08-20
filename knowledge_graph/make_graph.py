@@ -1,11 +1,17 @@
-import networkx as nx
-import pandas as pd
-from knowledge_graph.make_network import give_alias
-from networkx.readwrite import json_graph
-from owlready2 import *
 import json
 import pickle
 import argparse
+import networkx as nx
+import pandas as pd
+
+from owlready2 import *
+from networkx.readwrite import json_graph
+
+from make_network import give_alias
+
+
+# Set a lower JVM memory limit
+owlready2.reasoning.JAVA_MEMORY = 500
 
 def convert_dataframe_to_edges(df):
     """ 
@@ -226,8 +232,8 @@ def read_json_file(filename):
 #print(json.dumps(G2, indent=4, sort_keys=True))
 
 # Test reading JSON file & print the nodes for Test Ontology Only
-G2 = read_json_file("Climate_Mind_DiGraph_Test_Ont.json")
-print(json.dumps(G2, indent=4, sort_keys=True))
+# G2 = read_json_file("../Climate_Mind_DiGraph_Test_Ont.json")
+# print(json.dumps(G2, indent=4, sort_keys=True))
 
 def main(args):
     """
@@ -272,8 +278,8 @@ def main(args):
     #save_graph_to_gexf(G)
     #save_graph_to_gml(G)
     #save_graph_to_graphml(G)
-    save_graph_to_yaml(G)
-    save_graph_to_json(G)
+    # save_graph_to_yaml(G)
+    # save_graph_to_json(G)
 
     valid_test_ont = {
         "test ontology",
