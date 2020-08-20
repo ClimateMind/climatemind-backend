@@ -1,0 +1,10 @@
+version: 2
+jobs:
+ build:  
+   machine: true
+   steps:
+     - checkout          
+
+     # build the application image
+     - run: |
+        docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
