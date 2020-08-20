@@ -68,6 +68,16 @@ allclasses_filter_radioitems = [{"value": ee, "label":ee}  for ee in allclasses]
 allclasses_filter_radioitems.append({'label': u'None', 'value': 'none'})
 
 
+# Node Property filter to go under the graph
+# Get all nodes properties
+allnodeproperties = set()
+for node in G.nodes():
+	props = G.nodes.get(node).get("properties")
+	allnodeproperties.update(props.keys())
+allnodeproperties_filter_radioitems = [{"value": ee, "label":ee}  for ee in allnodeproperties]
+allnodeproperties_filter_radioitems.append({'label': u'None', 'value': 'none'})
+
+
 #change the graphviz graph settings to make the graph layout of edges and nodes as we want
 N.edge_attr.update(splines="curved",directed=True)
 N.layout(prog='dot')
@@ -197,7 +207,7 @@ def get_filtered_data(edge_type=None):
 #radio icons and dropdown menus
 #https://www.datacamp.com/community/tutorials/learn-build-dash-python
 
-def get_figure(edge_type=None, node_class=None, extra_edge_type=None):
+def get_figure(edge_type=None, node_class=None, node_property=None, extra_edge_type=None):
 	the_nodes_to_display, the_edges_to_display = get_filtered_data(edge_type)
 	#blank figure object
 	fig = go.Figure()
@@ -223,6 +233,11 @@ def get_figure(edge_type=None, node_class=None, extra_edge_type=None):
 		if node.get("non_default_edge_type"):
 			line_color = "orange"
 			fillcolor = "orange"
+
+		if node_property:
+			if G.nodes.get(node_name).get("properties").get(node_property):
+				line_color = "yellow"
+				fillcolor = "yellow"
 
 		fig.add_shape(
 					  type="circle",
@@ -384,6 +399,14 @@ app.layout = html.Div(children=[
 		)
 	]),
 	html.Div(children=[
+		html.Label('Higlight Nodes with the following non empty property:'),
+		dcc.Dropdown(
+			 id='node-property-filter',
+			 options=allnodeproperties_filter_radioitems,
+			 value='none'
+		)
+	]),
+	html.Div(children=[
 		html.Label(
 			u"Higlight Nodes"),
 		dcc.Checklist(
@@ -418,12 +441,13 @@ def display_click_data(clickData):
 	[
 	dash.dependencies.Input('edge-type-filter', 'value'),
 	dash.dependencies.Input('node-class-filter', 'value'),
+	dash.dependencies.Input('node-property-filter', 'value'),
 	dash.dependencies.Input('node-extra-edge-type-filter', 'value')
 	])
-def display_click_data(edge_type, node_class, extra_edge_type):
+def display_click_data(edge_type, node_class, node_property, extra_edge_type):
 	print("display_click_data!")
 
-	if not edge_type and not node_class and not extra_edge_type:
+	if not edge_type and not node_class and not node_property and not extra_edge_type:
 		# Nothing has to happen.
 		# otherwise the callback is called in some load/init cases
 		raise dash.exceptions.PreventUpdate
@@ -431,10 +455,12 @@ def display_click_data(edge_type, node_class, extra_edge_type):
 		edge_type=None
 	if node_class == "none":
 		node_class = None
+	if node_property == "none":
+		node_property = None
 	if extra_edge_type != "yes":
 		extra_edge_type = None
 	print(f"display_click_data! edge_type={edge_type}, node_class={node_class}")
-	return get_figure(edge_type, node_class, extra_edge_type)
+	return get_figure(edge_type, node_class, node_property, extra_edge_type)
 
 
 if __name__ == '__main__':
