@@ -2,8 +2,8 @@ import argparse
 
 import pandas as pd
 from owlready2 import *
-
 from knowledge_graph.network_class import Network
+
 
 
 def get_edges(ontology, source):
