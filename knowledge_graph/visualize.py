@@ -100,10 +100,14 @@ for item in content:
 	else:
 		N_nodes.append(item)
 
+default_edge_type = ["is_inhibited_or_prevented_or_blocked_or_slowed_by","causes_or_promotes"]
+
+
 #populate node graph layout details from graphviz
 N_node_details = []
 for N_node in N_nodes:
 	name = N_node.split('\t')[1].strip("\"")
+
 	node_attrs = N.get_node(name).attr
 	height = node_attrs.get("height", 0)
 	width = node_attrs.get("width", 0)
@@ -117,6 +121,10 @@ for N_node in N_nodes:
 		"width": float(width),
 		"node_properties_hovertext": node_properties_hovertext,
 	}
+	for edg in G.edges(name, data=True):
+		edg_type = edg[2].get("type")
+		if edg_type not in default_edge_type:
+			n_details["non_default_edge_type"] = edg_type
 	N_node_details.append(n_details)
 
 
@@ -189,7 +197,7 @@ def get_filtered_data(edge_type=None):
 #radio icons and dropdown menus
 #https://www.datacamp.com/community/tutorials/learn-build-dash-python
 
-def get_figure(edge_type=None, node_class=None):
+def get_figure(edge_type=None, node_class=None, extra_edge_type=None):
 	the_nodes_to_display, the_edges_to_display = get_filtered_data(edge_type)
 	#blank figure object
 	fig = go.Figure()
@@ -198,22 +206,29 @@ def get_figure(edge_type=None, node_class=None):
 	#Add node traces as ovals to the figure object
 	#Note how 72 is the conversion of graphviz point scale to inches scale
 	for node in N_node_details:
+		node_name = node.get("name")
 		# Do not show the nodes not in the_nodes_to_display
-		if node.get("name") not in the_nodes_to_display:
+		if node_name not in the_nodes_to_display:
 			continue
 
 		fillcolor = None
 		textcolor = "black"
+		line_color = "black"
 		if node_class:
-			node_class_list = eval(N.get_node(node.get("name")).attr.get("classes"))
+			node_class_list = eval(N.get_node(node_name).attr.get("all classes"))
 			if node_class in node_class_list:
 				fillcolor = "#aed9f6"
 				textcolor = "#0D3BF6"
+
+		if node.get("non_default_edge_type"):
+			line_color = "orange"
+			fillcolor = "orange"
 
 		fig.add_shape(
 					  type="circle",
  					  fillcolor=fillcolor,
 					  layer= 'below',
+					  line_color=line_color,
 					  x0=node.get("position").get("x")-0.5*node.get("width")*72,
 					  y0=node.get("position").get("y")-0.5*node.get("height")*72,
 					  x1=node.get("position").get("x")+0.5*node.get("width")*72,
@@ -227,7 +242,7 @@ def get_figure(edge_type=None, node_class=None):
 								 y=[node.get("position").get("y")],
 								 # https://plotly.com/python/hover-text-and-formatting/#customizing-hover-text-with-a-hovertemplate	
 								 hovertemplate=node.get("node_properties_hovertext"),
-								 text=node.get("name"),
+								 text=node_name,
 								 mode="text",
 								 textfont=dict(
 											   color=textcolor,
@@ -367,6 +382,19 @@ app.layout = html.Div(children=[
 			 options=allclasses_filter_radioitems,
 			 value='none'
 		)
+	]),
+	html.Div(children=[
+		html.Label(
+			u"Higlight Nodes"),
+		dcc.Checklist(
+			id='node-extra-edge-type-filter',
+    		options=[{'label': 
+    			u"If they contain additional edge type(s) "
+				u"(beyond 'causes_or_promotes' or "
+				u"'is_inhibited_or_prevented_or_blocked_or_slowed_by')",
+			'value': 'yes'}],			 
+    		value=''
+		)
 	]),	
 	html.Div(
 		children=[
@@ -389,12 +417,13 @@ def display_click_data(clickData):
 	dash.dependencies.Output('graph', 'figure'),
 	[
 	dash.dependencies.Input('edge-type-filter', 'value'),
-	dash.dependencies.Input('node-class-filter', 'value')
+	dash.dependencies.Input('node-class-filter', 'value'),
+	dash.dependencies.Input('node-extra-edge-type-filter', 'value')
 	])
-def display_click_data(edge_type, node_class):
+def display_click_data(edge_type, node_class, extra_edge_type):
 	print("display_click_data!")
 
-	if not edge_type and not node_class:
+	if not edge_type and not node_class and not extra_edge_type:
 		# Nothing has to happen.
 		# otherwise the callback is called in some load/init cases
 		raise dash.exceptions.PreventUpdate
@@ -402,8 +431,10 @@ def display_click_data(edge_type, node_class):
 		edge_type=None
 	if node_class == "none":
 		node_class = None
+	if extra_edge_type != "yes":
+		extra_edge_type = None
 	print(f"display_click_data! edge_type={edge_type}, node_class={node_class}")
-	return get_figure(edge_type, node_class)
+	return get_figure(edge_type, node_class, extra_edge_type)
 
 
 if __name__ == '__main__':
