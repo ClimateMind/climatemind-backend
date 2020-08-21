@@ -123,13 +123,16 @@ for N_node in N_nodes:
 	width = node_attrs.get("width", 0)
 	position = node_attrs.get("pos", []).split(",")
 	node_properties = G.nodes.get(name).get("properties")
-	node_properties_hovertext = "<br>".join([f"<b>{key}</b>: {val}" for (key, val) in node_properties.items()])
+	node_classes = G.nodes.get(name).get("all classes")
+	node_classes_hovertext = "<br>-".join([f"<b>{cla}</b>" for cla in node_classes])
+	node_properties_hovertext = "<br>-".join([f"<b>{key}</b>: {val}" for (key, val) in node_properties.items()])
 	n_details = {
 		"name": name,
 		"position": {"x":float(position[0]), "y":float(position[1])},
 		"height": float(height),
 		"width": float(width),
-		"node_properties_hovertext": node_properties_hovertext,
+		"node_properties_hovertext": 
+			f"<b>Node classes:</b><br>{node_classes_hovertext}<br><br><b>Nodes properties:</b><br>{node_properties_hovertext}"
 	}
 	for edg in G.edges(name, data=True):
 		edg_type = edg[2].get("type")
