@@ -131,7 +131,7 @@ for N_node in N_nodes:
 		"position": {"x":float(position[0]), "y":float(position[1])},
 		"height": float(height),
 		"width": float(width),
-		"node_properties_hovertext": 
+		"node_hovertext": 
 			f"<b>Node classes:</b><br>{node_classes_hovertext}<br><br><b>Nodes properties:</b><br>{node_properties_hovertext}"
 	}
 	for edg in G.edges(name, data=True):
@@ -156,11 +156,19 @@ for edge in N_edges:
 		.replace('n', '')
 	positions = [[float(x),float(y)] for (x,y) in [cp.split(",") for cp in positions.split(" ")]]
 	edge_type = edge_attrs.get("type")
+	edge_properties = G.edges.get((node1, node2)).get("properties")
+	if edge_properties:
+		edge_properties_hovertext = "<br>-".join([f"<b>{key}</b>: {val}" for (key, val) in edge_properties.items()])
+	else:
+		edge_properties_hovertext = "None"
 	edge_details = {
 		"node1": node1,
 		"node2": node2,
 		"positions": positions,
 		"edge_type": edge_type,
+		"edge_hovertext": 
+			f"<b>Edge properties:</b><br>{edge_properties_hovertext}"
+
 	}
 	N_edge_details.append(edge_details)
 
@@ -259,7 +267,7 @@ def get_figure(edge_type=None, node_class=None, node_property=None, extra_edge_t
 								 x=[node.get("position").get("x")],
 								 y=[node.get("position").get("y")],
 								 # https://plotly.com/python/hover-text-and-formatting/#customizing-hover-text-with-a-hovertemplate	
-								 hovertemplate=node.get("node_properties_hovertext"),
+								 hovertemplate=node.get("node_hovertext"),
 								 text=node_name,
 								 mode="text",
 								 textfont=dict(
@@ -341,7 +349,10 @@ def get_figure(edge_type=None, node_class=None, node_property=None, extra_edge_t
 		#add edge spline trace to the figure object
 		xp = [ coordinate[0] for coordinate in path ]
 		yp = [ coordinate[1] for coordinate in path ]
-		fig.add_trace(go.Scatter(x=xp,y=yp,marker=dict(color=edge_color), line_shape='spline'))
+		fig.add_trace(go.Scatter(
+			x=xp,y=yp,marker=dict(color=edge_color), line_shape='spline',
+			hovertemplate=edge.get("edge_hovertext")
+		))
 
 
 
@@ -353,21 +364,6 @@ def get_figure(edge_type=None, node_class=None, node_property=None, extra_edge_t
 	fig.update_layout(showlegend=False,plot_bgcolor='rgba(0,0,0,0)')
 	print("get_figure! FIG IS RETURNING")
 	return fig
-#may need to add this back in later to help adjust the first look of the dashboard
-#fig.update_layout(
-					#autosize=False,
-					#width=8395.7,
-					#height=1404,
-					#yaxis = dict(
-					#scaleanchor = "x",
-					#			scaleratio = /1404,
-#			))
-
-# #add scroll zooming as a feature
-# config = dict({'scrollZoom': True})
-# fig.show(config=config)
-
-
 
 
 ################### START OF DASH APP ###################
