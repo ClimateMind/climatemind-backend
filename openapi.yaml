@@ -1,0 +1,305 @@
+openapi: 3.0.1
+info:
+  title: ClimateMind API
+  description: The API for sending and recieving information to and from the ClimateMind
+    ontology.
+  version: "0.1"
+servers:
+- url: http://127.0.0.1:5000
+- url: http://localhost:5000
+paths:
+  /get_user_scores:
+    post:
+      description: |-
+        Users want to be able to get their score results after submitting the survey.
+        The user can answer 10 or 20 questions. If they answer 20, the scores are averaged between the 10 additional and 10 original questions to get 10 corresponding value scores.
+        Then to get a centered score for each value, each score value is subtracted from the overall average of all 10 or 20 questions. This score is returned in the response.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+            examples:
+              "0":
+                value: "{ \n    \"SetOne\" : [\n        {\n            \"id\" : 1,\n\
+                  \            \"value\" : \"conformity\",\n            \"question\"\
+                  \ : \"They believe they should always show respect to their parents\
+                  \ and to older people. It is important to them to be obedient.\"\
+                  ,\n            \"score\" : 5    \n        },\n        {\n      \
+                  \      \"id\" : 2,\n            \"value\" : \"tradition\",\n   \
+                  \         \"question\" : \"Religious belief or traditions are important\
+                  \ to them. They try hard to do what their religion or family traditions\
+                  \ require.\",\n            \"score\" : 6    \n        },\n     \
+                  \   {\n            \"id\" : 3,\n            \"value\" : \"benevolence\"\
+                  ,\n            \"question\" : \"It's very important to them to help\
+                  \ the people around them. They want to care for the well-being of\
+                  \ those around them.\",\n            \"score\" : 4    \n       \
+                  \ },\n        {\n            \"id\" : 4,\n            \"value\"\
+                  \ : \"universalism\",\n            \"question\" : \"They think it\
+                  \ is important that every person in the world be treated equally.\
+                  \ They believe everyone should have equal opportunities in life.\"\
+                  ,\n            \"score\" : 3    \n        },\n        {\n      \
+                  \      \"id\" : 5,\n            \"value\" : \"self-direction\",\n\
+                  \            \"question\" : \"They think it's important to be interested\
+                  \ in things. They like to be curious and to try to understand all\
+                  \ sorts of things.\",\n            \"score\" : 1    \n        },\n\
+                  \        {\n            \"id\" : 6,\n            \"value\" : \"\
+                  stimulation\",\n            \"question\" : \"They like to take risks.\
+                  \ They are always looking for adventures.\",\n            \"score\"\
+                  \ : 0    \n        },\n        {\n            \"id\" : 7,\n    \
+                  \        \"value\" : \"hedonism\",\n            \"question\" : \"\
+                  They seek every chance they can to have fun. It is important to\
+                  \ them to do things that give them pleasure.\",\n            \"\
+                  score\" : 0    \n        },\n        {\n            \"id\" : 8,\n\
+                  \            \"value\" : \"achievement\",\n            \"question\"\
+                  \ : \"Being very successful is important to them. They like to impress\
+                  \ other people.\",\n            \"score\" : 2    \n        },\n\
+                  \        {\n            \"id\" : 9,\n            \"value\" : \"\
+                  power\",\n            \"question\" : \"It is important to them to\
+                  \ be in charge and tell others what to do. They want people to do\
+                  \ what they say.\",\n            \"score\" : 2    \n        },\n\
+                  \        {\n            \"id\" : 10,\n            \"value\" : \"\
+                  security\",\n            \"question\" : \"It is important to them\
+                  \ that things be organized and clean. They really do not like things\
+                  \ to be a mess.\",\n            \"score\" : 4    \n        }\n \
+                  \   ],\n    \"SetTwo\" : [\n        {\n            \"id\" : 1,\n\
+                  \            \"value\" : \"conformity\",\n            \"question\"\
+                  \ : \"It is important to they to always behave properly. They want\
+                  \ to avoid doing anything people would say is wrong.\",\n      \
+                  \      \"score\" : 2    \n        },\n        {\n            \"\
+                  id\" : 2,\n            \"value\" : \"tradition\",\n            \"\
+                  question\" : \"They think it is best to do things in traditional\
+                  \ ways. It is important to they to keep up the customs they have\
+                  \ learned.\",\n            \"score\" : 5    \n        },\n     \
+                  \   {\n            \"id\" : 3,\n            \"value\" : \"benevolence\"\
+                  ,\n            \"question\" : \"It is important to them to respond\
+                  \ to the needs of others. They try to support those they know.\"\
+                  ,\n            \"score\" : 4    \n        },\n        {\n      \
+                  \      \"id\" : 4,\n            \"value\" : \"universalism\",\n\
+                  \            \"question\" : \"They believe all the worlds' people\
+                  \ should live in harmony. Promoting peace among all groups in the\
+                  \ world is important to them.\",\n            \"score\" : 3    \n\
+                  \        },\n        {\n            \"id\" : 5,\n            \"\
+                  value\" : \"self-direction\",\n            \"question\" : \"Thinking\
+                  \ up new ideas and being creative is important to them. They like\
+                  \ to do things in their own original way.\",\n            \"score\"\
+                  \ : 1    \n        },\n        {\n            \"id\" : 6,\n    \
+                  \        \"value\" : \"stimulation\",\n            \"question\"\
+                  \ : \"They think it is important to do lots of different things\
+                  \ in life. they always look for new things to try.\",\n        \
+                  \    \"score\" : 0    \n        },\n        {\n            \"id\"\
+                  \ : 7,\n            \"value\" : \"hedonism\",\n            \"question\"\
+                  \ : \"They really want to enjoy life. Having a good time is very\
+                  \ important to them.\",\n            \"score\" : 0    \n       \
+                  \ },\n        {\n            \"id\" : 8,\n            \"value\"\
+                  \ : \"achievement\",\n            \"question\" : \"Getting ahead\
+                  \ in life is important to them. They strive to do better than others.\"\
+                  ,\n            \"score\" : 2    \n        },\n        {\n      \
+                  \      \"id\" : 9,\n            \"value\" : \"power\",\n       \
+                  \     \"question\" : \"They always want to be the one who makes\
+                  \ the decisions. They like to be the leader.\",\n            \"\
+                  score\" : 2    \n        },\n        {\n            \"id\" : 10,\n\
+                  \            \"value\" : \"security\",\n            \"question\"\
+                  \ : \"Having a stable government is important to them. They are\
+                  \ concerned that the social order be protected.\",\n           \
+                  \ \"score\" : 4    \n        }        \n    ],\n    \"Answers\"\
+                  \ : {\n            \"1\" : \"Not Like Me At All\",\n           \
+                  \ \"2\" : \"Not Like Me\",\n            \"3\" : \"Little Like Me\"\
+                  ,\n            \"4\" : \"Somewhat Like Me\",\n            \"5\"\
+                  \ : \"Like Me\",\n            \"6\" : \"Very Much Like Me\"\n  \
+                  \  },\n    \"Directions\" : \"Here we briefly describe different\
+                  \ people. Please read each description and think about how much\
+                  \ that person is or is not like you.\"\n}"
+      responses:
+        "200":
+          description: Successful get_user_scores response.
+          content:
+            text/html; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+      - url: http://127.0.0.1:5000
+    servers:
+    - url: http://127.0.0.1:5000
+  /get_questions:
+    get:
+      description: Returns the list of available questions that can be presented to
+        the user.
+      responses:
+        "200":
+          description: Successful get_questions response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/inline_response_200'
+              examples:
+                "0":
+                  value: '{"SetOne": [{"id": 1, "value": "conformity", "question":
+                    "They believe they should always show respect to their parents
+                    and to older people. It is important to them to be obedient."},
+                    {"id": 2, "value": "tradition", "question": "Religious belief
+                    or traditions are important to them. They try hard to do what
+                    their religion or family traditions require."}, {"id": 3, "value":
+                    "benevolence", "question": "It''s very important to them to help
+                    the people around them. They want to care for the well-being of
+                    those around them."}, {"id": 4, "value": "universalism", "question":
+                    "They think it is important that every person in the world be
+                    treated equally. They believe everyone should have equal opportunities
+                    in life."}, {"id": 5, "value": "self-direction", "question": "They
+                    think it''s important to be interested in things. They like to
+                    be curious and to try to understand all sorts of things."}, {"id":
+                    6, "value": "stimulation", "question": "They like to take risks.
+                    They are always looking for adventures."}, {"id": 7, "value":
+                    "hedonism", "question": "They seek every chance they can to have
+                    fun. It is important to them to do things that give them pleasure."},
+                    {"id": 8, "value": "achievement", "question": "Being very successful
+                    is important to them. They like to impress other people."}, {"id":
+                    9, "value": "power", "question": "It is important to them to be
+                    in charge and tell others what to do. They want people to do what
+                    they say."}, {"id": 10, "value": "security", "question": "It is
+                    important to them that things be organized and clean. They really
+                    do not like things to be a mess."}], "SetTwo": [{"id": 1, "value":
+                    "conformity", "question": "It is important to they to always behave
+                    properly. They want to avoid doing anything people would say is
+                    wrong."}, {"id": 2, "value": "tradition", "question": "They think
+                    it is best to do things in traditional ways. It is important to
+                    they to keep up the customs they have learned."}, {"id": 3, "value":
+                    "benevolence", "question": "It is important to them to respond
+                    to the needs of others. They try to support those they know."},
+                    {"id": 4, "value": "universalism", "question": "They believe all
+                    the worlds'' people should live in harmony. Promoting peace among
+                    all groups in the world is important to them."}, {"id": 5, "value":
+                    "self-direction", "question": "Thinking up new ideas and being
+                    creative is important to them. They like to do things in their
+                    own original way."}, {"id": 6, "value": "stimulation", "question":
+                    "They think it is important to do lots of different things in
+                    life. they always look for new things to try."}, {"id": 7, "value":
+                    "hedonism", "question": "They really want to enjoy life. Having
+                    a good time is very important to them."}, {"id": 8, "value": "achievement",
+                    "question": "Getting ahead in life is important to them. They
+                    strive to do better than others."}, {"id": 9, "value": "power",
+                    "question": "They always want to be the one who makes the decisions.
+                    They like to be the leader."}, {"id": 10, "value": "security",
+                    "question": "Having a stable government is important to them.
+                    They are concerned that the social order be protected."}], "Answers":
+                    {"1": "Not Like Me At All", "2": "Not Like Me", "3": "Little Like
+                    Me", "4": "Somewhat Like Me", "5": "Like Me", "6": "Very Much
+                    Like Me"}, "Directions": "Here we briefly describe different people.
+                    Please read each description and think about how much that person
+                    is or is not like you."}'
+      servers:
+      - url: http://localhost:5000
+    servers:
+    - url: http://localhost:5000
+  /ontology:
+    get:
+      description: Resource for accessing the contents of the ontology via queries.
+      parameters:
+      - name: query
+        in: query
+        required: false
+        style: form
+        explode: true
+        schema:
+          type: string
+        example: coal%20mining
+      responses:
+        "200":
+          description: Successful query.
+        "400":
+          description: Query keyword was not found in the ontology.
+          content:
+            text/html; charset=utf-8:
+              schema:
+                type: string
+              examples: {}
+      servers:
+      - url: http://127.0.0.1:5000
+    servers:
+    - url: http://127.0.0.1:5000
+components:
+  schemas:
+    get_user_scores_SetOne:
+      type: object
+      properties:
+        score:
+          type: integer
+        question:
+          type: string
+        id:
+          type: integer
+        value:
+          type: string
+    get_user_scores_Answers:
+      type: object
+      properties:
+        "1":
+          type: string
+        "2":
+          type: string
+        "3":
+          type: string
+        "4":
+          type: string
+        "5":
+          type: string
+        "6":
+          type: string
+    body:
+      type: object
+      properties:
+        SetOne:
+          type: array
+          items:
+            $ref: '#/components/schemas/get_user_scores_SetOne'
+        Answers:
+          $ref: '#/components/schemas/get_user_scores_Answers'
+        Directions:
+          type: string
+        SetTwo:
+          type: array
+          items:
+            $ref: '#/components/schemas/get_user_scores_SetOne'
+    inline_response_200:
+      type: object
+      properties:
+        SetOne:
+          type: array
+          items:
+            type: object
+            properties:
+              question:
+                type: string
+              id:
+                type: integer
+              value:
+                type: string
+        Answers:
+          type: object
+          properties:
+            "1":
+              type: string
+            "2":
+              type: string
+            "3":
+              type: string
+            "4":
+              type: string
+            "5":
+              type: string
+            "6":
+              type: string
+        Directions:
+          type: string
+        SetTwo:
+          type: array
+          items:
+            type: object
+            properties:
+              question:
+                type: string
+              id:
+                type: integer
+              value:
+                type: string
