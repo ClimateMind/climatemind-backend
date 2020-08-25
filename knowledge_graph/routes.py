@@ -65,16 +65,16 @@ def get_questions() -> Tuple[Response, int]:
     return response, 200
 
 
-@app.route('/user/<username>/scores', methods=['GET', 'POST'])
+@app.route('/users/<username>/scores', methods=['GET', 'POST'])
 def user_scores(username: str) -> Tuple[Response, int]:
-    if request.Method == 'GET':
+    if request.method == 'GET':
         return send_user_scores(username)
-    if request.Method == 'POST':
+    if request.method == 'POST':
         return receive_user_scores(username)
 
 
 def send_user_scores(username: str) -> Tuple[Response, int]:
-    pass
+    return Response(dumps("placeholder score")), 200
 
 
 def receive_user_scores(username: str) -> Tuple[Response, int]:
