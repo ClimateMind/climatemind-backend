@@ -8,3 +8,9 @@ services:
       - .:/app
     environment:
       FLASK_ENV: development
+  migration:
+    image: flyway/flyway
+    command: -url=jdbc:sqlite:/app/development.db migrate
+    volumes:
+      - ./db:/app
+      - ./db/migration:/flyway/sql

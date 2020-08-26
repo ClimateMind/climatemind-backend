@@ -54,4 +54,6 @@ docs/_build/
 ~*
 *~
 *.pyc
- /.idea/
+.idea/
+/db/development.db
+venv/
