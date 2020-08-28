@@ -5,7 +5,7 @@
 The application is using Flyway for database migration. For development purposes we're using SQLite3. You can download an SQLite3 GUI from here: https://sqlitebrowser.org/dl/
 
 If you want to add/modify a table or insert/delete data, you can do it with migration scripts:
- - create a new sql script in db/migration folder, starting with a 'V', increment the version and add a compact title
+ - create a new sql script in db/migration folder, starting with an uppercase 'V', increment the version and add a compact title
  - example: V2.00__create-user-table.sql, V3.00__alter_user_table.sql, V4.00__insert-test-users.sql
  
 If you're using it first, or there is a new migration script (after a git pull) you must run a Flyway migrate with docker-compose:
@@ -14,7 +14,7 @@ If you're using it first, or there is a new migration script (after a git pull) 
     
 Important: 
  - please don't commit your database file
- - if your database is corrupted, just delete the file and run the docker-compose script
+ - if your database is corrupted, just delete the file and run the docker-compose script again
 
 ## Using Docker
 
