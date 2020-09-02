@@ -17,6 +17,10 @@ Start in background
 Stop the container which is running in the background
 
     docker-compose down
+    
+Rebuild the image if the backend code has changed
+
+    docker-compose build
 
 ## Running the application with Docker (for deployment)
 
