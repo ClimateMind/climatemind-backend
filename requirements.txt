@@ -17,6 +17,7 @@ dash-table==4.9.0
 decorator==4.4.2
 Flask==1.1.2
 Flask-Compress==1.5.0
+flask-cors==3.0.9
 future==0.18.2
 idna==2.10
 importlib-metadata==1.7.0
