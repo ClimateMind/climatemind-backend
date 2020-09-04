@@ -1,0 +1,29 @@
+version: 2.1
+orbs:
+  azure-acr: circleci/azure-acr@0.2.0
+jobs:
+  build:
+    machine: true
+    steps:
+      - checkout
+
+      # build the application image
+      - run: |
+          docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build
+  build-deploy:
+    jobs:
+      - azure-acr/build-and-push-image:
+          context: azure
+          dockerfile: Dockerfile
+          login-server-name: acrwebprod001.azurecr.io
+          registry-name: acrwebprod001
+          repo: backend
+          filters:
+            branches:
+              only: master
