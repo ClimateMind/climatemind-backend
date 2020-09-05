@@ -66,8 +66,12 @@ Follow these instructions to visualize an OWL file using the Dash dashboard gene
     
     Example: python3 process_new_ontology_and_visualize.py ABSOLUTE_PATH_TO_OWL_FILE
 
-3. Follow the instructions that appear last in the terminal. 
-    
+3. Find the URL that appears in the terminal and go to it in your internet browser.
+
     Example: "Dash is running on http://127.0.0.1:8050/" appears in the terminal, so go to http://127.0.0.1:8050/ in your internet browser.
+
+4. Use the visualization dashboard in your internet browser.
+
+5. When done using the dashboard close the browser and stop the script from running by going to the terminal and pressing [CMD + C] on OSX or [CTRL + C] on Windows or Linux.
 
 
