@@ -260,7 +260,7 @@ def main(args):
     #run automated reasoning
     with onto:
         sync_reasoner()
-    print(list(default_world.inconsistent_classes()))
+    #print(list(default_world.inconsistent_classes()))
     
     # Read in the triples data
     df = pd.read_csv(edge_path)
@@ -329,9 +329,9 @@ def main(args):
     }
 
     get_test_ontology(G, valid_test_ont, not_test_ont)
-    for node in G.nodes:
-        print(node)
-        print(G.nodes[node]["direct classes"])
+    #for node in G.nodes:
+        #print(node)
+        #print(G.nodes[node]["direct classes"])
 
 
     save_test_ontology_to_json(G)
