@@ -53,7 +53,7 @@ Follow these instructions to process a new version of a Climate Mind ontology OW
     
     Example: python3 process_new_ontology_file.py ABSOLUTE_PATH_TO_OWL_FILE
 
-3. New files will be generated and appear in the climatemind-backend directory. These files are also listed in the git.ignore file, so don't worry about them getting pushed accidentally to the git repo
+3. New files will be generated and appear in the climatemind-backend directory. These files are also listed in the git.ignore file, so don't worry about them getting pushed accidentally to the git repo.
 
 
 ## Visualizing the ontology
