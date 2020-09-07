@@ -10,6 +10,8 @@ from typing import Tuple
 
 from knowledge_graph.Mind import Mind
 
+from knowledge_graph.score_nodes import get_user_nodes
+
 value_id_map = {
     1: "conformity",
     2: "tradition",
@@ -120,9 +122,28 @@ def receive_user_scores(username: str) -> Tuple[Response, int]:
     print(overall_avg)
 
     for id, value in value_scores.items():
-        centered_score = value["score"] - overall_avg
+        centered_score = value["score"] - overall_avg + 3.5 # To make non-negative
         value_scores[id] = {"name": value["name"],
                             "score": centered_score}
 
     response = Response(dumps(value_scores))
     return response, 200
+
+@app.route('/get_actions', methods=['GET'])
+def get_actions(user_scores):
+    user_scores = {
+        "security" : 3.7,
+        "conformity" : 2.5,
+        "benevolence" : 2.3,
+        "tradition" : 2.5,
+        "universalism" : 1.0,
+        "self-direction" : .7,
+        "stimulation" : .1,
+        "hedonism" : .3,
+        "achievement" : 1.2,
+        "power" : .2,
+    }
+    recommended_nodes = get_user_nodes(user_scores)
+    response = Response(dumps(recommended_nodes))
+    return response, 200
+    
