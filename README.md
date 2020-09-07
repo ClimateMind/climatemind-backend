@@ -4,7 +4,7 @@ Using Docker you need to install it first: https://www.docker.com/products/docke
 
 On Windows it is running in a strict secure mode. You need to add the source directory to the Docker Resources: Settings / Resources / File Sharing -> add the application root directory
 
-***Before doing what's below, be sure the Docker application is running and the bash working directory is changed to the climatemind-backend path.***
+***Before doing what's below, be sure the Docker application is running and the command line working directory is changed to the climatemind-backend path.***
 
 ## Running the application with Docker Compose (for development)
 
@@ -86,6 +86,6 @@ Follow these instructions to visualize an OWL file using the Dash dashboard gene
 
 5. Use the visualization dashboard in your internet browser.
 
-6. When done using the dashboard, close the browser and stop the script from running by going to the terminal and press [CTRL + C]
+6. When done using the dashboard, close the browser and stop the script from running by going to the terminal and pressing [CTRL + C]
 
 
