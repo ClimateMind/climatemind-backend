@@ -61,7 +61,7 @@ Follow these instructions to process a new version of a Climate Mind ontology OW
 
 3. From the climatemind-backend directory run the process_new_ontology_file.py with the absolute path to the new OWL file from step 1. 
     
-    Example: python3 process_new_ontology_file.py ABSOLUTE_PATH_TO_OWL_FILE
+    Example: `python3 process_new_ontology_file.py ABSOLUTE_PATH_TO_OWL_FILE`
 
 4. New files will be generated and appear in the climatemind-backend directory. These files are also listed in the git.ignore file, so don't worry about them getting pushed accidentally to the git repo.
 
@@ -78,7 +78,7 @@ Follow these instructions to visualize an OWL file using the Dash dashboard gene
 
 3. From the climatemind-backend directory run the process_new_ontology_and_visualize.py with the absolute path to the new OWL file from step 1. 
     
-    Example: python3 process_new_ontology_and_visualize.py ABSOLUTE_PATH_TO_OWL_FILE
+    Example: `python3 process_new_ontology_and_visualize.py ABSOLUTE_PATH_TO_OWL_FILE`
 
 4. Find the URL that appears in the terminal and go to it in your internet browser.
 
