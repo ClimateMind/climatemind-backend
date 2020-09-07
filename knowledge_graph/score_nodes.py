@@ -4,19 +4,6 @@ import sys
 from collections import Counter
 from knowledge_graph.make_graph import get_test_ontology, get_valid_test_ont, get_non_test_ont
 
-values = {
-    "security",
-    "conformity",
-    "benevolence",
-    "tradition",
-    "universalism",
-    "self-direction",
-    "stimulation",
-    "hedonism",
-    "achievement",
-    "power"
-}
-
 def simple_scoring(G, user_scores):
     """ Each node contains a list of classes, which include the values associated with
         the node. For the simple scoring, only positively associated values are
@@ -28,7 +15,7 @@ def simple_scoring(G, user_scores):
     for node in G.nodes:
         node_classes = G.nodes[node]["direct classes"]
         set_of_values = {node_class.split()[0] for node_class in node_classes 
-                                                if node_class.split()[0] in values}
+                                                if node_class.split()[0] in user_scores.keys()}
         
         if set_of_values:
             score = 0

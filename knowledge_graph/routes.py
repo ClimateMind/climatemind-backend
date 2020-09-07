@@ -67,19 +67,19 @@ def get_questions() -> Tuple[Response, int]:
     return response, 200
 
 
-@app.route('/users/<username>/scores', methods=['GET', 'POST'])
-def user_scores(username: str) -> Tuple[Response, int]:
+@app.route('/users/scores', methods=['GET', 'POST'])
+def user_scores() -> Tuple[Response, int]:
     if request.method == 'GET':
-        return send_user_scores(username)
+        return send_user_scores()
     if request.method == 'POST':
-        return receive_user_scores(username)
+        return receive_user_scores()
 
 
-def send_user_scores(username: str) -> Tuple[Response, int]:
+def send_user_scores() -> Tuple[Response, int]:
     return Response(dumps("placeholder score")), 200
 
 
-def receive_user_scores(username: str) -> Tuple[Response, int]:
+def receive_user_scores() -> Tuple[Response, int]:
     """ Users want to be able to get their score results after submitting
         the survey. This method checks for a POST request from the front-end
         containing a JSON object with the users scores.
@@ -105,44 +105,34 @@ def receive_user_scores(username: str) -> Tuple[Response, int]:
         id = value["id"]
         score = value["score"]
         overall_sum += score
-        value_scores[id] = {"name": value_id_map[id],
-                            "score": score}
+        value_scores[value_id_map[id]] = score
 
     if parameter["SetTwo"]:
         num_of_responses += 10
         for value in parameter["SetTwo"]:
             id = value["id"]
             score = value["score"]
-            avg_score = (value_scores[id]["score"] + score) / 2
+            name = value_id_map[id]
+            avg_score = (value_scores[name] + score) / 2
             overall_sum += score
-            value_scores[id] = {"name": value_id_map[id],
-                                "score": avg_score}
+            value_scores[name] = avg_score
 
     overall_avg = overall_sum / num_of_responses
     print(overall_avg)
 
-    for id, value in value_scores.items():
-        centered_score = value["score"] - overall_avg + 3.5 # To make non-negative
-        value_scores[id] = {"name": value["name"],
-                            "score": centered_score}
+    for value, score in value_scores.items():
+        centered_score = score - overall_avg + 3.5 # To make non-negative
+        value_scores[value] = centered_score
 
     response = Response(dumps(value_scores))
     return response, 200
 
-@app.route('/get_actions', methods=['GET'])
-def get_actions(user_scores):
-    user_scores = {
-        "security" : 3.7,
-        "conformity" : 2.5,
-        "benevolence" : 2.3,
-        "tradition" : 2.5,
-        "universalism" : 1.0,
-        "self-direction" : .7,
-        "stimulation" : .1,
-        "hedonism" : .3,
-        "achievement" : 1.2,
-        "power" : .2,
-    }
+@app.route('/get_actions', methods=['POST'])
+def get_actions():
+    try:
+        user_scores = request.json
+    except:
+        return make_response("Invalid JSON"), 400
     recommended_nodes = get_user_nodes(user_scores)
     response = Response(dumps(recommended_nodes))
     return response, 200
