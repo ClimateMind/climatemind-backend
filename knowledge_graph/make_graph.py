@@ -7,7 +7,7 @@ import pandas as pd
 from owlready2 import *
 from networkx.readwrite import json_graph
 
-from make_network import give_alias
+from knowledge_graph.make_network import give_alias
 
 
 # Set a lower JVM memory limit
@@ -219,6 +219,55 @@ def get_test_ontology(G, valid_test_ont, not_test_ont):
         remove_non_test_nodes(G, node_a, valid_test_ont, not_test_ont)
         remove_non_test_nodes(G, node_b, valid_test_ont, not_test_ont)
 
+def get_valid_test_ont():
+    return {
+        "test ontology",
+        "personal value",
+        "achievement",
+        "benevolence",
+        "benevolence caring",
+        "benevolence dependability",
+        "conformity",
+        "conformity interpersonal",
+        "conformity rules",
+        "face",
+        "hedonism",
+        "humility",
+        "power",
+        "power dominance",
+        "power resources",
+        "security",
+        "security personal",
+        "security societal",
+        "self-direction",
+        "self-direction autonomy of action",
+        "self-direction autonomy of thought",
+        "stimulation",
+        "tradition",
+        "universalism",
+        "universalism concern",
+        "universalism nature",
+        "universalism tolerance"
+    }
+
+def get_non_test_ont():
+    return {
+        "value uncategorized (to do)",
+        "risk solution",
+        "adaptation",
+        "geoengineering",
+        "indirect adaptation",
+        "indirect geoengineering",
+        "indirect mitigration",
+        "carbon pricing",
+        "carbon tax",
+        "emissions trading",
+        "mitigation",
+        "solution to indirect adaptation barrier",
+        "solution to indirect mitigation barrier",
+        "solution uncategorized (to do)"
+    }
+
 
 
 # Read the JSON file back
@@ -281,57 +330,13 @@ def main(args):
     # save_graph_to_yaml(G)
     # save_graph_to_json(G)
 
-    valid_test_ont = {
-        "test ontology",
-        "personal value",
-        "achievement",
-        "benevolence",
-        "benevolence caring",
-        "benevolence dependability",
-        "conformity",
-        "conformity interpersonal",
-        "conformity rules",
-        "face",
-        "hedonism",
-        "humility",
-        "power",
-        "power dominance",
-        "power resources",
-        "security",
-        "security personal",
-        "security societal",
-        "self-direction",
-        "self-direction autonomy of action",
-        "self-direction autonomy of thought",
-        "stimulation",
-        "tradition",
-        "universalism",
-        "universalism concern",
-        "universalism nature",
-        "universalism tolerance"
-    }
 
-    not_test_ont = {
-        "value uncategorized (to do)",
-        "risk solution",
-        "adaptation",
-        "geoengineering",
-        "indirect adaptation",
-        "indirect geoengineering",
-        "indirect mitigration",
-        "carbon pricing",
-        "carbon tax",
-        "emissions trading",
-        "mitigation",
-        "solution to indirect adaptation barrier",
-        "solution to indirect mitigation barrier",
-        "solution uncategorized (to do)"
-    }
-
+    valid_test_ont = get_valid_test_ont()
+    not_test_ont = get_non_test_ont()
     get_test_ontology(G, valid_test_ont, not_test_ont)
-    for node in G.nodes:
-        print(node)
-        print(G.nodes[node]["direct classes"])
+    #for node in G.nodes:
+    #    print(node)
+    #    print(G.nodes[node]["direct classes"])
 
 
     save_test_ontology_to_json(G)
