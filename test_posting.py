@@ -18,3 +18,5 @@ with open('sample_user_scores.json') as json_file:
 
 headers = {'content-type' : 'application/json'}
 request = requests.post(url, json=obj, headers=headers)
+
+print(json.dumps(request.json(), indent=4))
