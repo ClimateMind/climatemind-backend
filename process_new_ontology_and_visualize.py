@@ -2,6 +2,8 @@
 
 import os
 import argparse
+import process_new_ontology_file
+import knowledge_graph.visualize
 
 def main(args):
     """
@@ -12,23 +14,24 @@ def main(args):
         
         example: python3 process_new_ontology_file.py "./climate_mind_ontology20200721.owl"
     """
-    cwd = os.getcwd()
-    
     #set arguments
     onto_path = args.refOntologyPath
-    if(args.output_folder):
-        output_path = args.output
     
-    parent_dir = os.path.dirname('knowledge_graph')
-    knowledge_graph_path = os.path.abspath('knowledge_graph')
+    output_folder_path = os.getcwd()
+    if(args.output_folder):
+        output_folder_path = args.output
+    
+    #build gpickle_path
+    gpickle_path = os.path.join(output_folder_path, "Climate_Mind_DiGraph.gpickle")
 
-    command1 = 'python3 "'+ os.path.join(knowledge_graph_path,'make_network.py') + '" "' + onto_path + '" "output.csv"'
-    command2 = 'python3 "'+ os.path.join(knowledge_graph_path,'make_graph.py') + '" "' + onto_path + '" "output.csv"'
-    command3 = 'python3 "'+ os.path.join(knowledge_graph_path,'visualize2.py') + '" "' + os.path.join(os.path.abspath(cwd),"Climate_Mind_DiGraph.gpickle")+'"'
+    #process the OWL ontology file
+    process_new_ontology_file.processOntology(onto_path = onto_path, output_folder_path = output_folder_path)
+    
+    #make the dashboard app object to visualize the new ontology graph
+    app = knowledge_graph.visualize.visualize(gpickle_path)
 
-    os.system(command1)
-    os.system(command2)
-    os.system(command3)
+    #run the app object to visualize the new ontology graph
+    app.run_server(debug=False)
 
 
 if __name__=="__main__":

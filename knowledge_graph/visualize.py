@@ -257,18 +257,13 @@ def get_filtered_data(N_node_details, N_edge_details, N, G, edge_type=None):
 
 
 
-def main(args):
+def visualize(gpickle_file_path):
     """
         Main function to run the dashboard to visualize the ontology.
         
-        input: args = args from the argument parser for the function (gpickle_file_path)
-
-        example: python3 visualize.py "Climate_Mind_DiGraph.gpickle"
+        input: gpickle_file_path = path to gpickle of the networkx graph of the ontology
+        output: app = Dash app object
     """
-    #load arguments
-    gpickle_file_path = args.gpickle_file_path
-    #gpickle_file_path = "Climate_Mind_DiGraph.gpickle"
-
     #load in networkx graph to access graph information
     G = nx.read_gpickle(gpickle_file_path)
     print(nx.info(G))
@@ -497,6 +492,21 @@ def main(args):
             extra_edge_type = None
         print(f"display_click_data! edge_type={edge_type}, node_class={node_class}")
         return get_figure(N_node_details, N_edge_details, N, G, edge_type, node_class, node_property, extra_edge_type)
+    return app
+
+
+def main(args):
+    """
+        Main function to run the dashboard to visualize the ontology.
+        
+        input: args = args from the argument parser for the function (gpickle_file_path)
+        
+        example: python3 visualize.py "Climate_Mind_DiGraph.gpickle"
+        """
+    #load arguments
+    gpickle_file_path = args.gpickle_file_path
+
+    app = visualize(gpickle_file_path = gpickle_file_path)
     return app
 
 

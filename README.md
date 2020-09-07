@@ -4,9 +4,11 @@ Using Docker you need to install it first: https://www.docker.com/products/docke
 
 On Windows it is running in a strict secure mode. You need to add the source directory to the Docker Resources: Settings / Resources / File Sharing -> add the application root directory
 
+***Before doing what's below, be sure the Docker application is running and the bash working directory is changed to the climatemind-backend path.***
+
 ## Running the application with Docker Compose (for development)
 
-Start in foreground (good for debugging flask and see the logs). You can stop it with [CMD + C] on OSX or [CTRL + C] on Windows or Linux.
+Start in foreground (good for debugging flask and see the logs). You can stop it with [CTRL + C] on OSX, Windows, and Linux.
  
     docker-compose up
     
@@ -53,11 +55,15 @@ Follow these instructions to process a new version of a Climate Mind ontology OW
 
 1. Download the new OWL ontology file (if haven't already) and make note of the absolute path. DO NOT SAVE the OWL file in the Climate Mind directory in order to avoid accidentally pushing it to the repo.
 
-2. From the climatemind-backend directory run the process_new_ontology_file.py with the absolute path to the new OWL file from step 1. 
+2. Change the directory to be the climatemind-backend by using the following command with the part in caps replaced with the path to climatemind-backend on your system (for mac):
+    
+    `cd PATH_TO_CLIMATEMIND-BACKEND`
+
+3. From the climatemind-backend directory run the process_new_ontology_file.py with the absolute path to the new OWL file from step 1. 
     
     Example: python3 process_new_ontology_file.py ABSOLUTE_PATH_TO_OWL_FILE
 
-3. New files will be generated and appear in the climatemind-backend directory. These files are also listed in the git.ignore file, so don't worry about them getting pushed accidentally to the git repo.
+4. New files will be generated and appear in the climatemind-backend directory. These files are also listed in the git.ignore file, so don't worry about them getting pushed accidentally to the git repo.
 
 
 ## Visualizing the ontology
@@ -66,16 +72,20 @@ Follow these instructions to visualize an OWL file using the Dash dashboard gene
 
 1. Download the new OWL ontology file (if haven't already) and make note of the absolute path. DO NOT SAVE the OWL file in the Climate Mind directory in order to avoid accidentally pushing it to the repo.
 
-2. From the climatemind-backend directory run the process_new_ontology_and_visualize.py with the absolute path to the new OWL file from step 1. 
+2. Change the directory to be the climatemind-backend by using the following command with the part in caps replaced with the path to climatemind-backend on your system (for mac):
+
+    `cd PATH_TO_CLIMATEMIND-BACKEND`
+
+3. From the climatemind-backend directory run the process_new_ontology_and_visualize.py with the absolute path to the new OWL file from step 1. 
     
     Example: python3 process_new_ontology_and_visualize.py ABSOLUTE_PATH_TO_OWL_FILE
 
-3. Find the URL that appears in the terminal and go to it in your internet browser.
+4. Find the URL that appears in the terminal and go to it in your internet browser.
 
     Example: "Dash is running on http://127.0.0.1:8050/" appears in the terminal, so go to http://127.0.0.1:8050/ in your internet browser.
 
-4. Use the visualization dashboard in your internet browser.
+5. Use the visualization dashboard in your internet browser.
 
-5. When done using the dashboard close the browser and stop the script from running by going to the terminal and pressing [CMD + C] on OSX or [CTRL + C] on Windows or Linux.
+6. When done using the dashboard, close the browser and stop the script from running by going to the terminal and press [CTRL + C]
 
 
