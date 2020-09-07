@@ -29,6 +29,30 @@ def give_alias(property_object):
     property_object.python_name = label_name
 #TODO: remove this code and only have it be in the network_class.py code ? Currently, breaks endpoints though if do this.
 
+def outputEdges(onto_path, output_path, source):
+    """
+    Function to output all edges from a reference node.
+        
+    input:
+        onto_path = path to ontology
+        output_path = path to save output CSV file of edges
+        source = specific ontology node to target (optional). Set to None if no source node is desired and want all ontology nodes used.
+    output: Saves a csv file of the list of result edges
+        (list of object, subject, predicate triples)
+    """
+    #load ontology
+    onto = get_ontology(onto_path).load()
+    
+    #make list of edges along all paths leaving the target node
+    edges = get_edges(onto, source)
+    
+    #save output to output Path as csv file. Later can change this to integrate well with API and front-end.
+    df = pd.DataFrame([[i[0], i[1], i[2]] for i in edges],
+                      columns=['subject', 'object', 'predicate'])
+    df = df.drop_duplicates() # Remove if we fix network_class
+    df.to_csv(output_path, index=False)
+
+
 def main(args):
     """
     Main function to output all edges from a reference node. 
@@ -45,18 +69,9 @@ def main(args):
     onto_path = args.refOntologyPath
     output_path = args.outputPath
     source = args.source
-    
-    #load ontology
-    onto = get_ontology(onto_path).load()
 
-    #make list of edges along all paths leaving the target node
-    edges = get_edges(onto, source)
+    outputEdges(onto_path = onto_path, output_path = output_path, source = source)
 
-    #save output to output Path as csv file. Later can change this to integrate well with API and front-end.
-    df = pd.DataFrame([[i[0], i[1], i[2]] for i in edges],
-                        columns=['subject', 'object', 'predicate'])
-    df = df.drop_duplicates() # Remove if we fix network_class
-    df.to_csv(output_path, index=False)
 
 
 if __name__=="__main__":
