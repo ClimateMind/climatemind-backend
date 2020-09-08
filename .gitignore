@@ -55,3 +55,9 @@ docs/_build/
 *~
 *.pyc
  /.idea/
+
+#updated ontology files
+Climate_Mind_Digraph_Test_Ont.json
+Climate_Mind_DiGraph.gpickle
+output.csv
+
