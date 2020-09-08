@@ -10,6 +10,8 @@ from typing import Tuple
 
 from knowledge_graph.Mind import Mind
 
+from knowledge_graph.score_nodes import get_user_nodes
+
 value_id_map = {
     1: "conformity",
     2: "tradition",
@@ -103,26 +105,35 @@ def receive_user_scores() -> Tuple[Response, int]:
         id = value["id"]
         score = value["score"]
         overall_sum += score
-        value_scores[id] = {"name": value_id_map[id],
-                            "score": score}
+        value_scores[value_id_map[id]] = score
 
     if parameter["SetTwo"]:
         num_of_responses += 10
         for value in parameter["SetTwo"]:
             id = value["id"]
             score = value["score"]
-            avg_score = (value_scores[id]["score"] + score) / 2
+            name = value_id_map[id]
+            avg_score = (value_scores[name] + score) / 2
             overall_sum += score
-            value_scores[id] = {"name": value_id_map[id],
-                                "score": avg_score}
+            value_scores[name] = avg_score
 
     overall_avg = overall_sum / num_of_responses
     print(overall_avg)
 
-    for id, value in value_scores.items():
-        centered_score = value["score"] - overall_avg
-        value_scores[id] = {"name": value["name"],
-                            "score": centered_score}
+    for value, score in value_scores.items():
+        centered_score = score - overall_avg + 3.5 # To make non-negative
+        value_scores[value] = centered_score
 
     response = Response(dumps(value_scores))
     return response, 200
+
+@app.route('/get_actions', methods=['POST'])
+def get_actions():
+    try:
+        user_scores = request.json
+    except:
+        return make_response("Invalid JSON"), 400
+    recommended_nodes = get_user_nodes(user_scores)
+    response = Response(dumps(recommended_nodes))
+    return response, 200
+    

@@ -228,6 +228,55 @@ def get_test_ontology(G, valid_test_ont, not_test_ont):
         remove_non_test_nodes(G, node_a, valid_test_ont, not_test_ont)
         remove_non_test_nodes(G, node_b, valid_test_ont, not_test_ont)
 
+def get_valid_test_ont():
+    return {
+        "test ontology",
+        "personal value",
+        "achievement",
+        "benevolence",
+        "benevolence caring",
+        "benevolence dependability",
+        "conformity",
+        "conformity interpersonal",
+        "conformity rules",
+        "face",
+        "hedonism",
+        "humility",
+        "power",
+        "power dominance",
+        "power resources",
+        "security",
+        "security personal",
+        "security societal",
+        "self-direction",
+        "self-direction autonomy of action",
+        "self-direction autonomy of thought",
+        "stimulation",
+        "tradition",
+        "universalism",
+        "universalism concern",
+        "universalism nature",
+        "universalism tolerance"
+    }
+
+def get_non_test_ont():
+    return {
+        "value uncategorized (to do)",
+        "risk solution",
+        "adaptation",
+        "geoengineering",
+        "indirect adaptation",
+        "indirect geoengineering",
+        "indirect mitigration",
+        "carbon pricing",
+        "carbon tax",
+        "emissions trading",
+        "mitigation",
+        "solution to indirect adaptation barrier",
+        "solution to indirect mitigation barrier",
+        "solution uncategorized (to do)"
+    }
+
 
 
 # Read the JSON file back
@@ -284,58 +333,13 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     # save_graph_to_yaml(G, output_folder_path)
     # save_graph_to_json(G, output_folder_path)
 
-    valid_test_ont = {
-        "test ontology",
-        "personal value",
-        "achievement",
-        "benevolence",
-        "benevolence caring",
-        "benevolence dependability",
-        "conformity",
-        "conformity interpersonal",
-        "conformity rules",
-        "face",
-        "hedonism",
-        "humility",
-        "power",
-        "power dominance",
-        "power resources",
-        "security",
-        "security personal",
-        "security societal",
-        "self-direction",
-        "self-direction autonomy of action",
-        "self-direction autonomy of thought",
-        "stimulation",
-        "tradition",
-        "universalism",
-        "universalism concern",
-        "universalism nature",
-        "universalism tolerance"
-    }
 
-    not_test_ont = {
-        "value uncategorized (to do)",
-        "risk solution",
-        "adaptation",
-        "geoengineering",
-        "indirect adaptation",
-        "indirect geoengineering",
-        "indirect mitigration",
-        "carbon pricing",
-        "carbon tax",
-        "emissions trading",
-        "mitigation",
-        "solution to indirect adaptation barrier",
-        "solution to indirect mitigation barrier",
-        "solution uncategorized (to do)"
-    }
-
+    valid_test_ont = get_valid_test_ont()
+    not_test_ont = get_non_test_ont()
     get_test_ontology(G, valid_test_ont, not_test_ont)
     #for node in G.nodes:
-        #print(node)
-        #print(G.nodes[node]["direct classes"])
-
+    #    print(node)
+    #    print(G.nodes[node]["direct classes"])
 
     save_test_ontology_to_json(G, output_folder_path)
 
