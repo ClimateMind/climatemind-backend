@@ -1,11 +1,9 @@
-from knowledge_graph import app
-
 from json import dumps, load
+from typing import Tuple
 
 from flask import request, make_response, Response
 
-from typing import Tuple
-
+from knowledge_graph import app
 from knowledge_graph.score_nodes import get_user_nodes
 
 value_id_map = {
