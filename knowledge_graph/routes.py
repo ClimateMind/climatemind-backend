@@ -96,7 +96,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     overall_sum = 0
     num_of_responses = 10
 
-    value_scores["user-id"] = uuid.uuid4()
+    user_id = uuid.uuid4()
 
     for value in parameter["SetOne"]:
         id = value["id"]
@@ -115,11 +115,12 @@ def receive_user_scores() -> Tuple[Response, int]:
             value_scores[name] = avg_score
 
     overall_avg = overall_sum / num_of_responses
-    print(overall_avg)
 
     for value, score in value_scores.items():
         centered_score = score - overall_avg + 3.5  # To make non-negative
         value_scores[value] = centered_score
+
+    value_scores["user-id"] = user_id
 
     response = Response(dumps(value_scores))
     return response, 200
