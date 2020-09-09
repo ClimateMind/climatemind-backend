@@ -67,17 +67,10 @@ def get_questions() -> Tuple[Response, int]:
     return response, 200
 
 
-@app.route('/users/scores', methods=['GET', 'POST'])
+@app.route('/scores', methods=['POST'])
 def user_scores() -> Tuple[Response, int]:
-    if request.method == 'GET':
-        return send_user_scores()
     if request.method == 'POST':
         return receive_user_scores()
-
-
-def send_user_scores() -> Tuple[Response, int]:
-    return Response(dumps("placeholder score")), 200
-
 
 def receive_user_scores() -> Tuple[Response, int]:
     """ Users want to be able to get their score results after submitting
