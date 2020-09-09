@@ -1,11 +1,19 @@
-import networkx as nx
-import pandas as pd
-from knowledge_graph.make_network import give_alias
-from networkx.readwrite import json_graph
-from owlready2 import *
 import json
 import pickle
 import argparse
+import networkx as nx
+import pandas as pd
+
+from owlready2 import *
+from networkx.readwrite import json_graph
+
+from knowledge_graph.make_network import give_alias
+
+import os
+
+
+# Set a lower JVM memory limit
+owlready2.reasoning.JAVA_MEMORY = 500
 
 def convert_dataframe_to_edges(df):
     """ 
@@ -163,32 +171,39 @@ def remove_edge_properties_from_nodes(G, to_remove):
         G.nodes[node]["properties"][prop] = [node for node in list(G.nodes[node]["properties"][prop])
                                                 if node not in list(to_delete)]
 
-def save_graph_to_pickle(G):
-    with open('Climate_Mind_DiGraph.gpickle', 'wb') as outfile:
+def save_graph_to_pickle(G, outfile_path):
+    file_path = os.path.join(outfile_path,'Climate_Mind_DiGraph.gpickle')
+    with open(file_path, 'wb') as outfile:
         nx.write_gpickle(G, outfile)
 
-def save_graph_to_gexf(G):
-    with open('Climate_Mind_DiGraph.gexf', 'wb') as outfile:
+def save_graph_to_gexf(G, outfile_path):
+    file_path = os.path.join(outfile_path,'Climate_Mind_DiGraph.gexf')
+    with open(file_path, 'wb') as outfile:
         nx.write_gexf(G, outfile)
 
-def save_graph_to_gml(G):
-    with open('Climate_Mind_DiGraph.gml', 'wb') as outfile:
+def save_graph_to_gml(G, outfile_path):
+    file_path = os.path.join(outfile_path,'Climate_Mind_DiGraph.gml')
+    with open(file_path, 'wb') as outfile:
         nx.write_gml(G, outfile)
 
-def save_graph_to_graphml(G):
-    with open('Climate_Mind_DiGraph.graphml', 'wb') as outfile:
+def save_graph_to_graphml(G, outfile_path):
+    file_path = os.path.join(outfile_path,'Climate_Mind_DiGraph.graphml')
+    with open(file_path, 'wb') as outfile:
         nx.write_graphml(G, outfile)
 
-def save_graph_to_yaml(G):
-    with open('Climate_Mind_DiGraph.yaml', 'w') as outfile:
+def save_graph_to_yaml(G, outfile_path):
+    file_path = os.path.join(outfile_path,'Climate_Mind_DiGraph.yaml')
+    with open(file_path, 'w') as outfile:
         nx.write_yaml(G, outfile)
 
-def save_graph_to_json(G):
-    with open('Climate_Mind_DiGraph.json', 'w') as outfile:
+def save_graph_to_json(G, outfile_path):
+    file_path = os.path.join(outfile_path,'Climate_Mind_DiGraph.json')
+    with open(file_path, 'w') as outfile:
         outfile.write(json_graph.jit_data(G, indent=4))
         
-def save_test_ontology_to_json(G):
-    with open('Climate_Mind_Digraph_Test_Ont.json', 'w') as outfile:
+def save_test_ontology_to_json(G, outfile_path):
+    file_path = os.path.join(outfile_path,'Climate_Mind_Digraph_Test_Ont.json')
+    with open(file_path, 'w') as outfile:
         outfile.write(json_graph.jit_data(G, indent=4))
 
 
@@ -213,69 +228,8 @@ def get_test_ontology(G, valid_test_ont, not_test_ont):
         remove_non_test_nodes(G, node_a, valid_test_ont, not_test_ont)
         remove_non_test_nodes(G, node_b, valid_test_ont, not_test_ont)
 
-
-
-# Read the JSON file back
-def read_json_file(filename):
-    with open(filename) as f:
-        js_graph = json.load(f)
-    return js_graph
-
-# Test reading JSON file & print the nodes
-#G2 = read_json_file("Climate_Mind_DiGraph.json")
-#print(json.dumps(G2, indent=4, sort_keys=True))
-
-# Test reading JSON file & print the nodes for Test Ontology Only
-G2 = read_json_file("Climate_Mind_DiGraph_Test_Ont.json")
-print(json.dumps(G2, indent=4, sort_keys=True))
-
-def main(args):
-    """
-    Main function to make networkx graph object from reference ontology and edge list.
-    
-    input: args = args from the argument parser for the function
-                    (refOntologyPath, refEdgeListPath)
-    output: saves a python pickle file of the networkx object, and yaml and json of the networkx object
-    
-    example: python3 make_graph.py "./climate_mind_ontology20200721.owl" "output.csv"
-    """
-    
-    #set arguments
-    onto_path = args.refOntologyPath
-    edge_path = args.refEdgeListPath
-    
-    # Load ontology and format object properties and annotation properties into Python readable names
-    onto = get_ontology(onto_path).load()
-    obj_properties = list(onto.object_properties())
-    annot_properties = list(onto.annotation_properties())
-    [give_alias(x) for x in obj_properties]
-    [give_alias(x) for x in annot_properties]
-
-    #run automated reasoning
-    with onto:
-        sync_reasoner()
-    print(list(default_world.inconsistent_classes()))
-    
-    # Read in the triples data
-    df = pd.read_csv(edge_path)
-
-    G = nx.DiGraph()    # There should not be duplicate edges that go the same direction.
-    # If so, need to throw an error.
-
-    edges = convert_dataframe_to_edges(df)
-    add_edges_to_graph(edges, G)
-    add_ontology_data_to_graph_nodes(G, onto)
-    to_remove = set_edge_properties(G)
-    remove_edge_properties_from_nodes(G, to_remove)
-
-    save_graph_to_pickle(G)
-    #save_graph_to_gexf(G)
-    #save_graph_to_gml(G)
-    #save_graph_to_graphml(G)
-    save_graph_to_yaml(G)
-    save_graph_to_json(G)
-
-    valid_test_ont = {
+def get_valid_test_ont():
+    return {
         "test ontology",
         "personal value",
         "achievement",
@@ -305,7 +259,8 @@ def main(args):
         "universalism tolerance"
     }
 
-    not_test_ont = {
+def get_non_test_ont():
+    return {
         "value uncategorized (to do)",
         "risk solution",
         "adaptation",
@@ -322,13 +277,90 @@ def main(args):
         "solution uncategorized (to do)"
     }
 
+
+
+# Read the JSON file back
+def read_json_file(filename):
+    with open(filename) as f:
+        js_graph = json.load(f)
+    return js_graph
+
+# Test reading JSON file & print the nodes
+#G2 = read_json_file("Climate_Mind_DiGraph.json")
+#print(json.dumps(G2, indent=4, sort_keys=True))
+
+# Test reading JSON file & print the nodes for Test Ontology Only
+# G2 = read_json_file("../Climate_Mind_DiGraph_Test_Ont.json")
+# print(json.dumps(G2, indent=4, sort_keys=True))
+
+def makeGraph(onto_path, edge_path, output_folder_path):
+    """
+    Main function to make networkx graph object from reference ontology and edge list.
+    
+    input: args = args from the argument parser for the function
+                    (refOntologyPath, refEdgeListPath)
+    output: saves a python pickle file of the networkx object, and yaml and json of the networkx object
+    """
+    
+    # Load ontology and format object properties and annotation properties into Python readable names
+    onto = get_ontology(onto_path).load()
+    obj_properties = list(onto.object_properties())
+    annot_properties = list(onto.annotation_properties())
+    [give_alias(x) for x in obj_properties]
+    [give_alias(x) for x in annot_properties]
+
+    #run automated reasoning
+    with onto:
+        sync_reasoner()
+    #print(list(default_world.inconsistent_classes()))
+    
+    # Read in the triples data
+    df = pd.read_csv(edge_path)
+
+    G = nx.DiGraph()    # There should not be duplicate edges that go the same direction.
+    # If so, need to throw an error.
+
+    edges = convert_dataframe_to_edges(df)
+    add_edges_to_graph(edges, G)
+    add_ontology_data_to_graph_nodes(G, onto)
+    to_remove = set_edge_properties(G)
+    remove_edge_properties_from_nodes(G, to_remove)
+
+    save_graph_to_pickle(G, output_folder_path)
+    #save_graph_to_gexf(G, output_folder_path)
+    #save_graph_to_gml(G, output_folder_path)
+    #save_graph_to_graphml(G, output_folder_path)
+    # save_graph_to_yaml(G, output_folder_path)
+    # save_graph_to_json(G, output_folder_path)
+
+
+    valid_test_ont = get_valid_test_ont()
+    not_test_ont = get_non_test_ont()
     get_test_ontology(G, valid_test_ont, not_test_ont)
-    for node in G.nodes:
-        print(node)
-        print(G.nodes[node]["direct classes"])
+    #for node in G.nodes:
+    #    print(node)
+    #    print(G.nodes[node]["direct classes"])
+
+    save_test_ontology_to_json(G, output_folder_path)
 
 
-    save_test_ontology_to_json(G)
+def main(args):
+    """
+        Main function to make networkx graph object from reference ontology and edge list.
+        
+        input: args = args from the argument parser for the function
+        (refOntologyPath, refEdgeListPath)
+        output: saves a python pickle file of the networkx object, and yaml and json of the networkx object
+        
+        example: python3 make_graph.py "./climate_mind_ontology20200721.owl" "output.csv"
+        """
+    
+    #set arguments
+    onto_path = args.refOntologyPath
+    edge_path = args.refEdgeListPath
+    
+    #run makeGraph function
+    makeGraph(onto_path, edge_path)
 
 
 if __name__=="__main__":
