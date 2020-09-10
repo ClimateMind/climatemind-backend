@@ -1,15 +1,9 @@
-from knowledge_graph import app
-
-import json
-
 from json import dumps, load
-
-from flask import request, make_response, abort, Response
-
 from typing import Tuple
 
-from knowledge_graph.Mind import Mind
+from flask import request, make_response, Response
 
+from knowledge_graph import app
 from knowledge_graph.score_nodes import get_user_nodes
 
 import uuid
@@ -96,28 +90,34 @@ def receive_user_scores() -> Tuple[Response, int]:
     overall_sum = 0
     num_of_responses = 10
 
+    NUMBER_OF_SETS = 2
+    POSITIVITY_CONSTANT = 3.5
+    RESPONSES_TO_ADD = 10
+    
     user_id = uuid.uuid4()
 
     for value in parameter["SetOne"]:
-        id = value["id"]
+        questionID = value["id"]
         score = value["score"]
         overall_sum += score
-        value_scores[value_id_map[id]] = score
+        value_scores[value_id_map[questionID]] = score
 
     if parameter["SetTwo"]:
-        num_of_responses += 10
+        num_of_responses += RESPONSES_TO_ADD
         for value in parameter["SetTwo"]:
-            id = value["id"]
+            questionID = value["id"]
             score = value["score"]
-            name = value_id_map[id]
-            avg_score = (value_scores[name] + score) / 2
+            name = value_id_map[questionID]
+            avg_score = (value_scores[name] + score) / NUMBER_OF_SETS
             overall_sum += score
             value_scores[name] = avg_score
 
     overall_avg = overall_sum / num_of_responses
 
     for value, score in value_scores.items():
-        centered_score = score - overall_avg + 3.5  # To make non-negative
+      
+        centered_score = score - overall_avg + POSITIVITY_CONSTANT # To make non-negative
+
         value_scores[value] = centered_score
 
     value_scores["user-id"] = user_id
@@ -129,9 +129,9 @@ def receive_user_scores() -> Tuple[Response, int]:
 @app.route('/get_actions', methods=['POST'])
 def get_actions():
     try:
-        user_scores = request.json
+        scores = request.json
     except:
         return make_response("Invalid JSON"), 400
-    recommended_nodes = get_user_nodes(user_scores)
+    recommended_nodes = get_user_nodes(scores)
     response = Response(dumps(recommended_nodes))
     return response, 200
