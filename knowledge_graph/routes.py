@@ -6,6 +6,8 @@ from flask import request, make_response, Response
 from knowledge_graph import app
 from knowledge_graph.score_nodes import get_user_nodes
 
+import uuid
+
 value_id_map = {
     1: "conformity",
     2: "tradition",
@@ -91,6 +93,8 @@ def receive_user_scores() -> Tuple[Response, int]:
     NUMBER_OF_SETS = 2
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
+    
+    user_id = uuid.uuid4()
 
     for value in parameter["SetOne"]:
         questionID = value["id"]
@@ -109,14 +113,18 @@ def receive_user_scores() -> Tuple[Response, int]:
             value_scores[name] = avg_score
 
     overall_avg = overall_sum / num_of_responses
-    print(overall_avg)
 
     for value, score in value_scores.items():
+      
         centered_score = score - overall_avg + POSITIVITY_CONSTANT # To make non-negative
+
         value_scores[value] = centered_score
+
+    value_scores["user-id"] = user_id
 
     response = Response(dumps(value_scores))
     return response, 200
+
 
 @app.route('/get_actions', methods=['POST'])
 def get_actions():
@@ -127,4 +135,3 @@ def get_actions():
     recommended_nodes = get_user_nodes(scores)
     response = Response(dumps(recommended_nodes))
     return response, 200
-    
