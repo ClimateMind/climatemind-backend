@@ -12,6 +12,8 @@ from knowledge_graph.Mind import Mind
 
 from knowledge_graph.score_nodes import get_user_nodes
 
+import uuid
+
 value_id_map = {
     1: "conformity",
     2: "tradition",
@@ -94,6 +96,8 @@ def receive_user_scores() -> Tuple[Response, int]:
     overall_sum = 0
     num_of_responses = 10
 
+    user_id = uuid.uuid4()
+
     for value in parameter["SetOne"]:
         id = value["id"]
         score = value["score"]
@@ -111,14 +115,16 @@ def receive_user_scores() -> Tuple[Response, int]:
             value_scores[name] = avg_score
 
     overall_avg = overall_sum / num_of_responses
-    print(overall_avg)
 
     for value, score in value_scores.items():
-        centered_score = score - overall_avg + 3.5 # To make non-negative
+        centered_score = score - overall_avg + 3.5  # To make non-negative
         value_scores[value] = centered_score
+
+    value_scores["user-id"] = user_id
 
     response = Response(dumps(value_scores))
     return response, 200
+
 
 @app.route('/get_actions', methods=['POST'])
 def get_actions():
@@ -129,4 +135,3 @@ def get_actions():
     recommended_nodes = get_user_nodes(user_scores)
     response = Response(dumps(recommended_nodes))
     return response, 200
-    
