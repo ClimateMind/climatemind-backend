@@ -8,7 +8,7 @@ On Windows it is running in a strict secure mode. You need to add the source dir
 
 ## Running the application with Docker Compose (for development)
 
-Build the image container to download and install code dependencies needed for running the app. SPECIAL NOTE: The docker image needs to be re-built by re-running the build command below whenever the backend repo has changed from a Pull Request to include new dependancies.
+Build the image container to download and install code dependencies needed for running the app. **_SPECIAL NOTE_**: _The docker image needs to be re-built by re-running the build command below whenever the backend repo has changed from a Pull Request to include new dependancies._
 
     docker-compose build
 
@@ -83,7 +83,7 @@ Follow these instructions to visualize an OWL file using the Dash dashboard gene
 4. Find the URL that appears in the terminal and go to it in your internet browser.
 
     Example: "Dash is running on http://127.0.0.1:8050/" appears in the terminal, so go to http://127.0.0.1:8050/ in your internet browser.
-    SPECIAL NOTE: Sometimes the terminal says 'Running on http://0.0.0.0:5000' and that url does not work in the browser. If this happens, try going to "http://127.0.0.1:5000" instead.
+    **_SPECIAL NOTE_**: _Sometimes the terminal says 'Running on http://0.0.0.0:5000' and that url does not work in the browser. If this happens, try going to "http://127.0.0.1:5000" instead._
 
 5. Use the visualization dashboard in your internet browser.
 
