@@ -17,6 +17,7 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    zip = db.Column(db.Integer, index=False, unique=False)
     scores = db.relationship('Scores', backref='owner', lazy='dynamic')
     
     def set_password(self, password):
@@ -38,3 +39,9 @@ class Scores(db.Model):
     name = db.Column(db.String(64), index=True, unique=True)
     score = db.Column(db.Float, index=False, unique=False)
     user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+
+class LRF(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    iri = db.Column(db.String(120), index=False, unique=False)
+    zip = db.Column(db.Integer, index=True, unique=False)
+    affected_by_iri = db.Column(db.Boolean, index=False, unique=False)

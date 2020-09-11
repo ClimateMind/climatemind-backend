@@ -88,4 +88,25 @@ Follow these instructions to visualize an OWL file using the Dash dashboard gene
 
 6. When done using the dashboard, close the browser and stop the script from running by going to the terminal and pressing [CTRL + C]
 
+## Modifying the Database or Updating Records
+
+The following steps are necessary to perform if a new model is added to the database in models.py
+
+1. Open the terminal and issue the following commands
+
+2. flask db migrate -m "leave a comment about changes here"
+
+3. flask db upgrade
+
+4. Then, open up climatemind.py and make sure to import the model and add it to the shell context
+
+If you'd like to add a new entry to the database without using the application, open the terminal and type 'flask shell'.
+All of the models outlined in the shell context from climatemind.py will be available for use here.
+
+As an example,
+
+u = User(username='kameron', email='kameron@climatemind.com')
+db.session.add(u)
+db.session.commit()
+
 
