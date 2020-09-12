@@ -22,7 +22,7 @@ value_id_map = {
     10: "security"
 }
 
-# Swagger Stuff - Migh more later into its own file_path
+# Swagger Stuff
 SWAGGER_URL = '/swagger'
 APP_URL = '/static/openapi.yaml'
 SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
@@ -39,6 +39,8 @@ app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
 @app.route('/swagger/<path:path>')
 def send_file(path):
     return send_from_directory('/swagger', path)
+
+# End Swagger Stuff
 
 
 @app.route('/', methods=['GET'])
