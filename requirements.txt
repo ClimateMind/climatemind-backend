@@ -53,6 +53,7 @@ py2app==0.7.3
 pycparser==2.20
 pyparsing==2.4.7
 pyrsistent==0.16.0
+pytest==6.0.1
 python-dateutil==2.8.1
 python-dotenv==0.14.0
 python-editor==1.0.4
