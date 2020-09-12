@@ -13,6 +13,10 @@ jobs:
           name: Linter
           command: python3 -m black --check ./
       - run:
+          name: Start Flask app
+          command: FLASK_APP=climatemind.py python3 -m flask run
+          background: true
+      - run:
           name: Api Tests
           command: python3 -m pytest ./api_tests
 
