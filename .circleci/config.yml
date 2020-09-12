@@ -1,7 +1,18 @@
 version: 2.1
 orbs:
   azure-acr: circleci/azure-acr@0.2.0
+  python: circleci/python@1.0.0
 jobs:
+  test:
+    executor: python/default
+    steps:
+      - checkout
+      - python/install-packages:
+          pkg-manager: pip
+      - run:
+          name: Linter
+          command: python3 -m black --check ./
+
   build:
     machine: true
     steps:
@@ -15,7 +26,10 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - build
+      - test
+      - build:
+          requires:
+                - test
   build-deploy:
     jobs:
       - azure-acr/build-and-push-image:
