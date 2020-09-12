@@ -1,7 +1,8 @@
+from flask_swagger_ui import get_swaggerui_blueprint
 from json import dumps, load
 from typing import Tuple
 
-from flask import request, make_response, Response
+from flask import request, make_response, Response, send_from_directory
 
 from knowledge_graph import app
 from knowledge_graph.score_nodes import get_user_nodes
@@ -20,6 +21,24 @@ value_id_map = {
     9: "power",
     10: "security"
 }
+
+# Swagger Stuff - Migh more later into its own file_path
+SWAGGER_URL = '/swagger'
+APP_URL = '/static/openapi.yaml'
+SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    APP_URL,
+    config={
+        'app_name': "Climage Mind Backend"
+    }
+)
+
+app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
+
+
+@app.route('/swagger/<path:path>')
+def send_file(path):
+    return send_from_directory('/swagger', path)
 
 
 @app.route('/', methods=['GET'])
@@ -68,6 +87,7 @@ def user_scores() -> Tuple[Response, int]:
     if request.method == 'POST':
         return receive_user_scores()
 
+
 def receive_user_scores() -> Tuple[Response, int]:
     """ Users want to be able to get their score results after submitting
         the survey. This method checks for a POST request from the front-end
@@ -93,7 +113,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     NUMBER_OF_SETS = 2
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
-    
+
     user_id = uuid.uuid4()
 
     for value in parameter["SetOne"]:
@@ -115,8 +135,9 @@ def receive_user_scores() -> Tuple[Response, int]:
     overall_avg = overall_sum / num_of_responses
 
     for value, score in value_scores.items():
-      
-        centered_score = score - overall_avg + POSITIVITY_CONSTANT # To make non-negative
+
+        centered_score = score - overall_avg + \
+            POSITIVITY_CONSTANT  # To make non-negative
 
         value_scores[value] = centered_score
 
