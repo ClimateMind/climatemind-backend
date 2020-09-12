@@ -12,6 +12,9 @@ jobs:
       - run:
           name: Linter
           command: python3 -m black --check ./
+      - run:
+          name: Api Tests
+          command: python3 -m pytest ./api_tests
 
   build:
     machine: true
