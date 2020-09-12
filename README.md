@@ -90,3 +90,10 @@ Follow these instructions to visualize an OWL file using the Dash dashboard gene
 5. Use the visualization dashboard in your internet browser.
 
 6. When done using the dashboard, close the browser and stop the script from running by going to the terminal and pressing [CTRL + C]
+
+## Code Style
+The python code is style using [Black](https://pypi.org/project/black/)
+
+You can run Black locally to see which files need formatting using `python3 -m black --check ./`
+
+You can use Black to automatically format your files using `python3 -m black ./`
