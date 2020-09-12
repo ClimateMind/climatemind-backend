@@ -3,6 +3,7 @@ altgraph==0.10.2
 api==0.0.7
 attrs==19.3.0
 bdist-mpkg==0.5.0
+black=20.8b1
 Brotli==1.0.7
 certifi==2020.6.20
 cffi==1.14.0
