@@ -120,7 +120,7 @@ def receive_user_scores() -> Tuple[Response, int]:
 
         value_scores[value] = centered_score
 
-    value_scores["user-id"] = session_id
+    value_scores["session-id"] = session_id
 
     response = Response(dumps(value_scores))
     return response, 200
