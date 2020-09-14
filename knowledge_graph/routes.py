@@ -94,7 +94,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
     
-    user_id = uuid.uuid4()
+    session_id = uuid.uuid4()
 
     for value in parameter["SetOne"]:
         questionID = value["id"]
@@ -120,7 +120,7 @@ def receive_user_scores() -> Tuple[Response, int]:
 
         value_scores[value] = centered_score
 
-    value_scores["user-id"] = user_id
+    value_scores["session-id"] = session_id
 
     response = Response(dumps(value_scores))
     return response, 200
