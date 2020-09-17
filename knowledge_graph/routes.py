@@ -1,13 +1,14 @@
-from knowledge_graph import app
-import json
+from flask_swagger_ui import get_swaggerui_blueprint
 from json import dumps, load
-from flask import request, make_response, abort, Response
 from typing import Tuple
-from knowledge_graph.Mind import Mind
+
+from flask import request, make_response, Response, send_from_directory
+
+from knowledge_graph import app
+from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.score_nodes import get_user_nodes
-from flask_login import current_user, login_user
-from knowledge_graph.models import User
-from knowledge_graph.forms import LoginForm
+
+import uuid
 
 value_id_map = {
     1: "conformity",
@@ -22,30 +23,30 @@ value_id_map = {
     10: "security"
 }
 
+# Swagger Stuff
+SWAGGER_URL = '/swagger'
+APP_URL = '/static/openapi.yaml'
+SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    APP_URL,
+    config={
+        'app_name': "Climage Mind Backend"
+    }
+)
+
+app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
+
+
+@app.route('/swagger/<path:path>')
+def send_file(path):
+    return send_from_directory('/swagger', path)
+
+# End Swagger Stuff
+
 
 @app.route('/', methods=['GET'])
-@app.route('/index', methods=['GET'])
 def home() -> Tuple[str, int]:
     return "<h1>API for climatemind ontology</h1>", 200
-    
-@app.route('/login', methods=['GET', 'POST'])
-def login():
-    if current_user.is_authenticated:
-        return redirect(url_for('index'))
-    form = LoginForm()
-    if form.validate_on_submit():
-        user = User.query.filter_by(username=form.username.data).first()
-        if user is None or not user.check_password(form.password.data):
-            flash('Invalid username or password')
-            return redirect(url_for('login'))
-        login_user(user, remember=form.remember_me.data)
-        return redirect(url_for('index'))
-    return render_template('login.html', title='Sign In', form=form)
-        
-@app.route('/logout')
-def logout():
-    logout_user()
-    return redirect(url_for('index'))
 
 
 @app.route('/ontology', methods=['GET'])
@@ -84,16 +85,10 @@ def get_questions() -> Tuple[Response, int]:
     return response, 200
 
 
-@app.route('/users/scores', methods=['GET', 'POST'])
+@app.route('/scores', methods=['POST'])
 def user_scores() -> Tuple[Response, int]:
-    if request.method == 'GET':
-        return send_user_scores()
     if request.method == 'POST':
         return receive_user_scores()
-
-
-def send_user_scores() -> Tuple[Response, int]:
-    return Response(dumps("placeholder score")), 200
 
 
 def receive_user_scores() -> Tuple[Response, int]:
@@ -118,39 +113,53 @@ def receive_user_scores() -> Tuple[Response, int]:
     overall_sum = 0
     num_of_responses = 10
 
+    NUMBER_OF_SETS = 2
+    POSITIVITY_CONSTANT = 3.5
+    RESPONSES_TO_ADD = 10
+
+    
+    session_id = uuid.uuid4()
+
+
     for value in parameter["SetOne"]:
-        id = value["id"]
+        questionID = value["id"]
         score = value["score"]
         overall_sum += score
-        value_scores[value_id_map[id]] = score
+        value_scores[value_id_map[questionID]] = score
 
     if parameter["SetTwo"]:
-        num_of_responses += 10
+        num_of_responses += RESPONSES_TO_ADD
         for value in parameter["SetTwo"]:
-            id = value["id"]
+            questionID = value["id"]
             score = value["score"]
-            name = value_id_map[id]
-            avg_score = (value_scores[name] + score) / 2
+            name = value_id_map[questionID]
+            avg_score = (value_scores[name] + score) / NUMBER_OF_SETS
             overall_sum += score
             value_scores[name] = avg_score
 
     overall_avg = overall_sum / num_of_responses
-    print(overall_avg)
 
     for value, score in value_scores.items():
-        centered_score = score - overall_avg + 3.5 # To make non-negative
+
+        centered_score = score - overall_avg + \
+            POSITIVITY_CONSTANT  # To make non-negative
+
         value_scores[value] = centered_score
+
+    value_scores["session-id"] = session_id
+
+    persist_scores(value_scores)
 
     response = Response(dumps(value_scores))
     return response, 200
 
+
 @app.route('/get_actions', methods=['POST'])
 def get_actions():
     try:
-        user_scores = request.json
+        scores = request.json
     except:
         return make_response("Invalid JSON"), 400
-    recommended_nodes = get_user_nodes(user_scores)
+    recommended_nodes = get_user_nodes(scores)
     response = Response(dumps(recommended_nodes))
     return response, 200
-    
