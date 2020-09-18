@@ -38,10 +38,17 @@ def load_user(id):
 
 
 class Scores(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(64), index=True, unique=True)
-    score = db.Column(db.Float, index=False, unique=False)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    session_id = db.Column(db.Integer, primary_key=True)
+    security = db.Column(db.String(64), index=True, unique=True)
+    conformity = db.Column(db.String(64), index=True, unique=True)
+    benevolence = db.Column(db.String(64), index=True, unique=True)
+    tradition = db.Column(db.String(64), index=True, unique=True)
+    universalism = db.Column(db.String(64), index=True, unique=True)
+    self_direction = db.Column(db.String(64), index=True, unique=True)
+    stimulation = db.Column(db.String(64), index=True, unique=True)
+    hedonism = db.Column(db.String(64), index=True, unique=True)
+    achievement = db.Column(db.String(64), index=True, unique=True)
+    power = db.Column(db.String(64), index=True, unique=True)
 
 
 class LRF(db.Model):
