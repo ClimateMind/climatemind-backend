@@ -1,3 +1,5 @@
+from sqlalchemy import ForeignKey
+
 from knowledge_graph import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -38,7 +40,7 @@ def load_user(id):
 
 
 class Scores(db.Model):
-    session_id = db.Column(db.Integer, primary_key=True)
+    session_id = db.Column(db.Integer, ForeignKey(User.scores), primary_key=True)
     security = db.Column(db.String(64), index=True, unique=True)
     conformity = db.Column(db.String(64), index=True, unique=True)
     benevolence = db.Column(db.String(64), index=True, unique=True)

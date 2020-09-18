@@ -11,7 +11,7 @@ Results = List[str]
 
 class Mind:
     def __init__(self):
-        self.__ontology_source = "./climate_mind_ontology"
+        self.__ontology_source = "../climate_mind_ontology"
         self.__ontology = self.__load_ontology()
 
     def __load_ontology(self):
