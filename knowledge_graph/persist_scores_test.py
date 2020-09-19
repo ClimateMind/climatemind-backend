@@ -1,13 +1,25 @@
+
+from flask import Flask
+
 import unittest
+
 from knowledge_graph import db
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.models import Scores
 
 
 class TestPersistScores(unittest.TestCase):
+    def setUp(self) -> None:
+        self.app = Flask(__name__)
+        db.init_app(self.app)
+
+    def tearDown(self) -> None:
+        db.session.remove()
+        db.drop_all()
+
     def test_successful_persisting(self):
         test_data = {
-            "session-id": 1.0,
+            "session_id": 1.0,
             "security": 1.0,
             "conformity": 1.0,
             "benevolence": 1.0,
@@ -21,7 +33,7 @@ class TestPersistScores(unittest.TestCase):
         }
 
         expected_scores = Scores()
-        expected_scores.session_id = test_data["session-id"]
+        expected_scores.session_id = test_data["session_id"]
         expected_scores.security = test_data["security"]
         expected_scores.conformity = test_data["conformity"]
         expected_scores.benevolence = test_data["benevolence"]
@@ -35,8 +47,10 @@ class TestPersistScores(unittest.TestCase):
 
         persist_scores(test_data)
 
-        test_scores = db.session.query(Scores).filter_by(session_id=1)
+        test_scores = db.session.query(Scores).filter_by(session_id=1).one()
 
+        db.session.remove()
+        db.drop_all()
         self.assertEqual(test_scores, expected_scores)
 
 
