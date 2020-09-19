@@ -50,15 +50,25 @@ class Scores(db.Model):
     achievement = db.Column(db.Integer, index=False, unique=False)
     power = db.Column(db.Integer, index=False, unique=False)
 
+
 class Iri(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     iri = db.Column(db.String(120), unique=True)
     zips = db.relationship('Zip', secondary="lrf")
     
+    def __repr__(self):
+        """ Tells Python how to print """
+        return '<IRI {}>'.format(self.iri)
+  
+    
 class Zip(db.Model):
     zip = db.Column(db.Integer, primary_key=True)
     users = db.relationship('User', backref='lives_in', lazy='dynamic')
     iris = db.relationship('Iri', secondary='lrf')
+
+    def __repr__(self):
+        """ Tells Python how to print """
+        return '<Zip {}>'.format(self.zip)    
     
 class Lrf(db.Model):
     id = db.Column(db.Integer, primary_key=True)
