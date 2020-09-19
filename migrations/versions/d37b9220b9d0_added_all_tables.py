@@ -1,8 +1,8 @@
-"""recreating tables with new structure
+"""added all tables
 
-Revision ID: 6cac2744e717
+Revision ID: d37b9220b9d0
 Revises: 
-Create Date: 2020-09-19 12:29:03.388212
+Create Date: 2020-09-19 15:07:57.012800
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '6cac2744e717'
+revision = 'd37b9220b9d0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -48,17 +48,17 @@ def upgrade():
     op.create_index(op.f('ix_user_email'), 'user', ['email'], unique=True)
     op.create_index(op.f('ix_user_username'), 'user', ['username'], unique=True)
     op.create_table('scores',
-    sa.Column('session_id', sa.Integer(), nullable=False),
-    sa.Column('security', sa.Integer(), nullable=True),
-    sa.Column('conformity', sa.Integer(), nullable=True),
-    sa.Column('benevolence', sa.Integer(), nullable=True),
-    sa.Column('tradition', sa.Integer(), nullable=True),
-    sa.Column('universalism', sa.Integer(), nullable=True),
-    sa.Column('self_direction', sa.Integer(), nullable=True),
-    sa.Column('stimulation', sa.Integer(), nullable=True),
-    sa.Column('hedonism', sa.Integer(), nullable=True),
-    sa.Column('achievement', sa.Integer(), nullable=True),
-    sa.Column('power', sa.Integer(), nullable=True),
+    sa.Column('session_id', sa.Float(), nullable=False),
+    sa.Column('security', sa.Float(), nullable=True),
+    sa.Column('conformity', sa.Float(), nullable=True),
+    sa.Column('benevolence', sa.Float(), nullable=True),
+    sa.Column('tradition', sa.Float(), nullable=True),
+    sa.Column('universalism', sa.Float(), nullable=True),
+    sa.Column('self_direction', sa.Float(), nullable=True),
+    sa.Column('stimulation', sa.Float(), nullable=True),
+    sa.Column('hedonism', sa.Float(), nullable=True),
+    sa.Column('achievement', sa.Float(), nullable=True),
+    sa.Column('power', sa.Float(), nullable=True),
     sa.ForeignKeyConstraint(['session_id'], ['user.id'], ),
     sa.PrimaryKeyConstraint('session_id')
     )
