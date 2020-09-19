@@ -12,7 +12,7 @@ def add_iris_to_db(df):
         df - The CSV as a dataframe  
     '''
     for col in df.columns[1:]:
-        exists = db.session.query(Iri).filter_by(iri=col).first()
+        exists = db.session.query(Iri).filter_by(iri=col).first() 
         if not exists:
             i = Iri(iri=col)
             db.session.add(i)
@@ -32,13 +32,27 @@ def add_iris_to_zip(z, df, row):
     print("adding zip: ", z)
     for col in df.columns[1:]:
         iri_affects = row[col]
+        i = db.session.query(Iri).filter_by(iri=col).first()
         if iri_affects:
-            i = db.session.query(Iri).filter_by(iri=col).first()
             print("Adding IRI to zip: ", i)
-            z.iris.append(i)     
+            z.iris.append(i)
+
+def delete_all_from_db():
+    ''' Anytime a spreadsheet is uploaded it's expected that it will completely override
+        the entire database. This deletes all zips and IRIs so new values can be added.    
+    '''
+    print("Deleting Zip Codes")
+    num_rows_deleted = db.session.query(Zip).delete()
+    print("Deleted ", num_rows_deleted, "Zip Codes")
+    print("Deleting IRIs")
+    num_rows_deleted = db.session.query(Iri).delete()
+    print("Deleted ", num_rows_deleted, "IRI Codes")
+    db.session.commit()
 
 def main(args):
     path = args.Path
+    
+    delete_all_from_db()
     df = pd.read_csv(path)
     df.fillna(True, inplace=True) # NaN are assumed to affect user
     print(df)

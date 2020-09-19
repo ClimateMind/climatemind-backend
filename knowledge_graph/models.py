@@ -38,17 +38,17 @@ def load_user(id):
 
 
 class Scores(db.Model):
-    session_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
-    security = db.Column(db.Integer, index=False, unique=False)
-    conformity = db.Column(db.Integer, index=False, unique=False)
-    benevolence = db.Column(db.Integer, index=False, unique=False)
-    tradition = db.Column(db.Integer, index=False, unique=False)
-    universalism = db.Column(db.Integer, index=False, unique=False)
-    self_direction = db.Column(db.Integer, index=False, unique=False)
-    stimulation = db.Column(db.Integer, index=False, unique=False)
-    hedonism = db.Column(db.Integer, index=False, unique=False)
-    achievement = db.Column(db.Integer, index=False, unique=False)
-    power = db.Column(db.Integer, index=False, unique=False)
+    session_id = db.Column(db.Float, db.ForeignKey('user.id'), primary_key=True)
+    security = db.Column(db.Float, index=False, unique=False)
+    conformity = db.Column(db.Float, index=False, unique=False)
+    benevolence = db.Column(db.Float, index=False, unique=False)
+    tradition = db.Column(db.Float, index=False, unique=False)
+    universalism = db.Column(db.Float, index=False, unique=False)
+    self_direction = db.Column(db.Float, index=False, unique=False)
+    stimulation = db.Column(db.Float, index=False, unique=False)
+    hedonism = db.Column(db.Float, index=False, unique=False)
+    achievement = db.Column(db.Float, index=False, unique=False)
+    power = db.Column(db.Float, index=False, unique=False)
 
 
 class Iri(db.Model):
@@ -69,6 +69,7 @@ class Zip(db.Model):
     def __repr__(self):
         """ Tells Python how to print """
         return '<Zip {}>'.format(self.zip)    
+
     
 class Lrf(db.Model):
     id = db.Column(db.Integer, primary_key=True)
