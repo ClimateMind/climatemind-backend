@@ -14,7 +14,8 @@ class TestPersistScores(unittest.TestCase):
         db.create_all()
 
     def tearDown(self) -> None:
-        db.session.query(Scores).delete()
+        db.drop_all()
+
         db.session.commit()
 
     def test_successful_persisting(self):
