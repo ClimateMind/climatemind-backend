@@ -5,6 +5,7 @@ from typing import Tuple
 from flask import request, make_response, Response, send_from_directory
 
 from knowledge_graph import app
+from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.score_nodes import get_user_nodes
 
 import uuid
@@ -146,6 +147,8 @@ def receive_user_scores() -> Tuple[Response, int]:
         value_scores[value] = centered_score
 
     value_scores["session-id"] = session_id
+
+    persist_scores(value_scores)
 
     response = Response(dumps(value_scores))
     return response, 200
