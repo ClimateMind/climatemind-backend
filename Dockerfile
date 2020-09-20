@@ -14,8 +14,7 @@ RUN pip install cython && \
     pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 5000
-EXPOSE 8050
+EXPOSE 5000 8050
 
 ENTRYPOINT [ "python" ]
 
