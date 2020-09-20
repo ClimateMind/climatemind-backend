@@ -1,4 +1,3 @@
-
 from flask import Flask
 
 import unittest
@@ -12,10 +11,11 @@ class TestPersistScores(unittest.TestCase):
     def setUp(self) -> None:
         self.app = Flask(__name__)
         db.init_app(self.app)
+        db.create_all()
 
     def tearDown(self) -> None:
+        db.delete_all()
         db.session.remove()
-        db.drop_all()
 
     def test_successful_persisting(self):
         test_data = {
@@ -49,8 +49,6 @@ class TestPersistScores(unittest.TestCase):
 
         test_scores = db.session.query(Scores).filter_by(session_id=1).one()
 
-        db.session.remove()
-        db.drop_all()
         self.assertEqual(test_scores, expected_scores)
 
 
