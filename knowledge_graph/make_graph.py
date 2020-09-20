@@ -310,8 +310,8 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     [give_alias(x) for x in annot_properties]
 
     #run automated reasoning. but to do this must ensure java is added to the docker container!
-    #with onto:
-    #    sync_reasoner()
+    with onto:
+        sync_reasoner()
     
     #print(list(default_world.inconsistent_classes()))
     
