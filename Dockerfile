@@ -20,5 +20,4 @@ EXPOSE 8050
 ENTRYPOINT [ "python" ]
 
 CMD [ "climatemind.py" ]
-#CMD [ "climatemind.py", "process_new_ontology_and_visualize.py" ]
-#CMD [ "process_new_ontology_and_visualize.py" ]
+
