@@ -14,12 +14,12 @@ class TestPersistScores(unittest.TestCase):
         db.create_all()
 
     def tearDown(self) -> None:
-        db.delete_all()
-        db.session.remove()
+        db.session.query(Scores).delete()
+        db.session.commit()
 
     def test_successful_persisting(self):
         test_data = {
-            "session_id": 1.0,
+            "session_id": 1,
             "security": 1.0,
             "conformity": 1.0,
             "benevolence": 1.0,
@@ -49,7 +49,9 @@ class TestPersistScores(unittest.TestCase):
 
         test_scores = db.session.query(Scores).filter_by(session_id=1).one()
 
-        self.assertEqual(test_scores, expected_scores)
+        self.assertEqual(test_scores.session_id, expected_scores.session_id)
+        
+        self.tearDown()
 
 
 if __name__ == '__main__':
