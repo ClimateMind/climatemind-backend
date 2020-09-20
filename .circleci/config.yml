@@ -20,7 +20,7 @@ workflows:
     jobs:
       - azure-acr/build-and-push-image:
           context: azure
-          dockerfile: Dockerfile
+          dockerfile: Dockerfile_integration_tests
           login-server-name: acrwebprod001.azurecr.io
           registry-name: acrwebprod001
           repo: backend

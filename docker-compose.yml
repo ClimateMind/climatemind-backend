@@ -8,3 +8,14 @@ services:
       - .:/app
     environment:
       FLASK_ENV: development
+
+  integration_tests:
+    build:
+      context: .
+      dockerfile: Dockerfile_integration_tests
+    ports:
+        - "5000:5000"
+    volumes:
+      - .:/app
+    environment:
+      FLASK_ENV: development
