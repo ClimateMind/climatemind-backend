@@ -338,11 +338,11 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     [give_alias(x) for x in obj_properties]
     [give_alias(x) for x in annot_properties]
 
-    #run automated reasoning.
+    # run automated reasoning.
     with onto:
         sync_reasoner()
 
-    #print(list(default_world.inconsistent_classes()))
+    # print(list(default_world.inconsistent_classes()))
 
     # Read in the triples data
     df = pd.read_csv(edge_path)
