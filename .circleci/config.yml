@@ -3,7 +3,7 @@ orbs:
   azure-acr: circleci/azure-acr@0.2.0
   python: circleci/python@1.0.0
 jobs:
-  test:
+  lint:
     executor: python/default
     steps:
       - checkout
@@ -13,13 +13,6 @@ jobs:
       - run:
           name: Linter
           command: python3 -m black --check ./
-      - run:
-          name: Start Flask app
-          command: FLASK_APP=climatemind.py python3 -m flask run
-          background: true
-      - run:
-          name: Api Tests
-          command: python3 -m pytest ./api_tests
 
   build:
     machine: true
@@ -34,7 +27,7 @@ workflows:
   version: 2
   build_and_test:
     jobs:
-      - test
+      - lint
       - build:
           requires:
                 - test
