@@ -568,5 +568,6 @@ if __name__ == "__main__":
         "gpickle_file_path", type=str, help="path to reference networkx gpickle object"
     )
     args = parser.parse_args()
-    app = main(args)
-    app.run_server(debug=False)
+    app=main(args)
+    app.run(debug=False, host="0.0.0.0")
+    app.run_server(debug=False, host="0.0.0.0", port=8050)
