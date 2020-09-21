@@ -23,6 +23,18 @@ jobs:
       - run: |
           docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
 
+    test:
+        - run:
+            name: Run docker
+            command: docker run -d --name $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM --publish 5000:5000 climatemind-backend:0.1
+        - run:
+            name: Run & Start App
+            command: docker start $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM
+            background: true
+        - run:
+            name: Api Tests
+            command: python3 -m pytest ./api_tests
+
 workflows:
   version: 2
   build_and_test:
@@ -30,7 +42,10 @@ workflows:
       - lint
       - build:
           requires:
-                - test
+            - lint
+      - test
+          requires:
+            - build
   build-deploy:
     jobs:
       - azure-acr/build-and-push-image:
