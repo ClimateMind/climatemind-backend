@@ -1,5 +1,7 @@
 # Climatemind Backend
 
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 Using Docker you need to install it first: https://www.docker.com/products/docker-desktop
 
 On Windows it is running in a strict secure mode. You need to add the source directory to the Docker Resources: Settings / Resources / File Sharing -> add the application root directory
@@ -60,7 +62,7 @@ Start the container
 
 Follow these instructions to process a new version of a Climate Mind ontology OWL file into files used by Climate Mind (such as Networkx pickle file, test ontology JSON, edge list output CSV, etc).
 
-1. Download the new OWL ontology file (if haven't already) and move the file to the folder in the climatemind-backend directory folder cryptically named 'PUT_NEW_OWL_FILE_IN_HERE' ;) 
+1. Download the new OWL ontology file (if haven't already) and move the file to the folder in the climatemind-backend directory folder cryptically named 'PUT_NEW_OWL_FILE_IN_HERE' ;)
 
 2. Change the directory to be the climatemind-backend by using the following command with the part in caps replaced with the path to climatemind-backend on your system (for mac):
 
@@ -97,4 +99,9 @@ Follow these instructions to process a new version of a Climate Mind ontology OW
 
 6. When done using the dashboard, close the browser and stop the script from running by going to the terminal and pressing [CTRL + C]
 
+## Code Style
+The python code is style using [Black](https://pypi.org/project/black/)
 
+You can run Black locally to see which files need formatting using `python3 -m black --check ./`
+
+You can use Black to automatically format your files using `python3 -m black ./`

@@ -8,7 +8,7 @@ def persist_scores(scores: dict) -> Type[KeyError]:
     try:
 
         u = User()
-        u.id = scores['session-id']
+        u.id = scores["session-id"]
 
         db.session.add(u)
         db.session.commit()
@@ -17,7 +17,7 @@ def persist_scores(scores: dict) -> Type[KeyError]:
             s = Scores()
 
             s.name = key
-            s.user_id = scores['session-id']
+            s.user_id = scores["session-id"]
 
             s.score = value
 
