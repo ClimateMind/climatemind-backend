@@ -1,9 +1,11 @@
+from flask_swagger_ui import get_swaggerui_blueprint
 from json import dumps, load
 from typing import Tuple
 
-from flask import request, make_response, Response
+from flask import request, make_response, Response, send_from_directory
 
 from knowledge_graph import app
+from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.score_nodes import get_user_nodes
 
 import uuid
@@ -20,6 +22,26 @@ value_id_map = {
     9: "power",
     10: "security",
 }
+
+# Swagger Stuff
+SWAGGER_URL = '/swagger'
+APP_URL = '/static/openapi.yaml'
+SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    APP_URL,
+    config={
+        'app_name': "Climage Mind Backend"
+    }
+)
+
+app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
+
+
+@app.route('/swagger/<path:path>')
+def send_file(path):
+    return send_from_directory('/swagger', path)
+
+# End Swagger Stuff
 
 
 @app.route("/", methods=["GET"])
@@ -95,7 +117,9 @@ def receive_user_scores() -> Tuple[Response, int]:
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
 
-    user_id = uuid.uuid4()
+
+    session_id = uuid.uuid4()
+
 
     for value in parameter["SetOne"]:
         questionID = value["id"]
@@ -117,13 +141,14 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     for value, score in value_scores.items():
 
-        centered_score = (
-            score - overall_avg + POSITIVITY_CONSTANT
-        )  # To make non-negative
+        centered_score = score - overall_avg + \
+            POSITIVITY_CONSTANT  # To make non-negative
 
         value_scores[value] = centered_score
 
-    value_scores["user-id"] = user_id
+    value_scores["session-id"] = session_id
+
+    persist_scores(value_scores)
 
     response = Response(dumps(value_scores))
     return response, 200
