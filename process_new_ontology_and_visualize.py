@@ -62,7 +62,7 @@ def main(args):
     app = knowledge_graph.visualize.visualize(gpickle_path)
 
     # run the app object to visualize the new ontology graph
-    app.run_server(debug=False,  host="0.0.0.0", port=8050)
+    app.run_server(debug=False, host="0.0.0.0", port=8050)
 
 
 if __name__ == "__main__":
