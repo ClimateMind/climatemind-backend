@@ -1,7 +1,7 @@
 """adding user and scores tables
 
 Revision ID: e19c2ec43c46
-Revises: 
+Revises:
 Create Date: 2020-09-08 00:33:21.786125
 
 """
