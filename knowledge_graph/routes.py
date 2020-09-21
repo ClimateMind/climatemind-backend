@@ -24,22 +24,19 @@ value_id_map = {
 }
 
 # Swagger Stuff
-SWAGGER_URL = '/swagger'
-APP_URL = '/static/openapi.yaml'
+SWAGGER_URL = "/swagger"
+APP_URL = "/static/openapi.yaml"
 SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
-    SWAGGER_URL,
-    APP_URL,
-    config={
-        'app_name': "Climage Mind Backend"
-    }
+    SWAGGER_URL, APP_URL, config={"app_name": "Climage Mind Backend"}
 )
 
 app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 
-@app.route('/swagger/<path:path>')
+@app.route("/swagger/<path:path>")
 def send_file(path):
-    return send_from_directory('/swagger', path)
+    return send_from_directory("/swagger", path)
+
 
 # End Swagger Stuff
 
@@ -117,9 +114,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
 
-
     session_id = uuid.uuid4()
-
 
     for value in parameter["SetOne"]:
         questionID = value["id"]
@@ -141,8 +136,9 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     for value, score in value_scores.items():
 
-        centered_score = score - overall_avg + \
-            POSITIVITY_CONSTANT  # To make non-negative
+        centered_score = (
+            score - overall_avg + POSITIVITY_CONSTANT
+        )  # To make non-negative
 
         value_scores[value] = centered_score
 
