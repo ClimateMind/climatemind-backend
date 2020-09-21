@@ -30,7 +30,7 @@ SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
     SWAGGER_URL,
     APP_URL,
     config={
-        'app_name': "Climage Mind Backend"
+        'app_name': "Climate Mind Backend"
     }
 )
 
@@ -40,6 +40,7 @@ app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
 @app.route('/swagger/<path:path>')
 def send_file(path):
     return send_from_directory('/swagger', path)
+
 
 # End Swagger Stuff
 
@@ -117,9 +118,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
 
-    
-    session_id = uuid.uuid4()
-
+    session_id = int(uuid.uuid4())
 
     for value in parameter["SetOne"]:
         questionID = value["id"]
@@ -140,9 +139,8 @@ def receive_user_scores() -> Tuple[Response, int]:
     overall_avg = overall_sum / num_of_responses
 
     for value, score in value_scores.items():
-
         centered_score = score - overall_avg + \
-            POSITIVITY_CONSTANT  # To make non-negative
+                         POSITIVITY_CONSTANT  # To make non-negative
 
         value_scores[value] = centered_score
 

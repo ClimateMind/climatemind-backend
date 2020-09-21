@@ -1,7 +1,6 @@
 from flask import Flask
 
 import unittest
-
 from knowledge_graph import db
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.models import Scores
@@ -11,7 +10,8 @@ class TestPersistScores(unittest.TestCase):
     def setUp(self) -> None:
         self.app = Flask(__name__)
         db.init_app(self.app)
-        db.create_all()
+
+        Scores.__table__.create(db.session.bind, checkfirst=True)
 
     def tearDown(self) -> None:
         db.drop_all()
@@ -51,7 +51,7 @@ class TestPersistScores(unittest.TestCase):
         test_scores = db.session.query(Scores).filter_by(session_id=1).one()
 
         self.assertEqual(test_scores.session_id, expected_scores.session_id)
-        
+
         self.tearDown()
 
 
