@@ -38,7 +38,7 @@ def load_user(id):
 
 
 class Scores(db.Model):
-    session_id = db.Column(db.Float, db.ForeignKey('user.id'), primary_key=True)
+    session_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True)
     security = db.Column(db.Float, index=False, unique=False)
     conformity = db.Column(db.Float, index=False, unique=False)
     benevolence = db.Column(db.Float, index=False, unique=False)
