@@ -4,9 +4,12 @@ from typing import Tuple
 
 from flask import request, make_response, Response, send_from_directory
 
-from knowledge_graph import app
+from knowledge_graph import app, db
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.score_nodes import get_user_nodes
+from knowledge_graph.models import Scores
+
+from collections import Counter
 
 import uuid
 
@@ -21,6 +24,19 @@ value_id_map = {
     8: "achievement",
     9: "power",
     10: "security",
+}
+
+score_description = {
+    "conformity": "Compliance with rules, laws and formal obligations (Avoidance of violating formal social expectations)",
+    "tradition": "Maintaining and preserving cultural, family and/or religious traditions",
+    "universalism": "You encompass appreciation, tolerance, and general acceptance of the nature of things around you.",
+    "benevolence": "Promoting the welfare of one’s in-groups by being trustworthy and reliable",
+    "self-direction": "Freedom to determine one’s own actions",
+    "stimulation": "Excitement, novelty, and change",
+    "hedonism": "Pleasure or sensuous gratification",
+    "achievement": "Success according to social standards",
+    "power": "Control over people and resources",
+    "security": "Safety, stability and order (security) in the wider society"    
 }
 
 # Swagger Stuff
@@ -148,6 +164,29 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     response = Response(dumps(value_scores))
     return response, 200
+    
+
+@app.route('/personal_values', methods=['GET'])
+def get_personal_values():
+    """ Given a session-id, this returns the top three personal values for a user
+    
+    """
+    session_id = int(request.args.get('session-id'))
+    
+    try:
+        scores = db.session.query(Scores).filter_by(session_id=1).first()
+    except:
+        return make_response("Invalid Session ID"), 400
+    
+    scores = scores.__dict__
+    del scores["_sa_instance_state"]
+    
+    top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
+    descriptions = [score_description[score] for score in top_scores]
+    scores_and_descriptions = [list(s) for s in zip(top_scores, descriptions)]
+    
+    return make_response(dumps(scores_and_descriptions)), 200
+    
 
 
 @app.route("/get_actions", methods=["POST"])
