@@ -16,6 +16,7 @@ class BaseConfig(object):
 class DevelopmentConfig(BaseConfig):
     DEBUG = True
     TESTING = True
+    
     try:
         MIND = Mind()
     except (FileNotFoundError, IsADirectoryError, ValueError):
