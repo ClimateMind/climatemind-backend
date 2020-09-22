@@ -18,8 +18,8 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    zip = db.Column(db.Integer, db.ForeignKey('zip.zip'))
-    scores = db.relationship('Scores', backref='owner', lazy='dynamic')
+    zip = db.Column(db.Integer, db.ForeignKey("zip.zip"))
+    scores = db.relationship("Scores", backref="owner", lazy="dynamic")
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -29,7 +29,7 @@ class User(UserMixin, db.Model):
 
     def __repr__(self):
         """ Tells Python how to print """
-        return '<User {}>'.format(self.username)
+        return "<User {}>".format(self.username)
 
 
 @login.user_loader
@@ -38,7 +38,7 @@ def load_user(id):
 
 
 class Scores(db.Model):
-    session_id = db.Column(db.Integer, db.ForeignKey('user.id'), primary_key=True, unique=True)
+    session_id = db.Column(db.Float, db.ForeignKey('user.id'), primary_key=True, unique=True)
     security = db.Column(db.Float(64), index=True, unique=True)
     conformity = db.Column(db.Float(64), index=True, unique=True)
     benevolence = db.Column(db.Float(64), index=True, unique=True)
@@ -68,24 +68,24 @@ class LRF(db.Model):
 class Iri(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     iri = db.Column(db.String(120), unique=True)
-    zips = db.relationship('Zip', secondary="lrf")
+    zips = db.relationship("Zip", secondary="lrf")
 
     def __repr__(self):
         """ Tells Python how to print """
-        return '<IRI {}>'.format(self.iri)
+        return "<IRI {}>".format(self.iri)
 
 
 class Zip(db.Model):
     zip = db.Column(db.Integer, primary_key=True)
-    users = db.relationship('User', backref='lives_in', lazy='dynamic')
-    iris = db.relationship('Iri', secondary='lrf')
+    users = db.relationship("User", backref="lives_in", lazy="dynamic")
+    iris = db.relationship("Iri", secondary="lrf")
 
     def __repr__(self):
         """ Tells Python how to print """
-        return '<Zip {}>'.format(self.zip)
+        return "<Zip {}>".format(self.zip)
 
 
 class Lrf(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    zip_id = db.Column(db.Integer, db.ForeignKey('zip.zip'))
-    iri_id = db.Column(db.Integer, db.ForeignKey('iri.id'))
+    zip_id = db.Column(db.Integer, db.ForeignKey("zip.zip"))
+    iri_id = db.Column(db.Integer, db.ForeignKey("iri.id"))

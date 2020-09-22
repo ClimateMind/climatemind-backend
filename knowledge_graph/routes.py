@@ -20,39 +20,35 @@ value_id_map = {
     7: "hedonism",
     8: "achievement",
     9: "power",
-    10: "security"
+    10: "security",
 }
 
 # Swagger Stuff
-SWAGGER_URL = '/swagger'
-APP_URL = '/static/openapi.yaml'
+SWAGGER_URL = "/swagger"
+APP_URL = "/static/openapi.yaml"
 SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
-    SWAGGER_URL,
-    APP_URL,
-    config={
-        'app_name': "Climate Mind Backend"
-    }
+    SWAGGER_URL, APP_URL, config={"app_name": "Climage Mind Backend"}
 )
 
 app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 
-@app.route('/swagger/<path:path>')
+@app.route("/swagger/<path:path>")
 def send_file(path):
-    return send_from_directory('/swagger', path)
+    return send_from_directory("/swagger", path)
 
 
 # End Swagger Stuff
 
 
-@app.route('/', methods=['GET'])
+@app.route("/", methods=["GET"])
 def home() -> Tuple[str, int]:
     return "<h1>API for climatemind ontology</h1>", 200
 
 
-@app.route('/ontology', methods=['GET'])
+@app.route("/ontology", methods=["GET"])
 def query() -> Tuple[Response, int]:
-    searchQueries = request.args.getlist('query')
+    searchQueries = request.args.getlist("query")
 
     searchResults = {}
 
@@ -67,43 +63,43 @@ def query() -> Tuple[Response, int]:
         return make_response("query keyword not found"), 400
 
     response = Response(dumps(searchResults))
-    response.headers['Content-Type'] = 'application/json'
+    response.headers["Content-Type"] = "application/json"
 
     return response, 200
 
 
-@app.route('/questions', methods=['GET'])
+@app.route("/questions", methods=["GET"])
 def get_questions() -> Tuple[Response, int]:
     try:
-        with open('schwartz_questions.json') as json_file:
+        with open("schwartz_questions.json") as json_file:
             data = load(json_file)
     except FileNotFoundError:
         return make_response("Schwartz Questions not Found"), 400
 
     response = Response(dumps(data))
-    response.headers['Content-Type'] = 'application/json'
+    response.headers["Content-Type"] = "application/json"
 
     return response, 200
 
 
-@app.route('/scores', methods=['POST'])
+@app.route("/scores", methods=["POST"])
 def user_scores() -> Tuple[Response, int]:
-    if request.method == 'POST':
+    if request.method == "POST":
         return receive_user_scores()
 
 
 def receive_user_scores() -> Tuple[Response, int]:
-    """ Users want to be able to get their score results after submitting
-        the survey. This method checks for a POST request from the front-end
-        containing a JSON object with the users scores.
+    """Users want to be able to get their score results after submitting
+    the survey. This method checks for a POST request from the front-end
+    containing a JSON object with the users scores.
 
-        The user can answer 10 or 20 questions. If they answer 20, the scores
-        are averaged between the 10 additional and 10 original questions to get
-        10 corresponding value scores.
+    The user can answer 10 or 20 questions. If they answer 20, the scores
+    are averaged between the 10 additional and 10 original questions to get
+    10 corresponding value scores.
 
-        Then to get a centered score for each value, each score value is subtracted
-        from the overall average of all 10 or 20 questions. This is returned to the
-        front-end.
+    Then to get a centered score for each value, each score value is subtracted
+    from the overall average of all 10 or 20 questions. This is returned to the
+    front-end.
     """
     try:
         parameter = request.json
@@ -120,6 +116,8 @@ def receive_user_scores() -> Tuple[Response, int]:
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
 
+    #todo: I have a horrible feeling this is wrong
+    #and will collide. fix soon.
     session_id = int(uuid.uuid4())
 
     for value in parameter["SetOne"]:
@@ -141,8 +139,10 @@ def receive_user_scores() -> Tuple[Response, int]:
     overall_avg = overall_sum / num_of_responses
 
     for value, score in value_scores.items():
-        centered_score = score - overall_avg + \
-                         POSITIVITY_CONSTANT  # To make non-negative
+
+        centered_score = (
+            score - overall_avg + POSITIVITY_CONSTANT
+        )  # To make non-negative
 
         value_scores[value] = centered_score
 
@@ -157,7 +157,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     return response, 200
 
 
-@app.route('/get_actions', methods=['POST'])
+@app.route("/get_actions", methods=["POST"])
 def get_actions():
     try:
         scores = request.json
