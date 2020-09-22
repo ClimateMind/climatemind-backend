@@ -38,7 +38,9 @@ def load_user(id):
 
 
 class Scores(db.Model):
-    session_id = db.Column(db.Float, db.ForeignKey('user.id'), primary_key=True, unique=True)
+    session_id = db.Column(
+        db.Float, db.ForeignKey("user.id"), primary_key=True, unique=True
+    )
     security = db.Column(db.Float(64), index=True, unique=True)
     conformity = db.Column(db.Float(64), index=True, unique=True)
     benevolence = db.Column(db.Float(64), index=True, unique=True)
@@ -52,7 +54,7 @@ class Scores(db.Model):
 
 
 class LRF(db.Model):
-    session_id = db.Column(db.Float, db.ForeignKey('user.id'), primary_key=True)
+    session_id = db.Column(db.Float, db.ForeignKey("user.id"), primary_key=True)
     security = db.Column(db.Float, index=False, unique=False)
     conformity = db.Column(db.Float, index=False, unique=False)
     benevolence = db.Column(db.Float, index=False, unique=False)

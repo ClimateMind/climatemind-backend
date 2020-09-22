@@ -29,7 +29,7 @@ class TestPersistScores(unittest.TestCase):
             "stimulation": 1.0,
             "hedonism": 1.0,
             "achievement": 1.0,
-            "power": 1.0
+            "power": 1.0,
         }
 
         expected_scores = Scores()
@@ -54,5 +54,5 @@ class TestPersistScores(unittest.TestCase):
         self.tearDown()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     unittest.main()

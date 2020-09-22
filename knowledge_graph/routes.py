@@ -116,8 +116,8 @@ def receive_user_scores() -> Tuple[Response, int]:
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
 
-    #todo: I have a horrible feeling this is wrong
-    #and will collide. fix soon.
+    # todo: I have a horrible feeling this is wrong
+    # and will collide. fix soon.
     session_id = int(uuid.uuid4())
 
     for value in parameter["SetOne"]:
