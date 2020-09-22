@@ -107,7 +107,9 @@ def receive_user_scores() -> Tuple[Response, int]:
     """
     try:
         parameter = request.json
-    except:
+    # todo: handle exceptions properly here
+    except Exception as ex:
+        print(ex)
         return make_response("Invalid User Response"), 400
 
     value_scores = {}
@@ -146,7 +148,10 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     value_scores["session-id"] = session_id
 
-    persist_scores(value_scores)
+    try:
+        persist_scores(value_scores)
+    except KeyError:
+        return make_response("invalid key"), 400
 
     response = Response(dumps(value_scores))
     return response, 200
