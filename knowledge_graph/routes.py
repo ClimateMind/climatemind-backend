@@ -36,7 +36,7 @@ score_description = {
     "hedonism": "Your goal is pleasure or sensuous gratification for oneself. Hedonism values derive from organismic needs and the pleasure associated with satisfying them. You enjoy life and are often self-indulgent. Your joy comes when you are able to fulfil your day with things that make you happy.",
     "achievement": "Personal success through demonstrating competence according to social standards is your jam. You strive to be the best and in turn can obtain social approval. You are ambitious, successful, capable and influential.",
     "power": "You strive to control. Whether that is being dominant over people around you or having the power over resources. The functioning of social institutions requires some degree of status differentiation and so we must treat power as a value.",
-    "security": "What is important to you is the safety, harmony and stability of society, of relationships, and of self. Security values derive from basic individual and group needs. You value a sense of belonging, social order and the reciprocation of favours."    
+    "security": "What is important to you is the safety, harmony and stability of society, of relationships, and of self. Security values derive from basic individual and group needs. You value a sense of belonging, social order and the reciprocation of favours.",
 }
 
 score_description = {
@@ -49,7 +49,7 @@ score_description = {
     "hedonism": "Your goal is pleasure or sensuous gratification for oneself. Hedonism values derive from organismic needs and the pleasure associated with satisfying them. You enjoy life and are often self-indulgent. Your joy comes when you are able to fulfil your day with things that make you happy.",
     "achievement": "Personal success through demonstrating competence according to social standards is your jam. You strive to be the best and in turn can obtain social approval. You are ambitious, successful, capable and influential.",
     "power": "You strive to control. Whether that is being dominant over people around you or having the power over resources. The functioning of social institutions requires some degree of status differentiation and so we must treat power as a value.",
-    "security": "What is important to you is the safety, harmony and stability of society, of relationships, and of self. Security values derive from basic individual and group needs. You value a sense of belonging, social order and the reciprocation of favours."    
+    "security": "What is important to you is the safety, harmony and stability of society, of relationships, and of self. Security values derive from basic individual and group needs. You value a sense of belonging, social order and the reciprocation of favours.",
 }
 
 # Swagger Stuff
@@ -177,30 +177,27 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     response = Response(dumps(value_scores))
     return response, 200
-    
 
-@app.route('/personal_values', methods=['GET'])
+
+@app.route("/personal_values", methods=["GET"])
 def get_personal_values():
-    """ Given a session-id, this returns the top three personal values for a user
-    
-    """
+    """Given a session-id, this returns the top three personal values for a user"""
     try:
-        session_id = int(request.args.get('session-id'))
+        session_id = int(request.args.get("session-id"))
     except:
         return make_response("Invalid Session ID Format or No ID Provided"), 400
-    
+
     scores = db.session.query(Scores).filter_by(session_id=session_id).first()
     if scores:
         scores = scores.__dict__
         del scores["_sa_instance_state"]
-    
+
         top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
         descriptions = [score_description[score] for score in top_scores]
         scores_and_descriptions = [list(s) for s in zip(top_scores, descriptions)]
         return make_response(dumps(scores_and_descriptions)), 200
     else:
         return make_response("Invalid Session ID - Internal Server Error"), 400
-    
 
 
 @app.route("/get_actions", methods=["POST"])
