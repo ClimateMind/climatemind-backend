@@ -1,7 +1,7 @@
 from typing import Type
 
 from knowledge_graph import db
-from knowledge_graph.models import Scores
+from knowledge_graph.models import User, Scores
 
 
 def persist_scores(scores: dict) -> Type[KeyError]:
@@ -19,6 +19,8 @@ def persist_scores(scores: dict) -> Type[KeyError]:
         s.achievement = scores["achievement"]
         s.power = scores["power"]
 
+        u = User
+        u.
         db.session.add(s)
         db.session.commit()
 

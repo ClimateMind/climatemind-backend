@@ -9,6 +9,7 @@ from knowledge_graph import login
     1) flask db migrate -m "leave a comment about changes here"
     2) flask db upgrade
 
+
     This ensures that the database models are updated and ready to use.
 """
 
@@ -38,23 +39,7 @@ def load_user(id):
 
 
 class Scores(db.Model):
-    session_id = db.Column(
-        db.Float, db.ForeignKey("user.id"), primary_key=True, unique=True
-    )
-    security = db.Column(db.Float(64), index=True, unique=True)
-    conformity = db.Column(db.Float(64), index=True, unique=True)
-    benevolence = db.Column(db.Float(64), index=True, unique=True)
-    tradition = db.Column(db.Float(64), index=True, unique=True)
-    universalism = db.Column(db.Float(64), index=True, unique=True)
-    self_direction = db.Column(db.Float(64), index=True, unique=True)
-    stimulation = db.Column(db.Float(64), index=True, unique=True)
-    hedonism = db.Column(db.Float(64), index=True, unique=True)
-    achievement = db.Column(db.Float(64), index=True, unique=True)
-    power = db.Column(db.Float(64), index=True, unique=True)
-
-
-class LRF(db.Model):
-    session_id = db.Column(db.Float, db.ForeignKey("user.id"), primary_key=True)
+    session_id = db.Column(db.String, db.ForeignKey("user.id"), primary_key=True)
     security = db.Column(db.Float, index=False, unique=False)
     conformity = db.Column(db.Float, index=False, unique=False)
     benevolence = db.Column(db.Float, index=False, unique=False)
