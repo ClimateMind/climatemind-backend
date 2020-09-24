@@ -181,12 +181,12 @@ def get_personal_values():
 
         top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
         try:
-            with open("value_descriptions.json", "r"") as f:
+            with open("value_descriptions.json", "r") as f:
                 value_descriptions = load(f)
         except FileNotFoundError:
             return make_response("Value Descriptions File Not Found"), 400
         descriptions = [value_descriptions[score] for score in top_scores]
-        
+
         scores_and_descriptions = []
         for i in range(len(top_scores)):
             d = {}
@@ -194,9 +194,9 @@ def get_personal_values():
             d["valueDesc"] = descriptions[i]
             scores_and_descriptions.append(d)
         return jsonify(scores_and_descriptions)
-        
+
     else:
-        return make_response("Invalid Session ID - Internal Server Error"), 400  
+        return make_response("Invalid Session ID - Internal Server Error"), 400
 
 
 @app.route("/get_actions", methods=["POST"])
