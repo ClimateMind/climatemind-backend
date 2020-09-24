@@ -4,9 +4,12 @@ from typing import Tuple
 
 from flask import request, make_response, Response, send_from_directory
 
-from knowledge_graph import app
+from knowledge_graph import app, db
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.score_nodes import get_user_nodes
+from knowledge_graph.models import Scores
+
+from collections import Counter
 
 import uuid
 
@@ -21,6 +24,32 @@ value_id_map = {
     8: "achievement",
     9: "power",
     10: "security",
+}
+
+score_description = {
+    "conformity": "You are excellent at restraint of actions, inclinations, and impulses likely to upset or harm others and violate social expectations or norms. Conformity values derive from the requirement that individuals inhibit inclinations that might disrupt and undermine smooth interaction and group functioning. You are obedient, self-disciplined, loyal, responsible and polite.",
+    "tradition": "For you, respect, commitment and acceptance of the customs and ideas that one's culture or religion provides is highly important. It’s likely you practise a form of religious rites and beliefs. You are humble, devout and accepting of your portion in life.",
+    "universalism": "You value the understanding, appreciation, tolerance, and protection for the welfare of all people and for nature. Universalism values derive from survival needs of individuals and groups. You are broadminded and are interested in social justice, equality, seeing the world at peace, the world of beauty, unity with nature, wisdom and protecting the environment.",
+    "benevolence": "To you, preserving and enhancing the welfare of those around you is highly important. Benevolence values derive from the basic requirement for smooth group functioning and from the organismic need for affiliation, You are helpful, honest, forgiving, responsible, loyal and enjoy true friendship and mature love.",
+    "self-direction": "You are independent and are happiest when choosing, creating or exploring. Self-direction derives from organismic needs for control and mastery. You are likely creative and relish in freedom and choosing your own goals. You are curious, have self-respect, intelligence and value your privacy.",
+    "stimulation": "For you, life is all about excitement, novelty, and challenges. Stimulation values derive from the organismic need for variety and stimulation in order to maintain an optimal, positive, rather than threatening, level of activation. Chances are you are also big on self-direction values and want a varied, exciting and daring life.",
+    "hedonism": "Your goal is pleasure or sensuous gratification for oneself. Hedonism values derive from organismic needs and the pleasure associated with satisfying them. You enjoy life and are often self-indulgent. Your joy comes when you are able to fulfil your day with things that make you happy.",
+    "achievement": "Personal success through demonstrating competence according to social standards is your jam. You strive to be the best and in turn can obtain social approval. You are ambitious, successful, capable and influential.",
+    "power": "You strive to control. Whether that is being dominant over people around you or having the power over resources. The functioning of social institutions requires some degree of status differentiation and so we must treat power as a value.",
+    "security": "What is important to you is the safety, harmony and stability of society, of relationships, and of self. Security values derive from basic individual and group needs. You value a sense of belonging, social order and the reciprocation of favours.",
+}
+
+score_description = {
+    "conformity": "You are excellent at restraint of actions, inclinations, and impulses likely to upset or harm others and violate social expectations or norms. Conformity values derive from the requirement that individuals inhibit inclinations that might disrupt and undermine smooth interaction and group functioning. You are obedient, self-disciplined, loyal, responsible and polite.",
+    "tradition": "For you, respect, commitment and acceptance of the customs and ideas that one's culture or religion provides is highly important. It’s likely you practise a form of religious rites and beliefs. You are humble, devout and accepting of your portion in life.",
+    "universalism": "You value the understanding, appreciation, tolerance, and protection for the welfare of all people and for nature. Universalism values derive from survival needs of individuals and groups. You are broadminded and are interested in social justice, equality, seeing the world at peace, the world of beauty, unity with nature, wisdom and protecting the environment.",
+    "benevolence": "To you, preserving and enhancing the welfare of those around you is highly important. Benevolence values derive from the basic requirement for smooth group functioning and from the organismic need for affiliation, You are helpful, honest, forgiving, responsible, loyal and enjoy true friendship and mature love.",
+    "self-direction": "You are independent and are happiest when choosing, creating or exploring. Self-direction derives from organismic needs for control and mastery. You are likely creative and relish in freedom and choosing your own goals. You are curious, have self-respect, intelligence and value your privacy.",
+    "stimulation": "For you, life is all about excitement, novelty, and challenges. Stimulation values derive from the organismic need for variety and stimulation in order to maintain an optimal, positive, rather than threatening, level of activation. Chances are you are also big on self-direction values and want a varied, exciting and daring life.",
+    "hedonism": "Your goal is pleasure or sensuous gratification for oneself. Hedonism values derive from organismic needs and the pleasure associated with satisfying them. You enjoy life and are often self-indulgent. Your joy comes when you are able to fulfil your day with things that make you happy.",
+    "achievement": "Personal success through demonstrating competence according to social standards is your jam. You strive to be the best and in turn can obtain social approval. You are ambitious, successful, capable and influential.",
+    "power": "You strive to control. Whether that is being dominant over people around you or having the power over resources. The functioning of social institutions requires some degree of status differentiation and so we must treat power as a value.",
+    "security": "What is important to you is the safety, harmony and stability of society, of relationships, and of self. Security values derive from basic individual and group needs. You value a sense of belonging, social order and the reciprocation of favours.",
 }
 
 # Swagger Stuff
@@ -148,6 +177,27 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     response = Response(dumps(value_scores))
     return response, 200
+
+
+@app.route("/personal_values", methods=["GET"])
+def get_personal_values():
+    """Given a session-id, this returns the top three personal values for a user"""
+    try:
+        session_id = int(request.args.get("session-id"))
+    except:
+        return make_response("Invalid Session ID Format or No ID Provided"), 400
+
+    scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    if scores:
+        scores = scores.__dict__
+        del scores["_sa_instance_state"]
+
+        top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
+        descriptions = [score_description[score] for score in top_scores]
+        scores_and_descriptions = [list(s) for s in zip(top_scores, descriptions)]
+        return make_response(dumps(scores_and_descriptions)), 200
+    else:
+        return make_response("Invalid Session ID - Internal Server Error"), 400
 
 
 @app.route("/get_actions", methods=["POST"])
