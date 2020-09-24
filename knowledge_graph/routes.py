@@ -23,7 +23,20 @@ value_id_map = {
     7: "hedonism",
     8: "achievement",
     9: "power",
-    10: "security"
+    10: "security",
+}
+
+score_description = {
+    "conformity": "You are excellent at restraint of actions, inclinations, and impulses likely to upset or harm others and violate social expectations or norms. Conformity values derive from the requirement that individuals inhibit inclinations that might disrupt and undermine smooth interaction and group functioning. You are obedient, self-disciplined, loyal, responsible and polite.",
+    "tradition": "For you, respect, commitment and acceptance of the customs and ideas that one's culture or religion provides is highly important. It’s likely you practise a form of religious rites and beliefs. You are humble, devout and accepting of your portion in life.",
+    "universalism": "You value the understanding, appreciation, tolerance, and protection for the welfare of all people and for nature. Universalism values derive from survival needs of individuals and groups. You are broadminded and are interested in social justice, equality, seeing the world at peace, the world of beauty, unity with nature, wisdom and protecting the environment.",
+    "benevolence": "To you, preserving and enhancing the welfare of those around you is highly important. Benevolence values derive from the basic requirement for smooth group functioning and from the organismic need for affiliation, You are helpful, honest, forgiving, responsible, loyal and enjoy true friendship and mature love.",
+    "self-direction": "You are independent and are happiest when choosing, creating or exploring. Self-direction derives from organismic needs for control and mastery. You are likely creative and relish in freedom and choosing your own goals. You are curious, have self-respect, intelligence and value your privacy.",
+    "stimulation": "For you, life is all about excitement, novelty, and challenges. Stimulation values derive from the organismic need for variety and stimulation in order to maintain an optimal, positive, rather than threatening, level of activation. Chances are you are also big on self-direction values and want a varied, exciting and daring life.",
+    "hedonism": "Your goal is pleasure or sensuous gratification for oneself. Hedonism values derive from organismic needs and the pleasure associated with satisfying them. You enjoy life and are often self-indulgent. Your joy comes when you are able to fulfil your day with things that make you happy.",
+    "achievement": "Personal success through demonstrating competence according to social standards is your jam. You strive to be the best and in turn can obtain social approval. You are ambitious, successful, capable and influential.",
+    "power": "You strive to control. Whether that is being dominant over people around you or having the power over resources. The functioning of social institutions requires some degree of status differentiation and so we must treat power as a value.",
+    "security": "What is important to you is the safety, harmony and stability of society, of relationships, and of self. Security values derive from basic individual and group needs. You value a sense of belonging, social order and the reciprocation of favours."    
 }
 
 score_description = {
@@ -40,34 +53,31 @@ score_description = {
 }
 
 # Swagger Stuff
-SWAGGER_URL = '/swagger'
-APP_URL = '/static/openapi.yaml'
+SWAGGER_URL = "/swagger"
+APP_URL = "/static/openapi.yaml"
 SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
-    SWAGGER_URL,
-    APP_URL,
-    config={
-        'app_name': "Climage Mind Backend"
-    }
+    SWAGGER_URL, APP_URL, config={"app_name": "Climage Mind Backend"}
 )
 
 app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 
-@app.route('/swagger/<path:path>')
+@app.route("/swagger/<path:path>")
 def send_file(path):
-    return send_from_directory('/swagger', path)
+    return send_from_directory("/swagger", path)
+
 
 # End Swagger Stuff
 
 
-@app.route('/', methods=['GET'])
+@app.route("/", methods=["GET"])
 def home() -> Tuple[str, int]:
     return "<h1>API for climatemind ontology</h1>", 200
 
 
-@app.route('/ontology', methods=['GET'])
+@app.route("/ontology", methods=["GET"])
 def query() -> Tuple[Response, int]:
-    searchQueries = request.args.getlist('query')
+    searchQueries = request.args.getlist("query")
 
     searchResults = {}
 
@@ -82,43 +92,43 @@ def query() -> Tuple[Response, int]:
         return make_response("query keyword not found"), 400
 
     response = Response(dumps(searchResults))
-    response.headers['Content-Type'] = 'application/json'
+    response.headers["Content-Type"] = "application/json"
 
     return response, 200
 
 
-@app.route('/questions', methods=['GET'])
+@app.route("/questions", methods=["GET"])
 def get_questions() -> Tuple[Response, int]:
     try:
-        with open('schwartz_questions.json') as json_file:
+        with open("schwartz_questions.json") as json_file:
             data = load(json_file)
     except FileNotFoundError:
         return make_response("Schwartz Questions not Found"), 400
 
     response = Response(dumps(data))
-    response.headers['Content-Type'] = 'application/json'
+    response.headers["Content-Type"] = "application/json"
 
     return response, 200
 
 
-@app.route('/scores', methods=['POST'])
+@app.route("/scores", methods=["POST"])
 def user_scores() -> Tuple[Response, int]:
-    if request.method == 'POST':
+    if request.method == "POST":
         return receive_user_scores()
 
 
 def receive_user_scores() -> Tuple[Response, int]:
-    """ Users want to be able to get their score results after submitting
-        the survey. This method checks for a POST request from the front-end
-        containing a JSON object with the users scores.
+    """Users want to be able to get their score results after submitting
+    the survey. This method checks for a POST request from the front-end
+    containing a JSON object with the users scores.
 
-        The user can answer 10 or 20 questions. If they answer 20, the scores
-        are averaged between the 10 additional and 10 original questions to get
-        10 corresponding value scores.
+    The user can answer 10 or 20 questions. If they answer 20, the scores
+    are averaged between the 10 additional and 10 original questions to get
+    10 corresponding value scores.
 
-        Then to get a centered score for each value, each score value is subtracted
-        from the overall average of all 10 or 20 questions. This is returned to the
-        front-end.
+    Then to get a centered score for each value, each score value is subtracted
+    from the overall average of all 10 or 20 questions. This is returned to the
+    front-end.
     """
     try:
         parameter = request.json
@@ -133,9 +143,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
 
-    
     session_id = uuid.uuid4()
-
 
     for value in parameter["SetOne"]:
         questionID = value["id"]
@@ -157,8 +165,9 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     for value, score in value_scores.items():
 
-        centered_score = score - overall_avg + \
-            POSITIVITY_CONSTANT  # To make non-negative
+        centered_score = (
+            score - overall_avg + POSITIVITY_CONSTANT
+        )  # To make non-negative
 
         value_scores[value] = centered_score
 
@@ -194,7 +203,7 @@ def get_personal_values():
     
 
 
-@app.route('/get_actions', methods=['POST'])
+@app.route("/get_actions", methods=["POST"])
 def get_actions():
     try:
         scores = request.json
