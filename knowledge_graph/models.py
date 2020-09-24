@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from knowledge_graph import login
 
+
 """ Contains all of the table structures for the database. When these are updated
     two commands need to be run in terminal/console.
 
@@ -11,7 +12,6 @@ from knowledge_graph import login
 
     This ensures that the database models are updated and ready to use.
 """
-
 
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -38,7 +38,7 @@ def load_user(id):
 
 
 class Scores(db.Model):
-    session_id = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)
+    session_id = db.Column(db.String, db.ForeignKey("user.id"), primary_key=True)
     security = db.Column(db.Float, index=False, unique=False)
     conformity = db.Column(db.Float, index=False, unique=False)
     benevolence = db.Column(db.Float, index=False, unique=False)
