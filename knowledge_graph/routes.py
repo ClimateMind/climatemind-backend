@@ -181,7 +181,7 @@ def get_personal_values():
 
         top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
         try:
-            with open('value_descriptions.json', 'r') as f:
+            with open("value_descriptions.json", "r"") as f:
                 value_descriptions = load(f)
         except FileNotFoundError:
             return make_response("Value Descriptions File Not Found"), 400
