@@ -13,6 +13,7 @@ from knowledge_graph import login
     This ensures that the database models are updated and ready to use.
 """
 
+
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
