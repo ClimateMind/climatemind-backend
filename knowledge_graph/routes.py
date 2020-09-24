@@ -188,9 +188,9 @@ def get_personal_values():
 
 @app.route("/get_actions", methods=["POST"])
 def get_actions():
-    """ Temporary test function to take a JSON full of user scores and calculate the
-        best nodes to return to a user. Will be deprecated and replaced by /feed.
-    
+    """Temporary test function to take a JSON full of user scores and calculate the
+    best nodes to return to a user. Will be deprecated and replaced by /feed.
+
     """
     try:
         scores = request.json
@@ -200,20 +200,21 @@ def get_actions():
     response = Response(dumps(recommended_nodes))
     return response, 200
 
+
 @app.route("/feed", methods=["POST"])
 def get_feed():
-    """ The front-end needs to request personalized climate change effects that are most
-        relevant to a user to display in the user's feed. 
-    
+    """The front-end needs to request personalized climate change effects that are most
+    relevant to a user to display in the user's feed.
+
     """
     session_id = str(request.args.get("session-id"))
     try:
         scores = db.session.query(Scores).filter_by(session_id=session_id).first()
     except:
         return make_response("Invalid Session ID or No Information for ID")
-    
+
     scores = scores.__dict__
     del scores["_sa_instance_state"]
     recommended_nodes = get_user_nodes(scores)
     response = Response(dumps(recommended_nodes))
-    return response, 200    
+    return response, 200
