@@ -13,4 +13,5 @@ login = LoginManager(app)
 login.login_view = "login"
 CORS(app)
 
+
 from knowledge_graph import routes, models
