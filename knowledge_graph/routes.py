@@ -150,7 +150,7 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     for value, score in value_scores.items():
         centered_score = (
-                score - overall_avg + POSITIVITY_CONSTANT
+            score - overall_avg + POSITIVITY_CONSTANT
         )  # To make non-negative
 
         value_scores[value] = centered_score
@@ -229,7 +229,8 @@ def get_feed():
     response = Response(dumps(recommended_nodes))
     return response, 200
 
-#add your
+
+# add your
 with app.test_request_context():
     spec.path(view=get_actions)
     spec.path(view=get_personal_values)
@@ -241,6 +242,6 @@ with app.test_request_context():
 
 @app.route("/spec")
 def get_apispec():
-    with open('openapi.yml', 'w') as f:
+    with open("openapi.yml", "w") as f:
         f.write(filespec.to_yaml())
     return jsonify(spec.to_dict())
