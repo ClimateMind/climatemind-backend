@@ -150,7 +150,7 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     for value, score in value_scores.items():
         centered_score = (
-            score - overall_avg + POSITIVITY_CONSTANT
+                score - overall_avg + POSITIVITY_CONSTANT
         )  # To make non-negative
 
         value_scores[value] = centered_score
@@ -211,19 +211,6 @@ def get_actions():
     return response, 200
 
 
-with app.test_request_context():
-    spec.path(view=get_actions)
-    spec.path(view=get_personal_values)
-    spec.path(view=user_scores)
-    spec.path(view=get_questions)
-    spec.path(view=query)
-
-
-@app.route("/spec")
-def get_apispec():
-    return jsonify(spec.to_dict())
-
-
 @app.route("/feed", methods=["POST"])
 def get_feed():
     """The front-end needs to request personalized climate change effects that are most
@@ -241,3 +228,19 @@ def get_feed():
     recommended_nodes = get_user_nodes(scores)
     response = Response(dumps(recommended_nodes))
     return response, 200
+
+#add your
+with app.test_request_context():
+    spec.path(view=get_actions)
+    spec.path(view=get_personal_values)
+    spec.path(view=user_scores)
+    spec.path(view=get_questions)
+    spec.path(view=query)
+    spec.path(view=get_feed)
+
+
+@app.route("/spec")
+def get_apispec():
+    with open('openapi.yml', 'w') as f:
+        f.write(filespec.to_yaml())
+    return jsonify(spec.to_dict())
