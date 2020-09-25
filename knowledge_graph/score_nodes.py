@@ -42,8 +42,7 @@ def get_best_nodes(nodes_with_scores, n):
     nodes_with_scores - Dictionary containing NetworkX nodes and Integer scores
     n - Integer to specify # of desired scores
     """
-    c = Counter(nodes_with_scores)
-    best_nodes = c.most_common(n)
+    best_nodes = sorted(nodes_with_scores, key=nodes_with_scores.get, reverse=True)[:3]
     return best_nodes
 
 
