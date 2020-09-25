@@ -9,6 +9,9 @@ from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.score_nodes import get_user_nodes
 from knowledge_graph.models import Scores
 
+from apispec import APISpec
+from apispec.ext.marshmallow import MarshmallowPlugin
+from apispec_webframeworks.flask import FlaskPlugin
 from collections import Counter
 
 import uuid
@@ -42,6 +45,14 @@ def send_file(path):
 
 
 # End Swagger Stuff
+
+
+spec = APISpec(
+    title="ClimateMind API",
+    version="1.0.0",
+    openapi_version="3.0.2",
+    plugins=[FlaskPlugin(), MarshmallowPlugin()],
+)
 
 
 @app.route("/", methods=["GET"])
@@ -138,7 +149,6 @@ def receive_user_scores() -> Tuple[Response, int]:
     overall_avg = overall_sum / num_of_responses
 
     for value, score in value_scores.items():
-
         centered_score = (
             score - overall_avg + POSITIVITY_CONSTANT
         )  # To make non-negative
@@ -199,6 +209,19 @@ def get_actions():
     recommended_nodes = get_user_nodes(scores)
     response = Response(dumps(recommended_nodes))
     return response, 200
+
+
+with app.test_request_context():
+    spec.path(view=get_actions)
+    spec.path(view=get_personal_values)
+    spec.path(view=user_scores)
+    spec.path(view=get_questions)
+    spec.path(view=query)
+
+
+@app.route("/spec")
+def get_apispec():
+    return jsonify(spec.to_dict())
 
 
 @app.route("/feed", methods=["POST"])
