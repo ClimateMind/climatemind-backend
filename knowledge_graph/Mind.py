@@ -37,7 +37,7 @@ class Mind:
             return make_network.get_edges(self._get_ontology(), query)
         except (ValueError, AttributeError):
             raise ValueError
-    
+
     def multiParameterSearch(self) -> Results:
         try:
             return make_network.get_edges(self._get_ontology(), None)
