@@ -3,6 +3,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 from knowledge_graph import login
 
+
 """ Contains all of the table structures for the database. When these are updated
     two commands need to be run in terminal/console.
 
