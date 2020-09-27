@@ -121,7 +121,7 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     # todo: I have a horrible feeling this is wrong
     # and will collide. fix soon.
-    session_id = int(uuid.uuid4())
+    session_id = str(uuid.uuid4())
 
     for value in parameter["SetOne"]:
         questionID = value["id"]
