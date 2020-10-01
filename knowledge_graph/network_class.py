@@ -1,4 +1,5 @@
 from owlready2 import *
+from knowledge_graph.ontology_processing_utils import give_alias
 
 
 class Network:
@@ -28,20 +29,6 @@ class Network:
         annot_props = list(self.ontology.annotation_properties())
         self.annot_properties = self.make_alias_names_for_properties(annot_props)
 
-    def give_alias(self, property_object):
-        """Adds labels the ontology object in a way that makes them pythonicly accessible through . invocation method.
-
-        Parameters
-        ----------
-        property_object: ontology property object to make pythonicly accessible
-        """
-        label_name = property_object.label[0]
-        label_name = label_name.replace("/", "_or_")
-        label_name = label_name.replace(" ", "_")
-        label_name = label_name.replace(":", "_")
-        property_object.python_name = label_name
-        return label_name
-
     def make_alias_names_for_properties(self, properties):
         """Adds labels the ontology object in a way that makes them pythonicly accessible through . invocation method.
 
@@ -50,7 +37,7 @@ class Network:
         properties: list of ontology property objects to make pythonicly accessible
         accessible_names = list of properties now accessible via . invocation method
         """
-        new_names = [self.give_alias(x) for x in properties]
+        new_names = [give_alias(x) for x in properties]
         return new_names
 
     def add_child_to_result(self, child, parent, edge_type):
