@@ -1,12 +1,15 @@
 from flask_swagger_ui import get_swaggerui_blueprint
-from json import dumps, load
+from json import dumps, load, loads
 from typing import Tuple
 
-from flask import request, make_response, Response, send_from_directory
+from flask import request, make_response, Response, send_from_directory, jsonify
 
-from knowledge_graph import app
+from knowledge_graph import app, db
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.score_nodes import get_user_nodes
+from knowledge_graph.models import Scores
+
+from collections import Counter
 
 import uuid
 
@@ -142,7 +145,7 @@ def receive_user_scores() -> Tuple[Response, int]:
 
         value_scores[value] = centered_score
 
-    value_scores["session-id"] = session_id
+    value_scores["session-id"] = str(session_id)
 
     persist_scores(value_scores)
 
@@ -150,12 +153,68 @@ def receive_user_scores() -> Tuple[Response, int]:
     return response, 200
 
 
+@app.route("/personal_values", methods=["GET"])
+def get_personal_values():
+    """Given a session-id, this returns the top three personal values for a user"""
+    try:
+        session_id = int(request.args.get("session-id"))
+    except:
+        return make_response("Invalid Session ID Format or No ID Provided"), 400
+
+    scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    if scores:
+        scores = scores.__dict__
+        del scores["_sa_instance_state"]
+
+        top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
+        try:
+            with open("value_descriptions.json", "r") as f:
+                value_descriptions = load(f)
+        except FileNotFoundError:
+            return make_response("Value Descriptions File Not Found"), 400
+        descriptions = [value_descriptions[score] for score in top_scores]
+
+        scores_and_descriptions = []
+        for i in range(len(top_scores)):
+            d = {}
+            d["valueName"] = top_scores[i]
+            d["valueDesc"] = descriptions[i]
+            scores_and_descriptions.append(d)
+        return jsonify(scores_and_descriptions)
+
+    else:
+        return make_response("Invalid Session ID - Internal Server Error"), 400
+
+
 @app.route("/get_actions", methods=["POST"])
 def get_actions():
+    """Temporary test function to take a JSON full of user scores and calculate the
+    best nodes to return to a user. Will be deprecated and replaced by /feed.
+
+    """
     try:
         scores = request.json
     except:
         return make_response("Invalid JSON"), 400
+    recommended_nodes = get_user_nodes(scores)
+    response = Response(dumps(recommended_nodes))
+    return response, 200
+
+
+@app.route("/feed", methods=["POST"])
+def get_feed():
+    """The front-end needs to request personalized climate change effects that are most
+    relevant to a user to display in the user's feed.
+
+    """
+    session_id = str(request.args.get("session-id"))
+    try:
+        scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    except:
+        return make_response("Invalid Session ID or No Information for ID")
+
+    scores = scores.__dict__
+    del scores["_sa_instance_state"]
     recommended_nodes = get_user_nodes(scores)
     response = Response(dumps(recommended_nodes))
     return response, 200
