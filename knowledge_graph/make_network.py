@@ -3,7 +3,7 @@ import argparse
 import pandas as pd
 from owlready2 import *
 from knowledge_graph.network_class import Network
-
+from knowledge_graph.ontology_processing_utils import give_alias
 
 def test_answer():
     assert search_node(get_ontology(onto_path).load()) == []
@@ -15,15 +15,6 @@ def test_answer():
 # mutliple parents
 # solutions
 # reference(?)
-
-
-def give_alias(property_object):
-    label_name = property_object.label[0]
-    label_name = label_name.replace("/", "_or_")
-    label_name = label_name.replace(" ", "_")
-    label_name = label_name.replace(":", "_")
-    property_object.python_name = label_name
-
 
 # TODO: remove this code and only have it be in the network_class.py code ? Currently, breaks endpoints though if do this.
 
