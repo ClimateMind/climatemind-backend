@@ -264,23 +264,6 @@ def get_non_test_ont():
         "solution uncategorized (to do)",
     }
 
-
-# Read the JSON file back
-def read_json_file(filename):
-    with open(filename) as f:
-        js_graph = json.load(f)
-    return js_graph
-
-
-# Test reading JSON file & print the nodes
-# G2 = read_json_file("Climate_Mind_DiGraph.json")
-# print(json.dumps(G2, indent=4, sort_keys=True))
-
-# Test reading JSON file & print the nodes for Test Ontology Only
-# G2 = read_json_file("../Climate_Mind_DiGraph_Test_Ont.json")
-# print(json.dumps(G2, indent=4, sort_keys=True))
-
-
 def makeGraph(onto_path, edge_path, output_folder_path):
     """
     Main function to make networkx graph object from reference ontology and edge list.
@@ -304,11 +287,15 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     # print(list(default_world.inconsistent_classes()))
 
     # Read in the triples data
+    ## DMARX - csv via make_network.outputEdges()
+    #          via node_network.result
+    # ... If we've already processed the ontology through the Network object,
+    # why do we need to reload it here? 
+    # Can we move add_ontology_data_to_graph_nodes to network_class?
     df = pd.read_csv(edge_path)
 
     G = nx.DiGraph()  # There should not be duplicate edges that go the same direction.
     # If so, need to throw an error.
-
     edges = convert_dataframe_to_edges(df)
     add_edges_to_graph(edges, G)
     add_ontology_data_to_graph_nodes(G, onto)
