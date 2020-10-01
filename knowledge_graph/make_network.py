@@ -5,12 +5,6 @@ from owlready2 import *
 from knowledge_graph.network_class import Network
 
 
-def get_edges(ontology, source):
-    node_network = Network(ontology, source)
-    node_network.dfs_labeled_edges()
-    return node_network.get_results()
-
-
 def test_answer():
     assert search_node(get_ontology(onto_path).load()) == []
     # need to add in the answer to this unit test.
@@ -49,7 +43,9 @@ def outputEdges(onto_path, output_path, source):
     onto = get_ontology(onto_path).load()
 
     # make list of edges along all paths leaving the target node
-    edges = get_edges(onto, source)
+    node_network = Network(onto, source)
+    node_network.dfs_labeled_edges()
+    edges = node_network.get_results()
 
     # save output to output Path as csv file. Later can change this to integrate well with API and front-end.
     df = pd.DataFrame(
