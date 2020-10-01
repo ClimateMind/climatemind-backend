@@ -159,9 +159,3 @@ class Network:
                         self.node_family.pop()
                         self.dfs_for_classes(parent)
 
-    def get_results(self):
-        """Returns
-        -------
-        result: A list of triples found by the depth-first-search
-        """
-        return self.result
