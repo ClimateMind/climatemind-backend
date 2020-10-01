@@ -15,21 +15,6 @@ import os
 owlready2.reasoning.JAVA_MEMORY = 500
 
 
-def convert_dataframe_to_edges(df):
-    """
-    Convert dataframe to edges
-
-    Parameters
-    ----------
-    df: A dataframe of object, subject, predicate triples
-    """
-    edges = []
-    for rows in df.itertuples():
-        edge_list = [rows.subject, rows.object, rows.predicate]
-        edges.append(edge_list)
-    return edges
-
-
 def add_edges_to_graph(edges, G):
     """
     Adds edges to networkx object
@@ -188,9 +173,6 @@ def remove_edge_properties_from_nodes(G, to_remove):
             if node not in list(to_delete)
         ]
 
-
-
-
 def remove_non_test_nodes(G, node, valid_test_ont, not_test_ont):
     if node in G.nodes:
         is_test_ont = False
@@ -205,14 +187,12 @@ def remove_non_test_nodes(G, node, valid_test_ont, not_test_ont):
         else:
             is_test_ont = False
 
-
 def get_test_ontology(G, valid_test_ont, not_test_ont):
     for edge in list(G.edges):
         node_a = edge[0]
         node_b = edge[1]
         remove_non_test_nodes(G, node_a, valid_test_ont, not_test_ont)
         remove_non_test_nodes(G, node_b, valid_test_ont, not_test_ont)
-
 
 def get_valid_test_ont():
     return {
@@ -244,7 +224,6 @@ def get_valid_test_ont():
         "universalism nature",
         "universalism tolerance",
     }
-
 
 def get_non_test_ont():
     return {
@@ -292,29 +271,20 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     # ... If we've already processed the ontology through the Network object,
     # why do we need to reload it here? 
     # Can we move add_ontology_data_to_graph_nodes to network_class?
-    df = pd.read_csv(edge_path)
+    df_edges = pd.read_csv(edge_path)
 
     G = nx.DiGraph()  # There should not be duplicate edges that go the same direction.
     # If so, need to throw an error.
-    edges = convert_dataframe_to_edges(df)
-    add_edges_to_graph(edges, G)
+    add_edges_to_graph(df_edges.values, G)
     add_ontology_data_to_graph_nodes(G, onto)
     to_remove = set_edge_properties(G)
     remove_edge_properties_from_nodes(G, to_remove)
 
     save_graph_to_pickle(G, output_folder_path)
-    # save_graph_to_gexf(G, output_folder_path)
-    # save_graph_to_gml(G, output_folder_path)
-    # save_graph_to_graphml(G, output_folder_path)
-    # save_graph_to_yaml(G, output_folder_path)
-    # save_graph_to_json(G, output_folder_path)
 
     valid_test_ont = get_valid_test_ont()
     not_test_ont = get_non_test_ont()
     get_test_ontology(G, valid_test_ont, not_test_ont)
-    # for node in G.nodes:
-    #    print(node)
-    #    print(G.nodes[node]["direct classes"])
 
     save_test_ontology_to_json(G, output_folder_path)
 
