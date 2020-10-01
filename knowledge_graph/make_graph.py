@@ -5,10 +5,9 @@ import networkx as nx
 import pandas as pd
 
 from owlready2 import *
-from networkx.readwrite import json_graph
 
-from knowledge_graph.make_network import give_alias
 
+from knowledge_graph.ontology_processing_utils import give_alias, save_test_ontology_to_json, save_graph_to_pickle
 import os
 
 
@@ -190,46 +189,6 @@ def remove_edge_properties_from_nodes(G, to_remove):
         ]
 
 
-def save_graph_to_pickle(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_DiGraph.gpickle")
-    with open(file_path, "wb") as outfile:
-        nx.write_gpickle(G, outfile)
-
-
-def save_graph_to_gexf(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_DiGraph.gexf")
-    with open(file_path, "wb") as outfile:
-        nx.write_gexf(G, outfile)
-
-
-def save_graph_to_gml(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_DiGraph.gml")
-    with open(file_path, "wb") as outfile:
-        nx.write_gml(G, outfile)
-
-
-def save_graph_to_graphml(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_DiGraph.graphml")
-    with open(file_path, "wb") as outfile:
-        nx.write_graphml(G, outfile)
-
-
-def save_graph_to_yaml(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_DiGraph.yaml")
-    with open(file_path, "w") as outfile:
-        nx.write_yaml(G, outfile)
-
-
-def save_graph_to_json(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_DiGraph.json")
-    with open(file_path, "w") as outfile:
-        outfile.write(json_graph.jit_data(G, indent=4))
-
-
-def save_test_ontology_to_json(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_Digraph_Test_Ont.json")
-    with open(file_path, "w") as outfile:
-        outfile.write(json_graph.jit_data(G, indent=4))
 
 
 def remove_non_test_nodes(G, node, valid_test_ont, not_test_ont):
