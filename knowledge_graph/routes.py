@@ -133,7 +133,7 @@ def receive_user_scores() -> Tuple[Response, int]:
         score = value["answerId"]
         overall_sum += score
 
-        if questionID in value_id_map:
+        if value_id_map[questionID] in value_scores:
             return make_response("duplicate question ID", 400)
 
         value_scores[value_id_map[questionID]] = score
@@ -156,7 +156,7 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     for value, score in value_scores.items():
         centered_score = (
-                score - overall_avg + POSITIVITY_CONSTANT
+            score - overall_avg + POSITIVITY_CONSTANT
         )  # To make non-negative
 
         value_scores[value] = centered_score
