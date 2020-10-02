@@ -106,7 +106,9 @@ def receive_user_scores() -> Tuple[Response, int]:
     """
     try:
         parameter = request.json
-    except:
+    # todo: handle exceptions properly here
+    except Exception as ex:
+        print(ex)
         return make_response("Invalid User Response"), 400
 
     value_scores = {}
@@ -117,7 +119,9 @@ def receive_user_scores() -> Tuple[Response, int]:
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
 
-    session_id = uuid.uuid4()
+    # todo: I have a horrible feeling this is wrong
+    # and will collide. fix soon.
+    session_id = str(uuid.uuid4())
 
     for value in parameter["SetOne"]:
         questionID = value["id"]
@@ -147,7 +151,10 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     value_scores["session-id"] = str(session_id)
 
-    persist_scores(value_scores)
+    try:
+        persist_scores(value_scores)
+    except KeyError:
+        return make_response("invalid key"), 400
 
     response = Response(dumps(value_scores))
     return response, 200
