@@ -123,9 +123,9 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     questions = parameter["questionResponses"]
 
-    if len(questions["SetOne"]) < 10:
+    if len(questions["SetOne"]) < RESPONSES_TO_ADD:
         return make_response("not enough set one scores", 400)
-    elif len(questions["SetOne"]) > 10:
+    elif len(questions["SetOne"]) > RESPONSES_TO_ADD:
         return make_response("too many set one scores", 400)
 
     for value in questions["SetOne"]:
