@@ -159,7 +159,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     response = {"session-id": session_id}
 
     response = Response(dumps(response))
-    return response, 200
+    return response, 201
 
 
 @app.route("/personal_values", methods=["GET"])
