@@ -3,7 +3,7 @@ orbs:
   azure-acr: circleci/azure-acr@0.2.0
   python: circleci/python@1.0.0
 jobs:
-  test:
+  lint:
     executor: python/default
     steps:
       - checkout
@@ -23,14 +23,44 @@ jobs:
       - run: |
           docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
 
+  build_test:
+    machine: true
+    steps:
+      - checkout
+
+      - run:
+          name: Build docker image
+          command: docker build -t "climatemindbackend:$CIRCLE_BUILD_NUM" .
+      - run:
+          name: Run docker
+          command: docker run -d --name climatemindbackend --publish 5000:5000 climatemindbackend:$CIRCLE_BUILD_NUM
+      - run:
+          name: Run & Start App
+          command: docker start climatemindbackend
+          background: true
+      - run:
+          name: "Set Python Version"
+          command: pyenv global 3.5.2
+      - run:
+          name: "Install packages"
+          command: pip install pytest requests==2.24.0
+      - run:
+          name: Api Tests
+          command: python -m pytest ./api_tests
+
+
 workflows:
   version: 2
+
   build_and_test:
+
     jobs:
-      - test
-      - build:
+      - lint
+
+      - build_test:
           requires:
-                - test
+            - lint
+
   build-deploy:
     jobs:
       - azure-acr/build-and-push-image:
