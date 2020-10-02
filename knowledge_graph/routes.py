@@ -119,32 +119,44 @@ def receive_user_scores() -> Tuple[Response, int]:
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
 
-    # todo: I have a horrible feeling this is wrong
-    # and will collide. fix soon.
     session_id = str(uuid.uuid4())
 
-    for value in parameter["SetOne"]:
-        questionID = value["id"]
-        score = value["score"]
+    questions = parameter["questionResponses"]
+
+    if len(questions["SetOne"]) < 10:
+        return make_response("not enough set one scores", 400)
+    elif len(questions["SetOne"]) > 10:
+        return make_response("too many set one scores", 400)
+
+    for value in questions["SetOne"]:
+        questionID = value["questionId"]
+        score = value["answerId"]
         overall_sum += score
+
+        if questionID in value_id_map:
+            return make_response("duplicate question ID", 400)
+
         value_scores[value_id_map[questionID]] = score
 
-    if parameter["SetTwo"]:
+    if "SetTwo" in questions:
         num_of_responses += RESPONSES_TO_ADD
-        for value in parameter["SetTwo"]:
-            questionID = value["id"]
-            score = value["score"]
+        for value in questions["SetTwo"]:
+            questionID = value["questionId"]
+            score = value["answerId"]
             name = value_id_map[questionID]
             avg_score = (value_scores[name] + score) / NUMBER_OF_SETS
             overall_sum += score
+
+            if questionID in value_scores.keys:
+                return make_response("duplicate question ID", 400)
+
             value_scores[name] = avg_score
 
     overall_avg = overall_sum / num_of_responses
 
     for value, score in value_scores.items():
-
         centered_score = (
-            score - overall_avg + POSITIVITY_CONSTANT
+                score - overall_avg + POSITIVITY_CONSTANT
         )  # To make non-negative
 
         value_scores[value] = centered_score
