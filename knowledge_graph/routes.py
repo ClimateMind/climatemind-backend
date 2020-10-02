@@ -149,14 +149,16 @@ def receive_user_scores() -> Tuple[Response, int]:
 
         value_scores[value] = centered_score
 
-    value_scores["session-id"] = str(session_id)
+    value_scores["session-id"] = session_id
 
     try:
         persist_scores(value_scores)
     except KeyError:
         return make_response("invalid key"), 400
 
-    response = Response(dumps(value_scores))
+    response = {"session-id": session_id}
+
+    response = Response(dumps(response))
     return response, 200
 
 
