@@ -36,15 +36,11 @@ def outputEdges(onto_path, output_path, source):
     # make list of edges along all paths leaving the target node
     node_network = Network(onto, source)
     node_network.dfs_labeled_edges()
-    edges = node_network.edge_triplets
 
     # save output to output Path as csv file. Later can change this to integrate well with API and front-end.
-    df = pd.DataFrame(
-        [[i[0], i[1], i[2]] for i in edges], columns=["subject", "object", "predicate"]
-    )
+    df = pd.DataFrame(node_network.edge_triplets, columns=["subject", "object", "predicate"])
     df = df.drop_duplicates()  # Remove if we fix network_class
     df.to_csv(output_path, index=False)
-
 
 def main(args):
     """
