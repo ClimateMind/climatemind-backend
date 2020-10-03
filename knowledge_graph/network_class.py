@@ -16,7 +16,7 @@ class Network:
 
     def __init__(self, ontology, source=None):
         self.ontology = ontology
-        self.result = []
+        self.edge_triplets = []
         self.visited = set()
         self.node_family = []
         self.class_family = []
@@ -41,7 +41,7 @@ class Network:
             edge_type: The relationship between child and parent
                         i.e. causes, inhibits, etc
         """
-        self.result.append((parent.label[0], child.label[0], edge_type))
+        self.edge_triplets.append((parent.label[0], child.label[0], edge_type))
         if child not in self.visited:
             self.visited.add(child)
             for obj_prop in self.obj_properties:
