@@ -64,13 +64,11 @@ class Network:
                 val = getattr(owl_class_obj, obj_prop)
                 rec = (owl_class_obj, iter(val), obj_prop) # why iter()?
                 self.class_family.append(rec)
-        try:
-            parents = self.ontology.get_parents_of(owl_class_obj)
-            rec = (owl_class_obj, iter(parents), "is_a")
-            self.class_family.append(rec)
-            # the class(es) of the ont_class. This could pull classes that are just Restriction classes, so really should add code here that checks the class is found in self.ontology.classes() before adding it to the class_family.
-        except:
-            pass
+
+        parents = self.ontology.get_parents_of(owl_class_obj)
+        rec = (owl_class_obj, iter(parents), "is_a")
+        self.class_family.append(rec)
+        # the class(es) of the ont_class. This could pull classes that are just Restriction classes, so really should add code here that checks the class is found in self.ontology.classes() before adding it to the class_family.
 
     def dfs_for_classes(self, node):
         """Performs a depth-first-search on parent classes from a node.
