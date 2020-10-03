@@ -1,4 +1,5 @@
 import typing
+import owlready2
 from owlready2 import *
 from knowledge_graph.ontology_processing_utils import give_alias
 
@@ -84,8 +85,10 @@ class Network:
         if classes:
 
             for ont_class in classes:
-                if ont_class != owl.Thing:
+                #if ont_class != owl.Thing:
+                if isinstance(ont_class, owlready2.entity.ThingClass):
                     self.add_class_to_explore(ont_class)
+                
 
             while self.class_family:
                 parent2, children2, edge_type2 = self.class_family[-1]
