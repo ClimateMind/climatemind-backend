@@ -178,7 +178,7 @@ def receive_user_scores() -> Tuple[Response, int]:
 def get_personal_values():
     """Given a session-id, this returns the top three personal values for a user"""
     try:
-        session_id = int(request.args.get("session-id"))
+        session_id = str(request.args.get("session-id"))
     except:
         return make_response("Invalid Session ID Format or No ID Provided"), 400
 
