@@ -11,37 +11,37 @@ def give_alias(property_object):
     property_object.python_name = label_name
     return label_name
     
-def save_graph_to_pickle(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_DiGraph.gpickle")
-    with open(file_path, "wb") as outfile:
-        nx.write_gpickle(G, outfile)
+def _save_graph_helper(G, outfile_path, fname='Climate_Mind_DiGraph', ext='.gpickle'):
+    writer = {'.gpickle':nx.write_gpickle,
+              '.gexf':nx.write_gexf,
+              '.gml':nx.write_gml,
+              '.graphml':nx.write_graphml,
+              '.yaml':nx.write_yaml,
+              '.json':lambda g,f: f.write(json_graph.jit_data(g, indent=4))}
+    mode = 'wb'
+    if ext in ('.json','.yaml'):
+        mode = 'w'
+    file_path = os.path.join(outfile_path, fname + ext)
+    with open(file_path, mode) as outfile:
+        writer[ext](G, outfile)
+    
+def save_graph_to_pickle(G, outfile_path, fname='Climate_Mind_DiGraph'):
+    _save_graph_helper(G, outfile_path, fname, ext='.gpickle')
 
-def save_graph_to_gexf(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_DiGraph.gexf")
-    with open(file_path, "wb") as outfile:
-        nx.write_gexf(G, outfile)
+def save_graph_to_gexf(G, outfile_path, fname='Climate_Mind_DiGraph'):
+    _save_graph_helper(G, outfile_path, fname, ext='.gexf')
 
-def save_graph_to_gml(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_DiGraph.gml")
-    with open(file_path, "wb") as outfile:
-        nx.write_gml(G, outfile)
+def save_graph_to_gml(G, outfile_path, fname='Climate_Mind_DiGraph'):
+    _save_graph_helper(G, outfile_path, fname, ext='.gml')
 
-def save_graph_to_graphml(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_DiGraph.graphml")
-    with open(file_path, "wb") as outfile:
-        nx.write_graphml(G, outfile)
+def save_graph_to_graphml(G, outfile_path, fname='Climate_Mind_DiGraph'):
+    _save_graph_helper(G, outfile_path, fname, ext='.graphml')
 
-def save_graph_to_yaml(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_DiGraph.yaml")
-    with open(file_path, "w") as outfile:
-        nx.write_yaml(G, outfile)
+def save_graph_to_yaml(G, outfile_path, fname='Climate_Mind_DiGraph'):
+    _save_graph_helper(G, outfile_path, fname, ext='.yaml')
 
-def save_graph_to_json(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_DiGraph.json")
-    with open(file_path, "w") as outfile:
-        outfile.write(json_graph.jit_data(G, indent=4))
+def save_graph_to_json(G, outfile_path, fname='Climate_Mind_DiGraph'):
+    _save_graph_helper(G, outfile_path, fname, ext='.json')
 
-def save_test_ontology_to_json(G, outfile_path):
-    file_path = os.path.join(outfile_path, "Climate_Mind_Digraph_Test_Ont.json")
-    with open(file_path, "w") as outfile:
-        outfile.write(json_graph.jit_data(G, indent=4))
+def save_test_ontology_to_json(G, outfile_path, fname='Climate_Mind_Digraph_Test_Ont'):
+    save_graph_to_json(G, outfile_path, fname)
