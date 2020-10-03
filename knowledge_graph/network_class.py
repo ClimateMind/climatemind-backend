@@ -47,9 +47,9 @@ class Network:
         if child not in self.visited:
             self.visited.add(child)
             for obj_prop in self.obj_properties:
-                self.node_family.append(
-                    (child, eval("iter(child." + obj_prop + ")"), obj_prop)
-                )
+                val = getattr(child, obj_prop)
+                rec = (child, iter(val), obj_prop)
+                self.node_family.append(rec)
 
     def add_class_to_explore(self, owl_class_obj: owlready2.entity.ThingClass):
         """Adds all nodes related to a particular class. Some of these nodes
@@ -88,7 +88,6 @@ class Network:
                 #if ont_class != owl.Thing:
                 if isinstance(ont_class, owlready2.entity.ThingClass):
                     self.add_class_to_explore(ont_class)
-                
 
             while self.class_family:
                 parent2, children2, edge_type2 = self.class_family[-1]
