@@ -36,7 +36,7 @@ def outputEdges(onto_path, output_path, source):
     # make list of edges along all paths leaving the target node
     node_network = Network(onto, source)
     node_network.dfs_labeled_edges()
-    edges = node_network.result
+    edges = node_network.edge_triplets
 
     # save output to output Path as csv file. Later can change this to integrate well with API and front-end.
     df = pd.DataFrame(
