@@ -138,14 +138,8 @@ class Network:
                     self.node_family.append(rec)
 
                 while self.node_family:
-                    parent, children, edge_type = self.node_family[-1]
+                    parent, children, edge_type = self.node_family.pop()
                     self.visited.add(parent)
-
-                    try:
-                        child = next(children)
+                    for child in children:
                         self.add_child_to_result(child, parent, edge_type)
-
-                    except StopIteration:
-                        self.node_family.pop()
-                        self.dfs_for_classes(parent)
-
+                    self.dfs_for_classes(parent)
