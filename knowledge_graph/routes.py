@@ -168,7 +168,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     except KeyError:
         return make_response("invalid key"), 400
 
-    response = {"session-id": session_id}
+    response = {"sessionId": session_id}
 
     response = Response(dumps(response))
     return response, 201
@@ -231,7 +231,8 @@ def get_feed():
     """
     session_id = str(request.args.get("session-id"))
     try:
-        scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+        scores = db.session.query(Scores).filter_by(
+            session_id=session_id).first()
     except:
         return make_response("Invalid Session ID or No Information for ID")
 
