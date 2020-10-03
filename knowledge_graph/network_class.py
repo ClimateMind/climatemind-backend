@@ -88,24 +88,25 @@ class Network:
                     self.add_class_to_explore(ont_class)
 
             while self.class_family:
-                parent2, children2, edge_type2 = self.class_family[-1]
-                visited_classes.add(parent2)  # these are not all classses
+                parent2, children2, edge_type2 = self.class_family.pop()
+                visited_classes.add(parent2) 
+                for child2 in children2:
+                    #if child2 != owl.Thing: # ?
+                    if child2 == owl.Thing: # fr though, what is this?
+                        continue
 
-                try:
-                    child2 = next(children2)
-                    if child2 != owl.Thing:
-
-                        if child2 in self.ontology.individuals():
-                            self.add_child_to_result(child2, node, edge_type2)
-                        elif (
-                            child2 not in visited_classes
-                            and child2 in self.ontology.classes()
-                        ):
-                            visited_classes.add(child2)
-                            self.add_class_to_explore(child2)
-
-                except StopIteration:
-                    self.class_family.pop()
+                    if child2 in self.ontology.individuals():
+                        self.add_child_to_result(child2, node, edge_type2)
+                    elif (
+                        child2 not in visited_classes
+                        and child2 in self.ontology.classes()
+                    ):
+                        # It's a "visited class" but we're adding it to "classes to explore?"
+                        # `visited_classes` is scoped local to this function. Probably
+                        # just need to name it something else.                         
+                        visited_classes.add(child2)
+                        self.add_class_to_explore(child2)
+                    
 
     def dfs_labeled_edges(self):
 
