@@ -135,9 +135,9 @@ class Network:
             if node not in self.visited:
                 self.visited.add(node)
                 for obj_prop in self.obj_properties:
-                    self.node_family.append(
-                        (node, eval("iter(node." + obj_prop + ")"), obj_prop)
-                    )
+                    val = getattr(node, obj_prop)
+                    rec = (node, iter(val), obj_prop)
+                    self.node_family.append(rec)
 
                 while self.node_family:
                     parent, children, edge_type = self.node_family[-1]
