@@ -24,21 +24,11 @@ class Network:
             self.source = source
         else:
             self.source = None
+        # Add labels the ontology object in a way that makes them pythonicly accessible through . invocation method.
         obj_props = list(self.ontology.object_properties())
-        self.obj_properties = self.make_alias_names_for_properties(obj_props)
         annot_props = list(self.ontology.annotation_properties())
-        self.annot_properties = self.make_alias_names_for_properties(annot_props)
-
-    def make_alias_names_for_properties(self, properties):
-        """Adds labels the ontology object in a way that makes them pythonicly accessible through . invocation method.
-
-        Parameters
-        ----------
-        properties: list of ontology property objects to make pythonicly accessible
-        accessible_names = list of properties now accessible via . invocation method
-        """
-        new_names = [give_alias(x) for x in properties]
-        return new_names
+        self.obj_properties = [give_alias(x) for x in obj_props]
+        self.annot_properties = [give_alias(x) for x in annot_props]
 
     def add_child_to_result(self, child, parent, edge_type):
         """Adds a node to the results and if needed adds the node's family
