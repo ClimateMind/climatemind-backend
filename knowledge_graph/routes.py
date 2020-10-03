@@ -186,6 +186,7 @@ def get_personal_values():
     if scores:
         scores = scores.__dict__
         del scores["_sa_instance_state"]
+        del scores["session_id"]
 
         top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
         try:
