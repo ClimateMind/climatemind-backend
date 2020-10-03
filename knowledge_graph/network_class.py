@@ -50,22 +50,22 @@ class Network:
                     (child, eval("iter(child." + obj_prop + ")"), obj_prop)
                 )
 
-    def add_class_to_explore(self, class_name: owlready2.entity.ThingClass):
+    def add_class_to_explore(self, owl_class_obj: owlready2.entity.ThingClass):
         """Adds all nodes related to a particular class. Some of these nodes
         will not actually be a class, but that is irrelevant as they will get ignored.
 
             Parameters
             ----------
-            class_name: A node in the ontology
+            owl_class_obj: A node in the ontology
         """
         for obj_prop in self.obj_properties:
-            if hasattr(class_name, obj_prop):
-                val = getattr(class_name, obj_prop)
-                rec = (class_name, iter(val), obj_prop) # why iter()?
+            if hasattr(owl_class_obj, obj_prop):
+                val = getattr(owl_class_obj, obj_prop)
+                rec = (owl_class_obj, iter(val), obj_prop) # why iter()?
                 self.class_family.append(rec)
         try:
-            parents = self.ontology.get_parents_of(class_name)
-            rec = (class_name, iter(parents), "is_a")
+            parents = self.ontology.get_parents_of(owl_class_obj)
+            rec = (owl_class_obj, iter(parents), "is_a")
             self.class_family.append(rec)
             # the class(es) of the ont_class. This could pull classes that are just Restriction classes, so really should add code here that checks the class is found in self.ontology.classes() before adding it to the class_family.
         except:
