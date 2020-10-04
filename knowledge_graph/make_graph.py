@@ -68,20 +68,21 @@ def add_ontology_data_to_graph_nodes(G, onto):
                         )
                     else:
                         attributes_dict[str(super_class.label[0])] = to_add
+        
+        annot_properties = [
+            thing.label[0].replace(":", "_")
+            for thing in list(onto.annotation_properties())
+        ]
+        attributes_dict["properties"] = {prop:list(getattr(ontology_node, prop)) for prop in annot_properties}
+        
         # if there are multiple of the nested classes associated with the node in the ontology, code ensures it doesn't overwrite the other class.
-
+        
         G.add_nodes_from([(node, attributes_dict)])
 
         # the if statement is needed to avoid the Restriction objects
         # still don't know why Restriction Objects are in our ontology!
         # technically each class could have multiple labels, but this way just pulling 1st label
-        annot_properties = [
-            thing.label[0].replace(":", "_")
-            for thing in list(onto.annotation_properties())
-        ]
-
-        annot_properties_dict = {prop:list(getattr(ontology_node, prop)) for prop in annot_properties}
-        G.add_nodes_from([node], properties=annot_properties_dict)
+ 
 
 
 def set_edge_properties(G):
