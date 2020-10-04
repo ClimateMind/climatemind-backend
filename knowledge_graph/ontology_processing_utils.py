@@ -3,6 +3,55 @@ from networkx.readwrite import json_graph
 import os
 
 
+def get_valid_test_ont():
+    return {
+        "test ontology",
+        "personal value",
+        "achievement",
+        "benevolence",
+        "benevolence caring",
+        "benevolence dependability",
+        "conformity",
+        "conformity interpersonal",
+        "conformity rules",
+        "face",
+        "hedonism",
+        "humility",
+        "power",
+        "power dominance",
+        "power resources",
+        "security",
+        "security personal",
+        "security societal",
+        "self-direction",
+        "self-direction autonomy of action",
+        "self-direction autonomy of thought",
+        "stimulation",
+        "tradition",
+        "universalism",
+        "universalism concern",
+        "universalism nature",
+        "universalism tolerance",
+    }
+
+def get_non_test_ont():
+    return {
+        "value uncategorized (to do)",
+        "risk solution",
+        "adaptation",
+        "geoengineering",
+        "indirect adaptation",
+        "indirect geoengineering",
+        "indirect mitigration",
+        "carbon pricing",
+        "carbon tax",
+        "emissions trading",
+        "mitigation",
+        "solution to indirect adaptation barrier",
+        "solution to indirect mitigation barrier",
+        "solution uncategorized (to do)",
+    }
+
 def give_alias(property_object):
     label_name = property_object.label[0]
     label_name = label_name.replace("/", "_or_")
