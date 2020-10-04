@@ -4,8 +4,8 @@ import argparse
 import networkx as nx
 import pandas as pd
 
-from owlready2 import *
-
+import owlready2
+from owlready2 import get_ontology, sync_reasoner
 
 from knowledge_graph.ontology_processing_utils import give_alias, save_test_ontology_to_json, save_graph_to_pickle, get_valid_test_ont, get_non_test_ont
 import os
