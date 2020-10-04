@@ -14,19 +14,6 @@ import os
 # Set a lower JVM memory limit
 owlready2.reasoning.JAVA_MEMORY = 500
 
-
-def add_edges_to_graph(edges, G):
-    """
-    Adds edges to networkx object
-
-    Parameters
-    ----------
-    edges: List of graph edges (object, subject, predicate triples)
-    G: A networkx Graph
-    """
-    for src, tgt, kind in edges:
-        G.add_edge(src, tgt, type=kind, properties=None)
-
 def listify(collection, onto):
     """just capturing a repeated operation"""
     return [str(thing.label[0]) 
@@ -200,9 +187,9 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     # Can we move add_ontology_data_to_graph_nodes to network_class?
     df_edges = pd.read_csv(edge_path)
 
-    G = nx.DiGraph()  # There should not be duplicate edges that go the same direction.
-    # If so, need to throw an error.
-    add_edges_to_graph(df_edges.values, G)
+    G = nx.DiGraph()
+    for src, tgt, kind in df_edges.values:
+        G.add_edge(src, tgt, type=kind, properties=None)
     
     
     add_ontology_data_to_graph_nodes(G, onto)
