@@ -7,18 +7,24 @@ import pandas as pd
 import owlready2
 from owlready2 import get_ontology, sync_reasoner
 
-from knowledge_graph.ontology_processing_utils import give_alias, save_test_ontology_to_json, save_graph_to_pickle, get_valid_test_ont, get_non_test_ont
+from knowledge_graph.ontology_processing_utils import (
+    give_alias,
+    save_test_ontology_to_json,
+    save_graph_to_pickle,
+    get_valid_test_ont,
+    get_non_test_ont,
+)
 import os
 
 
 # Set a lower JVM memory limit
 owlready2.reasoning.JAVA_MEMORY = 500
 
+
 def listify(collection, onto):
     """just capturing a repeated operation"""
-    return [str(thing.label[0]) 
-            for thing in collection
-            if thing in onto.classes()]
+    return [str(thing.label[0]) for thing in collection if thing in onto.classes()]
+
 
 def add_ontology_data_to_graph_nodes(G, onto):
     """Find the equivalent nodes in the ontology and load in relevant data
@@ -29,11 +35,11 @@ def add_ontology_data_to_graph_nodes(G, onto):
     G: A networkx Graph
     onto: owlready2 ontology object
     """
-    # This shouldn't need to be repeated for each node. 
+    # This shouldn't need to be repeated for each node.
     # Moved out of loop.
     cm_class = onto.search_one(label="climate mind")
     superclasses = list(cm_class.subclasses())
-    
+
     for node in list(G.nodes):
         ontology_node = onto.search_one(label=node)
         class_objects = onto.get_parents_of(ontology_node)
@@ -42,7 +48,7 @@ def add_ontology_data_to_graph_nodes(G, onto):
         attributes_dict["label"] = str(ontology_node.label[0])
         attributes_dict["iri"] = str(ontology_node)
         attributes_dict["comment"] = str(ontology_node.comment)
-        attributes_dict["direct classes"] = listify(class_objects, onto) 
+        attributes_dict["direct classes"] = listify(class_objects, onto)
 
         all_classes = []
         for parent in class_objects:
@@ -68,21 +74,22 @@ def add_ontology_data_to_graph_nodes(G, onto):
                         )
                     else:
                         attributes_dict[str(super_class.label[0])] = to_add
-        
+
         annot_properties = [
             thing.label[0].replace(":", "_")
             for thing in list(onto.annotation_properties())
         ]
-        attributes_dict["properties"] = {prop:list(getattr(ontology_node, prop)) for prop in annot_properties}
-        
+        attributes_dict["properties"] = {
+            prop: list(getattr(ontology_node, prop)) for prop in annot_properties
+        }
+
         # if there are multiple of the nested classes associated with the node in the ontology, code ensures it doesn't overwrite the other class.
-        
+
         G.add_nodes_from([(node, attributes_dict)])
 
         # the if statement is needed to avoid the Restriction objects
         # still don't know why Restriction Objects are in our ontology!
         # technically each class could have multiple labels, but this way just pulling 1st label
- 
 
 
 def set_edge_properties(G):
@@ -115,6 +122,7 @@ def set_edge_properties(G):
                     to_remove[(node_b, prop)] = intersection
     return list(to_remove)
 
+
 def remove_edge_properties_from_nodes(G, to_remove):
     """Remove properties from Networkx nodes that occur on both nodes of an edge
     (because it marks that property is only for the edge).
@@ -135,6 +143,7 @@ def remove_edge_properties_from_nodes(G, to_remove):
         ]
         # DM: uh... won't `node not in list(to_delete)` always evaluate to false?
 
+
 def remove_non_test_nodes(G, node, valid_test_ont, not_test_ont):
     if node in G.nodes:
         is_test_ont = False
@@ -149,12 +158,14 @@ def remove_non_test_nodes(G, node, valid_test_ont, not_test_ont):
         else:
             is_test_ont = False
 
+
 def get_test_ontology(G, valid_test_ont, not_test_ont):
     for edge in list(G.edges):
         node_a = edge[0]
         node_b = edge[1]
         remove_non_test_nodes(G, node_a, valid_test_ont, not_test_ont)
         remove_non_test_nodes(G, node_b, valid_test_ont, not_test_ont)
+
 
 def makeGraph(onto_path, edge_path, output_folder_path):
     """
@@ -182,15 +193,14 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     ## DMARX - csv via make_network.outputEdges()
     #          via node_network.result
     # ... If we've already processed the ontology through the Network object,
-    # why do we need to reload it here? 
+    # why do we need to reload it here?
     # Can we move add_ontology_data_to_graph_nodes to network_class?
     df_edges = pd.read_csv(edge_path)
 
     G = nx.DiGraph()
     for src, tgt, kind in df_edges.values:
         G.add_edge(src, tgt, type=kind, properties=None)
-    
-    
+
     add_ontology_data_to_graph_nodes(G, onto)
     to_remove = set_edge_properties(G)
     remove_edge_properties_from_nodes(G, to_remove)

@@ -14,7 +14,7 @@ class Network:
 
        Completes a depth-first search for the ontology and return edges in
        the component reachable from source.
-       
+
     Sample Usage
     ------------
         onto = get_ontology(onto_path).load()
@@ -70,7 +70,7 @@ class Network:
         for obj_prop in self.obj_properties:
             if hasattr(owl_class_obj, obj_prop):
                 val = getattr(owl_class_obj, obj_prop)
-                rec = (owl_class_obj, iter(val), obj_prop) # why iter()?
+                rec = (owl_class_obj, iter(val), obj_prop)  # why iter()?
                 self.class_family.append(rec)
 
         parents = self.ontology.get_parents_of(owl_class_obj)
@@ -91,16 +91,16 @@ class Network:
         if classes:
 
             for ont_class in classes:
-                #if ont_class != owl.Thing:
+                # if ont_class != owl.Thing:
                 if isinstance(ont_class, owlready2.entity.ThingClass):
                     self.add_class_to_explore(ont_class)
 
             while self.class_family:
                 parent2, children2, edge_type2 = self.class_family.pop()
-                visited_classes.add(parent2) 
+                visited_classes.add(parent2)
                 for child2 in children2:
-                    #if child2 != owl.Thing: # ?
-                    if child2 == owl.Thing: # fr though, what is this?
+                    # if child2 != owl.Thing: # ?
+                    if child2 == owl.Thing:  # fr though, what is this?
                         continue
 
                     if child2 in self.ontology.individuals():
@@ -111,10 +111,9 @@ class Network:
                     ):
                         # It's a "visited class" but we're adding it to "classes to explore?"
                         # `visited_classes` is scoped local to this function. Probably
-                        # just need to name it something else.                         
+                        # just need to name it something else.
                         visited_classes.add(child2)
                         self.add_class_to_explore(child2)
-                    
 
     def dfs_labeled_edges(self):
 

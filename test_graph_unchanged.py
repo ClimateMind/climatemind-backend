@@ -18,6 +18,7 @@ If the script executes successfully with no return value or exceptions, all test
 import networkx as nx
 from networkx.readwrite.gpickle import read_gpickle
 
+
 def test_node_attributes(collection1, collection2):
     for item1_id, item1_data in collection1:
         item2_data = collection2[item1_id]
@@ -25,6 +26,7 @@ def test_node_attributes(collection1, collection2):
         for k, v1 in item1_data.items():
             v2 = item2_data[k]
             assert set(v1) == set(v2)
+
 
 def test_edge_attributes(g_old, g_new):
     for src_old, tgt_old, data_old in g_old.edges(data=True):
@@ -38,8 +40,9 @@ def test_edge_attributes(g_old, g_new):
                 assert v1 is None
                 assert v2 is None
 
-fname = 'Climate_Mind_DiGraph.gpickle'
-g_old = read_gpickle(fname + '.bck')
+
+fname = "Climate_Mind_DiGraph.gpickle"
+g_old = read_gpickle(fname + ".bck")
 g_new = read_gpickle(fname)
 
 assert len(g_old) == len(g_new)
