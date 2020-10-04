@@ -37,10 +37,6 @@ def add_ontology_data_to_graph_nodes(G, onto):
     for node in list(G.nodes):
         ontology_node = onto.search_one(label=node)
         class_objects = onto.get_parents_of(ontology_node)
-        annot_properties = [
-            thing.label[0].replace(":", "_")
-            for thing in list(onto.annotation_properties())
-        ]
 
         attributes_dict = {}
         attributes_dict["label"] = str(ontology_node.label[0])
@@ -79,10 +75,12 @@ def add_ontology_data_to_graph_nodes(G, onto):
         # the if statement is needed to avoid the Restriction objects
         # still don't know why Restriction Objects are in our ontology!
         # technically each class could have multiple labels, but this way just pulling 1st label
+        annot_properties = [
+            thing.label[0].replace(":", "_")
+            for thing in list(onto.annotation_properties())
+        ]
 
-        annot_properties_dict = {}
-        for prop in annot_properties:
-            annot_properties_dict[prop] = list(eval("ontology_node." + prop))
+        annot_properties_dict = {prop:list(getattr(ontology_node, prop)) for prop in annot_properties}
         G.add_nodes_from([node], properties=annot_properties_dict)
 
 
