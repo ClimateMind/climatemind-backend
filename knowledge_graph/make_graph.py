@@ -24,11 +24,14 @@ def add_edges_to_graph(edges, G):
     edges: List of graph edges (object, subject, predicate triples)
     G: A networkx Graph
     """
-    for index in range(len(edges)):
-        G.add_edge(
-            edges[index][0], edges[index][1], type=edges[index][2], properties=None
-        )
+    for src, tgt, kind in edges:
+        G.add_edge(src, tgt, type=kind, properties=None)
 
+def listify(collection, onto):
+    """just capturing a repeated operation"""
+    return [str(thing.label[0]) 
+            for thing in collection
+            if thing in onto.classes()]
 
 def add_ontology_data_to_graph_nodes(G, onto):
     """Find the equivalent nodes in the ontology and load in relevant data
@@ -39,6 +42,11 @@ def add_ontology_data_to_graph_nodes(G, onto):
     G: A networkx Graph
     onto: owlready2 ontology object
     """
+    # This shouldn't need to be repeated for each node. 
+    # Moved out of loop.
+    cm_class = onto.search_one(label="climate mind")
+    superclasses = list(cm_class.subclasses())
+    
     for node in list(G.nodes):
         ontology_node = onto.search_one(label=node)
         class_objects = onto.get_parents_of(ontology_node)
@@ -47,45 +55,18 @@ def add_ontology_data_to_graph_nodes(G, onto):
             for thing in list(onto.annotation_properties())
         ]
 
-        # need to add here and replace the hard coding of 'classes' with each of the child classes of the class "Climate Mind". See http://owlready.8326.n8.nabble.com/Ontology-tree-td1178.html
-        # also need to add in automated reasoning so that the classes aren't nested.
-
-        # superclasses = list(Thing.subclasses())
-        # ['status - source etc']
-        # ['status - value']
-        # ['climate mind']
-        # ['misleading information']
-
-        # CM_class = superclasses[2] #this is hard coded. would break if top structure of ontology changes... should probably just search for the class 'climate mind'.
-        cm_class = onto.search_one(label="climate mind")
-        superclasses = list(cm_class.subclasses())
-        superclass_labels = [
-            superclass_object.label for superclass_object in superclasses
-        ]
-        # cm_class.ancestors()
-        # cm_class.descendants()
-        # cm_class.get_parents_of()
-
-        # make dictionary to add proper attributes to the node
-
         attributes_dict = {}
         attributes_dict["label"] = str(ontology_node.label[0])
         attributes_dict["iri"] = str(ontology_node)
         attributes_dict["comment"] = str(ontology_node.comment)
-        attributes_dict["direct classes"] = [
-            str(parent.label[0]) for parent in class_objects if parent in onto.classes()
-        ]
+        attributes_dict["direct classes"] = listify(class_objects, onto) 
 
         all_classes = []
         for parent in class_objects:
             if parent in onto.classes():
                 all_classes.extend(parent.ancestors())
 
-        list_classes = [
-            str(node_object.label[0])
-            for node_object in all_classes
-            if node_object in onto.classes()
-        ]
+        list_classes = listify(all_classes, onto)
         list_classes = list(set(list_classes))
         if "climate mind" in list_classes:
             list_classes.remove("climate mind")
@@ -95,12 +76,7 @@ def add_ontology_data_to_graph_nodes(G, onto):
         for node_class in class_objects:
             for super_class in superclasses:
                 if node_class in super_class.descendants():
-                    # descendants() includes self class, but excludes non-entity classes such as restrictions
-                    to_add = [
-                        str(thing.label[0])
-                        for thing in node_class.ancestors()
-                        if thing in onto.classes()
-                    ]
+                    to_add = listify(node_class.ancestors(), onto)
                     if "climate mind" in to_add:
                         to_add.remove("climate mind")
                     if super_class in attributes_dict.keys():
@@ -276,6 +252,8 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     G = nx.DiGraph()  # There should not be duplicate edges that go the same direction.
     # If so, need to throw an error.
     add_edges_to_graph(df_edges.values, G)
+    
+    
     add_ontology_data_to_graph_nodes(G, onto)
     to_remove = set_edge_properties(G)
     remove_edge_properties_from_nodes(G, to_remove)
