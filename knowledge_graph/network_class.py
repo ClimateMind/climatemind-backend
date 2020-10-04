@@ -14,6 +14,14 @@ class Network:
 
        Completes a depth-first search for the ontology and return edges in
        the component reachable from source.
+       
+    Sample Usage
+    ------------
+        onto = get_ontology(onto_path).load()
+        node_network = Network(onto, source)
+        node_network.dfs_labeled_edges()
+        df = pd.DataFrame(node_network.edge_triplets,
+                     columns=["subject", "object", "predcate"])
     """
 
     def __init__(self, ontology, source=None):
