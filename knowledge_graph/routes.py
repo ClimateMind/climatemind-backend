@@ -168,7 +168,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     except KeyError:
         return make_response("invalid key"), 400
 
-    response = {"session-id": session_id}
+    response = {"sessionId": session_id}
 
     response = Response(dumps(response))
     return response, 201
