@@ -1,8 +1,8 @@
 from flask_swagger_ui import get_swaggerui_blueprint
-from json import dumps, load
+from json import dumps, load, loads
 from typing import Tuple
 
-from flask import request, make_response, Response, send_from_directory
+from flask import request, make_response, Response, send_from_directory, jsonify
 
 from knowledge_graph import app, db
 from knowledge_graph.persist_scores import persist_scores
@@ -24,32 +24,6 @@ value_id_map = {
     8: "achievement",
     9: "power",
     10: "security",
-}
-
-score_description = {
-    "conformity": "You are excellent at restraint of actions, inclinations, and impulses likely to upset or harm others and violate social expectations or norms. Conformity values derive from the requirement that individuals inhibit inclinations that might disrupt and undermine smooth interaction and group functioning. You are obedient, self-disciplined, loyal, responsible and polite.",
-    "tradition": "For you, respect, commitment and acceptance of the customs and ideas that one's culture or religion provides is highly important. It’s likely you practise a form of religious rites and beliefs. You are humble, devout and accepting of your portion in life.",
-    "universalism": "You value the understanding, appreciation, tolerance, and protection for the welfare of all people and for nature. Universalism values derive from survival needs of individuals and groups. You are broadminded and are interested in social justice, equality, seeing the world at peace, the world of beauty, unity with nature, wisdom and protecting the environment.",
-    "benevolence": "To you, preserving and enhancing the welfare of those around you is highly important. Benevolence values derive from the basic requirement for smooth group functioning and from the organismic need for affiliation, You are helpful, honest, forgiving, responsible, loyal and enjoy true friendship and mature love.",
-    "self-direction": "You are independent and are happiest when choosing, creating or exploring. Self-direction derives from organismic needs for control and mastery. You are likely creative and relish in freedom and choosing your own goals. You are curious, have self-respect, intelligence and value your privacy.",
-    "stimulation": "For you, life is all about excitement, novelty, and challenges. Stimulation values derive from the organismic need for variety and stimulation in order to maintain an optimal, positive, rather than threatening, level of activation. Chances are you are also big on self-direction values and want a varied, exciting and daring life.",
-    "hedonism": "Your goal is pleasure or sensuous gratification for oneself. Hedonism values derive from organismic needs and the pleasure associated with satisfying them. You enjoy life and are often self-indulgent. Your joy comes when you are able to fulfil your day with things that make you happy.",
-    "achievement": "Personal success through demonstrating competence according to social standards is your jam. You strive to be the best and in turn can obtain social approval. You are ambitious, successful, capable and influential.",
-    "power": "You strive to control. Whether that is being dominant over people around you or having the power over resources. The functioning of social institutions requires some degree of status differentiation and so we must treat power as a value.",
-    "security": "What is important to you is the safety, harmony and stability of society, of relationships, and of self. Security values derive from basic individual and group needs. You value a sense of belonging, social order and the reciprocation of favours."    
-}
-
-score_description = {
-    "conformity": "You are excellent at restraint of actions, inclinations, and impulses likely to upset or harm others and violate social expectations or norms. Conformity values derive from the requirement that individuals inhibit inclinations that might disrupt and undermine smooth interaction and group functioning. You are obedient, self-disciplined, loyal, responsible and polite.",
-    "tradition": "For you, respect, commitment and acceptance of the customs and ideas that one's culture or religion provides is highly important. It’s likely you practise a form of religious rites and beliefs. You are humble, devout and accepting of your portion in life.",
-    "universalism": "You value the understanding, appreciation, tolerance, and protection for the welfare of all people and for nature. Universalism values derive from survival needs of individuals and groups. You are broadminded and are interested in social justice, equality, seeing the world at peace, the world of beauty, unity with nature, wisdom and protecting the environment.",
-    "benevolence": "To you, preserving and enhancing the welfare of those around you is highly important. Benevolence values derive from the basic requirement for smooth group functioning and from the organismic need for affiliation, You are helpful, honest, forgiving, responsible, loyal and enjoy true friendship and mature love.",
-    "self-direction": "You are independent and are happiest when choosing, creating or exploring. Self-direction derives from organismic needs for control and mastery. You are likely creative and relish in freedom and choosing your own goals. You are curious, have self-respect, intelligence and value your privacy.",
-    "stimulation": "For you, life is all about excitement, novelty, and challenges. Stimulation values derive from the organismic need for variety and stimulation in order to maintain an optimal, positive, rather than threatening, level of activation. Chances are you are also big on self-direction values and want a varied, exciting and daring life.",
-    "hedonism": "Your goal is pleasure or sensuous gratification for oneself. Hedonism values derive from organismic needs and the pleasure associated with satisfying them. You enjoy life and are often self-indulgent. Your joy comes when you are able to fulfil your day with things that make you happy.",
-    "achievement": "Personal success through demonstrating competence according to social standards is your jam. You strive to be the best and in turn can obtain social approval. You are ambitious, successful, capable and influential.",
-    "power": "You strive to control. Whether that is being dominant over people around you or having the power over resources. The functioning of social institutions requires some degree of status differentiation and so we must treat power as a value.",
-    "security": "What is important to you is the safety, harmony and stability of society, of relationships, and of self. Security values derive from basic individual and group needs. You value a sense of belonging, social order and the reciprocation of favours."    
 }
 
 # Swagger Stuff
@@ -132,7 +106,9 @@ def receive_user_scores() -> Tuple[Response, int]:
     """
     try:
         parameter = request.json
-    except:
+    # todo: handle exceptions properly here
+    except Exception as ex:
+        print(ex)
         return make_response("Invalid User Response"), 400
 
     value_scores = {}
@@ -143,28 +119,42 @@ def receive_user_scores() -> Tuple[Response, int]:
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
 
-    session_id = uuid.uuid4()
+    session_id = str(uuid.uuid4())
 
-    for value in parameter["SetOne"]:
-        questionID = value["id"]
-        score = value["score"]
+    questions = parameter["questionResponses"]
+
+    if len(questions["SetOne"]) < RESPONSES_TO_ADD:
+        return make_response("not enough set one scores", 400)
+    elif len(questions["SetOne"]) > RESPONSES_TO_ADD:
+        return make_response("too many set one scores", 400)
+
+    for value in questions["SetOne"]:
+        questionID = value["questionId"]
+        score = value["answerId"]
         overall_sum += score
+
+        if value_id_map[questionID] in value_scores:
+            return make_response("duplicate question ID", 400)
+
         value_scores[value_id_map[questionID]] = score
 
-    if parameter["SetTwo"]:
+    if "SetTwo" in questions:
         num_of_responses += RESPONSES_TO_ADD
-        for value in parameter["SetTwo"]:
-            questionID = value["id"]
-            score = value["score"]
+        for value in questions["SetTwo"]:
+            questionID = value["questionId"]
+            score = value["answerId"]
             name = value_id_map[questionID]
             avg_score = (value_scores[name] + score) / NUMBER_OF_SETS
             overall_sum += score
+
+            if questionID in value_scores.keys:
+                return make_response("duplicate question ID", 400)
+
             value_scores[name] = avg_score
 
     overall_avg = overall_sum / num_of_responses
 
     for value, score in value_scores.items():
-
         centered_score = (
             score - overall_avg + POSITIVITY_CONSTANT
         )  # To make non-negative
@@ -173,42 +163,80 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     value_scores["session-id"] = session_id
 
-    persist_scores(value_scores)
-
-    response = Response(dumps(value_scores))
-    return response, 200
-    
-
-@app.route('/personal_values', methods=['GET'])
-def get_personal_values():
-    """ Given a session-id, this returns the top three personal values for a user
-    
-    """
     try:
-        session_id = int(request.args.get('session-id'))
+        persist_scores(value_scores)
+    except KeyError:
+        return make_response("invalid key"), 400
+
+    response = {"sessionId": session_id}
+
+    response = Response(dumps(response))
+    return response, 201
+
+
+@app.route("/personal_values", methods=["GET"])
+def get_personal_values():
+    """Given a session-id, this returns the top three personal values for a user"""
+    try:
+        session_id = str(request.args.get("session-id"))
     except:
         return make_response("Invalid Session ID Format or No ID Provided"), 400
-    
+
     scores = db.session.query(Scores).filter_by(session_id=session_id).first()
     if scores:
         scores = scores.__dict__
         del scores["_sa_instance_state"]
-    
+        del scores["session_id"]
+
         top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
-        descriptions = [score_description[score] for score in top_scores]
-        scores_and_descriptions = [list(s) for s in zip(top_scores, descriptions)]
-        return make_response(dumps(scores_and_descriptions)), 200
+        try:
+            with open("value_descriptions.json", "r") as f:
+                value_descriptions = load(f)
+        except FileNotFoundError:
+            return make_response("Value Descriptions File Not Found"), 400
+        descriptions = [value_descriptions[score] for score in top_scores]
+
+        scores_and_descriptions = []
+        for i in range(len(top_scores)):
+            d = {}
+            d["valueName"] = top_scores[i]
+            d["valueDesc"] = descriptions[i]
+            scores_and_descriptions.append(d)
+        return jsonify(scores_and_descriptions)
+
     else:
         return make_response("Invalid Session ID - Internal Server Error"), 400
-    
 
 
 @app.route("/get_actions", methods=["POST"])
 def get_actions():
+    """Temporary test function to take a JSON full of user scores and calculate the
+    best nodes to return to a user. Will be deprecated and replaced by /feed.
+
+    """
     try:
         scores = request.json
     except:
         return make_response("Invalid JSON"), 400
+    recommended_nodes = get_user_nodes(scores)
+    response = Response(dumps(recommended_nodes))
+    return response, 200
+
+
+@app.route("/feed", methods=["POST"])
+def get_feed():
+    """The front-end needs to request personalized climate change effects that are most
+    relevant to a user to display in the user's feed.
+
+    """
+    session_id = str(request.args.get("session-id"))
+    try:
+        scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    except:
+        return make_response("Invalid Session ID or No Information for ID")
+
+    scores = scores.__dict__
+    del scores["_sa_instance_state"]
     recommended_nodes = get_user_nodes(scores)
     response = Response(dumps(recommended_nodes))
     return response, 200
