@@ -1,19 +1,19 @@
 import requests
 import json
 
-url = "http://127.0.0.1:5000/scores"
-
+# url = "http://127.0.0.1:5000/scores"
+# 
 # with open("user_scores_from_nick.json") as json_file:
 #     obj = json.load(json_file)
-#
+# 
 # headers = {"content-type": "application/json"}
 # request = requests.post(url, json=obj, headers=headers)
-#
+# 
 # print(json.dumps(request.json(), indent=4))
 
 url = "http://127.0.0.1:5000/personal_values"
-params = {"session-id": "44237b62-9908-4496-a8c1-7ae8d3b68007"}
-request = requests.post(url, params=params)
+params = {"session-id": "5f5ab575-57d1-4a1b-8b82-08b6b6b1c33e"}
+request = requests.get(url, params=params)
 
 print(request.text)
 
