@@ -14,14 +14,14 @@ def test_get_questions():
     assert len(resp.json()["SetTwo"]) == 10
 
     # Check answers are returned correctly
-    assert resp.json()["Answers"] == {
-        "1": "Not Like Me At All",
-        "2": "Not Like Me",
-        "3": "Little Like Me",
-        "4": "Somewhat Like Me",
-        "5": "Like Me",
-        "6": "Very Much Like Me",
-    }
+    assert resp.json()["Answers"] == [
+        {"id": 1, "text": "Not Like Me At All"},
+        {"id": 2, "text": "Not Like Me"},
+        {"id": 3, "text": "Little Like Me"},
+        {"id": 4, "text": "Somewhat Like Me"},
+        {"id": 5, "text": "Like Me"},
+        {"id": 6, "text": "Very Much Like Me"},
+    ]
 
     # Check that the two sets have the same question values
     for question in resp.json()["SetOne"]:
