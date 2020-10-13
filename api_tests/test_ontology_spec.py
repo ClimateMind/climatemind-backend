@@ -9,7 +9,7 @@ def test_ontology_search_term_not_found():
 
     # Check we get the correct response
     assert resp.status_code == 400
-    assert resp.text == 'query keyword not found'
+    assert resp.text == "query keyword not found"
 
 def test_ontology_no_query():
     url = "http://127.0.0.1:5000/ontology"
