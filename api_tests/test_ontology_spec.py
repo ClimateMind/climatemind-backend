@@ -20,3 +20,4 @@ def test_ontology_no_query():
     # Check we get the correct response
     assert resp.status_code == 200
     assert resp.text == "{}"
+    
