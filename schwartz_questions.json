@@ -3,104 +3,104 @@
     {
       "id": 1,
       "value": "conformity",
-      "question": "They believe they should always show respect to their parents and to older people. It is important to them to be obedient."
+      "question": "You believe you should always show respect to your parents and to older people. It is important to you to be obedient."
     },
     {
       "id": 2,
       "value": "tradition",
-      "question": "Religious belief or traditions are important to them. They try hard to do what their religion or family traditions require."
+      "question": "Religious belief is important to you. You try hard to do what your religion requires."
     },
     {
       "id": 3,
       "value": "benevolence",
-      "question": "It's very important to them to help the people around them. They want to care for the well-being of those around them."
+      "question": "It’s very important to you to help the people around you. You want to care for their well-being."
     },
     {
       "id": 4,
       "value": "universalism",
-      "question": "They think it is important that every person in the world be treated equally. They believe everyone should have equal opportunities in life."
+      "question": "You think it is important that every person in the world be treated equally. You believe everyone should have equal opportunities in life."
     },
     {
       "id": 5,
       "value": "self-direction",
-      "question": "They think it's important to be interested in things. They like to be curious and to try to understand all sorts of things."
+      "question": "You think it’s important to be interested in things. You like to be curious and to try to understand all sorts of things."
     },
     {
       "id": 6,
       "value": "stimulation",
-      "question": "They like to take risks. They are always looking for adventures."
+      "question": "You like to take risks. You are always looking for adventures."
     },
     {
       "id": 7,
       "value": "hedonism",
-      "question": "They seek every chance they can to have fun. It is important to them to do things that give them pleasure."
+      "question": "You seek every chance you can to have fun. It is important to you to do things that give you pleasure."
     },
     {
       "id": 8,
       "value": "achievement",
-      "question": "Being very successful is important to them. They like to impress other people."
+      "question": "Getting ahead in life is important to you. You strive to do better than others."
     },
     {
       "id": 9,
       "value": "power",
-      "question": "It is important to them to be in charge and tell others what to do. They want people to do what they say."
+      "question": "You always want to be the one who makes the decisions. You like to be the leader."
     },
     {
       "id": 10,
       "value": "security",
-      "question": "It is important to them that things be organized and clean. They really do not like things to be a mess."
+      "question": "It is important to you that things be organized and clean. You really do not like things to be a mess."
     }
   ],
   "SetTwo": [
     {
       "id": 1,
       "value": "conformity",
-      "question": "It is important to they to always behave properly. They want to avoid doing anything people would say is wrong."
+      "question": "It is important to you to always behave properly. You want to avoid doing anything people would say is wrong."
     },
     {
       "id": 2,
       "value": "tradition",
-      "question": "They think it is best to do things in traditional ways. It is important to they to keep up the customs they have learned."
+      "question": "You think it is best to do things in traditional ways. It is important to you to keep up the customs you have learned."
     },
     {
       "id": 3,
       "value": "benevolence",
-      "question": "It is important to them to respond to the needs of others. They try to support those they know."
+      "question": "It is important to you to respond to the needs of others. You try to support those you know."
     },
     {
       "id": 4,
       "value": "universalism",
-      "question": "They believe all the worlds' people should live in harmony. Promoting peace among all groups in the world is important to them."
+      "question": "You believe all the worlds’ people should live in harmony. Promoting peace among all groups in the world is important to you."
     },
     {
       "id": 5,
       "value": "self-direction",
-      "question": "Thinking up new ideas and being creative is important to them. They like to do things in their own original way."
+      "question": "Thinking up new ideas and being creative is important to you. You like to do things in your own original way."
     },
     {
       "id": 6,
       "value": "stimulation",
-      "question": "They think it is important to do lots of different things in life. they always look for new things to try."
+      "question": "You think it is important to do lots of different things in life. You always looks for new things to try."
     },
     {
       "id": 7,
       "value": "hedonism",
-      "question": "They really want to enjoy life. Having a good time is very important to them."
+      "question": "You really want to enjoy life. Having a good time is very important to you."
     },
     {
       "id": 8,
       "value": "achievement",
-      "question": "Getting ahead in life is important to them. They strive to do better than others."
+      "question": "Being very successful is important to you. You like to impress other people."
     },
     {
       "id": 9,
       "value": "power",
-      "question": "They always want to be the one who makes the decisions. They like to be the leader."
+      "question": "It is important to you to be in charge and tell others what to do. You want people to do what you say."
     },
     {
       "id": 10,
       "value": "security",
-      "question": "Having a stable government is important to them. They are concerned that the social order be protected."
+      "question": "Having a stable government is important to you. You are concerned that the social order be protected."
     }
   ],
 
