@@ -223,7 +223,7 @@ def get_actions():
     return response, 200
 
 
-@app.route("/feed", methods=["POST"])
+@app.route("/feed", methods=["GET"])
 def get_feed():
     """The front-end needs to request personalized climate change effects that are most
     relevant to a user to display in the user's feed.
@@ -238,5 +238,6 @@ def get_feed():
     scores = scores.__dict__
     del scores["_sa_instance_state"]
     recommended_nodes = get_user_nodes(scores)
-    response = Response(dumps(recommended_nodes))
+    climate_effects = {"climate_effects": recommended_nodes}
+    response = Response(dumps(climate_effects))
     return response, 200
