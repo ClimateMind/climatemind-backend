@@ -8,6 +8,8 @@ from knowledge_graph.make_graph import (
     get_non_test_ont,
 )
 
+OFFSET = 4  # .edu <- to skip these characters and get the unique IRI
+
 
 def simple_scoring(G, user_scores):
     """Each node contains a list of classes, which include the values associated with
@@ -15,7 +17,7 @@ def simple_scoring(G, user_scores):
     considered. All of the users value scores are > 0, meaning negative relationships
     are not considered.
     """
-    nodes_with_scores = {}
+    climate_effects = []
 
     for node in G.nodes:
         node_classes = G.nodes[node]["direct classes"]
@@ -26,15 +28,25 @@ def simple_scoring(G, user_scores):
         }
 
         if set_of_values:
+            print(G.nodes[node])
+            full_iri = G.nodes[node]["iri"]
+            pos = full_iri.find("edu") + OFFSET
+            effect_id = full_iri[pos:]
+
             score = 0
             for value in set_of_values:
                 score += user_scores[value]
-            nodes_with_scores[node] = score
+            d = {
+                "effect_id": effect_id,
+                "effect_title": G.nodes[node]["label"],
+                "effect_score": score,
+            }
+            climate_effects.append(d)
 
-    return nodes_with_scores
+    return climate_effects
 
 
-def get_best_nodes(nodes_with_scores, n):
+def get_best_nodes(climate_effects, n):
     """Returns the top n Nodes for a user along with the scores for those nodes.
 
     Parameters
@@ -42,7 +54,9 @@ def get_best_nodes(nodes_with_scores, n):
     nodes_with_scores - Dictionary containing NetworkX nodes and Integer scores
     n - Integer to specify # of desired scores
     """
-    best_nodes = sorted(nodes_with_scores, key=nodes_with_scores.get, reverse=True)[:3]
+    best_nodes = sorted(climate_effects, key=lambda k: k["effect_score"], reverse=True)[
+        :3
+    ]
     return best_nodes
 
 
@@ -58,6 +72,6 @@ def get_user_nodes(user_scores):
     not_test_ont = get_non_test_ont()
 
     get_test_ontology(G, valid_test_ont, not_test_ont)
-    nodes_with_scores = simple_scoring(G, user_scores)
-    best_nodes_for_user = get_best_nodes(nodes_with_scores, 3)
+    climate_effects = simple_scoring(G, user_scores)
+    best_nodes_for_user = get_best_nodes(climate_effects, 3)
     return best_nodes_for_user
