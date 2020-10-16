@@ -23,6 +23,7 @@ def test_ontology_no_query():
     assert resp.status_code == 200
     assert resp.text == "{}"
 
+
 def test_ontology_search_term_found():
     url = "http://127.0.0.1:5000/ontology?query=coal+mining"
     headers = {"Accept": "application/json", "Content-Type": "application/json"}
@@ -32,5 +33,8 @@ def test_ontology_search_term_found():
 
     # Check we get the correct response
     assert resp.status_code == 200
-    assert resp_body["coal mining"][0] == ['coal mining', 'burning coal', 'causes_or_promotes']
-    
+    assert resp_body["coal mining"][0] == [
+        "coal mining",
+        "burning coal",
+        "causes_or_promotes",
+    ]
