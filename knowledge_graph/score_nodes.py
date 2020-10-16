@@ -36,10 +36,16 @@ def simple_scoring(G, user_scores):
             score = 0
             for value in set_of_values:
                 score += user_scores[value]
+                
+            try:
+                desc = G.nodes[node]["schema_shortDescription"]
+            except:
+                desc = "No short desc available at present"
             d = {
-                "effect_id": effect_id,
-                "effect_title": G.nodes[node]["label"],
-                "effect_score": score,
+                "effectId": effect_id,
+                "effectTitle": G.nodes[node]["label"],
+                "effectDescription": desc,
+                "effectScore": score,
             }
             climate_effects.append(d)
 
@@ -54,7 +60,7 @@ def get_best_nodes(climate_effects, n):
     nodes_with_scores - Dictionary containing NetworkX nodes and Integer scores
     n - Integer to specify # of desired scores
     """
-    best_nodes = sorted(climate_effects, key=lambda k: k["effect_score"], reverse=True)[
+    best_nodes = sorted(climate_effects, key=lambda k: k["effectScore"], reverse=True)[
         :3
     ]
     return best_nodes
