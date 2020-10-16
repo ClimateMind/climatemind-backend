@@ -36,7 +36,7 @@ def simple_scoring(G, user_scores):
             score = 0
             for value in set_of_values:
                 score += user_scores[value]
-                
+
             try:
                 desc = G.nodes[node]["schema_shortDescription"]
             except:
