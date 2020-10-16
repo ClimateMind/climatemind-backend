@@ -202,7 +202,7 @@ def get_personal_values():
             d["valueName"] = top_scores[i]
             d["valueDesc"] = descriptions[i]
             scores_and_descriptions.append(d)
-        return jsonify(scores_and_descriptions)
+        return jsonify(scores_and_descriptions), 200
 
     else:
         return make_response("Invalid Session ID - Internal Server Error"), 400
@@ -239,5 +239,4 @@ def get_feed():
     del scores["_sa_instance_state"]
     recommended_nodes = get_user_nodes(scores)
     climate_effects = {"climate_effects": recommended_nodes}
-    response = Response(dumps(climate_effects))
-    return response, 200
+    return jsonify(climate_effects), 200
