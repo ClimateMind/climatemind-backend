@@ -170,7 +170,7 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     response = {"sessionId": session_id}
 
-    response = Response(dumps(response))
+    response = jsonify(response)
     return response, 201
 
 
@@ -219,7 +219,7 @@ def get_actions():
     except:
         return make_response("Invalid JSON"), 400
     recommended_nodes = get_user_nodes(scores)
-    response = Response(dumps(recommended_nodes))
+    response = jsonify(recommended_nodes)
     return response, 200
 
 
