@@ -8,7 +8,7 @@
     {
       "id": 2,
       "value": "tradition",
-      "question": "Religious belief is important to you. You try hard to do what your religion requires."
+      "question": "Religious belief is important to you. It guides your decisions and you see it as a core part of your life."
     },
     {
       "id": 3,
@@ -48,7 +48,7 @@
     {
       "id": 10,
       "value": "security",
-      "question": "It is important to you that things be organized and clean. You really do not like things to be a mess."
+      "question": "Having a stable government is important to you. You are concerned that the social order be protected."
     }
   ],
   "SetTwo": [
@@ -60,7 +60,7 @@
     {
       "id": 2,
       "value": "tradition",
-      "question": "You think it is best to do things in traditional ways. It is important to you to keep up the customs you have learned."
+      "question": "You think it is best to do things in traditional ways. It is important to you to do things the way you were taught to do them."
     },
     {
       "id": 3,
@@ -100,7 +100,7 @@
     {
       "id": 10,
       "value": "security",
-      "question": "Having a stable government is important to you. You are concerned that the social order be protected."
+      "question": "It is important to you that things be organized and clean. You really do not like things to be a mess."
     }
   ],
 
