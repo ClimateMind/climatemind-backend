@@ -8,7 +8,7 @@
     {
       "id": 2,
       "value": "tradition",
-      "question": "Religious belief is important to you. It guides your decisions and you see it as a core part of your life."
+      "question": "Religious belief is important to you. You want your faith or family traditions to guide your decisions and be a core part of your life."
     },
     {
       "id": 3,
@@ -112,5 +112,5 @@
     { "id": 5, "text": "Like Me" },
     { "id": 6, "text": "Very Much Like Me" }
   ],
-  "Directions": "Here we briefly describe different people. Please read each description and think about how much that person is or is not like you."
+  "Directions": "Here we briefly describe statements about you. Please read each description and think about how much that statement is or is not like you."
 }
