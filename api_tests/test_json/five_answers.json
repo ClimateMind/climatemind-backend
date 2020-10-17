@@ -1,0 +1,11 @@
+{
+  "questionResponses": {
+    "SetOne": [
+          { "questionId": 1, "answerId": 2 },
+          { "questionId": 2, "answerId": 1 },
+          { "questionId": 3, "answerId": 1 },
+          { "questionId": 4, "answerId": 1 },
+          { "questionId": 10, "answerId": 1 }
+        ]
+      }
+}
