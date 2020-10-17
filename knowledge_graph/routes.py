@@ -231,12 +231,13 @@ def get_feed():
     """
     session_id = str(request.args.get("session-id"))
     try:
-        scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+        scores = db.session.query(Scores).filter_by(
+            session_id=session_id).first()
     except:
         return make_response("Invalid Session ID or No Information for ID")
 
     scores = scores.__dict__
     del scores["_sa_instance_state"]
     recommended_nodes = get_user_nodes(scores)
-    climate_effects = {"climate_effects": recommended_nodes}
+    climate_effects = {"climateEffects": recommended_nodes}
     return jsonify(climate_effects), 200
