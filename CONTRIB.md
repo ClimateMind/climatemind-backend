@@ -23,7 +23,7 @@ The information below will take you through everything you will need to know in 
 
 ## 2. What is Climatemind-Backend
 
-Climatemind-backend contains the codebase used as part of the climatemind App. This codebase is effectively a Python API, built to serve a React frontend (if frontend dev. is more to your liking, head on over to: https://github.com/ClimateMind/climatemind-frontend!).
+Climatemind-backend contains the codebase used as part of the climatemind App. This codebase is effectively a Python API, built to serve a React frontend (if frontend dev. is more to your liking, head on over to: [https://github.com/ClimateMind/climatemind-frontend](https://github.com/ClimateMind/climatemind-frontend)).
 
 ## 3. Getting Started & Dependencies
 
