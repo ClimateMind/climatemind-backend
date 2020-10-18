@@ -400,7 +400,9 @@ def receive_user_scores() -> Tuple[Response, int]:
     """
     try:
         parameter = request.json
-    except:
+    # todo: handle exceptions properly here
+    except Exception as ex:
+        print(ex)
         return make_response("Invalid User Response"), 400
 
     value_scores = {}
@@ -411,22 +413,37 @@ def receive_user_scores() -> Tuple[Response, int]:
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
 
-    session_id = uuid.uuid4()
+    session_id = str(uuid.uuid4())
 
-    for value in parameter["SetOne"]:
-        questionID = value["id"]
-        score = value["score"]
+    questions = parameter["questionResponses"]
+
+    if len(questions["SetOne"]) < RESPONSES_TO_ADD:
+        return make_response("not enough set one scores", 400)
+    elif len(questions["SetOne"]) > RESPONSES_TO_ADD:
+        return make_response("too many set one scores", 400)
+
+    for value in questions["SetOne"]:
+        questionID = value["questionId"]
+        score = value["answerId"]
         overall_sum += score
+
+        if value_id_map[questionID] in value_scores:
+            return make_response("duplicate question ID", 400)
+
         value_scores[value_id_map[questionID]] = score
 
-    if parameter["SetTwo"]:
+    if "SetTwo" in questions:
         num_of_responses += RESPONSES_TO_ADD
-        for value in parameter["SetTwo"]:
-            questionID = value["id"]
-            score = value["score"]
+        for value in questions["SetTwo"]:
+            questionID = value["questionId"]
+            score = value["answerId"]
             name = value_id_map[questionID]
             avg_score = (value_scores[name] + score) / NUMBER_OF_SETS
             overall_sum += score
+
+            if questionID in value_scores.keys:
+                return make_response("duplicate question ID", 400)
+
             value_scores[name] = avg_score
 
     overall_avg = overall_sum / num_of_responses
@@ -438,19 +455,24 @@ def receive_user_scores() -> Tuple[Response, int]:
 
         value_scores[value] = centered_score
 
-    value_scores["session-id"] = str(session_id)
+    value_scores["session-id"] = session_id
 
-    persist_scores(value_scores)
+    try:
+        persist_scores(value_scores)
+    except KeyError:
+        return make_response("invalid key"), 400
 
-    response = Response(dumps(value_scores))
-    return response, 200
+    response = {"sessionId": session_id}
+
+    response = jsonify(response)
+    return response, 201
 
 
 @app.route("/personal_values", methods=["GET"])
 def get_personal_values():
     """Given a session-id, this returns the top three personal values for a user"""
     try:
-        session_id = int(request.args.get("session-id"))
+        session_id = str(request.args.get("session-id"))
     except:
         return make_response("Invalid Session ID Format or No ID Provided"), 400
 
@@ -458,6 +480,7 @@ def get_personal_values():
     if scores:
         scores = scores.__dict__
         del scores["_sa_instance_state"]
+        del scores["session_id"]
 
         top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
         try:
@@ -473,7 +496,7 @@ def get_personal_values():
             d["valueName"] = top_scores[i]
             d["valueDesc"] = descriptions[i]
             scores_and_descriptions.append(d)
-        return jsonify(scores_and_descriptions)
+        return jsonify(scores_and_descriptions), 200
 
     else:
         return make_response("Invalid Session ID - Internal Server Error"), 400
@@ -490,11 +513,11 @@ def get_actions():
     except:
         return make_response("Invalid JSON"), 400
     recommended_nodes = get_user_nodes(scores)
-    response = Response(dumps(recommended_nodes))
+    response = jsonify(recommended_nodes)
     return response, 200
 
 
-@app.route("/feed", methods=["POST"])
+@app.route("/feed", methods=["GET"])
 def get_feed():
     """The front-end needs to request personalized climate change effects that are most
     relevant to a user to display in the user's feed.
@@ -509,8 +532,8 @@ def get_feed():
     scores = scores.__dict__
     del scores["_sa_instance_state"]
     recommended_nodes = get_user_nodes(scores)
-    response = Response(dumps(recommended_nodes))
-    return response, 200
+    climate_effects = {"climateEffects": recommended_nodes}
+    return jsonify(climate_effects), 200
 
 
 # add your

@@ -10,6 +10,7 @@ from knowledge_graph import login
     1) flask db migrate -m "leave a comment about changes here"
     2) flask db upgrade
 
+
     This ensures that the database models are updated and ready to use.
 """
 
