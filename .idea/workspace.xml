@@ -2,14 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e7a566f5-d238-48d3-a90b-a75cc1d99545" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/climatemind-backend.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/openapi.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/knowledge_graph/routes.py" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_graph/routes.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/climatemind-backend.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/knowledge_graph/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/knowledge_graph/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,14 +56,14 @@
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
     <state x="775" y="309" width="426" height="486" key="FileChooserDialogImpl/67.27.1853.1053@67.27.1853.1053" timestamp="1601733729694" />
-    <state x="241" y="115" width="1484" height="874" key="MergeDialog" timestamp="1601246736848">
+    <state x="241" y="115" width="1484" height="874" key="MergeDialog" timestamp="1603048886397">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="241" y="115" width="1484" height="874" key="MergeDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1601246736848" />
-    <state x="623" y="312" width="730" height="480" key="MultipleFileMergeDialog" timestamp="1601246736853">
+    <state x="241" y="115" width="1484" height="874" key="MergeDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1603048886397" />
+    <state x="623" y="312" width="730" height="480" key="MultipleFileMergeDialog" timestamp="1603048886418">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
-    <state x="623" y="312" width="730" height="480" key="MultipleFileMergeDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1601246736853" />
+    <state x="623" y="312" width="730" height="480" key="MultipleFileMergeDialog/67.27.1853.1053@67.27.1853.1053" timestamp="1603048886418" />
     <state x="481" y="187" key="SettingsEditor" timestamp="1601027331256">
       <screen x="67" y="27" width="1853" height="1053" />
     </state>
