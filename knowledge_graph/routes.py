@@ -477,7 +477,7 @@ def get_personal_values():
     """
     Given a session-id, this returns the top three personal values for a user
     ---
-      get:
+    get:
       description:
         Returns the top 3 personal values of a user given a session ID.
     """
@@ -539,10 +539,10 @@ def get_feed():
     """The front-end needs to request personalized climate change effects that are most
     relevant to a user to display in the user's feed.
     ---
-     get:
+    get:
       description:
-      The front-end needs to request personalized climate change effects that are most
-    relevant to a user to display in the user's feed.
+        The front-end needs to request personalized climate change effects that are most
+        relevant to a user to display in the user's feed.
     """
     session_id = str(request.args.get("session-id"))
     try:
