@@ -41,6 +41,10 @@ app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 @app.route("/swagger/<path:path>")
 def send_file(path):
+    """
+    Sends swagger spec.
+    ---
+    """
     return send_from_directory("/swagger", path)
 
 
@@ -200,11 +204,11 @@ def get_questions() -> Tuple[Response, int]:
                             "id": 6,
                             "text": "Very Much Like Me"
                         }
-                    
+
                     , "Directions": "Here we briefly describe different people.
                     Please read each description and think about how much that person
                     is or is not like you."}'
-    :return: 
+    :return:
     """
     try:
         with open("schwartz_questions.json") as json_file:
@@ -470,10 +474,14 @@ def receive_user_scores() -> Tuple[Response, int]:
 
 @app.route("/personal_values", methods=["GET"])
 def get_personal_values():
-    """Given a session-id, this returns the top three personal values for a user"""
+    """
+    Given a session-id, this returns the top three personal values for a user
+    ---
+    """
     try:
         session_id = str(request.args.get("session-id"))
-    except:
+    # TODO: catch exceptions properly here
+    except Exception:
         return make_response("Invalid Session ID Format or No ID Provided"), 400
 
     scores = db.session.query(Scores).filter_by(session_id=session_id).first()
@@ -504,13 +512,15 @@ def get_personal_values():
 
 @app.route("/get_actions", methods=["POST"])
 def get_actions():
-    """Temporary test function to take a JSON full of user scores and calculate the
+    """
+    Temporary test function to take a JSON full of user scores and calculate the
     best nodes to return to a user. Will be deprecated and replaced by /feed.
-
+    ---
     """
     try:
         scores = request.json
-    except:
+    # TODO: catch exceptions properly here
+    except Exception:
         return make_response("Invalid JSON"), 400
     recommended_nodes = get_user_nodes(scores)
     response = jsonify(recommended_nodes)
@@ -526,7 +536,8 @@ def get_feed():
     session_id = str(request.args.get("session-id"))
     try:
         scores = db.session.query(Scores).filter_by(session_id=session_id).first()
-    except:
+    # TODO: catch exceptions properly here
+    except Exception:
         return make_response("Invalid Session ID or No Information for ID")
 
     scores = scores.__dict__
