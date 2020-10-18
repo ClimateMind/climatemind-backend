@@ -196,13 +196,14 @@ def get_personal_values():
             return make_response("Value Descriptions File Not Found"), 400
         descriptions = [value_descriptions[score] for score in top_scores]
 
+        print(top_scores)
         scores_and_descriptions = []
         for i in range(len(top_scores)):
-            d = {}
-            d["valueName"] = top_scores[i]
-            d["valueDesc"] = descriptions[i]
-            scores_and_descriptions.append(d)
-        return jsonify(scores_and_descriptions), 200
+            scores_and_descriptions.append(descriptions[i])
+        response = {
+            "personalValues": scores_and_descriptions
+        }
+        return jsonify(response), 200
 
     else:
         return make_response("Invalid Session ID - Internal Server Error"), 400
@@ -231,7 +232,8 @@ def get_feed():
     """
     session_id = str(request.args.get("session-id"))
     try:
-        scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+        scores = db.session.query(Scores).filter_by(
+            session_id=session_id).first()
     except:
         return make_response("Invalid Session ID or No Information for ID")
 
