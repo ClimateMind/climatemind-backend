@@ -23,7 +23,7 @@ The information below will take you through everything you will need to know in 
 
 ## 2. What is Climatemind-Backend
 
-Climatemind-backend contains the codebase used as part of the climatemind App. This codebase is effectively a Python API, built to serve a React frontend (if frontend dev. is more to your liking, head on over to: https://github.com/ClimateMind/climatemind-frontend!).
+Climatemind-backend contains the codebase used as part of the climatemind App. This codebase is effectively a Python API, built to serve a React frontend (if frontend dev. is more to your liking, head on over to: [https://github.com/ClimateMind/climatemind-frontend](https://github.com/ClimateMind/climatemind-frontend)).
 
 ## 3. Getting Started & Dependencies
 
@@ -76,22 +76,22 @@ There is a weekly “standup” usually occurring on Zoom on Sunday evenings (20
 
 NOTE: To get access to the rooms, please ask for an invite on Slack.
 
-For the complete information re: what is currently worked on, what is in the project backlog etc., see the Pivotal tracker dedicated to the project: <a>https://www.pivotaltracker.com/n/projects/2444098</a>
+For the complete information re: what is currently worked on, what is in the project backlog etc., this is stored in our [Jira Cloud Project](https://climatemind.atlassian.net/secure/BrowseProjects.jspa). 
 
-If you want to **suggest a new feature** it’s a good idea to discuss it in Slack with the backend team. It is also a good idea to check out the backlog in Pivotal tracker to ensure that the feature isn’t already in the works. We are always looking for new ideas to collaborate on so don't be shy in suggesting new ones!
+If you want to **suggest a new feature** it’s a good idea to discuss it in Slack with the backend team. It is also a good idea to check out the backlog in Jira to ensure that the feature isn’t already in the works. We are always looking for new ideas to collaborate on so don't be shy in suggesting new ones!
 ## 5. How to Contribute & Change Process
 
-The start of your workflow should be to look at Pivotal tracker and see what tasks need to be done. Pivotal tracker is the tool that tracks the project's progression (effectively a kanban board). Before writing any code, head on over to <a>https://www.pivotaltracker.com/n/projects/2444098</a>. Your workflow should resemble that of the below steps:
+The start of your workflow should be to look at Jira and see what tasks need to be done. Jira is the tool that tracks the project's progression (effectively a kanban board). Before writing any code, head on over to [Jira Cloud Project](https://climatemind.atlassian.net/secure/BrowseProjects.jspa). Your workflow should resemble that of the below steps:
 
 #### Workflow
 
-1. Click 'start' on a Pivotal story (or make a new story by following our story writing guide, then click 'start'). If there isn’t a story that accurately reflects the change you want to make, consult with the backend team on Slack.
+1. Assign the issue to your self (or make a new story by following our story writing guide, then click 'start') then move to in progress. If there isn’t a story that accurately reflects the change you want to make, consult with the backend team on Slack.
 
 2. To start contributing a change, first make sure you have the latest version of the project by pulling it down from github. Next, make a branch from master named in accordance with your change is trying to accomplish, for example:
 
-        $ git checkout -b feature/{pivotal-story-ID}-short-meaningful-title-of-the-branch
+        $ git checkout -b feature/{jira-issue-ID}-short-meaningful-title-of-the-branch
 
-	Make sure you include the pivotal-story-id in the branch name. This provides some nifty integration that links your branch to the Pivotal tracker :)
+	Make sure you include the jira-issue-id in the branch name. This provides some nifty integration that links your branch to the Pivotal tracker :)
 
 	Once starting the work, try to make commits onto your branch with useful and descriptive messages so that the team can understand what you are trying to accomplish and so support can be provided in the process. 
 
