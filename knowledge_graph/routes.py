@@ -560,7 +560,6 @@ def get_feed():
 
 # add your
 with app.test_request_context():
-    spec.path(view=get_actions)
     spec.path(view=get_personal_values)
     spec.path(view=user_scores)
     spec.path(view=get_questions)
