@@ -477,6 +477,9 @@ def get_personal_values():
     """
     Given a session-id, this returns the top three personal values for a user
     ---
+      get:
+      description:
+        Returns the top 3 personal values of a user given a session ID.
     """
     try:
         session_id = str(request.args.get("session-id"))
@@ -516,6 +519,10 @@ def get_actions():
     Temporary test function to take a JSON full of user scores and calculate the
     best nodes to return to a user. Will be deprecated and replaced by /feed.
     ---
+      get:
+      description:
+          Temporary test function to take a JSON full of user scores and calculate the
+            best nodes to return to a user. Will be deprecated and replaced by /feed.
     """
     try:
         scores = request.json
@@ -531,7 +538,11 @@ def get_actions():
 def get_feed():
     """The front-end needs to request personalized climate change effects that are most
     relevant to a user to display in the user's feed.
-
+    ---
+     get:
+      description:
+      The front-end needs to request personalized climate change effects that are most
+    relevant to a user to display in the user's feed.
     """
     session_id = str(request.args.get("session-id"))
     try:
