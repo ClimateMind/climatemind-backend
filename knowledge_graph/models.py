@@ -16,7 +16,7 @@ from knowledge_graph import login
 
 
 class User(UserMixin, db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
@@ -36,11 +36,11 @@ class User(UserMixin, db.Model):
 
 @login.user_loader
 def load_user(id):
-    return User.query.get(int(id))
+    return User.query.get(Int(id))
 
 
 class Scores(db.Model):
-    session_id = db.Column(db.String, db.ForeignKey("user.id"), primary_key=True)
+    session_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     security = db.Column(db.Float, index=False, unique=False)
     conformity = db.Column(db.Float, index=False, unique=False)
     benevolence = db.Column(db.Float, index=False, unique=False)
@@ -51,6 +51,7 @@ class Scores(db.Model):
     hedonism = db.Column(db.Float, index=False, unique=False)
     achievement = db.Column(db.Float, index=False, unique=False)
     power = db.Column(db.Float, index=False, unique=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
 
 class Iri(db.Model):
