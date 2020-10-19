@@ -5,9 +5,9 @@ from knowledge_graph.models import User, Scores
 
 
 def persist_scores(scores: dict) -> Type[KeyError]:
-    try:
+    try:       
         s = Scores()
-        s.session_id = scores["session-id"]
+#        s.session_id = scores["session-id"]
         s.security = scores["security"]
         s.conformity = scores["conformity"]
         s.benevolence = scores["benevolence"]
@@ -18,7 +18,7 @@ def persist_scores(scores: dict) -> Type[KeyError]:
         s.hedonism = scores["hedonism"]
         s.achievement = scores["achievement"]
         s.power = scores["power"]
-
+        
         db.session.add(s)
         db.session.commit()
 

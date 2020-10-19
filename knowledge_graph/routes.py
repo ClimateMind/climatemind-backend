@@ -119,7 +119,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
 
-    session_id = str(uuid.uuid4())
+#    session_id = str(uuid.uuid4())
 
     questions = parameter["questionResponses"]
 
@@ -161,7 +161,7 @@ def receive_user_scores() -> Tuple[Response, int]:
 
         value_scores[value] = centered_score
 
-    value_scores["session-id"] = session_id
+#    value_scores["session-id"] = session_id
 
     try:
         persist_scores(value_scores)
