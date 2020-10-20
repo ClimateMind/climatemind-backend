@@ -29,9 +29,9 @@ def test_get_questions():
 
 
 def test_questions_endpoint_parameters():
-    url = "http://127.0.0.1:5000/questions/"
+    url = "http://127.0.0.1:5000/questions"
     parameters = ["admin", "edit", "1"]
 
-    for paramter in parameters:
-        resp = requests.get(url + paramter)
-        assert resp.status_code == 404
+    for parameter in parameters:
+        resp = requests.get(url + parameter)
+        assert resp.status_code == 500
