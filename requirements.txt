@@ -53,6 +53,7 @@ py==1.9.0
 py2app==0.7.3
 pycparser==2.20
 pygraphviz==1.6
+pyodbc==4.0.30
 pyparsing==2.4.7
 pyrsistent==0.16.0
 pytest==6.0.2
