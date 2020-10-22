@@ -24,7 +24,7 @@ import urllib.parse
 # Begin Azure Connection
 # Older code for params -> params = urllib.parse.quote_plus()
 
-DATABASE_PARAMS = os.environ['DATABASE_PARAMS']
+DATABASE_PARAMS = os.environ["DATABASE_PARAMS"]
 SQLALCHEMY_DATABASE_URI = "mssql+pyodbc:///?odbc_connect=%s" % DATABASE_PARAMS
 SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 
