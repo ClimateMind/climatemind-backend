@@ -1,3 +1,4 @@
+import os
 from knowledge_graph import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
@@ -21,10 +22,10 @@ import urllib.parse
 """
 
 # Begin Azure Connection
-params = urllib.parse.quote_plus(
-    "DRIVER={ODBC Driver 17 for SQL Server};SERVER=tcp:sql-web-prod-001.database.windows.net,1433;DATABASE=sqldb-web-prod-001;UID=sqlSvc;PWD=Pxwvhlje3654dwx!;Encrypt=yes;TrustServerCertificate=no;Connection Timeout=30;"
-)
-SQLALCHEMY_DATABASE_URI = "mssql+pyodbc:///?odbc_connect=%s" % params
+# Older code for params -> params = urllib.parse.quote_plus()
+
+DATABASE_PARAMS = os.environ['DATABASE_PARAMS']
+SQLALCHEMY_DATABASE_URI = "mssql+pyodbc:///?odbc_connect=%s" % DATABASE_PARAMS
 SQLALCHEMY_COMMIT_ON_TEARDOWN = True
 
 SQLALCHEMY_TRACK_MODIFICATIONS = False
