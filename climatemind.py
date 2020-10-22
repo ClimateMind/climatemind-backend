@@ -1,16 +1,17 @@
 from knowledge_graph import app, db
-from knowledge_graph.models import User, Scores, Lrf, Zip, Iri
+from knowledge_graph.models import Users, Scores, Sessions  # TODO Lrf, Zip, Iri
 
 
 @app.shell_context_processor
 def make_shell_context():
     return {
         "db": db,
-        "User": User,
+        "User": Users,
         "Scores": Scores,
-        "LRF": Lrf,
-        "Zip": Zip,
-        "Iri": Iri,
+        "Sessions": Sessions,
+        #        "LRF": Lrf,
+        #        "Zip": Zip,
+        #        "Iri": Iri,
     }
 
 
