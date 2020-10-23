@@ -7,7 +7,7 @@ from flask import request, make_response, Response, send_from_directory, jsonify
 from knowledge_graph import app, db
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.score_nodes import get_user_nodes
-from knowledge_graph.models import Scores
+from knowledge_graph.models import Scores, getSession
 
 from collections import Counter
 
@@ -34,6 +34,8 @@ SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
 )
 
 app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
+
+db_session = getSession()
 
 
 @app.route("/swagger/<path:path>")
@@ -182,7 +184,7 @@ def get_personal_values():
     except:
         return make_response("Invalid Session ID Format or No ID Provided"), 400
 
-    scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    scores = db_session.query(Scores).filter_by(session_id=session_id).first()
     if scores:
         scores = scores.__dict__
         del scores["_sa_instance_state"]
@@ -230,7 +232,7 @@ def get_feed():
     """
     session_id = str(request.args.get("session-id"))
     try:
-        scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+        scores = db_session.query(Scores).filter_by(session_id=session_id).first()
     except:
         return make_response("Invalid Session ID or No Information for ID")
 
