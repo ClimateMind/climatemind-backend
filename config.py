@@ -12,6 +12,12 @@ class DevelopmentConfig(BaseConfig):
     DEBUG = True
     TESTING = True
 
+    # Temporary
+    basedir = os.path.abspath(os.path.dirname(__file__))
+    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, "app.db")
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    # End Temporary
+
     try:
         MIND = Mind()
     except (FileNotFoundError, IsADirectoryError, ValueError):
