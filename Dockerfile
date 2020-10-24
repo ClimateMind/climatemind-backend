@@ -21,9 +21,6 @@ RUN ACCEPT_EULA=Y apt-get install mssql-tools
 RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
 RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 
-CMD ["flask db upgrade"]
-
-
 WORKDIR /app
 
 COPY . .
