@@ -1,11 +1,19 @@
 from typing import Type
 
 from knowledge_graph import db
-from knowledge_graph.models import User, Scores
+from knowledge_graph.models import Scores, Sessions, getSession
 
 
 def persist_scores(scores: dict) -> Type[KeyError]:
     try:
+        db_session = getSession()
+
+        s = Sessions()
+        s.session_id = scores["session-id"]
+
+        db_session.add(s)
+        db_session.commit()
+
         s = Scores()
         s.session_id = scores["session-id"]
         s.security = scores["security"]
@@ -19,8 +27,8 @@ def persist_scores(scores: dict) -> Type[KeyError]:
         s.achievement = scores["achievement"]
         s.power = scores["power"]
 
-        db.session.add(s)
-        db.session.commit()
+        db_session.add(s)
+        db_session.commit()
 
     except KeyError:
         return KeyError

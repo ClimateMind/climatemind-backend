@@ -7,7 +7,7 @@ from flask import request, make_response, Response, send_from_directory, jsonify
 from knowledge_graph import app, db
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.score_nodes import get_user_nodes
-from knowledge_graph.models import Scores
+from knowledge_graph.models import Scores, getSession
 
 from collections import Counter
 
@@ -34,6 +34,8 @@ SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
 )
 
 app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
+
+db_session = getSession()
 
 
 @app.route("/swagger/<path:path>")
@@ -170,7 +172,7 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     response = {"sessionId": session_id}
 
-    response = Response(dumps(response))
+    response = jsonify(response)
     return response, 201
 
 
@@ -182,7 +184,7 @@ def get_personal_values():
     except:
         return make_response("Invalid Session ID Format or No ID Provided"), 400
 
-    scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    scores = db_session.query(Scores).filter_by(session_id=session_id).first()
     if scores:
         scores = scores.__dict__
         del scores["_sa_instance_state"]
@@ -202,7 +204,7 @@ def get_personal_values():
             d["valueName"] = top_scores[i]
             d["valueDesc"] = descriptions[i]
             scores_and_descriptions.append(d)
-        return jsonify(scores_and_descriptions)
+        return jsonify(scores_and_descriptions), 200
 
     else:
         return make_response("Invalid Session ID - Internal Server Error"), 400
@@ -219,11 +221,11 @@ def get_actions():
     except:
         return make_response("Invalid JSON"), 400
     recommended_nodes = get_user_nodes(scores)
-    response = Response(dumps(recommended_nodes))
+    response = jsonify(recommended_nodes)
     return response, 200
 
 
-@app.route("/feed", methods=["POST"])
+@app.route("/feed", methods=["GET"])
 def get_feed():
     """The front-end needs to request personalized climate change effects that are most
     relevant to a user to display in the user's feed.
@@ -231,12 +233,12 @@ def get_feed():
     """
     session_id = str(request.args.get("session-id"))
     try:
-        scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+        scores = db_session.query(Scores).filter_by(session_id=session_id).first()
     except:
         return make_response("Invalid Session ID or No Information for ID")
 
     scores = scores.__dict__
     del scores["_sa_instance_state"]
     recommended_nodes = get_user_nodes(scores)
-    response = Response(dumps(recommended_nodes))
-    return response, 200
+    climate_effects = {"climateEffects": recommended_nodes}
+    return jsonify(climate_effects), 200
