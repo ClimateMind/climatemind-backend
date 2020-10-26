@@ -1,20 +1,18 @@
-from flask_swagger_ui import get_swaggerui_blueprint
-from json import dumps, load, loads
-from typing import Tuple
-
-from flask import request, make_response, Response, send_from_directory, jsonify
-
-from knowledge_graph import app, db
-from knowledge_graph.persist_scores import persist_scores
-from knowledge_graph.score_nodes import get_user_nodes
-from knowledge_graph.models import Scores
+import uuid
+from json import dumps, load
 
 from apispec import APISpec
 from apispec.ext.marshmallow import MarshmallowPlugin
 from apispec_webframeworks.flask import FlaskPlugin
-from collections import Counter
+from flask import request, make_response, Response, send_from_directory, jsonify
+from flask_swagger_ui import get_swaggerui_blueprint
+from flask.ext.autodoc import Autodoc
+from typing import Tuple
 
-import uuid
+from knowledge_graph import app, db, auto
+from knowledge_graph.models import Scores
+from knowledge_graph.persist_scores import persist_scores
+from knowledge_graph.score_nodes import get_user_nodes
 
 value_id_map = {
     1: "conformity",
@@ -40,6 +38,7 @@ app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
 
 
 @app.route("/swagger/<path:path>")
+@auto.doc()
 def send_file(path):
     """
     Sends swagger spec.
@@ -60,37 +59,16 @@ spec = APISpec(
 
 
 @app.route("/", methods=["GET"])
+@auto.doc()
 def home() -> Tuple[str, int]:
     return "<h1>API for climatemind ontology</h1>", 200
 
 
 @app.route("/ontology", methods=["GET"])
+@auto.doc()
 def query() -> Tuple[Response, int]:
     """
-    Gets the ontology.
-    ---
-    get:
-      description: Resource for accessing the contents of the ontology via queries.
-      parameters:
-        - name: query
-          in: query
-          required: false
-          style: form
-          explode: true
-          schema:
-            type: string
-          example: coal%20mining
-      responses:
-        "200":
-          description: Successful query.
-        "400":
-          description: Query keyword was not found in the ontology.
-          content:
-            text/html; charset=utf-8:
-              schema:
-                type: string
-              examples: {}
-    :return:
+    description: Resource for accessing the contents of the ontology via queries.
     """
     searchQueries = request.args.getlist("query")
 
@@ -113,102 +91,11 @@ def query() -> Tuple[Response, int]:
 
 
 @app.route("/questions", methods=["GET"])
+@auto.doc()
 def get_questions() -> Tuple[Response, int]:
     """
-    Get list of questions
-    ---
-    get:
-      description:
-        Returns the list of available questions that can be presented to
-        the user.
-      responses:
-        "200":
-          description: Successful get_questions response.
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/inline_response_200"
-              examples:
-                "0":
-                  value:
-                    '{"SetOne": [{"id": 1, "value": "conformity", "question":
-                    "They believe they should always show respect to their parents
-                    and to older people. It is important to them to be obedient."},
-                    {"id": 2, "value": "tradition", "question": "Religious belief
-                    or traditions are important to them. They try hard to do what
-                    their religion or family traditions require."}, {"id": 3, "value":
-                    "benevolence", "question": "It''s very important to them to help
-                    the people around them. They want to care for the well-being of
-                    those around them."}, {"id": 4, "value": "universalism", "question":
-                    "They think it is important that every person in the world be
-                    treated equally. They believe everyone should have equal opportunities
-                    in life."}, {"id": 5, "value": "self-direction", "question": "They
-                    think it''s important to be interested in things. They like to
-                    be curious and to try to understand all sorts of things."}, {"id":
-                    6, "value": "stimulation", "question": "They like to take risks.
-                    They are always looking for adventures."}, {"id": 7, "value":
-                    "hedonism", "question": "They seek every chance they can to have
-                    fun. It is important to them to do things that give them pleasure."},
-                    {"id": 8, "value": "achievement", "question": "Being very successful
-                    is important to them. They like to impress other people."}, {"id":
-                    9, "value": "power", "question": "It is important to them to be
-                    in charge and tell others what to do. They want people to do what
-                    they say."}, {"id": 10, "value": "security", "question": "It is
-                    important to them that things be organized and clean. They really
-                    do not like things to be a mess."}], "SetTwo": [{"id": 1, "value":
-                    "conformity", "question": "It is important to they to always behave
-                    properly. They want to avoid doing anything people would say is
-                    wrong."}, {"id": 2, "value": "tradition", "question": "They think
-                    it is best to do things in traditional ways. It is important to
-                    they to keep up the customs they have learned."}, {"id": 3, "value":
-                    "benevolence", "question": "It is important to them to respond
-                    to the needs of others. They try to support those they know."},
-                    {"id": 4, "value": "universalism", "question": "They believe all
-                    the worlds'' people should live in harmony. Promoting peace among
-                    all groups in the world is important to them."}, {"id": 5, "value":
-                    "self-direction", "question": "Thinking up new ideas and being
-                    creative is important to them. They like to do things in their
-                    own original way."}, {"id": 6, "value": "stimulation", "question":
-                    "They think it is important to do lots of different things in
-                    life. they always look for new things to try."}, {"id": 7, "value":
-                    "hedonism", "question": "They really want to enjoy life. Having
-                    a good time is very important to them."}, {"id": 8, "value": "achievement",
-                    "question": "Getting ahead in life is important to them. They
-                    strive to do better than others."}, {"id": 9, "value": "power",
-                    "question": "They always want to be the one who makes the decisions.
-                    They like to be the leader."}, {"id": 10, "value": "security",
-                    "question": "Having a stable government is important to them.
-                    They are concerned that the social order be protected."}], "Answers":
-                    [
-                        {
-                            "id": 1,
-                            "text": "Not Like Me At All"
-                        },
-                        {
-                            "id": 2,
-                            "text": "Not Like Me"
-                        },
-                        {
-                            "id": 3,
-                            "text": "Little Like Me"
-                        },
-                        {
-                            "id": 4,
-                            "text": "Somewhat Like Me"
-                        },
-                        {
-                            "id": 5,
-                            "text": "Like Me"
-                        },
-                        {
-                            "id": 6,
-                            "text": "Very Much Like Me"
-                        }
-
-                    , "Directions": "Here we briefly describe different people.
-                    Please read each description and think about how much that person
-                    is or is not like you."}'
-    :return:
+    Returns the list of available questions that can be presented to
+    the user.
     """
     try:
         with open("schwartz_questions.json") as json_file:
@@ -223,167 +110,12 @@ def get_questions() -> Tuple[Response, int]:
 
 
 @app.route("/scores", methods=["POST"])
+@auto.doc()
 def user_scores() -> Tuple[Response, int]:
     """
-    Get info on our server
-    ---
-    post:
-      description: |-
-        Users want to be able to get their score results after submitting the survey.
-        The user can answer 10 or 20 questions. If they answer 20, the scores are averaged between the 10 additional and 10 original questions to get 10 corresponding value scores.
-        Then to get a centered score for each value, each score value is subtracted from the overall average of all 10 or 20 questions. This score is returned in the response.
-      requestBody:
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/body"
-            examples:
-              "0":
-                value:
-                  {
-                    "SetOne":
-                      [
-                        {
-                          "id": 1,
-                          "value": "conformity",
-                          "question": "They believe they should always show respect to their parents and to older people. It is important to them to be obedient.",
-                        },
-                        {
-                          "id": 2,
-                          "value": "tradition",
-                          "question": "Religious belief or traditions are important to them. They try hard to do what their religion or family traditions require.",
-                        },
-                        {
-                          "id": 3,
-                          "value": "benevolence",
-                          "question": "It's very important to them to help the people around them. They want to care for the well-being of those around them.",
-                        },
-                        {
-                          "id": 4,
-                          "value": "universalism",
-                          "question": "They think it is important that every person in the world be treated equally. They believe everyone should have equal opportunities in life.",
-                        },
-                        {
-                          "id": 5,
-                          "value": "self-direction",
-                          "question": "They think it's important to be interested in things. They like to be curious and to try to understand all sorts of things.",
-                        },
-                        {
-                          "id": 6,
-                          "value": "stimulation",
-                          "question": "They like to take risks. They are always looking for adventures.",
-                        },
-                        {
-                          "id": 7,
-                          "value": "hedonism",
-                          "question": "They seek every chance they can to have fun. It is important to them to do things that give them pleasure.",
-                        },
-                        {
-                          "id": 8,
-                          "value": "achievement",
-                          "question": "Being very successful is important to them. They like to impress other people.",
-                        },
-                        {
-                          "id": 9,
-                          "value": "power",
-                          "question": "It is important to them to be in charge and tell others what to do. They want people to do what they say.",
-                        },
-                        {
-                          "id": 10,
-                          "value": "security",
-                          "question": "It is important to them that things be organized and clean. They really do not like things to be a mess.",
-                        },
-                      ],
-                    "SetTwo":
-                      [
-                        {
-                          "id": 1,
-                          "value": "conformity",
-                          "question": "It is important to they to always behave properly. They want to avoid doing anything people would say is wrong.",
-                        },
-                        {
-                          "id": 2,
-                          "value": "tradition",
-                          "question": "They think it is best to do things in traditional ways. It is important to they to keep up the customs they have learned.",
-                        },
-                        {
-                          "id": 3,
-                          "value": "benevolence",
-                          "question": "It is important to them to respond to the needs of others. They try to support those they know.",
-                        },
-                        {
-                          "id": 4,
-                          "value": "universalism",
-                          "question": "They believe all the worlds' people should live in harmony. Promoting peace among all groups in the world is important to them.",
-                        },
-                        {
-                          "id": 5,
-                          "value": "self-direction",
-                          "question": "Thinking up new ideas and being creative is important to them. They like to do things in their own original way.",
-                        },
-                        {
-                          "id": 6,
-                          "value": "stimulation",
-                          "question": "They think it is important to do lots of different things in life. they always look for new things to try.",
-                        },
-                        {
-                          "id": 7,
-                          "value": "hedonism",
-                          "question": "They really want to enjoy life. Having a good time is very important to them.",
-                        },
-                        {
-                          "id": 8,
-                          "value": "achievement",
-                          "question": "Getting ahead in life is important to them. They strive to do better than others.",
-                        },
-                        {
-                          "id": 9,
-                          "value": "power",
-                          "question": "They always want to be the one who makes the decisions. They like to be the leader.",
-                        },
-                        {
-                          "id": 10,
-                          "value": "security",
-                          "question": "Having a stable government is important to them. They are concerned that the social order be protected.",
-                        },
-                      ],
-                    "Answers": [
-                        {
-                            "id": 1,
-                            "text": "Not Like Me At All"
-                        },
-                        {
-                            "id": 2,
-                            "text": "Not Like Me"
-                        },
-                        {
-                            "id": 3,
-                            "text": "Little Like Me"
-                        },
-                        {
-                            "id": 4,
-                            "text": "Somewhat Like Me"
-                        },
-                        {
-                            "id": 5,
-                            "text": "Like Me"
-                        },
-                        {
-                            "id": 6,
-                            "text": "Very Much Like Me"
-                        }
-                    ],
-                    "Directions": "Here we briefly describe different people. Please read each description and think about how much that person is or is not like you.",
-                  }
-      responses:
-        "200":
-          description: Successful get_user_scores response.
-          content:
-            text/html; charset=utf-8:
-              schema:
-                type: string
-              examples: {}
-    :return:
+    Users want to be able to get their score results after submitting the survey.
+    The user can answer 10 or 20 questions. If they answer 20, the scores are averaged between the 10 additional and 10 original questions to get 10 corresponding value scores.
+    Then to get a centered score for each value, each score value is subtracted from the overall average of all 10 or 20 questions. This score is returned in the response. on our server
     """
     if request.method == "POST":
         return receive_user_scores()
@@ -454,7 +186,7 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     for value, score in value_scores.items():
         centered_score = (
-            score - overall_avg + POSITIVITY_CONSTANT
+                score - overall_avg + POSITIVITY_CONSTANT
         )  # To make non-negative
 
         value_scores[value] = centered_score
@@ -473,13 +205,10 @@ def receive_user_scores() -> Tuple[Response, int]:
 
 
 @app.route("/personal_values", methods=["GET"])
+@auto.doc()
 def get_personal_values():
     """
-    Given a session-id, this returns the top three personal values for a user
-    ---
-    get:
-      description:
-        Returns the top 3 personal values of a user given a session ID.
+    Returns the top 3 personal values of a user given a session ID.
     """
     try:
         session_id = str(request.args.get("session-id"))
@@ -514,15 +243,11 @@ def get_personal_values():
 
 
 @app.route("/get_actions", methods=["POST"])
+@auto.doc()
 def get_actions():
     """
     Temporary test function to take a JSON full of user scores and calculate the
     best nodes to return to a user. Will be deprecated and replaced by /feed.
-    ---
-      get:
-      description:
-          Temporary test function to take a JSON full of user scores and calculate the
-            best nodes to return to a user. Will be deprecated and replaced by /feed.
     """
     try:
         scores = request.json
@@ -536,13 +261,9 @@ def get_actions():
 
 @app.route("/feed", methods=["GET"])
 def get_feed():
-    """The front-end needs to request personalized climate change effects that are most
+    """
+    The front-end needs to request personalized climate change effects that are most
     relevant to a user to display in the user's feed.
-    ---
-    get:
-      description:
-        The front-end needs to request personalized climate change effects that are most
-        relevant to a user to display in the user's feed.
     """
     session_id = str(request.args.get("session-id"))
     try:
@@ -558,15 +279,6 @@ def get_feed():
     return jsonify(climate_effects), 200
 
 
-# add your
-with app.test_request_context():
-    spec.path(view=get_personal_values)
-    spec.path(view=user_scores)
-    spec.path(view=get_questions)
-    spec.path(view=query)
-    spec.path(view=get_feed)
-
-
-@app.route("/spec")
-def get_apispec():
-    return jsonify(spec.to_dict())
+@app.route('/documentation')
+def documentation():
+    return auto.html()
