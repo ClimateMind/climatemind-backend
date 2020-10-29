@@ -186,7 +186,7 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     for value, score in value_scores.items():
         centered_score = (
-                score - overall_avg + POSITIVITY_CONSTANT
+            score - overall_avg + POSITIVITY_CONSTANT
         )  # To make non-negative
 
         value_scores[value] = centered_score
@@ -279,6 +279,6 @@ def get_feed():
     return jsonify(climate_effects), 200
 
 
-@app.route('/documentation')
+@app.route("/documentation")
 def documentation():
     return auto.html()
