@@ -34,8 +34,8 @@ import urllib.parse
 # End Azure Connection
 
 # Temporary local DB
-# engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"], echo=True)
-# Base = declarative_base(engine)
+engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"], echo=True)
+Base = declarative_base(engine)
 
 # End temporary local DB
 
