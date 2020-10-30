@@ -13,8 +13,12 @@ class DevelopmentConfig(BaseConfig):
     TESTING = True
 
     # Temporary
-    basedir = os.path.abspath(os.path.dirname(__file__))
-    SQLALCHEMY_DATABASE_URI = "sqlite:///" + os.path.join(basedir, "app.db")
+    # basedir = os.path.abspath(os.path.dirname(__file__))
+    # SQLALCHEMY_DATABASE_URI = #"sqlite:///" + os.path.join(basedir, "app.db")
+    # SQLALCHEMY_TRACK_MODIFICATIONS = False
+    DATABASE_PARAMS = os.environ["DATABASE_PARAMS"]
+    SQLALCHEMY_DATABASE_URI = "mssql+pyodbc:///?odbc_connect=%s" % DATABASE_PARAMS
+    SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     # End Temporary
 
