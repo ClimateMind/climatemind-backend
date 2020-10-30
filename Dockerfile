@@ -36,4 +36,4 @@ ENTRYPOINT [ "python" ]
 RUN chmod u+x ./entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
 
-#CMD [ "climatemind.py" ] #old entrypoint script
+#CMD [ "climatemind.py" ] #old entrypoint script.
