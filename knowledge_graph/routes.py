@@ -186,16 +186,17 @@ def get_personal_values():
     if scores:
         scores = scores.__dict__
         personal_values_categories = [
-                        "security",
-                        "conformity",
-                        "benevolence",
-                        "tradition",
-                        "universalism",
-                        "self_direction",
-                        "stimulation",
-                        "hedonism",
-                        "achievement",
-                        "power"]
+            "security",
+            "conformity",
+            "benevolence",
+            "tradition",
+            "universalism",
+            "self_direction",
+            "stimulation",
+            "hedonism",
+            "achievement",
+            "power",
+        ]
         sorted_scores = {key: scores[key] for key in personal_values_categories}
         # del scores["_sa_instance_state"]
         # del scores["session_id"]
