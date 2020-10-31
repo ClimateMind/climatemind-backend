@@ -187,8 +187,10 @@ def get_personal_values():
         scores = scores.__dict__
         del scores["_sa_instance_state"]
         del scores["session_id"]
+        del scores["user_id"]
 
         top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
+        print("Top Scores:", top_scores)
         try:
             with open("value_descriptions.json", "r") as f:
                 value_descriptions = load(f)
@@ -196,7 +198,6 @@ def get_personal_values():
             return make_response("Value Descriptions File Not Found"), 400
         descriptions = [value_descriptions[score] for score in top_scores]
 
-        # print(top_scores)
         scores_and_descriptions = []
         for i in range(len(top_scores)):
             scores_and_descriptions.append(descriptions[i])
