@@ -188,9 +188,10 @@ def get_personal_values():
         del scores["_sa_instance_state"]
         del scores["session_id"]
         del scores["user_id"]
+        del scores["scores_id"]
 
         top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
-        print("Top Scores:", top_scores)
+
         try:
             with open("value_descriptions.json", "r") as f:
                 value_descriptions = load(f)
