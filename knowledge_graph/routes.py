@@ -191,7 +191,7 @@ def get_personal_values():
                         "benevolence",
                         "tradition",
                         "universalism",
-                        "self-direction",
+                        "self_direction",
                         "stimulation",
                         "hedonism",
                         "achievement",
