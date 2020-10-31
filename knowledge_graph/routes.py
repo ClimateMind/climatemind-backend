@@ -7,7 +7,7 @@ from flask import request, make_response, Response, send_from_directory, jsonify
 from knowledge_graph import app, db
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.score_nodes import get_user_nodes
-from knowledge_graph.models import Scores, getSession
+from knowledge_graph.models import Scores
 
 from collections import Counter
 
@@ -34,8 +34,6 @@ SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
 )
 
 app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
-
-db_session = getSession()
 
 
 @app.route("/swagger/<path:path>")
@@ -184,13 +182,16 @@ def get_personal_values():
     except:
         return make_response("Invalid Session ID Format or No ID Provided"), 400
 
-    scores = db_session.query(Scores).filter_by(session_id=session_id).first()
+    scores = Scores.query.filter_by(session_id=session_id).first()
     if scores:
         scores = scores.__dict__
         del scores["_sa_instance_state"]
         del scores["session_id"]
+        del scores["user_id"]
+        del scores["scores_id"]
 
         top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
+
         try:
             with open("value_descriptions.json", "r") as f:
                 value_descriptions = load(f)
@@ -200,11 +201,9 @@ def get_personal_values():
 
         scores_and_descriptions = []
         for i in range(len(top_scores)):
-            d = {}
-            d["valueName"] = top_scores[i]
-            d["valueDesc"] = descriptions[i]
-            scores_and_descriptions.append(d)
-        return jsonify(scores_and_descriptions), 200
+            scores_and_descriptions.append(descriptions[i])
+        response = {"personalValues": scores_and_descriptions}
+        return jsonify(response), 200
 
     else:
         return make_response("Invalid Session ID - Internal Server Error"), 400
@@ -233,7 +232,7 @@ def get_feed():
     """
     session_id = str(request.args.get("session-id"))
     try:
-        scores = db_session.query(Scores).filter_by(session_id=session_id).first()
+        scores = Scores.query.filter_by(session_id=session_id).first()
     except:
         return make_response("Invalid Session ID or No Information for ID")
 
