@@ -237,8 +237,7 @@ def get_feed():
     """
     session_id = str(request.args.get("session-id"))
     try:
-        scores = db.session.query(Scores).filter_by(
-            session_id=session_id).first()
+        scores = db.session.query(Scores).filter_by(session_id=session_id).first()
     # TODO: catch exceptions properly here
     except Exception:
         return make_response("Invalid Session ID or No Information for ID")
