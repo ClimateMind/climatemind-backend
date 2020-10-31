@@ -250,6 +250,7 @@ def get_actions():
 
 
 @app.route("/feed", methods=["GET"])
+@auto.doc()
 def get_feed():
     """
     The front-end needs to request personalized climate change effects that are most
