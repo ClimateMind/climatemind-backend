@@ -41,11 +41,19 @@ def simple_scoring(G, user_scores):
                 desc = G.nodes[node]["schema_shortDescription"]
             except:
                 desc = "No short desc available at present"
+
+            try:
+                imageUrl = G.nodes[node]["properties"]["schema_image"][0]
+            except:
+                # Default image url if image is added
+                imageUrl = "https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"
+
             d = {
                 "effectId": effect_id,
                 "effectTitle": G.nodes[node]["label"],
                 "effectDescription": desc,
                 "effectScore": score,
+                "imageUrl": imageUrl,
             }
             climate_effects.append(d)
 
