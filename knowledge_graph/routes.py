@@ -24,28 +24,6 @@ value_id_map = {
     10: "security",
 }
 
-# Swagger Stuff
-SWAGGER_URL = "/swagger"
-APP_URL = "/static/openapi.yaml"
-SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
-    SWAGGER_URL, APP_URL, config={"app_name": "Climage Mind Backend"}
-)
-
-app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
-
-
-@app.route("/swagger/<path:path>")
-@auto.doc()
-def send_file(path):
-    """
-    Sends swagger spec.
-    ---
-    """
-    return send_from_directory("/swagger", path)
-
-
-# End Swagger Stuff
-
 
 @app.route("/", methods=["GET"])
 @auto.doc()
@@ -259,7 +237,8 @@ def get_feed():
     """
     session_id = str(request.args.get("session-id"))
     try:
-        scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+        scores = db.session.query(Scores).filter_by(
+            session_id=session_id).first()
     # TODO: catch exceptions properly here
     except Exception:
         return make_response("Invalid Session ID or No Information for ID")
