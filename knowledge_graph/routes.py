@@ -196,7 +196,7 @@ def get_personal_values():
                         "hedonism",
                         "achievement",
                         "power"]
-        sorted_scores[personal_values_categories] = scores[personal_values_categories]
+        sorted_scores = {key: scores[key] for key in personal_values_categories}
         # del scores["_sa_instance_state"]
         # del scores["session_id"]
         # del scores["user_id"]
