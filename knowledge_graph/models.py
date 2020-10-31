@@ -10,7 +10,6 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 
-
 """ Contains all of the table structures for the database. When these are updated
     two commands need to be run in terminal/console.
 
@@ -34,8 +33,8 @@ from sqlalchemy.orm import sessionmaker
 # End Azure Connection
 
 # Temporary local DB
-#engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"], echo=True)
-#Base = declarative_base(engine)
+# engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"], echo=True)
+# Base = declarative_base(engine)
 
 # End temporary local DB
 
