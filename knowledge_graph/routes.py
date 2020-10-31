@@ -196,6 +196,8 @@ def get_personal_values():
                         "hedonism",
                         "achievement",
                         "power"]
+        sorted_scores={}
+        import pdb; pdb.set_trace()
         sorted_scores[personal_values_categories] = scores[personal_values_categories]
         # del scores["_sa_instance_state"]
         # del scores["session_id"]
