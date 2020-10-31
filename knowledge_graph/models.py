@@ -8,7 +8,7 @@ from knowledge_graph import login
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-import urllib.parse
+
 
 
 """ Contains all of the table structures for the database. When these are updated
@@ -34,8 +34,8 @@ import urllib.parse
 # End Azure Connection
 
 # Temporary local DB
-engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"], echo=True)
-Base = declarative_base(engine)
+#engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"], echo=True)
+#Base = declarative_base(engine)
 
 # End temporary local DB
 
@@ -177,23 +177,23 @@ class Sessions(db.Model):
     scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
 
 
-def loadSession():
-    """Initializes a database session and connects with Azure.
+# def loadSession():
+#     """Initializes a database session and connects with Azure.
 
-    THIS IS NOT THE SESSIONS TABLE.
-    """
-    metadata = Base.metadata
-    Session = sessionmaker(bind=engine)
-    session = Session()
-    return session
-
-
-session = loadSession()
+#     THIS IS NOT THE SESSIONS TABLE.
+#     """
+#     metadata = db.Model.metadata
+#     Session = sessionmaker(bind=engine)
+#     session = Session()
+#     return session
 
 
-def getSession():
-    """ This provides other files access to the database session."""
-    return session
+# session = loadSession()
+
+
+# def getSession():
+#     """ This provides other files access to the database session."""
+#     return session
 
 
 # Temporary Local DB end

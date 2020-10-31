@@ -1,34 +1,34 @@
 from typing import Type
 
 from knowledge_graph import db
-from knowledge_graph.models import Scores, Sessions, getSession
+from knowledge_graph.models import Scores, Sessions
 
 
 def persist_scores(scores: dict) -> Type[KeyError]:
     try:
-        db_session = getSession()
+        #db.session = getSession()
 
-        s = Sessions()
-        s.session_id = scores["session-id"]
+        userSession = Sessions()
+        userSession.session_id = scores["session-id"]
 
-        db_session.add(s)
-        db_session.commit()
+        db.session.add(userSession)
+        #db.session.commit()
 
-        s = Scores()
-        s.session_id = scores["session-id"]
-        s.security = scores["security"]
-        s.conformity = scores["conformity"]
-        s.benevolence = scores["benevolence"]
-        s.tradition = scores["tradition"]
-        s.universalism = scores["universalism"]
-        s.self_direction = scores["self-direction"]
-        s.stimulation = scores["stimulation"]
-        s.hedonism = scores["hedonism"]
-        s.achievement = scores["achievement"]
-        s.power = scores["power"]
+        userScores = Scores()
+        userScores.session_id = scores["session-id"]
+        userScores.security = scores["security"]
+        userScores.conformity = scores["conformity"]
+        userScores.benevolence = scores["benevolence"]
+        userScores.tradition = scores["tradition"]
+        userScores.universalism = scores["universalism"]
+        userScores.self_direction = scores["self-direction"]
+        userScores.stimulation = scores["stimulation"]
+        userScores.hedonism = scores["hedonism"]
+        userScores.achievement = scores["achievement"]
+        userScores.power = scores["power"]
 
-        db_session.add(s)
-        db_session.commit()
+        db.session.add(userScores)
+        db.session.commit()
 
     except KeyError:
         return KeyError
