@@ -6,13 +6,13 @@ from knowledge_graph.models import Scores, Sessions
 
 def persist_scores(scores: dict) -> Type[KeyError]:
     try:
-        #db.session = getSession()
+        # db.session = getSession()
 
         userSession = Sessions()
         userSession.session_id = scores["session-id"]
 
         db.session.add(userSession)
-        #db.session.commit()
+        # db.session.commit()
 
         userScores = Scores()
         userScores.session_id = scores["session-id"]

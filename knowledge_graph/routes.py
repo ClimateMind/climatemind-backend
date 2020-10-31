@@ -196,7 +196,7 @@ def get_personal_values():
             return make_response("Value Descriptions File Not Found"), 400
         descriptions = [value_descriptions[score] for score in top_scores]
 
-        #print(top_scores)
+        # print(top_scores)
         scores_and_descriptions = []
         for i in range(len(top_scores)):
             scores_and_descriptions.append(descriptions[i])
