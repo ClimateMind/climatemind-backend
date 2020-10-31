@@ -1,24 +1,15 @@
 import uuid
 from json import dumps, load
 
-from apispec import APISpec
-from apispec.ext.marshmallow import MarshmallowPlugin
-from apispec_webframeworks.flask import FlaskPlugin
-from flask import request, make_response, Response, send_from_directory, jsonify
+from flask import make_response, jsonify
+from flask import request, Response, send_from_directory
 from flask_swagger_ui import get_swaggerui_blueprint
-from flask.ext.autodoc import Autodoc
 from typing import Tuple
 
 from knowledge_graph import app, db, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.score_nodes import get_user_nodes
-
-from knowledge_graph.models import Scores, getSession
-
-from collections import Counter
-
-import uuid
 
 value_id_map = {
     1: "conformity",
@@ -42,8 +33,6 @@ SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
 
 app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
 
-db_session = getSession()
-
 
 @app.route("/swagger/<path:path>")
 @auto.doc()
@@ -56,14 +45,6 @@ def send_file(path):
 
 
 # End Swagger Stuff
-
-
-spec = APISpec(
-    title="ClimateMind API",
-    version="1.0.0",
-    openapi_version="3.0.2",
-    plugins=[FlaskPlugin(), MarshmallowPlugin()],
-)
 
 
 @app.route("/", methods=["GET"])
@@ -224,13 +205,16 @@ def get_personal_values():
     except Exception:
         return make_response("Invalid Session ID Format or No ID Provided"), 400
 
-    scores = db_session.query(Scores).filter_by(session_id=session_id).first()
+    scores = Scores.query.filter_by(session_id=session_id).first()
     if scores:
         scores = scores.__dict__
         del scores["_sa_instance_state"]
         del scores["session_id"]
+        del scores["user_id"]
+        del scores["scores_id"]
 
         top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
+
         try:
             with open("value_descriptions.json", "r") as f:
                 value_descriptions = load(f)
@@ -240,11 +224,9 @@ def get_personal_values():
 
         scores_and_descriptions = []
         for i in range(len(top_scores)):
-            d = {}
-            d["valueName"] = top_scores[i]
-            d["valueDesc"] = descriptions[i]
-            scores_and_descriptions.append(d)
-        return jsonify(scores_and_descriptions), 200
+            scores_and_descriptions.append(descriptions[i])
+        response = {"personalValues": scores_and_descriptions}
+        return jsonify(response), 200
 
     else:
         return make_response("Invalid Session ID - Internal Server Error"), 400
@@ -272,6 +254,7 @@ def get_feed():
     """
     The front-end needs to request personalized climate change effects that are most
     relevant to a user to display in the user's feed.
+
     """
     session_id = str(request.args.get("session-id"))
     try:

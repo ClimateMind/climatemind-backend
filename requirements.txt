@@ -25,7 +25,7 @@ Flask-Cors==3.0.9
 Flask-Login==0.5.0
 Flask-Migrate==2.5.3
 Flask-SQLAlchemy==2.4.4
-Flask-Autodoc==0.1.2
+Flask-Selfdoc==1.2.3
 future==0.18.2
 graphviz==0.14.1
 idna==2.10
