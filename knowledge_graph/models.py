@@ -176,6 +176,9 @@ class Sessions(db.Model):
     scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
 
 
+# create tables in database if they don't exist. Do nothing if they do exist.
+db.create_all()
+
 # def loadSession():
 #     """Initializes a database session and connects with Azure.
 
