@@ -186,12 +186,25 @@ def get_personal_values():
     scores = Scores.query.filter_by(session_id=session_id).first()
     if scores:
         scores = scores.__dict__
-        del scores["_sa_instance_state"]
-        del scores["session_id"]
-        del scores["user_id"]
-        del scores["scores_id"]
+        personal_values_categories = [
+            "security",
+            "conformity",
+            "benevolence",
+            "tradition",
+            "universalism",
+            "self_direction",
+            "stimulation",
+            "hedonism",
+            "achievement",
+            "power",
+        ]
+        sorted_scores = {key: scores[key] for key in personal_values_categories}
+        # del scores["_sa_instance_state"]
+        # del scores["session_id"]
+        # del scores["user_id"]
+        # del scores["scores_id"]
 
-        top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
+        top_scores = sorted(sorted_scores, key=sorted_scores.get, reverse=True)[:3]
 
         try:
             with open("value_descriptions.json", "r") as f:
