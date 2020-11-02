@@ -15,9 +15,12 @@ services:
     tty: true
   db:
     image: "mcr.microsoft.com/mssql/server:2017-latest"
-    command: /bin/bash ./entrypoint_db.sh
+    command: bash -c " /db-init.sh & /opt/mssql/bin/sqlservr"
     ports:
       - "1433:1433"
     environment:
       SA_PASSWORD: "Cl1mat3m1nd!"
       ACCEPT_EULA: "Y"
+    volumes:
+      - ./entrypoint_db.sh:/entrypoint_db.sh
+      - ./db-init.sh:/db-init.sh
