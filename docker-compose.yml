@@ -15,6 +15,7 @@ services:
     tty: true
   db:
     image: "mcr.microsoft.com/mssql/server:2017-latest"
+    command: /bin/bash ./entrypoint_db.sh
     ports:
       - "1433:1433"
     environment:
