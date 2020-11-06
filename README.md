@@ -104,6 +104,11 @@ Follow these instructions to process a new version of a Climate Mind ontology OW
         docker exec -it $CLIMATEMIND_ID python process_new_ontology_and_visualize.py
     ```
 
+## Database
+[Flask migrate](https://flask-migrate.readthedocs.io/en/latest/) is used to handle database structure migrations. 
+Whenever the data model changes, you need to manually run `flask db migrate -m "Name of migration"`
+This will generate a file under `/migrations/version` which then should be checked into GIT. Whenever the API starts up, it calls `flask db upgrade`. This command will automatically apply any new migrations to the database. No manual scripts or post release commands required!
+
 ## Extra details if started the visualization script directly above.
 
 6. After running step 3 OPTION B above, find the URL that appears in the terminal and go to it in your internet browser.
