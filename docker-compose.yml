@@ -13,11 +13,11 @@ services:
       FLASK_APP: "climatemind.py"
     stdin_open: true
     tty: true
+    depends_on:
+      - db
   db:
     image: "mcr.microsoft.com/mssql/server:2017-latest"
     command: bash -c " /db-init.sh & /opt/mssql/bin/sqlservr"
-    ports:
-      - "1433:1433"
     environment:
       SA_PASSWORD: "Cl1mat3m1nd!"
       ACCEPT_EULA: "Y"
