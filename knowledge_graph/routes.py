@@ -1,17 +1,15 @@
+import uuid
+from json import dumps, load
+
+from flask import make_response, jsonify
+from flask import request, Response, send_from_directory
 from flask_swagger_ui import get_swaggerui_blueprint
-from json import dumps, load, loads
 from typing import Tuple
 
-from flask import request, make_response, Response, send_from_directory, jsonify
-
-from knowledge_graph import app, db
+from knowledge_graph import app, db, auto
+from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.score_nodes import get_user_nodes
-from knowledge_graph.models import Scores
-
-from collections import Counter
-
-import uuid
 
 value_id_map = {
     1: "conformity",
@@ -26,31 +24,19 @@ value_id_map = {
     10: "security",
 }
 
-# Swagger Stuff
-SWAGGER_URL = "/swagger"
-APP_URL = "/static/openapi.yaml"
-SWAGGER_BLUEPRINT = get_swaggerui_blueprint(
-    SWAGGER_URL, APP_URL, config={"app_name": "Climage Mind Backend"}
-)
-
-app.register_blueprint(SWAGGER_BLUEPRINT, url_prefix=SWAGGER_URL)
-
-
-@app.route("/swagger/<path:path>")
-def send_file(path):
-    return send_from_directory("/swagger", path)
-
-
-# End Swagger Stuff
-
 
 @app.route("/", methods=["GET"])
+@auto.doc()
 def home() -> Tuple[str, int]:
     return "<h1>API for climatemind ontology</h1>", 200
 
 
 @app.route("/ontology", methods=["GET"])
+@auto.doc()
 def query() -> Tuple[Response, int]:
+    """
+    description: Resource for accessing the contents of the ontology via queries.
+    """
     searchQueries = request.args.getlist("query")
 
     searchResults = {}
@@ -72,7 +58,12 @@ def query() -> Tuple[Response, int]:
 
 
 @app.route("/questions", methods=["GET"])
+@auto.doc()
 def get_questions() -> Tuple[Response, int]:
+    """
+    Returns the list of available questions that can be presented to
+    the user.
+    """
     try:
         with open("schwartz_questions.json") as json_file:
             data = load(json_file)
@@ -86,7 +77,13 @@ def get_questions() -> Tuple[Response, int]:
 
 
 @app.route("/scores", methods=["POST"])
+@auto.doc()
 def user_scores() -> Tuple[Response, int]:
+    """
+    Users want to be able to get their score results after submitting the survey.
+    The user can answer 10 or 20 questions. If they answer 20, the scores are averaged between the 10 additional and 10 original questions to get 10 corresponding value scores.
+    Then to get a centered score for each value, each score value is subtracted from the overall average of all 10 or 20 questions. This score is returned in the response. on our server
+    """
     if request.method == "POST":
         return receive_user_scores()
 
@@ -168,27 +165,47 @@ def receive_user_scores() -> Tuple[Response, int]:
     except KeyError:
         return make_response("invalid key"), 400
 
-    response = {"session-id": session_id}
+    response = {"sessionId": session_id}
 
-    response = Response(dumps(response))
+    response = jsonify(response)
     return response, 201
 
 
 @app.route("/personal_values", methods=["GET"])
+@auto.doc()
 def get_personal_values():
-    """Given a session-id, this returns the top three personal values for a user"""
+    """
+    Returns the top 3 personal values of a user given a session ID.
+    """
     try:
         session_id = str(request.args.get("session-id"))
-    except:
+    # TODO: catch exceptions properly here
+    except Exception:
         return make_response("Invalid Session ID Format or No ID Provided"), 400
 
-    scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    scores = Scores.query.filter_by(session_id=session_id).first()
     if scores:
         scores = scores.__dict__
-        del scores["_sa_instance_state"]
-        del scores["session_id"]
+        personal_values_categories = [
+            "security",
+            "conformity",
+            "benevolence",
+            "tradition",
+            "universalism",
+            "self_direction",
+            "stimulation",
+            "hedonism",
+            "achievement",
+            "power",
+        ]
+        sorted_scores = {key: scores[key] for key in personal_values_categories}
+        # del scores["_sa_instance_state"]
+        # del scores["session_id"]
+        # del scores["user_id"]
+        # del scores["scores_id"]
 
-        top_scores = sorted(scores, key=scores.get, reverse=True)[:3]
+        top_scores = sorted(sorted_scores, key=sorted_scores.get, reverse=True)[:3]
+
         try:
             with open("value_descriptions.json", "r") as f:
                 value_descriptions = load(f)
@@ -198,45 +215,53 @@ def get_personal_values():
 
         scores_and_descriptions = []
         for i in range(len(top_scores)):
-            d = {}
-            d["valueName"] = top_scores[i]
-            d["valueDesc"] = descriptions[i]
-            scores_and_descriptions.append(d)
-        return jsonify(scores_and_descriptions)
+            scores_and_descriptions.append(descriptions[i])
+        response = {"personalValues": scores_and_descriptions}
+        return jsonify(response), 200
 
     else:
         return make_response("Invalid Session ID - Internal Server Error"), 400
 
 
 @app.route("/get_actions", methods=["POST"])
+@auto.doc()
 def get_actions():
-    """Temporary test function to take a JSON full of user scores and calculate the
+    """
+    Temporary test function to take a JSON full of user scores and calculate the
     best nodes to return to a user. Will be deprecated and replaced by /feed.
-
     """
     try:
         scores = request.json
-    except:
+    # TODO: catch exceptions properly here
+    except Exception:
         return make_response("Invalid JSON"), 400
     recommended_nodes = get_user_nodes(scores)
-    response = Response(dumps(recommended_nodes))
+    response = jsonify(recommended_nodes)
     return response, 200
 
 
-@app.route("/feed", methods=["POST"])
+@app.route("/feed", methods=["GET"])
+@auto.doc()
 def get_feed():
-    """The front-end needs to request personalized climate change effects that are most
+    """
+    The front-end needs to request personalized climate change effects that are most
     relevant to a user to display in the user's feed.
 
     """
     session_id = str(request.args.get("session-id"))
     try:
         scores = db.session.query(Scores).filter_by(session_id=session_id).first()
-    except:
+    # TODO: catch exceptions properly here
+    except Exception:
         return make_response("Invalid Session ID or No Information for ID")
 
     scores = scores.__dict__
     del scores["_sa_instance_state"]
     recommended_nodes = get_user_nodes(scores)
-    response = Response(dumps(recommended_nodes))
-    return response, 200
+    climate_effects = {"climateEffects": recommended_nodes}
+    return jsonify(climate_effects), 200
+
+
+@app.route("/documentation")
+def documentation():
+    return auto.html()
