@@ -3,7 +3,7 @@ import sys
 from owlready2 import get_ontology
 from typing import List
 
-from knowledge_graph import make_network
+from knowledge_graph import ontology_processing_utils
 
 
 Results = List[str]
@@ -18,7 +18,7 @@ class Mind:
         try:
             onto = get_ontology(self.__ontology_source).load()
             properties = list(onto.properties())
-            [make_network.give_alias(x) for x in properties]
+            [ontology_processing_utils.give_alias(x) for x in properties]
             return onto
 
         except (FileNotFoundError, IsADirectoryError, ValueError):
