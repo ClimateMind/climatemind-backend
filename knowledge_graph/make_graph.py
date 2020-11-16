@@ -7,7 +7,7 @@ import pandas as pd
 import owlready2
 from owlready2 import get_ontology, sync_reasoner
 
-from knowledge_graph.ontology_processing_utils import (
+from ontology_processing_utils import (
     give_alias,
     save_test_ontology_to_json,
     save_graph_to_pickle,
@@ -78,10 +78,32 @@ def add_ontology_data_to_graph_nodes(G, onto):
         annot_properties = [
             thing.label[0].replace(":", "_")
             for thing in list(onto.annotation_properties())
+            if thing.label
         ]
+        
         attributes_dict["properties"] = {
             prop: list(getattr(ontology_node, prop)) for prop in annot_properties
         }
+        
+        data_properties = [
+            thing.label[0].replace(" ", "_")
+            for thing in list(onto.data_properties())
+            if thing.label
+        ]
+        
+        if str(ontology_node.label[0]) == "decrease in GDP":
+            print(ontology_node)
+            for d in data_properties:
+                print(d)
+            print(getattr(ontology_node, "power_resources"))
+        
+        data_props = {
+            prop: list(getattr(ontology_node, prop, "0")) for prop in data_properties
+        }
+        
+        if str(ontology_node.label[0]) == "decrease in GDP":
+            for d in data_props:
+                print(d, data_props[d])
 
         # if there are multiple of the nested classes associated with the node in the ontology, code ensures it doesn't overwrite the other class.
 
@@ -167,7 +189,7 @@ def get_test_ontology(G, valid_test_ont, not_test_ont):
         remove_non_test_nodes(G, node_b, valid_test_ont, not_test_ont)
 
 
-def makeGraph(onto_path, edge_path, output_folder_path):
+def makeGraph(onto_path, edge_path):
     """
     Main function to make networkx graph object from reference ontology and edge list.
 
@@ -180,8 +202,10 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     onto = get_ontology(onto_path).load()
     obj_properties = list(onto.object_properties())
     annot_properties = list(onto.annotation_properties())
-    [give_alias(x) for x in obj_properties]
-    [give_alias(x) for x in annot_properties]
+    data_properties = list(onto.annotation_properties())
+    [give_alias(x) for x in obj_properties if x.label]
+    [give_alias(x) for x in annot_properties if x.label]
+    [give_alias(x) for x in data_properties if x.label]
 
     # run automated reasoning.
     with onto:
@@ -204,7 +228,8 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     add_ontology_data_to_graph_nodes(G, onto)
     to_remove = set_edge_properties(G)
     remove_edge_properties_from_nodes(G, to_remove)
-
+    
+    output_folder_path = "../PUT_NEW_OWL_FILE_IN_HERE"
     save_graph_to_pickle(G, output_folder_path)
 
     valid_test_ont = get_valid_test_ont()

@@ -1,7 +1,7 @@
 import typing
 import owlready2
 from owlready2 import *
-from knowledge_graph.ontology_processing_utils import give_alias
+from ontology_processing_utils import give_alias
 
 
 class Network:
@@ -37,8 +37,10 @@ class Network:
         # Add labels the ontology object in a way that makes them pythonicly accessible through . invocation method.
         obj_props = list(self.ontology.object_properties())
         annot_props = list(self.ontology.annotation_properties())
-        self.obj_properties = [give_alias(x) for x in obj_props]
-        self.annot_properties = [give_alias(x) for x in annot_props]
+        data_props = list(self.ontology.data_properties())
+        self.obj_properties = [give_alias(x) for x in obj_props if x.label]
+        self.annot_properties = [give_alias(x) for x in annot_props if x.label]
+        self.data_properties = [give_alias(x) for x in data_props if x.label]
 
     def add_child_to_result(self, child, parent, edge_type):
         """Adds a node to the results and if needed adds the node's family
