@@ -7,6 +7,8 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
+import os
+import urllib
 
 # this is the Alembic Config object, which provides
 # access to the values within the .ini file in use.
@@ -21,13 +23,24 @@ logger = logging.getLogger("alembic.env")
 # for 'autogenerate' support
 # from myapp import mymodel
 # target_metadata = mymodel.Base.metadata
-from flask import current_app
+
+DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
+SQLALCHEMY_DATABASE_URI = "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(
+    DB_CREDENTIALS
+)
 
 config.set_main_option(
     "sqlalchemy.url",
-    str(current_app.extensions["migrate"].db.engine.url).replace("%", "%%"),
+    SQLALCHEMY_DATABASE_URI.replace("%", "%%"),
 )
+
+from flask import current_app
+
+# config.set_main_option(
+#     'sqlalchemy.url',
+#     str(current_app.extensions['migrate'].db.engine.url).replace('%', '%%'))
 target_metadata = current_app.extensions["migrate"].db.metadata
+
 
 # other values from the config, defined by the needs of env.py,
 # can be acquired:
