@@ -42,6 +42,7 @@ def add_ontology_data_to_graph_nodes(G, onto):
 
     for node in list(G.nodes):
         ontology_node = onto.search_one(label=node)
+        
         class_objects = onto.get_parents_of(ontology_node)
 
         attributes_dict = {}
@@ -91,19 +92,20 @@ def add_ontology_data_to_graph_nodes(G, onto):
             if thing.label
         ]
         
-        if str(ontology_node.label[0]) == "decrease in GDP":
-            print(ontology_node)
-            for d in data_properties:
-                print(d)
-            print(getattr(ontology_node, "power_resources"))
+#         if str(ontology_node.label[0]) == "decrease in GDP":
+#             print(ontology_node)
+#             for d in data_properties:
+#                 print(d)
+#             print(ontology_node.relationships())
+#             print(getattr(ontology_node, "power_resources"))
         
-        data_props = {
+        attributes_dict["data_properties"] = {
             prop: list(getattr(ontology_node, prop, "0")) for prop in data_properties
         }
         
-        if str(ontology_node.label[0]) == "decrease in GDP":
-            for d in data_props:
-                print(d, data_props[d])
+#         if str(ontology_node.label[0]) == "decrease in GDP":
+#             for d in data_props:
+#                 print(d, data_props[d])
 
         # if there are multiple of the nested classes associated with the node in the ontology, code ensures it doesn't overwrite the other class.
 
