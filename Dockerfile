@@ -1,10 +1,9 @@
- FROM python:3.8.5-slim-buster
+FROM python:3.8.5-slim-buster
 
 ENV FLASK_ENV=development
 
 RUN mkdir -p /usr/share/man/man1
 RUN apt-get update
-#RUN apt-get -qy install netcat
 RUN apt-get -y install gcc default-jre graphviz libgraphviz-dev graphviz-dev pkg-config
 RUN apt-get install --reinstall build-essential -y
 
@@ -50,15 +49,11 @@ RUN pip install cython && \
 
 EXPOSE 5000 8050
 
-#ENTRYPOINT [ "python" ]
+RUN ["chmod", "+x", "db-init.sh"]
+
+ENTRYPOINT [ "python" ]
 
 RUN chmod u+x ./entrypoint.sh
-#ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["./entrypoint.sh"]
 
 #CMD [ "climatemind.py" ] #old entrypoint script.
-
-# Copy wait-for-it.sh into our image
-#COPY wait-for-it.sh wait-for-it.sh
-COPY ./wait-for-it.sh /wait-for-it.sh
-# Make it executable, in Linux
-RUN chmod +x wait-for-it.sh

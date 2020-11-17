@@ -15,10 +15,9 @@ services:
     tty: true
     depends_on:
       - db
-    command: bash -c " /wait-for-it.sh db:1433 -t 120 -- sleep 40 && ./entrypoint.sh" # "["/wait-for-it.sh", "db:1433", "-t", "120", "--", "bash", "sleep 30 && ./entrypoint.sh"]
   db:
     image: "mcr.microsoft.com/mssql/server:2017-latest"
-    command: bash -c " /db-init.sh & /opt/mssql/bin/sqlservr --accept-eula" #bash -c " ( /opt/mssql/bin/sqlservr --accept-eula ) | grep -q 'Service Broker manager has started' && /db-init.sh"
+    command: bash -c " /db-init.sh & /opt/mssql/bin/sqlservr"
     environment:
       SA_PASSWORD: "Cl1mat3m1nd!"
       ACCEPT_EULA: "Y"
