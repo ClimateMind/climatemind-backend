@@ -177,6 +177,7 @@ class Sessions(db.Model):
 
 
 # create tables in database if they don't exist. Do nothing if they do exist.
+#engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"])
 db.create_all()
 
 # def loadSession():

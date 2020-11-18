@@ -47,13 +47,11 @@ RUN pip install cython && \
     pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-EXPOSE 5000 8050
+EXPOSE 1433 5000 8050
 
-RUN ["chmod", "+x", "db-init.sh"]
+#RUN ["chmod", "+x", "db-init.sh"]
 
 ENTRYPOINT [ "python" ]
 
 RUN chmod u+x ./entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
-
-#CMD [ "climatemind.py" ] #old entrypoint script.
