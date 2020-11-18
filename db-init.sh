@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 #wait for the SQL Server to come up
 echo "sleeping DB Init script"
 sleep 30

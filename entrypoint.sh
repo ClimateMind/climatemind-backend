@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
-flask db upgrade
+
+echo "sleeping entrypoint"
+sleep 30
+
+#flask db upgrade
 flask run --host=0.0.0.0
