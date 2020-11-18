@@ -109,6 +109,8 @@ def add_ontology_data_to_graph_nodes(G, onto):
 
         # if there are multiple of the nested classes associated with the node in the ontology, code ensures it doesn't overwrite the other class.
 
+        import pdb; pdb.set_trace()
+
         G.add_nodes_from([(node, attributes_dict)])
 
         # the if statement is needed to avoid the Restriction objects
