@@ -52,7 +52,8 @@ def get_non_test_ont():
         "solution to indirect mitigation barrier",
         "solution uncategorized (to do)",
     }
-    
+
+
 def give_alias(property_object):
     label_name = property_object.label[0]
     label_name = label_name.replace("/", "_or_")

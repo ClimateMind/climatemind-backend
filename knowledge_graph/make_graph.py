@@ -40,23 +40,23 @@ def add_ontology_data_to_graph_nodes(G, onto):
     cm_class = onto.search_one(label="climate mind")
     superclasses = list(cm_class.subclasses())
 
-    #get annotation properties for all objects of the ontology (whether node or class)
+    # get annotation properties for all objects of the ontology (whether node or class)
     annot_properties = [
-    thing.label[0].replace(":", "_")
-    for thing in list(onto.annotation_properties())
-    if thing.label
+        thing.label[0].replace(":", "_")
+        for thing in list(onto.annotation_properties())
+        if thing.label
     ]
 
-    #get data properties for all objects of the ontology (whether node or class)
+    # get data properties for all objects of the ontology (whether node or class)
     data_properties = [
-    thing.label[0].replace(" ", "_")
-    for thing in list(onto.data_properties())
-    if thing.label
+        thing.label[0].replace(" ", "_")
+        for thing in list(onto.data_properties())
+        if thing.label
     ]
 
     for node in list(G.nodes):
         ontology_node = onto.search_one(label=node)
-        
+
         class_objects = onto.get_parents_of(ontology_node)
 
         attributes_dict = {}
@@ -90,38 +90,35 @@ def add_ontology_data_to_graph_nodes(G, onto):
                     else:
                         attributes_dict[str(super_class.label[0])] = to_add
 
-        #import pdb; pdb.set_trace()
-        #breakpoint()
-        
+        # import pdb; pdb.set_trace()
+        # breakpoint()
+
         attributes_dict["properties"] = {
             prop: list(getattr(ontology_node, prop)) for prop in annot_properties
         }
-        
-#         if str(ontology_node.label[0]) == "decrease in GDP":
-#             print(ontology_node)
-#             for d in data_properties:
-#                 print(d)
-#             print(ontology_node.relationships())
-#             print(getattr(ontology_node, "power_resources"))
-        
-        #if(data_properties):
+
+        #         if str(ontology_node.label[0]) == "decrease in GDP":
+        #             print(ontology_node)
+        #             for d in data_properties:
+        #                 print(d)
+        #             print(ontology_node.relationships())
+        #             print(getattr(ontology_node, "power_resources"))
+
+        # if(data_properties):
         #    import pdb; pdb.set_trace()
 
         try:
             attributes_dict["data_properties"] = {
-               prop: list(getattr(ontology_node, prop)) for prop in data_properties
+                prop: list(getattr(ontology_node, prop)) for prop in data_properties
             }
-        except: 
-            print("no data_properties attr for "+ontology_node.label[0])
-        
+        except:
+            print("no data_properties attr for " + ontology_node.label[0])
 
-#         if str(ontology_node.label[0]) == "decrease in GDP":
-#             for d in data_props:
-#                 print(d, data_props[d])
+        #         if str(ontology_node.label[0]) == "decrease in GDP":
+        #             for d in data_props:
+        #                 print(d, data_props[d])
 
         # if there are multiple of the nested classes associated with the node in the ontology, code ensures it doesn't overwrite the other class.
-
-
 
         G.add_nodes_from([(node, attributes_dict)])
 
@@ -244,8 +241,8 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     add_ontology_data_to_graph_nodes(G, onto)
     to_remove = set_edge_properties(G)
     remove_edge_properties_from_nodes(G, to_remove)
-    
-    #output_folder_path = "../PUT_NEW_OWL_FILE_IN_HERE/"
+
+    # output_folder_path = "../PUT_NEW_OWL_FILE_IN_HERE/"
     save_graph_to_pickle(G, output_folder_path)
 
     valid_test_ont = get_valid_test_ont()
