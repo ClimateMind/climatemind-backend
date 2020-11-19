@@ -40,6 +40,20 @@ def add_ontology_data_to_graph_nodes(G, onto):
     cm_class = onto.search_one(label="climate mind")
     superclasses = list(cm_class.subclasses())
 
+    #get annotation properties for all objects of the ontology (whether node or class)
+    annot_properties = [
+    thing.label[0].replace(":", "_")
+    for thing in list(onto.annotation_properties())
+    if thing.label
+    ]
+
+    #get data properties for all objects of the ontology (whether node or class)
+    data_properties = [
+    thing.label[0].replace(" ", "_")
+    for thing in list(onto.data_properties())
+    if thing.label
+    ]
+
     for node in list(G.nodes):
         ontology_node = onto.search_one(label=node)
         
@@ -79,21 +93,9 @@ def add_ontology_data_to_graph_nodes(G, onto):
         #import pdb; pdb.set_trace()
         #breakpoint()
         
-        annot_properties = [
-            thing.label[0].replace(":", "_")
-            for thing in list(onto.annotation_properties())
-            if thing.label
-        ]
-        
         attributes_dict["properties"] = {
             prop: list(getattr(ontology_node, prop)) for prop in annot_properties
         }
-        
-        data_properties = [
-            thing.label[0].replace(" ", "_")
-            for thing in list(onto.data_properties())
-            if thing.label
-        ]
         
 #         if str(ontology_node.label[0]) == "decrease in GDP":
 #             print(ontology_node)
@@ -102,12 +104,17 @@ def add_ontology_data_to_graph_nodes(G, onto):
 #             print(ontology_node.relationships())
 #             print(getattr(ontology_node, "power_resources"))
         
-        #attributes_dict["data_properties"] = {
-        #    prop: list(getattr(ontology_node, prop, "0")) for prop in data_properties
-        #}
+        #if(data_properties):
+        #    import pdb; pdb.set_trace()
+
+        try:
+            attributes_dict["data_properties"] = {
+               prop: list(getattr(ontology_node, prop)) for prop in data_properties
+            }
+        except: 
+            print("no data_properties attr for "+ontology_node.label[0])
         
-        if(data_properties):
-            import pdb; pdb.set_trace()
+
 #         if str(ontology_node.label[0]) == "decrease in GDP":
 #             for d in data_props:
 #                 print(d, data_props[d])
