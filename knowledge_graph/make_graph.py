@@ -245,7 +245,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     to_remove = set_edge_properties(G)
     remove_edge_properties_from_nodes(G, to_remove)
     
-    output_folder_path = "../PUT_NEW_OWL_FILE_IN_HERE"
+    #output_folder_path = "../PUT_NEW_OWL_FILE_IN_HERE/"
     save_graph_to_pickle(G, output_folder_path)
 
     valid_test_ont = get_valid_test_ont()
