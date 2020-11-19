@@ -76,6 +76,9 @@ def add_ontology_data_to_graph_nodes(G, onto):
                     else:
                         attributes_dict[str(super_class.label[0])] = to_add
 
+        #import pdb; pdb.set_trace()
+        breakpoint()
+        
         annot_properties = [
             thing.label[0].replace(":", "_")
             for thing in list(onto.annotation_properties())
@@ -109,7 +112,7 @@ def add_ontology_data_to_graph_nodes(G, onto):
 
         # if there are multiple of the nested classes associated with the node in the ontology, code ensures it doesn't overwrite the other class.
 
-        import pdb; pdb.set_trace()
+
 
         G.add_nodes_from([(node, attributes_dict)])
 

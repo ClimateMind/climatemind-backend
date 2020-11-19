@@ -17,8 +17,8 @@ class Mind:
     def __load_ontology(self):
         try:
             onto = get_ontology(self.__ontology_source).load()
-            properties = list(onto.properties())
-            [ontology_processing_utils.give_alias(x) for x in properties]
+            obj_properties = list(onto.object_properties())
+            [ontology_processing_utils.give_alias(x) for x in obj_properties]
             return onto
 
         except (FileNotFoundError, IsADirectoryError, ValueError):
