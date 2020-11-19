@@ -77,7 +77,7 @@ def add_ontology_data_to_graph_nodes(G, onto):
                         attributes_dict[str(super_class.label[0])] = to_add
 
         #import pdb; pdb.set_trace()
-        breakpoint()
+        #breakpoint()
         
         annot_properties = [
             thing.label[0].replace(":", "_")
@@ -102,10 +102,12 @@ def add_ontology_data_to_graph_nodes(G, onto):
 #             print(ontology_node.relationships())
 #             print(getattr(ontology_node, "power_resources"))
         
-        attributes_dict["data_properties"] = {
-            prop: list(getattr(ontology_node, prop, "0")) for prop in data_properties
-        }
+        #attributes_dict["data_properties"] = {
+        #    prop: list(getattr(ontology_node, prop, "0")) for prop in data_properties
+        #}
         
+        if(data_properties):
+            import pdb; pdb.set_trace()
 #         if str(ontology_node.label[0]) == "decrease in GDP":
 #             for d in data_props:
 #                 print(d, data_props[d])
@@ -196,7 +198,7 @@ def get_test_ontology(G, valid_test_ont, not_test_ont):
         remove_non_test_nodes(G, node_b, valid_test_ont, not_test_ont)
 
 
-def makeGraph(onto_path, edge_path):
+def makeGraph(onto_path, edge_path, output_folder_path):
     """
     Main function to make networkx graph object from reference ontology and edge list.
 
