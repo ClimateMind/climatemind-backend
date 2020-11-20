@@ -2,8 +2,7 @@ import argparse
 
 import pandas as pd
 from owlready2 import *
-from knowledge_graph.network_class import Network
-
+from network_class import Network
 
 def test_answer():
     assert search_node(get_ontology(onto_path).load()) == []
