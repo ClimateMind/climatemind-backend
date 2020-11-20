@@ -29,6 +29,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -68,11 +96,11 @@
                 "global warming"
             ],
             "all classes": [
-                "global warming",
-                "risk",
-                "test ontology",
                 "core climate change",
-                "main land change"
+                "global warming",
+                "test ontology",
+                "main land change",
+                "risk"
             ],
             "risk": [
                 "risk",
@@ -95,6 +123,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -127,11 +183,11 @@
                 "main ocean change"
             ],
             "all classes": [
-                "main ocean change",
                 "global warming",
-                "risk",
+                "core climate change",
+                "main ocean change",
                 "test ontology",
-                "core climate change"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -155,6 +211,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -180,18 +264,18 @@
                 "main atmospheric change"
             ],
             "all classes": [
-                "main atmospheric change",
+                "core climate change",
                 "global warming",
-                "risk",
                 "test ontology",
-                "core climate change"
+                "risk",
+                "main atmospheric change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "main atmospheric change",
                 "core climate change",
+                "main atmospheric change",
                 "risk"
             ],
             "properties": {
@@ -208,6 +292,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -232,17 +344,17 @@
                 "main atmospheric change"
             ],
             "all classes": [
-                "main atmospheric change",
-                "risk",
+                "core climate change",
                 "test ontology",
-                "core climate change"
+                "risk",
+                "main atmospheric change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "main atmospheric change",
                 "core climate change",
+                "main atmospheric change",
                 "risk"
             ],
             "properties": {
@@ -264,6 +376,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -309,18 +449,18 @@
                 "water cycle change"
             ],
             "all classes": [
-                "water cycle change",
-                "risk",
+                "core climate change",
                 "test ontology",
-                "core climate change"
+                "water cycle change",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "risk",
                 "core climate change",
-                "water cycle change"
+                "water cycle change",
+                "risk"
             ],
             "properties": {
                 "dc_source": [],
@@ -344,6 +484,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -381,15 +549,15 @@
             ],
             "all classes": [
                 "downstream negative effect",
-                "risk",
-                "other negative effect from root cause",
+                "test ontology",
                 "effect",
-                "test ontology"
+                "other negative effect from root cause",
+                "risk"
             ],
             "risk": [
-                "other negative effect from root cause",
+                "effect",
                 "risk",
-                "effect"
+                "other negative effect from root cause"
             ],
             "test ontology": [
                 "test ontology"
@@ -418,6 +586,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -471,9 +667,9 @@
                 "test ontology"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
                 "core climate change",
+                "test ontology",
+                "risk",
                 "main variability change"
             ],
             "risk": [
@@ -519,6 +715,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -591,9 +815,9 @@
                 "test ontology"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
                 "core climate change",
+                "test ontology",
+                "risk",
                 "main variability change"
             ],
             "risk": [
@@ -655,6 +879,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -756,32 +1008,32 @@
                 "self-direction autonomy of thought"
             ],
             "all classes": [
-                "personal value",
-                "achievement",
+                "risk",
                 "status - personal value",
                 "downstream negative effect",
-                "communication frame",
-                "risk",
-                "frame uncategorized (to do)",
-                "self-direction",
-                "effect",
                 "approved - values",
+                "effect",
                 "test ontology",
-                "self-direction autonomy of thought"
+                "self-direction",
+                "self-direction autonomy of thought",
+                "achievement",
+                "personal value",
+                "communication frame",
+                "frame uncategorized (to do)"
             ],
             "personal value": [
-                "personal value",
                 "self-direction autonomy of thought",
-                "self-direction"
+                "self-direction",
+                "personal value"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "communication frame": [
                 "communication frame",
@@ -819,6 +1071,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 1,
+                "hedonism": 0,
+                "security_personal": 0,
+                "security": null,
+                "conformity_interpersonal": 0,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 0,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 0,
+                "self-direction_autonomy_of_thought": 1,
+                "conformity_rules": 0,
+                "universalism_nature": 0,
+                "universalism": null,
+                "power_dominance": 0,
+                "power_resources": 0,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 1,
+                "face": 1,
+                "security_societal": 0,
+                "benevolence_dependability": 0,
+                "self-direction_autonomy_of_action": 0,
+                "humility": 0
             }
         }
     },
@@ -841,35 +1121,35 @@
                 "other negative effect from root cause"
             ],
             "all classes": [
-                "personal value",
-                "universalism concern",
-                "hedonism",
                 "status - personal value",
-                "downstream negative effect",
-                "communication frame",
+                "universalism",
+                "self-direction autonomy of action",
                 "other negative effect from greenhouse gas emission",
-                "risk",
                 "frame uncategorized (to do)",
-                "self-direction",
-                "other negative effect from root cause",
+                "downstream negative effect",
                 "effect",
                 "approved - values",
+                "self-direction",
                 "test ontology",
-                "self-direction autonomy of action",
-                "universalism"
-            ],
-            "risk": [
+                "hedonism",
                 "other negative effect from root cause",
                 "risk",
-                "effect"
+                "personal value",
+                "communication frame",
+                "universalism concern"
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "other negative effect from root cause"
             ],
             "personal value": [
                 "hedonism",
                 "personal value"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "communication frame": [
                 "communication frame",
@@ -909,6 +1189,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         }
     },
@@ -929,28 +1237,28 @@
                 "stimulation"
             ],
             "all classes": [
-                "personal value",
-                "hedonism",
-                "power resources",
+                "stimulation",
                 "status - personal value",
                 "downstream negative effect",
-                "communication frame",
-                "risk",
-                "stimulation",
-                "frame uncategorized (to do)",
                 "effect",
                 "approved - values",
                 "test ontology",
-                "power"
+                "hedonism",
+                "power resources",
+                "risk",
+                "power",
+                "personal value",
+                "communication frame",
+                "frame uncategorized (to do)"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "personal value": [
                 "stimulation",
@@ -992,6 +1300,34 @@
                     "The moose population is decreasing due to an increase frequency of heat waves.",
                     "The moose population is decreasing due to an increase frequency of heat waves."
                 ]
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 0,
+                "hedonism": 1,
+                "security_personal": 0,
+                "security": null,
+                "conformity_interpersonal": 0,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 0,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 1,
+                "self-direction_autonomy_of_thought": 0,
+                "conformity_rules": 0,
+                "universalism_nature": -1,
+                "universalism": null,
+                "power_dominance": 0,
+                "power_resources": 1,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 0,
+                "face": 1,
+                "security_societal": 0,
+                "benevolence_dependability": 0,
+                "self-direction_autonomy_of_action": 0,
+                "humility": 0
             }
         }
     },
@@ -1015,38 +1351,38 @@
                 "tradition"
             ],
             "all classes": [
-                "tradition",
-                "downstream negative effect",
-                "risk",
-                "frame uncategorized (to do)",
+                "universalism",
+                "security",
+                "benevolence caring",
+                "security personal",
+                "personal value",
+                "communication frame",
+                "mental health change",
+                "universalism concern",
+                "status - personal value",
+                "approved - values",
                 "effect",
                 "test ontology",
-                "universalism concern",
-                "benevolence",
-                "mental health change",
-                "personal value",
                 "security societal",
-                "security",
-                "health change",
-                "security personal",
-                "benevolence caring",
-                "status - personal value",
-                "communication frame",
-                "approved - values",
-                "universalism"
+                "frame uncategorized (to do)",
+                "downstream negative effect",
+                "benevolence",
+                "tradition",
+                "risk",
+                "health change"
             ],
             "personal value": [
                 "personal value",
                 "tradition"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "communication frame": [
                 "communication frame",
@@ -1088,6 +1424,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": 1,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": 0,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         }
     },
@@ -1107,37 +1471,37 @@
                 "power dominance"
             ],
             "all classes": [
-                "personal value",
-                "security societal",
                 "status - personal value",
-                "downstream negative effect",
-                "communication frame",
+                "national security change",
                 "security",
                 "power dominance",
-                "risk",
-                "national security change",
+                "downstream negative effect",
                 "effect",
                 "approved - values",
+                "personal value",
                 "test ontology",
-                "power"
+                "risk",
+                "power",
+                "security societal",
+                "communication frame"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "personal value": [
                 "power",
-                "personal value",
-                "power dominance"
+                "power dominance",
+                "personal value"
             ],
             "communication frame": [
-                "national security change",
-                "communication frame"
+                "communication frame",
+                "national security change"
             ],
             "test ontology": [
                 "test ontology"
@@ -1170,6 +1534,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         }
     },
@@ -1188,31 +1580,31 @@
                 "test ontology"
             ],
             "all classes": [
-                "personal value",
-                "power resources",
                 "status - personal value",
                 "downstream negative effect",
-                "communication frame",
-                "risk",
-                "frame uncategorized (to do)",
                 "effect",
                 "approved - values",
                 "test ontology",
-                "power"
+                "power resources",
+                "risk",
+                "power",
+                "personal value",
+                "communication frame",
+                "frame uncategorized (to do)"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "personal value": [
+                "power resources",
                 "power",
-                "personal value",
-                "power resources"
+                "personal value"
             ],
             "communication frame": [
                 "communication frame",
@@ -1247,6 +1639,34 @@
                     "An increase in heatwaves is causing a decrease in North American Gross Domestic Product (GDP)",
                     "An increase in heatwaves is causing a decrease in North American Gross Domestic Product (GDP)"
                 ]
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 0,
+                "hedonism": 0,
+                "security_personal": 0,
+                "security": null,
+                "conformity_interpersonal": 0,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 0,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 0,
+                "self-direction_autonomy_of_thought": 0,
+                "conformity_rules": 0,
+                "universalism_nature": 0,
+                "universalism": null,
+                "power_dominance": 0,
+                "power_resources": 1,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 0,
+                "face": 0,
+                "security_societal": 1,
+                "benevolence_dependability": 0,
+                "self-direction_autonomy_of_action": 0,
+                "humility": 0
             }
         }
     },
@@ -1267,34 +1687,34 @@
                 "health change"
             ],
             "all classes": [
-                "personal value",
-                "universalism concern",
-                "security societal",
                 "status - personal value",
-                "downstream negative effect",
-                "communication frame",
+                "universalism",
                 "security",
-                "health change",
-                "risk",
-                "security personal",
-                "effect",
+                "downstream negative effect",
                 "approved - values",
+                "effect",
+                "security societal",
                 "test ontology",
-                "universalism"
+                "health change",
+                "security personal",
+                "risk",
+                "personal value",
+                "communication frame",
+                "universalism concern"
             ],
             "personal value": [
-                "security",
                 "security personal",
+                "security",
                 "personal value"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -1335,6 +1755,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         }
     },
@@ -1356,31 +1804,31 @@
                 "power dominance"
             ],
             "all classes": [
-                "personal value",
-                "achievement",
-                "power resources",
-                "status - personal value",
-                "downstream negative effect",
-                "communication frame",
-                "power dominance",
                 "risk",
-                "frame uncategorized (to do)",
-                "self-direction",
                 "not finished - values",
+                "status - personal value",
+                "self-direction autonomy of action",
+                "power dominance",
+                "downstream negative effect",
                 "effect",
                 "test ontology",
+                "self-direction",
+                "power resources",
+                "achievement",
                 "power",
-                "self-direction autonomy of action"
+                "personal value",
+                "communication frame",
+                "frame uncategorized (to do)"
             ],
             "personal value": [
                 "power",
-                "personal value",
-                "power dominance"
+                "power dominance",
+                "personal value"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "communication frame": [
                 "communication frame",
@@ -1431,6 +1879,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 1,
+                "hedonism": 0,
+                "security_personal": 0,
+                "security": null,
+                "conformity_interpersonal": 0,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 0,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 0,
+                "self-direction_autonomy_of_thought": 0,
+                "conformity_rules": 0,
+                "universalism_nature": 0,
+                "universalism": null,
+                "power_dominance": 1,
+                "power_resources": 1,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 0,
+                "face": null,
+                "security_societal": 0,
+                "benevolence_dependability": 0,
+                "self-direction_autonomy_of_action": 1,
+                "humility": 0
             }
         }
     },
@@ -1450,39 +1926,39 @@
                 "education change"
             ],
             "all classes": [
-                "personal value",
-                "achievement",
+                "risk",
+                "education change",
                 "status - personal value",
                 "downstream negative effect",
-                "education change",
-                "communication frame",
-                "risk",
-                "self-direction",
-                "effect",
                 "approved - values",
+                "effect",
                 "test ontology",
-                "self-direction autonomy of thought"
+                "self-direction",
+                "self-direction autonomy of thought",
+                "achievement",
+                "personal value",
+                "communication frame"
             ],
             "personal value": [
-                "personal value",
                 "self-direction autonomy of thought",
-                "self-direction"
+                "self-direction",
+                "personal value"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "communication frame": [
-                "education change",
-                "communication frame"
+                "communication frame",
+                "education change"
             ],
             "properties": {
                 "dc_source": [],
@@ -1510,6 +1986,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 1,
+                "hedonism": 0,
+                "security_personal": 0,
+                "security": null,
+                "conformity_interpersonal": 0,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 0,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 0,
+                "self-direction_autonomy_of_thought": 1,
+                "conformity_rules": 0,
+                "universalism_nature": 0,
+                "universalism": null,
+                "power_dominance": 0,
+                "power_resources": 0,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 1,
+                "face": 0,
+                "security_societal": 0,
+                "benevolence_dependability": 0,
+                "self-direction_autonomy_of_action": 0,
+                "humility": 0
             }
         }
     },
@@ -1532,36 +2036,36 @@
                 "conformity interpersonal"
             ],
             "all classes": [
-                "personal value",
-                "hedonism",
-                "security societal",
-                "conformity",
                 "status - personal value",
-                "downstream negative effect",
-                "security",
-                "risk",
-                "security personal",
-                "self-direction",
-                "effect",
-                "conformity rules",
-                "approved - values",
-                "test ontology",
+                "conformity",
                 "self-direction autonomy of action",
+                "security",
+                "downstream negative effect",
+                "effect",
+                "approved - values",
+                "self-direction",
+                "security societal",
+                "test ontology",
+                "security personal",
+                "hedonism",
+                "risk",
+                "conformity rules",
+                "personal value",
                 "conformity interpersonal"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "personal value": [
                 "conformity interpersonal",
-                "personal value",
-                "conformity"
+                "conformity",
+                "personal value"
             ],
             "test ontology": [
                 "test ontology"
@@ -1599,6 +2103,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         }
     },
@@ -1621,36 +2153,36 @@
                 "security personal"
             ],
             "all classes": [
-                "personal value",
-                "universalism concern",
                 "benevolence dependability",
-                "security societal",
-                "universalism nature",
                 "status - personal value",
-                "downstream negative effect",
+                "universalism",
+                "universalism nature",
                 "security",
-                "benevolence",
-                "risk",
-                "security personal",
                 "review needed - values",
-                "effect",
+                "downstream negative effect",
                 "benevolence caring",
+                "effect",
                 "test ontology",
-                "universalism"
+                "security societal",
+                "benevolence",
+                "security personal",
+                "risk",
+                "personal value",
+                "universalism concern"
             ],
             "status - personal value": [
                 "status - personal value",
                 "review needed - values"
             ],
             "personal value": [
-                "security",
                 "security personal",
+                "security",
                 "personal value"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -1691,6 +2223,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 0,
+                "hedonism": 0,
+                "security_personal": 1,
+                "security": null,
+                "conformity_interpersonal": 0,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 1,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 0,
+                "self-direction_autonomy_of_thought": 0,
+                "conformity_rules": 0,
+                "universalism_nature": 1,
+                "universalism": null,
+                "power_dominance": 0,
+                "power_resources": 1,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 1,
+                "face": 0,
+                "security_societal": 1,
+                "benevolence_dependability": 1,
+                "self-direction_autonomy_of_action": 0,
+                "humility": 0
             }
         },
         "adjacencies": [
@@ -1723,28 +2283,28 @@
                 "power dominance"
             ],
             "all classes": [
-                "personal value",
-                "security societal",
                 "status - personal value",
-                "downstream negative effect",
-                "communication frame",
                 "security",
                 "power dominance",
-                "risk",
-                "frame uncategorized (to do)",
+                "downstream negative effect",
                 "effect",
                 "approved - values",
+                "security societal",
+                "personal value",
                 "test ontology",
-                "power"
+                "risk",
+                "power",
+                "communication frame",
+                "frame uncategorized (to do)"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "communication frame": [
                 "communication frame",
@@ -1752,8 +2312,8 @@
             ],
             "personal value": [
                 "power",
-                "personal value",
-                "power dominance"
+                "power dominance",
+                "personal value"
             ],
             "test ontology": [
                 "test ontology"
@@ -1795,6 +2355,34 @@
                     "https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095"
                 ],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 0,
+                "hedonism": 0,
+                "security_personal": 0,
+                "security": null,
+                "conformity_interpersonal": 0,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 0,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 0,
+                "self-direction_autonomy_of_thought": 0,
+                "conformity_rules": 0,
+                "universalism_nature": 0,
+                "universalism": null,
+                "power_dominance": 1,
+                "power_resources": 0,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 0,
+                "face": 0,
+                "security_societal": 1,
+                "benevolence_dependability": 0,
+                "self-direction_autonomy_of_action": 0,
+                "humility": 0
             }
         }
     },
@@ -1810,9 +2398,9 @@
                 "test ontology"
             ],
             "all classes": [
-                "test ontology",
+                "increase in atmospheric greenhouse gas",
                 "risk",
-                "increase in atmospheric greenhouse gas"
+                "test ontology"
             ],
             "risk": [
                 "risk",
@@ -1870,6 +2458,34 @@
                     "Increase in carbon dioxide in the Earth's atmosphere.",
                     "Increase in carbon dioxide in the Earth's atmosphere."
                 ]
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -1902,24 +2518,24 @@
                 "stimulation"
             ],
             "all classes": [
-                "downstream negative effect",
-                "risk",
+                "universalism",
+                "security",
+                "security personal",
+                "personal value",
+                "communication frame",
+                "universalism concern",
+                "status - personal value",
                 "effect",
                 "test ontology",
-                "self-direction autonomy of action",
-                "universalism concern",
-                "other negative effect from greenhouse gas emission",
-                "personal value",
-                "security societal",
-                "security",
-                "health change",
-                "security personal",
-                "status - personal value",
-                "communication frame",
-                "stimulation",
                 "self-direction",
+                "self-direction autonomy of action",
+                "security societal",
                 "review needed - values",
-                "universalism"
+                "downstream negative effect",
+                "risk",
+                "stimulation",
+                "other negative effect from greenhouse gas emission",
+                "health change"
             ],
             "status - personal value": [
                 "status - personal value",
@@ -1927,8 +2543,8 @@
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "personal value": [
                 "stimulation",
@@ -1979,6 +2595,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 0,
+                "hedonism": 0,
+                "security_personal": 1,
+                "security": null,
+                "conformity_interpersonal": 0,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 0,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 1,
+                "self-direction_autonomy_of_thought": 0,
+                "conformity_rules": 0,
+                "universalism_nature": 0,
+                "universalism": null,
+                "power_dominance": 0,
+                "power_resources": 0,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 1,
+                "face": 0,
+                "security_societal": 1,
+                "benevolence_dependability": 0,
+                "self-direction_autonomy_of_action": 1,
+                "humility": 0
             }
         },
         "adjacencies": [
@@ -2026,37 +2670,37 @@
                 "other negative effect from root cause"
             ],
             "all classes": [
-                "downstream negative effect",
-                "risk",
-                "frame uncategorized (to do)",
+                "universalism",
+                "security",
+                "benevolence caring",
+                "security personal",
+                "personal value",
+                "communication frame",
+                "universalism concern",
+                "status - personal value",
                 "effect",
                 "test ontology",
-                "universalism concern",
-                "other negative effect from greenhouse gas emission",
+                "security societal",
+                "frame uncategorized (to do)",
+                "review needed - values",
+                "downstream negative effect",
                 "benevolence",
                 "other negative effect from root cause",
-                "personal value",
-                "security societal",
-                "security",
-                "security personal",
-                "benevolence caring",
-                "status - personal value",
-                "communication frame",
-                "review needed - values",
-                "universalism"
+                "risk",
+                "other negative effect from greenhouse gas emission"
             ],
             "status - personal value": [
                 "status - personal value",
                 "review needed - values"
             ],
             "risk": [
-                "other negative effect from root cause",
+                "effect",
                 "risk",
-                "effect"
+                "other negative effect from root cause"
             ],
             "personal value": [
-                "security",
                 "security personal",
+                "security",
                 "personal value"
             ],
             "communication frame": [
@@ -2096,6 +2740,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 0,
+                "hedonism": 0,
+                "security_personal": 0,
+                "security": null,
+                "conformity_interpersonal": 0,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 1,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 0,
+                "self-direction_autonomy_of_thought": 0,
+                "conformity_rules": 0,
+                "universalism_nature": 0,
+                "universalism": null,
+                "power_dominance": 0,
+                "power_resources": 0,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 1,
+                "face": 0,
+                "security_societal": 1,
+                "benevolence_dependability": 0,
+                "self-direction_autonomy_of_action": 0,
+                "humility": 0
             }
         }
     },
@@ -2116,32 +2788,32 @@
                 "security personal"
             ],
             "all classes": [
-                "personal value",
-                "universalism concern",
-                "security societal",
                 "status - personal value",
-                "communication frame",
-                "security",
-                "risk",
-                "security personal",
-                "review needed - values",
+                "universalism",
                 "justice change",
+                "security",
+                "review needed - values",
                 "test ontology",
+                "security societal",
+                "security personal",
+                "risk",
+                "personal value",
+                "communication frame",
                 "risk or effect uncategorized (to do)",
-                "universalism"
+                "universalism concern"
             ],
             "status - personal value": [
                 "status - personal value",
                 "review needed - values"
             ],
             "personal value": [
-                "security",
                 "security personal",
+                "security",
                 "personal value"
             ],
             "risk": [
-                "risk",
-                "risk or effect uncategorized (to do)"
+                "risk or effect uncategorized (to do)",
+                "risk"
             ],
             "communication frame": [
                 "justice change",
@@ -2175,6 +2847,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 0,
+                "hedonism": 0,
+                "security_personal": 1,
+                "security": null,
+                "conformity_interpersonal": 1,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 0,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 0,
+                "self-direction_autonomy_of_thought": 0,
+                "conformity_rules": 0,
+                "universalism_nature": 0,
+                "universalism": null,
+                "power_dominance": 0,
+                "power_resources": 0,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 1,
+                "face": 0,
+                "security_societal": 1,
+                "benevolence_dependability": 0,
+                "self-direction_autonomy_of_action": 0,
+                "humility": 0
             }
         }
     },
@@ -2190,10 +2890,10 @@
                 "mitigation barrier"
             ],
             "all classes": [
-                "risk",
                 "mitigation barrier",
+                "risk solution barrier",
                 "test ontology",
-                "risk solution barrier"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -2223,6 +2923,34 @@
                     "The costs associated with climate change are not paid for by those generating greenhouse gases (market failure). The cost associated with global warming are not included in the cost of generating greenhouse gases. The adverse effects of greenhouse gases are therefore \u2018external\u2019 to the market, which means there is usually only an ethical \u2013 rather than an economic \u2013 incentive for businesses and consumers to reduce their emissions. As a result, the market fails by over-producing greenhouse gases.",
                     "The costs associated with climate change are not paid for by those generating greenhouse gases (market failure). The cost associated with global warming are not included in the cost of generating greenhouse gases. The adverse effects of greenhouse gases are therefore \u2018external\u2019 to the market, which means there is usually only an ethical \u2013 rather than an economic \u2013 incentive for businesses and consumers to reduce their emissions. As a result, the market fails by over-producing greenhouse gases."
                 ]
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         }
     },
@@ -2244,35 +2972,35 @@
                 "health change"
             ],
             "all classes": [
-                "personal value",
-                "universalism concern",
-                "security societal",
                 "status - personal value",
-                "downstream negative effect",
-                "communication frame",
+                "universalism",
                 "other negative effect from greenhouse gas emission",
                 "security",
-                "health change",
-                "risk",
-                "security personal",
+                "downstream negative effect",
                 "effect",
                 "approved - values",
+                "security societal",
                 "test ontology",
-                "universalism"
+                "health change",
+                "security personal",
+                "risk",
+                "personal value",
+                "communication frame",
+                "universalism concern"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "personal value": [
-                "security",
                 "security personal",
+                "security",
                 "personal value"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "test ontology": [
                 "test ontology"
@@ -2323,6 +3051,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         }
     },
@@ -2343,34 +3099,34 @@
                 "health change"
             ],
             "all classes": [
-                "personal value",
-                "universalism concern",
-                "security societal",
                 "status - personal value",
-                "downstream negative effect",
-                "communication frame",
+                "universalism",
                 "security",
-                "health change",
-                "risk",
-                "security personal",
-                "effect",
+                "downstream negative effect",
                 "approved - values",
+                "effect",
+                "security societal",
                 "test ontology",
-                "universalism"
+                "health change",
+                "security personal",
+                "risk",
+                "personal value",
+                "communication frame",
+                "universalism concern"
             ],
             "personal value": [
-                "security",
                 "security personal",
+                "security",
                 "personal value"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -2402,6 +3158,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         }
     },
@@ -2417,18 +3201,18 @@
                 "water cycle change"
             ],
             "all classes": [
-                "water cycle change",
-                "risk",
+                "core climate change",
                 "test ontology",
-                "core climate change"
+                "water cycle change",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "risk",
                 "core climate change",
-                "water cycle change"
+                "water cycle change",
+                "risk"
             ],
             "properties": {
                 "dc_source": [],
@@ -2447,6 +3231,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -2485,15 +3297,15 @@
                 "test ontology"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
                 "core climate change",
-                "main land change"
+                "test ontology",
+                "main land change",
+                "risk"
             ],
             "risk": [
-                "risk",
+                "core climate change",
                 "main land change",
-                "core climate change"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -2512,6 +3324,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -2536,15 +3376,15 @@
                 "test ontology"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
                 "core climate change",
-                "main land change"
+                "test ontology",
+                "main land change",
+                "risk"
             ],
             "risk": [
-                "risk",
+                "core climate change",
                 "main land change",
-                "core climate change"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -2563,6 +3403,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -2593,42 +3461,42 @@
                 "wildfire change"
             ],
             "all classes": [
-                "personal value",
-                "universalism concern",
-                "security societal",
-                "universalism nature",
                 "status - personal value",
-                "downstream negative effect",
-                "communication frame",
+                "universalism",
+                "wildfire change",
+                "universalism nature",
                 "security",
-                "risk",
-                "security personal",
                 "review needed - values",
+                "downstream negative effect",
                 "effect",
                 "test ontology",
-                "wildfire change",
-                "universalism"
+                "security societal",
+                "security personal",
+                "risk",
+                "personal value",
+                "communication frame",
+                "universalism concern"
             ],
             "status - personal value": [
                 "status - personal value",
                 "review needed - values"
             ],
             "personal value": [
-                "security",
                 "security personal",
+                "security",
                 "personal value"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "communication frame": [
-                "wildfire change",
-                "communication frame"
+                "communication frame",
+                "wildfire change"
             ],
             "properties": {
                 "dc_source": [],
@@ -2663,6 +3531,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 0,
+                "hedonism": 0,
+                "security_personal": 1,
+                "security": null,
+                "conformity_interpersonal": 0,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 0,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 0,
+                "self-direction_autonomy_of_thought": 0,
+                "conformity_rules": 0,
+                "universalism_nature": 1,
+                "universalism": null,
+                "power_dominance": 0,
+                "power_resources": 0,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 1,
+                "face": 0,
+                "security_societal": 1,
+                "benevolence_dependability": 0,
+                "self-direction_autonomy_of_action": 0,
+                "humility": 0
             }
         },
         "adjacencies": [
@@ -2695,14 +3591,14 @@
             ],
             "all classes": [
                 "downstream negative effect",
-                "risk",
+                "test ontology",
                 "effect",
-                "test ontology"
+                "risk"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -2721,6 +3617,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -2746,16 +3670,16 @@
                 "water cycle change"
             ],
             "all classes": [
-                "water cycle change",
-                "risk",
-                "test ontology",
                 "core climate change",
-                "main land change"
+                "test ontology",
+                "main land change",
+                "water cycle change",
+                "risk"
             ],
             "risk": [
-                "risk",
                 "core climate change",
-                "water cycle change"
+                "water cycle change",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -2774,6 +3698,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -2798,9 +3750,9 @@
                 "test ontology"
             ],
             "all classes": [
-                "test ontology",
+                "increase in atmospheric greenhouse gas",
                 "risk",
-                "increase in atmospheric greenhouse gas"
+                "test ontology"
             ],
             "risk": [
                 "risk",
@@ -2826,6 +3778,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -2850,10 +3830,10 @@
                 "main ocean change"
             ],
             "all classes": [
+                "core climate change",
                 "main ocean change",
-                "risk",
                 "test ontology",
-                "core climate change"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -2877,6 +3857,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -2901,10 +3909,10 @@
                 "main ocean change"
             ],
             "all classes": [
+                "core climate change",
                 "main ocean change",
-                "risk",
                 "test ontology",
-                "core climate change"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -2928,6 +3936,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -2960,14 +3996,14 @@
             ],
             "all classes": [
                 "downstream negative effect",
-                "risk",
+                "test ontology",
                 "effect",
-                "test ontology"
+                "risk"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -2989,6 +4025,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -3018,14 +4082,14 @@
             ],
             "all classes": [
                 "downstream negative effect",
-                "risk",
+                "test ontology",
                 "effect",
-                "test ontology"
+                "risk"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -3081,6 +4145,34 @@
                     "https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095"
                 ],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -3101,8 +4193,8 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "schema_mediaSourceForConservatives": [
-                            "https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689",
-                            "https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095"
+                            "https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095",
+                            "https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689"
                         ]
                     }
                 }
@@ -3113,10 +4205,10 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "dc_source": [
+                            "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html",
                             "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
-                            "https://www.sciencedirect.com/science/article/pii/S0962629807000601",
                             "https://www.nature.com/articles/s41612-019-0074-8",
-                            "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html"
+                            "https://www.sciencedirect.com/science/article/pii/S0962629807000601"
                         ]
                     }
                 }
@@ -3141,30 +4233,30 @@
                 "hedonism"
             ],
             "all classes": [
-                "personal value",
-                "hedonism",
-                "power resources",
-                "security societal",
                 "status - personal value",
-                "downstream negative effect",
-                "communication frame",
                 "security",
-                "risk",
-                "frame uncategorized (to do)",
-                "security personal",
+                "downstream negative effect",
                 "effect",
                 "approved - values",
+                "security societal",
                 "test ontology",
-                "power"
+                "hedonism",
+                "security personal",
+                "power resources",
+                "risk",
+                "power",
+                "personal value",
+                "communication frame",
+                "frame uncategorized (to do)"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "personal value": [
                 "hedonism",
@@ -3214,6 +4306,34 @@
                     "https://www.foxbusiness.com/economy/costliest-hurricanes-us-history"
                 ],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 0,
+                "hedonism": 1,
+                "security_personal": 1,
+                "security": null,
+                "conformity_interpersonal": 0,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 0,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 0,
+                "self-direction_autonomy_of_thought": 0,
+                "conformity_rules": 0,
+                "universalism_nature": 0,
+                "universalism": null,
+                "power_dominance": 0,
+                "power_resources": 1,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 0,
+                "face": 0,
+                "security_societal": 1,
+                "benevolence_dependability": 0,
+                "self-direction_autonomy_of_action": 0,
+                "humility": 0
             }
         }
     },
@@ -3231,29 +4351,29 @@
                 "test ontology"
             ],
             "all classes": [
-                "personal value",
-                "universalism nature",
                 "status - personal value",
+                "universalism",
+                "universalism nature",
                 "downstream negative effect",
-                "risk",
                 "effect",
                 "approved - values",
                 "test ontology",
-                "universalism"
+                "risk",
+                "personal value"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "personal value": [
                 "universalism",
-                "personal value",
-                "universalism nature"
+                "universalism nature",
+                "personal value"
             ],
             "test ontology": [
                 "test ontology"
@@ -3306,6 +4426,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 0,
+                "hedonism": 0,
+                "security_personal": 0,
+                "security": null,
+                "conformity_interpersonal": 0,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 0,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 0,
+                "self-direction_autonomy_of_thought": 0,
+                "conformity_rules": 0,
+                "universalism_nature": 1,
+                "universalism": null,
+                "power_dominance": 0,
+                "power_resources": 0,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 0,
+                "face": 0,
+                "security_societal": 0,
+                "benevolence_dependability": 0,
+                "self-direction_autonomy_of_action": 0,
+                "humility": 0
             }
         },
         "adjacencies": [
@@ -3338,17 +4486,17 @@
                 "stimulation"
             ],
             "all classes": [
-                "personal value",
-                "hedonism",
-                "status - personal value",
-                "downstream negative effect",
-                "communication frame",
-                "risk",
                 "stimulation",
-                "frame uncategorized (to do)",
+                "status - personal value",
                 "review needed - values",
+                "downstream negative effect",
                 "effect",
-                "test ontology"
+                "test ontology",
+                "hedonism",
+                "personal value",
+                "risk",
+                "communication frame",
+                "frame uncategorized (to do)"
             ],
             "status - personal value": [
                 "status - personal value",
@@ -3356,8 +4504,8 @@
             ],
             "risk": [
                 "downstream negative effect",
-                "risk",
-                "effect"
+                "effect",
+                "risk"
             ],
             "communication frame": [
                 "communication frame",
@@ -3400,6 +4548,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": 0,
+                "hedonism": 1,
+                "security_personal": 0,
+                "security": null,
+                "conformity_interpersonal": 0,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": 0,
+                "benevolence": null,
+                "power": null,
+                "stimulation": 1,
+                "self-direction_autonomy_of_thought": 0,
+                "conformity_rules": 0,
+                "universalism_nature": 0,
+                "universalism": null,
+                "power_dominance": 0,
+                "power_resources": 0,
+                "tradition": 0,
+                "universalism_tolerance": 0,
+                "universalism_concern": 0,
+                "face": 1,
+                "security_societal": 0,
+                "benevolence_dependability": 0,
+                "self-direction_autonomy_of_action": 0,
+                "humility": 0
             }
         },
         "adjacencies": [
@@ -3436,8 +4612,8 @@
                 "test ontology"
             ],
             "risk": [
-                "risk",
-                "root cause linked to humans"
+                "root cause linked to humans",
+                "risk"
             ],
             "properties": {
                 "dc_source": [],
@@ -3456,6 +4632,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -3488,8 +4692,8 @@
                 "test ontology"
             ],
             "risk": [
-                "risk",
-                "root cause linked to humans"
+                "root cause linked to humans",
+                "risk"
             ],
             "properties": {
                 "dc_source": [],
@@ -3511,6 +4715,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -3554,8 +4786,8 @@
                 "test ontology"
             ],
             "risk": [
-                "risk",
-                "root cause linked to humans"
+                "root cause linked to humans",
+                "risk"
             ],
             "properties": {
                 "dc_source": [],
@@ -3586,6 +4818,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -3617,9 +4877,9 @@
                 "test ontology"
             ],
             "all classes": [
-                "test ontology",
+                "increase in atmospheric greenhouse gas",
                 "risk",
-                "increase in atmospheric greenhouse gas"
+                "test ontology"
             ],
             "risk": [
                 "risk",
@@ -3645,6 +4905,34 @@
                     "Increase in atmospheric hydrofluorocarbons and perfluorocarbons (fluorocarbons)",
                     "Increase in atmospheric hydrofluorocarbons and perfluorocarbons (fluorocarbons)"
                 ]
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -3677,8 +4965,8 @@
                 "test ontology"
             ],
             "risk": [
-                "risk",
-                "root cause linked to humans"
+                "root cause linked to humans",
+                "risk"
             ],
             "properties": {
                 "dc_source": [],
@@ -3716,6 +5004,34 @@
                 ],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -3748,8 +5064,8 @@
                 "test ontology"
             ],
             "risk": [
-                "risk",
-                "root cause linked to humans"
+                "root cause linked to humans",
+                "risk"
             ],
             "properties": {
                 "dc_source": [
@@ -3776,6 +5092,34 @@
                 ],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -3812,8 +5156,8 @@
                 "test ontology"
             ],
             "risk": [
-                "risk",
-                "root cause linked to humans"
+                "root cause linked to humans",
+                "risk"
             ],
             "properties": {
                 "dc_source": [],
@@ -3838,6 +5182,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -3874,8 +5246,8 @@
                 "test ontology"
             ],
             "risk": [
-                "risk",
-                "root cause linked to humans"
+                "root cause linked to humans",
+                "risk"
             ],
             "properties": {
                 "dc_source": [],
@@ -3898,6 +5270,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -3958,8 +5358,8 @@
                 "test ontology"
             ],
             "risk": [
-                "risk",
-                "root cause linked to humans"
+                "root cause linked to humans",
+                "risk"
             ],
             "properties": {
                 "dc_source": [],
@@ -3996,6 +5396,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [
@@ -4035,8 +5463,8 @@
                 "test ontology"
             ],
             "risk": [
-                "risk",
-                "root cause linked to humans"
+                "root cause linked to humans",
+                "risk"
             ],
             "properties": {
                 "dc_source": [],
@@ -4067,6 +5495,34 @@
                 "schema_video": [],
                 "schema_mediaSourceForConservatives": [],
                 "skos_definition": []
+            },
+            "data_properties": {
+                "personal_value": null,
+                "achievement": null,
+                "hedonism": null,
+                "security_personal": null,
+                "security": null,
+                "conformity_interpersonal": null,
+                "conformity": null,
+                "self-direction": null,
+                "benevolence_caring": null,
+                "benevolence": null,
+                "power": null,
+                "stimulation": null,
+                "self-direction_autonomy_of_thought": null,
+                "conformity_rules": null,
+                "universalism_nature": null,
+                "universalism": null,
+                "power_dominance": null,
+                "power_resources": null,
+                "tradition": null,
+                "universalism_tolerance": null,
+                "universalism_concern": null,
+                "face": null,
+                "security_societal": null,
+                "benevolence_dependability": null,
+                "self-direction_autonomy_of_action": null,
+                "humility": null
             }
         },
         "adjacencies": [

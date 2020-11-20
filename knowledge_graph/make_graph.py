@@ -90,33 +90,16 @@ def add_ontology_data_to_graph_nodes(G, onto):
                     else:
                         attributes_dict[str(super_class.label[0])] = to_add
 
-        # import pdb; pdb.set_trace()
-        # breakpoint()
+
 
         attributes_dict["properties"] = {
             prop: list(getattr(ontology_node, prop)) for prop in annot_properties
         }
 
-        #         if str(ontology_node.label[0]) == "decrease in GDP":
-        #             print(ontology_node)
-        #             for d in data_properties:
-        #                 print(d)
-        #             print(ontology_node.relationships())
-        #             print(getattr(ontology_node, "power_resources"))
+        attributes_dict["data_properties"] = {
+            prop: getattr(ontology_node, prop) for prop in data_properties
+        }
 
-        # if(data_properties):
-        #    import pdb; pdb.set_trace()
-
-        try:
-            attributes_dict["data_properties"] = {
-                prop: list(getattr(ontology_node, prop)) for prop in data_properties
-            }
-        except:
-            print("no data_properties attr for " + ontology_node.label[0])
-
-        #         if str(ontology_node.label[0]) == "decrease in GDP":
-        #             for d in data_props:
-        #                 print(d, data_props[d])
 
         # if there are multiple of the nested classes associated with the node in the ontology, code ensures it doesn't overwrite the other class.
 

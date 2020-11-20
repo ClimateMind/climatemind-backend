@@ -246,6 +246,7 @@
 
     <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg">
         <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:label xml:lang="en">personal value</rdfs:label>
     </owl:DatatypeProperty>
     
@@ -483,6 +484,7 @@
 
     <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RDRKIf2ZSwcxpNTaRLEJN9D">
         <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg"/>
+        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
         <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RB5q8yBr7RqHWX5akYFgyCt"/>
         <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
         <rdfs:label xml:lang="en">face</rdfs:label>
