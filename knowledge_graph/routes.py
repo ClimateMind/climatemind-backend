@@ -10,7 +10,10 @@ from typing import Tuple
 from knowledge_graph import app, db, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
-from knowledge_graph.score_nodes import get_user_nodes, remove_non_value_database_columns
+from knowledge_graph.score_nodes import (
+    get_user_nodes,
+    remove_non_value_database_columns,
+)
 
 value_id_map = {
     1: "conformity",
@@ -261,7 +264,7 @@ def get_feed():
     ordered_scores = OrderedDict(sorted(scores.items()))
 
     print("Recommending Nodes")
-    
+
     recommended_nodes = get_user_nodes(ordered_scores)
     climate_effects = {"climateEffects": recommended_nodes}
     return jsonify(climate_effects), 200

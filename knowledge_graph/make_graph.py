@@ -29,7 +29,7 @@ def listify(collection, onto):
 
 def compute(values):
     """collapsing vector of either 0,1,-1, or None to single value to collapse sub personal values to main personal values."""
-    if(all(v is None for v in values)):
+    if all(v is None for v in values):
         final = None
     else:
         print(values)
@@ -44,6 +44,7 @@ def compute(values):
             final = 0
 
     return final
+
 
 def add_ontology_data_to_graph_nodes(G, onto):
     """Find the equivalent nodes in the ontology and load in relevant data
@@ -73,7 +74,6 @@ def add_ontology_data_to_graph_nodes(G, onto):
         if thing.label
     ]
     print(data_properties)
-        
 
     for node in list(G.nodes):
         ontology_node = onto.search_one(label=node)
@@ -111,31 +111,35 @@ def add_ontology_data_to_graph_nodes(G, onto):
                     else:
                         attributes_dict[str(super_class.label[0])] = to_add
 
-
-
         attributes_dict["properties"] = {
             prop: list(getattr(ontology_node, prop)) for prop in annot_properties
         }
-                       
+
         attributes_dict["data_properties"] = {
-            prop: getattr(ontology_node, prop) for prop in data_properties if hasattr(ontology_node, prop)
+            prop: getattr(ontology_node, prop)
+            for prop in data_properties
+            if hasattr(ontology_node, prop)
         }
-        
+
         print(attributes_dict["data_properties"])
 
-        #if(attributes_dict["data_properties"]["hedonism"]==1):
-        #	breakpoint()
-        
-        #format personal_values_10 and personal_values_19 to facilitate easier scoring later by the climate mind app
-        #these are hard coded in and the order is very important. Later can change so these aren't hard coded and the order is always alphebetical(?)
-        #use the compute function to collapse a value with multiple subvalues into one number. As long as there's any 1, then the final value is 1 (otherwise 0). None if all are None.
-    
-        personal_values_19 = make_personal_values_long(attributes_dict["data_properties"]) 
-        personal_values_10 = make_personal_values_short(node, attributes_dict["data_properties"])
-        
+        # if(attributes_dict["data_properties"]["hedonism"]==1):
+        # 	breakpoint()
+
+        # format personal_values_10 and personal_values_19 to facilitate easier scoring later by the climate mind app
+        # these are hard coded in and the order is very important. Later can change so these aren't hard coded and the order is always alphebetical(?)
+        # use the compute function to collapse a value with multiple subvalues into one number. As long as there's any 1, then the final value is 1 (otherwise 0). None if all are None.
+
+        personal_values_19 = make_personal_values_long(
+            attributes_dict["data_properties"]
+        )
+        personal_values_10 = make_personal_values_short(
+            node, attributes_dict["data_properties"]
+        )
+
         if node == "decrease in GDP":
             print(personal_values_10)
-        
+
         attributes_dict["personal_values_10"] = personal_values_10
         attributes_dict["personal_values_19"] = personal_values_19
 
@@ -147,6 +151,7 @@ def add_ontology_data_to_graph_nodes(G, onto):
         # still don't know why Restriction Objects are in our ontology!
         # technically each class could have multiple labels, but this way just pulling 1st label
 
+
 def make_personal_values_long(data_properties):
     personal_values_long = []
     values = get_19_values()
@@ -157,6 +162,7 @@ def make_personal_values_long(data_properties):
         else:
             personal_values_long.append(None)
     return personal_values_long
+
 
 def make_personal_values_short(node, data_properties):
     personal_values_short = []
@@ -172,40 +178,44 @@ def make_personal_values_short(node, data_properties):
             personal_values_short.append(compute(values))
     return personal_values_short
 
+
 def get_19_values():
-    return ["achievement",
-            "benevolence_caring",
-            "benevolence_dependability",
-            "conformity_interpersonal",
-            "conformity_rules",
-            "face",
-            "hedonism",
-            "humility",
-            "power_dominance",
-            "power_resources",
-            "security_personal",
-            "security_societal",
-            "self-direction_autonomy_of_action",
-            "self-direction_autonomy_of_thought",
-            "stimulation",
-            "tradition",
-            "universalism_concern",
-            "universalism_nature",
-            "universalism_tolerance"
+    return [
+        "achievement",
+        "benevolence_caring",
+        "benevolence_dependability",
+        "conformity_interpersonal",
+        "conformity_rules",
+        "face",
+        "hedonism",
+        "humility",
+        "power_dominance",
+        "power_resources",
+        "security_personal",
+        "security_societal",
+        "self-direction_autonomy_of_action",
+        "self-direction_autonomy_of_thought",
+        "stimulation",
+        "tradition",
+        "universalism_concern",
+        "universalism_nature",
+        "universalism_tolerance",
     ]
 
+
 def get_10_values():
-    return [["achievement"],
-            ["benevolence_caring", "benevolence_dependability"],
-            ["conformity_interpersonal", "conformity_rules"],
-            ["hedonism"],
-            ["power_dominance", "power_resources"],
-            ["security_personal", "security_societal"],
-            ["self-direction_autonomy_of_action", "self-direction_autonomy_of_thought"],
-            ["stimulation"],
-            ["tradition"],
-            ["universalism_concern", "universalism_nature", "universalism_tolerance"]
-    ]    
+    return [
+        ["achievement"],
+        ["benevolence_caring", "benevolence_dependability"],
+        ["conformity_interpersonal", "conformity_rules"],
+        ["hedonism"],
+        ["power_dominance", "power_resources"],
+        ["security_personal", "security_societal"],
+        ["self-direction_autonomy_of_action", "self-direction_autonomy_of_thought"],
+        ["stimulation"],
+        ["tradition"],
+        ["universalism_concern", "universalism_nature", "universalism_tolerance"],
+    ]
 
 
 def set_edge_properties(G):
@@ -303,7 +313,6 @@ def makeGraph(onto_path, edge_path):
     # run automated reasoning.
     with onto:
         sync_reasoner()
-    
 
     # print(list(default_world.inconsistent_classes()))
 
