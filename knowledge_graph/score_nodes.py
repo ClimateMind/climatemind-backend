@@ -69,42 +69,59 @@ def simple_scoring(G, user_scores):
     ]
 
     for node in G.nodes:
-        full_iri = G.nodes[node]["iri"]
-        pos = full_iri.find("edu") + OFFSET
-        effect_id = full_iri[pos:]
-
-        #score = 0
-        #for value in set_of_values:
-        #    score += user_scores[value]
-        #np.dot(np.array(user_scores_vector),np.array(nx.get_node_attributes(G,"personal_values_10")[node]))
-        node_values_associations_10 = G.nodes[node]["personal_values_10"]#nx.get_node_attributes(G,"personal_values_10")[node]
-        #breakpoint()
-        if(any(v is None for v in node_values_associations_10)):
-            score = 0 #this would be better if was None instead of 0!
-        else:
-            score = np.dot(user_scores_vector,node_values_associations_10)
-
+        if node == "decrease in GDP":
+            print(G.nodes[node])
         try:
-            desc = G.nodes[node]["schema_shortDescription"]
+            set_of_values = G.nodes[node]["personal_values_10"]
+            print(set_of_values)
         except:
-            desc = "No short desc available at present"
+            set_of_values = None
 
-        try:
-            imageUrl = G.nodes[node]["properties"]["schema_image"][0]
-            #if imageUrl:
-                #breakpoint()
-        except:
-            # Default image url if image is added
-            imageUrl = "https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"
+        if set_of_values:
+            #print(G.nodes[node])
+<<<<<<< HEAD
+            full_iri = G.nodes[node]["iri"]
+            pos = full_iri.find("edu") + OFFSET
+            effect_id = full_iri[pos:]
 
-        d = {
-            "effectId": get_effect_id(G.nodes[node]),
-            "effectTitle": G.nodes[node]["label"],
-            "effectDescription": get_short_description(G.nodes[node]),
-            "effectScore": score,
-            "imageUrl": get_image_url(G.nodes[node]),
-        }
-        climate_effects.append(d)
+            #score = 0
+            #for value in set_of_values:
+            #    score += user_scores[value]
+            #np.dot(np.array(user_scores_vector),np.array(nx.get_node_attributes(G,"personal_values_10")[node]))
+            node_values_associations_10 = nx.get_node_attributes(G,"personal_values_10")[node]
+            #breakpoint()
+            if(any(v is None for v in node_values_associations_10)):
+                score = 0 #this would be better if was None instead of 0!
+            else:
+                score = np.dot(user_scores_vector,node_values_associations_10)
+
+            try:
+                desc = G.nodes[node]["schema_shortDescription"]
+            except:
+                desc = "No short desc available at present"
+
+            try:
+                imageUrl = G.nodes[node]["properties"]["schema_image"][0]
+                #if imageUrl:
+                    #breakpoint()
+            except:
+                # Default image url if image is added
+                imageUrl = "https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"
+=======
+
+            score = 0
+            #for value in set_of_values:
+            #    score += user_scores[value]
+>>>>>>> origin/more-refactoring2
+
+            d = {
+                "effectId": get_effect_id(G.nodes[node]),
+                "effectTitle": G.nodes[node]["label"],
+                "effectDescription": get_short_description(G.nodes[node]),
+                "effectScore": score,
+                "imageUrl": get_image_url(G.nodes[node]),
+            }
+            climate_effects.append(d)
 
 
 

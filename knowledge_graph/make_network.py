@@ -4,7 +4,6 @@ import pandas as pd
 from owlready2 import *
 from network_class import Network
 
-
 def test_answer():
     assert search_node(get_ontology(onto_path).load()) == []
     # need to add in the answer to this unit test.
