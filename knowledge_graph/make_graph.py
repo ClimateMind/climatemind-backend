@@ -28,15 +28,16 @@ def listify(collection, onto):
 
 def compute(values):
     """collapsing vector of either 0,1,-1, or None to single value to collapse sub personal values to main personal values."""
-    if(all(v is None for v in values)):
+    if all(v is None for v in values):
         final = None
     else:
         final = any(values)
 
-    if(final is not None):
+    if final is not None:
         final = int(final)
 
     return final
+
 
 def add_ontology_data_to_graph_nodes(G, onto):
     """Find the equivalent nodes in the ontology and load in relevant data
@@ -102,8 +103,6 @@ def add_ontology_data_to_graph_nodes(G, onto):
                     else:
                         attributes_dict[str(super_class.label[0])] = to_add
 
-
-
         attributes_dict["properties"] = {
             prop: list(getattr(ontology_node, prop)) for prop in annot_properties
         }
@@ -112,36 +111,91 @@ def add_ontology_data_to_graph_nodes(G, onto):
             prop: getattr(ontology_node, prop) for prop in data_properties
         }
 
-        #if(attributes_dict["data_properties"]["hedonism"]==1):
-        #	breakpoint()
-        
-        #format personal_values_10 and personal_values_19 to facilitate easier scoring later by the climate mind app
-        #these are hard coded in and the order is very important. Later can change so these aren't hard coded and the order is always alphebetical(?)
-        #use the compute function to collapse a value with multiple subvalues into one number. As long as there's any 1, then the final value is 1 (otherwise 0). None if all are None.
-        
-        personal_values_19 = [ 
-        attributes_dict["data_properties"]["achievement"],attributes_dict["data_properties"]["benevolence_caring"],attributes_dict["data_properties"]["benevolence_dependability"],
-        attributes_dict["data_properties"]["conformity_interpersonal"], attributes_dict["data_properties"]["conformity_rules"],
-        attributes_dict["data_properties"]["face"],attributes_dict["data_properties"]["hedonism"],attributes_dict["data_properties"]["humility"],
-        attributes_dict["data_properties"]["power_dominance"],attributes_dict["data_properties"]["power_resources"],attributes_dict["data_properties"]["security_personal"],
-        attributes_dict["data_properties"]["security_societal"],attributes_dict["data_properties"]["self-direction_autonomy_of_action"],
-        attributes_dict["data_properties"]["self-direction_autonomy_of_thought"],attributes_dict["data_properties"]["stimulation"],
-        attributes_dict["data_properties"]["tradition"],attributes_dict["data_properties"]["universalism_concern"],
-        attributes_dict["data_properties"]["universalism_nature"],attributes_dict["data_properties"]["universalism_tolerance"] 
+        # if(attributes_dict["data_properties"]["hedonism"]==1):
+        # 	breakpoint()
+
+        # format personal_values_10 and personal_values_19 to facilitate easier scoring later by the climate mind app
+        # these are hard coded in and the order is very important. Later can change so these aren't hard coded and the order is always alphebetical(?)
+        # use the compute function to collapse a value with multiple subvalues into one number. As long as there's any 1, then the final value is 1 (otherwise 0). None if all are None.
+
+        personal_values_19 = [
+            attributes_dict["data_properties"]["achievement"],
+            attributes_dict["data_properties"]["benevolence_caring"],
+            attributes_dict["data_properties"]["benevolence_dependability"],
+            attributes_dict["data_properties"]["conformity_interpersonal"],
+            attributes_dict["data_properties"]["conformity_rules"],
+            attributes_dict["data_properties"]["face"],
+            attributes_dict["data_properties"]["hedonism"],
+            attributes_dict["data_properties"]["humility"],
+            attributes_dict["data_properties"]["power_dominance"],
+            attributes_dict["data_properties"]["power_resources"],
+            attributes_dict["data_properties"]["security_personal"],
+            attributes_dict["data_properties"]["security_societal"],
+            attributes_dict["data_properties"]["self-direction_autonomy_of_action"],
+            attributes_dict["data_properties"]["self-direction_autonomy_of_thought"],
+            attributes_dict["data_properties"]["stimulation"],
+            attributes_dict["data_properties"]["tradition"],
+            attributes_dict["data_properties"]["universalism_concern"],
+            attributes_dict["data_properties"]["universalism_nature"],
+            attributes_dict["data_properties"]["universalism_tolerance"],
         ]
 
         achievement = attributes_dict["data_properties"]["achievement"]
-        benevolence = compute( [ attributes_dict["data_properties"]["benevolence_caring"],attributes_dict["data_properties"]["benevolence_dependability"] ] )
-        conformity = compute( [ attributes_dict["data_properties"]["conformity_interpersonal"],attributes_dict["data_properties"]["conformity_rules"] ] )
+        benevolence = compute(
+            [
+                attributes_dict["data_properties"]["benevolence_caring"],
+                attributes_dict["data_properties"]["benevolence_dependability"],
+            ]
+        )
+        conformity = compute(
+            [
+                attributes_dict["data_properties"]["conformity_interpersonal"],
+                attributes_dict["data_properties"]["conformity_rules"],
+            ]
+        )
         hedonism = attributes_dict["data_properties"]["hedonism"]
-        power = compute( [ attributes_dict["data_properties"]["power_dominance"], attributes_dict["data_properties"]["power_resources"] ] )
-        security = compute( [ attributes_dict["data_properties"]["security_personal"], attributes_dict["data_properties"]["security_societal"] ] )
-        self_direction = compute( [ attributes_dict["data_properties"]["self-direction_autonomy_of_action"], attributes_dict["data_properties"]["self-direction_autonomy_of_thought"] ] )
+        power = compute(
+            [
+                attributes_dict["data_properties"]["power_dominance"],
+                attributes_dict["data_properties"]["power_resources"],
+            ]
+        )
+        security = compute(
+            [
+                attributes_dict["data_properties"]["security_personal"],
+                attributes_dict["data_properties"]["security_societal"],
+            ]
+        )
+        self_direction = compute(
+            [
+                attributes_dict["data_properties"]["self-direction_autonomy_of_action"],
+                attributes_dict["data_properties"][
+                    "self-direction_autonomy_of_thought"
+                ],
+            ]
+        )
         stimulation = attributes_dict["data_properties"]["stimulation"]
         tradition = attributes_dict["data_properties"]["tradition"]
-        universalism = compute( [ attributes_dict["data_properties"]["universalism_concern"], attributes_dict["data_properties"]["universalism_nature"], attributes_dict["data_properties"]["universalism_tolerance"] ] )
+        universalism = compute(
+            [
+                attributes_dict["data_properties"]["universalism_concern"],
+                attributes_dict["data_properties"]["universalism_nature"],
+                attributes_dict["data_properties"]["universalism_tolerance"],
+            ]
+        )
 
-        personal_values_10 = [achievement, benevolence, conformity, hedonism, power, security, self_direction, stimulation, tradition, universalism]
+        personal_values_10 = [
+            achievement,
+            benevolence,
+            conformity,
+            hedonism,
+            power,
+            security,
+            self_direction,
+            stimulation,
+            tradition,
+            universalism,
+        ]
 
         attributes_dict["personal_values_10"] = personal_values_10
         attributes_dict["personal_values_19"] = personal_values_19
