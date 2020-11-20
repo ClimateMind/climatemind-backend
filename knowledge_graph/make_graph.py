@@ -7,14 +7,13 @@ import pandas as pd
 import owlready2
 from owlready2 import get_ontology, sync_reasoner
 
-from ontology_processing_utils import (
+from knowledge_graph.ontology_processing_utils import (
     give_alias,
     save_test_ontology_to_json,
     save_graph_to_pickle,
     get_valid_test_ont,
     get_non_test_ont,
 )
-
 import os
 
 
@@ -32,16 +31,10 @@ def compute(values):
     if(all(v is None for v in values)):
         final = None
     else:
-        print(values)
-        final = sum(filter(None, values))
+        final = any(values)
 
-    if final:
-        if final > 0:
-            final = 1
-        if final < 0:
-            final = -1
-        else:
-            final = 0
+    if(final is not None):
+        final = int(final)
 
     return final
 
@@ -72,8 +65,6 @@ def add_ontology_data_to_graph_nodes(G, onto):
         for thing in list(onto.data_properties())
         if thing.label
     ]
-    print(data_properties)
-        
 
     for node in list(G.nodes):
         ontology_node = onto.search_one(label=node)
@@ -116,12 +107,10 @@ def add_ontology_data_to_graph_nodes(G, onto):
         attributes_dict["properties"] = {
             prop: list(getattr(ontology_node, prop)) for prop in annot_properties
         }
-                       
+
         attributes_dict["data_properties"] = {
-            prop: getattr(ontology_node, prop) for prop in data_properties if hasattr(ontology_node, prop)
+            prop: getattr(ontology_node, prop) for prop in data_properties
         }
-        
-        print(attributes_dict["data_properties"])
 
         #if(attributes_dict["data_properties"]["hedonism"]==1):
         #	breakpoint()
@@ -129,13 +118,31 @@ def add_ontology_data_to_graph_nodes(G, onto):
         #format personal_values_10 and personal_values_19 to facilitate easier scoring later by the climate mind app
         #these are hard coded in and the order is very important. Later can change so these aren't hard coded and the order is always alphebetical(?)
         #use the compute function to collapse a value with multiple subvalues into one number. As long as there's any 1, then the final value is 1 (otherwise 0). None if all are None.
-    
-        personal_values_19 = make_personal_values_long(attributes_dict["data_properties"]) 
-        personal_values_10 = make_personal_values_short(node, attributes_dict["data_properties"])
         
-        if node == "decrease in GDP":
-            print(personal_values_10)
-        
+        personal_values_19 = [ 
+        attributes_dict["data_properties"]["achievement"],attributes_dict["data_properties"]["benevolence_caring"],attributes_dict["data_properties"]["benevolence_dependability"],
+        attributes_dict["data_properties"]["conformity_interpersonal"], attributes_dict["data_properties"]["conformity_rules"],
+        attributes_dict["data_properties"]["face"],attributes_dict["data_properties"]["hedonism"],attributes_dict["data_properties"]["humility"],
+        attributes_dict["data_properties"]["power_dominance"],attributes_dict["data_properties"]["power_resources"],attributes_dict["data_properties"]["security_personal"],
+        attributes_dict["data_properties"]["security_societal"],attributes_dict["data_properties"]["self-direction_autonomy_of_action"],
+        attributes_dict["data_properties"]["self-direction_autonomy_of_thought"],attributes_dict["data_properties"]["stimulation"],
+        attributes_dict["data_properties"]["tradition"],attributes_dict["data_properties"]["universalism_concern"],
+        attributes_dict["data_properties"]["universalism_nature"],attributes_dict["data_properties"]["universalism_tolerance"] 
+        ]
+
+        achievement = attributes_dict["data_properties"]["achievement"]
+        benevolence = compute( [ attributes_dict["data_properties"]["benevolence_caring"],attributes_dict["data_properties"]["benevolence_dependability"] ] )
+        conformity = compute( [ attributes_dict["data_properties"]["conformity_interpersonal"],attributes_dict["data_properties"]["conformity_rules"] ] )
+        hedonism = attributes_dict["data_properties"]["hedonism"]
+        power = compute( [ attributes_dict["data_properties"]["power_dominance"], attributes_dict["data_properties"]["power_resources"] ] )
+        security = compute( [ attributes_dict["data_properties"]["security_personal"], attributes_dict["data_properties"]["security_societal"] ] )
+        self_direction = compute( [ attributes_dict["data_properties"]["self-direction_autonomy_of_action"], attributes_dict["data_properties"]["self-direction_autonomy_of_thought"] ] )
+        stimulation = attributes_dict["data_properties"]["stimulation"]
+        tradition = attributes_dict["data_properties"]["tradition"]
+        universalism = compute( [ attributes_dict["data_properties"]["universalism_concern"], attributes_dict["data_properties"]["universalism_nature"], attributes_dict["data_properties"]["universalism_tolerance"] ] )
+
+        personal_values_10 = [achievement, benevolence, conformity, hedonism, power, security, self_direction, stimulation, tradition, universalism]
+
         attributes_dict["personal_values_10"] = personal_values_10
         attributes_dict["personal_values_19"] = personal_values_19
 
@@ -146,66 +153,6 @@ def add_ontology_data_to_graph_nodes(G, onto):
         # the if statement is needed to avoid the Restriction objects
         # still don't know why Restriction Objects are in our ontology!
         # technically each class could have multiple labels, but this way just pulling 1st label
-
-def make_personal_values_long(data_properties):
-    personal_values_long = []
-    values = get_19_values()
-    for value in values:
-        if value in data_properties.keys():
-            print(data_properties[value])
-            personal_values_long.append(data_properties[value])
-        else:
-            personal_values_long.append(None)
-    return personal_values_long
-
-def make_personal_values_short(node, data_properties):
-    personal_values_short = []
-    value_lists = get_10_values()
-    for value_list in value_lists:
-        if len(value_list) == 1:
-            if value_list[0] in data_properties.keys():
-                personal_values_short.append(data_properties(value_list[0]))
-            else:
-                personal_values_short.append(None)
-        else:
-            values = [data_properties[v] for v in value_list if v in data_properties]
-            personal_values_short.append(compute(values))
-    return personal_values_short
-
-def get_19_values():
-    return ["achievement",
-            "benevolence_caring",
-            "benevolence_dependability",
-            "conformity_interpersonal",
-            "conformity_rules",
-            "face",
-            "hedonism",
-            "humility",
-            "power_dominance",
-            "power_resources",
-            "security_personal",
-            "security_societal",
-            "self-direction_autonomy_of_action",
-            "self-direction_autonomy_of_thought",
-            "stimulation",
-            "tradition",
-            "universalism_concern",
-            "universalism_nature",
-            "universalism_tolerance"
-    ]
-
-def get_10_values():
-    return [["achievement"],
-            ["benevolence_caring", "benevolence_dependability"],
-            ["conformity_interpersonal", "conformity_rules"],
-            ["hedonism"],
-            ["power_dominance", "power_resources"],
-            ["security_personal", "security_societal"],
-            ["self-direction_autonomy_of_action", "self-direction_autonomy_of_thought"],
-            ["stimulation"],
-            ["tradition"],
-            ["universalism_concern", "universalism_nature", "universalism_tolerance"]
-    ]    
 
 
 def set_edge_properties(G):
@@ -271,6 +218,8 @@ def remove_non_test_nodes(G, node, valid_test_ont, not_test_ont):
                 break
         if not is_test_ont:
             G.remove_node(node)
+        else:
+            is_test_ont = False
 
 
 def get_test_ontology(G, valid_test_ont, not_test_ont):
@@ -281,7 +230,7 @@ def get_test_ontology(G, valid_test_ont, not_test_ont):
         remove_non_test_nodes(G, node_b, valid_test_ont, not_test_ont)
 
 
-def makeGraph(onto_path, edge_path):
+def makeGraph(onto_path, edge_path, output_folder_path):
     """
     Main function to make networkx graph object from reference ontology and edge list.
 
@@ -292,7 +241,6 @@ def makeGraph(onto_path, edge_path):
 
     # Load ontology and format object properties and annotation properties into Python readable names
     onto = get_ontology(onto_path).load()
-    output_folder_path = ""
     obj_properties = list(onto.object_properties())
     annot_properties = list(onto.annotation_properties())
     data_properties = list(onto.annotation_properties())
@@ -303,7 +251,6 @@ def makeGraph(onto_path, edge_path):
     # run automated reasoning.
     with onto:
         sync_reasoner()
-    
 
     # print(list(default_world.inconsistent_classes()))
 
@@ -323,6 +270,7 @@ def makeGraph(onto_path, edge_path):
     to_remove = set_edge_properties(G)
     remove_edge_properties_from_nodes(G, to_remove)
 
+    # output_folder_path = "../PUT_NEW_OWL_FILE_IN_HERE/"
     save_graph_to_pickle(G, output_folder_path)
 
     valid_test_ont = get_valid_test_ont()
