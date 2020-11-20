@@ -1,4 +1,5 @@
 import pickle
+import numpy
 import networkx as nx
 import sys
 from collections import Counter
@@ -10,6 +11,38 @@ from knowledge_graph.make_graph import (
 
 OFFSET = 4  # .edu <- to skip these characters and get the unique IRI
 
+def remove_non_value_database_columns(scores):
+    if "_sa_instance_state" in scores.keys():
+        del scores["_sa_instance_state"]
+    if "session_id" in scores.keys():
+        del scores["session_id"]
+    if "scores_id" in scores.keys():
+        del scores["scores_id"]
+    if "user_id" in scores.keys():
+        del scores["user_id"]
+    return scores
+
+
+def get_effect_id(node):
+    try:
+        full_iri = node["iri"]
+        pos = full_iri.find("edu") + OFFSET
+        return full_iri[pos:]
+    except:
+        return "No IRI Found"
+
+def get_short_description(node):
+    try:
+        return node["schema_shortDescription"]
+    except:
+        return "No short desc available at present"
+
+def get_image_url(node):
+    try:
+        return node["properties"]["schema_image"][0]
+    except:
+        # Default image url if image is added
+        return "https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"
 
 def simple_scoring(G, user_scores):
     """Each node contains a list of classes, which include the values associated with
@@ -20,43 +53,27 @@ def simple_scoring(G, user_scores):
     climate_effects = []
 
     for node in G.nodes:
-        node_classes = G.nodes[node]["direct classes"]
-        set_of_values = {
-            node_class.split()[0]
-            for node_class in node_classes
-            if node_class.split()[0] in user_scores.keys()
-        }
+        if node == "decrease in GDP":
+            print(G.nodes[node])
+        try:
+            set_of_values = G.nodes[node]["personal_values_10"]
+            print(set_of_values)
+        except:
+            set_of_values = None
 
         if set_of_values:
-            print(G.nodes[node])
-            full_iri = G.nodes[node]["iri"]
-            pos = full_iri.find("edu") + OFFSET
-            effect_id = full_iri[pos:]
+            #print(G.nodes[node])
 
             score = 0
-            for value in set_of_values:
-                score += user_scores[value]
-
-            try:
-                desc = G.nodes[node]["schema_shortDescription"]
-            except:
-                desc = "No short desc available at present"
-
-            try:
-                imageUrl = G.nodes[node]["properties"]["schema_image"][0]
-            except:
-                # Default image url if image is added
-                imageUrl = "https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"
-
-            if(imageUrl):
-                breakpoint()
+            #for value in set_of_values:
+            #    score += user_scores[value]
 
             d = {
-                "effectId": effect_id,
+                "effectId": get_effect_id(G.nodes[node]),
                 "effectTitle": G.nodes[node]["label"],
-                "effectDescription": desc,
+                "effectDescription": get_short_description(G.nodes[node]),
                 "effectScore": score,
-                "imageUrl": imageUrl,
+                "imageUrl": get_image_url(G.nodes[node]),
             }
             climate_effects.append(d)
 

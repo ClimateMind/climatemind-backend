@@ -1,7 +1,7 @@
 import typing
 import owlready2
 from owlready2 import *
-from knowledge_graph.ontology_processing_utils import give_alias
+from ontology_processing_utils import give_alias
 
 
 class Network:

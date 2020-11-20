@@ -6,6 +6,7 @@ import os
 def get_valid_test_ont():
     return {
         "test ontology",
+        "approved - values",
         "personal value",
         "achievement",
         "benevolence",
