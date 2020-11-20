@@ -48,6 +48,9 @@ def simple_scoring(G, user_scores):
                 # Default image url if image is added
                 imageUrl = "https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"
 
+            if(imageUrl):
+                breakpoint()
+
             d = {
                 "effectId": effect_id,
                 "effectTitle": G.nodes[node]["label"],
