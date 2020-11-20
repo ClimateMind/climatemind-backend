@@ -129,11 +129,11 @@
                 "global warming"
             ],
             "all classes": [
-                "core climate change",
-                "risk",
                 "test ontology",
                 "global warming",
-                "main land change"
+                "main land change",
+                "risk",
+                "core climate change"
             ],
             "risk": [
                 "global warming",
@@ -249,19 +249,19 @@
                 "main ocean change"
             ],
             "all classes": [
-                "global warming",
                 "test ontology",
+                "global warming",
+                "main ocean change",
                 "risk",
-                "core climate change",
-                "main ocean change"
+                "core climate change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "main ocean change",
+                "core climate change",
                 "risk",
-                "core climate change"
+                "main ocean change"
             ],
             "properties": {
                 "dc_source": [],
@@ -363,19 +363,19 @@
                 "main atmospheric change"
             ],
             "all classes": [
-                "global warming",
                 "test ontology",
+                "global warming",
+                "main atmospheric change",
                 "risk",
-                "core climate change",
-                "main atmospheric change"
+                "core climate change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "risk",
                 "main atmospheric change",
-                "core climate change"
+                "core climate change",
+                "risk"
             ],
             "properties": {
                 "dc_source": [],
@@ -476,18 +476,18 @@
                 "main atmospheric change"
             ],
             "all classes": [
-                "core climate change",
                 "test ontology",
+                "main atmospheric change",
                 "risk",
-                "main atmospheric change"
+                "core climate change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "risk",
                 "main atmospheric change",
-                "core climate change"
+                "core climate change",
+                "risk"
             ],
             "properties": {
                 "dc_source": [],
@@ -614,18 +614,18 @@
                 "water cycle change"
             ],
             "all classes": [
-                "core climate change",
+                "water cycle change",
                 "test ontology",
                 "risk",
-                "water cycle change"
+                "core climate change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "water cycle change",
+                "core climate change",
                 "risk",
-                "core climate change"
+                "water cycle change"
             ],
             "properties": {
                 "dc_source": [],
@@ -746,16 +746,16 @@
                 "other negative effect from root cause"
             ],
             "all classes": [
-                "risk",
                 "test ontology",
-                "effect",
                 "downstream negative effect",
+                "effect",
+                "risk",
                 "other negative effect from root cause"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "other negative effect from root cause"
+                "other negative effect from root cause",
+                "effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -898,15 +898,15 @@
                 "test ontology"
             ],
             "all classes": [
-                "core climate change",
-                "risk",
-                "main variability change",
-                "test ontology"
-            ],
-            "risk": [
+                "test ontology",
                 "risk",
                 "main variability change",
                 "core climate change"
+            ],
+            "risk": [
+                "main variability change",
+                "core climate change",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -1079,15 +1079,15 @@
                 "test ontology"
             ],
             "all classes": [
-                "core climate change",
-                "risk",
-                "main variability change",
-                "test ontology"
-            ],
-            "risk": [
+                "test ontology",
                 "risk",
                 "main variability change",
                 "core climate change"
+            ],
+            "risk": [
+                "main variability change",
+                "core climate change",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -1305,18 +1305,18 @@
                 "self-direction autonomy of thought"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "effect",
                 "approved - values",
-                "communication frame",
+                "test ontology",
                 "downstream negative effect",
-                "achievement",
-                "frame uncategorized (to do)",
+                "effect",
                 "self-direction autonomy of thought",
-                "self-direction",
+                "frame uncategorized (to do)",
+                "personal value",
+                "risk",
+                "communication frame",
                 "status - personal value",
-                "personal value"
+                "self-direction",
+                "achievement"
             ],
             "personal value": [
                 "personal value",
@@ -1324,13 +1324,13 @@
                 "self-direction"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "communication frame": [
                 "frame uncategorized (to do)",
@@ -1451,35 +1451,35 @@
                 "other negative effect from root cause"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "self-direction autonomy of action",
-                "hedonism",
-                "effect",
-                "other negative effect from root cause",
                 "approved - values",
-                "communication frame",
-                "other negative effect from greenhouse gas emission",
-                "universalism concern",
+                "test ontology",
                 "downstream negative effect",
-                "frame uncategorized (to do)",
-                "self-direction",
+                "other negative effect from greenhouse gas emission",
+                "effect",
                 "universalism",
+                "frame uncategorized (to do)",
+                "personal value",
+                "risk",
+                "communication frame",
                 "status - personal value",
-                "personal value"
+                "self-direction autonomy of action",
+                "other negative effect from root cause",
+                "self-direction",
+                "hedonism",
+                "universalism concern"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "other negative effect from root cause"
+                "other negative effect from root cause",
+                "effect"
             ],
             "personal value": [
                 "hedonism",
                 "personal value"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "communication frame": [
                 "frame uncategorized (to do)",
@@ -1600,32 +1600,32 @@
                 "stimulation"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "hedonism",
-                "effect",
-                "approved - values",
-                "communication frame",
-                "downstream negative effect",
-                "frame uncategorized (to do)",
-                "stimulation",
                 "power",
-                "status - personal value",
+                "approved - values",
+                "stimulation",
+                "test ontology",
+                "downstream negative effect",
+                "effect",
                 "power resources",
-                "personal value"
+                "frame uncategorized (to do)",
+                "personal value",
+                "risk",
+                "communication frame",
+                "status - personal value",
+                "hedonism"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "personal value": [
-                "stimulation",
-                "personal value"
+                "personal value",
+                "stimulation"
             ],
             "communication frame": [
                 "frame uncategorized (to do)",
@@ -1748,37 +1748,37 @@
             ],
             "all classes": [
                 "test ontology",
-                "tradition",
-                "health change",
-                "universalism concern",
-                "status - personal value",
-                "benevolence caring",
-                "personal value",
-                "approved - values",
-                "downstream negative effect",
-                "frame uncategorized (to do)",
-                "risk",
-                "mental health change",
-                "effect",
-                "communication frame",
-                "benevolence",
-                "security personal",
-                "security societal",
                 "universalism",
-                "security"
+                "frame uncategorized (to do)",
+                "security societal",
+                "health change",
+                "tradition",
+                "downstream negative effect",
+                "benevolence caring",
+                "communication frame",
+                "security",
+                "universalism concern",
+                "approved - values",
+                "security personal",
+                "effect",
+                "mental health change",
+                "personal value",
+                "risk",
+                "benevolence",
+                "status - personal value"
             ],
             "personal value": [
                 "personal value",
                 "tradition"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "communication frame": [
                 "frame uncategorized (to do)",
@@ -1900,32 +1900,32 @@
                 "power dominance"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "effect",
-                "power dominance",
-                "approved - values",
-                "communication frame",
-                "downstream negative effect",
-                "security societal",
-                "security",
-                "national security change",
                 "power",
-                "status - personal value",
-                "personal value"
-            ],
-            "status - personal value": [
                 "approved - values",
-                "status - personal value"
-            ],
-            "risk": [
+                "security societal",
+                "test ontology",
+                "downstream negative effect",
+                "national security change",
                 "effect",
-                "risk",
-                "downstream negative effect"
-            ],
-            "personal value": [
                 "power dominance",
                 "personal value",
+                "risk",
+                "communication frame",
+                "status - personal value",
+                "security"
+            ],
+            "status - personal value": [
+                "status - personal value",
+                "approved - values"
+            ],
+            "risk": [
+                "risk",
+                "downstream negative effect",
+                "effect"
+            ],
+            "personal value": [
+                "personal value",
+                "power dominance",
                 "power"
             ],
             "communication frame": [
@@ -2042,26 +2042,26 @@
                 "test ontology"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "effect",
-                "approved - values",
-                "communication frame",
-                "downstream negative effect",
-                "frame uncategorized (to do)",
                 "power",
-                "status - personal value",
-                "power resources",
-                "personal value"
-            ],
-            "status - personal value": [
                 "approved - values",
+                "test ontology",
+                "downstream negative effect",
+                "effect",
+                "power resources",
+                "frame uncategorized (to do)",
+                "personal value",
+                "risk",
+                "communication frame",
                 "status - personal value"
             ],
+            "status - personal value": [
+                "status - personal value",
+                "approved - values"
+            ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "personal value": [
                 "personal value",
@@ -2182,20 +2182,20 @@
                 "health change"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "effect",
                 "approved - values",
-                "communication frame",
-                "security personal",
-                "health change",
-                "universalism concern",
-                "downstream negative effect",
                 "security societal",
+                "test ontology",
+                "downstream negative effect",
+                "security personal",
+                "effect",
                 "universalism",
-                "security",
+                "personal value",
+                "risk",
+                "communication frame",
                 "status - personal value",
-                "personal value"
+                "security",
+                "health change",
+                "universalism concern"
             ],
             "personal value": [
                 "personal value",
@@ -2203,13 +2203,13 @@
                 "security"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -2332,31 +2332,31 @@
                 "power dominance"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "self-direction autonomy of action",
                 "status - personal value",
+                "power",
+                "test ontology",
+                "downstream negative effect",
                 "effect",
                 "power dominance",
-                "communication frame",
-                "downstream negative effect",
-                "achievement",
                 "frame uncategorized (to do)",
-                "self-direction",
-                "power",
-                "not finished - values",
+                "personal value",
+                "risk",
+                "communication frame",
                 "power resources",
-                "personal value"
+                "self-direction autonomy of action",
+                "not finished - values",
+                "self-direction",
+                "achievement"
             ],
             "personal value": [
-                "power dominance",
                 "personal value",
+                "power dominance",
                 "power"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "communication frame": [
                 "frame uncategorized (to do)",
@@ -2366,8 +2366,8 @@
                 "test ontology"
             ],
             "status - personal value": [
-                "status - personal value",
-                "not finished - values"
+                "not finished - values",
+                "status - personal value"
             ],
             "properties": {
                 "dc_source": [],
@@ -2487,18 +2487,18 @@
                 "education change"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "effect",
                 "approved - values",
-                "communication frame",
+                "test ontology",
                 "downstream negative effect",
-                "achievement",
-                "self-direction",
+                "effect",
+                "communication frame",
                 "self-direction autonomy of thought",
+                "personal value",
+                "risk",
                 "education change",
                 "status - personal value",
-                "personal value"
+                "self-direction",
+                "achievement"
             ],
             "personal value": [
                 "personal value",
@@ -2506,20 +2506,20 @@
                 "self-direction"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "communication frame": [
-                "communication frame",
-                "education change"
+                "education change",
+                "communication frame"
             ],
             "properties": {
                 "dc_source": [],
@@ -2630,35 +2630,35 @@
                 "conformity interpersonal"
             ],
             "all classes": [
-                "risk",
+                "approved - values",
+                "security societal",
                 "test ontology",
-                "self-direction autonomy of action",
+                "downstream negative effect",
+                "security personal",
                 "conformity rules",
                 "effect",
-                "hedonism",
-                "approved - values",
-                "conformity interpersonal",
-                "security personal",
-                "downstream negative effect",
-                "self-direction",
-                "security societal",
-                "conformity",
-                "security",
+                "personal value",
+                "risk",
+                "self-direction autonomy of action",
                 "status - personal value",
-                "personal value"
+                "security",
+                "conformity interpersonal",
+                "conformity",
+                "self-direction",
+                "hedonism"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "personal value": [
-                "conformity",
                 "personal value",
+                "conformity",
                 "conformity interpersonal"
             ],
             "test ontology": [
@@ -2780,22 +2780,22 @@
                 "security personal"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "universalism nature",
-                "benevolence dependability",
-                "effect",
-                "review needed - values",
-                "security personal",
-                "benevolence",
-                "universalism concern",
-                "downstream negative effect",
                 "security societal",
-                "universalism",
-                "security",
-                "status - personal value",
+                "test ontology",
+                "downstream negative effect",
+                "security personal",
+                "effect",
                 "benevolence caring",
-                "personal value"
+                "benevolence dependability",
+                "universalism",
+                "personal value",
+                "risk",
+                "benevolence",
+                "status - personal value",
+                "security",
+                "review needed - values",
+                "universalism nature",
+                "universalism concern"
             ],
             "status - personal value": [
                 "review needed - values",
@@ -2807,9 +2807,9 @@
                 "security"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -2943,36 +2943,36 @@
                 "power dominance"
             ],
             "all classes": [
-                "risk",
+                "power",
+                "approved - values",
+                "security societal",
                 "test ontology",
+                "downstream negative effect",
                 "effect",
                 "power dominance",
-                "approved - values",
-                "communication frame",
-                "downstream negative effect",
-                "security societal",
                 "frame uncategorized (to do)",
-                "security",
-                "power",
+                "personal value",
+                "risk",
+                "communication frame",
                 "status - personal value",
-                "personal value"
+                "security"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "communication frame": [
                 "frame uncategorized (to do)",
                 "communication frame"
             ],
             "personal value": [
-                "power dominance",
                 "personal value",
+                "power dominance",
                 "power"
             ],
             "test ontology": [
@@ -3244,37 +3244,37 @@
                 "stimulation"
             ],
             "all classes": [
-                "test ontology",
-                "health change",
-                "universalism concern",
-                "status - personal value",
-                "personal value",
-                "review needed - values",
-                "other negative effect from greenhouse gas emission",
-                "downstream negative effect",
                 "stimulation",
-                "risk",
-                "effect",
-                "communication frame",
-                "self-direction",
-                "self-direction autonomy of action",
-                "security personal",
-                "security societal",
+                "test ontology",
                 "universalism",
-                "security"
+                "review needed - values",
+                "security societal",
+                "other negative effect from greenhouse gas emission",
+                "self-direction autonomy of action",
+                "self-direction",
+                "health change",
+                "downstream negative effect",
+                "communication frame",
+                "security",
+                "universalism concern",
+                "security personal",
+                "effect",
+                "personal value",
+                "risk",
+                "status - personal value"
             ],
             "status - personal value": [
                 "review needed - values",
                 "status - personal value"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "personal value": [
-                "stimulation",
-                "personal value"
+                "personal value",
+                "stimulation"
             ],
             "test ontology": [
                 "test ontology"
@@ -3430,32 +3430,32 @@
             ],
             "all classes": [
                 "test ontology",
-                "universalism concern",
-                "status - personal value",
-                "benevolence caring",
-                "personal value",
-                "review needed - values",
-                "other negative effect from greenhouse gas emission",
-                "downstream negative effect",
-                "frame uncategorized (to do)",
-                "other negative effect from root cause",
-                "risk",
-                "effect",
-                "communication frame",
-                "benevolence",
-                "security personal",
-                "security societal",
                 "universalism",
-                "security"
+                "frame uncategorized (to do)",
+                "review needed - values",
+                "security societal",
+                "other negative effect from greenhouse gas emission",
+                "other negative effect from root cause",
+                "downstream negative effect",
+                "benevolence caring",
+                "communication frame",
+                "security",
+                "universalism concern",
+                "security personal",
+                "effect",
+                "personal value",
+                "risk",
+                "benevolence",
+                "status - personal value"
             ],
             "status - personal value": [
                 "review needed - values",
                 "status - personal value"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "other negative effect from root cause"
+                "other negative effect from root cause",
+                "effect"
             ],
             "personal value": [
                 "personal value",
@@ -3580,19 +3580,19 @@
                 "security personal"
             ],
             "all classes": [
-                "risk",
-                "justice change",
-                "test ontology",
-                "review needed - values",
-                "communication frame",
-                "risk or effect uncategorized (to do)",
-                "security personal",
-                "universalism concern",
                 "security societal",
+                "test ontology",
+                "security personal",
+                "justice change",
+                "communication frame",
                 "universalism",
-                "security",
+                "personal value",
+                "risk or effect uncategorized (to do)",
+                "risk",
                 "status - personal value",
-                "personal value"
+                "security",
+                "review needed - values",
+                "universalism concern"
             ],
             "status - personal value": [
                 "review needed - values",
@@ -3604,8 +3604,8 @@
                 "security"
             ],
             "risk": [
-                "risk",
-                "risk or effect uncategorized (to do)"
+                "risk or effect uncategorized (to do)",
+                "risk"
             ],
             "communication frame": [
                 "justice change",
@@ -3715,18 +3715,18 @@
                 "mitigation barrier"
             ],
             "all classes": [
+                "mitigation barrier",
                 "test ontology",
-                "risk",
                 "risk solution barrier",
-                "mitigation barrier"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "risk solution barrier",
                 "mitigation barrier",
-                "risk"
+                "risk",
+                "risk solution barrier"
             ],
             "properties": {
                 "dc_source": [],
@@ -3830,26 +3830,26 @@
                 "health change"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "effect",
                 "approved - values",
-                "communication frame",
-                "other negative effect from greenhouse gas emission",
-                "security personal",
-                "health change",
-                "universalism concern",
-                "downstream negative effect",
                 "security societal",
+                "test ontology",
+                "downstream negative effect",
+                "security personal",
+                "other negative effect from greenhouse gas emission",
+                "effect",
                 "universalism",
-                "security",
+                "personal value",
+                "risk",
+                "communication frame",
                 "status - personal value",
-                "personal value"
+                "security",
+                "health change",
+                "universalism concern"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "personal value": [
                 "personal value",
@@ -3857,8 +3857,8 @@
                 "security"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "test ontology": [
                 "test ontology"
@@ -3990,20 +3990,20 @@
                 "health change"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "effect",
                 "approved - values",
-                "communication frame",
-                "security personal",
-                "health change",
-                "universalism concern",
-                "downstream negative effect",
                 "security societal",
+                "test ontology",
+                "downstream negative effect",
+                "security personal",
+                "effect",
                 "universalism",
-                "security",
+                "personal value",
+                "risk",
+                "communication frame",
                 "status - personal value",
-                "personal value"
+                "security",
+                "health change",
+                "universalism concern"
             ],
             "personal value": [
                 "personal value",
@@ -4011,13 +4011,13 @@
                 "security"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -4125,18 +4125,18 @@
                 "water cycle change"
             ],
             "all classes": [
-                "core climate change",
+                "water cycle change",
                 "test ontology",
                 "risk",
-                "water cycle change"
+                "core climate change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "water cycle change",
+                "core climate change",
                 "risk",
-                "core climate change"
+                "water cycle change"
             ],
             "properties": {
                 "dc_source": [],
@@ -4254,15 +4254,15 @@
                 "test ontology"
             ],
             "all classes": [
-                "core climate change",
-                "risk",
                 "test ontology",
-                "main land change"
+                "main land change",
+                "risk",
+                "core climate change"
             ],
             "risk": [
+                "core climate change",
                 "risk",
-                "main land change",
-                "core climate change"
+                "main land change"
             ],
             "test ontology": [
                 "test ontology"
@@ -4366,15 +4366,15 @@
                 "test ontology"
             ],
             "all classes": [
-                "core climate change",
-                "risk",
                 "test ontology",
-                "main land change"
+                "main land change",
+                "risk",
+                "core climate change"
             ],
             "risk": [
+                "core climate change",
                 "risk",
-                "main land change",
-                "core climate change"
+                "main land change"
             ],
             "test ontology": [
                 "test ontology"
@@ -4484,21 +4484,21 @@
                 "wildfire change"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "universalism nature",
-                "effect",
-                "review needed - values",
-                "communication frame",
-                "security personal",
-                "wildfire change",
-                "universalism concern",
-                "downstream negative effect",
                 "security societal",
+                "test ontology",
+                "downstream negative effect",
+                "security personal",
+                "effect",
+                "wildfire change",
                 "universalism",
-                "security",
+                "personal value",
+                "risk",
+                "communication frame",
                 "status - personal value",
-                "personal value"
+                "security",
+                "review needed - values",
+                "universalism nature",
+                "universalism concern"
             ],
             "status - personal value": [
                 "review needed - values",
@@ -4510,16 +4510,16 @@
                 "security"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "communication frame": [
-                "wildfire change",
-                "communication frame"
+                "communication frame",
+                "wildfire change"
             ],
             "properties": {
                 "dc_source": [],
@@ -4646,15 +4646,15 @@
                 "test ontology"
             ],
             "all classes": [
-                "risk",
                 "test ontology",
+                "downstream negative effect",
                 "effect",
-                "downstream negative effect"
+                "risk"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -4759,16 +4759,16 @@
                 "water cycle change"
             ],
             "all classes": [
-                "core climate change",
-                "risk",
+                "water cycle change",
                 "test ontology",
                 "main land change",
-                "water cycle change"
-            ],
-            "risk": [
-                "water cycle change",
                 "risk",
                 "core climate change"
+            ],
+            "risk": [
+                "core climate change",
+                "risk",
+                "water cycle change"
             ],
             "test ontology": [
                 "test ontology"
@@ -4985,18 +4985,18 @@
                 "main ocean change"
             ],
             "all classes": [
-                "core climate change",
                 "test ontology",
+                "main ocean change",
                 "risk",
-                "main ocean change"
+                "core climate change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "main ocean change",
+                "core climate change",
                 "risk",
-                "core climate change"
+                "main ocean change"
             ],
             "properties": {
                 "dc_source": [],
@@ -5097,18 +5097,18 @@
                 "main ocean change"
             ],
             "all classes": [
-                "core climate change",
                 "test ontology",
+                "main ocean change",
                 "risk",
-                "main ocean change"
+                "core climate change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "main ocean change",
+                "core climate change",
                 "risk",
-                "core climate change"
+                "main ocean change"
             ],
             "properties": {
                 "dc_source": [],
@@ -5216,15 +5216,15 @@
                 "test ontology"
             ],
             "all classes": [
-                "risk",
                 "test ontology",
+                "downstream negative effect",
                 "effect",
-                "downstream negative effect"
+                "risk"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -5335,15 +5335,15 @@
                 "test ontology"
             ],
             "all classes": [
-                "risk",
                 "test ontology",
+                "downstream negative effect",
                 "effect",
-                "downstream negative effect"
+                "risk"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -5492,9 +5492,9 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "dc_source": [
-                            "https://www.sciencedirect.com/science/article/pii/S0962629807000601",
-                            "https://www.nature.com/articles/s41612-019-0074-8",
                             "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
+                            "https://www.nature.com/articles/s41612-019-0074-8",
+                            "https://www.sciencedirect.com/science/article/pii/S0962629807000601",
                             "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html"
                         ]
                     }
@@ -5520,30 +5520,30 @@
                 "hedonism"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "hedonism",
-                "effect",
-                "approved - values",
-                "communication frame",
-                "security personal",
-                "downstream negative effect",
-                "security societal",
-                "frame uncategorized (to do)",
-                "security",
                 "power",
-                "status - personal value",
+                "approved - values",
+                "security societal",
+                "test ontology",
+                "downstream negative effect",
+                "security personal",
+                "effect",
                 "power resources",
-                "personal value"
+                "frame uncategorized (to do)",
+                "personal value",
+                "risk",
+                "communication frame",
+                "status - personal value",
+                "security",
+                "hedonism"
             ],
             "status - personal value": [
-                "approved - values",
-                "status - personal value"
+                "status - personal value",
+                "approved - values"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "personal value": [
                 "hedonism",
@@ -5671,29 +5671,29 @@
                 "test ontology"
             ],
             "all classes": [
-                "risk",
+                "approved - values",
                 "test ontology",
-                "universalism nature",
-                "effect",
-                "approved - values",
                 "downstream negative effect",
-                "universalism",
-                "status - personal value",
-                "personal value"
-            ],
-            "status - personal value": [
-                "approved - values",
-                "status - personal value"
-            ],
-            "risk": [
                 "effect",
-                "risk",
-                "downstream negative effect"
-            ],
-            "personal value": [
                 "universalism",
                 "personal value",
+                "risk",
+                "status - personal value",
                 "universalism nature"
+            ],
+            "status - personal value": [
+                "status - personal value",
+                "approved - values"
+            ],
+            "risk": [
+                "risk",
+                "downstream negative effect",
+                "effect"
+            ],
+            "personal value": [
+                "personal value",
+                "universalism nature",
+                "universalism"
             ],
             "test ontology": [
                 "test ontology"
@@ -5839,26 +5839,26 @@
                 "stimulation"
             ],
             "all classes": [
-                "risk",
-                "test ontology",
-                "hedonism",
-                "effect",
-                "review needed - values",
-                "communication frame",
-                "downstream negative effect",
-                "frame uncategorized (to do)",
                 "stimulation",
+                "test ontology",
+                "downstream negative effect",
+                "effect",
+                "frame uncategorized (to do)",
+                "personal value",
+                "risk",
+                "communication frame",
                 "status - personal value",
-                "personal value"
+                "review needed - values",
+                "hedonism"
             ],
             "status - personal value": [
                 "review needed - values",
                 "status - personal value"
             ],
             "risk": [
-                "effect",
                 "risk",
-                "downstream negative effect"
+                "downstream negative effect",
+                "effect"
             ],
             "communication frame": [
                 "frame uncategorized (to do)",
@@ -5868,8 +5868,8 @@
                 "test ontology"
             ],
             "personal value": [
-                "stimulation",
-                "personal value"
+                "personal value",
+                "stimulation"
             ],
             "properties": {
                 "dc_source": [
@@ -5990,9 +5990,9 @@
                 "root cause linked to humans"
             ],
             "all classes": [
+                "root cause linked to humans",
                 "test ontology",
-                "risk",
-                "root cause linked to humans"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -6103,9 +6103,9 @@
                 "root cause linked to humans"
             ],
             "all classes": [
+                "root cause linked to humans",
                 "test ontology",
-                "risk",
-                "root cause linked to humans"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -6230,9 +6230,9 @@
                 "root cause linked to humans"
             ],
             "all classes": [
+                "root cause linked to humans",
                 "test ontology",
-                "risk",
-                "root cause linked to humans"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -6475,9 +6475,9 @@
                 "root cause linked to humans"
             ],
             "all classes": [
+                "root cause linked to humans",
                 "test ontology",
-                "risk",
-                "root cause linked to humans"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -6607,9 +6607,9 @@
                 "root cause linked to humans"
             ],
             "all classes": [
+                "root cause linked to humans",
                 "test ontology",
-                "risk",
-                "root cause linked to humans"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -6732,9 +6732,9 @@
                 "root cause linked to humans"
             ],
             "all classes": [
+                "root cause linked to humans",
                 "test ontology",
-                "risk",
-                "root cause linked to humans"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -6855,9 +6855,9 @@
                 "root cause linked to humans"
             ],
             "all classes": [
+                "root cause linked to humans",
                 "test ontology",
-                "risk",
-                "root cause linked to humans"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -7000,9 +7000,9 @@
                 "root cause linked to humans"
             ],
             "all classes": [
+                "root cause linked to humans",
                 "test ontology",
-                "risk",
-                "root cause linked to humans"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -7138,9 +7138,9 @@
                 "root cause linked to humans"
             ],
             "all classes": [
+                "root cause linked to humans",
                 "test ontology",
-                "risk",
-                "root cause linked to humans"
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
