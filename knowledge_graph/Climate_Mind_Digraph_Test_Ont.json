@@ -57,7 +57,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -97,14 +130,14 @@
             ],
             "all classes": [
                 "core climate change",
-                "global warming",
+                "risk",
                 "test ontology",
-                "main land change",
-                "risk"
+                "global warming",
+                "main land change"
             ],
             "risk": [
-                "risk",
-                "global warming"
+                "global warming",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -151,7 +184,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -184,18 +250,18 @@
             ],
             "all classes": [
                 "global warming",
-                "core climate change",
-                "main ocean change",
                 "test ontology",
-                "risk"
+                "risk",
+                "core climate change",
+                "main ocean change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
                 "main ocean change",
-                "core climate change",
-                "risk"
+                "risk",
+                "core climate change"
             ],
             "properties": {
                 "dc_source": [],
@@ -239,7 +305,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -264,19 +363,19 @@
                 "main atmospheric change"
             ],
             "all classes": [
-                "core climate change",
                 "global warming",
                 "test ontology",
                 "risk",
+                "core climate change",
                 "main atmospheric change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "core climate change",
+                "risk",
                 "main atmospheric change",
-                "risk"
+                "core climate change"
             ],
             "properties": {
                 "dc_source": [],
@@ -320,7 +419,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -353,9 +485,9 @@
                 "test ontology"
             ],
             "risk": [
-                "core climate change",
+                "risk",
                 "main atmospheric change",
-                "risk"
+                "core climate change"
             ],
             "properties": {
                 "dc_source": [],
@@ -404,7 +536,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -451,16 +616,16 @@
             "all classes": [
                 "core climate change",
                 "test ontology",
-                "water cycle change",
-                "risk"
+                "risk",
+                "water cycle change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "core climate change",
                 "water cycle change",
-                "risk"
+                "risk",
+                "core climate change"
             ],
             "properties": {
                 "dc_source": [],
@@ -512,7 +677,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -548,11 +746,11 @@
                 "other negative effect from root cause"
             ],
             "all classes": [
-                "downstream negative effect",
+                "risk",
                 "test ontology",
                 "effect",
-                "other negative effect from root cause",
-                "risk"
+                "downstream negative effect",
+                "other negative effect from root cause"
             ],
             "risk": [
                 "effect",
@@ -614,7 +812,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -668,14 +899,14 @@
             ],
             "all classes": [
                 "core climate change",
-                "test ontology",
                 "risk",
-                "main variability change"
+                "main variability change",
+                "test ontology"
             ],
             "risk": [
+                "risk",
                 "main variability change",
-                "core climate change",
-                "risk"
+                "core climate change"
             ],
             "test ontology": [
                 "test ontology"
@@ -743,7 +974,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -816,14 +1080,14 @@
             ],
             "all classes": [
                 "core climate change",
-                "test ontology",
                 "risk",
-                "main variability change"
+                "main variability change",
+                "test ontology"
             ],
             "risk": [
+                "risk",
                 "main variability change",
-                "core climate change",
-                "risk"
+                "core climate change"
             ],
             "test ontology": [
                 "test ontology"
@@ -907,7 +1171,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -970,8 +1267,8 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "dc_source": [
-                            "https://insideclimatenews.org/news/11112019/military-heat-risk-climate-change-basic-training-bases-union-concerned-scientists-report",
-                            "https://blog.ucsusa.org/kristy-dahl/military-extreme-heat"
+                            "https://blog.ucsusa.org/kristy-dahl/military-extreme-heat",
+                            "https://insideclimatenews.org/news/11112019/military-heat-risk-climate-change-basic-training-bases-union-concerned-scientists-report"
                         ]
                     }
                 }
@@ -1009,35 +1306,35 @@
             ],
             "all classes": [
                 "risk",
-                "status - personal value",
-                "downstream negative effect",
-                "approved - values",
-                "effect",
                 "test ontology",
-                "self-direction",
-                "self-direction autonomy of thought",
-                "achievement",
-                "personal value",
+                "effect",
+                "approved - values",
                 "communication frame",
-                "frame uncategorized (to do)"
-            ],
-            "personal value": [
+                "downstream negative effect",
+                "achievement",
+                "frame uncategorized (to do)",
                 "self-direction autonomy of thought",
                 "self-direction",
+                "status - personal value",
                 "personal value"
             ],
+            "personal value": [
+                "personal value",
+                "self-direction autonomy of thought",
+                "self-direction"
+            ],
             "status - personal value": [
-                "status - personal value",
-                "approved - values"
+                "approved - values",
+                "status - personal value"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "communication frame": [
-                "communication frame",
-                "frame uncategorized (to do)"
+                "frame uncategorized (to do)",
+                "communication frame"
             ],
             "test ontology": [
                 "test ontology"
@@ -1099,7 +1396,40 @@
                 "benevolence_dependability": 0,
                 "self-direction_autonomy_of_action": 0,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                1
+            ],
+            "personal_values_19": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+            ]
         }
     },
     {
@@ -1121,22 +1451,22 @@
                 "other negative effect from root cause"
             ],
             "all classes": [
-                "status - personal value",
-                "universalism",
-                "self-direction autonomy of action",
-                "other negative effect from greenhouse gas emission",
-                "frame uncategorized (to do)",
-                "downstream negative effect",
-                "effect",
-                "approved - values",
-                "self-direction",
-                "test ontology",
-                "hedonism",
-                "other negative effect from root cause",
                 "risk",
-                "personal value",
+                "test ontology",
+                "self-direction autonomy of action",
+                "hedonism",
+                "effect",
+                "other negative effect from root cause",
+                "approved - values",
                 "communication frame",
-                "universalism concern"
+                "other negative effect from greenhouse gas emission",
+                "universalism concern",
+                "downstream negative effect",
+                "frame uncategorized (to do)",
+                "self-direction",
+                "universalism",
+                "status - personal value",
+                "personal value"
             ],
             "risk": [
                 "effect",
@@ -1148,12 +1478,12 @@
                 "personal value"
             ],
             "status - personal value": [
-                "status - personal value",
-                "approved - values"
+                "approved - values",
+                "status - personal value"
             ],
             "communication frame": [
-                "communication frame",
-                "frame uncategorized (to do)"
+                "frame uncategorized (to do)",
+                "communication frame"
             ],
             "test ontology": [
                 "test ontology"
@@ -1217,7 +1547,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         }
     },
     {
@@ -1237,36 +1600,36 @@
                 "stimulation"
             ],
             "all classes": [
-                "stimulation",
-                "status - personal value",
-                "downstream negative effect",
-                "effect",
-                "approved - values",
+                "risk",
                 "test ontology",
                 "hedonism",
-                "power resources",
-                "risk",
-                "power",
-                "personal value",
+                "effect",
+                "approved - values",
                 "communication frame",
-                "frame uncategorized (to do)"
+                "downstream negative effect",
+                "frame uncategorized (to do)",
+                "stimulation",
+                "power",
+                "status - personal value",
+                "power resources",
+                "personal value"
             ],
             "status - personal value": [
-                "status - personal value",
-                "approved - values"
+                "approved - values",
+                "status - personal value"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "personal value": [
                 "stimulation",
                 "personal value"
             ],
             "communication frame": [
-                "communication frame",
-                "frame uncategorized (to do)"
+                "frame uncategorized (to do)",
+                "communication frame"
             ],
             "test ontology": [
                 "test ontology"
@@ -1328,7 +1691,40 @@
                 "benevolence_dependability": 0,
                 "self-direction_autonomy_of_action": 0,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                1,
+                0,
+                1
+            ],
+            "personal_values_19": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                -1,
+                0
+            ]
         }
     },
     {
@@ -1351,42 +1747,42 @@
                 "tradition"
             ],
             "all classes": [
-                "universalism",
-                "security",
-                "benevolence caring",
-                "security personal",
-                "personal value",
-                "communication frame",
-                "mental health change",
+                "test ontology",
+                "tradition",
+                "health change",
                 "universalism concern",
                 "status - personal value",
+                "benevolence caring",
+                "personal value",
                 "approved - values",
-                "effect",
-                "test ontology",
-                "security societal",
-                "frame uncategorized (to do)",
                 "downstream negative effect",
-                "benevolence",
-                "tradition",
+                "frame uncategorized (to do)",
                 "risk",
-                "health change"
+                "mental health change",
+                "effect",
+                "communication frame",
+                "benevolence",
+                "security personal",
+                "security societal",
+                "universalism",
+                "security"
             ],
             "personal value": [
                 "personal value",
                 "tradition"
             ],
             "status - personal value": [
-                "status - personal value",
-                "approved - values"
+                "approved - values",
+                "status - personal value"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "communication frame": [
-                "communication frame",
-                "frame uncategorized (to do)"
+                "frame uncategorized (to do)",
+                "communication frame"
             ],
             "test ontology": [
                 "test ontology"
@@ -1452,7 +1848,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                1,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                0,
+                null,
+                null,
+                null,
+                null,
+                1,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         }
     },
     {
@@ -1471,37 +1900,37 @@
                 "power dominance"
             ],
             "all classes": [
-                "status - personal value",
-                "national security change",
-                "security",
-                "power dominance",
-                "downstream negative effect",
-                "effect",
-                "approved - values",
-                "personal value",
-                "test ontology",
                 "risk",
-                "power",
-                "security societal",
-                "communication frame"
-            ],
-            "status - personal value": [
-                "status - personal value",
-                "approved - values"
-            ],
-            "risk": [
-                "downstream negative effect",
+                "test ontology",
                 "effect",
-                "risk"
-            ],
-            "personal value": [
-                "power",
                 "power dominance",
+                "approved - values",
+                "communication frame",
+                "downstream negative effect",
+                "security societal",
+                "security",
+                "national security change",
+                "power",
+                "status - personal value",
                 "personal value"
             ],
+            "status - personal value": [
+                "approved - values",
+                "status - personal value"
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "personal value": [
+                "power dominance",
+                "personal value",
+                "power"
+            ],
             "communication frame": [
-                "communication frame",
-                "national security change"
+                "national security change",
+                "communication frame"
             ],
             "test ontology": [
                 "test ontology"
@@ -1562,7 +1991,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         }
     },
     {
@@ -1580,35 +2042,35 @@
                 "test ontology"
             ],
             "all classes": [
-                "status - personal value",
-                "downstream negative effect",
+                "risk",
+                "test ontology",
                 "effect",
                 "approved - values",
-                "test ontology",
-                "power resources",
-                "risk",
-                "power",
-                "personal value",
                 "communication frame",
-                "frame uncategorized (to do)"
-            ],
-            "status - personal value": [
-                "status - personal value",
-                "approved - values"
-            ],
-            "risk": [
                 "downstream negative effect",
-                "effect",
-                "risk"
-            ],
-            "personal value": [
-                "power resources",
+                "frame uncategorized (to do)",
                 "power",
+                "status - personal value",
+                "power resources",
                 "personal value"
             ],
+            "status - personal value": [
+                "approved - values",
+                "status - personal value"
+            ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "personal value": [
+                "personal value",
+                "power resources",
+                "power"
+            ],
             "communication frame": [
-                "communication frame",
-                "frame uncategorized (to do)"
+                "frame uncategorized (to do)",
+                "communication frame"
             ],
             "test ontology": [
                 "test ontology"
@@ -1667,7 +2129,40 @@
                 "benevolence_dependability": 0,
                 "self-direction_autonomy_of_action": 0,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0
+            ],
+            "personal_values_19": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
         }
     },
     {
@@ -1687,34 +2182,34 @@
                 "health change"
             ],
             "all classes": [
-                "status - personal value",
+                "risk",
+                "test ontology",
+                "effect",
+                "approved - values",
+                "communication frame",
+                "security personal",
+                "health change",
+                "universalism concern",
+                "downstream negative effect",
+                "security societal",
                 "universalism",
                 "security",
-                "downstream negative effect",
-                "approved - values",
-                "effect",
-                "security societal",
-                "test ontology",
-                "health change",
-                "security personal",
-                "risk",
-                "personal value",
-                "communication frame",
-                "universalism concern"
-            ],
-            "personal value": [
-                "security personal",
-                "security",
+                "status - personal value",
                 "personal value"
             ],
+            "personal value": [
+                "personal value",
+                "security personal",
+                "security"
+            ],
             "status - personal value": [
-                "status - personal value",
-                "approved - values"
+                "approved - values",
+                "status - personal value"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -1783,7 +2278,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         }
     },
     {
@@ -1805,34 +2333,34 @@
             ],
             "all classes": [
                 "risk",
-                "not finished - values",
-                "status - personal value",
-                "self-direction autonomy of action",
-                "power dominance",
-                "downstream negative effect",
-                "effect",
                 "test ontology",
-                "self-direction",
-                "power resources",
-                "achievement",
-                "power",
-                "personal value",
-                "communication frame",
-                "frame uncategorized (to do)"
-            ],
-            "personal value": [
-                "power",
+                "self-direction autonomy of action",
+                "status - personal value",
+                "effect",
                 "power dominance",
+                "communication frame",
+                "downstream negative effect",
+                "achievement",
+                "frame uncategorized (to do)",
+                "self-direction",
+                "power",
+                "not finished - values",
+                "power resources",
                 "personal value"
             ],
+            "personal value": [
+                "power dominance",
+                "personal value",
+                "power"
+            ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "communication frame": [
-                "communication frame",
-                "frame uncategorized (to do)"
+                "frame uncategorized (to do)",
+                "communication frame"
             ],
             "test ontology": [
                 "test ontology"
@@ -1907,7 +2435,40 @@
                 "benevolence_dependability": 0,
                 "self-direction_autonomy_of_action": 1,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                1,
+                0,
+                0,
+                0,
+                1,
+                0,
+                1,
+                0,
+                0,
+                0
+            ],
+            "personal_values_19": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                null,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
         }
     },
     {
@@ -1927,31 +2488,31 @@
             ],
             "all classes": [
                 "risk",
+                "test ontology",
+                "effect",
+                "approved - values",
+                "communication frame",
+                "downstream negative effect",
+                "achievement",
+                "self-direction",
+                "self-direction autonomy of thought",
                 "education change",
                 "status - personal value",
-                "downstream negative effect",
-                "approved - values",
-                "effect",
-                "test ontology",
-                "self-direction",
-                "self-direction autonomy of thought",
-                "achievement",
-                "personal value",
-                "communication frame"
-            ],
-            "personal value": [
-                "self-direction autonomy of thought",
-                "self-direction",
                 "personal value"
             ],
+            "personal value": [
+                "personal value",
+                "self-direction autonomy of thought",
+                "self-direction"
+            ],
             "status - personal value": [
-                "status - personal value",
-                "approved - values"
+                "approved - values",
+                "status - personal value"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -2014,7 +2575,40 @@
                 "benevolence_dependability": 0,
                 "self-direction_autonomy_of_action": 0,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                1
+            ],
+            "personal_values_19": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                1,
+                0,
+                0
+            ]
         }
     },
     {
@@ -2036,36 +2630,36 @@
                 "conformity interpersonal"
             ],
             "all classes": [
-                "status - personal value",
-                "conformity",
+                "risk",
+                "test ontology",
                 "self-direction autonomy of action",
-                "security",
-                "downstream negative effect",
+                "conformity rules",
                 "effect",
+                "hedonism",
                 "approved - values",
+                "conformity interpersonal",
+                "security personal",
+                "downstream negative effect",
                 "self-direction",
                 "security societal",
-                "test ontology",
-                "security personal",
-                "hedonism",
-                "risk",
-                "conformity rules",
-                "personal value",
-                "conformity interpersonal"
+                "conformity",
+                "security",
+                "status - personal value",
+                "personal value"
             ],
             "status - personal value": [
-                "status - personal value",
-                "approved - values"
+                "approved - values",
+                "status - personal value"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "personal value": [
-                "conformity interpersonal",
                 "conformity",
-                "personal value"
+                "personal value",
+                "conformity interpersonal"
             ],
             "test ontology": [
                 "test ontology"
@@ -2131,7 +2725,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         }
     },
     {
@@ -2153,36 +2780,36 @@
                 "security personal"
             ],
             "all classes": [
-                "benevolence dependability",
-                "status - personal value",
-                "universalism",
-                "universalism nature",
-                "security",
-                "review needed - values",
-                "downstream negative effect",
-                "benevolence caring",
-                "effect",
-                "test ontology",
-                "security societal",
-                "benevolence",
-                "security personal",
                 "risk",
-                "personal value",
-                "universalism concern"
-            ],
-            "status - personal value": [
-                "status - personal value",
-                "review needed - values"
-            ],
-            "personal value": [
+                "test ontology",
+                "universalism nature",
+                "benevolence dependability",
+                "effect",
+                "review needed - values",
                 "security personal",
+                "benevolence",
+                "universalism concern",
+                "downstream negative effect",
+                "security societal",
+                "universalism",
                 "security",
+                "status - personal value",
+                "benevolence caring",
                 "personal value"
             ],
+            "status - personal value": [
+                "review needed - values",
+                "status - personal value"
+            ],
+            "personal value": [
+                "personal value",
+                "security personal",
+                "security"
+            ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -2251,7 +2878,40 @@
                 "benevolence_dependability": 1,
                 "self-direction_autonomy_of_action": 0,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                0,
+                1,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                1
+            ],
+            "personal_values_19": [
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0
+            ]
         },
         "adjacencies": [
             {
@@ -2283,37 +2943,37 @@
                 "power dominance"
             ],
             "all classes": [
-                "status - personal value",
-                "security",
-                "power dominance",
-                "downstream negative effect",
-                "effect",
-                "approved - values",
-                "security societal",
-                "personal value",
-                "test ontology",
                 "risk",
-                "power",
+                "test ontology",
+                "effect",
+                "power dominance",
+                "approved - values",
                 "communication frame",
-                "frame uncategorized (to do)"
+                "downstream negative effect",
+                "security societal",
+                "frame uncategorized (to do)",
+                "security",
+                "power",
+                "status - personal value",
+                "personal value"
             ],
             "status - personal value": [
-                "status - personal value",
-                "approved - values"
+                "approved - values",
+                "status - personal value"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "communication frame": [
-                "communication frame",
-                "frame uncategorized (to do)"
+                "frame uncategorized (to do)",
+                "communication frame"
             ],
             "personal value": [
-                "power",
                 "power dominance",
-                "personal value"
+                "personal value",
+                "power"
             ],
             "test ontology": [
                 "test ontology"
@@ -2383,7 +3043,40 @@
                 "benevolence_dependability": 0,
                 "self-direction_autonomy_of_action": 0,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0
+            ],
+            "personal_values_19": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
         }
     },
     {
@@ -2398,13 +3091,13 @@
                 "test ontology"
             ],
             "all classes": [
-                "increase in atmospheric greenhouse gas",
                 "risk",
+                "increase in atmospheric greenhouse gas",
                 "test ontology"
             ],
             "risk": [
-                "risk",
-                "increase in atmospheric greenhouse gas"
+                "increase in atmospheric greenhouse gas",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -2486,7 +3179,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -2518,33 +3244,33 @@
                 "stimulation"
             ],
             "all classes": [
-                "universalism",
-                "security",
-                "security personal",
-                "personal value",
-                "communication frame",
+                "test ontology",
+                "health change",
                 "universalism concern",
                 "status - personal value",
+                "personal value",
+                "review needed - values",
+                "other negative effect from greenhouse gas emission",
+                "downstream negative effect",
+                "stimulation",
+                "risk",
                 "effect",
-                "test ontology",
+                "communication frame",
                 "self-direction",
                 "self-direction autonomy of action",
+                "security personal",
                 "security societal",
-                "review needed - values",
-                "downstream negative effect",
-                "risk",
-                "stimulation",
-                "other negative effect from greenhouse gas emission",
-                "health change"
+                "universalism",
+                "security"
             ],
             "status - personal value": [
-                "status - personal value",
-                "review needed - values"
+                "review needed - values",
+                "status - personal value"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "personal value": [
                 "stimulation",
@@ -2623,7 +3349,40 @@
                 "benevolence_dependability": 0,
                 "self-direction_autonomy_of_action": 1,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1
+            ],
+            "personal_values_19": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                1,
+                0,
+                1,
+                0,
+                0
+            ]
         },
         "adjacencies": [
             {
@@ -2670,28 +3429,28 @@
                 "other negative effect from root cause"
             ],
             "all classes": [
-                "universalism",
-                "security",
-                "benevolence caring",
-                "security personal",
-                "personal value",
-                "communication frame",
+                "test ontology",
                 "universalism concern",
                 "status - personal value",
-                "effect",
-                "test ontology",
-                "security societal",
-                "frame uncategorized (to do)",
+                "benevolence caring",
+                "personal value",
                 "review needed - values",
+                "other negative effect from greenhouse gas emission",
                 "downstream negative effect",
-                "benevolence",
+                "frame uncategorized (to do)",
                 "other negative effect from root cause",
                 "risk",
-                "other negative effect from greenhouse gas emission"
+                "effect",
+                "communication frame",
+                "benevolence",
+                "security personal",
+                "security societal",
+                "universalism",
+                "security"
             ],
             "status - personal value": [
-                "status - personal value",
-                "review needed - values"
+                "review needed - values",
+                "status - personal value"
             ],
             "risk": [
                 "effect",
@@ -2699,13 +3458,13 @@
                 "other negative effect from root cause"
             ],
             "personal value": [
+                "personal value",
                 "security personal",
-                "security",
-                "personal value"
+                "security"
             ],
             "communication frame": [
-                "communication frame",
-                "frame uncategorized (to do)"
+                "frame uncategorized (to do)",
+                "communication frame"
             ],
             "test ontology": [
                 "test ontology"
@@ -2768,7 +3527,40 @@
                 "benevolence_dependability": 0,
                 "self-direction_autonomy_of_action": 0,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                0,
+                1,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                1
+            ],
+            "personal_values_19": [
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0
+            ]
         }
     },
     {
@@ -2788,32 +3580,32 @@
                 "security personal"
             ],
             "all classes": [
-                "status - personal value",
-                "universalism",
-                "justice change",
-                "security",
-                "review needed - values",
-                "test ontology",
-                "security societal",
-                "security personal",
                 "risk",
-                "personal value",
+                "justice change",
+                "test ontology",
+                "review needed - values",
                 "communication frame",
                 "risk or effect uncategorized (to do)",
-                "universalism concern"
-            ],
-            "status - personal value": [
-                "status - personal value",
-                "review needed - values"
-            ],
-            "personal value": [
                 "security personal",
+                "universalism concern",
+                "security societal",
+                "universalism",
                 "security",
+                "status - personal value",
                 "personal value"
             ],
+            "status - personal value": [
+                "review needed - values",
+                "status - personal value"
+            ],
+            "personal value": [
+                "personal value",
+                "security personal",
+                "security"
+            ],
             "risk": [
-                "risk or effect uncategorized (to do)",
-                "risk"
+                "risk",
+                "risk or effect uncategorized (to do)"
             ],
             "communication frame": [
                 "justice change",
@@ -2875,7 +3667,40 @@
                 "benevolence_dependability": 0,
                 "self-direction_autonomy_of_action": 0,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                0,
+                0,
+                1,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                1
+            ],
+            "personal_values_19": [
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0
+            ]
         }
     },
     {
@@ -2890,17 +3715,17 @@
                 "mitigation barrier"
             ],
             "all classes": [
-                "mitigation barrier",
-                "risk solution barrier",
                 "test ontology",
-                "risk"
+                "risk",
+                "risk solution barrier",
+                "mitigation barrier"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "mitigation barrier",
                 "risk solution barrier",
+                "mitigation barrier",
                 "risk"
             ],
             "properties": {
@@ -2951,7 +3776,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         }
     },
     {
@@ -2972,35 +3830,35 @@
                 "health change"
             ],
             "all classes": [
-                "status - personal value",
-                "universalism",
-                "other negative effect from greenhouse gas emission",
-                "security",
-                "downstream negative effect",
+                "risk",
+                "test ontology",
                 "effect",
                 "approved - values",
-                "security societal",
-                "test ontology",
-                "health change",
-                "security personal",
-                "risk",
-                "personal value",
                 "communication frame",
-                "universalism concern"
-            ],
-            "risk": [
-                "downstream negative effect",
-                "effect",
-                "risk"
-            ],
-            "personal value": [
+                "other negative effect from greenhouse gas emission",
                 "security personal",
+                "health change",
+                "universalism concern",
+                "downstream negative effect",
+                "security societal",
+                "universalism",
                 "security",
+                "status - personal value",
                 "personal value"
             ],
+            "risk": [
+                "effect",
+                "risk",
+                "downstream negative effect"
+            ],
+            "personal value": [
+                "personal value",
+                "security personal",
+                "security"
+            ],
             "status - personal value": [
-                "status - personal value",
-                "approved - values"
+                "approved - values",
+                "status - personal value"
             ],
             "test ontology": [
                 "test ontology"
@@ -3079,7 +3937,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         }
     },
     {
@@ -3099,34 +3990,34 @@
                 "health change"
             ],
             "all classes": [
-                "status - personal value",
+                "risk",
+                "test ontology",
+                "effect",
+                "approved - values",
+                "communication frame",
+                "security personal",
+                "health change",
+                "universalism concern",
+                "downstream negative effect",
+                "security societal",
                 "universalism",
                 "security",
-                "downstream negative effect",
-                "approved - values",
-                "effect",
-                "security societal",
-                "test ontology",
-                "health change",
-                "security personal",
-                "risk",
-                "personal value",
-                "communication frame",
-                "universalism concern"
-            ],
-            "personal value": [
-                "security personal",
-                "security",
+                "status - personal value",
                 "personal value"
             ],
+            "personal value": [
+                "personal value",
+                "security personal",
+                "security"
+            ],
             "status - personal value": [
-                "status - personal value",
-                "approved - values"
+                "approved - values",
+                "status - personal value"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -3186,7 +4077,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         }
     },
     {
@@ -3203,16 +4127,16 @@
             "all classes": [
                 "core climate change",
                 "test ontology",
-                "water cycle change",
-                "risk"
+                "risk",
+                "water cycle change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
-                "core climate change",
                 "water cycle change",
-                "risk"
+                "risk",
+                "core climate change"
             ],
             "properties": {
                 "dc_source": [],
@@ -3259,7 +4183,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -3298,14 +4255,14 @@
             ],
             "all classes": [
                 "core climate change",
+                "risk",
                 "test ontology",
-                "main land change",
-                "risk"
+                "main land change"
             ],
             "risk": [
-                "core climate change",
+                "risk",
                 "main land change",
-                "risk"
+                "core climate change"
             ],
             "test ontology": [
                 "test ontology"
@@ -3352,7 +4309,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -3377,14 +4367,14 @@
             ],
             "all classes": [
                 "core climate change",
+                "risk",
                 "test ontology",
-                "main land change",
-                "risk"
+                "main land change"
             ],
             "risk": [
-                "core climate change",
+                "risk",
                 "main land change",
-                "risk"
+                "core climate change"
             ],
             "test ontology": [
                 "test ontology"
@@ -3431,7 +4421,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -3461,42 +4484,42 @@
                 "wildfire change"
             ],
             "all classes": [
-                "status - personal value",
-                "universalism",
-                "wildfire change",
-                "universalism nature",
-                "security",
-                "review needed - values",
-                "downstream negative effect",
-                "effect",
-                "test ontology",
-                "security societal",
-                "security personal",
                 "risk",
-                "personal value",
+                "test ontology",
+                "universalism nature",
+                "effect",
+                "review needed - values",
                 "communication frame",
-                "universalism concern"
-            ],
-            "status - personal value": [
-                "status - personal value",
-                "review needed - values"
-            ],
-            "personal value": [
                 "security personal",
+                "wildfire change",
+                "universalism concern",
+                "downstream negative effect",
+                "security societal",
+                "universalism",
                 "security",
+                "status - personal value",
                 "personal value"
             ],
+            "status - personal value": [
+                "review needed - values",
+                "status - personal value"
+            ],
+            "personal value": [
+                "personal value",
+                "security personal",
+                "security"
+            ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "communication frame": [
-                "communication frame",
-                "wildfire change"
+                "wildfire change",
+                "communication frame"
             ],
             "properties": {
                 "dc_source": [],
@@ -3559,7 +4582,40 @@
                 "benevolence_dependability": 0,
                 "self-direction_autonomy_of_action": 0,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                1
+            ],
+            "personal_values_19": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0
+            ]
         },
         "adjacencies": [
             {
@@ -3590,15 +4646,15 @@
                 "test ontology"
             ],
             "all classes": [
-                "downstream negative effect",
+                "risk",
                 "test ontology",
                 "effect",
-                "risk"
+                "downstream negative effect"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -3645,7 +4701,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -3671,15 +4760,15 @@
             ],
             "all classes": [
                 "core climate change",
+                "risk",
                 "test ontology",
                 "main land change",
-                "water cycle change",
-                "risk"
+                "water cycle change"
             ],
             "risk": [
-                "core climate change",
                 "water cycle change",
-                "risk"
+                "risk",
+                "core climate change"
             ],
             "test ontology": [
                 "test ontology"
@@ -3726,7 +4815,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -3750,13 +4872,13 @@
                 "test ontology"
             ],
             "all classes": [
-                "increase in atmospheric greenhouse gas",
                 "risk",
+                "increase in atmospheric greenhouse gas",
                 "test ontology"
             ],
             "risk": [
-                "risk",
-                "increase in atmospheric greenhouse gas"
+                "increase in atmospheric greenhouse gas",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -3806,7 +4928,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -3831,17 +4986,17 @@
             ],
             "all classes": [
                 "core climate change",
-                "main ocean change",
                 "test ontology",
-                "risk"
+                "risk",
+                "main ocean change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
                 "main ocean change",
-                "core climate change",
-                "risk"
+                "risk",
+                "core climate change"
             ],
             "properties": {
                 "dc_source": [],
@@ -3885,7 +5040,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -3910,17 +5098,17 @@
             ],
             "all classes": [
                 "core climate change",
-                "main ocean change",
                 "test ontology",
-                "risk"
+                "risk",
+                "main ocean change"
             ],
             "test ontology": [
                 "test ontology"
             ],
             "risk": [
                 "main ocean change",
-                "core climate change",
-                "risk"
+                "risk",
+                "core climate change"
             ],
             "properties": {
                 "dc_source": [],
@@ -3964,7 +5152,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -3995,15 +5216,15 @@
                 "test ontology"
             ],
             "all classes": [
-                "downstream negative effect",
+                "risk",
                 "test ontology",
                 "effect",
-                "risk"
+                "downstream negative effect"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -4053,7 +5274,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -4081,15 +5335,15 @@
                 "test ontology"
             ],
             "all classes": [
-                "downstream negative effect",
+                "risk",
                 "test ontology",
                 "effect",
-                "risk"
+                "downstream negative effect"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "test ontology": [
                 "test ontology"
@@ -4173,7 +5427,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -4205,10 +5492,10 @@
                     "type": "causes_or_promotes",
                     "properties": {
                         "dc_source": [
-                            "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html",
-                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
+                            "https://www.sciencedirect.com/science/article/pii/S0962629807000601",
                             "https://www.nature.com/articles/s41612-019-0074-8",
-                            "https://www.sciencedirect.com/science/article/pii/S0962629807000601"
+                            "http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155",
+                            "https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html"
                         ]
                     }
                 }
@@ -4233,38 +5520,38 @@
                 "hedonism"
             ],
             "all classes": [
-                "status - personal value",
-                "security",
-                "downstream negative effect",
-                "effect",
-                "approved - values",
-                "security societal",
+                "risk",
                 "test ontology",
                 "hedonism",
-                "security personal",
-                "power resources",
-                "risk",
-                "power",
-                "personal value",
+                "effect",
+                "approved - values",
                 "communication frame",
-                "frame uncategorized (to do)"
+                "security personal",
+                "downstream negative effect",
+                "security societal",
+                "frame uncategorized (to do)",
+                "security",
+                "power",
+                "status - personal value",
+                "power resources",
+                "personal value"
             ],
             "status - personal value": [
-                "status - personal value",
-                "approved - values"
+                "approved - values",
+                "status - personal value"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "personal value": [
                 "hedonism",
                 "personal value"
             ],
             "communication frame": [
-                "communication frame",
-                "frame uncategorized (to do)"
+                "frame uncategorized (to do)",
+                "communication frame"
             ],
             "test ontology": [
                 "test ontology"
@@ -4334,7 +5621,40 @@
                 "benevolence_dependability": 0,
                 "self-direction_autonomy_of_action": 0,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                0,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0
+            ],
+            "personal_values_19": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                1,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+            ]
         }
     },
     {
@@ -4351,29 +5671,29 @@
                 "test ontology"
             ],
             "all classes": [
-                "status - personal value",
-                "universalism",
+                "risk",
+                "test ontology",
                 "universalism nature",
-                "downstream negative effect",
                 "effect",
                 "approved - values",
-                "test ontology",
-                "risk",
+                "downstream negative effect",
+                "universalism",
+                "status - personal value",
                 "personal value"
             ],
             "status - personal value": [
-                "status - personal value",
-                "approved - values"
+                "approved - values",
+                "status - personal value"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "personal value": [
                 "universalism",
-                "universalism nature",
-                "personal value"
+                "personal value",
+                "universalism nature"
             ],
             "test ontology": [
                 "test ontology"
@@ -4454,7 +5774,40 @@
                 "benevolence_dependability": 0,
                 "self-direction_autonomy_of_action": 0,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "personal_values_19": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0
+            ]
         },
         "adjacencies": [
             {
@@ -4486,30 +5839,30 @@
                 "stimulation"
             ],
             "all classes": [
-                "stimulation",
-                "status - personal value",
-                "review needed - values",
-                "downstream negative effect",
-                "effect",
+                "risk",
                 "test ontology",
                 "hedonism",
-                "personal value",
-                "risk",
+                "effect",
+                "review needed - values",
                 "communication frame",
-                "frame uncategorized (to do)"
+                "downstream negative effect",
+                "frame uncategorized (to do)",
+                "stimulation",
+                "status - personal value",
+                "personal value"
             ],
             "status - personal value": [
-                "status - personal value",
-                "review needed - values"
+                "review needed - values",
+                "status - personal value"
             ],
             "risk": [
-                "downstream negative effect",
                 "effect",
-                "risk"
+                "risk",
+                "downstream negative effect"
             ],
             "communication frame": [
-                "communication frame",
-                "frame uncategorized (to do)"
+                "frame uncategorized (to do)",
+                "communication frame"
             ],
             "test ontology": [
                 "test ontology"
@@ -4576,7 +5929,40 @@
                 "benevolence_dependability": 0,
                 "self-direction_autonomy_of_action": 0,
                 "humility": 0
-            }
+            },
+            "personal_values_10": [
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0
+            ],
+            "personal_values_19": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0
+            ]
         },
         "adjacencies": [
             {
@@ -4660,7 +6046,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -4743,7 +6162,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -4846,7 +6298,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -4877,13 +6362,13 @@
                 "test ontology"
             ],
             "all classes": [
-                "increase in atmospheric greenhouse gas",
                 "risk",
+                "increase in atmospheric greenhouse gas",
                 "test ontology"
             ],
             "risk": [
-                "risk",
-                "increase in atmospheric greenhouse gas"
+                "increase in atmospheric greenhouse gas",
+                "risk"
             ],
             "test ontology": [
                 "test ontology"
@@ -4933,7 +6418,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -5032,7 +6550,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -5120,7 +6671,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -5210,7 +6794,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -5298,7 +6915,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -5424,7 +7074,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
@@ -5523,7 +7206,40 @@
                 "benevolence_dependability": null,
                 "self-direction_autonomy_of_action": null,
                 "humility": null
-            }
+            },
+            "personal_values_10": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ],
+            "personal_values_19": [
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null,
+                null
+            ]
         },
         "adjacencies": [
             {
