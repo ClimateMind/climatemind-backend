@@ -112,6 +112,9 @@ def add_ontology_data_to_graph_nodes(G, onto):
             prop: getattr(ontology_node, prop) for prop in data_properties
         }
 
+        #if(attributes_dict["data_properties"]["hedonism"]==1):
+        #	breakpoint()
+        
         #format personal_values_10 and personal_values_19 to facilitate easier scoring later by the climate mind app
         #these are hard coded in and the order is very important. Later can change so these aren't hard coded and the order is always alphebetical(?)
         #use the compute function to collapse a value with multiple subvalues into one number. As long as there's any 1, then the final value is 1 (otherwise 0). None if all are None.
