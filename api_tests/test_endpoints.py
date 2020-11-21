@@ -25,3 +25,6 @@ params = {"session-id": session_id}
 request = requests.get(url, params=params)
 
 print(json.dumps(request.json(), indent=4))
+
+def test_endpoints():
+    assert True
