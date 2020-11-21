@@ -65,7 +65,7 @@ def get_questions() -> Tuple[Response, int]:
     the user.
     """
     try:
-        with open("schwartz_questions.json") as json_file:
+        with open("json_files/schwartz_questions.json") as json_file:
             data = load(json_file)
     except FileNotFoundError:
         return make_response("Schwartz Questions not Found"), 400
@@ -207,7 +207,7 @@ def get_personal_values():
         top_scores = sorted(sorted_scores, key=sorted_scores.get, reverse=True)[:3]
 
         try:
-            with open("value_descriptions.json", "r") as f:
+            with open("json_files/value_descriptions.json", "r") as f:
                 value_descriptions = load(f)
         except FileNotFoundError:
             return make_response("Value Descriptions File Not Found"), 400
@@ -257,6 +257,7 @@ def get_feed():
 
     scores = scores.__dict__
     del scores["_sa_instance_state"]
+    
     recommended_nodes = get_user_nodes(scores)
     climate_effects = {"climateEffects": recommended_nodes}
     return jsonify(climate_effects), 200
