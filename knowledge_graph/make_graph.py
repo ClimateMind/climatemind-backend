@@ -27,14 +27,27 @@ def listify(collection, onto):
 
 
 def compute(values):
-    """collapsing vector of either 0,1,-1, or None to single value to collapse sub personal values to main personal values."""
+    """ Collapse a vector potentially consisting of 0, 1, -1 and None to a single value.
+        If a 1 or -1 is found they should always default to those values
+        There should not be opposing values in the same vector or the ontology may 
+        need to be checked.        
+    """
     if all(v is None for v in values):
         final = None
     else:
-        final = any(values)
-
-    if final is not None:
-        final = int(final)
+        final = 0
+        one_found = False
+        neg_one_found = False
+        
+        for v in values:
+            if v == 1:
+                final = 1
+                one_found = True
+            if v == -1:
+                final = -1
+                neg_one_found = True
+        if one_found and neg_one_found:
+            raise Exception("Node found that has opposing vector values 1 and -1")
 
     return final
 
