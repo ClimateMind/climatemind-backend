@@ -21,7 +21,7 @@ request = requests.get(url, params=params)
 print(json.dumps(request.json()))
 
 url = "http://127.0.0.1:5000/feed"
-params = {"session-id" : session_id}
+params = {"session-id": session_id}
 request = requests.get(url, params=params)
 
 print(json.dumps(request.json(), indent=4))
