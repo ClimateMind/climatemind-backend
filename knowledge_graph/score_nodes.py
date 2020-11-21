@@ -9,15 +9,16 @@ from knowledge_graph.make_graph import (
 )
 import numpy as np
 
+
 def get_effect_id(node):
-    """ Effect IDs are the unique identifier in the IRI. This is provided to the
-        front-end as a reference for the feed, but is never shown to the user.
-        
-        Example http://webprotege.stanford.edu/R8znJBKduM7l8XDXMalSWSl
-        
-        Parameters
-        ----------
-        node - A networkX node
+    """Effect IDs are the unique identifier in the IRI. This is provided to the
+    front-end as a reference for the feed, but is never shown to the user.
+
+    Example http://webprotege.stanford.edu/R8znJBKduM7l8XDXMalSWSl
+
+    Parameters
+    ----------
+    node - A networkX node
     """
     offset = 4  # .edu <- to skip these characters and get the unique IRI
     full_iri = node["iri"]
@@ -26,12 +27,12 @@ def get_effect_id(node):
 
 
 def get_description(node):
-    """ Long Descriptions are used by the front-end to display explanations of the
-        climate effects shown in user feeds.
-        
-        Parameters
-        ----------
-        node - A networkX node
+    """Long Descriptions are used by the front-end to display explanations of the
+    climate effects shown in user feeds.
+
+    Parameters
+    ----------
+    node - A networkX node
     """
     try:
         return node["schema_longDescription"]
@@ -40,12 +41,12 @@ def get_description(node):
 
 
 def get_short_description(node):
-    """ Short Descriptions are used by the front-end to display explanations of the
-        climate effects shown in user feeds.
-        
-        Parameters
-        ----------
-        node - A networkX node
+    """Short Descriptions are used by the front-end to display explanations of the
+    climate effects shown in user feeds.
+
+    Parameters
+    ----------
+    node - A networkX node
     """
     try:
         return node["schema_shortDescription"]
@@ -54,13 +55,13 @@ def get_short_description(node):
 
 
 def get_image_url(node):
-    """ Images are displayed to the user in the climate feed to accompany an explanation
-        of the climate effects. The front-end is provided with the URL and then requests
-        these images from our server.
-        
-        Parameters
-        ----------
-        node - A networkX node
+    """Images are displayed to the user in the climate feed to accompany an explanation
+    of the climate effects. The front-end is provided with the URL and then requests
+    these images from our server.
+
+    Parameters
+    ----------
+    node - A networkX node
     """
     try:
         return node["properties"]["schema_image"][0]
@@ -70,46 +71,45 @@ def get_image_url(node):
 
 
 def get_scores_vector(user_scores):
-    """ Extracts scores from a dictionary and returns the scores as a vector.
-    
-        Used in simple_scoring to compute a dot product.
-        
-        Parameters
-        ----------
-        user_scores - Dictionary of Scores
+    """Extracts scores from a dictionary and returns the scores as a vector.
+
+    Used in simple_scoring to compute a dot product.
+
+    Parameters
+    ----------
+    user_scores - Dictionary of Scores
     """
-    return [user_scores["achievement"],
-            user_scores["benevolence"],
-            user_scores["conformity"],
-            user_scores["hedonism"],
-            user_scores["power"],
-            user_scores["security"],
-            user_scores["self_direction"],
-            user_scores["stimulation"],
-            user_scores["tradition"],
-            user_scores["universalism"]
-    ] 
+    return [
+        user_scores["achievement"],
+        user_scores["benevolence"],
+        user_scores["conformity"],
+        user_scores["hedonism"],
+        user_scores["power"],
+        user_scores["security"],
+        user_scores["self_direction"],
+        user_scores["stimulation"],
+        user_scores["tradition"],
+        user_scores["universalism"],
+    ]
 
 
 def simple_scoring(G, user_scores):
-    """ Each climate effects node will have personal values associated with it. These
-        values are stored as a vector within the node. This vector is run through the
-        dot product with the users scores to determine the overall relevance of the node
-        to a user's values.
-        
-        Parameters
-        ----------
-        G - A NetworkX Graph
-        user_scores - A dictionary of personal values (keys) and scores (values)
+    """Each climate effects node will have personal values associated with it. These
+    values are stored as a vector within the node. This vector is run through the
+    dot product with the users scores to determine the overall relevance of the node
+    to a user's values.
+
+    Parameters
+    ----------
+    G - A NetworkX Graph
+    user_scores - A dictionary of personal values (keys) and scores (values)
     """
     climate_effects = []
     user_scores_vector = get_scores_vector(user_scores)
 
     for node in G.nodes:
         if "personal_values_10" in G.nodes[node]:
-            node_values_associations_10 = G.nodes[node][
-                "personal_values_10"
-            ]
+            node_values_associations_10 = G.nodes[node]["personal_values_10"]
 
             if any(v is None for v in node_values_associations_10):
                 score = None
@@ -123,7 +123,7 @@ def simple_scoring(G, user_scores):
                 "effectShortLong": get_short_description(G.nodes[node]),
                 "effectScore": score,
                 "imageUrl": get_image_url(G.nodes[node]),
-                "actionHeadline": "Reducing Food Waste" # TODO Add actual actions
+                "actionHeadline": "Reducing Food Waste",  # TODO Add actual actions
             }
             climate_effects.append(d)
 
@@ -131,18 +131,18 @@ def simple_scoring(G, user_scores):
 
 
 def get_best_nodes(climate_effects, n):
-    """ Returns the top n Nodes for a user along with the scores for those nodes.
-        If a node has no score, it will be assigned -inf as it could be risky to show
-        a user an unreviewed climate effect. (may have a backfire effect).
+    """Returns the top n Nodes for a user along with the scores for those nodes.
+    If a node has no score, it will be assigned -inf as it could be risky to show
+    a user an unreviewed climate effect. (may have a backfire effect).
 
-        Parameters
-        ----------
-        nodes_with_scores - Dictionary containing NetworkX nodes and Integer scores
-        n - Integer to specify # of desired scores
+    Parameters
+    ----------
+    nodes_with_scores - Dictionary containing NetworkX nodes and Integer scores
+    n - Integer to specify # of desired scores
     """
-    best_nodes = sorted(climate_effects, key=lambda k: k["effectScore"] or float("-inf"), reverse=True)[
-        :3
-    ]
+    best_nodes = sorted(
+        climate_effects, key=lambda k: k["effectScore"] or float("-inf"), reverse=True
+    )[:3]
     return best_nodes
 
 

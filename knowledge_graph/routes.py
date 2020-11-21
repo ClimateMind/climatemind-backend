@@ -257,7 +257,7 @@ def get_feed():
 
     scores = scores.__dict__
     del scores["_sa_instance_state"]
-    
+
     recommended_nodes = get_user_nodes(scores)
     climate_effects = {"climateEffects": recommended_nodes}
     return jsonify(climate_effects), 200

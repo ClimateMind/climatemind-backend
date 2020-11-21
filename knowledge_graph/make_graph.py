@@ -27,10 +27,10 @@ def listify(collection, onto):
 
 
 def compute(values):
-    """ Collapse a vector potentially consisting of 0, 1, -1 and None to a single value.
-        If a 1 or -1 is found they should always default to those values
-        There should not be opposing values in the same vector or the ontology may 
-        need to be checked.        
+    """Collapse a vector potentially consisting of 0, 1, -1 and None to a single value.
+    If a 1 or -1 is found they should always default to those values
+    There should not be opposing values in the same vector or the ontology may
+    need to be checked.
     """
     if all(v is None for v in values):
         final = None
@@ -38,7 +38,7 @@ def compute(values):
         final = 0
         one_found = False
         neg_one_found = False
-        
+
         for v in values:
             if v == 1:
                 final = 1
