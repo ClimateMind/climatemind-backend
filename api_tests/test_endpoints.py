@@ -3,7 +3,7 @@ import json
 
 url = "http://127.0.0.1:5000/scores"
 
-with open("/json_samples_for_api_tests/sample_user_response.json") as json_file:
+with open("../json_files/sample_user_response.json") as json_file:
     obj = json.load(json_file)
 
 headers = {"content-type": "application/json"}
