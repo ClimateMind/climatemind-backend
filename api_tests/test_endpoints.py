@@ -4,12 +4,10 @@ import json
 
 
 def run_this():
-    target_directory = os.path.join(os.getcwd(), "../json_files")
+    target_directory = os.path.join(os.getcwd(), os.pardir, "json_files")
     url = "http://0.0.0.0:5000/scores"
 
-    with open(
-        os.path.join(target_directory, "/sample_user_response.json")
-    ) as json_file:
+    with open(os.path.join(target_directory, "sample_user_response.json")) as json_file:
         obj = json.load(json_file)
 
     headers = {"content-type": "application/json"}
