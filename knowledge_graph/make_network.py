@@ -5,12 +5,6 @@ from owlready2 import *
 from knowledge_graph.network_class import Network
 
 
-def get_edges(ontology, source):
-    node_network = Network(ontology, source)
-    node_network.dfs_labeled_edges()
-    return node_network.get_results()
-
-
 def test_answer():
     assert search_node(get_ontology(onto_path).load()) == []
     # need to add in the answer to this unit test.
@@ -21,15 +15,6 @@ def test_answer():
 # mutliple parents
 # solutions
 # reference(?)
-
-
-def give_alias(property_object):
-    label_name = property_object.label[0]
-    label_name = label_name.replace("/", "_or_")
-    label_name = label_name.replace(" ", "_")
-    label_name = label_name.replace(":", "_")
-    property_object.python_name = label_name
-
 
 # TODO: remove this code and only have it be in the network_class.py code ? Currently, breaks endpoints though if do this.
 
@@ -49,11 +34,12 @@ def outputEdges(onto_path, output_path, source):
     onto = get_ontology(onto_path).load()
 
     # make list of edges along all paths leaving the target node
-    edges = get_edges(onto, source)
+    node_network = Network(onto, source)
+    node_network.dfs_labeled_edges()
 
     # save output to output Path as csv file. Later can change this to integrate well with API and front-end.
     df = pd.DataFrame(
-        [[i[0], i[1], i[2]] for i in edges], columns=["subject", "object", "predicate"]
+        node_network.edge_triplets, columns=["subject", "object", "predicate"]
     )
     df = df.drop_duplicates()  # Remove if we fix network_class
     df.to_csv(output_path, index=False)
