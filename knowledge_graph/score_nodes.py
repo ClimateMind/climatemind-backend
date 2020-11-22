@@ -7,53 +7,126 @@ from knowledge_graph.make_graph import (
     get_valid_test_ont,
     get_non_test_ont,
 )
+import numpy as np
+
+
+def get_effect_id(node):
+    """Effect IDs are the unique identifier in the IRI. This is provided to the
+    front-end as a reference for the feed, but is never shown to the user.
+
+    Example http://webprotege.stanford.edu/R8znJBKduM7l8XDXMalSWSl
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    offset = 4  # .edu <- to skip these characters and get the unique IRI
+    full_iri = node["iri"]
+    pos = full_iri.find("edu") + offset
+    return full_iri[pos:]
+
+
+def get_description(node):
+    """Long Descriptions are used by the front-end to display explanations of the
+    climate effects shown in user feeds.
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    try:
+        return node["schema_longDescription"]
+    except:
+        return "No long desc available at present"
+
+
+def get_short_description(node):
+    """Short Descriptions are used by the front-end to display explanations of the
+    climate effects shown in user feeds.
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    try:
+        return node["schema_shortDescription"]
+    except:
+        return "No short desc available at present"
+
+
+def get_image_url(node):
+    """Images are displayed to the user in the climate feed to accompany an explanation
+    of the climate effects. The front-end is provided with the URL and then requests
+    these images from our server.
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    try:
+        return node["properties"]["schema_image"][0]
+    except:
+        # Default image url if image is added
+        return "https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"
+
+
+def get_scores_vector(user_scores):
+    """Extracts scores from a dictionary and returns the scores as a vector.
+
+    Used in simple_scoring to compute a dot product.
+
+    Parameters
+    ----------
+    user_scores - Dictionary of Scores
+    """
+    return [
+        user_scores["achievement"],
+        user_scores["benevolence"],
+        user_scores["conformity"],
+        user_scores["hedonism"],
+        user_scores["power"],
+        user_scores["security"],
+        user_scores["self_direction"],
+        user_scores["stimulation"],
+        user_scores["tradition"],
+        user_scores["universalism"],
+    ]
+
 
 OFFSET = 4  # .edu <- to skip these characters and get the unique IRI
 
 
 def simple_scoring(G, user_scores):
-    """Each node contains a list of classes, which include the values associated with
-    the node. For the simple scoring, only positively associated values are
-    considered. All of the users value scores are > 0, meaning negative relationships
-    are not considered.
+    """Each climate effects node will have personal values associated with it. These
+    values are stored as a vector within the node. This vector is run through the
+    dot product with the users scores to determine the overall relevance of the node
+    to a user's values.
+
+    Parameters
+    ----------
+    G - A NetworkX Graph
+    user_scores - A dictionary of personal values (keys) and scores (values)
     """
     climate_effects = []
+    user_scores_vector = get_scores_vector(user_scores)
 
     for node in G.nodes:
-        node_classes = G.nodes[node]["direct classes"]
-        set_of_values = {
-            node_class.split()[0]
-            for node_class in node_classes
-            if node_class.split()[0] in user_scores.keys()
-        }
+        if "personal_values_10" in G.nodes[node]:
+            node_values_associations_10 = G.nodes[node]["personal_values_10"]
 
-        if set_of_values:
-            print(G.nodes[node])
-            full_iri = G.nodes[node]["iri"]
-            pos = full_iri.find("edu") + OFFSET
-            effect_id = full_iri[pos:]
-
-            score = 0
-            for value in set_of_values:
-                score += user_scores[value]
-
-            try:
-                desc = G.nodes[node]["schema_shortDescription"]
-            except:
-                desc = "No short desc available at present"
-
-            try:
-                imageUrl = G.nodes[node]["properties"]["schema_image"][0]
-            except:
-                # Default image url if image is added
-                imageUrl = "https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"
+            if any(v is None for v in node_values_associations_10):
+                score = None
+            else:
+                score = np.dot(user_scores_vector, node_values_associations_10)
 
             d = {
-                "effectId": effect_id,
+                "effectId": get_effect_id(G.nodes[node]),
                 "effectTitle": G.nodes[node]["label"],
-                "effectDescription": desc,
+                "effectDescription": get_description(G.nodes[node]),
+                "effectShortLong": get_short_description(G.nodes[node]),
                 "effectScore": score,
-                "imageUrl": imageUrl,
+                "imageUrl": get_image_url(G.nodes[node]),
+                "actionHeadline": "Reducing Food Waste",  # TODO Add actual actions
             }
             climate_effects.append(d)
 
@@ -62,15 +135,17 @@ def simple_scoring(G, user_scores):
 
 def get_best_nodes(climate_effects, n):
     """Returns the top n Nodes for a user along with the scores for those nodes.
+    If a node has no score, it will be assigned -inf as it could be risky to show
+    a user an unreviewed climate effect. (may have a backfire effect).
 
     Parameters
     ----------
     nodes_with_scores - Dictionary containing NetworkX nodes and Integer scores
     n - Integer to specify # of desired scores
     """
-    best_nodes = sorted(climate_effects, key=lambda k: k["effectScore"], reverse=True)[
-        :3
-    ]
+    best_nodes = sorted(
+        climate_effects, key=lambda k: k["effectScore"] or float("-inf"), reverse=True
+    )[:3]
     return best_nodes
 
 

@@ -14,7 +14,9 @@ def newest(path):
     Output: newest file in folder or None
     """
     files = os.listdir(path)
-    paths = [os.path.join(path, basename) for basename in files]
+    paths = [
+        os.path.join(path, basename) for basename in files if basename.endswith("owl")
+    ]
     if paths:
         newest_path = max(paths, key=os.path.getctime)
     else:

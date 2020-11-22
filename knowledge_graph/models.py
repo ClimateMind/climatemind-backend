@@ -177,11 +177,12 @@ class Sessions(db.Model):
 
 
 # create tables in database if they don't exist. Do nothing if they do exist.
-db.create_all()
+# engine = create_engine(app.config["SQLALCHEMY_DATABASE_URI"])
+
+# db.create_all()
 
 # def loadSession():
 #     """Initializes a database session and connects with Azure.
-
 #     THIS IS NOT THE SESSIONS TABLE.
 #     """
 #     metadata = db.Model.metadata

@@ -73,14 +73,6 @@
     
 
 
-    <!-- http://schema.org/longDescription -->
-
-    <owl:AnnotationProperty rdf:about="http://schema.org/longDescription">
-        <rdfs:label xml:lang="en">schema:longDescription</rdfs:label>
-    </owl:AnnotationProperty>
-    
-
-
     <!-- http://schema.org/mediaSource -->
 
     <owl:AnnotationProperty rdf:about="http://schema.org/mediaSource">
@@ -93,14 +85,6 @@
 
     <owl:AnnotationProperty rdf:about="http://schema.org/organizationSource">
         <rdfs:label xml:lang="en">schema:organizationSource</rdfs:label>
-    </owl:AnnotationProperty>
-    
-
-
-    <!-- http://schema.org/shortDescription -->
-
-    <owl:AnnotationProperty rdf:about="http://schema.org/shortDescription">
-        <rdfs:label xml:lang="en">schema:shortDescription</rdfs:label>
     </owl:AnnotationProperty>
     
 
@@ -142,12 +126,6 @@
     <rdf:Description rdf:about="http://www.w3.org/2000/01/rdf-schema#seeAlso">
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">seeAlso</rdfs:label>
     </rdf:Description>
-    
-
-
-    <!-- http://www.w3.org/2004/02/skos/core#comment -->
-
-    <owl:AnnotationProperty rdf:about="http://www.w3.org/2004/02/skos/core#comment"/>
     
 
 
@@ -195,14 +173,6 @@
     
 
 
-    <!-- http://webprotege.stanford.edu/RDBRnba7WFgd2sgse5xOTZc -->
-
-    <owl:ObjectProperty rdf:about="http://webprotege.stanford.edu/RDBRnba7WFgd2sgse5xOTZc">
-        <rdfs:label xml:lang="en">has exposure dependency of</rdfs:label>
-    </owl:ObjectProperty>
-    
-
-
     <!-- http://webprotege.stanford.edu/RDtKGbaLIxBsl3YBTuiFVw0 -->
 
     <owl:ObjectProperty rdf:about="http://webprotege.stanford.edu/RDtKGbaLIxBsl3YBTuiFVw0">
@@ -234,327 +204,6 @@
     <!-- 
     ///////////////////////////////////////////////////////////////////////////////////////
     //
-    // Data properties
-    //
-    ///////////////////////////////////////////////////////////////////////////////////////
-     -->
-
-    
-
-
-    <!-- http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg">
-        <rdfs:subPropertyOf rdf:resource="http://www.w3.org/2002/07/owl#topDataProperty"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:label xml:lang="en">personal value</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/R7MCKt1XjnUv28xXVN3Gvu9 -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/R7MCKt1XjnUv28xXVN3Gvu9">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R83gFAKtoRbVosdzpDczcpY"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">achievement</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/R7N7OO4PzFxvzeSCSBeEsSG -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/R7N7OO4PzFxvzeSCSBeEsSG">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RDaO7zY2Wej7wVZJmGoQiaf"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">hedonism</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/R7zjBzf2uRAedudrLTvpfTf -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/R7zjBzf2uRAedudrLTvpfTf">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R8hAV5jcO3aNYIQ7BEJf7rU"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RC8gWYNcWP7FfYhHYz5d7vP"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">security personal</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/R8Z9x56lD8j0Mw0VLFAPHDt -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/R8Z9x56lD8j0Mw0VLFAPHDt">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/RqndsxFDJuFxB1R5Oha9mn"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RDhEpKZmQtZf0byP0r8V97E"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">conformity interpersonal</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/R8fcBOloq56Ow92nvaCfaJJ -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/R8fcBOloq56Ow92nvaCfaJJ">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R8FzjC3r3Wrm0XCUXso8Qnk"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">self-direction</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/R8hAV5jcO3aNYIQ7BEJf7rU -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/R8hAV5jcO3aNYIQ7BEJf7rU">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RCS1V3VbMZjc6bnHgvrkkXL"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">security</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/R8ycaphxfuxVs0EZA7NhdvH -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/R8ycaphxfuxVs0EZA7NhdvH">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/RCU5xwfR2pavQDwL52fHoBy"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R9TOLv1wJywClDd3t9xIfyj"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">benevolence caring</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/R9k9dU96EkQPdKcYHflojNp -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/R9k9dU96EkQPdKcYHflojNp">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R8jnUZTqB7T2SMBRKCovdTo"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">power</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RBDKR1t9naTCFfc6GbqSQFc -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RBDKR1t9naTCFfc6GbqSQFc">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RPwiMssoiB9Cx5phJUDdO"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">stimulation</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RBGy4zPsGOVntrjgxLZWYtq -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RBGy4zPsGOVntrjgxLZWYtq">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R8fcBOloq56Ow92nvaCfaJJ"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RCjvsi1RGvcSMgzkio88ml5"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">self-direction autonomy of thought</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RBNn34siUR6TRluQssQB6lc -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RBNn34siUR6TRluQssQB6lc">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/RqndsxFDJuFxB1R5Oha9mn"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RCQZgneCamWamUQKe75xLOI"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">conformity rules</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RBXXWkdlXijmgHxPm9EO6BZ -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RBXXWkdlXijmgHxPm9EO6BZ">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/RDChO5Fv0SzZxHCHlEuEuz8"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R90R7IJeIX3GngxBmMn3T3a"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">universalism nature</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RBa1PzAKDFXqCiFdUsRhYJE -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RBa1PzAKDFXqCiFdUsRhYJE">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R9k9dU96EkQPdKcYHflojNp"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RTAf0lDWukb0KPEcYLyFB5"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">power dominance</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RBpPt4I6rknL9maqrU6j70U -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RBpPt4I6rknL9maqrU6j70U">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R9k9dU96EkQPdKcYHflojNp"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R9QmdzY6ds7vt6otXG6aLW4"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">power resources</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RCONeGY06XQlC5ZTlPe2wTb -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RCONeGY06XQlC5ZTlPe2wTb">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RCvgT3yCfw8txKIeC6Q8y8q"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">tradition</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RCU5xwfR2pavQDwL52fHoBy -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RCU5xwfR2pavQDwL52fHoBy">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RDZ4Q3Mzyn6XAwxPNoWINRU"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">benevolence</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RCfhgyk3Gvz4iOleBDKQ3yX -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RCfhgyk3Gvz4iOleBDKQ3yX">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/RDChO5Fv0SzZxHCHlEuEuz8"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RB1C1Ho9lgzE9gBie6DOFIj"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">universalism tolerance</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RCnoo6i0fFFuo3XtgQJEjGB -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RCnoo6i0fFFuo3XtgQJEjGB">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/RDChO5Fv0SzZxHCHlEuEuz8"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R83bkZOe5OnPgqH9RS8WcPX"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">universalism concern</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RDChO5Fv0SzZxHCHlEuEuz8 -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RDChO5Fv0SzZxHCHlEuEuz8">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R9B5djV6oYrSHFNk5dwwmQb"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">universalism</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RDRKIf2ZSwcxpNTaRLEJN9D -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RDRKIf2ZSwcxpNTaRLEJN9D">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RB5q8yBr7RqHWX5akYFgyCt"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">face</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RDcXd62RVNkb2AsUIbf4OLy -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RDcXd62RVNkb2AsUIbf4OLy">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R8hAV5jcO3aNYIQ7BEJf7rU"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RBiMJHT6ntB80zWkkMj51w1"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">security societal</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/REzYnHPPpgMg4dbeNFePz2 -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/REzYnHPPpgMg4dbeNFePz2">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/RCU5xwfR2pavQDwL52fHoBy"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/RBuLvxAQC4p6URTl1enoAii"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">benevolence dependability</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RIm21qcU1or1RI1rFv04h8 -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RIm21qcU1or1RI1rFv04h8">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R8fcBOloq56Ow92nvaCfaJJ"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R9zHof2z6kMPxBCMPPh7F8o"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">self-direction autonomy of action</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RQKI9lWMw7q8t3NRB4Dy7V -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RQKI9lWMw7q8t3NRB4Dy7V">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/Re7j7vBidCkxE0pWYwXUal"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">humility</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RqndsxFDJuFxB1R5Oha9mn -->
-
-    <owl:DatatypeProperty rdf:about="http://webprotege.stanford.edu/RqndsxFDJuFxB1R5Oha9mn">
-        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R4PiDup9NXulzZqUoA9tlg"/>
-        <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
-        <rdfs:domain rdf:resource="http://webprotege.stanford.edu/R7loJ4kTyBvG9HAMCkuhZNE"/>
-        <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#float"/>
-        <rdfs:label xml:lang="en">conformity</rdfs:label>
-    </owl:DatatypeProperty>
-    
-
-
-    <!-- 
-    ///////////////////////////////////////////////////////////////////////////////////////
-    //
     // Classes
     //
     ///////////////////////////////////////////////////////////////////////////////////////
@@ -566,8 +215,8 @@
     <!-- http://webprotege.stanford.edu/R4OfVdSm6kSqO5sYWtpG9w -->
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/R4OfVdSm6kSqO5sYWtpG9w">
-        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/RBeP1gQQDZotNh3ZOuwLEKq"/>
-        <rdfs:label xml:lang="en">status - source</rdfs:label>
+        <rdfs:subClassOf rdf:resource="http://www.w3.org/2002/07/owl#Thing"/>
+        <rdfs:label xml:lang="en">status - source etc</rdfs:label>
     </owl:Class>
     
 
@@ -586,15 +235,6 @@
     <owl:Class rdf:about="http://webprotege.stanford.edu/R75j93OXqU7SdT1Wi6HFo5B">
         <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
         <rdfs:label xml:lang="en">Legal Occupations</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://webprotege.stanford.edu/R76ngwVdBJ2dvXNQqhawUBm -->
-
-    <owl:Class rdf:about="http://webprotege.stanford.edu/R76ngwVdBJ2dvXNQqhawUBm">
-        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/RDOUngmyDcBTAFDvAUEuenL"/>
-        <rdfs:label xml:lang="en">action dependency</rdfs:label>
     </owl:Class>
     
 
@@ -890,15 +530,6 @@
     
 
 
-    <!-- http://webprotege.stanford.edu/R9OGkpszqMvT2H07FLo8vqc -->
-
-    <owl:Class rdf:about="http://webprotege.stanford.edu/R9OGkpszqMvT2H07FLo8vqc">
-        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/RCfPh2b9dT7ukFZtEfHQGbi"/>
-        <rdfs:label xml:lang="en">carbon capture</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://webprotege.stanford.edu/R9QDCi3KCeRw0G7x6AU045k -->
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/R9QDCi3KCeRw0G7x6AU045k">
@@ -1019,17 +650,8 @@
     <!-- http://webprotege.stanford.edu/RBJbvjIaTGGWw8IsBhHKONI -->
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/RBJbvjIaTGGWw8IsBhHKONI">
-        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/RCC8KOGTraabLQOT0wRByZJ"/>
+        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/R8o6PuNoCQEx9q96sHU5M6h"/>
         <rdfs:label xml:lang="en">value uncategorized (to do)</rdfs:label>
-    </owl:Class>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RBNSKyy1QSSnPoXOdBKvzt -->
-
-    <owl:Class rdf:about="http://webprotege.stanford.edu/RBNSKyy1QSSnPoXOdBKvzt">
-        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/RCfPh2b9dT7ukFZtEfHQGbi"/>
-        <rdfs:label xml:lang="en">emissions reduction</rdfs:label>
     </owl:Class>
     
 
@@ -1133,15 +755,6 @@
     
 
 
-    <!-- http://webprotege.stanford.edu/RC77fWvhvLSUoDgysxzCyGk -->
-
-    <owl:Class rdf:about="http://webprotege.stanford.edu/RC77fWvhvLSUoDgysxzCyGk">
-        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person is outside often</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://webprotege.stanford.edu/RC7PPhol1y2se6Txv8kkcfD -->
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/RC7PPhol1y2se6Txv8kkcfD">
@@ -1190,8 +803,7 @@
     <!-- http://webprotege.stanford.edu/RCC8KOGTraabLQOT0wRByZJ -->
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/RCC8KOGTraabLQOT0wRByZJ">
-        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/RBeP1gQQDZotNh3ZOuwLEKq"/>
-        <rdfs:label xml:lang="en">status - personal value</rdfs:label>
+        <rdfs:label xml:lang="en">status - value</rdfs:label>
     </owl:Class>
     
 
@@ -1209,9 +821,8 @@
     <!-- http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml -->
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml">
-        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/RDOUngmyDcBTAFDvAUEuenL"/>
-        <rdfs:label xml:lang="en">exposure dependency</rdfs:label>
-        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Members of this class are associated with climate change risk and risk solutions. Members represent conditions that must directly be true for the individual concept associated with it to directly affect a user (does not represent dependencies of any possible parent or ancestor individuals). Members of this class pair one-to-one with user exposure characteristics to evaluate if the user could be affected by the individual concept that associate with members of this class. Members should not be used to associate with individuals that are root causes of climate change?</skos:definition>
+        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/RBeP1gQQDZotNh3ZOuwLEKq"/>
+        <rdfs:label xml:lang="en">population affected</rdfs:label>
     </owl:Class>
     
 
@@ -1247,6 +858,12 @@
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/RCSp3Q6QJjaE6ehKKudHudg">
         <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
+        <rdfs:subClassOf>
+            <owl:Restriction>
+                <owl:onProperty rdf:resource="http://webprotege.stanford.edu/RftWPEDTNGrriaufjBA6oG"/>
+                <owl:hasValue rdf:resource="http://webprotege.stanford.edu/RDtjtNVivtpYdE8v55DyKrG"/>
+            </owl:Restriction>
+        </rdfs:subClassOf>
         <rdfs:label xml:lang="en">Farming, Fishing, and Forestry Occupations</rdfs:label>
     </owl:Class>
     
@@ -1282,7 +899,6 @@
         </rdfs:subClassOf>
         <schema:organizationSource rdf:resource="http://www.lse.ac.uk/granthaminstitute/explainers/why-do-economists-describe-climate-change-as-a-market-failure/#:~:text=Many%20economists%EF%BB%BF%20have%20described,&apos;greenhouse%2Dgas%20externality&apos;.&amp;text=As%20a%20result%2C%20the%20market,by%20over%2Dproducing%20greenhouse%20gases."/>
         <rdfs:label xml:lang="en">mitigation</rdfs:label>
-        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Reducing emissions of and stabilizing the levels of heat-trapping greenhouse gases in the atmosphere</skos:definition>
     </owl:Class>
     
 
@@ -1291,7 +907,7 @@
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/RCfRQpw8fqcHzwBXGJf8mtY">
         <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/R4OfVdSm6kSqO5sYWtpG9w"/>
-        <rdfs:label xml:lang="en">review needed - sources</rdfs:label>
+        <rdfs:label xml:lang="en">review needed - sources etc</rdfs:label>
     </owl:Class>
     
 
@@ -1368,15 +984,6 @@
     
 
 
-    <!-- http://webprotege.stanford.edu/RDOUngmyDcBTAFDvAUEuenL -->
-
-    <owl:Class rdf:about="http://webprotege.stanford.edu/RDOUngmyDcBTAFDvAUEuenL">
-        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/RBeP1gQQDZotNh3ZOuwLEKq"/>
-        <rdfs:label xml:lang="en">relevance dependency</rdfs:label>
-    </owl:Class>
-    
-
-
     <!-- http://webprotege.stanford.edu/RDU8PoqNskq6aftdwHoEoRR -->
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/RDU8PoqNskq6aftdwHoEoRR">
@@ -1417,7 +1024,7 @@
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR">
         <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/R4OfVdSm6kSqO5sYWtpG9w"/>
-        <rdfs:label xml:lang="en">not finished - sources</rdfs:label>
+        <rdfs:label xml:lang="en">not finished - sources etc</rdfs:label>
     </owl:Class>
     
 
@@ -1602,7 +1209,7 @@
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/Rky8kJpsC7goxphVkudpsI">
         <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/R4OfVdSm6kSqO5sYWtpG9w"/>
-        <rdfs:label xml:lang="en">approved - sources</rdfs:label>
+        <rdfs:label xml:lang="en">approved - sources etc</rdfs:label>
     </owl:Class>
     
 
@@ -1749,9 +1356,7 @@
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBtRa4l2THuYophTFTPolF"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RBIjeqALTDlfCzVLfBMq4EC"/>
-        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RGBfgwLkF3YDyhyGGb5HWL"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RJNGfc0g7HO0V3kCM2R8bA"/>
-        <schema:academicSourceNoPaywall rdf:resource="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4556416/"/>
         <rdfs:label xml:lang="en">coal mining</rdfs:label>
     </owl:NamedIndividual>
     
@@ -1844,32 +1449,8 @@
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R9kyuKf4wb5UPOdLwYvzr0G"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCjvsi1RGvcSMgzkio88ml5"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <schema:academicSource rdf:resource="https://scholar.harvard.edu/files/jisungpark/files/paper_nyc_aejep.pdf"/>
-        <schema:image rdf:resource="http://www.news.uct.ac.za/images/archive/dailynews/2015/november2015_exams_large.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
         <schema:mediaSource rdf:resource="https://www.washingtonpost.com/business/2018/07/17/heat-makes-you-dumb-four-charts/"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">decrease in test scores</rdfs:label>
     </owl:NamedIndividual>
     
@@ -1938,12 +1519,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RLo3QuYrdNauylrd7VWUBL"/>
         <dc:source rdf:resource="https://www.nrdc.org/sites/default/files/accountingcosts.pdf"/>
         <schema:academicSource rdf:resource="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019GH000202"/>
-        <schema:image rdf:resource="https://media.defense.gov/2017/Mar/09/2001709213/-1/-1/0/170309-A-YG824-002.JPG"/>
-        <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/3/3b/Past_Due_Bills.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in health costs</rdfs:label>
     </owl:NamedIndividual>
     
@@ -1985,9 +1560,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/RDnngs7q3R6klffYKrfIIcZ"/>
-        <schema:image rdf:resource="https://i.ibb.co/71Rx9v1/legal-attorney-jurist-signature-documents-entrepreneur-811631.jpg"/>
-        <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/5/50/Michael_Wildes%2C_Jon_Corzine%2C_Immigration_Panel%2C_August_2007.jpg"/>
-        <schema:image rdf:resource="https://www.moaa.org/uploadedfiles/content/publications_and_media/news_articles/2018_news_articles/capitol-twitter.jpg"/>
         <rdfs:label xml:lang="en">regulation/laws that require assessment of floodplains for new buildings</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2026,16 +1598,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R8UAlvCDloJpXl8adS8Oc1u"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCboJ4auVhGSpy0EIHMuBW"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R8VWiAcECOGFY5bloP4988I"/>
-        <rdfs:label xml:lang="en">increase in development of acute lower respiratory infection</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://webprotege.stanford.edu/R881q5suJxwe7p0C9G6TnxQ -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R881q5suJxwe7p0C9G6TnxQ">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person is in a community likely without air conditioning</rdfs:label>
+        <rdfs:label xml:lang="en">acute lower respiratory infection</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2060,7 +1623,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RvfaiCkogzLpPjYcZBagEI"/>
-        <schema:image rdf:resource="https://i1.pickpik.com/photos/992/522/541/android-android-phone-call-cellphone-preview.jpg"/>
         <rdfs:label xml:lang="en">call representative</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2102,31 +1664,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCjvsi1RGvcSMgzkio88ml5"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RJ7jqd2suJhy5MkEMxCnDD"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R703RV857dpjFbW0mm37eW9"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
-        <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Children_in_a_classroom.jpg/1599px-Children_in_a_classroom.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
         <schema:mediaSource rdf:resource="https://www.forbes.com/sites/traversmark/2020/02/07/new-research-quantifies-the-impact-of-extreme-heat-on-learning/#5825504f3d57"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">decrease in learning (without air conditioner)</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2164,35 +1702,10 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RC8gWYNcWP7FfYhHYz5d7vP"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDaO7zY2Wej7wVZJmGoQiaf"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <dc:source rdf:resource="https://amp.theguardian.com/commentisfree/2019/sep/04/climate-crisis-hurricane-dorian-floods-bahamas"/>
         <dc:source rdf:resource="https://www.bloomberg.com/news/articles/2019-09-09/the-massive-cost-of-not-adapting-to-climate-change"/>
         <dc:source rdf:resource="https://www.climate.gov/news-features/blogs/beyond-data/2018s-billion-dollar-disasters-context"/>
         <dc:source rdf:resource="https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html"/>
-        <schema:image rdf:resource="https://i.ibb.co/nnQxTqB/Screen-Shot-2020-09-11-at-3-53-08-PM.png"/>
-        <schema:image rdf:resource="https://www.climate.gov/sites/default/files/costs_cumulative_by_month_1981-2019.png"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <webprotege:R9GAVktwjcLydvN9COHeohM rdf:resource="https://www.foxbusiness.com/economy/costliest-hurricanes-us-history"/>
         <rdfs:label xml:lang="en">increase in disaster costs</rdfs:label>
     </owl:NamedIndividual>
@@ -2234,15 +1747,6 @@ If adoption of fuel-saving technologies grows from 10 percent to 50-60 percent o
     
 
 
-    <!-- http://webprotege.stanford.edu/R8SuSOQg1d2JTziUbd6Mu1u -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8SuSOQg1d2JTziUbd6Mu1u">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person has asthma</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://webprotege.stanford.edu/R8VWiAcECOGFY5bloP4988I -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8VWiAcECOGFY5bloP4988I">
@@ -2252,14 +1756,6 @@ If adoption of fuel-saving technologies grows from 10 percent to 50-60 percent o
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RLo3QuYrdNauylrd7VWUBL"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RZAtyheNImvyUu2Px4jDU1"/>
         <rdfs:label xml:lang="en">increase in death</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://webprotege.stanford.edu/R8WuOBPLCdMwpmp2AL2xaTc -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8WuOBPLCdMwpmp2AL2xaTc">
-        <rdfs:label xml:lang="en">person is in the location affected</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2288,40 +1784,16 @@ If adoption of fuel-saving technologies grows from 10 percent to 50-60 percent o
     <!-- http://webprotege.stanford.edu/R8epBa4UvcieLTynfK3E84u -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8epBa4UvcieLTynfK3E84u">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8PmFoNLsH86P3KbnQ1D3fb"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R7aKWN9krpjpPwliKcpe496"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R83gFAKtoRbVosdzpDczcpY"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R8UAlvCDloJpXl8adS8Oc1u"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R90R7IJeIX3GngxBmMn3T3a"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R9QmdzY6ds7vt6otXG6aLW4"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R9kyuKf4wb5UPOdLwYvzr0G"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RDaO7zY2Wej7wVZJmGoQiaf"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RPwiMssoiB9Cx5phJUDdO"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">-1</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <dc:source rdf:resource="https://www.nwf.org/~/media/PDFs/Global-Warming/Reports/NowheretoRun-BigGameWildlife-LowResFinal_110613.ashx"/>
-        <schema:image rdf:resource="https://cdn.pixabay.com/photo/2018/10/29/13/46/hunter-3781224_960_720.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">decrease in population of moose available to hunt</rdfs:label>
-        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The moose population is decreasing due to an increase frequency of heat waves.</skos:definition>
     </owl:NamedIndividual>
     
 
@@ -2424,17 +1896,8 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCvgT3yCfw8txKIeC6Q8y8q"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/RCkLLIxnjRrEwqFDLGw9Phk"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R8VWiAcECOGFY5bloP4988I"/>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <schema:image rdf:resource="https://cdn.pixabay.com/photo/2020/04/28/15/08/depression-5104941_960_720.jpg"/>
-        <schema:image rdf:resource="https://im.indiatimes.in/media/content/2016/Jun/netsafe%20org_1466062085.jpg"/>
-        <schema:image rdf:resource="https://www.psychiatrycentre.co.uk/wp-content/uploads/2018/09/How-To-Help-Prevent-Suicide.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
         <schema:mediaSource rdf:resource="https://www.motherjones.com/environment/2019/02/climate-change-isnt-just-frying-the-planet-its-fraying-our-nerves/"/>
         <schema:organizationSource rdf:resource="https://news.stanford.edu/2019/03/29/effects-climate-change-suicide-rates/"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in suicide</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2462,34 +1925,10 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBiMJHT6ntB80zWkkMj51w1"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RTAf0lDWukb0KPEcYLyFB5"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <dc:source rdf:resource="https://www.capitalgazette.com/environment/ac-cn-proceedings-except-20191013-43rodczawne7ziviweim72cvmq-story.html"/>
         <dc:source rdf:resource="https://www.military.com/daily-news/2017/06/02/trump-may-doubt-climate-change-pentagon-sees-it-looming-threat.html"/>
         <dc:source rdf:resource="https://www.rollcall.com/2019/06/12/military-bases-unprepared-for-gathering-climate-change-storm/"/>
         <dc:source rdf:resource="https://www.un.org/en/chronicle/article/greatest-threat-global-security-climate-change-not-merely-environmental-problem"/>
-        <schema:image rdf:resource="https://www.armytimes.com/resizer/88FxqrjlLGQnquJi4Oxb9ti1m10=/1200x0/filters:quality(100)/arc-anglerfish-arc2-prod-mco.s3.amazonaws.com/public/TTC7LHB6Z5FS3ADYJPNKSCY7SU.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <webprotege:R9GAVktwjcLydvN9COHeohM rdf:resource="https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689/"/>
         <webprotege:R9GAVktwjcLydvN9COHeohM rdf:resource="https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095"/>
         <rdfs:label xml:lang="en">increase in destruction to US military bases</rdfs:label>
@@ -2532,15 +1971,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <dc:source rdf:resource="https://www.ajtmh.org/content/journals/10.4269/ajtmh.2009.80.640"/>
         <dc:source rdf:resource="https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16"/>
         <rdfs:label xml:lang="en">increase in cholera infections</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://webprotege.stanford.edu/R8yMIVbfONvLwG7a0gnuM7G -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8yMIVbfONvLwG7a0gnuM7G">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person is LGBTQ</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2629,7 +2059,6 @@ Project Drawdown models the impact of this population difference in more-develop
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RrMKkTUqrE0r1UudR3jlCz"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/RCFcpfKKeKFTkyBttzYtl1P"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/RGvNz4i9rN6i6s2DETRSKD"/>
-        <schema:image rdf:resource="https://api.ndla.no/image-api/raw/326490908.jpg"/>
         <rdfs:label xml:lang="en">political polarization</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2649,40 +2078,14 @@ Project Drawdown models the impact of this population difference in more-develop
     <!-- http://webprotege.stanford.edu/R9JAWzfiZ9haeNhHiCpTWkr -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9JAWzfiZ9haeNhHiCpTWkr">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/R7aKWN9krpjpPwliKcpe496"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8PmFoNLsH86P3KbnQ1D3fb"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R8UAlvCDloJpXl8adS8Oc1u"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R9kyuKf4wb5UPOdLwYvzr0G"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDaO7zY2Wej7wVZJmGoQiaf"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RPwiMssoiB9Cx5phJUDdO"/>
-        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RBvy0CVizhdMfXbtJIc2En"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <dc:source rdf:resource="https://www.researchgate.net/profile/Bas_Amelung/publication/249701105_Implications_of_Global_Climate_Change_for_Tourism_Flows_and_Seasonality/links/0f3175362279bd6b6b000000.pdf"/>
         <dc:source rdf:resource="https://www.travelpulse.com/news/destinations/how-climate-change-is-affecting-tourism.html"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/8631/16346002621_0a601c2a3f.jpg"/>
-        <schema:image rdf:resource="https://p1.pxfuel.com/preview/971/234/463/map-tourist-travel-tourism-traveler-vacation.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">decrease in tourism</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2829,17 +2232,7 @@ Based on historic growth on large farming operations, the Project Drawdown analy
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCBzNhkuW51hKlUIUPew7nS"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R9GgwNAE1EIyeCTZohpIThL"/>
-        <schema:image rdf:resource="https://c.pxhere.com/photos/36/9f/solar_panels_installation_workers_array_power_sun_electricity_energy-1028805.jpg!d"/>
         <rdfs:label xml:lang="en">establish a federal green jobs program</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://webprotege.stanford.edu/R9mIR0KLaH0PemFZ9tPkLSs -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9mIR0KLaH0PemFZ9tPkLSs">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person is conservative</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2891,42 +2284,12 @@ Based on historic growth on large farming operations, the Project Drawdown analy
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R90R7IJeIX3GngxBmMn3T3a"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R9JAWzfiZ9haeNhHiCpTWkr"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <dc:source rdf:resource="https://www.facebook.com/watch/?v=10156746453050024"/>
         <dc:source rdf:resource="https://www.sciencenewsforstudents.org/article/ocean-heat-waves-are-rise-and-killing-coral"/>
         <dc:source rdf:resource="https://www.youtube.com/watch?v=MUAsFZuFQvQ"/>
         <dc:source rdf:resource="https://www.youtube.com/watch?v=_ZfGIKiSwwQ"/>
         <dc:source rdf:resource="https://www.youtube.com/watch?v=fA6mpexcyN4"/>
         <dc:source rdf:resource="https://www.youtube.com/watch?v=dcWlVN02kDQ&amp;feature=emb_title"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/2502/4117345237_d91f9d5e35_b.jpg"/>
-        <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/4/45/Coral_Bleaching_in_Hawaii.jpg"/>
-        <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Bleachedcoral.jpg/800px-Bleachedcoral.jpg"/>
-        <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/Bleached_coral%2C_Acoropora_sp.jpg/800px-Bleached_coral%2C_Acoropora_sp.jpg"/>
-        <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/Bleached_colony_of_Acropora_coral.jpg/800px-Bleached_colony_of_Acropora_coral.jpg"/>
-        <schema:image rdf:resource="https://www.aims.gov.au/sites/default/files/ff037440-2181-42a2-a8cf-2e55405674dc.jpg"/>
-        <schema:image rdf:resource="https://www.aims.gov.au/sites/default/files/2a5c8655-626e-4804-b05f-13c7ec93c16f.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in coral bleaching and destruction</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2953,20 +2316,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RC8gWYNcWP7FfYhHYz5d7vP"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCboJ4auVhGSpy0EIHMuBW"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R8VWiAcECOGFY5bloP4988I"/>
-        <schema:image rdf:resource="https://cdn.pixabay.com/photo/2017/01/28/19/04/drip-2016247_1280.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/3067/3064531495_c77d761340_b.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/3089/2602299327_9b7c166a0a_b.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/5186/5565391613_9d55549119_b.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/7144/6739641349_b8d4fd354a_b.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/7703/28307071970_eaf20fb448_b.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/7743/27220715631_45a02fe150_b.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/91/223015379_c55e9c8678_b.jpg"/>
-        <schema:image rdf:resource="https://storage.needpix.com/rsynced_images/chemotherapy-448578_1280.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://www.cancer.org/latest-news/world-health-organization-outdoor-air-pollution-causes-cancer.html"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in lung cancer</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2975,9 +2325,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <!-- http://webprotege.stanford.edu/RB7k7p2iQQgKdQrkRP2MZWM -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RB7k7p2iQQgKdQrkRP2MZWM">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/R7aKWN9krpjpPwliKcpe496"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R838w4SBo4dM5MSU3oylFcu"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R83bkZOe5OnPgqH9RS8WcPX"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8PmFoNLsH86P3KbnQ1D3fb"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R8UAlvCDloJpXl8adS8Oc1u"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R9TOLv1wJywClDd3t9xIfyj"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R9kyuKf4wb5UPOdLwYvzr0G"/>
@@ -2985,33 +2335,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RC8gWYNcWP7FfYhHYz5d7vP"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RLo3QuYrdNauylrd7VWUBL"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <dc:source rdf:resource="https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution"/>
         <dc:source rdf:resource="https://www.cnn.com/2018/10/29/health/air-pollution-children-health-who-india-intl/index.html"/>
         <dc:source rdf:resource="https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution"/>
-        <schema:image rdf:resource="https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in disproportionate effects on children</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3140,7 +2466,6 @@ If the total protected area of peatlands increases from 8.84 million hectares to
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/Rogalh6vEmPn4UqI4lP2FL"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R5kluaMVlhzpGZEWgAsy1"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RC9SyXE5PhiT6iKz1LaJFgf"/>
-        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RDz5mIeKH8dVyDEr7S7wE3"/>
         <dc:source rdf:resource="https://www.eia.gov/energyexplained/coal/coal-and-the-environment.php"/>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/abandoned-farmland-restoration"/>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/bamboo-production"/>
@@ -3155,7 +2480,6 @@ If the total protected area of peatlands increases from 8.84 million hectares to
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/tree-intercropping"/>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/tree-plantations-on-degraded-land"/>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/tropical-forest-restoration"/>
-        <schema:organizationSource rdf:resource="https://www.climatecentral.org/gallery/graphics/more-co2-more-pollen"/>
         <rdfs:label xml:lang="en">increase in CO2</rdfs:label>
         <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Increase in carbon dioxide in the Earth&apos;s atmosphere.</skos:definition>
     </owl:NamedIndividual>
@@ -3265,17 +2589,9 @@ If the total protected area of peatlands increases from 8.84 million hectares to
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBosMFE7AZZiaiC1jbHqTGA"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RTAf0lDWukb0KPEcYLyFB5"/>
-        <webprotege:RDBRnba7WFgd2sgse5xOTZc rdf:resource="http://webprotege.stanford.edu/R881q5suJxwe7p0C9G6TnxQ"/>
-        <webprotege:RDBRnba7WFgd2sgse5xOTZc rdf:resource="http://webprotege.stanford.edu/RDH3tK9XwVJrDpZCflByO6w"/>
-        <webprotege:RDBRnba7WFgd2sgse5xOTZc rdf:resource="http://webprotege.stanford.edu/RMitjwsMYIFgaH1m0sVD8N"/>
         <dc:source rdf:resource="https://blog.ucsusa.org/kristy-dahl/military-extreme-heat"/>
         <dc:source rdf:resource="https://insideclimatenews.org/news/11112019/military-heat-risk-climate-change-basic-training-bases-union-concerned-scientists-report"/>
-        <schema:image rdf:resource="https://www.stripes.com/polopoly_fs/1.578924.1556551744!/image/image.jpg_gen/derivatives/landscape_900/image.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
-        <rdfs:label xml:lang="en">increase in heat stroke</rdfs:label>
+        <rdfs:label xml:lang="en">increase in heat stroke in marine corps</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3300,32 +2616,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R9kyuKf4wb5UPOdLwYvzr0G"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/RKsHmIBffqClOO8UkcSmY3"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
-        <dc:source rdf:resource="https://epic.uchicago.edu/news/hot-temperatures-decrease-worker-productivity-economic-output/"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">decrease in GDP</rdfs:label>
-        <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An increase in heatwaves is causing a decrease in North American Gross Domestic Product (GDP)</skos:definition>
     </owl:NamedIndividual>
     
 
@@ -3375,15 +2666,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     
 
 
-    <!-- http://webprotege.stanford.edu/RC66RbTUK1k4yw8xzp7ncYZ -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RC66RbTUK1k4yw8xzp7ncYZ">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person is a student</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://webprotege.stanford.edu/RC908yZ4NQO8OtHHyOhBgj -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RC908yZ4NQO8OtHHyOhBgj">
@@ -3411,16 +2693,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RC9SyXE5PhiT6iKz1LaJFgf">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R838w4SBo4dM5MSU3oylFcu"/>
         <rdfs:label xml:lang="en">negative effects on cognition</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RC9XTaX2cwSygxV7C6T5ixd -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RC9XTaX2cwSygxV7C6T5ixd">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC77fWvhvLSUoDgysxzCyGk"/>
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person is farmer</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3466,9 +2738,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RFaJxIT1quuNu2kx2qQoQN"/>
-        <schema:image rdf:resource="https://p0.pikist.com/photos/149/707/people-women-mother-daughter-talking-care-bench-nature-park.jpg"/>
-        <schema:image rdf:resource="https://p0.pikist.com/photos/893/1014/friends-male-men-outside-winter-cold-bench-conversation-smile.jpg"/>
-        <schema:image rdf:resource="https://pixnio.com/free-images/people/crowd/african-american-female-talking-with-one-blond-young-woman-and-with-one-man-725x483.jpg"/>
         <rdfs:label xml:lang="en">effective communication framing</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3606,15 +2875,6 @@ The household and industrial recycling solutions were modeled together and inclu
     
 
 
-    <!-- http://webprotege.stanford.edu/RCh4p4niYgYP17tKGFCRYAS -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCh4p4niYgYP17tKGFCRYAS">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person has heart disease</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://webprotege.stanford.edu/RCkLLIxnjRrEwqFDLGw9Phk -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCkLLIxnjRrEwqFDLGw9Phk">
@@ -3676,7 +2936,6 @@ The household and industrial recycling solutions were modeled together and inclu
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/Ruw5LBoKiKZQAzttiwXnHh"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R7yNIp2SSecEuyVj4gZxSHF"/>
-        <schema:image rdf:resource="https://p0.pxfuel.com/preview/592/8/5/building-professional-employee-builder.jpg"/>
         <rdfs:label xml:lang="en">builders are not required to check before building on a floodplain</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3703,12 +2962,6 @@ The household and industrial recycling solutions were modeled together and inclu
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RGbm42IftQVoguYsFJQDSl"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/RCtCTACPjLICXvxzHHsQ6o9"/>
-        <schema:image rdf:resource="https://62e528761d0685343e1c-f3d1b99a743ffa4142d9d7f1978d9686.ssl.cf2.rackcdn.com/files/8/width668/aapone-20110307000303779168-australia-weather-rain-record-files-original.jpg"/>
-        <schema:image rdf:resource="https://cdn.pixabay.com/photo/2013/09/08/19/15/hurricane-katrina-180538_960_720.jpg"/>
-        <schema:image rdf:resource="https://cdn.pixabay.com/photo/2015/10/12/14/56/tuscany-984014_960_720.jpg"/>
-        <schema:image rdf:resource="https://d279m997dpfwgl.cloudfront.net/wp/2017/08/HarveyHouse.jpg"/>
-        <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flooding_in_Minot_%28Image_4_of_13%29.jpg"/>
-        <schema:image rdf:resource="https://www.co.marion.or.us/PW/Planning/PublishingImages/1311_001.jpg"/>
         <rdfs:label xml:lang="en">avoid building on land that is or will become a floodplain</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3733,15 +2986,6 @@ The household and industrial recycling solutions were modeled together and inclu
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCBzNhkuW51hKlUIUPew7nS"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R9GgwNAE1EIyeCTZohpIThL"/>
         <rdfs:label xml:lang="en">enact cap and trade policy</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RCzjldNgzkvDRoBexUdqAVj -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCzjldNgzkvDRoBexUdqAVj">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person owns a home</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3782,15 +3026,6 @@ The household and industrial recycling solutions were modeled together and inclu
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDEwOyikZhK0P8OWbfhcxfe">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDU8PoqNskq6aftdwHoEoRR"/>
         <rdfs:label xml:lang="en">increase in tropospheric specific humidity</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RDH3tK9XwVJrDpZCflByO6w -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDH3tK9XwVJrDpZCflByO6w">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person is outside often</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3849,7 +3084,7 @@ The household and industrial recycling solutions were modeled together and inclu
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDW2Jq9syvIdke0hdTNzGcu">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person is elderly</rdfs:label>
+        <rdfs:label xml:lang="en">elderly people</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3914,14 +3149,7 @@ The household and industrial recycling solutions were modeled together and inclu
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDhEpKZmQtZf0byP0r8V97E"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R8VWiAcECOGFY5bloP4988I"/>
         <schema:governmentSource rdf:resource="https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16"/>
-        <schema:image rdf:resource="https://i0.pickpik.com/photos/744/359/676/fist-strength-anger-tear-preview.jpg"/>
-        <schema:image rdf:resource="https://images.unsplash.com/photo-1602865597998-b39c7a370110?ixlib=rb-1.2.1&amp;ixid=eyJhcHBfaWQiOjEyMDd9&amp;auto=format&amp;fit=crop&amp;w=1650&amp;q=80"/>
-        <schema:image rdf:resource="https://storage.needpix.com/rsynced_images/violent-4259802_1280.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://www.psychologicalscience.org/observer/global-warming-and-violent-behavior"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in physical violence</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3949,7 +3177,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <schema:academicSourceNoPaywall rdf:resource="https://academic.oup.com/reep/article/10/2/347/1753081"/>
         <schema:academicSourceNoPaywall rdf:resource="https://bfi.uchicago.edu/wp-content/uploads/BFI-WP_2018-69.pdf"/>
         <schema:academicSourceNoPaywall rdf:resource="https://www.sciencedirect.com/science/article/pii/S2542519618302377?via%3Dihub"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/8246/8529685278_cb27fde4cd.jpg"/>
         <schema:mediaSource rdf:resource="https://epic.uchicago.edu/news/hot-temperatures-decrease-worker-productivity-economic-output/"/>
         <schema:mediaSource rdf:resource="https://phys.org/news/2018-08-temperatures-worker-productivity-global-losses.html"/>
         <schema:mediaSource rdf:resource="https://www.entrepreneur.com/article/319479"/>
@@ -3967,6 +3194,14 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/public-transit"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Streetcars, buses, and subways offer alternative, efficient modes of transport. Public transit can keep car use to a minimum and avert greenhouse gases. Use of public transit is projected to decline significantly from 30 percent of urban travel as the low-income world gains wealth. If use is instead managed to decline more slowly by 2050 or even rise slightly to 35 percent, this solution can save 7.5-23 gigatons of carbon dioxide emissions from cars. Consumers would save $2.1-6.6 trillion in mobility costs. Project Drawdown analysis includes diverse public transit options (bus, metro, tram, and commuter rail) and examines the costs that travelers pay (car purchase and use compared to buying transit tickets).</rdfs:comment>
         <rdfs:label xml:lang="en">using public transit</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RDhuqL7wMQsPF1zWeogD5FG -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDhuqL7wMQsPF1zWeogD5FG">
+        <rdfs:label xml:lang="en">being telepresent</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -4035,7 +3270,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RgTt4pD9InpQkRcQsEOr3y"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R7gVDW5GAY8MLHKOrp03FZQ"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R8ECf0I0zdW2MwEbGGbcBdK"/>
-        <schema:image rdf:resource="https://p0.pikist.com/photos/412/150/white-house-washington-dc-senate-capital-congress-parliament-president-presidential-federal.jpg"/>
         <rdfs:label xml:lang="en">deregulation</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4076,42 +3310,15 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDuEdzMOhOt76COW2RVxZdP">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R83gFAKtoRbVosdzpDczcpY"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8PmFoNLsH86P3KbnQ1D3fb"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R8UAlvCDloJpXl8adS8Oc1u"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R9QmdzY6ds7vt6otXG6aLW4"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R9kyuKf4wb5UPOdLwYvzr0G"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R9zHof2z6kMPxBCMPPh7F8o"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC1pBiuJXjmH8xtiiYuLeAZ"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RTAf0lDWukb0KPEcYLyFB5"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <schema:academicSource rdf:resource="https://www.richmondfed.org/-/media/richmondfedorg/publications/research/economic_brief/2018/pdf/eb_18-08.pdf"/>
-        <schema:image rdf:resource="https://c.pxhere.com/images/2c/78/6797d8d5f891990fe5fb4d904bf7-1596167.jpg!d"/>
-        <schema:image rdf:resource="https://i2.pickpik.com/photos/224/264/838/construction-worker-oil-rig-preview.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/3791/10699768134_372c1dae5a_b.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/8671/15564777093_80ea69dc61_b.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:mediaSource rdf:resource="https://www.entrepreneur.com/article/319479"/>
         <schema:organizationSource rdf:resource="https://news.harvard.edu/gazette/story/2019/11/researcher-analyzes-effects-of-climate-change-on-productivity/"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">decrease in worker productivity</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4187,7 +3394,6 @@ Bamboo is planted on 33.52 million hectares today. We assume that it will be gro
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDz5mIeKH8dVyDEr7S7wE3">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R838w4SBo4dM5MSU3oylFcu"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RO1J1OifvuO602qTIrSXdB"/>
-        <schema:organizationSource rdf:resource="https://www.climatecentral.org/gallery/graphics/more-co2-more-pollen"/>
         <rdfs:label xml:lang="en">increase in pollen released by plants</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4199,7 +3405,7 @@ Bamboo is planted on 33.52 million hectares today. We assume that it will be gro
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R8UAlvCDloJpXl8adS8Oc1u"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCboJ4auVhGSpy0EIHMuBW"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R8VWiAcECOGFY5bloP4988I"/>
-        <rdfs:label xml:lang="en">development of chronic obstructive pulmonary disease</rdfs:label>
+        <rdfs:label xml:lang="en">chronic obstructive pulmonary disease</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -4212,7 +3418,6 @@ Bamboo is planted on 33.52 million hectares today. We assume that it will be gro
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RFaJxIT1quuNu2kx2qQoQN"/>
-        <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/9/9e/Voting_booth_-_Ohio_primary_election_-_March_15%2C_2016_%2825784960616%29.jpg"/>
         <rdfs:label xml:lang="en">enact ranked-choice voting policy</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4314,47 +3519,7 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R9LbmQn2lAubsJN4nR1Sqzo"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R9vkBr0EApzeMGfa0rJGo9G"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RBJi2ztbJiaIwcTQTScEKNx"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
-        <schema:image rdf:resource="https://live.staticflickr.com/563/21213222640_92a920d6c2_b.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/5658/21401302465_6db853b5f4_b.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/5685/20780226833_a47cbeaf7d_b.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/5691/20778581604_078dac2b5c_b.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/5802/21213465298_97e909774d_b.jpg"/>
-        <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/d/d9/Slave_Lake_May_15_2011.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in area burned by wildfire</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RMitjwsMYIFgaH1m0sVD8N -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RMitjwsMYIFgaH1m0sVD8N">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC77fWvhvLSUoDgysxzCyGk"/>
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <schema:image rdf:resource="https://www.stripes.com/polopoly_fs/1.578924.1556551744!/image/image.jpg_gen/derivatives/landscape_900/image.jpg"/>
-        <rdfs:label xml:lang="en">person is in the marines</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -4362,9 +3527,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <!-- http://webprotege.stanford.edu/RO1J1OifvuO602qTIrSXdB -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RO1J1OifvuO602qTIrSXdB">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/R7aKWN9krpjpPwliKcpe496"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R838w4SBo4dM5MSU3oylFcu"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R83bkZOe5OnPgqH9RS8WcPX"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8PmFoNLsH86P3KbnQ1D3fb"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R8UAlvCDloJpXl8adS8Oc1u"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R9zHof2z6kMPxBCMPPh7F8o"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBiMJHT6ntB80zWkkMj51w1"/>
@@ -4375,37 +3540,11 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R8VWiAcECOGFY5bloP4988I"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RB7k7p2iQQgKdQrkRP2MZWM"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/Ra98BRMZ0HlUpobb3Z0C5r"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <dc:source rdf:resource="https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution"/>
         <dc:source rdf:resource="https://www.cnn.com/2018/10/29/health/air-pollution-children-health-who-india-intl/index.html"/>
         <dc:source rdf:resource="https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma"/>
         <dc:source rdf:resource="https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution"/>
         <dc:source rdf:resource="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893/"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/3382/3630262585_f9e666b8bb_b.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/5304/5595644959_b97179964f_o.jpg"/>
-        <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/2/25/Asthma_spacer.JPG"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in asthma complications</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4475,31 +3614,8 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBiMJHT6ntB80zWkkMj51w1"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RC8gWYNcWP7FfYhHYz5d7vP"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <dc:source rdf:resource="https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma"/>
         <dc:source rdf:resource="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893/"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in disproportionate effects on minority groups</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4558,7 +3674,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RfkjEXa4fTJvsuzk6ushUu">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RkuZYclpOLJQdACnY01awU"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R7UaBVCzh2O54oDnVl30shn"/>
-        <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/e/ef/Voting_United_States.jpg"/>
         <rdfs:label xml:lang="en">retreat of glaciers (glacier melt)</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4572,24 +3687,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/reduced-food-waste"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Roughly a third of the world’s food is never eaten, which means land and resources used and greenhouse gases emitted in producing it were unnecessary. Interventions can reduce loss and waste, as food moves from farm to fork, thereby reducing overall demand. After taking into account the annual adoption of plant-rich diets, if 50-75 percent of food waste is reduced by 2050, avoided emissions could be equal to 10.3-18.8 gigatons of carbon dioxide. Reducing waste also avoids the deforestation for additional farmland, preventing 74.9-76.3 gigatons of additional emissions. Project Drawdown used forecasts of regional waste estimated from farm to household. This data shows that up to 35 percent of food in high-income economies is thrown out by consumers; in low-income economies, however, relatively little is wasted at the household level.</rdfs:comment>
         <rdfs:label xml:lang="en">reducing food waste</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RiUUJY9dRmsNluT9Z1y6Jw -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RiUUJY9dRmsNluT9Z1y6Jw">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person is liberal</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
-    <!-- http://webprotege.stanford.edu/RlzghLEiXAExxYiYdjQN7s -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RlzghLEiXAExxYiYdjQN7s">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person is in hurricane region</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -4610,36 +3707,11 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R8uV2oTMZHslQ6qiGWJ8OQO"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R8xnqMTv1FH2zTsQT4ckrRi"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R90voMtk6xBMoARwvKc2wuy"/>
-        <webprotege:R7MCKt1XjnUv28xXVN3Gvu9 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7MCKt1XjnUv28xXVN3Gvu9>
-        <webprotege:R7N7OO4PzFxvzeSCSBeEsSG rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R7N7OO4PzFxvzeSCSBeEsSG>
-        <webprotege:R7zjBzf2uRAedudrLTvpfTf rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R7zjBzf2uRAedudrLTvpfTf>
-        <webprotege:R8Z9x56lD8j0Mw0VLFAPHDt rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:R8Z9x56lD8j0Mw0VLFAPHDt>
-        <webprotege:R8ycaphxfuxVs0EZA7NhdvH rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:R8ycaphxfuxVs0EZA7NhdvH>
-        <webprotege:RBDKR1t9naTCFfc6GbqSQFc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBDKR1t9naTCFfc6GbqSQFc>
-        <webprotege:RBGy4zPsGOVntrjgxLZWYtq rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBGy4zPsGOVntrjgxLZWYtq>
-        <webprotege:RBNn34siUR6TRluQssQB6lc rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBNn34siUR6TRluQssQB6lc>
-        <webprotege:RBXXWkdlXijmgHxPm9EO6BZ rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBXXWkdlXijmgHxPm9EO6BZ>
-        <webprotege:RBa1PzAKDFXqCiFdUsRhYJE rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RBa1PzAKDFXqCiFdUsRhYJE>
-        <webprotege:RBpPt4I6rknL9maqrU6j70U rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RBpPt4I6rknL9maqrU6j70U>
-        <webprotege:RCONeGY06XQlC5ZTlPe2wTb rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCONeGY06XQlC5ZTlPe2wTb>
-        <webprotege:RCfhgyk3Gvz4iOleBDKQ3yX rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RCfhgyk3Gvz4iOleBDKQ3yX>
-        <webprotege:RCnoo6i0fFFuo3XtgQJEjGB rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RCnoo6i0fFFuo3XtgQJEjGB>
-        <webprotege:RDRKIf2ZSwcxpNTaRLEJN9D rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RDRKIf2ZSwcxpNTaRLEJN9D>
-        <webprotege:RDcXd62RVNkb2AsUIbf4OLy rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RDcXd62RVNkb2AsUIbf4OLy>
-        <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:REzYnHPPpgMg4dbeNFePz2>
-        <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
-        <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <dc:source rdf:resource="http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155"/>
         <dc:source rdf:resource="https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689/"/>
         <dc:source rdf:resource="https://www.nature.com/articles/s41612-019-0074-8"/>
         <dc:source rdf:resource="https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html"/>
         <dc:source rdf:resource="https://www.sciencedirect.com/science/article/pii/S0962629807000601"/>
-        <schema:image rdf:resource="https://api.creativecommons.engineering/v1/thumbs/1dc085e5-a90e-4f3e-ae79-17d8e209516c"/>
-        <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flooding_in_Minot_%28Image_4_of_13%29.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in flooding of land and property</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4705,10 +3777,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RDuEdzMOhOt76COW2RVxZdP"/>
         <dc:source rdf:resource="https://www.one-tab.com/page/M4YO-jl3TCeMqMR590Bosg"/>
-        <schema:image rdf:resource="https://dailygeekshow.com/wp-content/uploads/2016/06/Une-transpiration.jpg"/>
-        <schema:image rdf:resource="https://i1.pickpik.com/photos/326/563/730/construction-workers-construction-work-mechanic-designer-preview.jpg"/>
         <rdfs:label xml:lang="en">increase in temperature of work environment</rdfs:label>
-        <skos:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">NEED TO FIX SOURCES FOR THIS! UNCOMPRESS THE URL LINK</skos:comment>
     </owl:NamedIndividual>
     
 
@@ -4736,11 +3805,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RC8gWYNcWP7FfYhHYz5d7vP"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCboJ4auVhGSpy0EIHMuBW"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R8VWiAcECOGFY5bloP4988I"/>
-        <schema:image rdf:resource="https://i2.pickpik.com/photos/913/608/58/old-woman-human-person-preview.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in risk of stroke</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4769,10 +3833,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/Rtctk1SGyY2raocnj6VJeg">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCfPh2b9dT7ukFZtEfHQGbi"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/telepresence"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Telepresence integrates high-performance visual, audio, and network technologies, so people can interact across geographies. It cuts down on travel—especially flying—and its emissions. By avoiding emissions from business air travel, telepresence can reduce emissions by 1-3.8 gigaton of carbon dioxide over thirty years. That result assumes that over 486-676 million business-related trips are replaced by telepresence in 2050. For organizations, the investment of $87-301 billion in telepresence systems pays off with $1.2 -4.4 trillion worth of business travel savings and 107-143 billion fewer unproductive travel hours.</rdfs:comment>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Work from home has demonstrated an increase in productivity and has enabled employees to move to lower cost of living areas like the suburbs.</rdfs:comment>
         <rdfs:label xml:lang="en">being telepresent or teleworking</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4829,15 +3892,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     
 
 
-    <!-- http://webprotege.stanford.edu/RylsbuYPZqKPtB9RnT74zZ -->
-
-    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RylsbuYPZqKPtB9RnT74zZ">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCM4W2nqtqo5npqYLRObfml"/>
-        <rdfs:label xml:lang="en">person has chronic obstructive pulmonary disease (COPD)</rdfs:label>
-    </owl:NamedIndividual>
-    
-
-
     <!-- http://webprotege.stanford.edu/RzalB19SQSGGVxprHL33Ik -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RzalB19SQSGGVxprHL33Ik">
@@ -4851,14 +3905,6 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R8VWiAcECOGFY5bloP4988I"/>
         <webprotege:RfRDthf7nisJROgzRTIwIo rdf:resource="http://webprotege.stanford.edu/RDW2Jq9syvIdke0hdTNzGcu"/>
         <schema:governmentSource rdf:resource="https://www.epa.gov/sciencematters/linking-air-pollution-and-heart-disease"/>
-        <schema:image rdf:resource="https://cdn.pixabay.com/photo/2020/01/18/17/30/ambulance-4775935_960_720.jpg"/>
-        <schema:image rdf:resource="https://i.ibb.co/Mc65MCX/body-upper-body-hand-t-shirt-keep-heart-bless-you-disease-1351507.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/3587/3428173616_c8b18b49ba_b.jpg"/>
-        <schema:image rdf:resource="https://live.staticflickr.com/4831/45199620544_41cc661f0a_z.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
-
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Tristique nulla aliquet enim tortor at auctor urna. Ultrices sagittis orci a scelerisque. Interdum consectetur libero id faucibus nisl tincidunt eget. Quam lacus suspendisse faucibus interdum.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in risk of heart attack</rdfs:label>
     </owl:NamedIndividual>
     
