@@ -47,7 +47,7 @@ RUN pip install cython && \
     pip install --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-#EXPOSE 1433 5000 8050
+EXPOSE 5000 8050
 
 RUN ["chmod", "+x", "db-init.sh"]
 
