@@ -1,3 +1,4 @@
+import os
 import uuid
 from json import dumps, load
 
@@ -65,7 +66,8 @@ def get_questions() -> Tuple[Response, int]:
     the user.
     """
     try:
-        with open("json_files/schwartz_questions.json") as json_file:
+        file = os.path.join(os.getcwd(), "json_files/schwartz_questions.json")
+        with open(file) as json_file:
             data = load(json_file)
     except FileNotFoundError:
         return make_response("Schwartz Questions not Found"), 400
@@ -207,7 +209,8 @@ def get_personal_values():
         top_scores = sorted(sorted_scores, key=sorted_scores.get, reverse=True)[:3]
 
         try:
-            with open("json_files/value_descriptions.json", "r") as f:
+            file = os.path.join(os.getcwd(), "json_files/value_descriptions.json")
+            with open(file) as f:
                 value_descriptions = load(f)
         except FileNotFoundError:
             return make_response("Value Descriptions File Not Found"), 400
