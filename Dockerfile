@@ -49,9 +49,11 @@ RUN pip install cython && \
 
 #EXPOSE 1433 5000 8050
 
-#RUN ["chmod", "+x", "db-init.sh"]
+RUN ["chmod", "+x", "db-init.sh"]
 
 ENTRYPOINT [ "python" ]
 
 RUN chmod u+x ./entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
+
+#CMD [ "climatemind.py" ] #old entrypoint script.

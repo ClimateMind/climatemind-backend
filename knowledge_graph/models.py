@@ -183,7 +183,6 @@ class Sessions(db.Model):
 
 # def loadSession():
 #     """Initializes a database session and connects with Azure.
-
 #     THIS IS NOT THE SESSIONS TABLE.
 #     """
 #     metadata = db.Model.metadata
