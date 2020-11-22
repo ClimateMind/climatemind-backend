@@ -93,6 +93,9 @@ def get_scores_vector(user_scores):
     ]
 
 
+OFFSET = 4  # .edu <- to skip these characters and get the unique IRI
+
+
 def simple_scoring(G, user_scores):
     """Each climate effects node will have personal values associated with it. These
     values are stored as a vector within the node. This vector is run through the
