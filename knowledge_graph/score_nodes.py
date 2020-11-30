@@ -123,7 +123,7 @@ def simple_scoring(G, user_scores):
                 "effectId": get_effect_id(G.nodes[node]),
                 "effectTitle": G.nodes[node]["label"],
                 "effectDescription": get_description(G.nodes[node]),
-                "effectShortLong": get_short_description(G.nodes[node]),
+                "effectShortDescription": get_short_description(G.nodes[node]),
                 "effectScore": score,
                 "imageUrl": get_image_url(G.nodes[node]),
                 "actionHeadline": "Reducing Food Waste",  # TODO Add actual actions
