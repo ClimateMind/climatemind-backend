@@ -44,9 +44,9 @@ jobs:
       - run:
           name: "Install packages"
           command: pip install pytest requests==2.24.0
-      - run:
-          name: Api Tests
-          command: python -m pytest ./api_tests
+      # - run:
+      #     name: Api Tests
+      #     command: python -m pytest ./api_tests
 
 
 workflows:
