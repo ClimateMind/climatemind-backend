@@ -109,15 +109,15 @@ def simple_scoring(G, user_scores):
     """
     climate_effects = []
     user_scores_vector = np.array(get_scores_vector(user_scores))
-    node_values_associations_10 = np.array(node_values_associations_10)
-    
     modified_user_scores_vector = np.power(user_scores_vector, ALPHA)
-    modified_node_values_associations_10 = np.where(node_values_associations_10<0, 2*node_values_associations_10, node_values_associations_10) #doubles the magnitude of the backfire-effect representation
 
     for node in G.nodes:
         if "personal_values_10" in G.nodes[node]:
             node_values_associations_10 = G.nodes[node]["personal_values_10"]
-
+            node_values_associations_10 = np.array(node_values_associations_10)
+            #double the magnitude of the backfire-effect representation:
+            modified_node_values_associations_10 = np.where(node_values_associations_10<0, 2*node_values_associations_10, node_values_associations_10)
+            
             if any(v is None for v in node_values_associations_10):
                 score = None
             else:
