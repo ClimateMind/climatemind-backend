@@ -94,7 +94,7 @@ def get_scores_vector(user_scores):
 
 
 OFFSET = 4  # .edu <- to skip these characters and get the unique IRI
-
+ALPHA = 2
 
 def simple_scoring(G, user_scores):
     """Each climate effects node will have personal values associated with it. These
@@ -108,7 +108,8 @@ def simple_scoring(G, user_scores):
     user_scores - A dictionary of personal values (keys) and scores (values)
     """
     climate_effects = []
-    user_scores_vector = get_scores_vector(user_scores)
+    user_scores_vector = np.array(get_scores_vector(user_scores))
+    user_scores_vector = np.power(user_scores_vector, ALPHA)
 
     for node in G.nodes:
         if "personal_values_10" in G.nodes[node]:
