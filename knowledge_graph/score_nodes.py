@@ -94,7 +94,10 @@ def get_scores_vector(user_scores):
 
 
 OFFSET = 4  # .edu <- to skip these characters and get the unique IRI
-ALPHA = 2 # variable for transforming user questionnaire scores to exponential distribution
+ALPHA = (
+    2  # variable for transforming user questionnaire scores to exponential distribution
+)
+
 
 def simple_scoring(G, user_scores):
     """Each climate effects node will have personal values associated with it. These
@@ -114,14 +117,20 @@ def simple_scoring(G, user_scores):
     for node in G.nodes:
         if "personal_values_10" in G.nodes[node]:
             node_values_associations_10 = G.nodes[node]["personal_values_10"]
-            
+
             if any(v is None for v in node_values_associations_10):
                 score = None
             else:
                 node_values_associations_10 = np.array(node_values_associations_10)
-                #double the magnitude of the backfire-effect representation:
-                modified_node_values_associations_10 = np.where(node_values_associations_10<0, 2*node_values_associations_10, node_values_associations_10)
-                score = np.dot(modified_user_scores_vector, modified_node_values_associations_10)
+                # double the magnitude of the backfire-effect representation:
+                modified_node_values_associations_10 = np.where(
+                    node_values_associations_10 < 0,
+                    2 * node_values_associations_10,
+                    node_values_associations_10,
+                )
+                score = np.dot(
+                    modified_user_scores_vector, modified_node_values_associations_10
+                )
 
             d = {
                 "effectId": get_effect_id(G.nodes[node]),
