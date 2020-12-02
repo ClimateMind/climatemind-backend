@@ -114,13 +114,13 @@ def simple_scoring(G, user_scores):
     for node in G.nodes:
         if "personal_values_10" in G.nodes[node]:
             node_values_associations_10 = G.nodes[node]["personal_values_10"]
-            node_values_associations_10 = np.array(node_values_associations_10)
-            #double the magnitude of the backfire-effect representation:
-            modified_node_values_associations_10 = np.where(node_values_associations_10<0, 2*node_values_associations_10, node_values_associations_10)
             
             if any(v is None for v in node_values_associations_10):
                 score = None
             else:
+                node_values_associations_10 = np.array(node_values_associations_10)
+                #double the magnitude of the backfire-effect representation:
+                modified_node_values_associations_10 = np.where(node_values_associations_10<0, 2*node_values_associations_10, node_values_associations_10)
                 score = np.dot(modified_user_scores_vector, modified_node_values_associations_10)
 
             d = {
@@ -149,7 +149,7 @@ def get_best_nodes(climate_effects, n):
     """
     best_nodes = sorted(
         climate_effects, key=lambda k: k["effectScore"] or float("-inf"), reverse=True
-    )[:3]
+    )[:5]
     return best_nodes
 
 
