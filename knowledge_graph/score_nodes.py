@@ -35,7 +35,7 @@ def get_description(node):
     node - A networkX node
     """
     try:
-        return node["schema_longDescription"]
+        return node["properties"]["schema_longDescription"]
     except:
         return "No long desc available at present"
 
@@ -49,7 +49,7 @@ def get_short_description(node):
     node - A networkX node
     """
     try:
-        return node["schema_shortDescription"]
+        return node["properties"]["schema_shortDescription"]
     except:
         return "No short desc available at present"
 
@@ -131,7 +131,6 @@ def simple_scoring(G, user_scores):
                 score = np.dot(
                     modified_user_scores_vector, modified_node_values_associations_10
                 )
-
             d = {
                 "effectId": get_effect_id(G.nodes[node]),
                 "effectTitle": G.nodes[node]["label"],
