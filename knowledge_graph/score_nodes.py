@@ -49,7 +49,7 @@ def get_short_description(node):
     node - A networkX node
     """
     try:
-        return node["properties"]["schema_shortDescription"]
+        return node["properties"]["schema_shortDescription"][0]
     except:
         return "No short desc available at present"
 
