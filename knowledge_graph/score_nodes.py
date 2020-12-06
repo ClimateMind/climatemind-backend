@@ -35,7 +35,7 @@ def get_description(node):
     node - A networkX node
     """
     try:
-        return node["properties"]["schema_longDescription"]
+        return node["properties"]["schema_longDescription"][0]
     except:
         return "No long desc available at present"
 
