@@ -599,6 +599,15 @@
     
 
 
+    <!-- http://webprotege.stanford.edu/R7KrZDm5BUP3B6AzCgjl0c9 -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/R7KrZDm5BUP3B6AzCgjl0c9">
+        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/RBtRa4l2THuYophTFTPolF"/>
+        <rdfs:label xml:lang="en">land clearing</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://webprotege.stanford.edu/R7UB4CI7fUQbzF4PaF6O00a -->
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/R7UB4CI7fUQbzF4PaF6O00a">
@@ -2602,6 +2611,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R8mJ0PLfjBIMeb3Nrfe8YO7"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBDHSDTjocA6djUSDX5s9b2"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBosMFE7AZZiaiC1jbHqTGA"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCTESypCGDMrvu4pgWxsPWA"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCboJ4auVhGSpy0EIHMuBW"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R8xnqMTv1FH2zTsQT4ckrRi"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R9ah7PByb0OgSOa90WQQdjc"/>
@@ -2826,10 +2836,10 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <!-- http://webprotege.stanford.edu/R9ah7PByb0OgSOa90WQQdjc -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9ah7PByb0OgSOa90WQQdjc">
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8ExCSgGUoA9vti6LQVUshw"/>
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/R9GcbtrddwRKc32cppns3qH"/>
-        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R90voMtk6xBMoARwvKc2wuy"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R7KrZDm5BUP3B6AzCgjl0c9"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RBtRa4l2THuYophTFTPolF"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RBJi2ztbJiaIwcTQTScEKNx"/>
+        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RDAmSaOOexqzo8f9kE5JXMR"/>
         <dc:source rdf:resource="http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155"/>
         <dc:source rdf:resource="https://www.sciencedirect.com/science/article/pii/S0962629807000601"/>
         <rdfs:label rdf:datatype="http://www.w3.org/2001/XMLSchema#string">increase in deforestation</rdfs:label>
@@ -3712,6 +3722,17 @@ The household and industrial recycling solutions were modeled together and inclu
     
 
 
+    <!-- http://webprotege.stanford.edu/RCpXSHQAIxJpX4uyqhk82TF -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCpXSHQAIxJpX4uyqhk82TF">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8ExCSgGUoA9vti6LQVUshw"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R9GcbtrddwRKc32cppns3qH"/>
+        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RnbPKhyIQNnShkRKHqGrGm"/>
+        <rdfs:label xml:lang="en">increase in river flooding</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/RCpkare9aCROASttOpkDXpa -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCpkare9aCROASttOpkDXpa">
@@ -3840,6 +3861,17 @@ The household and industrial recycling solutions were modeled together and inclu
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/refrigerant-management"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fluorinated gases have a potent greenhouse effect and are widely used as refrigerants. Managing leaks and disposal of these chemicals can avoid emissions in buildings and landfills. Substantial emissions reductions could be achieved through the adoption of practices to (1) avoid leaks from refrigerants and (2) destroy refrigerants at end of life, both after the adoption of alternatives to HFC refrigerants. Over thirty years, an increase of over 79% percent of refrigerants that may be released can be contained, avoiding emissions equivalent to 57.8 gigatons of carbon dioxide. Although some revenue can be generated from resale of recovered refrigerant gases, the costs to establish and operate recovery, destruction, and leak avoidance outweigh the financial benefit—meaning that refrigerant management, as modeled, could incur a net cost of $629.4 billion by 2050.</rdfs:comment>
         <rdfs:label xml:lang="en">managing refrigerants better</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RDAmSaOOexqzo8f9kE5JXMR -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDAmSaOOexqzo8f9kE5JXMR">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R8ExCSgGUoA9vti6LQVUshw"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/R9GcbtrddwRKc32cppns3qH"/>
+        <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RCpXSHQAIxJpX4uyqhk82TF"/>
+        <rdfs:label xml:lang="en">increase in erosion</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -4409,6 +4441,7 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBiMJHT6ntB80zWkkMj51w1"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RC8gWYNcWP7FfYhHYz5d7vP"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RCTESypCGDMrvu4pgWxsPWA"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RvMRYLggkmwiiB4T1jsTTX"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R9LbmQn2lAubsJN4nR1Sqzo"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R9vkBr0EApzeMGfa0rJGo9G"/>
