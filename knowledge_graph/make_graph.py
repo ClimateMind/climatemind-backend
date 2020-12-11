@@ -6,7 +6,7 @@ import pandas as pd
 
 import owlready2
 from owlready2 import get_ontology, sync_reasoner
-from collections import OrderedDict 
+from collections import OrderedDict
 
 from knowledge_graph.ontology_processing_utils import (
     give_alias,
@@ -339,34 +339,42 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     remove_edge_properties_from_nodes(G, to_remove)
 
     B = G.copy()
-    #identify nodes that are in the class 'feedback loop' then remove those nodes' 'caueses' edges because they start feedback loops. 
-    nx.get_node_attributes(B,'direct classes')
+    # identify nodes that are in the class 'feedback loop' then remove those nodes' 'caueses' edges because they start feedback loops.
+    nx.get_node_attributes(B, "direct classes")
     feedback_nodes = list()
-    graph_attributes_dictionary = nx.get_node_attributes(B,'direct classes')
+    graph_attributes_dictionary = nx.get_node_attributes(B, "direct classes")
     for node in graph_attributes_dictionary:
-        if 'feedback loop' in graph_attributes_dictionary[node]:
+        if "feedback loop" in graph_attributes_dictionary[node]:
             feedback_nodes.append(node)
-    #get the 'causes' edges that lead out of the feedback_nodes 
-    #must only remove edges that cause increase in greenhouse gases... so only remove edges if the neighbor is of the class 'increase in atmospheric greenhouse gas'
+    # get the 'causes' edges that lead out of the feedback_nodes
+    # must only remove edges that cause increase in greenhouse gases... so only remove edges if the neighbor is of the class 'increase in atmospheric greenhouse gas'
     feedbackloop_edges = list()
     for node in feedback_nodes:
         node_neighbors = B.neighbors(node)
         for neighbor in node_neighbors:
-            if 'increase in atmospheric greenhouse gas' in graph_attributes_dictionary[neighbor] or 'root cause linked to humans' in graph_attributes_dictionary[neighbor]:
-                 #should make this 'increase in atmospheric greenhouse gas' not hard coded!
-                if B[node][neighbor]['type'] == 'causes_or_promotes': #should probably make this so the causes_or_promotes isn't hard coded!
-                    feedbackloop_edges.append((node,neighbor))
-    
-    #remove all the feedback loop edges
+            if (
+                "increase in atmospheric greenhouse gas"
+                in graph_attributes_dictionary[neighbor]
+                or "root cause linked to humans"
+                in graph_attributes_dictionary[neighbor]
+            ):
+                # should make this 'increase in atmospheric greenhouse gas' not hard coded!
+                if (
+                    B[node][neighbor]["type"] == "causes_or_promotes"
+                ):  # should probably make this so the causes_or_promotes isn't hard coded!
+                    feedbackloop_edges.append((node, neighbor))
+
+    # remove all the feedback loop edges
     for feedbackloopEdge in feedbackloop_edges:
         nodeA = feedbackloopEdge[0]
         nodeB = feedbackloopEdge[1]
-        B.remove_edge(nodeA,nodeB)
+        B.remove_edge(nodeA, nodeB)
 
-    #feedback loop edges should be severed in the graph copy B
-    edges_upstream_greenhouse_effect = nx.edge_dfs(B, "increase in greenhouse effect", orientation='reverse')
-    
-    
+    # feedback loop edges should be severed in the graph copy B
+    edges_upstream_greenhouse_effect = nx.edge_dfs(
+        B, "increase in greenhouse effect", orientation="reverse"
+    )
+
     nodes_upstream_greenhouse_effect = list()
     for edge in edges_upstream_greenhouse_effect:
         nodeA = edge[0]
@@ -374,19 +382,24 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         nodes_upstream_greenhouse_effect.append(nodeA)
         nodes_upstream_greenhouse_effect.append(nodeB)
 
-    nodes_upstream_greenhouse_effect = list(OrderedDict.fromkeys(nodes_upstream_greenhouse_effect)) 
+    nodes_upstream_greenhouse_effect = list(
+        OrderedDict.fromkeys(nodes_upstream_greenhouse_effect)
+    )
 
-    #now get all the nodes that have the inhibit relationship with the nodes found in nodes_upstream_greenhouse_effect (these nodes should all be the mitigation solutions)
+    # now get all the nodes that have the inhibit relationship with the nodes found in nodes_upstream_greenhouse_effect (these nodes should all be the mitigation solutions)
     mitigation_solutions = list()
     for node in nodes_upstream_greenhouse_effect:
         node_neighbors = B.neighbors(node)
         for neighbor in node_neighbors:
-            if B[node][neighbor]['type'] == 'is_inhibited_or_prevented_or_blocked_or_slowed_by': #bad to hard code in 'is_inhibited_or_prevented_or_blocked_or_slowed_by'
+            if (
+                B[node][neighbor]["type"]
+                == "is_inhibited_or_prevented_or_blocked_or_slowed_by"
+            ):  # bad to hard code in 'is_inhibited_or_prevented_or_blocked_or_slowed_by'
                 mitigation_solutions.append(neighbor)
 
     breakpoint()
 
-    #B.nodes['permafrost melt']['direct classes']
+    # B.nodes['permafrost melt']['direct classes']
 
     # output_folder_path = "../PUT_NEW_OWL_FILE_IN_HERE/"
     save_graph_to_pickle(G, output_folder_path)
