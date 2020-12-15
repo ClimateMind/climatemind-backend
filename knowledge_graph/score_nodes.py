@@ -176,37 +176,44 @@ def get_user_nodes(user_scores):
     climate_effects = simple_scoring(G, user_scores)
     best_nodes_for_user = get_best_nodes(climate_effects, 3)
     return best_nodes_for_user
-    
-    
+
+
 def get_user_actions(effect_name):
     """Takes the name of a climate effect and returns a list of actions associated with
     that node.
-    
+
     Parameters
     ----------
     effect_name - A string
     """
     G = get_pickle_file("Climate_Mind_DiGraph.gpickle")
-    solution_names = G.nodes[effect_name]['adaptation solutions']
+    solution_names = G.nodes[effect_name]["adaptation solutions"]
     solutions = []
     for solution in solution_names:
         s = {
-            "solutionTitle": G.nodes[solution]['label'],
-            "shortDescription": G.nodes[solution]['properties']['schema_shortDescription'],
-            "longDescription": G.nodes[solution]['properties']['schema_longDescription'],
-            "imageURL": G.nodes[solution]['properties']['schema_image']
+            "solutionTitle": G.nodes[solution]["label"],
+            "shortDescription": G.nodes[solution]["properties"][
+                "schema_shortDescription"
+            ],
+            "longDescription": G.nodes[solution]["properties"][
+                "schema_longDescription"
+            ],
+            "imageURL": G.nodes[solution]["properties"]["schema_image"],
         }
         solutions.append(s)
-    
-    solution_names = G.nodes['increase in greenhouse effect']['mitigation solutions']
+
+    solution_names = G.nodes["increase in greenhouse effect"]["mitigation solutions"]
     for solution in solution_names:
         s = {
-            "solutionTitle": G.nodes[solution]['label'],
-            "shortDescription": G.nodes[solution]['properties']['schema_shortDescription'],
-            "longDescription": G.nodes[solution]['properties']['schema_longDescription'],
-            "imageURL": G.nodes[solution]['properties']['schema_image']
+            "solutionTitle": G.nodes[solution]["label"],
+            "shortDescription": G.nodes[solution]["properties"][
+                "schema_shortDescription"
+            ],
+            "longDescription": G.nodes[solution]["properties"][
+                "schema_longDescription"
+            ],
+            "imageURL": G.nodes[solution]["properties"]["schema_image"],
         }
         solutions.append(s)
-        
-    return solutions    
-    
+
+    return solutions

@@ -405,7 +405,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         "mitigation solutions",
     )
     # to check or obtain the solutions from the networkx object: G.nodes['increase in greenhouse effect']['mitigation solutions']
-    #breakpoint()
+    # breakpoint()
 
     # code to get the adaptation solutions from a node in the networkx object:
 
