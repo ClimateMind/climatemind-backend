@@ -239,7 +239,7 @@ def get_actions():
         actions = get_user_actions(effect_name)
     except:
         return make_response("Invalid climate effect or no actions found"), 400
-    
+
     response = jsonify({"actions": actions})
     return response, 200
 
