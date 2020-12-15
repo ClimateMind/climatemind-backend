@@ -405,11 +405,11 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         "mitigation solutions",
     )
     # to check or obtain the solutions from the networkx object: G.nodes['increase in greenhouse effect']['mitigation solutions']
-    breakpoint()
+    #breakpoint()
 
     # code to get the adaptation solutions from a node in the networkx object:
 
-    # use the pruned copy of the graph (use B) because it has thee feedback loop edges removed.
+    # use the pruned copy of the graph (use B) because it has the feedback loop edges removed.
     # Get the upstream edges of the node in the B graph that occur between the node in question and the node 'increase in greenhouse effect'
     # print(list(nx.dfs_edges(B,”starting node name”))) #this is to get downstream edges
     # to do this could remove the parent edges of the 'increase in greenhouse effect' node?
@@ -420,7 +420,6 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     downstream_nodes = [item for sublist in downstream_nodes for item in sublist]
     nodes_downstream_greenhouse_effect = list(OrderedDict.fromkeys(downstream_nodes))
     for effectNode in nodes_downstream_greenhouse_effect:
-        # breakpoint()
         intermediate_nodes = nx.all_simple_paths(
             B, "increase in greenhouse effect", effectNode
         )
@@ -442,7 +441,6 @@ def makeGraph(onto_path, edge_path, output_folder_path):
                 ):  # bad to hard code in 'is_inhibited_or_prevented_or_blocked_or_slowed_by'
                     node_adaptation_solutions.append(neighbor)
         # add the adaptation solutions to the networkx object for the node
-        # breakpoint()
         # be sure that solutions don't show up as effectNodes! and that they aren't solutions to themself! the code needs to be changed to avoid this.
         # ^solutions shouldn't be added as solutions to themself!
         node_adaptation_solutions = list(
@@ -458,7 +456,6 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     # ex: G.nodes['decrease in test scores']['adaptation solutions']
     # should probably code in for the 'adaptation solutions' field to read "None yet curated" if there isn't any to avoid errors from occuring later by API ?
     # G.nodes['increase in area burned by wildfire']['adaptation solutions'] should not return *** KeyError: 'adaptation solutions'
-    breakpoint()
 
     # B.nodes['permafrost melt']['direct classes']
 

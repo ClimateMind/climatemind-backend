@@ -10,7 +10,7 @@ from typing import Tuple
 from knowledge_graph import app, db, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
-from knowledge_graph.score_nodes import get_user_nodes
+from knowledge_graph.score_nodes import get_user_nodes, get_user_actions
 
 value_id_map = {
     1: "conformity",
@@ -226,20 +226,21 @@ def get_personal_values():
         return make_response("Invalid Session ID - Internal Server Error"), 400
 
 
-@app.route("/get_actions", methods=["POST"])
+@app.route("/get_actions", methods=["GET"])
 @auto.doc()
 def get_actions():
     """
-    Temporary test function to take a JSON full of user scores and calculate the
-    best nodes to return to a user. Will be deprecated and replaced by /feed.
+    The front-end needs to request personalized actions to take against climate change
+    based on a specified climate effect.
     """
+    effect_name = str(request.args.get("effect-name"))
+
     try:
-        scores = request.json
-    # TODO: catch exceptions properly here
-    except Exception:
-        return make_response("Invalid JSON"), 400
-    recommended_nodes = get_user_nodes(scores)
-    response = jsonify(recommended_nodes)
+        actions = get_user_actions(effect_name)
+    except:
+        return make_response("Invalid climate effect or no actions found"), 400
+    
+    response = jsonify({"actions": actions})
     return response, 200
 
 
