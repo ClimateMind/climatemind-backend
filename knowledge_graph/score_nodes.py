@@ -188,9 +188,7 @@ def get_user_actions(effect_name):
     effect_name - A string
     """
     G = get_pickle_file("Climate_Mind_DiGraph.gpickle")
-    print(effect_name)
     solution_names = G.nodes[effect_name]["adaptation solutions"]
-    print(solution_names)
     solutions = []
     for solution in solution_names:
         try:
