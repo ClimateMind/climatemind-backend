@@ -117,6 +117,13 @@ def simple_scoring(G, user_scores):
     for node in G.nodes:
         if "personal_values_10" in G.nodes[node]:
             node_values_associations_10 = G.nodes[node]["personal_values_10"]
+            d = {
+                "effectId": get_effect_id(G.nodes[node]),
+                "effectTitle": G.nodes[node]["label"],
+                "effectDescription": get_description(G.nodes[node]),
+                "effectShortDescription": get_short_description(G.nodes[node]),
+                "imageUrl": get_image_url(G.nodes[node]),
+            }
 
             if any(v is None for v in node_values_associations_10):
                 score = None
@@ -131,15 +138,9 @@ def simple_scoring(G, user_scores):
                 score = np.dot(
                     modified_user_scores_vector, modified_node_values_associations_10
                 )
-            d = {
-                "effectId": get_effect_id(G.nodes[node]),
-                "effectTitle": G.nodes[node]["label"],
-                "effectDescription": get_description(G.nodes[node]),
-                "effectShortDescription": get_short_description(G.nodes[node]),
-                "effectScore": score,
-                "imageUrl": get_image_url(G.nodes[node]),
-                "actionHeadline": "Reducing Food Waste",  # TODO Add actual actions
-            }
+                d["effectSolutions"] = get_user_actions(G.nodes[node]["label"])
+
+            d["effectScore"] = score
             climate_effects.append(d)
 
     return climate_effects
@@ -187,33 +188,41 @@ def get_user_actions(effect_name):
     effect_name - A string
     """
     G = get_pickle_file("Climate_Mind_DiGraph.gpickle")
+    print(effect_name)
     solution_names = G.nodes[effect_name]["adaptation solutions"]
+    print(solution_names)
     solutions = []
     for solution in solution_names:
-        s = {
-            "solutionTitle": G.nodes[solution]["label"],
-            "shortDescription": G.nodes[solution]["properties"][
-                "schema_shortDescription"
-            ],
-            "longDescription": G.nodes[solution]["properties"][
-                "schema_longDescription"
-            ],
-            "imageURL": G.nodes[solution]["properties"]["schema_image"],
-        }
-        solutions.append(s)
+        try:
+            s = {
+                "solutionTitle": G.nodes[solution]["label"],
+                "shortDescription": G.nodes[solution]["properties"][
+                    "schema_shortDescription"
+                ],
+                "longDescription": G.nodes[solution]["properties"][
+                    "schema_longDescription"
+                ],
+                "imageURL": G.nodes[solution]["properties"]["schema_image"],
+            }
+            solutions.append(s)
+        except:
+            pass
 
     solution_names = G.nodes["increase in greenhouse effect"]["mitigation solutions"]
     for solution in solution_names:
-        s = {
-            "solutionTitle": G.nodes[solution]["label"],
-            "shortDescription": G.nodes[solution]["properties"][
-                "schema_shortDescription"
-            ],
-            "longDescription": G.nodes[solution]["properties"][
-                "schema_longDescription"
-            ],
-            "imageURL": G.nodes[solution]["properties"]["schema_image"],
-        }
-        solutions.append(s)
+        try:
+            s = {
+                "solutionTitle": G.nodes[solution]["label"],
+                "shortDescription": G.nodes[solution]["properties"][
+                    "schema_shortDescription"
+                ],
+                "longDescription": G.nodes[solution]["properties"][
+                    "schema_longDescription"
+                ],
+                "imageURL": G.nodes[solution]["properties"]["schema_image"],
+            }
+            solutions.append(s)
+        except:
+            pass
 
     return solutions
