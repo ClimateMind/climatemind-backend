@@ -89,6 +89,30 @@
     
 
 
+    <!-- http://schema.org/mythClaim -->
+
+    <owl:AnnotationProperty rdf:about="http://schema.org/mythClaim">
+        <rdfs:label xml:lang="en">schema:mythClaim</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://schema.org/mythDescription -->
+
+    <owl:AnnotationProperty rdf:about="http://schema.org/mythDescription">
+        <rdfs:label xml:lang="en">schema:mythDescription</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
+    <!-- http://schema.org/mythRebuttal -->
+
+    <owl:AnnotationProperty rdf:about="http://schema.org/mythRebuttal">
+        <rdfs:label xml:lang="en">schema:mythRebuttal</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
     <!-- http://schema.org/organizationSource -->
 
     <owl:AnnotationProperty rdf:about="http://schema.org/organizationSource">
@@ -183,6 +207,14 @@
 
     <owl:ObjectProperty rdf:about="http://webprotege.stanford.edu/R9CwbN07KWclNYuuQZRcTVo">
         <rdfs:label xml:lang="en">is inhibited/prevented/blocked/slowed by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R9hXAELVgSgchv8aHMobPML -->
+
+    <owl:ObjectProperty rdf:about="http://webprotege.stanford.edu/R9hXAELVgSgchv8aHMobPML">
+        <rdfs:label xml:lang="en">myth associated with</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -1142,6 +1174,15 @@
     
 
 
+    <!-- http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe -->
+
+    <owl:Class rdf:about="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe">
+        <rdfs:subClassOf rdf:resource="http://webprotege.stanford.edu/RBeP1gQQDZotNh3ZOuwLEKq"/>
+        <rdfs:label xml:lang="en">myth</rdfs:label>
+    </owl:Class>
+    
+
+
     <!-- http://webprotege.stanford.edu/RC77fWvhvLSUoDgysxzCyGk -->
 
     <owl:Class rdf:about="http://webprotege.stanford.edu/RC77fWvhvLSUoDgysxzCyGk">
@@ -1707,6 +1748,7 @@
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R8UAlvCDloJpXl8adS8Oc1u"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R9x3oCu22QJK9ebw5xL7NvB"/>
+        <dc:source rdf:resource="https://www.bloomberg.com/graphics/2019-coral-reefs-at-risk/"/>
         <dc:source rdf:resource="https://www.sciencenewsforstudents.org/article/ocean-heat-waves-are-rise-and-killing-coral"/>
         <rdfs:label xml:lang="en">increase in marine heatwaves</rdfs:label>
     </owl:NamedIndividual>
@@ -1789,7 +1831,9 @@
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R6zCdUFmA2mP62Gqfbm5sE">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">When people share common origins, destinations, or stops en route, they can ride together. Carpooling uses seats and fuel more efficiently, cutting emissions. Project Drawdown&apos;s projection for carpooling focuses on approaches to increase global urban car occupancy, the number of passengers in each car trip. They assume that urban car occupancy can rise from 1.57 in 2018 to 1.75 or 2.0 by 2050, assuming 3 passengers per carpool trip. Carpooling has no implementation costs and can reduce emissions by 4.2-7.7 gigatons of carbon dioxide while saving $2.8-$5.2 trillion in operating costs.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/carpooling"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sharing car rides with friends or colleagues reduces the number of cars on the road. Carpooling can reduce emissions by 4.2 - 7.7 gigatons of carbon dioxide.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">When people share common origins, destinations, or stops en route, they can ride together. Carpooling uses seats and fuel more efficiently, cutting emissions. Project Drawdown&apos;s projection for carpooling focuses on approaches to increase global urban car occupancy, the number of passengers in each car trip. They assume that urban car occupancy can rise from 1.57 in 2018 to 1.75 or 2.0 by 2050, assuming 3 passengers per carpool trip. Carpooling has no implementation costs and can reduce emissions by 4.2-7.7 gigatons of carbon dioxide while saving $2.8-$5.2 trillion in operating costs.</rdfs:comment>
         <rdfs:label xml:lang="en">carpooling</rdfs:label>
     </owl:NamedIndividual>
@@ -1802,6 +1846,8 @@
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBtRa4l2THuYophTFTPolF"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RGbm42IftQVoguYsFJQDSl"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RHqEqpIKOwW652b68Rp7tj"/>
+        <schema:organizationSource rdf:resource="https://gimletmedia.com/shows/howtosaveaplanet/kwhnz8b"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Air conditioning is necessary to reduce deaths from heatwaves. Using non-HFC refrigerants and renewable energy can reduce its environmental impact.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in air conditioning</rdfs:label>
     </owl:NamedIndividual>
     
@@ -1812,9 +1858,28 @@
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R73ikCqnentdefiugeatpz8">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Winds over sea are more consistent than those over land. Offshore wind turbines tap into that power to generate utility-scale electricity without emissions. Offshore wind turbines growing from the current estimated 60 TWh, to 1,918-2,256 TWh by 2050, could avoid 10.4-11.4 gigatons of greenhouse gases emissions. This solution can deliver lifetime savings of $673-794 billion over three decades.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/offshore-wind-turbines"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Winds over sea are more consistent than those over land. Offshore wind turbines tap into that power to generate utility-scale electricity without emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Winds over sea are more consistent than those over land. Offshore wind turbines tap into that power to generate utility-scale electricity without emissions. Offshore wind turbines growing from the current estimated 60 TWh, to 1,918-2,256 TWh by 2050, could avoid 10.4-11.4 gigatons of greenhouse gases emissions. This solution can deliver lifetime savings of $673-794 billion over three decades.</rdfs:comment>
         <rdfs:label xml:lang="en">producing electricity via offshore wind turbines</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7T07NmeX8SYfysieiycbv4 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7T07NmeX8SYfysieiycbv4">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R1kRDiL29pcyXoNOkHduKB"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9x3oCu22QJK9ebw5xL7NvB"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Corals are resilient to bleaching
+
+&quot;Three recent articles give us reason to question the alarmists’ claims that coral reefs are in deep trouble due to the buildup of greenhouse gases.&quot; (from World Climate Report)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">On a world scale coral reefs are in decline. Over the last 30-40 years 80% of coral in the Caribbean have been destroyed and 50% in Indonesia and the Pacific. Bleaching associated with the 1982 -1983 El-Nino killed over 95% of coral in the Galapagos Islands and the 1997-1998 El-Nino alone wiped out 16% of all coral on the planet. Globally about 1% of coral is dying out each year.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/coral-bleaching.htm"/>
+        <schema:video rdf:resource="https://youtu.be/aYrLSrgWu0Y"/>
+        <rdfs:label xml:lang="en">Corals are resilient to bleaching</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1837,7 +1902,9 @@
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7YYQegAXeBWrNAya5IhSuk">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Composting can range from backyard bins to industrial-scale operations. Regardless, it converts organic waste into soil carbon, averting landfill methane emissions in the process. In 2015, an estimated 38 percent of food waste was composted in the United States; 57 percent was composted in the European Union. If all lower-income countries reached the U.S. rate and all higher-income countries achieved the E.U. rate, composting could avoid methane emissions from landfills equivalent to 2.1-3.1 gigatons of carbon dioxide by 2050. That total excludes additional gains from applying compost to soil. Compost facilities cost less to construct but more to operate, which is reflected in the financial results.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/composting"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Composting food waste increases soil carbon and prevents harmful methane emissions from landfill.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Composting can range from backyard bins to industrial-scale operations. Regardless, it converts organic waste into soil carbon, averting landfill methane emissions in the process. In 2015, an estimated 38 percent of food waste was composted in the United States; 57 percent was composted in the European Union. If all lower-income countries reached the U.S. rate and all higher-income countries achieved the E.U. rate, composting could avoid methane emissions from landfills equivalent to 2.1-3.1 gigatons of carbon dioxide by 2050. That total excludes additional gains from applying compost to soil. Compost facilities cost less to construct but more to operate, which is reflected in the financial results.</rdfs:comment>
         <rdfs:label xml:lang="en">composting</rdfs:label>
     </owl:NamedIndividual>
@@ -1895,6 +1962,26 @@ Students are scoring lower on standardized tests.</schema:shortDescription>
     
 
 
+    <!-- http://webprotege.stanford.edu/R7dTYeRXeW1jkqPzYRFE281 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7dTYeRXeW1jkqPzYRFE281">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R73ikCqnentdefiugeatpz8"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8wipsAXfB4fo66FQYwubtd"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9R6552i4fn3XHKpoV8QTOx"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCdoVWPmTIcdEyb6QfkEug0"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCsF77Q9uljIZkHshMgkbQP"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RSqgmuB6RIAv04gEixDJOx"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Renewable energy is too expensive
+
+&quot;[Wind energy] is a more expensive way of producing energy than the alternative.&quot; (from David Montgomery)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">When you account for the effects which are not reflected in the market price of fossil fuels, like air pollution and health impacts, the true cost of coal and other fossil fuels is higher than the cost of most renewable energy technologies.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/renewable-energy-is-too-expensive.htm"/>
+        <rdfs:label xml:lang="en">Renewable energy is too expensive</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/R7gVDW5GAY8MLHKOrp03FZQ -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7gVDW5GAY8MLHKOrp03FZQ">
@@ -1903,7 +1990,26 @@ Students are scoring lower on standardized tests.</schema:shortDescription>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RvfaiCkogzLpPjYcZBagEI"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Use your voice to vote for political candidates who support climate-friendly laws and policies.</schema:shortDescription>
         <rdfs:label xml:lang="en">vote in elections</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R7hFprQCCizIoO67xtr4tlq -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R7hFprQCCizIoO67xtr4tlq">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8epBa4UvcieLTynfK3E84u"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9x3oCu22QJK9ebw5xL7NvB"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RDykfcwgFQkAwb8h12H5RoJ"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Animals and plants can adapt.
+
+[C]orals, trees, birds, mammals, and butterflies are adapting well to the routine reality of changing climate.&quot; (source: Hudson Institute)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human-caused climate change is occurring too rapidly for species to be able to adapt. Plants and animals are currently dying off at a rate that is 100 to 1000 times faster than the average rate of extinction over geological timescales. Because of this, there is mounting evidence that we are heading towards a mass extinction event.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/Can-animals-and-plants-adapt-to-global-warming.htm"/>
+        <schema:video rdf:resource="https://www.youtube.com/watch?v=LrIN6gK3S0A"/>
+        <rdfs:label xml:lang="en">Animals and plants can adapt</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -1990,7 +2096,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
                 <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCSp3Q6QJjaE6ehKKudHudg"/>
             </owl:Restriction>
         </rdf:type>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Degraded farmland is often abandoned, but need not be. Restoration can bring these lands back into productivity and sequester carbon in the process. Currently, 0.4 billion hectares of farmland have been abandoned due to land degradation. We estimate that by 2050 189-296 million hectares could be restored and converted to regenerative annual cropping, or other productive, carbon-friendly farming systems, for a combined emissions impact of 12.5-20.3 gigatons of carbon dioxide. This solution could provide a lifetime net profit of $2.6-4.3 trillion with an initial investment of $98-160 billion and lifetime operational cost of $3-5 trillion, while producing an additional 9.2-15 billion tons of food.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/abandoned-farmland-restoration"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Degraded farmland is often abandoned. Restoration and conversion to regenerative annual cropping or other productive carbon-friendly farming systems can bring land back into productivity and sequester carbon in the process.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Degraded farmland is often abandoned, but need not be. Restoration can bring these lands back into productivity and sequester carbon in the process. Currently, 0.4 billion hectares of farmland have been abandoned due to land degradation. We estimate that by 2050 189-296 million hectares could be restored and converted to regenerative annual cropping, or other productive, carbon-friendly farming systems, for a combined emissions impact of 12.5-20.3 gigatons of carbon dioxide. This solution could provide a lifetime net profit of $2.6-4.3 trillion with an initial investment of $98-160 billion and lifetime operational cost of $3-5 trillion, while producing an additional 9.2-15 billion tons of food.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in restoration of abandoned farmland</rdfs:label>
     </owl:NamedIndividual>
@@ -2018,6 +2126,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <schema:image rdf:resource="https://i.ibb.co/71Rx9v1/legal-attorney-jurist-signature-documents-entrepreneur-811631.jpg"/>
         <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/5/50/Michael_Wildes%2C_Jon_Corzine%2C_Immigration_Panel%2C_August_2007.jpg"/>
         <schema:image rdf:resource="https://www.moaa.org/uploadedfiles/content/publications_and_media/news_articles/2018_news_articles/capitol-twitter.jpg"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Building on floodplains is a risky choice, with climate change increasing the number and ferocity of storms causing flooding. Regulations can help reduce this risk.</schema:shortDescription>
         <rdfs:label xml:lang="en">regulation/laws that require assessment of floodplains for new buildings</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2091,6 +2200,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RvfaiCkogzLpPjYcZBagEI"/>
         <schema:image rdf:resource="https://i1.pickpik.com/photos/992/522/541/android-android-phone-call-cellphone-preview.jpg"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Contact your local elected representative to encourage them to support climate-friendly policies and laws.</schema:shortDescription>
         <rdfs:label xml:lang="en">call representative</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2212,6 +2322,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <dc:source rdf:resource="https://amp.theguardian.com/commentisfree/2019/sep/04/climate-crisis-hurricane-dorian-floods-bahamas"/>
+        <dc:source rdf:resource="https://coast.noaa.gov/states/fast-facts/hurricane-costs.html"/>
         <dc:source rdf:resource="https://www.bloomberg.com/news/articles/2019-09-09/the-massive-cost-of-not-adapting-to-climate-change"/>
         <dc:source rdf:resource="https://www.climate.gov/news-features/blogs/beyond-data/2018s-billion-dollar-disasters-context"/>
         <dc:source rdf:resource="https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html"/>
@@ -2254,10 +2365,26 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8PIEqhm36x0Y9CvkgJlidT">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fuel-efficiency is critical to reduce road-freight emissions. Existing fleets can be retrofitted, while new trucks can be built to be more efficient or fully electric. 
+If adoption of fuel-saving technologies grows from 10 percent to 50-60 percent of trucks by 2050, this solution can deliver 4.6-9.7 gigatons of carbon dioxide emissions reductions. An investment of $486-797 billion to implement could save $3.5-6.1 trillion on fuel costs over truck lifetimes.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/efficient-trucks"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fuel-efficiency is critical to reduce road-freight emissions. Existing fleets can be retrofitted, while new trucks can be built to be more efficient or fully electric.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fuel-efficiency is critical to reduce road-freight emissions. Existing fleets can be retrofitted, while new trucks can be built to be more efficient or fully electric. 
 If adoption of fuel-saving technologies grows from 10 percent to 50-60 percent of trucks by 2050, this solution can deliver 4.6-9.7 gigatons of carbon dioxide emissions reductions. An investment of $486-797 billion to implement could save $3.5-6.1 trillion on fuel costs over truck lifetimes.</rdfs:comment>
         <rdfs:label xml:lang="en">making trucks more efficient</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8Qh5dLGvzYwFZpritPBmBh -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8Qh5dLGvzYwFZpritPBmBh">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9x3oCu22QJK9ebw5xL7NvB"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Coral atolls grow as sea levels rise</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thousands of coral atolls have &quot;drowned&quot; in the past when they were unable to grow fast enough to maintain a presence at sea level.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/coral-atoll.htm"/>
+        <rdfs:label xml:lang="en">Coral atolls grow as sea levels rise</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2284,6 +2411,27 @@ If adoption of fuel-saving technologies grows from 10 percent to 50-60 percent o
     
 
 
+    <!-- http://webprotege.stanford.edu/R8Vn11VsfBxtxxsy5t4Ysza -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8Vn11VsfBxtxxsy5t4Ysza">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R73ikCqnentdefiugeatpz8"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8wipsAXfB4fo66FQYwubtd"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9R6552i4fn3XHKpoV8QTOx"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCdoVWPmTIcdEyb6QfkEug0"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCsF77Q9uljIZkHshMgkbQP"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RKsHmIBffqClOO8UkcSmY3"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RSqgmuB6RIAv04gEixDJOx"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Renewable energy investment kills jobs
+
+&quot;for every renewable energy job that the State manages to finance, Spain’s experience...reveals with high confidence, by two different methods, that the U.S. should expect a loss of at least 2.2 jobs on average&quot; (from Gabriel Calzada Álvarez)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The claim that 2.2 conventional jobs are destroyed for every new job created in the alternative energy industry is based on a study which relies on incorrect numbers, cherrypicked dates, faulty theory, flawed methodology, and is disproven by real-world examples.  In reality, renewable energy investment and development tends to create more jobs than fossil fuel energy.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/renewable-energy-investment-kills-jobs.htm"/>
+        <rdfs:label xml:lang="en">Renewable energy investment kills jobs</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/R8WuOBPLCdMwpmp2AL2xaTc -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8WuOBPLCdMwpmp2AL2xaTc">
@@ -2299,6 +2447,7 @@ If adoption of fuel-saving technologies grows from 10 percent to 50-60 percent o
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCBzNhkuW51hKlUIUPew7nS"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCJEcx2UfX3O1O9fAa1QpcW"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R9GgwNAE1EIyeCTZohpIThL"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Charging people and companies a carbon tax on emissions can be made more popular by redistributing the income back to taxpayers.</schema:shortDescription>
         <rdfs:label xml:lang="en">enact carbon tax policy (revenue neutral)</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2309,6 +2458,24 @@ If adoption of fuel-saving technologies grows from 10 percent to 50-60 percent o
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8ZTqebSrgr0Gg0fbTWSY3Y">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R7z96FoCUQ1jB6KXH05nShh"/>
         <rdfs:label xml:lang="en">increase in N2O</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R8ZhofBtOtoHDSFtEhoLGir -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8ZhofBtOtoHDSFtEhoLGir">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8tO6zSdeJRRUSPaznZIbKU"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RBJi2ztbJiaIwcTQTScEKNx"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RPRQOAoTZgGhrsmVpnIIrn"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Climate&apos;s changed before
+
+Climate is always changing. We have had ice ages and warmer periods when alligators were found in Spitzbergen. Ice ages have occurred in a hundred thousand year cycle for the last 700 thousand years, and there have been previous periods that appear to have been warmer than the present despite CO2 levels being lower than they are now. More recently, we have had the medieval warm period and the little ice age. (from Richard Lindzen)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Greenhouse gasses, principally CO2, have controlled most ancient climate changes. This time around humans are the cause, mainly by our CO2 emissions.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/climate-change-little-ice-age-medieval-warm-period.htm"/>
+        <schema:video rdf:resource="https://youtu.be/H5kejSYPD7U"/>
+        <rdfs:label xml:lang="en">Climate has changed before</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2365,6 +2532,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
                 <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCSp3Q6QJjaE6ehKKudHudg"/>
             </owl:Restriction>
         </rdf:type>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Multistrata agroforestry systems mimic natural forests in structure. Multiple layers of trees and crops achieve high rates of both carbon sequestration and food production. Multistrata agroforestry can be integrated into some existing agricultural systems; others can be converted or restored to it. If adopted on another 39-66 million hectares by 2050, from 100 million hectares currently, 11.3-20.4 gigatons of carbon dioxide could be sequestered. Average sequestration rate of 4.45 tons of carbon per hectare per year is strong, as is financial return: $1.7-3 trillion lifetime, on a $54-92 billion initial investment and lifetime operational cost of $142.9-245.4.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/multistrata-agroforestry"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Multistrata agroforestry systems mimic natural forests in structure. Multiple layers of trees and crops achieve high rates of both carbon sequestration and food production. Multistrata agroforestry can be integrated into some existing agricultural systems; others can be converted or restored to it. If adopted on another 39-66 million hectares by 2050, from 100 million hectares currently, 11.3-20.4 gigatons of carbon dioxide could be sequestered. Average sequestration rate of 4.45 tons of carbon per hectare per year is strong, as is financial return: $1.7-3 trillion lifetime, on a $54-92 billion initial investment and lifetime operational cost of $142.9-245.4.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in multistrata agroforestry</rdfs:label>
@@ -2420,7 +2588,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
                 <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCSp3Q6QJjaE6ehKKudHudg"/>
             </owl:Restriction>
         </rdf:type>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Managed grazing involves carefully controlling livestock density and timing and intensity of grazing. Compared with conventional pasture practices, it can improve the health of grassland soils, sequestering carbon. By enhancing carbon sequestration compared to standard grazing practices, this solution can sequester 16.4-26 gigatons of carbon dioxide by 2050. However, this does not reduce the 10 gigatons of methane that are emitted on that grazing land today. Growth in adoption of managed grazing practices would need to rise from 71.6 million hectares to 502.1-749.02 million hectares over thirty years. Financial lifetime returns are $2.1-3.4 trillion for net profit and 640.8-1010.8 billion for lifetime operational cost, on a $33.6-52.9 billion initial investment.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/managed-grazing"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Managed grazing involves carefully controlling livestock density, timing and intensity of grazing. Compared with conventional pasture practices, it can improve soil health, sequestering carbon.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Managed grazing involves carefully controlling livestock density and timing and intensity of grazing. Compared with conventional pasture practices, it can improve the health of grassland soils, sequestering carbon. By enhancing carbon sequestration compared to standard grazing practices, this solution can sequester 16.4-26 gigatons of carbon dioxide by 2050. However, this does not reduce the 10 gigatons of methane that are emitted on that grazing land today. Growth in adoption of managed grazing practices would need to rise from 71.6 million hectares to 502.1-749.02 million hectares over thirty years. Financial lifetime returns are $2.1-3.4 trillion for net profit and 640.8-1010.8 billion for lifetime operational cost, on a $33.6-52.9 billion initial investment.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in managed grazing</rdfs:label>
     </owl:NamedIndividual>
@@ -2560,7 +2730,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R8wipsAXfB4fo66FQYwubtd">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rooftop solar panels are one example of distributed solar photovoltaic systems. Whether grid-connected or part of standalone systems, they offer hyper-local, clean electricity generation. Widespread adoption of distributed solar panels by 2050 could avoid 27-69 gigatons of greenhouse gases emissions. With implementation costs reducing by the day, over the lifetime of distributed photovoltaic technologies, it could save $7.9-13.5 trillion in associated operation and maintenance and fuel costs.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/distributed-solar-photovoltaics"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rooftop solar panels are one example. Whether grid-connected or part of standalone systems, they offer hyper-local, clean electricity generation and avoid emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Rooftop solar panels are one example of distributed solar photovoltaic systems. Whether grid-connected or part of standalone systems, they offer hyper-local, clean electricity generation. Widespread adoption of distributed solar panels by 2050 could avoid 27-69 gigatons of greenhouse gases emissions. With implementation costs reducing by the day, over the lifetime of distributed photovoltaic technologies, it could save $7.9-13.5 trillion in associated operation and maintenance and fuel costs.</rdfs:comment>
         <rdfs:label xml:lang="en">producing electricity via distributed solar photovoltaics</rdfs:label>
     </owl:NamedIndividual>
@@ -2641,11 +2813,37 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R97nKRRZWNs0SIxDhgsFAbe">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">It is critical that human rights are always centered, that gender equality is the aim, and that benefits to the planet are understood as positive ripple effects of access and agency. Project Drawdown modeled the influence of two rights-based solutions on global population: universal education and family planning. Increased access to and quality of voluntary reproductive healthcare, family planning resources, and 12-13 years of schooling are essential components to achieve the United Nations’ 2015 medium global population projection of 9.7 billion people by 2050. If investment and support of these fundamental human rights-centered solutions does not materialize, the world’s population could come closer to the higher projection, adding another 1 billion people to the planet.
+
+Project Drawdown models the impact of this population difference in more-developed as well as least-and less-developed countries, in terms of how much energy, building space, food, waste, and transportation would be used. The resulting emissions reductions across the entire system could be as high as 85.4 gigatons of carbon dioxide, just within the window of 2020-2050. Health &amp; Education have a compounding impact, however, with greater climate impacts into the future.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/health-and-education"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Access to education and family planning can slow the growth of the world&apos;s population, which also limits the growth in greenhouse gas emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">It is critical that human rights are always centered, that gender equality is the aim, and that benefits to the planet are understood as positive ripple effects of access and agency. Project Drawdown modeled the influence of two rights-based solutions on global population: universal education and family planning. Increased access to and quality of voluntary reproductive healthcare, family planning resources, and 12-13 years of schooling are essential components to achieve the United Nations’ 2015 medium global population projection of 9.7 billion people by 2050. If investment and support of these fundamental human rights-centered solutions does not materialize, the world’s population could come closer to the higher projection, adding another 1 billion people to the planet.
 
 Project Drawdown models the impact of this population difference in more-developed as well as least-and less-developed countries, in terms of how much energy, building space, food, waste, and transportation would be used. The resulting emissions reductions across the entire system could be as high as 85.4 gigatons of carbon dioxide, just within the window of 2020-2050. Health &amp; Education have a compounding impact, however, with greater climate impacts into the future.</rdfs:comment>
         <rdfs:label xml:lang="en">improving health and education</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/R9A0xjtcUkuktq4th33nDr1 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9A0xjtcUkuktq4th33nDr1">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R5eVKPmEff8f7D8VBAEEC8"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8tO6zSdeJRRUSPaznZIbKU"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8vDHwP7soRN6c6XWYDjJkH"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCOKh8I57dfccKh5QTFhHB0"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RndlLhwHuWP9Ng5SgdZij3"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RoGet2DtXzFfCBQSjgRW3z"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/Rtzkdtty1BHKfI8whB6qWR"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">It hasn&apos;t warmed since 1998.
+
+For the years 1998-2005, temperature did not increase. This period coincides with society&apos;s continued pumping of more CO2 into the atmosphere. (from Bob Carter)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Every part of the Earth&apos;s climate system has continued warming since 1998, with 2015 shattering temperature records.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/global-warming-stopped-in-1998.htm"/>
+        <schema:video rdf:resource="https://youtu.be/Lepc2OKX6uQ"/>
+        <rdfs:label xml:lang="en">It hasn&apos;t warmed since 1998</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2721,8 +2919,13 @@ Project Drawdown models the impact of this population difference in more-develop
         <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
         <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
+        <dc:source rdf:resource="https://www.bloomberg.com/graphics/2019-coral-reefs-at-risk/"/>
+        <dc:source rdf:resource="https://www.commerce.gov/news/blog/2019/11/travel-and-tourism-sector-supports-78-million-jobs-and-accounts-28-us-gdp-2018#:~:text=Travel%20and%20Tourism%20Sector%20Supports,2018%20%7C%20U.S.%20Department%20of%20Commerce&amp;text=A%20."/>
+        <dc:source rdf:resource="https://www.nature.org/en-us/what-we-do/our-insights/perspectives/how-tourism-can-be-good-for-coral-reefs/#:~:text=The%20global%20economic%20value%20of,tourism%20is%20%2436%20billion%2Fyear"/>
+        <dc:source rdf:resource="https://www.ncei.noaa.gov/data/oceans/coris/library/NOAA/CRCP/other/other_crcp_publications/TEV_US_Coral_Reefs_Literature_Review_2013.pdf"/>
         <dc:source rdf:resource="https://www.researchgate.net/profile/Bas_Amelung/publication/249701105_Implications_of_Global_Climate_Change_for_Tourism_Flows_and_Seasonality/links/0f3175362279bd6b6b000000.pdf"/>
         <dc:source rdf:resource="https://www.travelpulse.com/news/destinations/how-climate-change-is-affecting-tourism.html"/>
+        <dc:source rdf:resource="https://www.weforum.org/agenda/2017/06/healthy-coral-reefs-are-good-for-tourism-and-tourism-can-be-good-for-reefs/"/>
         <schema:image rdf:resource="https://live.staticflickr.com/8631/16346002621_0a601c2a3f.jpg"/>
         <schema:image rdf:resource="https://p1.pxfuel.com/preview/971/234/463/map-tourist-travel-tourism-traveler-vacation.jpg"/>
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
@@ -2745,7 +2948,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
                 <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCSp3Q6QJjaE6ehKKudHudg"/>
             </owl:Restriction>
         </rdf:type>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Growing trees and annual crops together is a form of agroforestry. Tree intercropping practices vary, but all increase biomass, soil organic matter, and carbon sequestration. Accounting for different sequestration rates across regions and intercropping systems, Project Drawdown estimates total sequestration of 15.0-24.4 gigatons of carbon dioxide over thirty years. To achieve that impact, adoption of tree intercropping would need to grow to 416-490 million hectares globally. On an initial investment of $147-227 billion and lifetime operational costs of $698-1080 billion, the potential profit, inclusive of those costs, could be as high as $262-428 billion.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/tree-intercropping"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Growing trees and annual crops together is a form of agroforestry. Tree intercropping practices vary, but all increase biomass, soil organic matter, and carbon sequestration.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Growing trees and annual crops together is a form of agroforestry. Tree intercropping practices vary, but all increase biomass, soil organic matter, and carbon sequestration. Accounting for different sequestration rates across regions and intercropping systems, Project Drawdown estimates total sequestration of 15.0-24.4 gigatons of carbon dioxide over thirty years. To achieve that impact, adoption of tree intercropping would need to grow to 416-490 million hectares globally. On an initial investment of $147-227 billion and lifetime operational costs of $698-1080 billion, the potential profit, inclusive of those costs, could be as high as $262-428 billion.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in tree intercropping</rdfs:label>
     </owl:NamedIndividual>
@@ -2757,8 +2962,10 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9LbmQn2lAubsJN4nR1Sqzo">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R9kyuKf4wb5UPOdLwYvzr0G"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
-        <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RGbm42IftQVoguYsFJQDSl"/>
+        <schema:organizationSource rdf:resource="https://calmatters.org/environment/california-wildfires/2019/11/7-affordable-ways-to-protect-your-home-from-wildfires/"/>
+        <schema:organizationSource rdf:resource="https://yaleclimateconnections.org/2020/02/goats-a-climate-friendly-option-for-clearing-brush/"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Using goats to graze on overgrown land to clear brush and tall grass reduces fuel for wildfires. This alternative to herbicides or heavy machinery also reduces emissions and is kinder to the climate and environment.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in goats clearing brush</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2770,7 +2977,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCfPh2b9dT7ukFZtEfHQGbi"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Solar photovoltaics can be used at utility-scale—with hundreds or thousands of panels—to tap the sun’s clean, free fuel and replace fossil-fuel electricity generation. Solar is now a cheaper source of electricity than natural gas or coal. The significant increase of ultility-scale solar panels could avoid 44-119 gigatons of greenhouse gases emissions by 2050 if it represents 20-25% of the electricity generation mix (currently only 1% of the mix).</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/utility-scale-solar-photovoltaics"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Solar photovoltaics can be used at utility-scale — with hundreds or thousands of panels — to tap the sun’s clean free fuel and replace fossil-fuel electricity generation. Solar is now a cheaper source of electricity than natural gas or coal.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Solar photovoltaics can be used at utility-scale—with hundreds or thousands of panels—to tap the sun’s clean, free fuel and replace fossil-fuel electricity generation. Solar is now a cheaper source of electricity than natural gas or coal. The significant increase of ultility-scale solar panels could avoid 44-119 gigatons of greenhouse gases emissions by 2050 if it represents 20-25% of the electricity generation mix (currently only 1% of the mix).</rdfs:comment>
         <rdfs:label xml:lang="en">producing electricity via utility-scale solar photovoltaics</rdfs:label>
     </owl:NamedIndividual>
@@ -2782,7 +2991,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9SuseoJG7H6QeUEvZwLciQ">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Electric motors supplant gasoline or diesel engines, which are polluting and less efficient. EVs always reduce car emissions—dramatically so when powered by renewable electricity. In 2018, 2 million electric cars were sold. If electric car ownership rises to 16-23 percent of total passenger km at a first cost of $4.5-5.8 trillion, by 2050, 11.9-15.7 gigatons of carbon dioxide from fuel combustion could be avoided as well as $15.3-21.8 trillion in fuel costs. Project Drawdown&apos;s analysis accounts for emissions from electricity generation and higher emissions of producing electric cars compared to internal-combustion cars. Electric cars are several thousand dollars more expensive, but Project Drawdown includes slightly declining electric cars prices, expected due to declining battery costs.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/electric-cars"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Electric motors supplant gasoline or diesel engines, which are polluting and less efficient. Electric vehicles always reduce car emissions—dramatically so when powered by renewable electricity.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Electric motors supplant gasoline or diesel engines, which are polluting and less efficient. EVs always reduce car emissions—dramatically so when powered by renewable electricity. In 2018, 2 million electric cars were sold. If electric car ownership rises to 16-23 percent of total passenger km at a first cost of $4.5-5.8 trillion, by 2050, 11.9-15.7 gigatons of carbon dioxide from fuel combustion could be avoided as well as $15.3-21.8 trillion in fuel costs. Project Drawdown&apos;s analysis accounts for emissions from electricity generation and higher emissions of producing electric cars compared to internal-combustion cars. Electric cars are several thousand dollars more expensive, but Project Drawdown includes slightly declining electric cars prices, expected due to declining battery costs.</rdfs:comment>
         <rdfs:label xml:lang="en">using electric cars</rdfs:label>
     </owl:NamedIndividual>
@@ -2858,7 +3069,10 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
                 <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCSp3Q6QJjaE6ehKKudHudg"/>
             </owl:Restriction>
         </rdf:type>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Conservation agriculture uses cover crops, crop rotation, and minimal tilling in the production of annual crops. It protects soil, avoids emissions, and sequesters carbon. 
+Based on historic growth on large farming operations, the Project Drawdown analysis projects the total area under conservation agriculture will continue growing from 148 million hectares to peak at 400-327 million hectares by 2035. Project Drawdown assumes that as regenerative annual cropping becomes more widely used, farms that have already adopted conservation agriculture will convert to these more effective soil fertility practices in response to consumer demand for fewer harmful herbicides. The benefits of that conversion are counted by the regenerative annual cropping solution. Nonetheless, conservation agriculture offers significant benefits in the interim, reducing carbon dioxide emissions by 13.4-9.4 gigatons based on average carbon sequestration rates of 0.25- 0.78 tons of carbon per hectare per year, depending on region. Establishment costs are low at $91.9-65.2 billion with a lifetime operational savings of $2.8-1.9 trillion and lifetime net profit of $113.1-77.7 billion.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/plant-rich-diets"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Conservation agriculture uses cover crops, crop rotation, and minimal tilling in the production of annual crops. It protects soil, avoids emissions, and sequesters carbon.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Conservation agriculture uses cover crops, crop rotation, and minimal tilling in the production of annual crops. It protects soil, avoids emissions, and sequesters carbon. 
 Based on historic growth on large farming operations, the Project Drawdown analysis projects the total area under conservation agriculture will continue growing from 148 million hectares to peak at 400-327 million hectares by 2035. Project Drawdown assumes that as regenerative annual cropping becomes more widely used, farms that have already adopted conservation agriculture will convert to these more effective soil fertility practices in response to consumer demand for fewer harmful herbicides. The benefits of that conversion are counted by the regenerative annual cropping solution. Nonetheless, conservation agriculture offers significant benefits in the interim, reducing carbon dioxide emissions by 13.4-9.4 gigatons based on average carbon sequestration rates of 0.25- 0.78 tons of carbon per hectare per year, depending on region. Establishment costs are low at $91.9-65.2 billion with a lifetime operational savings of $2.8-1.9 trillion and lifetime net profit of $113.1-77.7 billion.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in conservation agriculture</rdfs:label>
@@ -2876,6 +3090,10 @@ Based on historic growth on large farming operations, the Project Drawdown analy
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R9GgwNAE1EIyeCTZohpIThL"/>
         <schema:image rdf:resource="https://c.pxhere.com/photos/36/9f/solar_panels_installation_workers_array_power_sun_electricity_energy-1028805.jpg!d"/>
+        <schema:mediaSource rdf:resource="https://tcf.org/content/report/redefining-green-jobs-sustainable-economy/?agreed=1"/>
+        <schema:mediaSource rdf:resource="https://www.cbsnews.com/news/coal-west-virginia-fight-over-green-jobs-cbsn-originals/?sfns=mo"/>
+        <schema:organizationSource rdf:resource="https://www.iberdrola.com/environment/what-are-green-jobs"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Government investment can create jobs that reduce emissions, such as positions in agriculture, manufacturing, R&amp;D, administrative, and service activities aimed at substantially preserving or restoring environmental quality.</schema:shortDescription>
         <rdfs:label xml:lang="en">establish a federal green jobs program</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2929,6 +3147,22 @@ Based on historic growth on large farming operations, the Project Drawdown analy
     
 
 
+    <!-- http://webprotege.stanford.edu/R9wVHvf1lRnupW3NivH3YOe -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9wVHvf1lRnupW3NivH3YOe">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8tO6zSdeJRRUSPaznZIbKU"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">There is no consensus
+
+The Petition Project features over 31,000 scientists signing the petition stating &quot;There is no convincing scientific evidence that human release of carbon dioxide will, in the forseeable future, cause catastrophic heating of the Earth&apos;s atmosphere ...&quot;. (from Petition Project)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">97% of climate experts agree humans are causing global warming.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/global-warming-scientific-consensus.htm"/>
+        <schema:video rdf:resource="https://youtu.be/pEb49cZYnsE"/>
+        <rdfs:label xml:lang="en">There&apos;s no consensus</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/R9x3oCu22QJK9ebw5xL7NvB -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R9x3oCu22QJK9ebw5xL7NvB">
@@ -2956,6 +3190,7 @@ Based on historic growth on large farming operations, the Project Drawdown analy
         <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
         <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
+        <dc:source rdf:resource="https://www.bloomberg.com/graphics/2019-coral-reefs-at-risk/"/>
         <dc:source rdf:resource="https://www.facebook.com/watch/?v=10156746453050024"/>
         <dc:source rdf:resource="https://www.sciencenewsforstudents.org/article/ocean-heat-waves-are-rise-and-killing-coral"/>
         <dc:source rdf:resource="https://www.youtube.com/watch?v=MUAsFZuFQvQ"/>
@@ -3099,7 +3334,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBC1YyRghNLYujOkJxKOxPM">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tropical forests have suffered extensive clearing, fragmentation, degradation, and depletion of biodiversity. Restoring these forests also restores their function as carbon sinks. It is estimated that 287 million hectares of degraded land in the tropics could be restored to continuous, intact forest. Using current and estimated commitments from the Bonn Challenge and New York Declaration on Forests, the Project Drawdown model assumes that restoration could occur on 161-231 million hectares. By protecting currently degraded land and allowing natural regrowth occur, committed land could sequester 1.4 tons of carbon dioxide per acre annually, for a total of 54.5-85.1 gigatons of carbon dioxide by 2050.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/tropical-forest-restoration"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tropical forests have suffered extensive clearing, fragmentation, degradation, and depletion of biodiversity. Restoring these forests also restores their function as carbon sinks.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tropical forests have suffered extensive clearing, fragmentation, degradation, and depletion of biodiversity. Restoring these forests also restores their function as carbon sinks. It is estimated that 287 million hectares of degraded land in the tropics could be restored to continuous, intact forest. Using current and estimated commitments from the Bonn Challenge and New York Declaration on Forests, the Project Drawdown model assumes that restoration could occur on 161-231 million hectares. By protecting currently degraded land and allowing natural regrowth occur, committed land could sequester 1.4 tons of carbon dioxide per acre annually, for a total of 54.5-85.1 gigatons of carbon dioxide by 2050.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in tropical forest restoration</rdfs:label>
     </owl:NamedIndividual>
@@ -3111,7 +3348,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBCQdAOKui38ytAIKZlpPN6">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thermostats are mission control for space heating and cooling. Smart thermostats use algorithms and sensors to become more energy efficient over time, lowering emissions. Project Drawdown projects that smart thermostats could grow from 3 percent to 58-63 percent of households with Internet access by 2050. In this scenario, 1,453-1,589 million homes would have them. Reduced energy use could avoid 7.0-7.4 gigatons of carbon dioxide emissions for an investment of $155-172 billion. Return on investment is high: smart thermostats can save their owners $1.8-2.1 trillion on utility bills over the lifetime of the units.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/smart-thermostats"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thermostats control space heating and cooling. Smart thermostats use algorithms and sensors to become more energy efficient over time, lowering emissions and saving money.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Thermostats are mission control for space heating and cooling. Smart thermostats use algorithms and sensors to become more energy efficient over time, lowering emissions. Project Drawdown projects that smart thermostats could grow from 3 percent to 58-63 percent of households with Internet access by 2050. In this scenario, 1,453-1,589 million homes would have them. Reduced energy use could avoid 7.0-7.4 gigatons of carbon dioxide emissions for an investment of $155-172 billion. Return on investment is high: smart thermostats can save their owners $1.8-2.1 trillion on utility bills over the lifetime of the units.</rdfs:comment>
         <rdfs:label xml:lang="en">installing smart thermostats</rdfs:label>
     </owl:NamedIndividual>
@@ -3123,6 +3362,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBDaBHXLKs8slSr2bwVTl9v">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Forestry, farming, and fuel-extraction are among the threats to carbon-rich peatlands. Protection and rewetting can reduce emissions from degradation, while supporting peatlands’ role as carbon sinks. 
+
+If the total protected area of peatlands increases from 8.84 million hectares to 266.7-448.6 million hectares by 2050, approximately 14.9-27 gigatons of carbon dioxide emissions can be avoided. In addition, protection would secure the intact stock of 520-875 gigatons of carbon, or roughly 1906-3207 gigatons of carbon dioxide equivalent. Though peatlands comprise only 3 percent of global land area, they are the most organic-rich soils; their degradation would release an enormous amount of carbon. Project Drawdown analysis shows that rewetting of 35.2-47.0 million hectares of currently degraded peatlands could avoid additional 11.1-14.9 gigatons of carbon dioxide emissions.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/peatland-protection-and-rewetting"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Forestry, farming, and fuel-extraction are among the threats to carbon-rich peatlands. Protection and rewetting can reduce emissions from degradation, while supporting peatlands’ role as carbon sinks. 
 
@@ -3137,6 +3379,7 @@ If the total protected area of peatlands increases from 8.84 million hectares to
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBGB2nypgy6IASkOEGwbif0">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R8u8XlrdNmAaBsizwGQqnA7"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Shrinking the amount of emissions allowed each year under a cap and trade market system makes it more expensive for industries to pollute.</schema:shortDescription>
         <rdfs:label xml:lang="en">lower emissions cap</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3237,6 +3480,21 @@ If the total protected area of peatlands increases from 8.84 million hectares to
     
 
 
+    <!-- http://webprotege.stanford.edu/RBPpD7IvyIMbCYHJqnNqfM0 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBPpD7IvyIMbCYHJqnNqfM0">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RcIHdxpjQwjr8EG8yMhEYV"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Hurricanes aren&apos;t linked to global warming
+
+“According to the National Hurricane Center, storms are no more intense or frequent worldwide than they have been since 1850. […] Constant 24-7 media coverage of every significant storm worldwide just makes it seem that way.” (Paul Bedard)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">There is increasing evidence that hurricanes are getting stronger due to global warming.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/hurricanes-global-warming.htm"/>
+        <rdfs:label xml:lang="en">Hurricanes aren&apos;t linked to global warming</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/RBPwaJUGpFPOUthNxvZoC3m -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBPwaJUGpFPOUthNxvZoC3m">
@@ -3248,8 +3506,10 @@ If the total protected area of peatlands increases from 8.84 million hectares to
                 <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/R8eJCjFFFdFePJcUjSqXVy6"/>
             </owl:Restriction>
         </rdf:type>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cement is a vital source of strength in infrastructure, second only to water as one of the most used substances in the world. It is also a source of emissions, generating 5 to 6 percent annually. Changing the composition of cement would keep it just as strong but reduce the amount of CO2 the process generates, avoiding up to 440 million tons of carbon dioxide emissions annually. By 2050 this could reduce CO2 emissions by about 8 gigatons.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/alternative-cement"/>
         <schema:organizationSource rdf:resource="https://www.mckinsey.com/industries/chemicals/our-insights/laying-the-foundation-for-zero-carbon-cement#"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cement is a vital source of strength in infrastructure. It&apos;s also a large source of emissions, generating 5 to 6 percent annually. Changing the composition of cement would keep it just as strong but reduce the amount of CO2 the process generates.</schema:shortDescription>
         <schema:video rdf:resource="https://www.youtube.com/watch?time_continue=32&amp;v=_ryNsHHqaws&amp;feature=emb_title"/>
         <schema:video rdf:resource="https://youtu.be/SAf5Xdf98tA"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cement is a vital source of strength in infrastructure, second only to water as one of the most used substances in the world. It is also a source of emissions, generating 5 to 6 percent annually. Changing the composition of cement would keep it just as strong but reduce the amount of CO2 the process generates, avoiding up to 440 million tons of carbon dioxide emissions annually. By 2050 this could reduce CO2 emissions by about 8 gigatons.</rdfs:comment>
@@ -3303,7 +3563,9 @@ If the total protected area of peatlands increases from 8.84 million hectares to
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBeBCvukdLNSe5AtnlJpQ1k">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Recycled paper takes a circular journey, rather than a linear flow from logging to landfill. Reprocessing used paper curtails extraction of virgin feedstock and lowers emissions. Over thirty years, recycled paper can deliver 1.10-1.95 gigatons of carbon dioxide emissions reductions. Two key assumptions inform that conclusion: (1) recycled paper produces about 25 percent fewer total emissions than conventional paper, and (2) the percentage of recycled paper being used to produce paper would rise from 55 percent to 69-74 percent by 2050. Although increasing recycled paper content uses more electricity, the emissions related to harvesting and processing—and the total emissions from pulping and manufacturing—are higher for paper using virgin wood feedstock. The emissions reductions for this solution do not include carbon sequestration from standing trees that would not be harvested if the use of recycled paper grows.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/recycled-paper"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Recycled paper takes a circular journey, rather than a linear flow from logging to landfill. Reprocessing used paper curtails extraction of virgin feedstock and lowers emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Recycled paper takes a circular journey, rather than a linear flow from logging to landfill. Reprocessing used paper curtails extraction of virgin feedstock and lowers emissions. Over thirty years, recycled paper can deliver 1.10-1.95 gigatons of carbon dioxide emissions reductions. Two key assumptions inform that conclusion: (1) recycled paper produces about 25 percent fewer total emissions than conventional paper, and (2) the percentage of recycled paper being used to produce paper would rise from 55 percent to 69-74 percent by 2050. Although increasing recycled paper content uses more electricity, the emissions related to harvesting and processing—and the total emissions from pulping and manufacturing—are higher for paper using virgin wood feedstock. The emissions reductions for this solution do not include carbon sequestration from standing trees that would not be harvested if the use of recycled paper grows.</rdfs:comment>
         <rdfs:label xml:lang="en">recycling paper</rdfs:label>
     </owl:NamedIndividual>
@@ -3405,10 +3667,17 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <dc:source rdf:resource="https://epic.uchicago.edu/news/hot-temperatures-decrease-worker-productivity-economic-output/"/>
+        <dc:source rdf:resource="https://www.bloomberg.com/graphics/2019-coral-reefs-at-risk/"/>
+        <dc:source rdf:resource="https://www.businessinsider.com/heat-wave-effects-on-economic-productivity-2019-7"/>
+        <dc:source rdf:resource="https://www.commerce.gov/news/blog/2019/11/travel-and-tourism-sector-supports-78-million-jobs-and-accounts-28-us-gdp-2018#:~:text=Travel%20and%20Tourism%20Sector%20Supports,2018%20%7C%20U.S.%20Department%20of%20Commerce&amp;text=A%20."/>
         <dc:source rdf:resource="https://www.investopedia.com/terms/n/negative-growth.asp#:~:text=Negative%20growth%20is%20a%20contraction,as%20a%20negative%20percentage%20rate."/>
+        <dc:source rdf:resource="https://www.ncei.noaa.gov/data/oceans/coris/library/NOAA/CRCP/other/other_crcp_publications/TEV_US_Coral_Reefs_Literature_Review_2013.pdf"/>
+        <dc:source rdf:resource="https://www.thebalance.com/heat-wave-causes-list-effect-on-the-economy-4173881"/>
+        <dc:source rdf:resource="https://www.washingtonpost.com/weather/2019/08/19/climate-change-could-cost-us-up-percent-its-gdp-by-study-finds/"/>
+        <dc:source rdf:resource="https://www.weforum.org/agenda/2017/06/healthy-coral-reefs-are-good-for-tourism-and-tourism-can-be-good-for-reefs/"/>
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A decrease in Gross Domestic Profit (GDP) is when a country&apos;s economy contracts rather than expands in a financial quarter.
 
-GDP is significantly smaller than it could be because of the increases in frequency of heat waves and decreased tourism caused by global warming. These effects will continue to worsen as global temperatures continue to rise if appropriate adaptation and mitigation measured aren&apos;t taken.</schema:longDescription>
+GDP is significantly smaller than it could be because of the increased frequency of heat waves and decreased tourism caused by global warming. These effects will continue to worsen as global temperatures continue to rise if appropriate adaptation and mitigation measured aren&apos;t taken.</schema:longDescription>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The total value of goods produced and services provided each year are increasingly being constrained.
 Global warming is decreasing GDP by increasing in the frequency of heat waves and shrinking the tourism industry.</schema:shortDescription>
         <rdfs:label xml:lang="en">decrease in GDP</rdfs:label>
@@ -3434,9 +3703,11 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBzQLT1NY7IWvJXCMxrPPTk">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Consumption of meat and dairy, as well as overall calories, often exceeds nutritional recommendations. Paring down and favoring plant-based foods reduces demand, thereby reducing land clearing, fertilizer use, burping cattle, and greenhouse gas emissions. Using country-level data from the Food and Agriculture Organization of the United Nations, Project Drawdown estimates the growth in global food consumption by 2050, assuming that lower-income countries will consume more food overall and higher quantities of meat as economies grow. If 50-75 percent of the world’s population restricts their diet to a healthy average 2,250 calories per day and reduces meat consumption overall, Project Drawdown estimates at least 43-68 gigatons of emissions could be avoided from dietary change alone. If avoided deforestation from land use change is included, an additional 21.8-23.5 gigatons of emissions could be avoided, making healthy, plant-rich diets one of the most impactful solutions at a total of 64.8-91.5 gigatons avoided.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/plant-rich-diets"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Eating less meat and dairy reduces greenhouse gas emissions from livestock and reduces deforestation.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Consumption of meat and dairy, as well as overall calories, often exceeds nutritional recommendations. Paring down and favoring plant-based foods reduces demand, thereby reducing land clearing, fertilizer use, burping cattle, and greenhouse gas emissions. Using country-level data from the Food and Agriculture Organization of the United Nations, Project Drawdown estimates the growth in global food consumption by 2050, assuming that lower-income countries will consume more food overall and higher quantities of meat as economies grow. If 50-75 percent of the world’s population restricts their diet to a healthy average 2,250 calories per day and reduces meat consumption overall, Project Drawdown estimates at least 43-68 gigatons of emissions could be avoided from dietary change alone. If avoided deforestation from land use change is included, an additional 21.8-23.5 gigatons of emissions could be avoided, making healthy, plant-rich diets one of the most impactful solutions at a total of 64.8-91.5 gigatons avoided.</rdfs:comment>
-        <rdfs:label xml:lang="en">eating lower down the foodchain (plant-rich diets)</rdfs:label>
+        <rdfs:label xml:lang="en">eating lower down the food-chain (plant-rich diets)</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3526,7 +3797,9 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCCli7m3xUZupUS871jEn0g">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Improved clean cookstoves can address the pollution from burning wood or biomass in traditional stoves. Using various technologies, they reduce emissions and protect human health. As of 2018, clean cookstoves were used by over 53% of families in developing regions with the rest using open wood or charcoal fires for cooking, with concomitant health and environmental effects. If policies for promoting clean cooking worldwide are aggressively implemented, guided by the UN Sustainable Development Goal (SDG) of universal access to clean energy, reductions in emissions can amount to 31-73 gigatons of carbon dioxide equivalents at a net cost of $128-$264 billion. These stoves do raise cooking operating costs however by $2.0-$4.2 trillion over the stove lifetimes considering that many families collect firewood for free or buy cheap fuels today. These results include the reduction of black carbon, the second more impactful climate pollutant, by 8-20 gigatons of carbon dioxide equivalents. The additional benefits to the health of millions of households are not calculated here by Project Drawdown.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/improved-clean-cookstoves"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Improved clean cookstoves can address the pollution from burning wood or biomass in traditional stoves. Using various technologies, they reduce emissions and protect human health.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Improved clean cookstoves can address the pollution from burning wood or biomass in traditional stoves. Using various technologies, they reduce emissions and protect human health. As of 2018, clean cookstoves were used by over 53% of families in developing regions with the rest using open wood or charcoal fires for cooking, with concomitant health and environmental effects. If policies for promoting clean cooking worldwide are aggressively implemented, guided by the UN Sustainable Development Goal (SDG) of universal access to clean energy, reductions in emissions can amount to 31-73 gigatons of carbon dioxide equivalents at a net cost of $128-$264 billion. These stoves do raise cooking operating costs however by $2.0-$4.2 trillion over the stove lifetimes considering that many families collect firewood for free or buy cheap fuels today. These results include the reduction of black carbon, the second more impactful climate pollutant, by 8-20 gigatons of carbon dioxide equivalents. The additional benefits to the health of millions of households are not calculated here by Project Drawdown.</rdfs:comment>
         <rdfs:label xml:lang="en">using improved clean cookstoves</rdfs:label>
     </owl:NamedIndividual>
@@ -3556,6 +3829,7 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
         <schema:image rdf:resource="https://p0.pikist.com/photos/149/707/people-women-mother-daughter-talking-care-bench-nature-park.jpg"/>
         <schema:image rdf:resource="https://p0.pikist.com/photos/893/1014/friends-male-men-outside-winter-cold-bench-conversation-smile.jpg"/>
         <schema:image rdf:resource="https://pixnio.com/free-images/people/crowd/african-american-female-talking-with-one-blond-young-woman-and-with-one-man-725x483.jpg"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tailoring your climate change message about topics or values important to people makes for a more positive and effective conversation.</schema:shortDescription>
         <rdfs:label xml:lang="en">effective communication framing</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3578,9 +3852,32 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCPtkdL8hc2qCEMAaSA3OO7">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High-performance glass improves window insulation and makes building heating and cooling more efficient. By minimizing unnecessary energy use, it curtails emissions. Many improvements in glass technology have been made over the years including double-glazing, yet adoption of these is limited to 18 percent in global residential buildings and 6 percent in non-OECD commercial buildings worldwide. If instead high-performance windows are installed at a 2.75-5 percent annual retrofit rate, the emissions reduction can be 10-12.6 gigatons of carbon dioxide equivalent. Financials would be a challenge however since the total net costs would be $9.1-10.8 trillion for a lifetime saving of $3.4-3.9 trillion.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/high-performance-glass"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High-performance glass and double-glazing improves window insulation and makes building heating and cooling more efficient. By minimizing unnecessary energy use, it curtails emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High-performance glass improves window insulation and makes building heating and cooling more efficient. By minimizing unnecessary energy use, it curtails emissions. Many improvements in glass technology have been made over the years including double-glazing, yet adoption of these is limited to 18 percent in global residential buildings and 6 percent in non-OECD commercial buildings worldwide. If instead high-performance windows are installed at a 2.75-5 percent annual retrofit rate, the emissions reduction can be 10-12.6 gigatons of carbon dioxide equivalent. Financials would be a challenge however since the total net costs would be $9.1-10.8 trillion for a lifetime saving of $3.4-3.9 trillion.</rdfs:comment>
         <rdfs:label xml:lang="en">using high-performance glass in windows</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RCU0YwArp49u8Xyj0skNjXj -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCU0YwArp49u8Xyj0skNjXj">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R7UaBVCzh2O54oDnVl30shn"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9HodVa8KHkIzJV3HunJ7HC"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RBYAEANbzZXfxcNfkPYS1Um"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCOKh8I57dfccKh5QTFhHB0"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RDDtV325vfj73RkGBtEJcwJ"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RoGet2DtXzFfCBQSjgRW3z"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Antarctica is gaining ice.
+
+&quot;[Ice] is expanding in much of Antarctica, contrary to the widespread public belief that global warming is melting the continental ice cap.&quot; (from Greg Roberts, The Australian)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Antarctic sea ice is gaining sea ice but Antarctica is losing land ice at an accelerating rate, which has implications for sea level rise.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/antarctica-gaining-ice.htm"/>
+        <schema:video rdf:resource="https://youtu.be/9PUmKHBtnlA"/>
+        <rdfs:label xml:lang="en">Antarctica is gaining ice</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3590,7 +3887,8 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCVZWPiALoEjnaCAwnkuB6k">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCfPh2b9dT7ukFZtEfHQGbi"/>
-        <rdfs:label xml:lang="en">include 1% seaweed in diet for cows cattle</rdfs:label>
+        <schema:mediaSource rdf:resource="https://www.bbc.co.uk/newsround/49368462"/>
+        <rdfs:label xml:lang="en">include 1% seaweed in diet for cows and cattle</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3609,7 +3907,9 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCYcuSVsndxr46dKMakicwT">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LED light bulbs use 90 percent less energy than incandescent bulbs for the same amount of light, and half as much as compact fluorescents, without toxic mercury. By transferring most of their energy use into creating light—rather than heat, like older technologies—LEDs reduce electricity consumption and air-conditioning loads. Although 2-3x more expensive than incandescent or fluorescent bulbs, they last much longer and are becoming cheaper to buy as technology improves. As LEDs replace less-efficient lighting, 10.2-10.8 gigatons of carbon dioxide emissions could be avoided in residences and 5.9-6.7 gigatons in commercial buildings.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/led-lighting"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LED light bulbs use 90 percent less energy than incandescent bulbs for the same amount of light, and half as much as compact fluorescents. LEDs reduce air-conditioning loads by producing less heat.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">LED light bulbs use 90 percent less energy than incandescent bulbs for the same amount of light, and half as much as compact fluorescents, without toxic mercury. By transferring most of their energy use into creating light—rather than heat, like older technologies—LEDs reduce electricity consumption and air-conditioning loads. Although 2-3x more expensive than incandescent or fluorescent bulbs, they last much longer and are becoming cheaper to buy as technology improves. As LEDs replace less-efficient lighting, 10.2-10.8 gigatons of carbon dioxide emissions could be avoided in residences and 5.9-6.7 gigatons in commercial buildings.</rdfs:comment>
         <rdfs:label xml:lang="en">switching to LED light bulbs</rdfs:label>
     </owl:NamedIndividual>
@@ -3630,6 +3930,22 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCZ3YfX012dNkEY4griFIa">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R8bL3s0f60hjFRqfjXgnC4M"/>
         <rdfs:label xml:lang="en">Installation, Maintenance, and Repair Occupations</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RCZyj3ljE4sg6vf5hphtud0 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCZyj3ljE4sg6vf5hphtud0">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8tO6zSdeJRRUSPaznZIbKU"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">It&apos;s the sun
+
+&quot;Over the past few hundred years, there has been a steady increase in the numbers of sunspots, at the time when the Earth has been getting warmer. The data suggests solar activity is influencing the global climate causing the world to get warmer.&quot; (from BBC)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The sun&apos;s energy has decreased since the 1980s but the Earth keeps warming faster than before.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/solar-activity-sunspots-global-warming.htm"/>
+        <schema:video rdf:resource="https://youtu.be/H5kejSYPD7U"/>
+        <rdfs:label xml:lang="en">It&apos;s the sun</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -3661,7 +3977,9 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCdoVWPmTIcdEyb6QfkEug0">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Onshore wind turbines generate electricity at a utility scale, comparable to power plants. They replace fossil fuels with emissions-free electricity. An increase in onshore wind turbines from 4.4 percent of world electricity generation to a wide range from 19.6-26.9 percent by 2050 could reduce emissions by 47-147 gigatons of greenhouse gases. Costs the same in many places as natural gas. Costs get cheaper every year.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/onshore-wind-turbines"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Onshore wind turbines generate electricity at a utility scale, comparable to power plants. They replace fossil fuels with emissions-free electricity.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Onshore wind turbines generate electricity at a utility scale, comparable to power plants. They replace fossil fuels with emissions-free electricity. An increase in onshore wind turbines from 4.4 percent of world electricity generation to a wide range from 19.6-26.9 percent by 2050 could reduce emissions by 47-147 gigatons of greenhouse gases. Costs the same in many places as natural gas. Costs get cheaper every year.</rdfs:comment>
         <rdfs:label xml:lang="en">producing electricity via onshore wind turbines</rdfs:label>
     </owl:NamedIndividual>
@@ -3673,7 +3991,9 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCfL29vOLXc9ds8maBP7yyg">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Industrial-scale anaerobic digesters control decomposition of organic waste, and convert methane emissions into biogas, an alternative fuel, and digestate, a nutrient-rich fertilizer. Project Drawdown projects that large methane digesters can grow from current estimated values of 0.7% of global electricity generation (around 100TWh) to 487-761 TWh by 2050. The cumulative results would range from 6.2-9.8 gigatons of greenhouse gases emissions avoided at marginal first costs of $173-285 billion.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/methane-digesters"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Industrial-scale anaerobic digesters control decomposition of organic waste, and convert methane emissions into biogas, an alternative fuel, and digestate, a nutrient-rich fertilizer.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Industrial-scale anaerobic digesters control decomposition of organic waste, and convert methane emissions into biogas, an alternative fuel, and digestate, a nutrient-rich fertilizer. Project Drawdown projects that large methane digesters can grow from current estimated values of 0.7% of global electricity generation (around 100TWh) to 487-761 TWh by 2050. The cumulative results would range from 6.2-9.8 gigatons of greenhouse gases emissions avoided at marginal first costs of $173-285 billion.</rdfs:comment>
         <rdfs:label xml:lang="en">using methane digesters</rdfs:label>
     </owl:NamedIndividual>
@@ -3685,7 +4005,10 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCg7BxIR9BolygeacF635tH">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">To produce new products from recovered materials requires fewer raw resources and less energy. That’s how recycling household, commercial, and industrial waste can cut emissions. 
+The household and industrial recycling solutions were modeled together and include metals, plastic, glass, and other materials, such as rubber, textiles, and e-waste. Paper products and organic wastes are treated in separate waste management solutions. Emissions reductions stem from avoiding emissions associated with landfilling and from substituting recycled materials for virgin feedstock. With about 50 percent of recycled materials coming from households and rest from industry, if the average worldwide recycling rate increases to 65-68 percent of total recyclable waste, household recycling could avoid 5.5-6.0 gigatons of carbon dioxide emissions by 2050.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/recycling"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">To produce new products from recovered materials requires fewer raw resources and less energy. That’s how recycling household, commercial, and industrial waste can cut emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">To produce new products from recovered materials requires fewer raw resources and less energy. That’s how recycling household, commercial, and industrial waste can cut emissions. 
 The household and industrial recycling solutions were modeled together and include metals, plastic, glass, and other materials, such as rubber, textiles, and e-waste. Paper products and organic wastes are treated in separate waste management solutions. Emissions reductions stem from avoiding emissions associated with landfilling and from substituting recycled materials for virgin feedstock. With about 50 percent of recycled materials coming from households and rest from industry, if the average worldwide recycling rate increases to 65-68 percent of total recyclable waste, household recycling could avoid 5.5-6.0 gigatons of carbon dioxide emissions by 2050.</rdfs:comment>
         <rdfs:label xml:lang="en">recycling</rdfs:label>
@@ -3707,6 +4030,7 @@ The household and industrial recycling solutions were modeled together and inclu
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCkLLIxnjRrEwqFDLGw9Phk">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RGbm42IftQVoguYsFJQDSl"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The negative effects of climate change can increase suicide rates. More funding for mental health services and education can help prevent suicides.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in funding for suicide prevention</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3753,12 +4077,35 @@ The household and industrial recycling solutions were modeled together and inclu
     
 
 
+    <!-- http://webprotege.stanford.edu/RCqODufKJse3xkgAny5v5fI -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCqODufKJse3xkgAny5v5fI">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R5eVKPmEff8f7D8VBAEEC8"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8tO6zSdeJRRUSPaznZIbKU"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8vDHwP7soRN6c6XWYDjJkH"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCDZl2bsYh3B1YlJUL7nRcM"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RoGet2DtXzFfCBQSjgRW3z"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/Rtzkdtty1BHKfI8whB6qWR"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&quot;We found [U.S. weather] stations located next to the exhaust fans of air conditioning units, surrounded by asphalt parking lots and roads, on blistering-hot rooftops, and near sidewalks and buildings that absorb and radiate heat. We found 68 stations located at wastewater treatment plants, where the process of waste digestion causes temperatures to be higher than in surrounding areas.
+
+In fact, we found that 89 percent of the stations – nearly 9 of every 10 – fail to meet the National Weather Service’s own siting requirements that stations must be 30 meters (about 100 feet) or more away from an artificial heating or radiating/reflecting heat source.&quot; (from Watts 2009)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The warming trend is the same in rural and urban areas, measured by thermometers and satellites, and by natural thermometers.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/surface-temperature-measurements.htm"/>
+        <schema:video rdf:resource="https://youtu.be/YKQiyBkt4Vs"/>
+        <rdfs:label xml:lang="en">Temperature record is unreliable</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/RCsF77Q9uljIZkHshMgkbQP -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCsF77Q9uljIZkHshMgkbQP">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Concentrated solar power uses sunlight as a heat source. Arrays of mirrors concentrate incoming rays onto a receiver, to heat fluid, produce steam, and turn turbines. If this solution rose to 5.9-7.3 percent of world electricity generation by 2050, 18.6-24.0 gigatons of greenhouse gases emissions could be avoided.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/concentrated-solar-power"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Concentrated solar power uses sunlight as a heat source. Arrays of mirrors concentrate incoming rays onto a receiver to heat fluid, produce steam, and turn turbines.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Concentrated solar power uses sunlight as a heat source. Arrays of mirrors concentrate incoming rays onto a receiver, to heat fluid, produce steam, and turn turbines. If this solution rose to 5.9-7.3 percent of world electricity generation by 2050, 18.6-24.0 gigatons of greenhouse gases emissions could be avoided.</rdfs:comment>
         <rdfs:label xml:lang="en">producing electricity via concentrated solar power</rdfs:label>
     </owl:NamedIndividual>
@@ -3780,12 +4127,32 @@ The household and industrial recycling solutions were modeled together and inclu
     
 
 
+    <!-- http://webprotege.stanford.edu/RCw8SmMRRaBEOoHqTzFvZml -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCw8SmMRRaBEOoHqTzFvZml">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8WxponQcYpGf2zDnbsuVxG"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCyBGt3EhMba7KSfwkbu9Yu"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RDIPgn6wLGNvB8BmWhcn2BV"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">CO2 limits will hurt the poor.
+
+&quot;Legally mandated measures for reducing greenhouse gas emissions are likely to have significant adverse impacts on GDP growth of developing countries, including India.&quot; (Pradipto Ghosh, as quoted by Associated Press)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Those who contribute the least greenhouse gases will be most impacted by climate change.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/co2-limits-poor-poverty.htm"/>
+        <schema:video rdf:resource="https://youtu.be/TcxxhDVvTXU"/>
+        <rdfs:label xml:lang="en">CO2 limits will hurt the poor</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/RCweDCBg9pAFqwN7Q9K30tY -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCweDCBg9pAFqwN7Q9K30tY">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fluorinated gases are not the only refrigerants available. Alternatives, such as ammonia or captured carbon dioxide, can replace these powerful greenhouse gases over time. Pursuant to the Kigali accord signed in 2016, the replacement of HFC refrigerants with a mix of alternatives can result in a range of emissions reductions equivalent to 43.5-50.5 gigatons of carbon dioxide from 2020-2050.  Although the exact mix of alternatives is not projected and so the cost of adoption is not yet modeled, current and emerging refrigerants and appliances (including ammonia, carbon dioxide, and propane) can replace between 67%-82% of HFC refrigerants by 2050.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/alternative-refrigerants"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Alternatives to fluorinated gases such as ammonia or captured carbon dioxide can replace these powerful greenhouse gases over time. The replacement of HFC refrigerants with a mix of alternatives can result in emissions reductions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fluorinated gases are not the only refrigerants available. Alternatives, such as ammonia or captured carbon dioxide, can replace these powerful greenhouse gases over time. Pursuant to the Kigali accord signed in 2016, the replacement of HFC refrigerants with a mix of alternatives can result in a range of emissions reductions equivalent to 43.5-50.5 gigatons of carbon dioxide from 2020-2050.  Although the exact mix of alternatives is not projected and so the cost of adoption is not yet modeled, current and emerging refrigerants and appliances (including ammonia, carbon dioxide, and propane) can replace between 67%-82% of HFC refrigerants by 2050.</rdfs:comment>
         <rdfs:label xml:lang="en">using alternative refrigerants</rdfs:label>
     </owl:NamedIndividual>
@@ -3807,6 +4174,7 @@ The household and industrial recycling solutions were modeled together and inclu
         <schema:image rdf:resource="https://d279m997dpfwgl.cloudfront.net/wp/2017/08/HarveyHouse.jpg"/>
         <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/5/5c/Flooding_in_Minot_%28Image_4_of_13%29.jpg"/>
         <schema:image rdf:resource="https://www.co.marion.or.us/PW/Planning/PublishingImages/1311_001.jpg"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Building on higher ground prevents flood damage to property as flooding continues to intensify due to climate change.</schema:shortDescription>
         <rdfs:label xml:lang="en">avoid building on land that is or will become a floodplain</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3830,6 +4198,7 @@ The household and industrial recycling solutions were modeled together and inclu
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCBzNhkuW51hKlUIUPew7nS"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R9GgwNAE1EIyeCTZohpIThL"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Setting a limit on emissions and creating a market for trading allowances can drive down emissions by making it more expensive for industries to pollute.</schema:shortDescription>
         <rdfs:label xml:lang="en">enact cap and trade policy</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3858,7 +4227,9 @@ The household and industrial recycling solutions were modeled together and inclu
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RD2p6adaCZJE3WmtfZ0qrU7">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fluorinated gases have a potent greenhouse effect and are widely used as refrigerants. Managing leaks and disposal of these chemicals can avoid emissions in buildings and landfills. Substantial emissions reductions could be achieved through the adoption of practices to (1) avoid leaks from refrigerants and (2) destroy refrigerants at end of life, both after the adoption of alternatives to HFC refrigerants. Over thirty years, an increase of over 79% percent of refrigerants that may be released can be contained, avoiding emissions equivalent to 57.8 gigatons of carbon dioxide. Although some revenue can be generated from resale of recovered refrigerant gases, the costs to establish and operate recovery, destruction, and leak avoidance outweigh the financial benefit—meaning that refrigerant management, as modeled, could incur a net cost of $629.4 billion by 2050.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/refrigerant-management"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fluorinated gases have a potent greenhouse effect and are widely used as refrigerants. Managing leaks and disposal of these chemicals and adopting alternative refrigerants can avoid emissions in buildings and landfills.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Fluorinated gases have a potent greenhouse effect and are widely used as refrigerants. Managing leaks and disposal of these chemicals can avoid emissions in buildings and landfills. Substantial emissions reductions could be achieved through the adoption of practices to (1) avoid leaks from refrigerants and (2) destroy refrigerants at end of life, both after the adoption of alternatives to HFC refrigerants. Over thirty years, an increase of over 79% percent of refrigerants that may be released can be contained, avoiding emissions equivalent to 57.8 gigatons of carbon dioxide. Although some revenue can be generated from resale of recovered refrigerant gases, the costs to establish and operate recovery, destruction, and leak avoidance outweigh the financial benefit—meaning that refrigerant management, as modeled, could incur a net cost of $629.4 billion by 2050.</rdfs:comment>
         <rdfs:label xml:lang="en">managing refrigerants better</rdfs:label>
     </owl:NamedIndividual>
@@ -3909,6 +4280,7 @@ The household and industrial recycling solutions were modeled together and inclu
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDIPgn6wLGNvB8BmWhcn2BV">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCJEcx2UfX3O1O9fAa1QpcW"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Increasing carbon taxes encourages greater reduction in emissions and can provide funds for investment in climate-friendly projects.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase rate of carbon tax</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3928,7 +4300,9 @@ The household and industrial recycling solutions were modeled together and inclu
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDSZw453Ge76hYTvYEsaAwU">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Various technologies and operational practices can lower airplane emissions to some degree. They include better engines, wingtips, and light weighting to improve fuel efficiency. Project Drawdown&apos;s analysis focuses on adoption of the latest and most fuel-efficient aircraft; retrofitting existing aircraft with winglets, newer engines, and lighter interiors; and retiring older aircraft early. Over thirty years, and for a net cost of $830-850 billion, 6.3-9.2 gigatons of carbon dioxide emissions can be avoided, saving $2.5-3.6 trillion on lifetime jet-fuel and operating costs. Other efficiency measures could provide additional emissions reductions and savings as over 80 percent of aircraft are converted.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/efficient-aviation"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Various technologies and operational practices such as using better engines, wingtips, and light weighting to improve fuel efficiency can lower airplane emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Various technologies and operational practices can lower airplane emissions to some degree. They include better engines, wingtips, and light weighting to improve fuel efficiency. Project Drawdown&apos;s analysis focuses on adoption of the latest and most fuel-efficient aircraft; retrofitting existing aircraft with winglets, newer engines, and lighter interiors; and retiring older aircraft early. Over thirty years, and for a net cost of $830-850 billion, 6.3-9.2 gigatons of carbon dioxide emissions can be avoided, saving $2.5-3.6 trillion on lifetime jet-fuel and operating costs. Other efficiency measures could provide additional emissions reductions and savings as over 80 percent of aircraft are converted.</rdfs:comment>
         <rdfs:label xml:lang="en">making aviation more efficient</rdfs:label>
     </owl:NamedIndividual>
@@ -3968,7 +4342,9 @@ The household and industrial recycling solutions were modeled together and inclu
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDXACa7DGh7OTyB1o1roCZO">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Almost all temperate forests have been altered in some way—timbered, converted to agriculture, disrupted by development. Restoring them sequesters carbon in biomass and soil. Project Drawdown projects that temperate forest restoration will expand to an additional 92-128 million hectares through protecting currently degraded land and allowing natural regrowth to occur. Though this is much lower than the available area for tropical forest restoration, it still sequesters 19.4-27.9 gigatons of carbon dioxide by 2050.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/temperate-forest-restoration"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Almost all temperate forests have been altered in some way—timbered, converted to agriculture, disrupted by development. Restoring them sequesters carbon in biomass and soil.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Almost all temperate forests have been altered in some way—timbered, converted to agriculture, disrupted by development. Restoring them sequesters carbon in biomass and soil. Project Drawdown projects that temperate forest restoration will expand to an additional 92-128 million hectares through protecting currently degraded land and allowing natural regrowth to occur. Though this is much lower than the available area for tropical forest restoration, it still sequesters 19.4-27.9 gigatons of carbon dioxide by 2050.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in restoration of temperate forests</rdfs:label>
     </owl:NamedIndividual>
@@ -3980,7 +4356,9 @@ The household and industrial recycling solutions were modeled together and inclu
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDZ1RURQFOc7YmgjswS5IW7">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Huge volumes of goods are shipped across oceans. Fuel-saving ship design, onboard technologies, and operational practices can improve efficiency and trim emissions. A combination of a selection of 17 ship technologies with slow steaming (literally slowing the ship speed) can help reduce fuel consumption of ocean ships of a variety of types. This fuel reduction can be on the order of 50% of today’s consumption rates across the international shipping industry, and if adoption grows to 57-78 percent of international ships, can lead to a 4.4-6.3 gigaton reduction of carbon dioxide emissions by 2050 at cost of $530-733 billion. That could save $620-876 billion in fuel costs over the life of the ships.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/efficient-ocean-shipping"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Huge volumes of goods are shipped across oceans. Fuel-saving ship design, onboard technologies, and operational practices can improve efficiency and trim emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Huge volumes of goods are shipped across oceans. Fuel-saving ship design, onboard technologies, and operational practices can improve efficiency and trim emissions. A combination of a selection of 17 ship technologies with slow steaming (literally slowing the ship speed) can help reduce fuel consumption of ocean ships of a variety of types. This fuel reduction can be on the order of 50% of today’s consumption rates across the international shipping industry, and if adoption grows to 57-78 percent of international ships, can lead to a 4.4-6.3 gigaton reduction of carbon dioxide emissions by 2050 at cost of $530-733 billion. That could save $620-876 billion in fuel costs over the life of the ships.</rdfs:comment>
         <rdfs:label xml:lang="en">making ocean shipping more efficient</rdfs:label>
     </owl:NamedIndividual>
@@ -4002,7 +4380,9 @@ The household and industrial recycling solutions were modeled together and inclu
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDanTqMAQyQ4nGzlrt0j7Bm">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Insulation impedes unwanted airflow in or out of buildings. In new construction or retrofits, it makes heating and cooling more energy efficient, with lower emissions. Retrofitting buildings with insulation is a cost-effective solution for reducing energy required for heating and cooling. If annually, 1.6-2 percent of existing residential and commercial buildings in temperate and tropical countries install insulation increasingly with low carbon materials, 17-19 gigatons of emissions can be avoided at an implementation cost of $751-831 billion. Over the lifetime of the building, heating and cooling savings could be $21- $24 trillion.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/insulation"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Insulation impedes unwanted airflow in or out of buildings. In new construction or retrofits, it makes heating and cooling more energy efficient, with lower emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Insulation impedes unwanted airflow in or out of buildings. In new construction or retrofits, it makes heating and cooling more energy efficient, with lower emissions. Retrofitting buildings with insulation is a cost-effective solution for reducing energy required for heating and cooling. If annually, 1.6-2 percent of existing residential and commercial buildings in temperate and tropical countries install insulation increasingly with low carbon materials, 17-19 gigatons of emissions can be avoided at an implementation cost of $751-831 billion. Over the lifetime of the building, heating and cooling savings could be $21- $24 trillion.</rdfs:comment>
         <rdfs:label xml:lang="en">insulating buildings better</rdfs:label>
     </owl:NamedIndividual>
@@ -4093,7 +4473,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDhpXXRQgYARY8ocN1e2tI">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Streetcars, buses, and subways offer alternative, efficient modes of transport. Public transit can keep car use to a minimum and avert greenhouse gases. Use of public transit is projected to decline significantly from 30 percent of urban travel as the low-income world gains wealth. If use is instead managed to decline more slowly by 2050 or even rise slightly to 35 percent, this solution can save 7.5-23 gigatons of carbon dioxide emissions from cars. Consumers would save $2.1-6.6 trillion in mobility costs. Project Drawdown analysis includes diverse public transit options (bus, metro, tram, and commuter rail) and examines the costs that travelers pay (car purchase and use compared to buying transit tickets).</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/public-transit"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Streetcars (trams), buses, subways and commuter rail offer alternative efficient modes of transport. Public transit can keep car use to a minimum and avert greenhouse gas emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Streetcars, buses, and subways offer alternative, efficient modes of transport. Public transit can keep car use to a minimum and avert greenhouse gases. Use of public transit is projected to decline significantly from 30 percent of urban travel as the low-income world gains wealth. If use is instead managed to decline more slowly by 2050 or even rise slightly to 35 percent, this solution can save 7.5-23 gigatons of carbon dioxide emissions from cars. Consumers would save $2.1-6.6 trillion in mobility costs. Project Drawdown analysis includes diverse public transit options (bus, metro, tram, and commuter rail) and examines the costs that travelers pay (car purchase and use compared to buying transit tickets).</rdfs:comment>
         <rdfs:label xml:lang="en">using public transit</rdfs:label>
     </owl:NamedIndividual>
@@ -4147,8 +4529,10 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDkaEppVGpX8sI5LgbzH7Eu">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High-speed rail offers an alternative to trips otherwise made by car or airplane. It requires special, designated tracks, but can dramatically curtail emissions.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/high-speed-rail"/>
-        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High-speed rail offers an alternative to trips otherwise made by car or airplane. It requires special, designated tracks, but can dramatically curtail emissions. Under some business-as-usual projections, 23 million hybrid vehicles will be in operation in 2050, less than 1 percent of the car market. Project Drawdown estimates growth in 2050 could reach 236-621million hybrid vehicles. Until then, hybrid cars can reduce carbon dioxide emissions by 4.6-7.9 gigatons by 2050, saving owners $3.0-6.1 trillion in fuel and operating costs over the lifetime of the cars. This would cost an additional $1.6-3.4 trillion in net costs.</rdfs:comment>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High-speed rail offers an alternative to trips otherwise made by car or airplane. It can dramatically curtail emissions.</schema:shortDescription>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High-speed rail offers an alternative to trips otherwise made by car or airplane. It requires special, designated tracks, but can dramatically curtail emissions.</rdfs:comment>
         <rdfs:label xml:lang="en">using high-speed rail</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4181,7 +4565,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
                 <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCSp3Q6QJjaE6ehKKudHudg"/>
             </owl:Restriction>
         </rdf:type>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Degraded lands present potential locations for tree plantations. Managed well, they can restore soil, sequester carbon, and produce wood resources in a more sustainable way. As of 2018, 294.1 million hectares of land were used for tree plantations on degraded land. Establishing tree plantations on an additional 112-174 million hectares of marginal lands can sequester 22.2-35.9 gigatons of carbon dioxide by 2050. The use of marginal lands for afforestation also indirectly avoids deforestation that otherwise would be done in the conventional system. At an initial cost of cost of $17-72 billion and lifetime operational cost of $164.8-259.5 billion to implement, this additional area of timber plantations could produce a lifetime net profit of $2.1-3.4 trillion.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/tree-plantations-on-degraded-land"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Degraded lands present potential locations for tree plantations. Managed well, they can restore soil, sequester carbon and produce wood resources in a more sustainable way.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Degraded lands present potential locations for tree plantations. Managed well, they can restore soil, sequester carbon, and produce wood resources in a more sustainable way. As of 2018, 294.1 million hectares of land were used for tree plantations on degraded land. Establishing tree plantations on an additional 112-174 million hectares of marginal lands can sequester 22.2-35.9 gigatons of carbon dioxide by 2050. The use of marginal lands for afforestation also indirectly avoids deforestation that otherwise would be done in the conventional system. At an initial cost of cost of $17-72 billion and lifetime operational cost of $164.8-259.5 billion to implement, this additional area of timber plantations could produce a lifetime net profit of $2.1-3.4 trillion.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in tree plantations (on degraded land)</rdfs:label>
     </owl:NamedIndividual>
@@ -4194,6 +4580,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
         <webprotege:RftWPEDTNGrriaufjBA6oG rdf:resource="http://webprotege.stanford.edu/R7d1FZLrHT7jiNDiQHltEdz"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An agroforestry practice, silvopasture integrates trees, pasture, and forage into a single system. Incorporating trees improves land health and significantly increases carbon sequestration. Project Drawdown estimates that silvopasture is currently practiced on 550 million hectares of land globally. If adoption expands to 720-772 million hectares by 2050—out of the 823 million hectares theoretically suitable for silvopasture—carbon dioxide emissions can be reduced by 26.6-42.3 gigatons. This reduction is a result of the high annual carbon sequestration rate of 2.74 tons of carbon per hectare per year in soil and biomass. Farmers could realize financial gains from revenue diversification of $1.7-2.3 trillion, on investment of $206-273 billion and lifetime operational cost of $2-3 trillion to implement.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/silvopasture"/>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An agroforestry practice, silvopasture integrates trees, pasture, and forage into a single system. Incorporating trees improves land health and significantly increases carbon sequestration. Project Drawdown estimates that silvopasture is currently practiced on 550 million hectares of land globally. If adoption expands to 720-772 million hectares by 2050—out of the 823 million hectares theoretically suitable for silvopasture—carbon dioxide emissions can be reduced by 26.6-42.3 gigatons. This reduction is a result of the high annual carbon sequestration rate of 2.74 tons of carbon per hectare per year in soil and biomass. Farmers could realize financial gains from revenue diversification of $1.7-2.3 trillion, on investment of $206-273 billion and lifetime operational cost of $2-3 trillion to implement.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in silvopasture</rdfs:label>
@@ -4231,6 +4618,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
         <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RIm21qcU1or1RI1rFv04h8>
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
+        <dc:source rdf:resource="https://www.ilo.org/wcmsp5/groups/public/---dgreports/---dcomm/---publ/documents/publication/wcms_711919.pdf"/>
         <schema:academicSource rdf:resource="https://www.richmondfed.org/-/media/richmondfedorg/publications/research/economic_brief/2018/pdf/eb_18-08.pdf"/>
         <schema:image rdf:resource="https://c.pxhere.com/images/2c/78/6797d8d5f891990fe5fb4d904bf7-1596167.jpg!d"/>
         <schema:image rdf:resource="https://i2.pickpik.com/photos/224/264/838/construction-worker-oil-rig-preview.jpg"/>
@@ -4259,7 +4647,10 @@ increasing frequency of warm days and nights are causing declines in worker prod
                 <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCSp3Q6QJjaE6ehKKudHudg"/>
             </owl:Restriction>
         </rdf:type>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bamboo rapidly sequesters carbon in biomass and soil and can thrive on degraded lands. Long-lived bamboo products can also store carbon over time. 
+Bamboo is planted on 33.52 million hectares today. We assume that it will be grown on an additional 69.8-174.3 million hectares of degraded forest lands. Project Drawdown&apos;s carbon sequestration calculations include both living biomass and long-lived bamboo products, with an annual rate of 2.03 tons of carbon per hectare, resulting in a total of 8.3-21.3 gigatons of carbon dioxide sequestered by 2050. An initial investment of $52-162 billion and lifetime operational cost of $566-1444 billion could yield a lifetime net profit of $1707-4348 billion. When bamboo is substituted for aluminum, concrete, plastic, or steel, there can be significant avoided emissions; however, these additional benefits are not included.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/bamboo-production"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bamboo rapidly captures carbon and also stores it in the soil. It can also be substituted for carbon-intensive materials like steel, concrete and plastic.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Bamboo rapidly sequesters carbon in biomass and soil and can thrive on degraded lands. Long-lived bamboo products can also store carbon over time. 
 Bamboo is planted on 33.52 million hectares today. We assume that it will be grown on an additional 69.8-174.3 million hectares of degraded forest lands. Project Drawdown&apos;s carbon sequestration calculations include both living biomass and long-lived bamboo products, with an annual rate of 2.03 tons of carbon per hectare, resulting in a total of 8.3-21.3 gigatons of carbon dioxide sequestered by 2050. An initial investment of $52-162 billion and lifetime operational cost of $566-1444 billion could yield a lifetime net profit of $1707-4348 billion. When bamboo is substituted for aluminum, concrete, plastic, or steel, there can be significant avoided emissions; however, these additional benefits are not included.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in bamboo production</rdfs:label>
@@ -4335,6 +4726,24 @@ Bamboo is planted on 33.52 million hectares today. We assume that it will be gro
     
 
 
+    <!-- http://webprotege.stanford.edu/RGoKTEGl49269XhVT2L5b7 -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RGoKTEGl49269XhVT2L5b7">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R73ikCqnentdefiugeatpz8"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8wipsAXfB4fo66FQYwubtd"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9R6552i4fn3XHKpoV8QTOx"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCdoVWPmTIcdEyb6QfkEug0"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCsF77Q9uljIZkHshMgkbQP"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RSqgmuB6RIAv04gEixDJOx"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Renewable energy sources can&apos;t provide baseload power</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Although renewable energy does not necessarily need to provide baseload power in the short-term, there are several ways in which it can do so. For example, geothermal energy is available at all times, concentrated solar thermal energy has storage capability, and wind energy can be stored in compressed air.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/renewable-energy-baseload-power.htm"/>
+        <rdfs:label xml:lang="en">Renewables can&apos;t provide baseload power</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/RGvNz4i9rN6i6s2DETRSKD -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RGvNz4i9rN6i6s2DETRSKD">
@@ -4344,7 +4753,22 @@ Bamboo is planted on 33.52 million hectares today. We assume that it will be gro
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RFaJxIT1quuNu2kx2qQoQN"/>
         <schema:image rdf:resource="https://upload.wikimedia.org/wikipedia/commons/9/9e/Voting_booth_-_Ohio_primary_election_-_March_15%2C_2016_%2825784960616%29.jpg"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Ranked choice voting ranks voters&apos; preferences rather than voting for one person or party in a &apos;winner takes all&apos; system. It encourages collaborations in campaigns and partnerships. It has been shown to help get past gridlock for challenging topics, including climate legislation.</schema:shortDescription>
         <rdfs:label xml:lang="en">enact ranked-choice voting policy</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RINEZk68x8Ej1HrbxpdbJK -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RINEZk68x8Ej1HrbxpdbJK">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8tO6zSdeJRRUSPaznZIbKU"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Models are unreliable. They are full of fudge factors that are fitted to the existing climate, so the models more or less agree with the observed data. But there is no reason to believe that the same fudge factors would give the right behaviour in a world with different chemistry, for example in a world with increased CO2 in the atmosphere.  (from Freeman Dyson)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Models successfully reproduce temperatures since 1900 globally, by land, in the air and the ocean.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/climate-models.htm"/>
+        <schema:video rdf:resource="https://youtu.be/Y_jKXcgR_QA"/>
+        <rdfs:label xml:lang="en">Climate models are unreliable</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -4354,7 +4778,10 @@ Bamboo is planted on 33.52 million hectares today. We assume that it will be gro
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RItKzuJSSFw9hXydUSVEJX">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A transitional technology, hybrid cars pair an electric motor and battery with an internal combustion engine. The combination improves fuel economy—more miles on a gallon—and lowers emissions. 
+Under some business-as-usual projections, 23 million hybrid vehicles will be in operation in 2050, less than 1 percent of the car market. Project Drawdown estimates growth in 2050 could reach 236-621million hybrid vehicles. Until then, hybrid cars can reduce carbon dioxide emissions by 4.6-7.9 gigatons by 2050, saving owners $3.0-6.1 trillion in fuel and operating costs over the lifetime of the cars.This would cost an additional $1.6-3.4 trillion in net costs.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/hybrid-cars"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A transitional technology, hybrid cars pair an electric motor and battery with an internal combustion engine. The combination improves fuel economy (more miles on a gallon) and lowers emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A transitional technology, hybrid cars pair an electric motor and battery with an internal combustion engine. The combination improves fuel economy—more miles on a gallon—and lowers emissions. 
 Under some business-as-usual projections, 23 million hybrid vehicles will be in operation in 2050, less than 1 percent of the car market. Project Drawdown estimates growth in 2050 could reach 236-621million hybrid vehicles. Until then, hybrid cars can reduce carbon dioxide emissions by 4.6-7.9 gigatons by 2050, saving owners $3.0-6.1 trillion in fuel and operating costs over the lifetime of the cars.This would cost an additional $1.6-3.4 trillion in net costs.</rdfs:comment>
         <rdfs:label xml:lang="en">using hybrid cars</rdfs:label>
@@ -4380,8 +4807,11 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RzalB19SQSGGVxprHL33Ik"/>
         <dc:source rdf:resource="https://blog.ucsusa.org/kristy-dahl/military-extreme-heat"/>
         <dc:source rdf:resource="https://insideclimatenews.org/news/11112019/military-heat-risk-climate-change-basic-training-bases-union-concerned-scientists-report"/>
+        <dc:source rdf:resource="https://www.businessinsider.com/heat-wave-effects-on-economic-productivity-2019-7"/>
         <dc:source rdf:resource="https://www.nrdc.org/sites/default/files/accountingcosts.pdf"/>
         <dc:source rdf:resource="https://www.nwf.org/~/media/PDFs/Global-Warming/Reports/NowheretoRun-BigGameWildlife-LowResFinal_110613.ashx"/>
+        <dc:source rdf:resource="https://www.thebalance.com/heat-wave-causes-list-effect-on-the-economy-4173881"/>
+        <dc:source rdf:resource="https://www.washingtonpost.com/weather/2019/08/19/climate-change-could-cost-us-up-percent-its-gdp-by-study-finds/"/>
         <schema:academicBook rdf:resource="https://soh.iums.ac.ir/uploads/0415237920_95689.pdf"/>
         <schema:academicSource rdf:resource="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019GH000202"/>
         <schema:academicSource rdf:resource="https://scholar.harvard.edu/files/jisungpark/files/paper_nyc_aejep.pdf"/>
@@ -4393,7 +4823,9 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
         <schema:mediaSource rdf:resource="https://phys.org/news/2018-08-temperatures-worker-productivity-global-losses.html"/>
         <schema:mediaSource rdf:resource="https://www.entrepreneur.com/article/319479"/>
         <schema:mediaSource rdf:resource="https://www.forbes.com/sites/ucenergy/2018/08/29/heat-makes-people-less-productive-spelling-trouble-for-the-economy-and-future/#5287dc267bb1"/>
+        <schema:mediaSource rdf:resource="https://www.motherjones.com/environment/2019/02/climate-change-isnt-just-frying-the-planet-its-fraying-our-nerves/"/>
         <schema:mediaSource rdf:resource="https://www.washingtonpost.com/business/2018/07/17/heat-makes-you-dumb-four-charts/"/>
+        <schema:organizationSource rdf:resource="https://news.stanford.edu/2019/03/29/effects-climate-change-suicide-rates/"/>
         <rdfs:label xml:lang="en">increase in frequency of heatwaves</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4426,6 +4858,7 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBJbvjIaTGGWw8IsBhHKONI"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RGbm42IftQVoguYsFJQDSl"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Climate change impacts such as more heatwaves and coral reefs being destroyed by bleaching have negative impacts on the tourism trade. Investment can help the industry adapt and reduce the impact on the economy.</schema:shortDescription>
         <rdfs:label xml:lang="en">Increase in investment</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4474,6 +4907,7 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
 
 Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+        <schema:organizationSource rdf:resource="https://calmatters.org/environment/california-wildfires/2019/11/7-affordable-ways-to-protect-your-home-from-wildfires/"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increase in vegetation during wet season combined with drier vegetation during dry season is causing an increase in the area burned by wildfires. More land and property is being burned by wildfires. Fires burn more than twice as large as they used to due to human-induced climate change.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in area burned by wildfire</rdfs:label>
     </owl:NamedIndividual>
@@ -4588,6 +5022,26 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     
 
 
+    <!-- http://webprotege.stanford.edu/RXlELjsOUaVbJqmvO91WFL -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RXlELjsOUaVbJqmvO91WFL">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R1kRDiL29pcyXoNOkHduKB"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8tO6zSdeJRRUSPaznZIbKU"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCDZl2bsYh3B1YlJUL7nRcM"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RJAL6Zu9F3EHB35HCs3cYD"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RpOmwCPDUgT3EfGsy4qV4B"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">It&apos;s cooling
+
+&quot;In fact global warming has stopped and a cooling is beginning. No climate model has predicted a cooling of the Earth – quite the contrary. And this means that the projections of future climate are unreliable.&quot; (source: Henrik Svensmark)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">All the indicators show that global warming is still happening.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/global-cooling.htm"/>
+        <schema:video rdf:resource="https://youtu.be/WGJOBGfUhbw"/>
+        <rdfs:label xml:lang="en">It&apos;s cooling</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/RYkJaK94XeX4IVAr2xSmRY -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RYkJaK94XeX4IVAr2xSmRY">
@@ -4647,6 +5101,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RnbPKhyIQNnShkRKHqGrGm"/>
         <dc:source rdf:resource="http://www.mcrg.ac.in/rw%20files/RW51_52/RW51_52.pdf#page=155"/>
         <dc:source rdf:resource="https://amp.theguardian.com/commentisfree/2019/sep/04/climate-crisis-hurricane-dorian-floods-bahamas"/>
+        <dc:source rdf:resource="https://coast.noaa.gov/states/fast-facts/hurricane-costs.html"/>
         <dc:source rdf:resource="https://insideclimatenews.org/american-climate/essay/hurricane-climate-change?fbclid=IwAR0EVBJH4d4chQ4CTvq43xr_FGoCCzQc_BMAebzZZWHpKPLyndDO4deczms"/>
         <dc:source rdf:resource="https://www.bloomberg.com/news/articles/2019-09-09/the-massive-cost-of-not-adapting-to-climate-change"/>
         <dc:source rdf:resource="https://www.capitalgazette.com/environment/ac-cn-proceedings-except-20191013-43rodczawne7ziviweim72cvmq-story.html"/>
@@ -4667,6 +5122,44 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     
 
 
+    <!-- http://webprotege.stanford.edu/Relkq8lNydWamAFggTD3RD -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/Relkq8lNydWamAFggTD3RD">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R7Yo5FYFleUwkbXjCU3xo4E"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R7pS7MtLuEDp8HhEyf1VtOE"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8Fa34SNdEwdj93hXO0oMS"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8JoXNnKTYqERwU7fblKTWB"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8VWiAcECOGFY5bloP4988I"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8epBa4UvcieLTynfK3E84u"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8t0oNsG3WgnupXsBVSjMHZ"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8uV2oTMZHslQ6qiGWJ8OQO"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9JAWzfiZ9haeNhHiCpTWkr"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9x3oCu22QJK9ebw5xL7NvB"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RB6zclWNN2qJW6OSyWjyfFz"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RB7k7p2iQQgKdQrkRP2MZWM"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RBqibfoxaYmRDDRiBzSVS0N"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RBvy0CVizhdMfXbtJIc2En"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RDavliTi6W93xwahwtUnUtG"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RDfWjsojED1JhyonjjYn5T1"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RDuEdzMOhOt76COW2RVxZdP"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RJAL6Zu9F3EHB35HCs3cYD"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RO1J1OifvuO602qTIrSXdB"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/Ra98BRMZ0HlUpobb3Z0C5r"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RnbPKhyIQNnShkRKHqGrGm"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RrH4kPiYwZ0tSRSz4lnaYW"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RzalB19SQSGGVxprHL33Ik"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">It&apos;s not bad
+
+&quot;By the way, if you’re going to vote for something, vote for warming. Less deaths due to cold, regions more habitable, larger crops, longer growing season. That’s good. Warming helps the poor.&quot; (from John MacArthur)</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Negative impacts of global warming on agriculture, health &amp; environment far outweigh any positives.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/global-warming-positives-negatives.htm"/>
+        <rdfs:label xml:lang="en">It&apos;s not bad</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/Rew83THb8xDe4QJVYuuf8M -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/Rew83THb8xDe4QJVYuuf8M">
@@ -4678,7 +5171,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
                 <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCSp3Q6QJjaE6ehKKudHudg"/>
             </owl:Restriction>
         </rdf:type>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Building on conservation agriculture with additional practices, regenerative annual cropping can include compost application, green manure, and organic production. It reduces emissions, increases soil organic matter, and sequesters carbon. From an estimated 11.84 million hectares of current adoption, Project Drawdown estimates regenerative annual cropping to increase to a total of 221-322 million hectares by 2050. This rapid adoption is based in part on the historic growth rate of organic agriculture, as well as the projected conversion of conservation agriculture to regenerative annual cropping over time. This increase could result in a total reduction of 14.5-22.3 gigatons of carbon dioxide, from both sequestration and reduced emissions. Regenerative annual cropping could provide a $2.3-3.5 trillion lifetime operational cost savings and lifetime net profit gain of $135-206 billion on an investment of $79-116 billion.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/regenerative-annual-cropping"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Building on conservation agriculture, regenerative annual cropping can include compost application, green manure and organic production. It reduces emissions, increases soil organic matter and sequesters carbon.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Building on conservation agriculture with additional practices, regenerative annual cropping can include compost application, green manure, and organic production. It reduces emissions, increases soil organic matter, and sequesters carbon. From an estimated 11.84 million hectares of current adoption, Project Drawdown estimates regenerative annual cropping to increase to a total of 221-322 million hectares by 2050. This rapid adoption is based in part on the historic growth rate of organic agriculture, as well as the projected conversion of conservation agriculture to regenerative annual cropping over time. This increase could result in a total reduction of 14.5-22.3 gigatons of carbon dioxide, from both sequestration and reduced emissions. Regenerative annual cropping could provide a $2.3-3.5 trillion lifetime operational cost savings and lifetime net profit gain of $135-206 billion on an investment of $79-116 billion.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in regenerative annual cropping</rdfs:label>
     </owl:NamedIndividual>
@@ -4701,7 +5196,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RfqwmaY5oYx5PSw5fhhfPi">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Roughly a third of the world’s food is never eaten, which means land and resources used and greenhouse gases emitted in producing it were unnecessary. Interventions can reduce loss and waste, as food moves from farm to fork, thereby reducing overall demand. After taking into account the annual adoption of plant-rich diets, if 50-75 percent of food waste is reduced by 2050, avoided emissions could be equal to 10.3-18.8 gigatons of carbon dioxide. Reducing waste also avoids the deforestation for additional farmland, preventing 74.9-76.3 gigatons of additional emissions. Project Drawdown used forecasts of regional waste estimated from farm to household. This data shows that up to 35 percent of food in high-income economies is thrown out by consumers; in low-income economies, however, relatively little is wasted at the household level.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/reduced-food-waste"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Roughly a third of the world’s food is never eaten, which means land and resources used and greenhouse gases emitted in producing it were unnecessary. Interventions can reduce loss and waste, as food moves from farm to fork, thereby reducing overall demand.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Roughly a third of the world’s food is never eaten, which means land and resources used and greenhouse gases emitted in producing it were unnecessary. Interventions can reduce loss and waste, as food moves from farm to fork, thereby reducing overall demand. After taking into account the annual adoption of plant-rich diets, if 50-75 percent of food waste is reduced by 2050, avoided emissions could be equal to 10.3-18.8 gigatons of carbon dioxide. Reducing waste also avoids the deforestation for additional farmland, preventing 74.9-76.3 gigatons of additional emissions. Project Drawdown used forecasts of regional waste estimated from farm to household. This data shows that up to 35 percent of food in high-income economies is thrown out by consumers; in low-income economies, however, relatively little is wasted at the household level.</rdfs:comment>
         <rdfs:label xml:lang="en">reducing food waste</rdfs:label>
     </owl:NamedIndividual>
@@ -4820,7 +5317,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
                 <owl:someValuesFrom rdf:resource="http://webprotege.stanford.edu/RCSp3Q6QJjaE6ehKKudHudg"/>
             </owl:Restriction>
         </rdf:type>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Perennial staple crops provide important foods, such as bananas, avocado, and breadfruit. Compared to annual crops, they have similar yields but higher rates of carbon sequestration. Perennial staple crops currently grow on approximately 50 million hectares, mostly in the tropics. Their rate of sequestration is high at 3.34 tons per hectare per year. Expand this area by another 601-141million hectares by 2050 and they can sequester 15.4-31.3 gigatons of additional carbon dioxide. Our analysis assumes that expansion only occurs on existing grassland, with no forest clearing. Because their yield is 2.4 times higher than annual staples—at 60 percent of the cost—savings are significant ranging from $1.4-3.3 trillion, with an establishment cost of $83-190 billion and lifetime operational cost of $848-1922 billion.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/perennial-staple-crops"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Perennial staple crops provide important foods, such as bananas, avocado, and breadfruit. Compared to annual crops, they have similar yields but higher rates of carbon sequestration.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Perennial staple crops provide important foods, such as bananas, avocado, and breadfruit. Compared to annual crops, they have similar yields but higher rates of carbon sequestration. Perennial staple crops currently grow on approximately 50 million hectares, mostly in the tropics. Their rate of sequestration is high at 3.34 tons per hectare per year. Expand this area by another 601-141million hectares by 2050 and they can sequester 15.4-31.3 gigatons of additional carbon dioxide. Our analysis assumes that expansion only occurs on existing grassland, with no forest clearing. Because their yield is 2.4 times higher than annual staples—at 60 percent of the cost—savings are significant ranging from $1.4-3.3 trillion, with an establishment cost of $83-190 billion and lifetime operational cost of $848-1922 billion.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in perennial staple crops</rdfs:label>
     </owl:NamedIndividual>
@@ -4836,6 +5335,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RDs4XLpuOTOEr72ZPJMWyjR"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RDuEdzMOhOt76COW2RVxZdP"/>
+        <dc:source rdf:resource="https://www.ilo.org/wcmsp5/groups/public/---dgreports/---dcomm/---publ/documents/publication/wcms_711919.pdf"/>
         <dc:source rdf:resource="https://www.one-tab.com/page/M4YO-jl3TCeMqMR590Bosg"/>
         <schema:image rdf:resource="https://dailygeekshow.com/wp-content/uploads/2016/06/Une-transpiration.jpg"/>
         <schema:image rdf:resource="https://i1.pickpik.com/photos/326/563/730/construction-workers-construction-work-mechanic-designer-preview.jpg"/>
@@ -4850,7 +5350,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RqffG0pylVR4qW85eGwoPl">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Heat pumps extract heat from the air and transfer it—from indoors out for cooling, or from outdoors in for heating. With high efficiency, they can dramatically lower building energy use. Heating and cooling of residential and commercial building space requires more than 13,000 terawatt-hours of energy and is estimated to increase to more than 18,000 terawatt-hours by 2050. This energy use comes from on-site fuel combustion and electricity-based systems—from gas furnaces to air-conditioning units. High-efficiency heat pumps reduce fuel consumption to zero and use less electricity to generate heating and cooling. Current adoption is low at 3 percent of delivered heat, but Project Drawdown estimates rapid growth to 20-40 percent in 2050 as costs continue to decrease. For a cost of $77-117 billion above what would be spent on conventional technologies, operating savings could reach $1.1-2.5 trillion over the technology’s lifetime. Emissions reductions in this scenario come to 4.2-9.3 gigatons of carbon dioxide.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/high-efficiency-heat-pumps"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Heat pumps extract heat from the air and transfer it - from indoors out for cooling, or from outdoors in for heating. They dramatically lower building energy use from gas furnaces to air-conditioning units. High-efficiency heat pumps reduce electricity use even further.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Heat pumps extract heat from the air and transfer it—from indoors out for cooling, or from outdoors in for heating. With high efficiency, they can dramatically lower building energy use. Heating and cooling of residential and commercial building space requires more than 13,000 terawatt-hours of energy and is estimated to increase to more than 18,000 terawatt-hours by 2050. This energy use comes from on-site fuel combustion and electricity-based systems—from gas furnaces to air-conditioning units. High-efficiency heat pumps reduce fuel consumption to zero and use less electricity to generate heating and cooling. Current adoption is low at 3 percent of delivered heat, but Project Drawdown estimates rapid growth to 20-40 percent in 2050 as costs continue to decrease. For a cost of $77-117 billion above what would be spent on conventional technologies, operating savings could reach $1.1-2.5 trillion over the technology’s lifetime. Emissions reductions in this scenario come to 4.2-9.3 gigatons of carbon dioxide.</rdfs:comment>
         <rdfs:label xml:lang="en">using high-efficiency heat pumps</rdfs:label>
     </owl:NamedIndividual>
@@ -4898,6 +5400,22 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     
 
 
+    <!-- http://webprotege.stanford.edu/Rs4yw1TXQsOysU3babN95H -->
+
+    <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/Rs4yw1TXQsOysU3babN95H">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me"/>
+        <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Wildfires are not caused by global warming
+
+&quot;it’s not climate change that has caused today’s [bushfire] disaster, but the criminal negligence of governments that have tried to buy green votes by locking up vast tracts of land as national parks, yet failed to spend the money needed to control ground fuel and maintain fire trails ... We can’t dial down the Earth’s temperature any more than we can lock up every teenage arsonist.&quot; [from Miranda Divine, NY Post]</schema:mythClaim>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Global warming worsens wildfires by drying vegetation and soil, creating more fuel for fires to spread further and faster.  In some areas like southeastern Australia and California, altered atmospheric patterns may also be creating stronger and/or more frequent high pressure systems, resulting in less precipitation and thus both dryer conditions and longer fire seasons.</schema:mythRebuttal>
+        <schema:organizationSource rdf:resource="https://skepticalscience.com/wildfires-global-warming.htm"/>
+        <schema:video rdf:resource="https://youtu.be/pDNNRFwAOMY"/>
+        <rdfs:label xml:lang="en">Wildfires aren&apos;t caused by global warming</rdfs:label>
+    </owl:NamedIndividual>
+    
+
+
     <!-- http://webprotege.stanford.edu/RscUzlKgdFQVS80E8cOyQZ -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RscUzlKgdFQVS80E8cOyQZ">
@@ -4922,7 +5440,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/Rtctk1SGyY2raocnj6VJeg">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCfPh2b9dT7ukFZtEfHQGbi"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Telepresence integrates high-performance visual, audio, and network technologies, so people can interact across geographies. It cuts down on travel—especially flying—and its emissions. By avoiding emissions from business air travel, telepresence can reduce emissions by 1-3.8 gigaton of carbon dioxide over thirty years. That result assumes that over 486-676 million business-related trips are replaced by telepresence in 2050. For organizations, the investment of $87-301 billion in telepresence systems pays off with $1.2 -4.4 trillion worth of business travel savings and 107-143 billion fewer unproductive travel hours.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/telepresence"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Working remotely and communicating via the internet reduces emissions by drastically cutting air travel, saving businesses billions of dollars.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Telepresence integrates high-performance visual, audio, and network technologies, so people can interact across geographies. It cuts down on travel—especially flying—and its emissions. By avoiding emissions from business air travel, telepresence can reduce emissions by 1-3.8 gigaton of carbon dioxide over thirty years. That result assumes that over 486-676 million business-related trips are replaced by telepresence in 2050. For organizations, the investment of $87-301 billion in telepresence systems pays off with $1.2 -4.4 trillion worth of business travel savings and 107-143 billion fewer unproductive travel hours.</rdfs:comment>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Work from home has demonstrated an increase in productivity and has enabled employees to move to lower cost of living areas like the suburbs.</rdfs:comment>
         <rdfs:label xml:lang="en">being telepresent or teleworking</rdfs:label>
@@ -4965,7 +5485,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RvgK3RWRb6dVpRniUARv0a">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anaerobic digesters process backyard or farmyard organic waste into biogas and digestate fertilizer. Biogas stoves can reduce emissions when replacing biomass or kerosene for cooking. Small biogas reactors that can be installed in homes and communities to enable cooking with biogas instead of wood and charcoal stoves which have health and environmental consequences. It is projected that by 2050, small biogas digesters that digest animal and crop wastes can replace 57-87 million inefficient cookstoves in countries in Asia and Africa. The cumulative result: 4.6-9.7 gigatons of carbon dioxide emissions avoided at a net cost of $23-$49 billion. These stoves increase operating costs however by an additional $100-$209 billion over the lifetime of the reactors.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/biogas-for-cooking"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anaerobic digesters process backyard or farmyard organic waste into biogas. Biogas stoves can reduce emissions when replacing biomass or kerosene for cooking.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Anaerobic digesters process backyard or farmyard organic waste into biogas and digestate fertilizer. Biogas stoves can reduce emissions when replacing biomass or kerosene for cooking. Small biogas reactors that can be installed in homes and communities to enable cooking with biogas instead of wood and charcoal stoves which have health and environmental consequences. It is projected that by 2050, small biogas digesters that digest animal and crop wastes can replace 57-87 million inefficient cookstoves in countries in Asia and Africa. The cumulative result: 4.6-9.7 gigatons of carbon dioxide emissions avoided at a net cost of $23-$49 billion. These stoves increase operating costs however by an additional $100-$209 billion over the lifetime of the reactors.</rdfs:comment>
         <rdfs:label xml:lang="en">using biogas for cooking</rdfs:label>
     </owl:NamedIndividual>
