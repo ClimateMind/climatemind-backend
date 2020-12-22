@@ -10,7 +10,7 @@ from typing import Tuple
 from knowledge_graph import app, db, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
-from knowledge_graph.score_nodes import get_user_nodes, get_user_actions
+from knowledge_graph.score_nodes import get_user_nodes, get_user_actions, get_user_general_myth_nodes
 
 value_id_map = {
     1: "conformity",
