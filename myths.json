@@ -1,0 +1,16 @@
+{
+  "myths": [
+    {
+      "myth": "Global warming stopped in 1998.",
+      "fact": "Our planet has continued to build up heat since 1998 - global warming is still happening"
+    },
+    {
+      "myth": "It's cold outside, so global warming must have stopped.",
+      "fact": "Global warming is like rigging the weather dice, making it more likely to get hot days."
+    },
+    {
+      "myth": "Glaciers around the world are increasing, disproving global warming.",
+      "fact": "Overall, glaciers across the globe are shrinking at an accelerating rate, threatening water supplies for millions of people."
+    }
+  ]
+}
