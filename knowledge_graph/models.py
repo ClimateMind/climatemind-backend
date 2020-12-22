@@ -173,6 +173,7 @@ class Scores(db.Model):
 
 class Sessions(db.Model):
     session_id = db.Column(db.String(256), primary_key=True)
+    # zip_code = db.Column(db.String(5))
     scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
 
 

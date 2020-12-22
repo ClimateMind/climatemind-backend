@@ -11,6 +11,7 @@ from knowledge_graph import app, db, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.score_nodes import get_user_nodes
+from knowledge_graph.zip_codes import add_zip_code
 
 value_id_map = {
     1: "conformity",
@@ -121,6 +122,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     session_id = str(uuid.uuid4())
 
     questions = parameter["questionResponses"]
+    zipcode = parameter["zipCode"]
 
     if len(questions["SetOne"]) < RESPONSES_TO_ADD:
         return make_response("not enough set one scores", 400)
@@ -164,6 +166,9 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     try:
         persist_scores(value_scores)
+        # if zipcode:
+          #  try:
+        # add_zip_code(zipcode, session_id)
     except KeyError:
         return make_response("invalid key"), 400
 
