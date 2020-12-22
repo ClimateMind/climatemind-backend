@@ -194,6 +194,15 @@
     
 
 
+    <!-- http://webprotege.stanford.edu/R0mhbsVx6pw4ZN0IKujjpD -->
+
+    <owl:ObjectProperty rdf:about="http://webprotege.stanford.edu/R0mhbsVx6pw4ZN0IKujjpD">
+        <rdfs:subPropertyOf rdf:resource="http://webprotege.stanford.edu/R9hXAELVgSgchv8aHMobPML"/>
+        <rdfs:label xml:lang="en">myth is debunked by</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
     <!-- http://webprotege.stanford.edu/R8zWZRHdkiiXsP3KvnqF0jS -->
 
     <owl:ObjectProperty rdf:about="http://webprotege.stanford.edu/R8zWZRHdkiiXsP3KvnqF0jS">
@@ -214,7 +223,15 @@
     <!-- http://webprotege.stanford.edu/R9hXAELVgSgchv8aHMobPML -->
 
     <owl:ObjectProperty rdf:about="http://webprotege.stanford.edu/R9hXAELVgSgchv8aHMobPML">
-        <rdfs:label xml:lang="en">myth associated with</rdfs:label>
+        <rdfs:label xml:lang="en">is a myth about</rdfs:label>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://webprotege.stanford.edu/RBS5nF8tgEHCAOavY9RGGSU -->
+
+    <owl:ObjectProperty rdf:about="http://webprotege.stanford.edu/RBS5nF8tgEHCAOavY9RGGSU">
+        <rdfs:label xml:lang="en">myth supports</rdfs:label>
     </owl:ObjectProperty>
     
 
@@ -1971,7 +1988,7 @@ Students are scoring lower on standardized tests.</schema:shortDescription>
         <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9R6552i4fn3XHKpoV8QTOx"/>
         <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCdoVWPmTIcdEyb6QfkEug0"/>
         <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCsF77Q9uljIZkHshMgkbQP"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RSqgmuB6RIAv04gEixDJOx"/>
+        <webprotege:RBS5nF8tgEHCAOavY9RGGSU rdf:resource="http://webprotege.stanford.edu/RSqgmuB6RIAv04gEixDJOx"/>
         <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Renewable energy is too expensive
 
 &quot;[Wind energy] is a more expensive way of producing energy than the alternative.&quot; (from David Montgomery)</schema:mythClaim>
@@ -2420,8 +2437,7 @@ If adoption of fuel-saving technologies grows from 10 percent to 50-60 percent o
         <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9R6552i4fn3XHKpoV8QTOx"/>
         <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCdoVWPmTIcdEyb6QfkEug0"/>
         <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCsF77Q9uljIZkHshMgkbQP"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RKsHmIBffqClOO8UkcSmY3"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RSqgmuB6RIAv04gEixDJOx"/>
+        <webprotege:RBS5nF8tgEHCAOavY9RGGSU rdf:resource="http://webprotege.stanford.edu/RSqgmuB6RIAv04gEixDJOx"/>
         <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Renewable energy investment kills jobs
 
 &quot;for every renewable energy job that the State manages to finance, Spain’s experience...reveals with high confidence, by two different methods, that the U.S. should expect a loss of at least 2.2 jobs on average&quot; (from Gabriel Calzada Álvarez)</schema:mythClaim>
@@ -3865,12 +3881,13 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCU0YwArp49u8Xyj0skNjXj">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R7UaBVCzh2O54oDnVl30shn"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9HodVa8KHkIzJV3HunJ7HC"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RBYAEANbzZXfxcNfkPYS1Um"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCOKh8I57dfccKh5QTFhHB0"/>
+        <webprotege:R0mhbsVx6pw4ZN0IKujjpD rdf:resource="http://webprotege.stanford.edu/R7UaBVCzh2O54oDnVl30shn"/>
+        <webprotege:R0mhbsVx6pw4ZN0IKujjpD rdf:resource="http://webprotege.stanford.edu/R9HodVa8KHkIzJV3HunJ7HC"/>
+        <webprotege:R0mhbsVx6pw4ZN0IKujjpD rdf:resource="http://webprotege.stanford.edu/RBYAEANbzZXfxcNfkPYS1Um"/>
+        <webprotege:R0mhbsVx6pw4ZN0IKujjpD rdf:resource="http://webprotege.stanford.edu/RCOKh8I57dfccKh5QTFhHB0"/>
+        <webprotege:R0mhbsVx6pw4ZN0IKujjpD rdf:resource="http://webprotege.stanford.edu/RDDtV325vfj73RkGBtEJcwJ"/>
+        <webprotege:R0mhbsVx6pw4ZN0IKujjpD rdf:resource="http://webprotege.stanford.edu/RoGet2DtXzFfCBQSjgRW3z"/>
         <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RDDtV325vfj73RkGBtEJcwJ"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RoGet2DtXzFfCBQSjgRW3z"/>
         <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Antarctica is gaining ice.
 
 &quot;[Ice] is expanding in much of Antarctica, contrary to the widespread public belief that global warming is melting the continental ice cap.&quot; (from Greg Roberts, The Australian)</schema:mythClaim>
@@ -4735,7 +4752,7 @@ Bamboo is planted on 33.52 million hectares today. We assume that it will be gro
         <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9R6552i4fn3XHKpoV8QTOx"/>
         <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCdoVWPmTIcdEyb6QfkEug0"/>
         <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RCsF77Q9uljIZkHshMgkbQP"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RSqgmuB6RIAv04gEixDJOx"/>
+        <webprotege:RBS5nF8tgEHCAOavY9RGGSU rdf:resource="http://webprotege.stanford.edu/RSqgmuB6RIAv04gEixDJOx"/>
         <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Renewable energy sources can&apos;t provide baseload power</schema:mythClaim>
         <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Although renewable energy does not necessarily need to provide baseload power in the short-term, there are several ways in which it can do so. For example, geothermal energy is available at all times, concentrated solar thermal energy has storage capability, and wind energy can be stored in compressed air.</schema:mythRebuttal>
         <schema:organizationSource rdf:resource="https://skepticalscience.com/renewable-energy-baseload-power.htm"/>
@@ -5126,30 +5143,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/Relkq8lNydWamAFggTD3RD">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R7Yo5FYFleUwkbXjCU3xo4E"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R7pS7MtLuEDp8HhEyf1VtOE"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8Fa34SNdEwdj93hXO0oMS"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8JoXNnKTYqERwU7fblKTWB"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8VWiAcECOGFY5bloP4988I"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8epBa4UvcieLTynfK3E84u"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8t0oNsG3WgnupXsBVSjMHZ"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8uV2oTMZHslQ6qiGWJ8OQO"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9JAWzfiZ9haeNhHiCpTWkr"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R9x3oCu22QJK9ebw5xL7NvB"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RB6zclWNN2qJW6OSyWjyfFz"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RB7k7p2iQQgKdQrkRP2MZWM"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RBqibfoxaYmRDDRiBzSVS0N"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RBvy0CVizhdMfXbtJIc2En"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RDavliTi6W93xwahwtUnUtG"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RDfWjsojED1JhyonjjYn5T1"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RDuEdzMOhOt76COW2RVxZdP"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RJAL6Zu9F3EHB35HCs3cYD"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RO1J1OifvuO602qTIrSXdB"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/Ra98BRMZ0HlUpobb3Z0C5r"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RnbPKhyIQNnShkRKHqGrGm"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RrH4kPiYwZ0tSRSz4lnaYW"/>
-        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/RzalB19SQSGGVxprHL33Ik"/>
+        <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8tO6zSdeJRRUSPaznZIbKU"/>
         <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">It&apos;s not bad
 
 &quot;By the way, if you’re going to vote for something, vote for warming. Less deaths due to cold, regions more habitable, larger crops, longer growing season. That’s good. Warming helps the poor.&quot; (from John MacArthur)</schema:mythClaim>
