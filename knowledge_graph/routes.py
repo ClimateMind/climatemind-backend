@@ -66,8 +66,7 @@ def get_questions() -> Tuple[Response, int]:
     the user.
     """
     try:
-        file = os.path.join(os.getcwd(), "json_files",
-                            "schwartz_questions.json")
+        file = os.path.join(os.getcwd(), "json_files", "schwartz_questions.json")
         with open(file) as json_file:
             data = load(json_file)
     except FileNotFoundError:
@@ -201,19 +200,16 @@ def get_personal_values():
             "achievement",
             "power",
         ]
-        sorted_scores = {key: scores[key]
-                         for key in personal_values_categories}
+        sorted_scores = {key: scores[key] for key in personal_values_categories}
         # del scores["_sa_instance_state"]
         # del scores["session_id"]
         # del scores["user_id"]
         # del scores["scores_id"]
 
-        top_scores = sorted(
-            sorted_scores, key=sorted_scores.get, reverse=True)[:3]
+        top_scores = sorted(sorted_scores, key=sorted_scores.get, reverse=True)[:3]
 
         try:
-            file = os.path.join(os.getcwd(), "json_files",
-                                "value_descriptions.json")
+            file = os.path.join(os.getcwd(), "json_files", "value_descriptions.json")
             with open(file) as f:
                 value_descriptions = load(f)
         except FileNotFoundError:
@@ -257,8 +253,7 @@ def get_feed():
     """
     session_id = str(request.args.get("session-id"))
     try:
-        scores = db.session.query(Scores).filter_by(
-            session_id=session_id).first()
+        scores = db.session.query(Scores).filter_by(session_id=session_id).first()
     # TODO: catch exceptions properly here
     except Exception:
         return make_response("Invalid Session ID or No Information for ID")
@@ -278,9 +273,9 @@ def get_myths():
     Return general climate myths which are not related to a specific climate effect
 
     """
+    # I've added this endpoint and just made it return static JSON data for now so the front end can get to work. This need to be updated to pull the myths data from the ontoloy and retrun it in the same format as the myths.json file
     try:
-        file = os.path.join(os.getcwd(), "json_files",
-                            "myths.json")
+        file = os.path.join(os.getcwd(), "json_files", "myths.json")
         with open(file) as json_file:
             data = load(json_file)
     except FileNotFoundError:
