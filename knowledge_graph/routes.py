@@ -172,12 +172,12 @@ def receive_user_scores() -> Tuple[Response, int]:
         persist_scores(value_scores)
     except KeyError:
         return make_response("invalid key"), 400
-    
+
     if zipcode != None:
-            try:
-                add_zip_code(zipcode, session_id)
-            except Exception as e:
-                return e
+        try:
+            add_zip_code(zipcode, session_id)
+        except Exception as e:
+            return e
 
     response = {"sessionId": session_id}
 
