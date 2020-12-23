@@ -2,13 +2,41 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
+
+#### Table of Contents
+* [Setting up your dev environment (do this first!!)](#setting-up-your-dev-environment)
+    * [Installing Docker](#installing-docker)
+    * [Installing Docker-compose](#installing-docker-compose)
+    * [Important Docker notes for Windows](#important-docker-notes-for-windows)
+* [Running the application with Docker-compose](#running-the-application-with-docker-compose)
+    * [Launching in dev environment](#launching-in-dev-environment) 
+    * [Launching in production environment](#launching-in-production-environment) 
+* [API Documentation](#api-documentation)
+*  [Processing any new Climate Mind OWL ontology file](#processing-any-new-climate-mind-OWL-ontology-file)
+* [Database](#database)
+* [Extra details if started the visualization script directly above.](#extra-details-if-started-the-visualization-script-directly-above)
+* [Code Style](#code-style)
+* [Git Style: How to Make Commits](#git-style:-how-to-make-commits)
+
+## Setting up your dev environment
+
+### Installing Docker
+
 Using Docker you need to install it first: https://www.docker.com/products/docker-desktop
 
+### Installing Docker-compose
+https://docs.docker.com/compose/install/
+
+### Important Docker notes for Windows
 On Windows it is running in a strict secure mode. You need to add the source directory to the Docker Resources: Settings / Resources / File Sharing -> add the application root directory
 
 **_Before doing what's below, be sure the Docker application is running and the command line working directory is changed to the climatemind-backend path._**
 
-## Running the application with Docker Compose (for development)
+## Running the application with Docker Compose 
+
+### Launching in dev environment
+
+[Return to Table of Contents](#table-of-contents)
 
 Build the image container to download and install code dependencies needed for running the app. **_SPECIAL NOTE_**: _Whenever the backend repo has added new dependancies in the requirements.txt file the docker image will need to be re-built by re-running the build command below ._
 
@@ -28,7 +56,7 @@ Stop the container when running in the background. Stops containers and removes 
 
 **_SPECIAL NOTE_**: _Sometimes the terminal says 'Running on http://0.0.0.0:5000' and that url does not work in the browser. If this happens, try going to "http://127.0.0.1:5000" instead._
 
-## Running the application with Docker (for deployment)
+### Launching in production environment
 
 The Docker lifecycle is to build the image and run it only once. After that you can stop or start the image.
 
@@ -54,11 +82,15 @@ Start the container
 
 ## Api Documentation
 
+[Return to Table of Contents](#table-of-contents)
+
 [Swagger Documentation](http://localhost:5000/swagger) is available at detailing the API endpoints available and how they should be used. Whilst in development this can be for at [http://localhost:5000/swagger](http://localhost:5000/swagger).
 
 ---
 
 ## Processing any new Climate Mind OWL ontology file
+
+[Return to Table of Contents](#table-of-contents)
 
 Follow these instructions to process a new version of a Climate Mind ontology OWL file into files used by Climate Mind (such as Networkx pickle file, test ontology JSON, edge list output CSV, etc).
 
@@ -105,11 +137,16 @@ Follow these instructions to process a new version of a Climate Mind ontology OW
     ```
 
 ## Database
+
+[Return to Table of Contents](#table-of-contents)
+
 [Flask migrate](https://flask-migrate.readthedocs.io/en/latest/) is used to handle database structure migrations. 
 Whenever the data model changes, you need to manually run `flask db migrate -m "Name of migration"`
 This will generate a file under `/migrations/version` which then should be checked into GIT. Whenever the API starts up, it calls `flask db upgrade`. This command will automatically apply any new migrations to the database. No manual scripts or post release commands required!
 
 ## Extra details if started the visualization script directly above.
+
+[Return to Table of Contents](#table-of-contents)
 
 6. After running step 3 OPTION B above, find the URL that appears in the terminal and go to it in your internet browser.
 
@@ -121,8 +158,67 @@ This will generate a file under `/migrations/version` which then should be check
 8. When done using the dashboard, close the browser and stop the script from running by going to the terminal and pressing [CTRL + C]
 
 ## Code Style
+
+[Return to Table of Contents](#table-of-contents)
+
 The python code is style using [Black](https://pypi.org/project/black/)
 
 You can run Black locally to see which files need formatting using `python3 -m black --check ./`
 
 You can use Black to automatically format your files using `python3 -m black ./`
+
+
+## Git Style: How to Make Commits
+
+[Return to Table of Contents](#table-of-contents)
+
+#### 1. Fork ClimateMind's backend repository into your GitHub account
+
+#### 2. Clone the fork to your machine
+
+* SSH (recommended)
+    
+    ```git clone git@github.com:<your-github-account>/climatemind-backend.git```
+    
+* HTTPS (requires login for every ```git pull```) 
+    
+    ```git clone https://github.com/<your-github-account>/climatemind-backend.git```
+
+#### 3. Add the climatemind/backend repository as your 'upstream' remote
+
+ If you run ```git remote -v``` you can see all of your remote repositories. At this point, you should only see a 'fetch'/'push' for your fork. Now we'll add the original repository we forked using:
+
+```git remote add upstream https://github.com/ClimateMind/climatemind-backend```
+
+[source](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/configuring-a-remote-for-a-fork)
+
+#### 4. Sync your local copy of your fork with the 'upstream' branch
+
+```git fetch upstream```
+```git checkout main```
+```get merge upstream/main```
+
+Make sure to do this regularly, to avoid merging conflicts. When submitting your changes upstream, later.
+
+[source](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
+
+#### 4. From the Fork, create a feature branch for your Jira issue
+
+```git checkout -b CM-<Jira-issue-number>-and-short-title```
+
+#### 5. Customize the .gitmessagetemplate for your branch's commits
+    
+We want to automate good practices when making commits across our various branches.
+
+ * First, create a copy of .gitmessagetemplate and all the people that are contributing.
+    * bash command: ```$ cp .gitmessagetemplate .gitmessage```
+    * powershell: TODO
+* Second, add it to your project's local git config
+    * bash command: ```$ git config --local commit.template```
+    * powershell: TODO
+
+#### 6. Update remote repositories with your new branch + commits
+
+fork: ```git push origin ``` 
+
+upstream: ```git push upstream <branch-name>```
