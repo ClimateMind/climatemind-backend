@@ -70,6 +70,22 @@ def get_image_url(node):
         return "https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"
 
 
+def get_image_url_or_none(node):
+    """Images are displayed to the user in the climate feed to accompany an explanation
+    of the climate effects. The front-end is provided with the URL and then requests
+    these images from our server.
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    try:
+        return node["properties"]["schema_image"][0]
+    except:
+        # Default image url if image is added
+        return None
+
+
 def get_scores_vector(user_scores):
     """Extracts scores from a dictionary and returns the scores as a vector.
 
@@ -122,7 +138,7 @@ def simple_scoring(G, user_scores):
                 "effectTitle": G.nodes[node]["label"],
                 "effectDescription": get_description(G.nodes[node]),
                 "effectShortDescription": get_short_description(G.nodes[node]),
-                "imageUrl": get_image_url(G.nodes[node]),
+                "imageUrl": get_image_url_or_none(G.nodes[node]),
             }
 
             if any(v is None for v in node_values_associations_10):
@@ -142,7 +158,6 @@ def simple_scoring(G, user_scores):
 
             d["effectScore"] = score
             climate_effects.append(d)
-
     return climate_effects
 
 
@@ -199,37 +214,27 @@ def get_user_actions(effect_name):
     solutions = []
     for solution in solution_names:
         try:
-            s = {
+            s_dict = {
                 "solutionTitle": G.nodes[solution]["label"],
                 "solutionType": "adaptation",
-                "shortDescription": G.nodes[solution]["properties"][
-                    "schema_shortDescription"
-                ][0],
-                "longDescription": G.nodes[solution]["properties"][
-                    "schema_longDescription"
-                ][0],
-                "imageURL": G.nodes[solution]["properties"]["schema_image"][0],
+                "shortDescription": get_short_description(G.nodes[solution]),
+                "longDescription": get_description(G.nodes[solution]),
+                "imageURL": get_image_url(G.nodes[solution]),
             }
-            solutions.append(s)
+            solutions.append(s_dict)
         except:
             pass
-
     solution_names = G.nodes["increase in greenhouse effect"]["mitigation solutions"]
     for solution in solution_names:
         try:
-            s = {
+            s_dict = {
                 "solutionTitle": G.nodes[solution]["label"],
                 "solutionType": "mitigation",
-                "shortDescription": G.nodes[solution]["properties"][
-                    "schema_shortDescription"
-                ][0],
-                "longDescription": G.nodes[solution]["properties"][
-                    "schema_longDescription"
-                ][0],
-                "imageURL": G.nodes[solution]["properties"]["schema_image"][0],
+                "shortDescription": get_short_description(G.nodes[solution]),
+                "longDescription": get_description(G.nodes[solution]),
+                "imageURL": get_image_url(G.nodes[solution]),
             }
-            solutions.append(s)
+            solutions.append(s_dict)
         except:
             pass
-
     return solutions
