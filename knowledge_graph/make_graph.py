@@ -308,10 +308,11 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     """
 
     # Load ontology and format object properties and annotation properties into Python readable names
-    onto = get_ontology(onto_path).load()
+    my_world = owlready2.World()
+    onto = my_world.get_ontology(onto_path).load()
     obj_properties = list(onto.object_properties())
     annot_properties = list(onto.annotation_properties())
-    data_properties = list(onto.annotation_properties())
+    data_properties = list(onto.data_properties())
     [give_alias(x) for x in obj_properties if x.label]
     [give_alias(x) for x in annot_properties if x.label]
     [give_alias(x) for x in data_properties if x.label]
