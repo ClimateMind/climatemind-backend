@@ -21,3 +21,5 @@ def add_zip_code(zipcode, session_id):
             db.session.commit()
         except KeyError:
             return KeyError
+        except ValueError:
+            return ValueError
