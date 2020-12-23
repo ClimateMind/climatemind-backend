@@ -104,8 +104,8 @@ def receive_user_scores() -> Tuple[Response, int]:
     from the overall average of all 10 or 20 questions. This is returned to the
     front-end.
 
-    Version 1 - This method currently also checks whether the user entered a zip code, 
-    calling the function to commit the zip code to the db if found. The zip code is 
+    Version 1 - This method currently also checks whether the user entered a zip code,
+    calling the function to commit the zip code to the db if found. The zip code is
     received as part of the scores post request.
     """
     try:

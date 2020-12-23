@@ -16,7 +16,7 @@ def add_zip_code(zipcode, session_id):
     if mo != None:
         try:
             session_id = Sessions.query.filter_by(session_id=session_id)
-            session_id.zipcode = zipcode
+            session_id.postal_code = int(zipcode)
 
             db.session.commit()
         except KeyError:
