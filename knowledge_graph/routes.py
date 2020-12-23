@@ -252,6 +252,8 @@ def get_feed():
     relevant to a user to display in the user's feed.
 
     """
+    N_FEED_CARDS = 5
+
     session_id = str(request.args.get("session-id"))
     try:
         scores = db.session.query(Scores).filter_by(session_id=session_id).first()
@@ -262,9 +264,9 @@ def get_feed():
     scores = scores.__dict__
     del scores["_sa_instance_state"]
 
-    recommended_nodes = get_user_nodes(scores)
-    climate_effects = {"climateEffects": recommended_nodes}
-    return jsonify(climate_effects), 200
+    recommended_nodes = get_user_nodes(scores, N_FEED_CARDS)
+    feed_entries = {"climateEffects": recommended_nodes}
+    return jsonify(feed_entries), 200
 
 
 @app.route("/documentation")

@@ -158,7 +158,7 @@ def get_best_nodes(climate_effects, n):
     """
     best_nodes = sorted(
         climate_effects, key=lambda k: k["effectScore"] or float("-inf"), reverse=True
-    )[:5]
+    )[:n]
     return best_nodes
 
 
@@ -167,7 +167,14 @@ def get_pickle_file(filename):
     return G
 
 
-def get_user_nodes(user_scores):
+def get_user_nodes(user_scores, n):
+    """Returns the top n Nodes for a user feed.
+
+    Parameters
+    ----------
+    nodes_with_scores - Dictionary containing NetworkX nodes and Integer scores
+    n - Integer to specify # of desired scores
+    """
     G = get_pickle_file("Climate_Mind_DiGraph.gpickle")
 
     valid_test_ont = get_valid_test_ont()
@@ -175,7 +182,7 @@ def get_user_nodes(user_scores):
 
     get_test_ontology(G, valid_test_ont, not_test_ont)
     climate_effects = simple_scoring(G, user_scores)
-    best_nodes_for_user = get_best_nodes(climate_effects, 3)
+    best_nodes_for_user = get_best_nodes(climate_effects, n)
     return best_nodes_for_user
 
 
@@ -194,13 +201,14 @@ def get_user_actions(effect_name):
         try:
             s = {
                 "solutionTitle": G.nodes[solution]["label"],
+                "solutionType": "adaptation",
                 "shortDescription": G.nodes[solution]["properties"][
                     "schema_shortDescription"
-                ],
+                ][0],
                 "longDescription": G.nodes[solution]["properties"][
                     "schema_longDescription"
-                ],
-                "imageURL": G.nodes[solution]["properties"]["schema_image"],
+                ][0],
+                "imageURL": G.nodes[solution]["properties"]["schema_image"][0],
             }
             solutions.append(s)
         except:
@@ -211,13 +219,14 @@ def get_user_actions(effect_name):
         try:
             s = {
                 "solutionTitle": G.nodes[solution]["label"],
+                "solutionType": "mitigation",
                 "shortDescription": G.nodes[solution]["properties"][
                     "schema_shortDescription"
-                ],
+                ][0],
                 "longDescription": G.nodes[solution]["properties"][
                     "schema_longDescription"
-                ],
-                "imageURL": G.nodes[solution]["properties"]["schema_image"],
+                ][0],
+                "imageURL": G.nodes[solution]["properties"]["schema_image"][0],
             }
             solutions.append(s)
         except:
