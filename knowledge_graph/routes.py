@@ -10,6 +10,7 @@ from typing import Tuple
 from knowledge_graph import app, db, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
+from knowledge_graph.store_ip_address import store_ip_address
 from knowledge_graph.score_nodes import get_user_nodes, get_user_actions
 
 value_id_map = {
@@ -164,6 +165,8 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     try:
         persist_scores(value_scores)
+        ip_address = request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
+        store_ip_address(ip_address, session_id)
     except KeyError:
         return make_response("invalid key"), 400
 
