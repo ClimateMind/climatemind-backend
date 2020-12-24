@@ -174,6 +174,7 @@ class Scores(db.Model):
 class Sessions(db.Model):
     session_id = db.Column(db.String(256), primary_key=True)
     scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
+    ip_address = db.Column(db.String(255), primary_key=False)
 
 
 # create tables in database if they don't exist. Do nothing if they do exist.
