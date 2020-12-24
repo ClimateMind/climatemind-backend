@@ -147,7 +147,8 @@ def simple_scoring(G, user_scores):
             if any(v is None for v in node_values_associations_10):
                 score = None
             else:
-                node_values_associations_10 = np.array(node_values_associations_10)
+                node_values_associations_10 = np.array(
+                    node_values_associations_10)
                 # double the magnitude of the backfire-effect representation:
                 modified_node_values_associations_10 = np.where(
                     node_values_associations_10 < 0,
@@ -256,7 +257,7 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
                 "solutionType": "adaptation",
                 "shortDescription": get_short_description(G.nodes[solution]),
                 "longDescription": get_description(G.nodes[solution]),
-                "imageURL": get_image_url_or_none(G.nodes[solution]),
+                "imageUrl": get_image_url_or_none(G.nodes[solution]),
             }
             adaptation_solutions.append(s_dict)
         except:
@@ -269,7 +270,7 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
                 "solutionType": "mitigation",
                 "shortDescription": get_short_description(G.nodes[solution]),
                 "longDescription": get_description(G.nodes[solution]),
-                "imageURL": get_image_url_or_none(G.nodes[solution]),
+                "imageUrl": get_image_url_or_none(G.nodes[solution]),
             }
             mitigation_solutions.append(s_dict)
         except:
