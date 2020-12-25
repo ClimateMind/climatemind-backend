@@ -176,6 +176,7 @@ class Sessions(db.Model):
     # postal code variable type for SQL will need to change when scaling up to accept postal codes with letters
     postal_code = db.Column(db.Integer)
     scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
+    ip_address = db.Column(db.String(255), primary_key=False)
 
 
 # create tables in database if they don't exist. Do nothing if they do exist.

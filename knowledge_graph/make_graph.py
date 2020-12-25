@@ -6,6 +6,7 @@ import pandas as pd
 
 import owlready2
 from owlready2 import get_ontology, sync_reasoner
+from collections import OrderedDict
 
 from knowledge_graph.ontology_processing_utils import (
     give_alias,
@@ -307,10 +308,11 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     """
 
     # Load ontology and format object properties and annotation properties into Python readable names
-    onto = get_ontology(onto_path).load()
+    my_world = owlready2.World()
+    onto = my_world.get_ontology(onto_path).load()
     obj_properties = list(onto.object_properties())
     annot_properties = list(onto.annotation_properties())
-    data_properties = list(onto.annotation_properties())
+    data_properties = list(onto.data_properties())
     [give_alias(x) for x in obj_properties if x.label]
     [give_alias(x) for x in annot_properties if x.label]
     [give_alias(x) for x in data_properties if x.label]
@@ -336,6 +338,127 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     add_ontology_data_to_graph_nodes(G, onto)
     to_remove = set_edge_properties(G)
     remove_edge_properties_from_nodes(G, to_remove)
+
+    # process the mitigation and adaptation solutions in the networkx object and add them into special attribute fields for each node for easy access in later for the API
+    B = G.copy()
+    # identify nodes that are in the class 'feedback loop' then remove those nodes' 'caueses' edges because they start feedback loops.
+    nx.get_node_attributes(B, "direct classes")
+    feedback_nodes = list()
+    graph_attributes_dictionary = nx.get_node_attributes(B, "direct classes")
+    for node in graph_attributes_dictionary:
+        if "feedback loop" in graph_attributes_dictionary[node]:
+            feedback_nodes.append(node)
+    # get the 'causes' edges that lead out of the feedback_nodes
+    # must only remove edges that cause increase in greenhouse gases... so only remove edges if the neighbor is of the class 'increase in atmospheric greenhouse gas'
+    feedbackloop_edges = list()
+    for node in feedback_nodes:
+        node_neighbors = B.neighbors(node)
+        for neighbor in node_neighbors:
+            if (
+                "increase in atmospheric greenhouse gas"
+                in graph_attributes_dictionary[neighbor]
+                or "root cause linked to humans"
+                in graph_attributes_dictionary[neighbor]
+            ):
+                # should make this 'increase in atmospheric greenhouse gas' not hard coded!
+                if (
+                    B[node][neighbor]["type"] == "causes_or_promotes"
+                ):  # should probably make this so the causes_or_promotes isn't hard coded!
+                    feedbackloop_edges.append((node, neighbor))
+
+    # remove all the feedback loop edges
+    for feedbackloopEdge in feedbackloop_edges:
+        nodeA = feedbackloopEdge[0]
+        nodeB = feedbackloopEdge[1]
+        B.remove_edge(nodeA, nodeB)
+
+    # feedback loop edges should be severed in the graph copy B
+    edges_upstream_greenhouse_effect = nx.edge_dfs(
+        B, "increase in greenhouse effect", orientation="reverse"
+    )
+
+    nodes_upstream_greenhouse_effect = list()
+    for edge in edges_upstream_greenhouse_effect:
+        nodeA = edge[0]
+        nodeB = edge[1]
+        nodes_upstream_greenhouse_effect.append(nodeA)
+        nodes_upstream_greenhouse_effect.append(nodeB)
+
+    nodes_upstream_greenhouse_effect = list(
+        OrderedDict.fromkeys(nodes_upstream_greenhouse_effect)
+    )
+
+    # now get all the nodes that have the inhibit relationship with the nodes found in nodes_upstream_greenhouse_effect (these nodes should all be the mitigation solutions)
+    mitigation_solutions = list()
+    for node in nodes_upstream_greenhouse_effect:
+        node_neighbors = B.neighbors(node)
+        for neighbor in node_neighbors:
+            if (
+                B[node][neighbor]["type"]
+                == "is_inhibited_or_prevented_or_blocked_or_slowed_by"
+            ):  # bad to hard code in 'is_inhibited_or_prevented_or_blocked_or_slowed_by'
+                mitigation_solutions.append(neighbor)
+
+    # update the networkx object to have a 'mitigation solutions' field and include in it all nodes from mitigation_solutions
+    nx.set_node_attributes(
+        G,
+        {"increase in greenhouse effect": mitigation_solutions},
+        "mitigation solutions",
+    )
+    # to check or obtain the solutions from the networkx object: G.nodes['increase in greenhouse effect']['mitigation solutions']
+    # breakpoint()
+
+    # code to get the adaptation solutions from a node in the networkx object:
+
+    # use the pruned copy of the graph (use B) because it has the feedback loop edges removed.
+    # Get the upstream edges of the node in the B graph that occur between the node in question and the node 'increase in greenhouse effect'
+    # print(list(nx.dfs_edges(B,”starting node name”))) #this is to get downstream edges
+    # to do this could remove the parent edges of the 'increase in greenhouse effect' node?
+    # adaptation is defined as solutions to the node or any node upstream of the node up until the node 'increase in greenhouse effect'.
+
+    # get all the nodes that are downstream of 'increase in greenhouse effect'. should be all the impact/effect node... could probably get these by doing class search too
+    downstream_nodes = nx.dfs_edges(B, "increase in greenhouse effect")
+    downstream_nodes = [item for sublist in downstream_nodes for item in sublist]
+    nodes_downstream_greenhouse_effect = list(OrderedDict.fromkeys(downstream_nodes))
+    for effectNode in nodes_downstream_greenhouse_effect:
+        intermediate_nodes = nx.all_simple_paths(
+            B, "increase in greenhouse effect", effectNode
+        )
+        # collapse nested lists and remove duplicates
+        intermediate_nodes = [
+            item for sublist in intermediate_nodes for item in sublist
+        ]
+        intermediate_nodes = list(
+            dict.fromkeys(intermediate_nodes)
+        )  # gets unique nodes
+        node_adaptation_solutions = list()
+        for intermediateNode in intermediate_nodes:
+            # if intermediateNode == 'increase in area burned by wildfire': breakpoint()
+            node_neighbors = G.neighbors(intermediateNode)
+            for neighbor in node_neighbors:
+                if (
+                    G[intermediateNode][neighbor]["type"]
+                    == "is_inhibited_or_prevented_or_blocked_or_slowed_by"
+                ):  # bad to hard code in 'is_inhibited_or_prevented_or_blocked_or_slowed_by'
+                    node_adaptation_solutions.append(neighbor)
+        # add the adaptation solutions to the networkx object for the node
+        # be sure that solutions don't show up as effectNodes! and that they aren't solutions to themself! the code needs to be changed to avoid this.
+        # ^solutions shouldn't be added as solutions to themself!
+        node_adaptation_solutions = list(
+            dict.fromkeys(node_adaptation_solutions)
+        )  # gets unique nodes
+        # print(str(effectNode)+": "+str(node_adaptation_solutions))
+
+        # need to add a check here that doesn't add to effectNode attributes the effectNode as an adaptation solution (solution nodes should have themself as an adaptation solution!)
+        nx.set_node_attributes(
+            G, {effectNode: node_adaptation_solutions}, "adaptation solutions"
+        )
+    # to check or obtain the solutions from the networkx object: G.nodes[node]['adaptation solutions']
+    # ex: G.nodes['decrease in test scores']['adaptation solutions']
+    # should probably code in for the 'adaptation solutions' field to read "None yet curated" if there isn't any to avoid errors from occuring later by API ?
+    # G.nodes['increase in area burned by wildfire']['adaptation solutions'] should not return *** KeyError: 'adaptation solutions'
+
+    # B.nodes['permafrost melt']['direct classes']
 
     # output_folder_path = "../PUT_NEW_OWL_FILE_IN_HERE/"
     save_graph_to_pickle(G, output_folder_path)
