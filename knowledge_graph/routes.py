@@ -165,7 +165,8 @@ def receive_user_scores() -> Tuple[Response, int]:
 
     try:
         persist_scores(value_scores)
-        ip_address = request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
+        ip_address = request.headers.getlist("X-Forwarded-For")
+        # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
         store_ip_address(ip_address, session_id)
     except KeyError:
         return make_response("invalid key"), 400
