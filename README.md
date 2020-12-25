@@ -2,7 +2,6 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
-<<<<<<< HEAD
 
 #### Table of Contents
 * [Setting up your dev environment (do this first!!)](#setting-up-your-dev-environment)
@@ -30,9 +29,6 @@ https://docs.docker.com/compose/install/
 
 ### Important Docker notes for Windows
 On Windows it is running in a strict secure mode. You need to add the source directory to the Docker Resources: Settings / Resources / File Sharing -> add the application root directory
-=======
-This project uses Docker. Install it through their website: https://www.docker.com/products/docker-desktop
->>>>>>> 4e5a49ea4ce0628e54436f0d9d0b852f2aea1f8e
 
 **_Before doing what's below, be sure the Docker application is running and the command line working directory is changed to the climatemind-backend path._**
 
@@ -42,13 +38,7 @@ This project uses Docker. Install it through their website: https://www.docker.c
 
 [Return to Table of Contents](#table-of-contents)
 
-Windows users - you may experience problems with building or starting the containers if your system automatically converts Unix line endings ('\n') to DOS line endings ('\r\n'). You can prevent this from happening by running the command below. 
-
-    git config --global core.autocrlf false
-
-Build the image container to download and install code dependencies needed for running the app using the build command below.
-
-**_SPECIAL NOTE_**: _Whenever the backend repo has added new dependancies in the requirements.txt file the docker image will need to be re-built by re-running the build command._
+Build the image container to download and install code dependencies needed for running the app. **_SPECIAL NOTE_**: _Whenever the backend repo has added new dependancies in the requirements.txt file the docker image will need to be re-built by re-running the build command below ._
 
     docker-compose build
 
@@ -90,19 +80,15 @@ Start the container
 
     docker start climatemind-backend
 
-## Api documentation
+## Api Documentation
 
-<<<<<<< HEAD
 [Return to Table of Contents](#table-of-contents)
 
 [Swagger Documentation](http://localhost:5000/swagger) is available at detailing the API endpoints available and how they should be used. Whilst in development this can be for at [http://localhost:5000/swagger](http://localhost:5000/swagger).
-=======
-[Swagger Documentation](http://localhost:5000/swagger) is available, detailing the API endpoints and how they should be used. Whilst in development this can be found at [http://localhost:5000/swagger](http://localhost:5000/swagger).
->>>>>>> 4e5a49ea4ce0628e54436f0d9d0b852f2aea1f8e
 
 ---
 
-## Processing a new Climate Mind OWL ontology file
+## Processing any new Climate Mind OWL ontology file
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -112,7 +98,7 @@ Follow these instructions to process a new version of a Climate Mind ontology OW
     * Download the OWL ontology file by going to webprotege.stanford.edu and downloading in the format 'RDF/XML'. (If you don't have access, simply email hello@climatemind.org with your webprotege username to get access). 
     * Unzip the download and go into the folder and move/copy the single ontology file to the folder in the climatemind-backend directory folder named 'PUT_NEW_OWL_FILE_IN_HERE'
 
-2. Change the directory to be the climatemind-backend by using the following command. The part in caps should be replaced with the path to climatemind-backend on your system (for mac):
+2. Change the directory to be the climatemind-backend by using the following command with the part in caps replaced with the path to climatemind-backend on your system (for mac):
 
    for OSX: `cd PATH_TO_CLIMATEMIND-BACKEND`
 
@@ -156,9 +142,9 @@ Follow these instructions to process a new version of a Climate Mind ontology OW
 
 [Flask migrate](https://flask-migrate.readthedocs.io/en/latest/) is used to handle database structure migrations. 
 Whenever the data model changes, you need to manually run `flask db migrate -m "Name of migration"`
-This will generate a file under `/migrations/version` which then should be checked into GIT. Whenever the API starts up, it calls `flask db upgrade`. This command will automatically apply any new migrations to the database. No manual scripts or post release commands are required!
+This will generate a file under `/migrations/version` which then should be checked into GIT. Whenever the API starts up, it calls `flask db upgrade`. This command will automatically apply any new migrations to the database. No manual scripts or post release commands required!
 
-## Extra details if the visualization script directly above was started.
+## Extra details if started the visualization script directly above.
 
 [Return to Table of Contents](#table-of-contents)
 
@@ -172,22 +158,13 @@ This will generate a file under `/migrations/version` which then should be check
 8. When done using the dashboard, close the browser and stop the script from running by going to the terminal and pressing [CTRL + C]
 
 ## Code Style
-<<<<<<< HEAD
 
 [Return to Table of Contents](#table-of-contents)
 
 The python code is style using [Black](https://pypi.org/project/black/)
-=======
-The Python code style is formatted using [Black](https://pypi.org/project/black/). Black is a file formatter that converts your code to follow [PEP 8](https://www.python.org/dev/peps/pep-0008/) standards. PEP 8 provides guidelines and best practices for writing Python, and is the standard style used for modern Python libraries. 
 
-Install Black by running `pip install black`. Note: Python 3.6.0+ is required.
+You can run Black locally to see which files need formatting using `python3 -m black --check ./`
 
-Cd into the climatemind-backend directory on your computer to run black commands.
->>>>>>> 4e5a49ea4ce0628e54436f0d9d0b852f2aea1f8e
-
-Run Black locally to see which files need formatting using `python3 -m black --check ./`
-
-<<<<<<< HEAD
 You can use Black to automatically format your files using `python3 -m black ./`
 
 
@@ -245,6 +222,3 @@ We want to automate good practices when making commits across our various branch
 fork: ```git push origin ``` 
 
 upstream: ```git push upstream <branch-name>```
-=======
-Use Black to automatically format your files using `python3 -m black ./`
->>>>>>> 4e5a49ea4ce0628e54436f0d9d0b852f2aea1f8e
