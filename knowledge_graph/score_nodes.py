@@ -253,7 +253,7 @@ def get_user_actions(effect_name):
     return solutions
 
 
-def get_user_general_myth_nodes(user_scores):
+def get_user_general_myth_nodes():
     """Takes the user's personal values scores and returns a list of general myths and some information about those general myths.
     The myths will later be ranked based on user's personal values (although not being done in the current implementation).
     Parameters
