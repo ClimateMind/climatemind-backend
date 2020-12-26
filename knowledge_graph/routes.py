@@ -278,15 +278,15 @@ def get_general_myths():
     The front-end needs general myths list and information to serve to user when they click the general myths menu button.
     General myths are ordered based on relevance predicted from users personal values.
     """
-    #session_id = str(request.args.get("session-id"))
-    #try:
-        scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    # session_id = str(request.args.get("session-id"))
+    # try:
+    # scores = db.session.query(Scores).filter_by(session_id=session_id).first()
     # TODO: catch exceptions properly here
-    #except Exception:
+    # except Exception:
     #    return make_response("Invalid Session ID or No Information for ID")
 
-    #scores = scores.__dict__
-    #del scores["_sa_instance_state"]
+    # scores = scores.__dict__
+    # del scores["_sa_instance_state"]
 
     recommended_general_myths = get_user_general_myth_nodes()
     climate_general_myths = {"myths": recommended_general_myths}
