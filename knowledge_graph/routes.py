@@ -271,6 +271,7 @@ def get_feed():
     recommended_nodes = get_user_nodes(scores, N_FEED_CARDS)
     feed_entries = {"climateEffects": recommended_nodes}
     return jsonify(feed_entries), 200
+<<<<<<< HEAD
 
 
 @app.route("/myths", methods=["GET"])
@@ -292,6 +293,8 @@ def get_myths():
     response.headers["Content-Type"] = "application/json"
 
     return response, 200
+=======
+>>>>>>> master
 
 
 @app.route("/documentation")
