@@ -87,13 +87,28 @@ The start of your workflow should be to look at Pivotal tracker and see what tas
 
 1. Click 'start' on a Pivotal story (or make a new story by following our story writing guide, then click 'start'). If there isn’t a story that accurately reflects the change you want to make, consult with the backend team on Slack.
 
-2. To start contributing a change, first make sure you have the latest version of the project by pulling it down from github. Next, make a branch from master named in accordance with your change is trying to accomplish, for example:
+2. To start contributing a change, first make sure you have the latest version of the project by pulling it down from github. You should do this by first making a [personal fork of this repository into your GitHub account](https://guides.github.com/activities/forking/) and then pull down a copy of that fork.
+
+    Next, make a branch from master named in accordance with what your change is trying to accomplish, for example:
 
         $ git checkout -b feature/{pivotal-story-ID}-short-meaningful-title-of-the-branch
 
 	Make sure you include the pivotal-story-id in the branch name. This provides some nifty integration that links your branch to the Pivotal tracker :)
 
-	Once starting the work, try to make commits onto your branch with useful and descriptive messages so that the team can understand what you are trying to accomplish and so support can be provided in the process. 
+    Once starting the work, we have provided you     with a template for your branch's git commit messages, so you have a convenient way to produce consistent, useful, and descriptive messages. This makes it easy for the team to understand what you are trying to accomplish and so support can be provided in the process. It is important that if you choose not to use this template, that you familiarize yourself with its instructions, so you know what we're expecting.
+    
+    (The instructions below are for the bash terminal).
+
+    First, create a copy of .gitmessagetemplate and rename it to ```.gitmessage```.
+
+    ```$ cp .gitmessagetemplate .gitmessage```
+    
+    Second, go into ```.gitmessage``` and follow the instructions to edit the template to include your name and email, as well as anyone else working with you directly on your branch's contributions.
+    
+    Third, add it to your project's local git config
+    ```$ git config --local commit.template```
+
+    Finally, enter ```git commit``` (do NOT use the ```-m``` option) and you should see the new template! Add your title and other notes according to the commented instructions and save. This will be part of your new workflow when adding commits to your branch.
 
 3. When you are happy with the changes you've made, proceed by going on the repository website: <a>https://github.com/ClimateMind/climatemind-backend</a> and create a **pull request** for your changes to be merged into master.
 

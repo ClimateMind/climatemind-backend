@@ -12,11 +12,10 @@
     * [Launching in dev environment](#launching-in-dev-environment) 
     * [Launching in production environment](#launching-in-production-environment) 
 * [API Documentation](#api-documentation)
-*  [Processing any new Climate Mind OWL ontology file](#processing-any-new-climate-mind-OWL-ontology-file)
+* [Processing any new Climate Mind OWL ontology file](#processing-any-new-climate-mind-OWL-ontology-file)
 * [Database](#database)
 * [Extra details if started the visualization script directly above.](#extra-details-if-started-the-visualization-script-directly-above)
 * [Code Style](#code-style)
-* [Git Style: How to Make Commits](#git-style:-how-to-make-commits)
 
 ## Setting up your dev environment
 
@@ -166,59 +165,3 @@ The python code is style using [Black](https://pypi.org/project/black/)
 You can run Black locally to see which files need formatting using `python3 -m black --check ./`
 
 You can use Black to automatically format your files using `python3 -m black ./`
-
-
-## Git Style: How to Make Commits
-
-[Return to Table of Contents](#table-of-contents)
-
-#### 1. Fork ClimateMind's backend repository into your GitHub account
-
-#### 2. Clone the fork to your machine
-
-* SSH (recommended)
-    
-    ```git clone git@github.com:<your-github-account>/climatemind-backend.git```
-    
-* HTTPS (requires login for every ```git pull```) 
-    
-    ```git clone https://github.com/<your-github-account>/climatemind-backend.git```
-
-#### 3. Add the climatemind/backend repository as your 'upstream' remote
-
- If you run ```git remote -v``` you can see all of your remote repositories. At this point, you should only see a 'fetch'/'push' for your fork. Now we'll add the original repository we forked using:
-
-```git remote add upstream https://github.com/ClimateMind/climatemind-backend```
-
-[source](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/configuring-a-remote-for-a-fork)
-
-#### 4. Sync your local copy of your fork with the 'upstream' branch
-
-```git fetch upstream```
-```git checkout main```
-```get merge upstream/main```
-
-Make sure to do this regularly, to avoid merging conflicts. When submitting your changes upstream, later.
-
-[source](https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/syncing-a-fork)
-
-#### 4. From the Fork, create a feature branch for your Jira issue
-
-```git checkout -b CM-<Jira-issue-number>-and-short-title```
-
-#### 5. Customize the .gitmessagetemplate for your branch's commits
-    
-We want to automate good practices when making commits across our various branches.
-
- * First, create a copy of .gitmessagetemplate and all the people that are contributing.
-    * bash command: ```$ cp .gitmessagetemplate .gitmessage```
-    * powershell: TODO
-* Second, add it to your project's local git config
-    * bash command: ```$ git config --local commit.template```
-    * powershell: TODO
-
-#### 6. Update remote repositories with your new branch + commits
-
-fork: ```git push origin ``` 
-
-upstream: ```git push upstream <branch-name>```
