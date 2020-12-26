@@ -8,6 +8,7 @@ from knowledge_graph.make_graph import (
     get_non_test_ont,
 )
 import numpy as np
+import random
 
 
 def get_node_id(node):
@@ -97,6 +98,22 @@ def get_image_url(node):
         return "https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"
 
 
+def get_image_url_or_none(node):
+    """Images are displayed to the user in the climate feed to accompany an explanation
+    of the climate effects. The front-end is provided with the URL and then requests
+    these images from our server.
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    try:
+        return node["properties"]["schema_image"][0]
+    except:
+        # Default image url if image is added
+        return None
+
+
 def get_scores_vector(user_scores):
     """Extracts scores from a dictionary and returns the scores as a vector.
 
@@ -124,6 +141,8 @@ OFFSET = 4  # .edu <- to skip these characters and get the unique IRI
 ALPHA = (
     2  # variable for transforming user questionnaire scores to exponential distribution
 )
+MAX_N_SOLUTIONS = 4
+RATIO = 0.5  # ratio of number of adaptation to mitigation solutions to aspire to show in the user's feed
 
 
 def simple_scoring(G, user_scores):
@@ -165,11 +184,12 @@ def simple_scoring(G, user_scores):
                 score = np.dot(
                     modified_user_scores_vector, modified_node_values_associations_10
                 )
-                d["effectSolutions"] = get_user_actions(G.nodes[node]["label"])
+                d["effectSolutions"] = get_user_actions(
+                    G.nodes[node]["label"], MAX_N_SOLUTIONS, RATIO
+                )
 
             d["effectScore"] = score
             climate_effects.append(d)
-
     return climate_effects
 
 
@@ -185,7 +205,7 @@ def get_best_nodes(climate_effects, n):
     """
     best_nodes = sorted(
         climate_effects, key=lambda k: k["effectScore"] or float("-inf"), reverse=True
-    )[:5]
+    )[:n]
     return best_nodes
 
 
@@ -194,7 +214,14 @@ def get_pickle_file(filename):
     return G
 
 
-def get_user_nodes(user_scores):
+def get_user_nodes(user_scores, n):
+    """Returns the top n Nodes for a user feed.
+
+    Parameters
+    ----------
+    nodes_with_scores - Dictionary containing NetworkX nodes and Integer scores
+    n - Integer to specify # of desired scores
+    """
     G = get_pickle_file("Climate_Mind_DiGraph.gpickle")
 
     valid_test_ont = get_valid_test_ont()
@@ -202,54 +229,84 @@ def get_user_nodes(user_scores):
 
     get_test_ontology(G, valid_test_ont, not_test_ont)
     climate_effects = simple_scoring(G, user_scores)
-    best_nodes_for_user = get_best_nodes(climate_effects, 3)
+    best_nodes_for_user = get_best_nodes(climate_effects, n)
     return best_nodes_for_user
 
 
-def get_user_actions(effect_name):
+def solution_randomizer(
+    adaptation_solutions,
+    mitigation_solutions,
+    max_solutions,
+    adaptation_to_mitigation_ratio=0.5,
+):
+    """Takes list of solutions and decides which adaptation solutions to randomly show and which mitigation solutions to randomly show.
+
+    Parameters
+    ----------
+    adaptation_solutions - A list of adaptation solutions
+    mititgation_solutions - A list of mitigation solutions
+    max_solutions - integer of how many solutions total to return
+    adaptation_to_mitigation_ratio - A decimal from 0 to 1 that reflects the percentage of solutions to be adaptation solutions to aspire to show where possible (rounded down)
+    """
+    number_adaptation_max = np.math.floor(
+        max_solutions * adaptation_to_mitigation_ratio
+    )
+    if len(adaptation_solutions) <= number_adaptation_max:
+        number_mitigation = max_solutions - len(adaptation_solutions)
+        solutions = adaptation_solutions + random.sample(
+            mitigation_solutions, number_mitigation
+        )
+    else:
+        solutions = random.sample(
+            adaptation_solutions, number_adaptation_max
+        ) + random.sample(mitigation_solutions, max_solutions - number_adaptation_max)
+    return solutions
+
+
+def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio):
     """Takes the name of a climate effect and returns a list of actions associated with
     that node.
 
     Parameters
     ----------
     effect_name - A string
+    max_n - maximum number of results to return
     """
     G = get_pickle_file("Climate_Mind_DiGraph.gpickle")
     solution_names = G.nodes[effect_name]["adaptation solutions"]
-    solutions = []
+    adaptation_solutions = []
+    mitigation_solutions = []
     for solution in solution_names:
         try:
-            s = {
+            s_dict = {
                 "solutionTitle": G.nodes[solution]["label"],
-                "shortDescription": G.nodes[solution]["properties"][
-                    "schema_shortDescription"
-                ],
-                "longDescription": G.nodes[solution]["properties"][
-                    "schema_longDescription"
-                ],
-                "imageURL": G.nodes[solution]["properties"]["schema_image"],
+                "solutionType": "adaptation",
+                "shortDescription": get_short_description(G.nodes[solution]),
+                "longDescription": get_description(G.nodes[solution]),
+                "imageUrl": get_image_url_or_none(G.nodes[solution]),
             }
-            solutions.append(s)
+            adaptation_solutions.append(s_dict)
         except:
             pass
-
     solution_names = G.nodes["increase in greenhouse effect"]["mitigation solutions"]
     for solution in solution_names:
         try:
-            s = {
+            s_dict = {
                 "solutionTitle": G.nodes[solution]["label"],
-                "shortDescription": G.nodes[solution]["properties"][
-                    "schema_shortDescription"
-                ],
-                "longDescription": G.nodes[solution]["properties"][
-                    "schema_longDescription"
-                ],
-                "imageURL": G.nodes[solution]["properties"]["schema_image"],
+                "solutionType": "mitigation",
+                "shortDescription": get_short_description(G.nodes[solution]),
+                "longDescription": get_description(G.nodes[solution]),
+                "imageUrl": get_image_url_or_none(G.nodes[solution]),
             }
-            solutions.append(s)
+            mitigation_solutions.append(s_dict)
         except:
             pass
-
+    solutions = solution_randomizer(
+        adaptation_solutions,
+        mitigation_solutions,
+        max_solutions,
+        adaptation_to_mitigation_ratio,
+    )
     return solutions
 
 
