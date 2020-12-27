@@ -10,8 +10,16 @@ from typing import Tuple
 from knowledge_graph import app, db, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
+
+from knowledge_graph.score_nodes import (
+    get_user_nodes,
+    get_user_actions,
+    get_user_general_myth_nodes,
+    get_user_general_solution_nodes,
+)
+
 from knowledge_graph.store_ip_address import store_ip_address
-from knowledge_graph.score_nodes import get_user_nodes, get_user_actions
+
 
 value_id_map = {
     1: "conformity",
@@ -167,7 +175,7 @@ def receive_user_scores() -> Tuple[Response, int]:
         persist_scores(value_scores)
         ip_address = request.headers.getlist("X-Forwarded-For")
         # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
-        store_ip_address(ip_address, session_id)
+        # store_ip_address(ip_address, session_id)
     except KeyError:
         return make_response("invalid key"), 400
 
@@ -271,6 +279,50 @@ def get_feed():
     recommended_nodes = get_user_nodes(scores, N_FEED_CARDS)
     feed_entries = {"climateEffects": recommended_nodes}
     return jsonify(feed_entries), 200
+
+
+@app.route("/myths", methods=["GET"])
+@auto.doc()
+def get_general_myths():
+    """
+    The front-end needs general myths list and information to serve to user when they click the general myths menu button.
+    General myths are ordered based on relevance predicted from users personal values.
+    """
+    # session_id = str(request.args.get("session-id"))
+    # try:
+    # scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    # TODO: catch exceptions properly here
+    # except Exception:
+    #    return make_response("Invalid Session ID or No Information for ID")
+
+    # scores = scores.__dict__
+    # del scores["_sa_instance_state"]
+
+    recommended_general_myths = get_user_general_myth_nodes()
+    climate_general_myths = {"myths": recommended_general_myths}
+    return jsonify(climate_general_myths), 200
+
+
+@app.route("/solutions", methods=["GET"])
+@auto.doc()
+def get_general_solutions():
+    """
+    The front-end needs general myths list and information to serve to user when they click the general myths menu button.
+    General myths are ordered based on relevance predicted from users personal values.
+    """
+    # session_id = str(request.args.get("session-id"))
+    # try:
+    # scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    # TODO: catch exceptions properly here
+    # except Exception:
+    #    return make_response("Invalid Session ID or No Information for ID")
+
+    # scores = scores.__dict__
+    # del scores["_sa_instance_state"]
+
+    recommended_general_solutions = get_user_general_solution_nodes()
+    climate_general_solutions = {"solutions": recommended_general_solutions}
+    return jsonify(climate_general_solutions), 200
 
 
 @app.route("/documentation")
