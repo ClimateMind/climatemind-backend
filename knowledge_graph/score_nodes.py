@@ -11,8 +11,8 @@ import numpy as np
 import random
 
 
-def get_effect_id(node):
-    """Effect IDs are the unique identifier in the IRI. This is provided to the
+def get_node_id(node):
+    """Node IDs are the unique identifier in the IRI. This is provided to the
     front-end as a reference for the feed, but is never shown to the user.
 
     Example http://webprotege.stanford.edu/R8znJBKduM7l8XDXMalSWSl
@@ -39,6 +39,33 @@ def get_description(node):
         return node["properties"]["schema_longDescription"][0]
     except:
         return "No long desc available at present"
+
+
+def get_myth_claim(node):
+    """Myth claims are used by the front-end to display a description of a phrase or claim the user might hear when someone says the myth.
+
+    Parameters
+    ----------
+    node - A networkX myth node
+    """
+    try:
+        return node["properties"]["schema_mythClaim"][0]
+    except:
+        return "No myth claim available at present"
+
+
+def get_myth_rebuttal(node):
+    """Myth rebuttals are used by the front-end to display a description of a reason or rebuttal the user could say in response to someone saying the myth.
+    The rebuttals are the reason(s) why the myth is not true and what the science says is true.
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    try:
+        return node["properties"]["schema_mythRebuttal"][0]
+    except:
+        return "No myth rebuttal available at present"
 
 
 def get_short_description(node):
@@ -137,7 +164,7 @@ def simple_scoring(G, user_scores):
         if "personal_values_10" in G.nodes[node]:
             node_values_associations_10 = G.nodes[node]["personal_values_10"]
             d = {
-                "effectId": get_effect_id(G.nodes[node]),
+                "effectId": get_node_id(G.nodes[node]),
                 "effectTitle": G.nodes[node]["label"],
                 "effectDescription": get_description(G.nodes[node]),
                 "effectShortDescription": get_short_description(G.nodes[node]),
@@ -281,3 +308,57 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
         adaptation_to_mitigation_ratio,
     )
     return solutions
+
+
+def get_user_general_myth_nodes():
+    """Returns a list of general myths and some information about those general myths.
+    # The myths will later be ranked based on user's personal values (although not being done in the current implementation).
+    # Parameters
+    ----------
+    # user_scores - User's personal values scores (same format as that stored in the SQL database).
+    """
+    G = get_pickle_file("Climate_Mind_DiGraph.gpickle")
+    # all_myths = nx.get_node_attributes(G, "myth")
+    general_myths = G.nodes["increase in greenhouse effect"]["general myths"]
+    # for myth in all_myths:
+    #    if
+    general_myths_details = []
+    for myth in general_myths:
+        d = {
+            "iri": get_node_id(G.nodes[myth]),
+            "mythTitle": G.nodes[myth]["label"],
+            "mythClaim": get_myth_claim(G.nodes[myth]),
+            "mythRebuttal": get_myth_rebuttal(G.nodes[myth]),
+        }
+
+        general_myths_details.append(d)
+
+    return general_myths_details
+
+
+def get_user_general_solution_nodes():
+    """Returns a list of general solutions and some information about those general solutions.
+    # The myths will later be ranked based on user's personal values (although not being done in the current implementation).
+    # Parameters
+    ----------
+    # user_scores - User's personal values scores (same format as that stored in the SQL database).
+    """
+    G = get_pickle_file("Climate_Mind_DiGraph.gpickle")
+    # all_myths = nx.get_node_attributes(G, "myth")
+    general_solutions = G.nodes["increase in greenhouse effect"]["mitigation solutions"]
+    # for myth in all_myths:
+    #    if
+    general_solutions_details = []
+    for solution in general_solutions:
+        d = {
+            "iri": get_node_id(G.nodes[solution]),
+            "solutionTitle": G.nodes[solution]["label"],
+            "solutionType": "mitigation",
+            "shortDescription": get_short_description(G.nodes[solution]),
+            "longDescription": get_description(G.nodes[solution]),
+            "imageUrl": get_image_url_or_none(G.nodes[solution]),
+        }
+
+        general_solutions_details.append(d)
+
+    return general_solutions_details

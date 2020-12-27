@@ -34,6 +34,8 @@ RUN chmod +rwx /etc/ssl/openssl.cnf
 RUN sed -i 's/TLSv1.2/TLSv1/g' /etc/ssl/openssl.cnf
 RUN sed -i 's/SECLEVEL=2/SECLEVEL=1/g' /etc/ssl/openssl.cnf
 
+# RUN sed -i "s/SSH_PORT/$SSH_PORT/g" /etc/ssh/sshd_config
+
 #RUN sed -i -E 's/(CipherString\s*=\s*DEFAULT@SECLEVEL=)2/\11/' /etc/ssl/openssl.cnf
 #RUN ACCEPT_EULA=Y apt-get install msodbcsql17=17.3.1.1-1 mssql-tools=17.3.0.1-1 -y
 #RUN wget http://security.debian.org/debian-security/pool/updates/main/o/openssl1.0/libssl1.0.2_1.0.2s-1~deb9u1_amd64.deb \
