@@ -342,9 +342,11 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     # process the mitigation and adaptation solutions in the networkx object and add them into special attribute fields for each node for easy access in later for the API
     B = G.copy()
     # identify nodes that are in the class 'feedback loop' then remove those nodes' 'caueses' edges because they start feedback loops.
-    nx.get_node_attributes(B, "direct classes")
+    # nx.get_node_attributes(B, "direct classes")
     feedback_nodes = list()
     graph_attributes_dictionary = nx.get_node_attributes(B, "direct classes")
+    all_myths = nx.get_node_attributes(B, "myth")
+
     for node in graph_attributes_dictionary:
         if "feedback loop" in graph_attributes_dictionary[node]:
             feedback_nodes.append(node)
@@ -381,15 +383,18 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     for edge in edges_upstream_greenhouse_effect:
         nodeA = edge[0]
         nodeB = edge[1]
-        nodes_upstream_greenhouse_effect.append(nodeA)
-        nodes_upstream_greenhouse_effect.append(nodeB)
+        if B[nodeA][nodeB]["type"] == "causes_or_promotes":
+            nodes_upstream_greenhouse_effect.append(nodeA)
+            nodes_upstream_greenhouse_effect.append(nodeB)
 
+        # get unique ones
     nodes_upstream_greenhouse_effect = list(
         OrderedDict.fromkeys(nodes_upstream_greenhouse_effect)
-    )
+    )  # this shouldn't include myths!
 
     # now get all the nodes that have the inhibit relationship with the nodes found in nodes_upstream_greenhouse_effect (these nodes should all be the mitigation solutions)
     mitigation_solutions = list()
+
     for node in nodes_upstream_greenhouse_effect:
         node_neighbors = B.neighbors(node)
         for neighbor in node_neighbors:
@@ -405,6 +410,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         {"increase in greenhouse effect": mitigation_solutions},
         "mitigation solutions",
     )
+
     # to check or obtain the solutions from the networkx object: G.nodes['increase in greenhouse effect']['mitigation solutions']
     # breakpoint()
 
@@ -441,6 +447,11 @@ def makeGraph(onto_path, edge_path, output_folder_path):
                     == "is_inhibited_or_prevented_or_blocked_or_slowed_by"
                 ):  # bad to hard code in 'is_inhibited_or_prevented_or_blocked_or_slowed_by'
                     node_adaptation_solutions.append(neighbor)
+                # if (
+                #     G[intermediateNode][neighbor]["type"]
+                #     == "myth_associated_with"
+                # ):  # bad to hard code in 'myth_associated_with'
+                #     node_myths.append(neighbor)
         # add the adaptation solutions to the networkx object for the node
         # be sure that solutions don't show up as effectNodes! and that they aren't solutions to themself! the code needs to be changed to avoid this.
         # ^solutions shouldn't be added as solutions to themself!
@@ -453,6 +464,48 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         nx.set_node_attributes(
             G, {effectNode: node_adaptation_solutions}, "adaptation solutions"
         )
+
+    # process myths in networkx object to be easier for API
+    general_myths = list()
+
+    for myth in all_myths:
+        node_neighbors = G.neighbors(myth)
+        for neighbor in node_neighbors:
+            if G[myth][neighbor]["type"] == "is_a_myth_about":
+                if "risk solution" in G.nodes[neighbor].keys():
+                    if (
+                        "solution myths" in G.nodes[neighbor].keys()
+                        and G.nodes[neighbor]["solution myths"]
+                    ):
+                        solution_myths = G.nodes[neighbor]["solution myths"].append(
+                            myth
+                        )
+                    else:
+                        solution_myths = [myth]
+                    nx.set_node_attributes(
+                        G, {neighbor: solution_myths}, "solution myths"
+                    )
+                if neighbor in nodes_downstream_greenhouse_effect:
+                    if (
+                        "impact myths" in G.nodes[neighbor].keys()
+                        and G.nodes[neighbor]["impact myths"]
+                    ):
+                        impact_myths = G.nodes[neighbor]["impact myths"].append(myth)
+                    else:
+                        impact_myths = [myth]
+                    nx.set_node_attributes(G, {neighbor: impact_myths}, "impact myths")
+                if neighbor in nodes_upstream_greenhouse_effect:
+                    general_myths.append(myth)
+
+    # get unique general myths
+    general_myths = list(dict.fromkeys(general_myths))
+    # update the networkx object to have a 'general myths' field and include in it all nodes from mitigation_solutions
+    nx.set_node_attributes(
+        G,
+        {"increase in greenhouse effect": general_myths},
+        "general myths",
+    )
+
     # to check or obtain the solutions from the networkx object: G.nodes[node]['adaptation solutions']
     # ex: G.nodes['decrease in test scores']['adaptation solutions']
     # should probably code in for the 'adaptation solutions' field to read "None yet curated" if there isn't any to avoid errors from occuring later by API ?
