@@ -20,8 +20,6 @@ from knowledge_graph.score_nodes import (
 from knowledge_graph.store_ip_address import store_ip_address
 
 
-
-
 value_id_map = {
     1: "conformity",
     2: "tradition",
@@ -282,7 +280,6 @@ def get_feed():
     return jsonify(feed_entries), 200
 
 
-
 @app.route("/myths", methods=["GET"])
 @auto.doc()
 def get_general_myths():
@@ -303,7 +300,6 @@ def get_general_myths():
     recommended_general_myths = get_user_general_myth_nodes()
     climate_general_myths = {"myths": recommended_general_myths}
     return jsonify(climate_general_myths), 200
-
 
 
 @app.route("/documentation")
