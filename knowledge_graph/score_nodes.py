@@ -311,11 +311,11 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
 
 
 def get_user_general_myth_nodes():
-    """Takes the user's personal values scores and returns a list of general myths and some information about those general myths.
-    The myths will later be ranked based on user's personal values (although not being done in the current implementation).
-    Parameters
+    """Returns a list of general myths and some information about those general myths.
+    # The myths will later be ranked based on user's personal values (although not being done in the current implementation).
+    # Parameters
     ----------
-    user_scores - User's personal values scores (same format as that stored in the SQL database).
+    # user_scores - User's personal values scores (same format as that stored in the SQL database).
     """
     G = get_pickle_file("Climate_Mind_DiGraph.gpickle")
     # all_myths = nx.get_node_attributes(G, "myth")
@@ -334,3 +334,31 @@ def get_user_general_myth_nodes():
         general_myths_details.append(d)
 
     return general_myths_details
+
+
+def get_user_general_solution_nodes():
+    """Returns a list of general solutions and some information about those general solutions.
+    # The myths will later be ranked based on user's personal values (although not being done in the current implementation).
+    # Parameters
+    ----------
+    # user_scores - User's personal values scores (same format as that stored in the SQL database).
+    """
+    G = get_pickle_file("Climate_Mind_DiGraph.gpickle")
+    # all_myths = nx.get_node_attributes(G, "myth")
+    general_solutions = G.nodes["increase in greenhouse effect"]["mitigation solutions"]
+    # for myth in all_myths:
+    #    if
+    general_solutions_details = []
+    for solution in general_solutions:
+        d = {
+            "iri": get_node_id(G.nodes[solution]),
+            "solutionTitle": G.nodes[solution]["label"],
+            "solutionType": "mitigation",
+            "shortDescription": get_short_description(G.nodes[solution]),
+            "longDescription": get_description(G.nodes[solution]),
+            "imageUrl": get_image_url_or_none(G.nodes[solution]),
+        }
+
+        general_solutions_details.append(d)
+
+    return general_solutions_details
