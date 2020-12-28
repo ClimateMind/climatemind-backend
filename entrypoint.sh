@@ -10,8 +10,8 @@ BASEDIR="$(dirname "${BASH_SOURCE[0]}")"
 # flask db upgrade -d $BASEDIR/migrations
 # flask db init -d $BASEDIR/migrations_local
 # flask db init -d $BASEDIR/migrations_azure
-# flask db migrate -m "CM-217 add user's ip_address to Sessions table, column: ip_address" -d $BASEDIR/migrations_azure
-#flask db migrate -m "add all current tables" -d $BASEDIR/migrations_local
+# flask db migrate -m "CM-246 add user's zipcode to Sessions table, column: postal_code" -d $BASEDIR/migrations_azure
+# flask db migrate -m "add all current tables" -d $BASEDIR/migrations_local
 
 #flask db upgrade -d $BASEDIR/migrations_local #this line needs to switch automatically between local and azure based on the DATABASE_PARAMS global variable. 
 
