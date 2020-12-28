@@ -10,6 +10,7 @@ from typing import Tuple
 from knowledge_graph import app, db, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
+from knowledge_graph.add_zip_code import add_zip_code
 
 from knowledge_graph.score_nodes import (
     get_user_nodes,
@@ -130,6 +131,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     session_id = str(uuid.uuid4())
 
     questions = parameter["questionResponses"]
+    zipcode = parameter["zipCode"]
 
     if len(questions["SetOne"]) < RESPONSES_TO_ADD:
         return make_response("not enough set one scores", 400)
@@ -176,11 +178,11 @@ def receive_user_scores() -> Tuple[Response, int]:
     except KeyError:
         return make_response("invalid key"), 400
 
-    # if zipcode != None:
-    #   try:
-    #      add_zip_code(zipcode, session_id)
-    # except Exception:
-    #    return make_response({"error": "error adding postal code"}), 500
+    if zipcode:
+        try:
+            add_zip_code(zipcode, session_id)
+        except Exception:
+            return make_response({"error": "error adding postal code"}), 500
 
     if (
         os.environ["DATABASE_PARAMS"]
@@ -193,8 +195,12 @@ def receive_user_scores() -> Tuple[Response, int]:
             return make_response({"error": "error adding ip address locally"}), 500
     else:
         try:
-            ip_address = request.headers.getlist("X-Forwarded-For")[0]
+            unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
+            if len(unprocessed_ip_address) != 0:
+                ip_address = unprocessed_ip_address[0]
             # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
+            else:
+                ip_address = None
             store_ip_address(ip_address, session_id)
         except Exception:
             return make_response({"error": "error adding ip address in cloud"}), 500
