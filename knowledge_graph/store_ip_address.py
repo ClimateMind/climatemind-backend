@@ -8,12 +8,12 @@ def store_ip_address(ip_address, session_id):
     userSession = Sessions.query.filter_by(session_id=session_id).first()
 
     if ip_address != None:
-            ip_address = str(ip_address)
-    
+        ip_address = str(ip_address)
+
     try:
         userSession.ip_address = ip_address
         db.session.commit()
     except Exception as e:
         return e
-    
+
     return None

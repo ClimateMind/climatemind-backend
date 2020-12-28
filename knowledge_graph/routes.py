@@ -176,13 +176,16 @@ def receive_user_scores() -> Tuple[Response, int]:
     except KeyError:
         return make_response("invalid key"), 400
 
-    #if zipcode != None:
-     #   try:
-      #      add_zip_code(zipcode, session_id)
-       # except Exception:
-        #    return make_response({"error": "error adding postal code"}), 500
+    # if zipcode != None:
+    #   try:
+    #      add_zip_code(zipcode, session_id)
+    # except Exception:
+    #    return make_response({"error": "error adding postal code"}), 500
 
-    if (os.environ["DATABASE_PARAMS"]=="Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"):
+    if (
+        os.environ["DATABASE_PARAMS"]
+        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
+    ):
         try:
             ip_address = None
             store_ip_address(ip_address, session_id)
