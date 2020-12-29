@@ -325,9 +325,12 @@ def get_general_myths():
 @app.route("/myths/<string:iri>", methods=["GET"])
 def get_myth_info(iri):
     myth_info = get_specific_myth_info(iri)
-    specific_myth_info = {"myth": myth_info}
 
-    return jsonify(specific_myth_info), 200
+    if myth_info:
+        specific_myth_info = {"myth": myth_info}
+        return jsonify(specific_myth_info), 200
+    else:
+        return make_response({"error": "IRI does not exist"}), 400
 
 
 @app.route("/solutions", methods=["GET"])
