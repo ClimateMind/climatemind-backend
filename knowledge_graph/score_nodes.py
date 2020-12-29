@@ -368,16 +368,18 @@ def get_specific_myth_info(iri):
         if get_node_id(G.nodes[myth]) == iri:
             specific_myth = myth
 
-    myth = {
-        "iri": get_node_id(G.nodes[specific_myth]),
-        "mythTitle": G.nodes[specific_myth]["label"],
-        "mythClaim": get_myth_claim(G.nodes[specific_myth]),
-        "mythRebuttal": get_myth_rebuttal(G.nodes[specific_myth]),
-        "mythSources": get_myth_sources(G.nodes[specific_myth]),
-        "mythVideos": get_myth_video_urls(G.nodes[specific_myth]),
-    }
-
-    return myth
+    if specific_myth:
+        myth = {
+            "iri": get_node_id(G.nodes[specific_myth]),
+            "mythTitle": G.nodes[specific_myth]["label"],
+            "mythClaim": get_myth_claim(G.nodes[specific_myth]),
+            "mythRebuttal": get_myth_rebuttal(G.nodes[specific_myth]),
+            "mythSources": get_myth_sources(G.nodes[specific_myth]),
+            "mythVideos": get_myth_video_urls(G.nodes[specific_myth]),
+        }
+        return myth
+    else:
+        return False
 
 
 def get_user_general_solution_nodes():
