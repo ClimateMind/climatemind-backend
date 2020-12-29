@@ -169,7 +169,8 @@ def simple_scoring(G, user_scores):
                 "effectDescription": get_description(G.nodes[node]),
                 "effectShortDescription": get_short_description(G.nodes[node]),
                 "imageUrl": get_image_url(G.nodes[node]),
-                "isPossiblyLocal": true  # Will have to convert Python "True" to JS "true"
+                "isPossiblyLocal": True,  # TODO: decide where to convert Python "True" 
+                                         # to JS "true"
             }
 
             if any(v is None for v in node_values_associations_10):
