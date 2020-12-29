@@ -11,15 +11,15 @@ def add_zip_code(zipcode, session_id):
     If the zip code is valid, it is committed to the Sessions table alongside the session_id.
     """
     regex = re.compile(r"(\b\d{5})\b")
-    match_object = regex.search(str(zipcode))
+    match_object = regex.search(zipcode)
 
     if match_object:
         try:
             session_id = Sessions.query.filter_by(session_id=session_id).first()
-            session_id.postal_code = int(zipcode)
+            session_id.postal_code = zipcode
 
             db.session.commit()
-        except KeyError:
-            return KeyError
-        except ValueError:
-            return ValueError
+        except KeyError as ke:
+            print(ke)
+        except ValueError as ve:
+            print(ve)

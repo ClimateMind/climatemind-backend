@@ -174,7 +174,7 @@ class Scores(db.Model):
 class Sessions(db.Model):
     session_id = db.Column(db.String(256), primary_key=True)
     # postal code variable type for SQL will need to change when scaling up to accept postal codes with letters
-    postal_code = db.Column(db.Integer)
+    postal_code = db.Column(db.String(5))
     scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
     ip_address = db.Column(db.String(255), primary_key=False)
 

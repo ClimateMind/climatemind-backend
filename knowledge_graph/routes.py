@@ -118,7 +118,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     # todo: handle exceptions properly here
     except Exception as ex:
         print(ex)
-        return make_response("Invalid User Response"), 400
+        return make_response({"error": "Invalid User Response"}), 400
 
     value_scores = {}
     overall_sum = 0
@@ -176,13 +176,13 @@ def receive_user_scores() -> Tuple[Response, int]:
     try:
         persist_scores(value_scores)
     except KeyError:
-        return make_response("invalid key"), 400
+        return make_response({"error": "invalid key"}), 400
 
     if zipcode:
         try:
             add_zip_code(zipcode, session_id)
-        except Exception:
-            return make_response({"error": "error adding postal code"}), 500
+        except Exception as e:
+            print(e)
 
     if (
         os.environ["DATABASE_PARAMS"]
@@ -191,8 +191,8 @@ def receive_user_scores() -> Tuple[Response, int]:
         try:
             ip_address = None
             store_ip_address(ip_address, session_id)
-        except Exception:
-            return make_response({"error": "error adding ip address locally"}), 500
+        except Exception as e:
+            print(e)
     else:
         try:
             unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
@@ -202,8 +202,8 @@ def receive_user_scores() -> Tuple[Response, int]:
             else:
                 ip_address = None
             store_ip_address(ip_address, session_id)
-        except Exception:
-            return make_response({"error": "error adding ip address in cloud"}), 500
+        except Exception as e:
+            print(e)
 
     response = {"sessionId": session_id}
 
