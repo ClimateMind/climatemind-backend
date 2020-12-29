@@ -139,6 +139,7 @@ def simple_scoring(G, user_scores):
                 "effectScore": score,
                 "imageUrl": get_image_url(G.nodes[node]),
                 "actionHeadline": "Reducing Food Waste",  # TODO Add actual actions
+                "isLocal": true,  # should return "true" (JS) instead of "True" (Python)
             }
             climate_effects.append(d)
 
