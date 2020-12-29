@@ -205,6 +205,27 @@ def receive_user_scores() -> Tuple[Response, int]:
         except Exception as e:
             print(e)
 
+    if (
+        os.environ["DATABASE_PARAMS"]
+        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
+    ):
+        try:
+            ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception:
+            return make_response({"error": "error adding ip address locally"}), 500
+    else:
+        try:
+            unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
+            if len(unprocessed_ip_address) != 0:
+                ip_address = unprocessed_ip_address[0]
+            # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
+            else:
+                ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception:
+            return make_response({"error": "error adding ip address in cloud"}), 500
+
     response = {"sessionId": session_id}
 
     response = jsonify(response)
