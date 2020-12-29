@@ -71,9 +71,20 @@ def get_myth_rebuttal(node):
 def get_myth_sources(node):
     """Myth sources are used by the frontend to display the source of the myth."""
     try:
-        return node["properties"]["schema_organizationSource"]
+        return list(set(node["properties"]["schema_organizationSource"]))
     except:
         return "No sources available at present"
+
+
+def get_myth_video_urls(node):
+
+    if node["properties"]["schema_video"]:
+        try:
+            return list(set(node["properties"]["schema_video"]))
+        except:
+            return "No videos available at present"
+    else:
+        return None
 
 
 def get_short_description(node):
@@ -363,6 +374,7 @@ def get_specific_myth_info(iri):
         "mythClaim": get_myth_claim(G.nodes[specific_myth]),
         "mythRebuttal": get_myth_rebuttal(G.nodes[specific_myth]),
         "mythSources": get_myth_sources(G.nodes[specific_myth]),
+        "mythVideos": get_myth_video_urls(G.nodes[specific_myth]),
     }
 
     return myth
