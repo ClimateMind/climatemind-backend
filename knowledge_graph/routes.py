@@ -16,6 +16,7 @@ from knowledge_graph.score_nodes import (
     get_user_actions,
     get_user_general_myth_nodes,
     get_user_general_solution_nodes,
+    get_specific_myth_info,
 )
 
 from knowledge_graph.store_ip_address import store_ip_address
@@ -319,6 +320,14 @@ def get_general_myths():
     recommended_general_myths = get_user_general_myth_nodes()
     climate_general_myths = {"myths": recommended_general_myths}
     return jsonify(climate_general_myths), 200
+
+
+@app.route("/myths/<string:iri>", methods=["GET"])
+def get_myth_info(iri):
+    myth_info = get_specific_myth_info(iri)
+    specific_myth_info = {"myth": myth_info}
+
+    return jsonify(specific_myth_info), 200
 
 
 @app.route("/solutions", methods=["GET"])
