@@ -443,7 +443,6 @@ def makeGraph(onto_path, edge_path, output_folder_path):
 
     # add solution sources field to all mitigation solution nodes
     for solution in mitigation_solutions:
-        # breakpoint()
         sources = solution_sources(G.nodes[solution], source_types)
         if sources:
             nx.set_node_attributes(
@@ -453,7 +452,6 @@ def makeGraph(onto_path, edge_path, output_folder_path):
             )
 
     # to check or obtain the solutions from the networkx object: G.nodes['increase in greenhouse effect']['mitigation solutions']
-    # breakpoint()
 
     # code to get the adaptation solutions from a node in the networkx object:
 
@@ -589,8 +587,8 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         neighbor_nodes = G.neighbors(target_node)
         for neighbor_node in neighbor_nodes:
             if G[target_node][neighbor_node]["type"] == "causes_or_promotes":
-                if target_node == "increase in flooding of land and property":
-                    breakpoint()
+                # if target_node == "increase in flooding of land and property":
+                #    breakpoint()
                 if G[target_node][neighbor_node]["properties"]:
                     causal_sources.append(G[target_node][neighbor_node]["properties"])
 
@@ -608,9 +606,10 @@ def makeGraph(onto_path, edge_path, output_folder_path):
 
             # remove duplicate urls
             sources_list = list(dict.fromkeys(sources_list))
-            
-            breakpoint()
-            #remove urls that aren't active or aren't real
+
+            # if target_node == "increase in flooding of land and property":
+            #    breakpoint()
+            # remove urls that aren't active or aren't real
             sources_list = [url for url in sources_list if validators.url(url)]
 
             nx.set_node_attributes(

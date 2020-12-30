@@ -144,13 +144,15 @@ def get_causal_sources(node):
     ----------
     node - A networkX node
     """
-    if "causal sources" in node and len(node["causal sources"]) != 0:
+    if "causal sources" in node and len(node["causal sources"]) > 0:
         causal_sources = node["causal sources"]
 
     try:
         return causal_sources
     except:
-        return []  # Default source if none #should this be the IPCC? or the US National Climate Assessment?
+        return (
+            []
+        )  # Default source if none #should this be the IPCC? or the US National Climate Assessment?
 
 
 def get_solution_sources(node):
@@ -230,8 +232,7 @@ def simple_scoring(G, user_scores):
             if any(v is None for v in node_values_associations_10):
                 score = None
             else:
-                node_values_associations_10 = np.array(
-                    node_values_associations_10)
+                node_values_associations_10 = np.array(node_values_associations_10)
                 # double the magnitude of the backfire-effect representation:
                 modified_node_values_associations_10 = np.where(
                     node_values_associations_10 < 0,
