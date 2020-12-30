@@ -1,8 +1,8 @@
 """add all current tables
 
-Revision ID: 30bdddd7eb45
+Revision ID: b328e12232fa
 Revises: 
-Create Date: 2020-12-27 09:00:46.879069
+Create Date: 2020-12-29 08:47:48.702134
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = "30bdddd7eb45"
+revision = "b328e12232fa"
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -21,6 +21,7 @@ def upgrade():
     op.create_table(
         "sessions",
         sa.Column("session_id", sa.String(length=256), nullable=False),
+        sa.Column("postal_code", sa.String(length=5), nullable=True),
         sa.Column("ip_address", sa.String(length=255), nullable=True),
         sa.PrimaryKeyConstraint("session_id"),
     )
