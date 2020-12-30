@@ -9,6 +9,7 @@ from knowledge_graph.make_graph import (
 )
 import numpy as np
 import random
+from collections import OrderedDict
 
 
 def get_node_id(node):
@@ -163,6 +164,7 @@ def simple_scoring(G, user_scores):
     for node in G.nodes:
         if "personal_values_10" in G.nodes[node]:
             node_values_associations_10 = G.nodes[node]["personal_values_10"]
+
             d = {
                 "effectId": get_node_id(G.nodes[node]),
                 "effectTitle": G.nodes[node]["label"],
@@ -285,6 +287,7 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
                 "shortDescription": get_short_description(G.nodes[solution]),
                 "longDescription": get_description(G.nodes[solution]),
                 "imageUrl": get_image_url_or_none(G.nodes[solution]),
+                "solution_source_list": get_solution_sources(G.nodes[solution]),
             }
             adaptation_solutions.append(s_dict)
         except:
@@ -298,6 +301,7 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
                 "shortDescription": get_short_description(G.nodes[solution]),
                 "longDescription": get_description(G.nodes[solution]),
                 "imageUrl": get_image_url_or_none(G.nodes[solution]),
+                "solution_source_list": get_solution_sources(G.nodes[solution]),
             }
             mitigation_solutions.append(s_dict)
         except:
@@ -336,6 +340,41 @@ def get_user_general_myth_nodes():
 
     return general_myths_details
 
+
+# TODO Create get_solution_sources() function
+def get_solution_sources(node):
+    """Returns a flattened list of custom solution source values from each node key that matches
+    custom_source_types string.
+    """
+
+    #convenient source types list
+    source_types = [
+        "dc_source",
+        "schema_academicBook",
+        "schema_academicSourceNoPaywall",
+        "schema_academicSourceWithPaywall",
+        "schema_governmentSource",
+        "schema_mediaSource",
+        "schema_mediaSourceForConservatives",
+        "schema_organizationSource",
+    ]  
+    
+    G = get_pickle_file("Climate_Mind_DiGraph.gpickle")
+
+    # TODO loop over each solutions key and append each returned value to the solution_sources list
+    solution_source_list = list()
+    for source_type in source_types:
+        if (
+            "properties" in node
+            and source_type in node["properties"]
+        ):
+            solution_source_list.extend(node["properties"][source_type])
+
+    solution_source_list = list(
+        OrderedDict.fromkeys(solution_source_list)
+        )
+
+    return solution_source_list
 
 def get_user_general_solution_nodes():
     """Returns a list of general solutions and some information about those general solutions.
