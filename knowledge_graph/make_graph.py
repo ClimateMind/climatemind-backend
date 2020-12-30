@@ -505,7 +505,6 @@ def makeGraph(onto_path, edge_path, output_folder_path):
             G, {effectNode: node_adaptation_solutions}, "adaptation solutions"
         )
 
-
         # add solution sources field to all adaptation solution nodes
         for solution in node_adaptation_solutions:
             sources = solution_sources(G.nodes[solution], source_types)
