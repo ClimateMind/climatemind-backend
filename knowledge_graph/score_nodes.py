@@ -114,6 +114,7 @@ def get_image_url_or_none(node):
         # Default image url if image is added
         return None
 
+
 def get_short_description(node):
     """Short Descriptions are used by the front-end to display explanations of the
     climate effects shown in user feeds.
@@ -139,9 +140,7 @@ def get_solution_sources(node):
     try:
         return node["solution sources"]
     except:
-        return "No sources available at present"     
-
-
+        return "No sources available at present"
 
 
 def get_scores_vector(user_scores):
