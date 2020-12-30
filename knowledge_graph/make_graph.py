@@ -28,21 +28,15 @@ def solution_sources(node, source_types):
     node - NetworkX node
     source_types - list of sources types
     """
-    #loop over each solution source key and append each returned value to the solution_sources list
+    # loop over each solution source key and append each returned value to the solution_sources list
     solution_source_list = list()
     for source_type in source_types:
-        if (
-            "properties" in node
-            and source_type in node["properties"]
-        ):
+        if "properties" in node and source_type in node["properties"]:
             solution_source_list.extend(node["properties"][source_type])
 
-    solution_source_list = list(
-        OrderedDict.fromkeys(solution_source_list)
-        )
+    solution_source_list = list(OrderedDict.fromkeys(solution_source_list))
 
     return solution_source_list
-
 
 
 def listify(collection, onto):
@@ -321,7 +315,6 @@ def get_test_ontology(G, valid_test_ont, not_test_ont):
         remove_non_test_nodes(G, node_b, valid_test_ont, not_test_ont)
 
 
-
 def makeGraph(onto_path, edge_path, output_folder_path):
     """
     Main function to make networkx graph object from reference ontology and edge list.
@@ -345,8 +338,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     with onto:
         sync_reasoner()
 
-    
-    #convenient source types list
+    # convenient source types list
     source_types = [
         "dc_source",
         "schema_academicBook",
@@ -356,7 +348,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         "schema_mediaSource",
         "schema_mediaSourceForConservatives",
         "schema_organizationSource",
-    ] 
+    ]
 
     # print(list(default_world.inconsistent_classes()))
 
@@ -448,9 +440,9 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         "mitigation solutions",
     )
 
-    #add solution sources field to all mitigation solution nodes
+    # add solution sources field to all mitigation solution nodes
     for solution in mitigation_solutions:
-        #breakpoint()
+        # breakpoint()
         sources = solution_sources(G.nodes[solution], source_types)
         if solution_sourcess:
             nx.set_node_attributes(
@@ -513,7 +505,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
             G, {effectNode: node_adaptation_solutions}, "adaptation solutions"
         )
 
-        #add solution sources field to all adaptation solution nodes
+        # add solution sources field to all adaptation solution nodes
         for solution in node_adaptation_solutions:
             sources = solution_sources(G.nodes[solution], source_types)
             nx.set_node_attributes(
@@ -521,7 +513,6 @@ def makeGraph(onto_path, edge_path, output_folder_path):
                 {solution: sources},
                 "solution sources",
             )
-
 
     # process myths in networkx object to be easier for API
     general_myths = list()
@@ -579,7 +570,6 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     get_test_ontology(G, valid_test_ont, not_test_ont)
 
     save_test_ontology_to_json(G, output_folder_path)
-
 
 
 def main(args):
