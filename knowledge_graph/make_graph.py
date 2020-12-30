@@ -466,6 +466,18 @@ def makeGraph(onto_path, edge_path, output_folder_path):
             G, {effectNode: node_adaptation_solutions}, "adaptation solutions"
         )
 
+    # convenient source types list
+    source_types = [
+        "dc_source",
+        "schema_academicBook",
+        "schema_academicSourceNoPaywall",
+        "schema_academicSourceWithPaywall",
+        "schema_governmentSource",
+        "schema_mediaSource",
+        "schema_mediaSourceForConservatives",
+        "schema_organizationSource",
+    ]
+
     # process myths in networkx object to be easier for API
     general_myths = list()
 
@@ -497,6 +509,23 @@ def makeGraph(onto_path, edge_path, output_folder_path):
                     nx.set_node_attributes(G, {neighbor: impact_myths}, "impact myths")
                 if neighbor in nodes_upstream_greenhouse_effect:
                     general_myths.append(myth)
+        # process myth sources into nice field called 'myth sources' with only unique urls from any source type
+        myth_sources = list()
+        for source_type in source_types:
+            if (
+                "properties" in G.nodes[myth]
+                and source_type in G.nodes[myth]["properties"]
+            ):
+                myth_sources.extend(G.nodes[myth]["properties"][source_type])
+
+        myth_sources = list(
+            OrderedDict.fromkeys(myth_sources)
+        )  # removes any duplicates while preserving order
+        nx.set_node_attributes(
+            G,
+            {myth: myth_sources},
+            "myth sources",
+        )
 
     # get unique general myths
     general_myths = list(dict.fromkeys(general_myths))

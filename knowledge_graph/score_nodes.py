@@ -68,6 +68,26 @@ def get_myth_rebuttal(node):
         return "No myth rebuttal available at present"
 
 
+def get_myth_sources(node):
+    """Myth sources are used by the frontend to display the source of the myth."""
+    try:
+        # return list(set(node["properties"]["schema_organizationSource"]))
+        return list(set(node["myth sources"]))
+    except:
+        return "No sources available at present"
+
+
+def get_myth_video_urls(node):
+
+    if node["properties"]["schema_video"]:
+        try:
+            return list(set(node["properties"]["schema_video"]))
+        except:
+            return "No videos available at present"
+    else:
+        return None
+
+
 def get_short_description(node):
     """Short Descriptions are used by the front-end to display explanations of the
     climate effects shown in user feeds.
@@ -190,6 +210,7 @@ def simple_scoring(G, user_scores):
                 "effectShortDescription": get_short_description(G.nodes[node]),
                 "imageUrl": get_image_url(G.nodes[node]),
                 "effectSources": get_causal_sources(G.nodes[node]),
+                "isPossiblyLocal": True,
             }
 
             if any(v is None for v in node_values_associations_10):
@@ -355,6 +376,33 @@ def get_user_general_myth_nodes():
         general_myths_details.append(d)
 
     return general_myths_details
+
+
+def get_specific_myth_info(iri):
+    """
+    Returns infomation for a specific myth.
+    """
+    G = get_pickle_file("Climate_Mind_DiGraph.gpickle")
+    all_myths = nx.get_node_attributes(G, "myth")
+
+    specific_myth = None
+
+    for myth in all_myths:
+        if get_node_id(G.nodes[myth]) == iri:
+            specific_myth = myth
+
+    if specific_myth:
+        myth = {
+            "iri": get_node_id(G.nodes[specific_myth]),
+            "mythTitle": G.nodes[specific_myth]["label"],
+            "mythClaim": get_myth_claim(G.nodes[specific_myth]),
+            "mythRebuttal": get_myth_rebuttal(G.nodes[specific_myth]),
+            "mythSources": get_myth_sources(G.nodes[specific_myth]),
+            "mythVideos": get_myth_video_urls(G.nodes[specific_myth]),
+        }
+        return myth
+    else:
+        return False
 
 
 def get_user_general_solution_nodes():
