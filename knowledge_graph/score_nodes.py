@@ -118,6 +118,44 @@ def get_image_url(node):
         return "https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"
 
 
+def get_effect_specific_myths(node, G):
+    """Climate change impacts sometimes have myths about them.
+    This function takes a node and returns the IRIs of any myths about the impact.
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    try:
+        if "effect myths" in node:
+            IRIs = []
+            for myth_name in node["effect myths"]:
+                myth = G.nodes[myth_name]
+                IRIs.append(get_node_id(myth))
+        return IRIs
+    except:
+        return "No myths at present curated about this impact."
+
+
+def get_solution_specific_myths(node, G):
+    """Climate change solutions sometimes have myths about them.
+    This function takes a node and returns the IRIs of any myths about the solution.
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    try:
+        if "solution myths" in node:
+            IRIs = []
+            for myth_name in node["solution myths"]:
+                myth = G.nodes[myth_name]
+                IRIs.append(get_node_id(myth))
+        return IRIs
+    except:
+        return "No myths at present curated about this impact."
+
+
 def get_image_url_or_none(node):
     """Images are displayed to the user in the climate feed to accompany an explanation
     of the climate effects. The front-end is provided with the URL and then requests
@@ -211,6 +249,7 @@ def simple_scoring(G, user_scores):
                 "imageUrl": get_image_url(G.nodes[node]),
                 "effectSources": get_causal_sources(G.nodes[node]),
                 "isPossiblyLocal": True,
+                "effectSpecificMythIRIs": get_effect_specific_myths(G.nodes[node], G),
             }
 
             if any(v is None for v in node_values_associations_10):
@@ -326,6 +365,9 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
                 "shortDescription": get_short_description(G.nodes[solution]),
                 "longDescription": get_description(G.nodes[solution]),
                 "imageUrl": get_image_url_or_none(G.nodes[solution]),
+                "solutionSpecificMythIRIs": get_solution_specific_myths(
+                    G.nodes[solution], G
+                ),
             }
             adaptation_solutions.append(s_dict)
         except:
@@ -339,6 +381,9 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
                 "shortDescription": get_short_description(G.nodes[solution]),
                 "longDescription": get_description(G.nodes[solution]),
                 "imageUrl": get_image_url_or_none(G.nodes[solution]),
+                "solutionSpecificMythIRIs": get_solution_specific_myths(
+                    G.nodes[solution], G
+                ),
             }
             mitigation_solutions.append(s_dict)
         except:
@@ -426,6 +471,9 @@ def get_user_general_solution_nodes():
             "shortDescription": get_short_description(G.nodes[solution]),
             "longDescription": get_description(G.nodes[solution]),
             "imageUrl": get_image_url_or_none(G.nodes[solution]),
+            "solutionSpecificMythIRIs": get_solution_specific_myths(
+                G.nodes[solution], G
+            ),
         }
 
         general_solutions_details.append(d)
