@@ -30,5 +30,5 @@ def persist_scores(scores: dict) -> Type[KeyError]:
         db.session.add(userScores)
         db.session.commit()
 
-    except KeyError:
-        return KeyError
+    except KeyError as ke:
+        print(ke)

@@ -10,6 +10,7 @@ from typing import Tuple
 from knowledge_graph import app, db, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
+from knowledge_graph.add_zip_code import add_zip_code
 
 from knowledge_graph.score_nodes import (
     get_user_nodes,
@@ -118,7 +119,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     # todo: handle exceptions properly here
     except Exception as ex:
         print(ex)
-        return make_response("Invalid User Response"), 400
+        return make_response({"error": "Invalid User Response"}), 400
 
     value_scores = {}
     overall_sum = 0
@@ -131,6 +132,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     session_id = str(uuid.uuid4())
 
     questions = parameter["questionResponses"]
+    zipcode = parameter["zipCode"]
 
     if len(questions["SetOne"]) < RESPONSES_TO_ADD:
         return make_response("not enough set one scores", 400)
@@ -175,7 +177,34 @@ def receive_user_scores() -> Tuple[Response, int]:
     try:
         persist_scores(value_scores)
     except KeyError:
-        return make_response("invalid key"), 400
+        return make_response({"error": "invalid key"}), 400
+
+    if zipcode:
+        try:
+            add_zip_code(zipcode, session_id)
+        except Exception as e:
+            print(e)
+
+    if (
+        os.environ["DATABASE_PARAMS"]
+        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
+    ):
+        try:
+            ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception as e:
+            print(e)
+    else:
+        try:
+            unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
+            if len(unprocessed_ip_address) != 0:
+                ip_address = unprocessed_ip_address[0]
+            # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
+            else:
+                ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception as e:
+            print(e)
 
     if (
         os.environ["DATABASE_PARAMS"]
