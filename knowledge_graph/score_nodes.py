@@ -75,7 +75,7 @@ def get_myth_sources(node):
         # return list(set(node["properties"]["schema_organizationSource"]))
         return list(set(node["myth sources"]))
     except:
-        return "No sources available at present"
+        return []
 
 
 def get_myth_video_urls(node):
@@ -135,11 +135,10 @@ def get_image_url_or_none(node):
         return None
 
 
-
 def get_short_description(node):
     """Short Descriptions are used by the front-end to display explanations of the
     climate effects shown in user feeds.
-    
+
     Parameters
     ----------
     node - A networkX node
@@ -165,7 +164,7 @@ def get_causal_sources(node):
     try:
         return causal_sources
     except:
-        return "No sources available at present"# Default source if none #should this be the IPCC? or the US National Climate Assessment?
+        return []  # Default source if none #should this be the IPCC? or the US National Climate Assessment?
 
 
 def get_solution_sources(node):
@@ -179,7 +178,7 @@ def get_solution_sources(node):
     try:
         return node["solution sources"]
     except:
-        return "No sources available at present"
+        return []
 
 
 def get_scores_vector(user_scores):
@@ -245,7 +244,8 @@ def simple_scoring(G, user_scores):
             if any(v is None for v in node_values_associations_10):
                 score = None
             else:
-                node_values_associations_10 = np.array(node_values_associations_10)
+                node_values_associations_10 = np.array(
+                    node_values_associations_10)
                 # double the magnitude of the backfire-effect representation:
                 modified_node_values_associations_10 = np.where(
                     node_values_associations_10 < 0,
