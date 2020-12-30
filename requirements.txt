@@ -76,3 +76,4 @@ urllib3==1.25.9
 Werkzeug==1.0.1
 zipp==3.1.0
 flask_swagger_ui==3.25.0
+validators==0.18.2

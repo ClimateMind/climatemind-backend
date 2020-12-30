@@ -227,6 +227,27 @@ def receive_user_scores() -> Tuple[Response, int]:
         except Exception:
             return make_response({"error": "error adding ip address in cloud"}), 500
 
+    if (
+        os.environ["DATABASE_PARAMS"]
+        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
+    ):
+        try:
+            ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception:
+            return make_response({"error": "error adding ip address locally"}), 500
+    else:
+        try:
+            unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
+            if unprocessed_ip_address:
+                ip_address = unprocessed_ip_address[0]
+            # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
+            else:
+                ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception:
+            return make_response({"error": "error adding ip address in cloud"}), 500
+
     response = {"sessionId": session_id}
 
     response = jsonify(response)
@@ -261,10 +282,6 @@ def get_personal_values():
             "power",
         ]
         sorted_scores = {key: scores[key] for key in personal_values_categories}
-        # del scores["_sa_instance_state"]
-        # del scores["session_id"]
-        # del scores["user_id"]
-        # del scores["scores_id"]
 
         top_scores = sorted(sorted_scores, key=sorted_scores.get, reverse=True)[:3]
 
