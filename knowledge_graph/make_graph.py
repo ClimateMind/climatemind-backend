@@ -467,6 +467,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
 
     # convenient source types list
     custom_source_types = [
+        "dc_source",
         "schema_academicBook",
         "schema_academicSourceNoPaywall",
         "schema_academicSourceWithPaywall",
@@ -509,11 +510,16 @@ def makeGraph(onto_path, edge_path, output_folder_path):
                     general_myths.append(myth)
         # process myth sources into nice field called 'myth sources' with only unique urls from any source type
         myth_sources = list()
-        if "dc_source" in G[myth]:
-            myth_sources.extend(G[myth]["dc_source"])
+        # breakpoint()
+        # if G.nodes[myth]["iri"] == "webprotege.stanford.edu.RCw8SmMRRaBEOoHqTzFvZml": breakpoint()
+        # if "dc_source" in G.nodes[myth]:
+        #    myth_sources.extend(G.nodes[myth]["dc_source"])
         for source_type in custom_source_types:
-            if "properties" in G[myth] and source_type in G[myth]["properties"]:
-                myth_sources.extend(G[myth]["properties"][source_type])
+            if (
+                "properties" in G.nodes[myth]
+                and source_type in G.nodes[myth]["properties"]
+            ):
+                myth_sources.extend(G.nodes[myth]["properties"][source_type])
 
         myth_sources = list(
             OrderedDict.fromkeys(myth_sources)
@@ -521,7 +527,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         nx.set_node_attributes(
             G,
             {myth: myth_sources},
-            "myths sources",
+            "myth sources",
         )
 
     # get unique general myths
