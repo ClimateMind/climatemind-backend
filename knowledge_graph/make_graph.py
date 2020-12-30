@@ -505,6 +505,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
             G, {effectNode: node_adaptation_solutions}, "adaptation solutions"
         )
 
+
         # add solution sources field to all adaptation solution nodes
         for solution in node_adaptation_solutions:
             sources = solution_sources(G.nodes[solution], source_types)
@@ -545,6 +546,23 @@ def makeGraph(onto_path, edge_path, output_folder_path):
                     nx.set_node_attributes(G, {neighbor: impact_myths}, "impact myths")
                 if neighbor in nodes_upstream_greenhouse_effect:
                     general_myths.append(myth)
+        # process myth sources into nice field called 'myth sources' with only unique urls from any source type
+        myth_sources = list()
+        for source_type in source_types:
+            if (
+                "properties" in G.nodes[myth]
+                and source_type in G.nodes[myth]["properties"]
+            ):
+                myth_sources.extend(G.nodes[myth]["properties"][source_type])
+
+        myth_sources = list(
+            OrderedDict.fromkeys(myth_sources)
+        )  # removes any duplicates while preserving order
+        nx.set_node_attributes(
+            G,
+            {myth: myth_sources},
+            "myth sources",
+        )
 
     # get unique general myths
     general_myths = list(dict.fromkeys(general_myths))
