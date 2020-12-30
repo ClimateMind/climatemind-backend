@@ -188,7 +188,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     else:
         try:
             unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
-            if len(unprocessed_ip_address) != 0:
+            if unprocessed_ip_address:
                 ip_address = unprocessed_ip_address[0]
             # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
             else:
@@ -231,10 +231,6 @@ def get_personal_values():
             "power",
         ]
         sorted_scores = {key: scores[key] for key in personal_values_categories}
-        # del scores["_sa_instance_state"]
-        # del scores["session_id"]
-        # del scores["user_id"]
-        # del scores["scores_id"]
 
         top_scores = sorted(sorted_scores, key=sorted_scores.get, reverse=True)[:3]
 
