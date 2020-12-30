@@ -466,7 +466,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         )
 
     # convenient source types list
-    custom_source_types = [
+    source_types = [
         "dc_source",
         "schema_academicBook",
         "schema_academicSourceNoPaywall",
@@ -510,11 +510,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
                     general_myths.append(myth)
         # process myth sources into nice field called 'myth sources' with only unique urls from any source type
         myth_sources = list()
-        # breakpoint()
-        # if G.nodes[myth]["iri"] == "webprotege.stanford.edu.RCw8SmMRRaBEOoHqTzFvZml": breakpoint()
-        # if "dc_source" in G.nodes[myth]:
-        #    myth_sources.extend(G.nodes[myth]["dc_source"])
-        for source_type in custom_source_types:
+        for source_type in source_types:
             if (
                 "properties" in G.nodes[myth]
                 and source_type in G.nodes[myth]["properties"]
