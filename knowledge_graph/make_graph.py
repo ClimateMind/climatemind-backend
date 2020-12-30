@@ -3,6 +3,7 @@ import pickle
 import argparse
 import networkx as nx
 import pandas as pd
+import validators
 
 import owlready2
 from owlready2 import get_ontology, sync_reasoner
@@ -534,10 +535,14 @@ def makeGraph(onto_path, edge_path, output_folder_path):
 
             for sources_dict in causal_sources:
                 for key in sources_dict:
+                    #print(sources_dict[key])
+                    #valid_url = validators.url(sources_dict[key])
+                    #if valid_url:
                     sources_list.extend(sources_dict[key])
 
             # remove duplicate urls
             sources_list = list(dict.fromkeys(sources_list))
+            sources_list = [url for url in sources_list if validators.url(url)]
 
             nx.set_node_attributes(
                 G,

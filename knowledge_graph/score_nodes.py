@@ -124,14 +124,14 @@ def get_causal_sources(node):
     ----------
     node - A networkX node
     """
-    if "causal sources" in node:
+    if "causal sources" in node and len(node["causal sources"]) != 0:
         causal_sources = node["causal sources"]
 
     try:
         return causal_sources
     except:
         # Default source if none #should this be the IPCC? or the US National Climate Assessment?
-        return None
+        return "No sources available at present"
 
 
 def get_scores_vector(user_scores):
