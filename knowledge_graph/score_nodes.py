@@ -135,11 +135,10 @@ def get_image_url_or_none(node):
         return None
 
 
-
 def get_short_description(node):
     """Short Descriptions are used by the front-end to display explanations of the
     climate effects shown in user feeds.
-    
+
     Parameters
     ----------
     node - A networkX node
@@ -165,7 +164,7 @@ def get_causal_sources(node):
     try:
         return causal_sources
     except:
-        return "No sources available at present"# Default source if none #should this be the IPCC? or the US National Climate Assessment?
+        return "No sources available at present"  # Default source if none #should this be the IPCC? or the US National Climate Assessment?
 
 
 def get_solution_sources(node):
