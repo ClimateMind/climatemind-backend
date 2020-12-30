@@ -135,20 +135,6 @@ def get_image_url_or_none(node):
         return None
 
 
-def get_short_description(node):
-    """Short Descriptions are used by the front-end to display explanations of the
-    climate effects shown in user feeds.
-
-    Parameters
-    ----------
-    node - A networkX node
-    """
-    try:
-        return node["properties"]["schema_shortDescription"][0]
-    except:
-        return "No short desc available at present"
-
-
 def get_causal_sources(node):
     """Sources are displayed to the user in the sources tab of the impacts overlay page.
     This function returns a list of urls of the sources to show on the impact overlay page for an impact/effect.

@@ -608,6 +608,9 @@ def makeGraph(onto_path, edge_path, output_folder_path):
 
             # remove duplicate urls
             sources_list = list(dict.fromkeys(sources_list))
+            
+            breakpoint()
+            #remove urls that aren't active or aren't real
             sources_list = [url for url in sources_list if validators.url(url)]
 
             nx.set_node_attributes(
