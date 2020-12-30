@@ -71,7 +71,8 @@ def get_myth_rebuttal(node):
 def get_myth_sources(node):
     """Myth sources are used by the frontend to display the source of the myth."""
     try:
-        return list(set(node["properties"]["schema_organizationSource"]))
+        # return list(set(node["properties"]["schema_organizationSource"]))
+        return list(set(node["myth sources"]))
     except:
         return "No sources available at present"
 
