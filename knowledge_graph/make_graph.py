@@ -445,7 +445,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     for solution in mitigation_solutions:
         # breakpoint()
         sources = solution_sources(G.nodes[solution], source_types)
-        if solution_sourcess:
+        if sources:
             nx.set_node_attributes(
                 G,
                 {solution: sources},
