@@ -105,6 +105,14 @@
     
 
 
+    <!-- http://schema.org/mythFallacy -->
+
+    <owl:AnnotationProperty rdf:about="http://schema.org/mythFallacy">
+        <rdfs:label xml:lang="en">schema:mythFallacy</rdfs:label>
+    </owl:AnnotationProperty>
+    
+
+
     <!-- http://schema.org/mythRebuttal -->
 
     <owl:AnnotationProperty rdf:about="http://schema.org/mythRebuttal">
@@ -1753,6 +1761,7 @@
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/R1d2BVvduMHLTUVxQ9qdpd">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R7mLbehY8dCnSQTN6qcKsrF"/>
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RnbPKhyIQNnShkRKHqGrGm"/>
         <rdfs:label xml:lang="en">increase in extreme precipitation</rdfs:label>
     </owl:NamedIndividual>
@@ -1850,7 +1859,7 @@
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">When people share common origins, destinations, or stops en route, they can ride together. Carpooling uses seats and fuel more efficiently, cutting emissions. Project Drawdown&apos;s projection for carpooling focuses on approaches to increase global urban car occupancy, the number of passengers in each car trip. They assume that urban car occupancy can rise from 1.57 in 2018 to 1.75 or 2.0 by 2050, assuming 3 passengers per carpool trip. Carpooling has no implementation costs and can reduce emissions by 4.2-7.7 gigatons of carbon dioxide while saving $2.8-$5.2 trillion in operating costs.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/carpooling"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sharing car rides with friends or colleagues reduces the number of cars on the road. Carpooling can reduce emissions by 4.2 - 7.7 gigatons of carbon dioxide.</schema:shortDescription>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Sharing car rides with friends or colleagues reduces the number of cars on the road. Carpooling can reduce emissions by at most 7.7 gigatons of carbon dioxide while saving up to $5.2 trillion in costs.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">When people share common origins, destinations, or stops en route, they can ride together. Carpooling uses seats and fuel more efficiently, cutting emissions. Project Drawdown&apos;s projection for carpooling focuses on approaches to increase global urban car occupancy, the number of passengers in each car trip. They assume that urban car occupancy can rise from 1.57 in 2018 to 1.75 or 2.0 by 2050, assuming 3 passengers per carpool trip. Carpooling has no implementation costs and can reduce emissions by 4.2-7.7 gigatons of carbon dioxide while saving $2.8-$5.2 trillion in operating costs.</rdfs:comment>
         <rdfs:label xml:lang="en">carpooling</rdfs:label>
     </owl:NamedIndividual>
@@ -1864,7 +1873,7 @@
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RGbm42IftQVoguYsFJQDSl"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RHqEqpIKOwW652b68Rp7tj"/>
         <schema:organizationSource rdf:resource="https://gimletmedia.com/shows/howtosaveaplanet/kwhnz8b"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Air conditioning is necessary to reduce deaths from heatwaves. Using non-HFC refrigerants and renewable energy can reduce its environmental impact.</schema:shortDescription>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Air conditioning is necessary to reduce the deaths and other negative effects on the body from heatwaves. Powering additional units with renewable energy and using units with non-HFC refrigerants is also necessary to prevent additional emissions and reduce environmental impact.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in air conditioning</rdfs:label>
     </owl:NamedIndividual>
     
@@ -1877,7 +1886,7 @@
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Winds over sea are more consistent than those over land. Offshore wind turbines tap into that power to generate utility-scale electricity without emissions. Offshore wind turbines growing from the current estimated 60 TWh, to 1,918-2,256 TWh by 2050, could avoid 10.4-11.4 gigatons of greenhouse gases emissions. This solution can deliver lifetime savings of $673-794 billion over three decades.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/offshore-wind-turbines"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Winds over sea are more consistent than those over land. Offshore wind turbines tap into that power to generate utility-scale electricity without emissions.</schema:shortDescription>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Winds blows more consistently over sea than over land. Offshore wind turbines tap into that power to generate utility-scale electricity without emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Winds over sea are more consistent than those over land. Offshore wind turbines tap into that power to generate utility-scale electricity without emissions. Offshore wind turbines growing from the current estimated 60 TWh, to 1,918-2,256 TWh by 2050, could avoid 10.4-11.4 gigatons of greenhouse gases emissions. This solution can deliver lifetime savings of $673-794 billion over three decades.</rdfs:comment>
         <rdfs:label xml:lang="en">producing electricity via offshore wind turbines</rdfs:label>
     </owl:NamedIndividual>
@@ -2023,6 +2032,8 @@ Students are scoring lower on standardized tests.</schema:shortDescription>
         <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Animals and plants can adapt.
 
 [C]orals, trees, birds, mammals, and butterflies are adapting well to the routine reality of changing climate.&quot; (source: Hudson Institute)</schema:mythClaim>
+        <schema:mythFallacy rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Misrepresentation
+Just because species can adapt to some climate change doesn’t mean they can adjust to the rapid climate change happening now.</schema:mythFallacy>
         <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Human-caused climate change is occurring too rapidly for species to be able to adapt. Plants and animals are currently dying off at a rate that is 100 to 1000 times faster than the average rate of extinction over geological timescales. Because of this, there is mounting evidence that we are heading towards a mass extinction event.</schema:mythRebuttal>
         <schema:organizationSource rdf:resource="https://skepticalscience.com/Can-animals-and-plants-adapt-to-global-warming.htm"/>
         <schema:video rdf:resource="https://www.youtube.com/watch?v=LrIN6gK3S0A"/>
@@ -2463,7 +2474,7 @@ If adoption of fuel-saving technologies grows from 10 percent to 50-60 percent o
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCBzNhkuW51hKlUIUPew7nS"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCJEcx2UfX3O1O9fAa1QpcW"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R9GgwNAE1EIyeCTZohpIThL"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Charging people and companies a carbon tax on emissions can be made more popular by redistributing the income back to taxpayers.</schema:shortDescription>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Charging companies a carbon tax on emissions can be made more popular by redistributing the money collected back to taxpayers.</schema:shortDescription>
         <rdfs:label xml:lang="en">enact carbon tax policy (revenue neutral)</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2488,6 +2499,8 @@ If adoption of fuel-saving technologies grows from 10 percent to 50-60 percent o
         <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Climate&apos;s changed before
 
 Climate is always changing. We have had ice ages and warmer periods when alligators were found in Spitzbergen. Ice ages have occurred in a hundred thousand year cycle for the last 700 thousand years, and there have been previous periods that appear to have been warmer than the present despite CO2 levels being lower than they are now. More recently, we have had the medieval warm period and the little ice age. (from Richard Lindzen)</schema:mythClaim>
+        <schema:mythFallacy rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jumping to conclusions
+Past climate change actually sends the opposite message than what the myth concludes.</schema:mythFallacy>
         <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Greenhouse gasses, principally CO2, have controlled most ancient climate changes. This time around humans are the cause, mainly by our CO2 emissions.</schema:mythRebuttal>
         <schema:organizationSource rdf:resource="https://skepticalscience.com/climate-change-little-ice-age-medieval-warm-period.htm"/>
         <schema:video rdf:resource="https://youtu.be/H5kejSYPD7U"/>
@@ -2833,10 +2846,10 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
 
 Project Drawdown models the impact of this population difference in more-developed as well as least-and less-developed countries, in terms of how much energy, building space, food, waste, and transportation would be used. The resulting emissions reductions across the entire system could be as high as 85.4 gigatons of carbon dioxide, just within the window of 2020-2050. Health &amp; Education have a compounding impact, however, with greater climate impacts into the future.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/health-and-education"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Access to education and family planning can slow the growth of the world&apos;s population, which also limits the growth in greenhouse gas emissions.</schema:shortDescription>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Access to education and family planning gives women job opportunities and the ability to decide how large a family they want, significantly limiting the growth in greenhouse gas emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">It is critical that human rights are always centered, that gender equality is the aim, and that benefits to the planet are understood as positive ripple effects of access and agency. Project Drawdown modeled the influence of two rights-based solutions on global population: universal education and family planning. Increased access to and quality of voluntary reproductive healthcare, family planning resources, and 12-13 years of schooling are essential components to achieve the United Nations’ 2015 medium global population projection of 9.7 billion people by 2050. If investment and support of these fundamental human rights-centered solutions does not materialize, the world’s population could come closer to the higher projection, adding another 1 billion people to the planet.
 
-Project Drawdown models the impact of this population difference in more-developed as well as least-and less-developed countries, in terms of how much energy, building space, food, waste, and transportation would be used. The resulting emissions reductions across the entire system could be as high as 85.4 gigatons of carbon dioxide, just within the window of 2020-2050. Health &amp; Education have a compounding impact, however, with greater climate impacts into the future.</rdfs:comment>
+Project Drawdown (see sources) models the impact of this population difference in more-developed as well as least-and less-developed countries, in terms of how much energy, building space, food, waste, and transportation would be used. The resulting emissions reductions across the entire system could be as high as 85.4 gigatons of carbon dioxide, just within the window of 2020-2050. Health &amp; Education have a compounding impact, however, with greater climate impacts into the future.</rdfs:comment>
         <rdfs:label xml:lang="en">improving health and education</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2856,6 +2869,8 @@ Project Drawdown models the impact of this population difference in more-develop
         <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">It hasn&apos;t warmed since 1998.
 
 For the years 1998-2005, temperature did not increase. This period coincides with society&apos;s continued pumping of more CO2 into the atmosphere. (from Bob Carter)</schema:mythClaim>
+        <schema:mythFallacy rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cherry picking data
+Looking at one region or a short period ignores the full picture.</schema:mythFallacy>
         <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Every part of the Earth&apos;s climate system has continued warming since 1998, with 2015 shattering temperature records.</schema:mythRebuttal>
         <schema:organizationSource rdf:resource="https://skepticalscience.com/global-warming-stopped-in-1998.htm"/>
         <schema:video rdf:resource="https://youtu.be/Lepc2OKX6uQ"/>
@@ -3086,11 +3101,11 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
             </owl:Restriction>
         </rdf:type>
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Conservation agriculture uses cover crops, crop rotation, and minimal tilling in the production of annual crops. It protects soil, avoids emissions, and sequesters carbon. 
-Based on historic growth on large farming operations, the Project Drawdown analysis projects the total area under conservation agriculture will continue growing from 148 million hectares to peak at 400-327 million hectares by 2035. Project Drawdown assumes that as regenerative annual cropping becomes more widely used, farms that have already adopted conservation agriculture will convert to these more effective soil fertility practices in response to consumer demand for fewer harmful herbicides. The benefits of that conversion are counted by the regenerative annual cropping solution. Nonetheless, conservation agriculture offers significant benefits in the interim, reducing carbon dioxide emissions by 13.4-9.4 gigatons based on average carbon sequestration rates of 0.25- 0.78 tons of carbon per hectare per year, depending on region. Establishment costs are low at $91.9-65.2 billion with a lifetime operational savings of $2.8-1.9 trillion and lifetime net profit of $113.1-77.7 billion.</schema:longDescription>
+Based on historic growth on large farming operations, the Project Drawdown analysis (see sources) projects the total area under conservation agriculture will continue growing from 148 million hectares to peak at 400-327 million hectares by 2035. Project Drawdown assumes that as regenerative annual cropping becomes more widely used, farms that have already adopted conservation agriculture will convert to these more effective soil fertility practices in response to consumer demand for fewer harmful herbicides. The benefits of that conversion are counted by the regenerative annual cropping solution. Nonetheless, conservation agriculture offers significant benefits in the interim, reducing carbon dioxide emissions by 13.4-9.4 gigatons based on average carbon sequestration rates of 0.25- 0.78 tons of carbon per hectare per year, depending on region. Establishment costs are low at $91.9-65.2 billion with a lifetime operational savings of $2.8-1.9 trillion and lifetime net profit of $113.1-77.7 billion.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/plant-rich-diets"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Conservation agriculture uses cover crops, crop rotation, and minimal tilling in the production of annual crops. It protects soil, avoids emissions, and sequesters carbon.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Conservation agriculture uses cover crops, crop rotation, and minimal tilling in the production of annual crops. It protects soil, avoids emissions, and sequesters carbon. 
-Based on historic growth on large farming operations, the Project Drawdown analysis projects the total area under conservation agriculture will continue growing from 148 million hectares to peak at 400-327 million hectares by 2035. Project Drawdown assumes that as regenerative annual cropping becomes more widely used, farms that have already adopted conservation agriculture will convert to these more effective soil fertility practices in response to consumer demand for fewer harmful herbicides. The benefits of that conversion are counted by the regenerative annual cropping solution. Nonetheless, conservation agriculture offers significant benefits in the interim, reducing carbon dioxide emissions by 13.4-9.4 gigatons based on average carbon sequestration rates of 0.25- 0.78 tons of carbon per hectare per year, depending on region. Establishment costs are low at $91.9-65.2 billion with a lifetime operational savings of $2.8-1.9 trillion and lifetime net profit of $113.1-77.7 billion.</rdfs:comment>
+Based on historic growth on large farming operations, the Project Drawdown analysis projects the total area under conservation agriculture will continue growing from 148 million hectares to peak at 400-327 million hectares by 2035. Project Drawdown (see sources) assumes that as regenerative annual cropping becomes more widely used, farms that have already adopted conservation agriculture will convert to these more effective soil fertility practices in response to consumer demand for fewer harmful herbicides. The benefits of that conversion are counted by the regenerative annual cropping solution. Nonetheless, conservation agriculture offers significant benefits in the interim, reducing carbon dioxide emissions by 13.4-9.4 gigatons based on average carbon sequestration rates of 0.25- 0.78 tons of carbon per hectare per year, depending on region. Establishment costs are low at $91.9-65.2 billion with a lifetime operational savings of $2.8-1.9 trillion and lifetime net profit of $113.1-77.7 billion.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in conservation agriculture</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3336,6 +3351,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
     <!-- http://webprotege.stanford.edu/RBAJ46soLY6Nmd73XuHajVc -->
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RBAJ46soLY6Nmd73XuHajVc">
+        <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCTESypCGDMrvu4pgWxsPWA"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RiaN0yHy7S0de3jPmDffcH"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/R1d2BVvduMHLTUVxQ9qdpd"/>
@@ -3891,6 +3907,8 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
         <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Antarctica is gaining ice.
 
 &quot;[Ice] is expanding in much of Antarctica, contrary to the widespread public belief that global warming is melting the continental ice cap.&quot; (from Greg Roberts, The Australian)</schema:mythClaim>
+        <schema:mythFallacy rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Over-simplification
+A number of factors may contribute to the increase in sea ice - but in no way does it change the fact that climate change is happening.</schema:mythFallacy>
         <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Antarctic sea ice is gaining sea ice but Antarctica is losing land ice at an accelerating rate, which has implications for sea level rise.</schema:mythRebuttal>
         <schema:organizationSource rdf:resource="https://skepticalscience.com/antarctica-gaining-ice.htm"/>
         <schema:video rdf:resource="https://youtu.be/9PUmKHBtnlA"/>
@@ -3905,6 +3923,7 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCfPh2b9dT7ukFZtEfHQGbi"/>
         <schema:mediaSource rdf:resource="https://www.bbc.co.uk/newsround/49368462"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Including seaweed in cows&apos; diets can reduce their methane emissions by up to 99%. Methane is a potent greenhouse gas.</schema:shortDescription>
         <rdfs:label xml:lang="en">include 1% seaweed in diet for cows and cattle</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3959,6 +3978,8 @@ Global warming is decreasing GDP by increasing in the frequency of heat waves an
         <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">It&apos;s the sun
 
 &quot;Over the past few hundred years, there has been a steady increase in the numbers of sunspots, at the time when the Earth has been getting warmer. The data suggests solar activity is influencing the global climate causing the world to get warmer.&quot; (from BBC)</schema:mythClaim>
+        <schema:mythFallacy rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cherry picking data
+Ignores human fingerprints and recent period where sun and climate move in opposite directions.</schema:mythFallacy>
         <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The sun&apos;s energy has decreased since the 1980s but the Earth keeps warming faster than before.</schema:mythRebuttal>
         <schema:organizationSource rdf:resource="https://skepticalscience.com/solar-activity-sunspots-global-warming.htm"/>
         <schema:video rdf:resource="https://youtu.be/H5kejSYPD7U"/>
@@ -4047,7 +4068,7 @@ The household and industrial recycling solutions were modeled together and inclu
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RCkLLIxnjRrEwqFDLGw9Phk">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RGbm42IftQVoguYsFJQDSl"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The negative effects of climate change can increase suicide rates. More funding for mental health services and education can help prevent suicides.</schema:shortDescription>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The negative effects of climate change are increasing suicide rates. More funding for mental health services and education can help prevent these suicides.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in funding for suicide prevention</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4107,6 +4128,8 @@ The household and industrial recycling solutions were modeled together and inclu
         <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">&quot;We found [U.S. weather] stations located next to the exhaust fans of air conditioning units, surrounded by asphalt parking lots and roads, on blistering-hot rooftops, and near sidewalks and buildings that absorb and radiate heat. We found 68 stations located at wastewater treatment plants, where the process of waste digestion causes temperatures to be higher than in surrounding areas.
 
 In fact, we found that 89 percent of the stations – nearly 9 of every 10 – fail to meet the National Weather Service’s own siting requirements that stations must be 30 meters (about 100 feet) or more away from an artificial heating or radiating/reflecting heat source.&quot; (from Watts 2009)</schema:mythClaim>
+        <schema:mythFallacy rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jumping to conclusions
+Just because measurements have uncertainty doesn&apos;t mean it&apos;s unknowable. The uncertainty is smaller than measured global warming.</schema:mythFallacy>
         <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The warming trend is the same in rural and urban areas, measured by thermometers and satellites, and by natural thermometers.</schema:mythRebuttal>
         <schema:organizationSource rdf:resource="https://skepticalscience.com/surface-temperature-measurements.htm"/>
         <schema:video rdf:resource="https://youtu.be/YKQiyBkt4Vs"/>
@@ -4215,7 +4238,7 @@ In fact, we found that 89 percent of the stations – nearly 9 of every 10 – f
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCBzNhkuW51hKlUIUPew7nS"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R9GgwNAE1EIyeCTZohpIThL"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Setting a limit on emissions and creating a market for trading allowances can drive down emissions by making it more expensive for industries to pollute.</schema:shortDescription>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Setting a limit on emissions and creating a market for trading allowances drives down emissions by rewarding those who don&apos;t pollute and by limiting how much industries can pollute for free.</schema:shortDescription>
         <rdfs:label xml:lang="en">enact cap and trade policy</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4340,6 +4363,7 @@ In fact, we found that 89 percent of the stations – nearly 9 of every 10 – f
 
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDUpv4M8PM4HOKbZuVIB8tT">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RGbm42IftQVoguYsFJQDSl"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Climate change is increasing catastrophic flooding which spreads cholera, so vaccinating people in regions immediately after they flood can help limit its damage to human health.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in cholera vaccines</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4387,7 +4411,14 @@ In fact, we found that 89 percent of the stations – nearly 9 of every 10 – f
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDaR05qkCxdbQERBFVfmfFU">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RCfPh2b9dT7ukFZtEfHQGbi"/>
-        <rdfs:label xml:lang="en">increase in carbon capture</rdfs:label>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.sciencemag.org/news/2018/06/cost-plunges-capturing-carbon-dioxide-air"/>
+        <schema:mediaSource rdf:resource="https://www.cbc.ca/news/technology/carbon-capture-faq-1.5250140"/>
+        <schema:mediaSource rdf:resource="https://www.forbes.com/sites/erikkobayashisolomon/2019/04/26/historic-inflection-point-mankinds-battle-against-climate-change/"/>
+        <schema:mediaSource rdf:resource="https://www.washingtonpost.com/business/2019/06/12/new-plan-remove-trillion-tons-carbon-dioxide-atmosphere-bury-it/?fbclid=IwAR2bIhk3Z8HZ0HBEJcB-5MJScVNMoYehCFcvax1kqJZA2pR_PzJ_TtTjlAQ"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Similar to trees, humans can artificially capture carbon dioxide from sources of emissions or directly from the air. The carbon is then locked away long term by injecting it deep underground or converting it into products such as fuel, concrete or soap.</schema:shortDescription>
+        <schema:video rdf:resource="https://www.youtube.com/watch?v=tKtXojkwlK8"/>
+        <schema:video rdf:resource="https://www.youtube.com/watch?v=XHX9pmQ6m_s&amp;feature=youtu.be"/>
+        <rdfs:label xml:lang="en">increase in carbon capture and storage</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -4782,6 +4813,8 @@ Bamboo is planted on 33.52 million hectares today. We assume that it will be gro
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RC6fAysqWOgHbFRDkBH5oWe"/>
         <webprotege:R9hXAELVgSgchv8aHMobPML rdf:resource="http://webprotege.stanford.edu/R8tO6zSdeJRRUSPaznZIbKU"/>
         <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Models are unreliable. They are full of fudge factors that are fitted to the existing climate, so the models more or less agree with the observed data. But there is no reason to believe that the same fudge factors would give the right behaviour in a world with different chemistry, for example in a world with increased CO2 in the atmosphere.  (from Freeman Dyson)</schema:mythClaim>
+        <schema:mythFallacy rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Impossible Expectations
+No model is perfect but they are useful tools that can reproduce the past and provide insights into the future.</schema:mythFallacy>
         <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Models successfully reproduce temperatures since 1900 globally, by land, in the air and the ocean.</schema:mythRebuttal>
         <schema:organizationSource rdf:resource="https://skepticalscience.com/climate-models.htm"/>
         <schema:video rdf:resource="https://youtu.be/Y_jKXcgR_QA"/>
@@ -4796,7 +4829,7 @@ Bamboo is planted on 33.52 million hectares today. We assume that it will be gro
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RhqiGqHA17wWNCU2lYjwAl"/>
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A transitional technology, hybrid cars pair an electric motor and battery with an internal combustion engine. The combination improves fuel economy—more miles on a gallon—and lowers emissions. 
-Under some business-as-usual projections, 23 million hybrid vehicles will be in operation in 2050, less than 1 percent of the car market. Project Drawdown estimates growth in 2050 could reach 236-621million hybrid vehicles. Until then, hybrid cars can reduce carbon dioxide emissions by 4.6-7.9 gigatons by 2050, saving owners $3.0-6.1 trillion in fuel and operating costs over the lifetime of the cars.This would cost an additional $1.6-3.4 trillion in net costs.</schema:longDescription>
+Under some business-as-usual projections, 23 million hybrid vehicles will be in operation in 2050, less than 1 percent of the car market. Project Drawdown estimates growth in 2050 could reach 236-621 million hybrid vehicles. Until then, hybrid cars can reduce carbon dioxide emissions by 4.6-7.9 gigatons by 2050, saving owners $3.0-6.1 trillion in fuel and operating costs over the lifetime of the cars.This would cost an additional $1.6-3.4 trillion in net costs.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/hybrid-cars"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A transitional technology, hybrid cars pair an electric motor and battery with an internal combustion engine. The combination improves fuel economy (more miles on a gallon) and lowers emissions.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A transitional technology, hybrid cars pair an electric motor and battery with an internal combustion engine. The combination improves fuel economy—more miles on a gallon—and lowers emissions. 
@@ -5147,6 +5180,8 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <schema:mythClaim rdf:datatype="http://www.w3.org/2001/XMLSchema#string">It&apos;s not bad
 
 &quot;By the way, if you’re going to vote for something, vote for warming. Less deaths due to cold, regions more habitable, larger crops, longer growing season. That’s good. Warming helps the poor.&quot; (from John MacArthur)</schema:mythClaim>
+        <schema:mythFallacy rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Cherry picking data
+This focuses on a few good impacts of global warming but ignores the overwhelming number of bad impacts.</schema:mythFallacy>
         <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Negative impacts of global warming on agriculture, health &amp; environment far outweigh any positives.</schema:mythRebuttal>
         <schema:organizationSource rdf:resource="https://skepticalscience.com/global-warming-positives-negatives.htm"/>
         <rdfs:label xml:lang="en">It&apos;s not bad</rdfs:label>

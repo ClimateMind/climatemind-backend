@@ -2,7 +2,7 @@ import os
 import uuid
 from json import dumps, load
 
-from flask import make_response, jsonify
+from flask import make_response, jsonify, request
 from flask import request, Response, send_from_directory
 from flask_swagger_ui import get_swaggerui_blueprint
 from typing import Tuple
@@ -10,7 +10,18 @@ from typing import Tuple
 from knowledge_graph import app, db, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
-from knowledge_graph.score_nodes import get_user_nodes, get_user_actions
+from knowledge_graph.add_zip_code import add_zip_code
+
+from knowledge_graph.score_nodes import (
+    get_user_nodes,
+    get_user_actions,
+    get_user_general_myth_nodes,
+    get_user_general_solution_nodes,
+    get_specific_myth_info,
+)
+
+from knowledge_graph.store_ip_address import store_ip_address
+
 
 value_id_map = {
     1: "conformity",
@@ -108,7 +119,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     # todo: handle exceptions properly here
     except Exception as ex:
         print(ex)
-        return make_response("Invalid User Response"), 400
+        return make_response({"error": "Invalid User Response"}), 400
 
     value_scores = {}
     overall_sum = 0
@@ -121,6 +132,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     session_id = str(uuid.uuid4())
 
     questions = parameter["questionResponses"]
+    zipcode = parameter["zipCode"]
 
     if len(questions["SetOne"]) < RESPONSES_TO_ADD:
         return make_response("not enough set one scores", 400)
@@ -165,7 +177,55 @@ def receive_user_scores() -> Tuple[Response, int]:
     try:
         persist_scores(value_scores)
     except KeyError:
-        return make_response("invalid key"), 400
+        return make_response({"error": "invalid key"}), 400
+
+    if zipcode:
+        try:
+            add_zip_code(zipcode, session_id)
+        except Exception as e:
+            print(e)
+
+    if (
+        os.environ["DATABASE_PARAMS"]
+        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
+    ):
+        try:
+            ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception as e:
+            print(e)
+    else:
+        try:
+            unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
+            if len(unprocessed_ip_address) != 0:
+                ip_address = unprocessed_ip_address[0]
+            # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
+            else:
+                ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception as e:
+            print(e)
+
+    if (
+        os.environ["DATABASE_PARAMS"]
+        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
+    ):
+        try:
+            ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception:
+            return make_response({"error": "error adding ip address locally"}), 500
+    else:
+        try:
+            unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
+            if len(unprocessed_ip_address) != 0:
+                ip_address = unprocessed_ip_address[0]
+            # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
+            else:
+                ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception:
+            return make_response({"error": "error adding ip address in cloud"}), 500
 
     response = {"sessionId": session_id}
 
@@ -252,6 +312,8 @@ def get_feed():
     relevant to a user to display in the user's feed.
 
     """
+    N_FEED_CARDS = 5
+
     session_id = str(request.args.get("session-id"))
     try:
         scores = db.session.query(Scores).filter_by(session_id=session_id).first()
@@ -262,9 +324,64 @@ def get_feed():
     scores = scores.__dict__
     del scores["_sa_instance_state"]
 
-    recommended_nodes = get_user_nodes(scores)
-    climate_effects = {"climateEffects": recommended_nodes}
-    return jsonify(climate_effects), 200
+    recommended_nodes = get_user_nodes(scores, N_FEED_CARDS)
+    feed_entries = {"climateEffects": recommended_nodes}
+    return jsonify(feed_entries), 200
+
+
+@app.route("/myths", methods=["GET"])
+@auto.doc()
+def get_general_myths():
+    """
+    The front-end needs general myths list and information to serve to user when they click the general myths menu button.
+    General myths are ordered based on relevance predicted from users personal values.
+    """
+    # session_id = str(request.args.get("session-id"))
+    # try:
+    # scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    # TODO: catch exceptions properly here
+    # except Exception:
+    #    return make_response("Invalid Session ID or No Information for ID")
+
+    # scores = scores.__dict__
+    # del scores["_sa_instance_state"]
+
+    recommended_general_myths = get_user_general_myth_nodes()
+    climate_general_myths = {"myths": recommended_general_myths}
+    return jsonify(climate_general_myths), 200
+
+
+@app.route("/myths/<string:iri>", methods=["GET"])
+def get_myth_info(iri):
+    myth_info = get_specific_myth_info(iri)
+
+    if myth_info:
+        specific_myth_info = {"myth": myth_info}
+        return jsonify(specific_myth_info), 200
+    else:
+        return make_response({"error": "IRI does not exist"}), 400
+
+
+@app.route("/solutions", methods=["GET"])
+@auto.doc()
+def get_general_solutions():
+    """
+    The front-end needs general myths list and information to serve to user when they click the general myths menu button.
+    General myths are ordered based on relevance predicted from users personal values.
+    """
+    # session_id = str(request.args.get("session-id"))
+    # try:
+    # scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    # TODO: catch exceptions properly here
+    # except Exception:
+    #    return make_response("Invalid Session ID or No Information for ID")
+
+    # scores = scores.__dict__
+    # del scores["_sa_instance_state"]
+
+    recommended_general_solutions = get_user_general_solution_nodes()
+    climate_general_solutions = {"solutions": recommended_general_solutions}
+    return jsonify(climate_general_solutions), 200
 
 
 @app.route("/documentation")
