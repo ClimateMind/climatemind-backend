@@ -341,7 +341,6 @@ def get_user_general_myth_nodes():
     return general_myths_details
 
 
-# TODO Create get_solution_sources() function
 def get_solution_sources(node):
     """Returns a flattened list of custom solution source values from each node key that matches
     custom_source_types string.
@@ -361,7 +360,7 @@ def get_solution_sources(node):
     
     G = get_pickle_file("Climate_Mind_DiGraph.gpickle")
 
-    # TODO loop over each solutions key and append each returned value to the solution_sources list
+    #loop over each solution source key and append each returned value to the solution_sources list
     solution_source_list = list()
     for source_type in source_types:
         if (
