@@ -3,6 +3,7 @@ import pickle
 import argparse
 import networkx as nx
 import pandas as pd
+import validators
 
 import owlready2
 from owlready2 import get_ontology, sync_reasoner
@@ -578,6 +579,42 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     # G.nodes['increase in area burned by wildfire']['adaptation solutions'] should not return *** KeyError: 'adaptation solutions'
 
     # B.nodes['permafrost melt']['direct classes']
+
+    # process and add sources (sources needed for effects, solutions, and myths)
+
+    # get causal sources... function to get the causal edge sources for a specific node...
+    for target_node in G.nodes:
+        # get list nodes that have a relationship with the target node (are neighbor nodes), then filter it down to just the nodes with the causal relationship with the target node
+        causal_sources = list()
+        neighbor_nodes = G.neighbors(target_node)
+        for neighbor_node in neighbor_nodes:
+            if G[target_node][neighbor_node]["type"] == "causes_or_promotes":
+                if target_node == "increase in flooding of land and property":
+                    breakpoint()
+                if G[target_node][neighbor_node]["properties"]:
+                    causal_sources.append(G[target_node][neighbor_node]["properties"])
+
+        if causal_sources:
+            # collapse down to just list of unique urls. strips off the type of source and the edge it originates from
+
+            sources_list = list()
+
+            for sources_dict in causal_sources:
+                for key in sources_dict:
+                    # print(sources_dict[key])
+                    # valid_url = validators.url(sources_dict[key])
+                    # if valid_url:
+                    sources_list.extend(sources_dict[key])
+
+            # remove duplicate urls
+            sources_list = list(dict.fromkeys(sources_list))
+            sources_list = [url for url in sources_list if validators.url(url)]
+
+            nx.set_node_attributes(
+                G,
+                {target_node: sources_list},
+                "causal sources",
+            )
 
     # output_folder_path = "../PUT_NEW_OWL_FILE_IN_HERE/"
     save_graph_to_pickle(G, output_folder_path)

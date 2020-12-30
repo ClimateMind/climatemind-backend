@@ -135,10 +135,11 @@ def get_image_url_or_none(node):
         return None
 
 
+
 def get_short_description(node):
     """Short Descriptions are used by the front-end to display explanations of the
     climate effects shown in user feeds.
-
+    
     Parameters
     ----------
     node - A networkX node
@@ -147,6 +148,24 @@ def get_short_description(node):
         return node["properties"]["schema_shortDescription"][0]
     except:
         return "No short desc available at present"
+
+
+def get_causal_sources(node):
+    """Sources are displayed to the user in the sources tab of the impacts overlay page.
+    This function returns a list of urls of the sources to show on the impact overlay page for an impact/effect.
+    Importantly, these sources aren't directly from the networkx node, but all the networkx edges that cause the node.
+    Only returns edges that are directly tied to the node (ancestor edge sources are not used)
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    if "causal sources" in node and len(node["causal sources"]) != 0:
+        causal_sources = node["causal sources"]
+
+    try:
+        return causal_sources
+    except:
+        return "No sources available at present"# Default source if none #should this be the IPCC? or the US National Climate Assessment?
 
 
 def get_solution_sources(node):
@@ -219,6 +238,7 @@ def simple_scoring(G, user_scores):
                 "effectDescription": get_description(G.nodes[node]),
                 "effectShortDescription": get_short_description(G.nodes[node]),
                 "imageUrl": get_image_url(G.nodes[node]),
+                "effectSources": get_causal_sources(G.nodes[node]),
                 "isPossiblyLocal": True,
             }
 
