@@ -587,8 +587,6 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         neighbor_nodes = G.neighbors(target_node)
         for neighbor_node in neighbor_nodes:
             if G[target_node][neighbor_node]["type"] == "causes_or_promotes":
-                # if target_node == "increase in flooding of land and property":
-                #    breakpoint()
                 if G[target_node][neighbor_node]["properties"]:
                     causal_sources.append(G[target_node][neighbor_node]["properties"])
 
