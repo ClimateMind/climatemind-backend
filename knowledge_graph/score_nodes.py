@@ -79,12 +79,28 @@ def get_myth_sources(node):
 
 
 def get_myth_video_urls(node):
-
+    """Myth video are used by the frontend to display the video url of the myth."""
     if node["properties"]["schema_video"]:
         try:
             return list(set(node["properties"]["schema_video"]))
         except:
             return "No videos available at present"
+    else:
+        return None
+
+
+def get_myth_fallacy(node):
+    """Myth fallacy (also called 'faulty logic description') are used by the front-end to display a description of why a myth is logically wrong.
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    if node["properties"]["schema_mythFallacy"]:
+        try:
+            return node["properties"]["schema_mythFallacy"][0]
+        except:
+            return "No faulty logic description available at present"
     else:
         return None
 
@@ -434,6 +450,9 @@ def get_user_general_myth_nodes():
             "mythTitle": G.nodes[myth]["label"],
             "mythClaim": get_myth_claim(G.nodes[myth]),
             "mythRebuttal": get_myth_rebuttal(G.nodes[myth]),
+            "mythSources": get_myth_sources(G.nodes[myth]),
+            "mythVideos": get_myth_video_urls(G.nodes[myth]),
+            "faultyLogicDescription": get_myth_fallacy(G.nodes[myth]),
         }
 
         general_myths_details.append(d)
@@ -462,6 +481,7 @@ def get_specific_myth_info(iri):
             "mythRebuttal": get_myth_rebuttal(G.nodes[specific_myth]),
             "mythSources": get_myth_sources(G.nodes[specific_myth]),
             "mythVideos": get_myth_video_urls(G.nodes[specific_myth]),
+            "faultyLogicDescription": get_myth_fallacy(G.nodes[specific_myth]),
         }
         return myth
     else:
