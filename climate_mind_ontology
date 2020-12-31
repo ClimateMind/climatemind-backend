@@ -3710,8 +3710,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A decrease in Gross Domestic Profit (GDP) is when a country&apos;s economy contracts rather than expands in a financial quarter.
 
 GDP is significantly smaller than it could be because of the increased frequency of heat waves and decreased tourism caused by global warming. These effects will continue to worsen as global temperatures continue to rise if appropriate adaptation and mitigation measured aren&apos;t taken.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The total value of goods produced and services provided each year are increasingly being constrained.
-Global warming is decreasing GDP by increasing in the frequency of heat waves and shrinking the tourism industry.</schema:shortDescription>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The total value of goods produced and services provided each year are increasingly being constrained. Global warming is decreasing GDP by increasing in the frequency of heat waves and shrinking the tourism industry, among other impacts.</schema:shortDescription>
         <rdfs:label xml:lang="en">decrease in GDP</rdfs:label>
         <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An increase in heatwaves is causing a decrease in North American Gross Domestic Product (GDP)</skos:definition>
     </owl:NamedIndividual>

@@ -9,6 +9,7 @@ from knowledge_graph.make_graph import (
 )
 import numpy as np
 import random
+from collections import OrderedDict
 
 
 def get_node_id(node):
@@ -74,7 +75,7 @@ def get_myth_sources(node):
         # return list(set(node["properties"]["schema_organizationSource"]))
         return list(set(node["myth sources"]))
     except:
-        return "No sources available at present"
+        return []
 
 
 def get_myth_video_urls(node):
@@ -139,19 +140,33 @@ def get_causal_sources(node):
     This function returns a list of urls of the sources to show on the impact overlay page for an impact/effect.
     Importantly, these sources aren't directly from the networkx node, but all the networkx edges that cause the node.
     Only returns edges that are directly tied to the node (ancestor edge sources are not used)
-
     Parameters
     ----------
     node - A networkX node
     """
-    if "causal sources" in node and len(node["causal sources"]) != 0:
+    if "causal sources" in node and len(node["causal sources"]) > 0:
         causal_sources = node["causal sources"]
 
     try:
         return causal_sources
     except:
-        # Default source if none #should this be the IPCC? or the US National Climate Assessment?
-        return "No sources available at present"
+        return (
+            []
+        )  # Default source if none #should this be the IPCC? or the US National Climate Assessment?
+
+
+def get_solution_sources(node):
+    """Returns a flattened list of custom solution source values from each node key that matches
+    custom_source_types string.
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    try:
+        return node["solution sources"]
+    except:
+        return []
 
 
 def get_scores_vector(user_scores):
@@ -203,6 +218,7 @@ def simple_scoring(G, user_scores):
     for node in G.nodes:
         if "personal_values_10" in G.nodes[node]:
             node_values_associations_10 = G.nodes[node]["personal_values_10"]
+
             d = {
                 "effectId": get_node_id(G.nodes[node]),
                 "effectTitle": G.nodes[node]["label"],
@@ -326,6 +342,7 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
                 "shortDescription": get_short_description(G.nodes[solution]),
                 "longDescription": get_description(G.nodes[solution]),
                 "imageUrl": get_image_url_or_none(G.nodes[solution]),
+                "solutionSources": get_solution_sources(G.nodes[solution]),
             }
             adaptation_solutions.append(s_dict)
         except:
@@ -339,6 +356,7 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
                 "shortDescription": get_short_description(G.nodes[solution]),
                 "longDescription": get_description(G.nodes[solution]),
                 "imageUrl": get_image_url_or_none(G.nodes[solution]),
+                "solutionSources": get_solution_sources(G.nodes[solution]),
             }
             mitigation_solutions.append(s_dict)
         except:
