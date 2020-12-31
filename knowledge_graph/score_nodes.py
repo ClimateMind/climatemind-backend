@@ -9,6 +9,7 @@ from knowledge_graph.make_graph import (
 )
 import numpy as np
 import random
+from collections import OrderedDict
 
 
 def get_node_id(node):
@@ -74,7 +75,7 @@ def get_myth_sources(node):
         # return list(set(node["properties"]["schema_organizationSource"]))
         return list(set(node["myth sources"]))
     except:
-        return "No sources available at present"
+        return []
 
 
 def get_myth_video_urls(node):
@@ -134,6 +135,44 @@ def get_image_url(node):
         return "https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"
 
 
+def get_effect_specific_myths(node, G):
+    """Climate change impacts sometimes have myths about them.
+    This function takes a node and returns the IRIs of any myths about the impact.
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    try:
+        if "effect myths" in node:
+            IRIs = []
+            for myth_name in node["effect myths"]:
+                myth = G.nodes[myth_name]
+                IRIs.append(get_node_id(myth))
+        return IRIs
+    except:
+        return "No myths at present curated about this impact."
+
+
+def get_solution_specific_myths(node, G):
+    """Climate change solutions sometimes have myths about them.
+    This function takes a node and returns the IRIs of any myths about the solution.
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    try:
+        if "solution myths" in node:
+            IRIs = []
+            for myth_name in node["solution myths"]:
+                myth = G.nodes[myth_name]
+                IRIs.append(get_node_id(myth))
+        return IRIs
+    except:
+        return "No myths at present curated about this impact."
+
+
 def get_image_url_or_none(node):
     """Images are displayed to the user in the climate feed to accompany an explanation
     of the climate effects. The front-end is provided with the URL and then requests
@@ -155,19 +194,33 @@ def get_causal_sources(node):
     This function returns a list of urls of the sources to show on the impact overlay page for an impact/effect.
     Importantly, these sources aren't directly from the networkx node, but all the networkx edges that cause the node.
     Only returns edges that are directly tied to the node (ancestor edge sources are not used)
-
     Parameters
     ----------
     node - A networkX node
     """
-    if "causal sources" in node and len(node["causal sources"]) != 0:
+    if "causal sources" in node and len(node["causal sources"]) > 0:
         causal_sources = node["causal sources"]
 
     try:
         return causal_sources
     except:
-        # Default source if none #should this be the IPCC? or the US National Climate Assessment?
-        return "No sources available at present"
+        return (
+            []
+        )  # Default source if none #should this be the IPCC? or the US National Climate Assessment?
+
+
+def get_solution_sources(node):
+    """Returns a flattened list of custom solution source values from each node key that matches
+    custom_source_types string.
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    try:
+        return node["solution sources"]
+    except:
+        return []
 
 
 def get_scores_vector(user_scores):
@@ -219,6 +272,7 @@ def simple_scoring(G, user_scores):
     for node in G.nodes:
         if "personal_values_10" in G.nodes[node]:
             node_values_associations_10 = G.nodes[node]["personal_values_10"]
+
             d = {
                 "effectId": get_node_id(G.nodes[node]),
                 "effectTitle": G.nodes[node]["label"],
@@ -227,6 +281,7 @@ def simple_scoring(G, user_scores):
                 "imageUrl": get_image_url(G.nodes[node]),
                 "effectSources": get_causal_sources(G.nodes[node]),
                 "isPossiblyLocal": True,
+                "effectSpecificMythIRIs": get_effect_specific_myths(G.nodes[node], G),
             }
 
             if any(v is None for v in node_values_associations_10):
@@ -342,6 +397,10 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
                 "shortDescription": get_short_description(G.nodes[solution]),
                 "longDescription": get_description(G.nodes[solution]),
                 "imageUrl": get_image_url_or_none(G.nodes[solution]),
+                "solutionSpecificMythIRIs": get_solution_specific_myths(
+                    G.nodes[solution], G
+                ),
+                "solutionSources": get_solution_sources(G.nodes[solution]),
             }
             adaptation_solutions.append(s_dict)
         except:
@@ -355,6 +414,10 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
                 "shortDescription": get_short_description(G.nodes[solution]),
                 "longDescription": get_description(G.nodes[solution]),
                 "imageUrl": get_image_url_or_none(G.nodes[solution]),
+                "solutionSpecificMythIRIs": get_solution_specific_myths(
+                    G.nodes[solution], G
+                ),
+                "solutionSources": get_solution_sources(G.nodes[solution]),
             }
             mitigation_solutions.append(s_dict)
         except:
@@ -446,6 +509,9 @@ def get_user_general_solution_nodes():
             "shortDescription": get_short_description(G.nodes[solution]),
             "longDescription": get_description(G.nodes[solution]),
             "imageUrl": get_image_url_or_none(G.nodes[solution]),
+            "solutionSpecificMythIRIs": get_solution_specific_myths(
+                G.nodes[solution], G
+            ),
         }
 
         general_solutions_details.append(d)
