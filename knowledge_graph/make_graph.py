@@ -599,9 +599,6 @@ def makeGraph(onto_path, edge_path, output_folder_path):
 
             for sources_dict in causal_sources:
                 for key in sources_dict:
-                    # print(sources_dict[key])
-                    # valid_url = validators.url(sources_dict[key])
-                    # if valid_url:
                     sources_list.extend(sources_dict[key])
 
             # remove duplicate urls
