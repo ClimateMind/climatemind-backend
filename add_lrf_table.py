@@ -9,13 +9,14 @@ SQLALCHEMY_DATABASE_URI = "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quot
     DB_CREDENTIALS
 )
 
-file = 'lkp_postal_nodes.csv'
+file = "lkp_postal_nodes.csv"
 engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
 
+
 def add_lrf_data():
-    try:        
+    try:
         data = pd.read_csv(file, index_col=0)
-        data.to_sql('lrf_data', engine, if_exists='replace')
+        data.to_sql("lrf_data", engine, if_exists="replace")
     except Exception as e:
         print(e)
     else:
