@@ -10,7 +10,7 @@ BASEDIR="$(dirname "${BASH_SOURCE[0]}")"
 # flask db upgrade -d $BASEDIR/migrations
 # flask db init -d $BASEDIR/migrations_local
 # flask db init -d $BASEDIR/migrations_azure
-# flask db migrate -m "CM-246 edit postal_code column in sessions table - change data type to string - edited env.py to detect column type changes" -d $BASEDIR/migrations_azure
+# flask db migrate -m "CM-240, task CM-298, created lrf_data table from lkp_postal_nodes.csv" -d $BASEDIR/migrations_azure
 # flask db migrate -m "add all current tables" -d $BASEDIR/migrations_local
 
 # flask db upgrade -d $BASEDIR/migrations_local #this line needs to switch automatically between local and azure based on the DATABASE_PARAMS global variable. 
@@ -21,6 +21,8 @@ then
     python add_lrf_table.py
 else
 	flask db upgrade -d $BASEDIR/migrations_azure #this line used only if production databsae is being used 
+    # The line below is used ONLY when a new CSV has been added and the lrf_table needs to be updated in the cloud.
+    # python add_lrf_table.py
 fi
 	
 flask run --host=0.0.0.0
