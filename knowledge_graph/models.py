@@ -14,6 +14,7 @@ from sqlalchemy.orm import sessionmaker
     Migrations need to be run when changes are made.
 """
 
+
 class Users(UserMixin, db.Model):
     user_id = db.Column(db.String(256), primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
