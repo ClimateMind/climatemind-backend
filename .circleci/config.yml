@@ -72,3 +72,12 @@ workflows:
           filters:
             branches:
               only: master
+      - azure-acr/build-and-push-image:
+          context: azure
+          dockerfile: Dockerfile
+          login-server-name: acrwebtest001.azurecr.io
+          registry-name: acrwebtest001
+          repo: backend
+          filters:
+            branches:
+              only: develop
