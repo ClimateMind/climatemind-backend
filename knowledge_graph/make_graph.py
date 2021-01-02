@@ -3,6 +3,7 @@ import pickle
 import argparse
 import networkx as nx
 import pandas as pd
+import validators
 
 import owlready2
 from owlready2 import get_ontology, sync_reasoner
@@ -20,6 +21,23 @@ import os
 
 # Set a lower JVM memory limit
 owlready2.reasoning.JAVA_MEMORY = 500
+
+
+def solution_sources(node, source_types):
+    """Returns a flattened list of custom solution source values from each node key that matches
+    custom_source_types string.
+    node - NetworkX node
+    source_types - list of sources types
+    """
+    # loop over each solution source key and append each returned value to the solution_sources list
+    solution_source_list = list()
+    for source_type in source_types:
+        if "properties" in node and source_type in node["properties"]:
+            solution_source_list.extend(node["properties"][source_type])
+
+    solution_source_list = list(OrderedDict.fromkeys(solution_source_list))
+
+    return solution_source_list
 
 
 def listify(collection, onto):
@@ -321,6 +339,18 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     with onto:
         sync_reasoner()
 
+    # convenient source types list
+    source_types = [
+        "dc_source",
+        "schema_academicBook",
+        "schema_academicSourceNoPaywall",
+        "schema_academicSourceWithPaywall",
+        "schema_governmentSource",
+        "schema_mediaSource",
+        "schema_mediaSourceForConservatives",
+        "schema_organizationSource",
+    ]
+
     # print(list(default_world.inconsistent_classes()))
 
     # Read in the triples data
@@ -411,8 +441,17 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         "mitigation solutions",
     )
 
+    # add solution sources field to all mitigation solution nodes
+    for solution in mitigation_solutions:
+        sources = solution_sources(G.nodes[solution], source_types)
+        if sources:
+            nx.set_node_attributes(
+                G,
+                {solution: sources},
+                "solution sources",
+            )
+
     # to check or obtain the solutions from the networkx object: G.nodes['increase in greenhouse effect']['mitigation solutions']
-    # breakpoint()
 
     # code to get the adaptation solutions from a node in the networkx object:
 
@@ -456,7 +495,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         # be sure that solutions don't show up as effectNodes! and that they aren't solutions to themself! the code needs to be changed to avoid this.
         # ^solutions shouldn't be added as solutions to themself!
         node_adaptation_solutions = list(
-            dict.fromkeys(node_adaptation_solutions)
+            OrderedDict.fromkeys(node_adaptation_solutions)
         )  # gets unique nodes
         # print(str(effectNode)+": "+str(node_adaptation_solutions))
 
@@ -464,6 +503,15 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         nx.set_node_attributes(
             G, {effectNode: node_adaptation_solutions}, "adaptation solutions"
         )
+
+        # add solution sources field to all adaptation solution nodes
+        for solution in node_adaptation_solutions:
+            sources = solution_sources(G.nodes[solution], source_types)
+            nx.set_node_attributes(
+                G,
+                {solution: sources},
+                "solution sources",
+            )
 
     # process myths in networkx object to be easier for API
     general_myths = list()
@@ -496,6 +544,23 @@ def makeGraph(onto_path, edge_path, output_folder_path):
                     nx.set_node_attributes(G, {neighbor: impact_myths}, "impact myths")
                 if neighbor in nodes_upstream_greenhouse_effect:
                     general_myths.append(myth)
+        # process myth sources into nice field called 'myth sources' with only unique urls from any source type
+        myth_sources = list()
+        for source_type in source_types:
+            if (
+                "properties" in G.nodes[myth]
+                and source_type in G.nodes[myth]["properties"]
+            ):
+                myth_sources.extend(G.nodes[myth]["properties"][source_type])
+
+        myth_sources = list(
+            OrderedDict.fromkeys(myth_sources)
+        )  # removes any duplicates while preserving order
+        nx.set_node_attributes(
+            G,
+            {myth: myth_sources},
+            "myth sources",
+        )
 
     # get unique general myths
     general_myths = list(dict.fromkeys(general_myths))
@@ -512,6 +577,41 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     # G.nodes['increase in area burned by wildfire']['adaptation solutions'] should not return *** KeyError: 'adaptation solutions'
 
     # B.nodes['permafrost melt']['direct classes']
+
+    # process and add sources (sources needed for effects, solutions, and myths)
+
+    # get causal sources... function to get the causal edge sources for a specific node...
+    for target_node in G.nodes:
+        # get list nodes that have a relationship with the target node (are neighbor nodes), then filter it down to just the nodes with the causal relationship with the target node
+        causal_sources = list()
+        neighbor_nodes = G.neighbors(target_node)
+        for neighbor_node in neighbor_nodes:
+            if G[target_node][neighbor_node]["type"] == "causes_or_promotes":
+                if G[target_node][neighbor_node]["properties"]:
+                    causal_sources.append(G[target_node][neighbor_node]["properties"])
+
+        if causal_sources:
+            # collapse down to just list of unique urls. strips off the type of source and the edge it originates from
+
+            sources_list = list()
+
+            for sources_dict in causal_sources:
+                for key in sources_dict:
+                    sources_list.extend(sources_dict[key])
+
+            # remove duplicate urls
+            sources_list = list(dict.fromkeys(sources_list))
+
+            # if target_node == "increase in flooding of land and property":
+            #    breakpoint()
+            # remove urls that aren't active or aren't real
+            sources_list = [url for url in sources_list if validators.url(url)]
+
+            nx.set_node_attributes(
+                G,
+                {target_node: sources_list},
+                "causal sources",
+            )
 
     # output_folder_path = "../PUT_NEW_OWL_FILE_IN_HERE/"
     save_graph_to_pickle(G, output_folder_path)
