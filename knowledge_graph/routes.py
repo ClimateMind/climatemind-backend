@@ -10,12 +10,14 @@ from typing import Tuple
 from knowledge_graph import app, db, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
+from knowledge_graph.add_zip_code import add_zip_code
 
 from knowledge_graph.score_nodes import (
     get_user_nodes,
     get_user_actions,
     get_user_general_myth_nodes,
     get_user_general_solution_nodes,
+    get_specific_myth_info,
 )
 
 from knowledge_graph.store_ip_address import store_ip_address
@@ -117,7 +119,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     # todo: handle exceptions properly here
     except Exception as ex:
         print(ex)
-        return make_response("Invalid User Response"), 400
+        return make_response({"error": "Invalid User Response"}), 400
 
     value_scores = {}
     overall_sum = 0
@@ -130,6 +132,7 @@ def receive_user_scores() -> Tuple[Response, int]:
     session_id = str(uuid.uuid4())
 
     questions = parameter["questionResponses"]
+    zipcode = parameter["zipCode"]
 
     if len(questions["SetOne"]) < RESPONSES_TO_ADD:
         return make_response("not enough set one scores", 400)
@@ -174,7 +177,34 @@ def receive_user_scores() -> Tuple[Response, int]:
     try:
         persist_scores(value_scores)
     except KeyError:
-        return make_response("invalid key"), 400
+        return make_response({"error": "invalid key"}), 400
+
+    if zipcode:
+        try:
+            add_zip_code(zipcode, session_id)
+        except Exception as e:
+            print(e)
+
+    if (
+        os.environ["DATABASE_PARAMS"]
+        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
+    ):
+        try:
+            ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception as e:
+            print(e)
+    else:
+        try:
+            unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
+            if len(unprocessed_ip_address) != 0:
+                ip_address = unprocessed_ip_address[0]
+            # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
+            else:
+                ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception as e:
+            print(e)
 
     if (
         os.environ["DATABASE_PARAMS"]
@@ -189,6 +219,27 @@ def receive_user_scores() -> Tuple[Response, int]:
         try:
             unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
             if len(unprocessed_ip_address) != 0:
+                ip_address = unprocessed_ip_address[0]
+            # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
+            else:
+                ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception:
+            return make_response({"error": "error adding ip address in cloud"}), 500
+
+    if (
+        os.environ["DATABASE_PARAMS"]
+        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
+    ):
+        try:
+            ip_address = None
+            store_ip_address(ip_address, session_id)
+        except Exception:
+            return make_response({"error": "error adding ip address locally"}), 500
+    else:
+        try:
+            unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
+            if unprocessed_ip_address:
                 ip_address = unprocessed_ip_address[0]
             # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
             else:
@@ -231,10 +282,6 @@ def get_personal_values():
             "power",
         ]
         sorted_scores = {key: scores[key] for key in personal_values_categories}
-        # del scores["_sa_instance_state"]
-        # del scores["session_id"]
-        # del scores["user_id"]
-        # del scores["scores_id"]
 
         top_scores = sorted(sorted_scores, key=sorted_scores.get, reverse=True)[:3]
 
@@ -319,6 +366,17 @@ def get_general_myths():
     recommended_general_myths = get_user_general_myth_nodes()
     climate_general_myths = {"myths": recommended_general_myths}
     return jsonify(climate_general_myths), 200
+
+
+@app.route("/myths/<string:iri>", methods=["GET"])
+def get_myth_info(iri):
+    myth_info = get_specific_myth_info(iri)
+
+    if myth_info:
+        specific_myth_info = {"myth": myth_info}
+        return jsonify(specific_myth_info), 200
+    else:
+        return make_response({"error": "IRI does not exist"}), 400
 
 
 @app.route("/solutions", methods=["GET"])
