@@ -7,7 +7,7 @@ from flask import request, Response, send_from_directory
 from flask_swagger_ui import get_swaggerui_blueprint
 from typing import Tuple
 
-from knowledge_graph import app, db, auto
+from knowledge_graph import app, db, cache, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.add_zip_code import add_zip_code
@@ -332,6 +332,20 @@ def get_feed():
     N_FEED_CARDS = 5
 
     session_id = str(request.args.get("session-id"))
+
+    feed_entries = get_feed_results(session_id, N_FEED_CARDS)
+
+    return jsonify(feed_entries), 200
+
+
+@cache.memoize(timeout=1200)
+def get_feed_results(session_id, N_FEED_CARDS):
+    """
+    Mitigation solutions are served randomly based on a user's highest scoring climate
+    impacts. The order of these should not change when a page is refreshed. This method
+    looks for an existing cache based on a user's session ID, or creates a new feed if
+    one is not found.
+    """
     try:
         scores = db.session.query(Scores).filter_by(session_id=session_id).first()
     # TODO: catch exceptions properly here
@@ -339,11 +353,12 @@ def get_feed():
         return make_response("Invalid Session ID or No Information for ID")
 
     scores = scores.__dict__
+    # TODO: Update this to use same format as personal_values endpoint
     del scores["_sa_instance_state"]
 
     recommended_nodes = get_user_nodes(scores, N_FEED_CARDS)
     feed_entries = {"climateEffects": recommended_nodes}
-    return jsonify(feed_entries), 200
+    return feed_entries
 
 
 @app.route("/myths", methods=["GET"])
