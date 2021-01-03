@@ -151,7 +151,7 @@ def get_effect_specific_myths(node, G):
                 IRIs.append(get_node_id(myth))
         return IRIs
     except:
-        return "No myths at present curated about this impact."
+        return []
 
 
 def get_solution_specific_myths(node, G):
@@ -170,7 +170,7 @@ def get_solution_specific_myths(node, G):
                 IRIs.append(get_node_id(myth))
         return IRIs
     except:
-        return "No myths at present curated about this impact."
+        return []
 
 
 def get_image_url_or_none(node):
@@ -287,7 +287,8 @@ def simple_scoring(G, user_scores):
             if any(v is None for v in node_values_associations_10):
                 score = None
             else:
-                node_values_associations_10 = np.array(node_values_associations_10)
+                node_values_associations_10 = np.array(
+                    node_values_associations_10)
                 # double the magnitude of the backfire-effect representation:
                 modified_node_values_associations_10 = np.where(
                     node_values_associations_10 < 0,
