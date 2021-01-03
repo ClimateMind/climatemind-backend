@@ -244,31 +244,72 @@ def add_ontology_data_to_graph_nodes(G, onto):
 def set_edge_properties(G):
     """Add edge annotation properties that exist on both nodes of an edge
     and create a list of properties to remove from the nodes.
-    (Properties that exist on both nodes of an edge are only for the edge)
+    (Only source properties that exist on both nodes of an edge are only for the edge)
 
     Parameters
     ----------
     G: A networkx Graph
     """
+    source_types = [
+        "dc_source",
+        "schema_academicBook",
+        "schema_academicSourceNoPaywall",
+        "schema_academicSourceWithPaywall",
+        "schema_governmentSource",
+        "schema_mediaSource",
+        "schema_mediaSourceForConservatives",
+        "schema_organizationSource",
+    ]
+
     to_remove = {}
     for edge in list(G.edges):
         node_a = edge[0]
         node_b = edge[1]
+        edge_attributes_dict = {}
         for prop in G.nodes[node_a]["properties"].keys():
-            intersection = set(G.nodes[node_a]["properties"][prop]) & set(
-                G.nodes[node_b]["properties"][prop]
-            )
-            # add intersection to edge property dictionary
-            if intersection:
-                G.add_edge(node_a, node_b, properties={prop: list(intersection)})
-                if (node_a, prop) in to_remove.keys():
-                    to_remove[(node_a, prop)] = to_remove[(node_a, prop)] | intersection
-                else:
-                    to_remove[(node_a, prop)] = intersection
-                if (node_b, prop) in to_remove.keys():
-                    to_remove[(node_b, prop)] = to_remove[(node_b, prop)] | intersection
-                else:
-                    to_remove[(node_b, prop)] = intersection
+            if prop in source_types:
+                if (
+                    (node_a == "increase in frequency of heatwaves")
+                    and (node_b == "increase in health costs")
+                    and (prop == "dc_source")
+                ):
+                    breakpoint()
+                intersection = set(G.nodes[node_a]["properties"][prop]) & set(
+                    G.nodes[node_b]["properties"][prop]
+                )
+
+                if intersection:
+                    # add intersection to edge property dictionary, ensuring if items already exist for that key, then they are added to the list
+                    if prop in edge_attributes_dict.keys():
+                        edge_attributes_dict[prop] = edge_attributes_dict[prop].extend(
+                            list(intersection)
+                        )
+                    else:
+                        edge_attributes_dict[prop] = list(intersection)
+                    if (node_a, prop) in to_remove.keys():
+                        to_remove[(node_a, prop)] = (
+                            to_remove[(node_a, prop)] | intersection
+                        )
+                    else:
+                        to_remove[(node_a, prop)] = intersection
+                    if (node_b, prop) in to_remove.keys():
+                        to_remove[(node_b, prop)] = (
+                            to_remove[(node_b, prop)] | intersection
+                        )
+                    else:
+                        to_remove[(node_b, prop)] = intersection
+
+        # add edge_attributes_dict to edge
+        G.add_edge(node_a, node_b, properties=edge_attributes_dict)
+
+        # alternative way of adding attributes to edges is commented out below:
+        # nx.set_edge_attributes(
+        #     G,
+        #     {(node_a,node_b): edge_attributes_dict},
+        #     "properties",
+        # )
+
+    breakpoint()
     return list(to_remove)
 
 
@@ -290,7 +331,7 @@ def remove_edge_properties_from_nodes(G, to_remove):
             for node in list(G.nodes[node]["properties"][prop])
             if node not in list(to_delete)
         ]
-        # DM: uh... won't `node not in list(to_delete)` always evaluate to false?
+        # DM: uh... won't `node not in list(to_delete)` always evaluate to false? What was meant to be here instead?
 
 
 def remove_non_test_nodes(G, node, valid_test_ont, not_test_ont):
