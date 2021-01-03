@@ -151,7 +151,7 @@ def get_effect_specific_myths(node, G):
                 IRIs.append(get_node_id(myth))
         return IRIs
     except:
-        return "No myths at present curated about this impact."
+        return []
 
 
 def get_solution_specific_myths(node, G):
@@ -170,7 +170,7 @@ def get_solution_specific_myths(node, G):
                 IRIs.append(get_node_id(myth))
         return IRIs
     except:
-        return "No myths at present curated about this impact."
+        return []
 
 
 def get_image_url_or_none(node):
