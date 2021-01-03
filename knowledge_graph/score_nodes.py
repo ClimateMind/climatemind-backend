@@ -514,6 +514,7 @@ def get_user_general_solution_nodes():
             ),
         }
 
-        general_solutions_details.append(d)
+        if d not in general_solutions_details:
+            general_solutions_details.append(d)
 
     return general_solutions_details
