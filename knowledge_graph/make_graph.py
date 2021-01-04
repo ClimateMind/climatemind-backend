@@ -622,7 +622,9 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         for predecessor_node in predecessor_nodes:
             if G[predecessor_node][target_node]["type"] == "causes_or_promotes":
                 if G[predecessor_node][target_node]["properties"]:
-                    causal_sources.append(G[predecessor_node][target_node]["properties"])
+                    causal_sources.append(
+                        G[predecessor_node][target_node]["properties"]
+                    )
 
         if causal_sources:
             # collapse down to just list of unique urls. strips off the type of source and the edge it originates from
