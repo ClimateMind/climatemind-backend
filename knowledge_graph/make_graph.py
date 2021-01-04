@@ -618,11 +618,11 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     for target_node in G.nodes:
         # get list nodes that have a relationship with the target node (are neighbor nodes), then filter it down to just the nodes with the causal relationship with the target node
         causal_sources = list()
-        neighbor_nodes = G.neighbors(target_node)
-        for neighbor_node in neighbor_nodes:
-            if G[target_node][neighbor_node]["type"] == "causes_or_promotes":
-                if G[target_node][neighbor_node]["properties"]:
-                    causal_sources.append(G[target_node][neighbor_node]["properties"])
+        predecessor_nodes = G.predecessors(target_node)
+        for predecessor_node in predecessor_nodes:
+            if G[predecessor_node][target_node]["type"] == "causes_or_promotes":
+                if G[predecessor_node][target_node]["properties"]:
+                    causal_sources.append(G[predecessor_node][target_node]["properties"])
 
         if causal_sources:
             # collapse down to just list of unique urls. strips off the type of source and the edge it originates from
@@ -631,7 +631,8 @@ def makeGraph(onto_path, edge_path, output_folder_path):
 
             for sources_dict in causal_sources:
                 for key in sources_dict:
-                    sources_list.extend(sources_dict[key])
+                    if key in source_types:
+                        sources_list.extend(sources_dict[key])
 
             # remove duplicate urls
             sources_list = list(dict.fromkeys(sources_list))
