@@ -512,6 +512,7 @@ def get_user_general_solution_nodes():
             "solutionSpecificMythIRIs": get_solution_specific_myths(
                 G.nodes[solution], G
             ),
+            "solutionSources": get_solution_sources(G.nodes[solution]),
         }
 
         if d not in general_solutions_details:
