@@ -7,6 +7,7 @@ from knowledge_graph.make_graph import (
     get_valid_test_ont,
     get_non_test_ont,
 )
+from knowledge_graph.build_localised_acyclic_graph import build_localised_acyclic_graph
 import numpy as np
 import random
 from collections import OrderedDict
@@ -223,6 +224,11 @@ def get_solution_sources(node):
         return []
 
 
+def get_is_possibly_local(node):
+    breakpoint()
+    return node["isPossiblyLocal"]
+
+
 def get_scores_vector(user_scores):
     """Extracts scores from a dictionary and returns the scores as a vector.
 
@@ -254,7 +260,7 @@ MAX_N_SOLUTIONS = 4
 RATIO = 0.5  # ratio of number of adaptation to mitigation solutions to aspire to show in the user's feed
 
 
-def simple_scoring(G, user_scores):
+def simple_scoring(G, user_scores, session_id):
     """Each climate effects node will have personal values associated with it. These
     values are stored as a vector within the node. This vector is run through the
     dot product with the users scores to determine the overall relevance of the node
@@ -268,6 +274,7 @@ def simple_scoring(G, user_scores):
     climate_effects = []
     user_scores_vector = np.array(get_scores_vector(user_scores))
     modified_user_scores_vector = np.power(user_scores_vector, ALPHA)
+    localised_acyclic_graph = build_localised_acyclic_graph(G, session_id)
 
     for node in G.nodes:
         if "personal_values_10" in G.nodes[node]:
@@ -280,7 +287,7 @@ def simple_scoring(G, user_scores):
                 "effectShortDescription": get_short_description(G.nodes[node]),
                 "imageUrl": get_image_url(G.nodes[node]),
                 "effectSources": get_causal_sources(G.nodes[node]),
-                "isPossiblyLocal": True,
+                "isPossiblyLocal": get_is_possibly_local(localised_acyclic_graph[node]),
                 "effectSpecificMythIRIs": get_effect_specific_myths(G.nodes[node], G),
             }
 
@@ -303,6 +310,7 @@ def simple_scoring(G, user_scores):
 
             d["effectScore"] = score
             climate_effects.append(d)
+
     return climate_effects
 
 
@@ -327,7 +335,7 @@ def get_pickle_file(filename):
     return G
 
 
-def get_user_nodes(user_scores, n):
+def get_user_nodes(user_scores, n, session_id):
     """Returns the top n Nodes for a user feed.
 
     Parameters
@@ -341,7 +349,7 @@ def get_user_nodes(user_scores, n):
     not_test_ont = get_non_test_ont()
 
     get_test_ontology(G, valid_test_ont, not_test_ont)
-    climate_effects = simple_scoring(G, user_scores)
+    climate_effects = simple_scoring(G, user_scores, session_id)
     best_nodes_for_user = get_best_nodes(climate_effects, n)
     return best_nodes_for_user
 
