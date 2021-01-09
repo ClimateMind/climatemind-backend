@@ -43,48 +43,54 @@ def check_if_valid_postal_code(session_id):
     try:
         # Find the user's postal code and cast to an integer for lookup in the lrf_data table.
         # This will need to change if postal codes with letters are added later and the data type in the lrf_data table changes.
+
         session_id = Sessions.query.filter_by(session_id=session_id).first()
-        postal_code = int(session_id.postal_code)
+        if not session_id.postal_code:
+            return None
+        else:
+            postal_code = int(session_id.postal_code)
 
-        if postal_code:
+            if postal_code:
 
-            DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
-            SQLALCHEMY_DATABASE_URI = (
-                "mssql+pyodbc:///?odbc_connect=%s"
-                % urllib.parse.quote_plus(DB_CREDENTIALS)
-            )
-
-            engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
-
-            with engine.connect() as con:
-                # Check if postal code is in lrf_data table and create a list of values
-                result = con.execute(
-                    "SELECT * FROM lrf_data WHERE lrf_data.postal_code=?",
-                    (postal_code,),
+                DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
+                SQLALCHEMY_DATABASE_URI = (
+                    "mssql+pyodbc:///?odbc_connect=%s"
+                    % urllib.parse.quote_plus(DB_CREDENTIALS)
                 )
-                exists_in_lrf_table = list(result.fetchone())
-                # Get the column names fromt the lrf_data table and create a list of names
-                columns = con.execute(
-                    "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='lrf_data'"
-                )
-                column_names = columns.fetchall()
-                column_names_list = []
 
-                for name in column_names:
-                    column_names_list.append(name[0])
+                engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
 
-            if exists_in_lrf_table:
-                # Create a dictionary of lrf data for the specific postal code where the lrf_data table column names
-                # (the postal code and the IRIs) are the keys matched to the lrf_data table values for that postal code.
-                short_IRIs = [get_iri(long_iri) for long_iri in column_names_list[1:]]
+                with engine.connect() as con:
+                    # Check if postal code is in lrf_data table and create a list of values
+                    result = con.execute(
+                        "SELECT * FROM lrf_data WHERE lrf_data.postal_code=?",
+                        (postal_code,),
+                    )
+                    exists_in_lrf_table = list(result.fetchone())
+                    # Get the column names fromt the lrf_data table and create a list of names
+                    columns = con.execute(
+                        "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='lrf_data'"
+                    )
+                    column_names = columns.fetchall()
+                    column_names_list = []
 
-                lrf_single_postcode_dict = dict(
-                    zip(short_IRIs, exists_in_lrf_table[1:])
-                )
-                return lrf_single_postcode_dict
+                    for name in column_names:
+                        column_names_list.append(name[0])
 
-            else:
-                return None
+                if exists_in_lrf_table:
+                    # Create a dictionary of lrf data for the specific postal code where the lrf_data table column names
+                    # (the postal code and the IRIs) are the keys matched to the lrf_data table values for that postal code.
+                    short_IRIs = [
+                        get_iri(long_iri) for long_iri in column_names_list[1:]
+                    ]
+
+                    lrf_single_postcode_dict = dict(
+                        zip(short_IRIs, exists_in_lrf_table[1:])
+                    )
+                    return lrf_single_postcode_dict
+
+                else:
+                    return None
 
     except Exception as e:
         print(e)
@@ -146,16 +152,19 @@ def build_localised_acyclic_graph(G, session_id):
     """
     localised_acyclic_graph = make_acyclic(G)
     lrf_single_postcode_dict = check_if_valid_postal_code(session_id)
-    localised_acyclic_graph = add_lrf_data_to_graph(
-        localised_acyclic_graph, lrf_single_postcode_dict
-    )
-    starting_nodes = get_starting_nodes(localised_acyclic_graph)
+    if not lrf_single_postcode_dict:
+        return G
+    else:
+        localised_acyclic_graph = add_lrf_data_to_graph(
+            localised_acyclic_graph, lrf_single_postcode_dict
+        )
+        starting_nodes = get_starting_nodes(localised_acyclic_graph)
 
-    visited_dictionary = {}
-    for starting_node in starting_nodes:
-        local_graph(starting_node, localised_acyclic_graph, visited_dictionary)
+        visited_dictionary = {}
+        for starting_node in starting_nodes:
+            local_graph(starting_node, localised_acyclic_graph, visited_dictionary)
 
-    return localised_acyclic_graph
+        return localised_acyclic_graph
 
 
 # def recursive_populating(updated_graph):
