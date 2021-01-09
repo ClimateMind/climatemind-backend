@@ -361,7 +361,10 @@ def make_acyclic(G):
     # nx.get_node_attributes(B, "direct classes")
     feedback_nodes = list()
     graph_attributes_dictionary = nx.get_node_attributes(B, "direct classes")
+<<<<<<< HEAD
     all_myths = nx.get_node_attributes(B, "myth")
+=======
+>>>>>>> develop
 
     for node in graph_attributes_dictionary:
         if "feedback loop" in graph_attributes_dictionary[node]:
@@ -393,6 +396,76 @@ def make_acyclic(G):
     return B
 
 
+<<<<<<< HEAD
+=======
+def causal_parents(node, graph):
+    """
+    Returns the nodes (string names) that are causal parents of the node (have the edge type "causes_or_promotes"), else returns empty list.
+
+    Parameters
+    node - name of the node (string)
+    graph - networkx graph object
+    """
+    node_causal_parents = []
+    if list(graph.predecessors(node)):
+        possibleCausalParents = graph.predecessors(node)
+        for possibleCausalParent in possibleCausalParents:
+            if possibleCausalParent == "Wildfires aren't caused by global warming":
+                breakpoint()
+            if graph[possibleCausalParent][node]["type"] == "causes_or_promotes":
+                node_causal_parents.append(possibleCausalParent)
+    return node_causal_parents
+
+
+def local_graph(node, graph, visited_dictionary):
+    """
+    Recursive function that modifies a graph node amd all the upstream parents based on if the climate change node could possibly be a local concept for the user.
+    Requires the graph to have 'isPossiblyLocal' filled in with 0 or 1 based on the results of the Location Relevance Flag values.
+
+    Parameters:
+    node - node name (string) of a node in the graph
+    graph - networkx graph object (MUST BE ACYCLIC!!!)
+    visited_dictionary - dictionary of which nodes have been visited by the local_graph
+
+    returns:
+    0 or 1 (the value for isPossiblyLocal for the node)
+    """
+    if node in visited_dictionary.keys() and "isPossiblyLocal" in graph.nodes[node]:
+        return graph.nodes[node]["isPossiblyLocal"]
+    else:
+        visited_dictionary[node] = True
+
+    if not causal_parents(node, graph):
+        nx.set_node_attributes(
+            graph,
+            {node: 1},
+            "isPossiblyLocal",
+        )
+        return graph.nodes[node]["isPossiblyLocal"]
+    else:
+        if (
+            "isPossiblyLocal" in graph.nodes[node]
+            and graph.nodes[node]["isPossiblyLocal"]
+        ):
+            [
+                local_graph(parent, graph, visited_dictionary)
+                for parent in causal_parents(node, graph)
+            ]
+            return graph.nodes[node]["isPossiblyLocal"]
+        else:
+            parentLabels = [
+                local_graph(parent, graph, visited_dictionary)
+                for parent in causal_parents(node, graph)
+            ]
+            nx.set_node_attributes(
+                graph,
+                {node: any(parentLabels)},
+                "isPossiblyLocal",
+            )
+            return graph.nodes[node]["isPossiblyLocal"]
+
+
+>>>>>>> develop
 def makeGraph(onto_path, edge_path, output_folder_path):
     """
     Main function to make networkx graph object from reference ontology and edge list.
@@ -447,39 +520,58 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     remove_edge_properties_from_nodes(G, to_remove)
 
     # process the mitigation and adaptation solutions in the networkx object and add them into special attribute fields for each node for easy access in later for the API
-    B = G.copy()
-    # identify nodes that are in the class 'feedback loop' then remove those nodes' 'caueses' edges because they start feedback loops.
-    # nx.get_node_attributes(B, "direct classes")
-    feedback_nodes = list()
-    graph_attributes_dictionary = nx.get_node_attributes(B, "direct classes")
+
+    B = make_acyclic(G)
     all_myths = nx.get_node_attributes(B, "myth")
 
-    for node in graph_attributes_dictionary:
-        if "feedback loop" in graph_attributes_dictionary[node]:
-            feedback_nodes.append(node)
-    # get the 'causes' edges that lead out of the feedback_nodes
-    # must only remove edges that cause increase in greenhouse gases... so only remove edges if the neighbor is of the class 'increase in atmospheric greenhouse gas'
-    feedbackloop_edges = list()
-    for node in feedback_nodes:
-        node_neighbors = B.neighbors(node)
-        for neighbor in node_neighbors:
+    starting_nodes = []
+    for node in B.nodes:
+        if not list(B.neighbors(node)):
             if (
-                "increase in atmospheric greenhouse gas"
-                in graph_attributes_dictionary[neighbor]
-                or "root cause linked to humans"
-                in graph_attributes_dictionary[neighbor]
+                "test ontology" in B.nodes[node]
+                and B.nodes[node]["test ontology"][0] == "test ontology"
             ):
-                # should make this 'increase in atmospheric greenhouse gas' not hard coded!
+                if "risk solution" in B.nodes[node]:
+                    if "risk solution" not in B.nodes[node]["risk solution"]:
+                        starting_nodes.append(node)
+                else:
+                    starting_nodes.append(node)
+        else:
+            neighbor_nodes = B.neighbors(node)
+            has_no_child = True
+            for neighbor in neighbor_nodes:
+                if B[node][neighbor]["type"] == "causes_or_promotes":
+                    has_no_child = False
+            if has_no_child:
                 if (
-                    B[node][neighbor]["type"] == "causes_or_promotes"
-                ):  # should probably make this so the causes_or_promotes isn't hard coded!
-                    feedbackloop_edges.append((node, neighbor))
+                    "test ontology" in B.nodes[node]
+                    and B.nodes[node]["test ontology"][0] == "test ontology"
+                ):
+                    if "risk solution" in B.nodes[node]:
+                        if "risk solution" not in B.nodes[node]["risk solution"]:
+                            starting_nodes.append(node)
+                    else:
+                        starting_nodes.append(node)
+    # (Pdb) starting_nodes
+    # ['political polarization',
+    # 'decrease in test scores',
+    # 'increase in health costs',
+    # 'decrease in population of moose available to hunt',
+    # 'increase in heat stroke',
+    # 'decrease in GDP',
+    # 'decrease in worker productivity',
+    # 'decrease in learning (without air conditioner)',
+    # 'increase in destruction to US military bases',
+    # 'increase in disproportionate effects on children',
+    # 'increase in disproportionate effects on minority groups',
+    # 'greenhouse-gas externality',
+    # 'builders are not required to check before building on a floodplain',
+    # 'deregulation',
+    # 'increase in disaster costs']
 
-    # remove all the feedback loop edges
-    for feedbackloopEdge in feedbackloop_edges:
-        nodeA = feedbackloopEdge[0]
-        nodeB = feedbackloopEdge[1]
-        B.remove_edge(nodeA, nodeB)
+    acyclic_graph = B.copy()
+    visited_dict = {}
+    test_value = local_graph(starting_nodes[1], acyclic_graph, visited_dict)
 
     # feedback loop edges should be severed in the graph copy B
     edges_upstream_greenhouse_effect = nx.edge_dfs(
