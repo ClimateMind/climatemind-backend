@@ -7,7 +7,39 @@ import os
 import urllib
 
 
+def get_iri(full_iri):
+    """Node IDs are the unique identifier in the IRI. This is provided to the
+    front-end as a reference for the feed, but is never shown to the user.
+
+    Example http://webprotege.stanford.edu/R8znJBKduM7l8XDXMalSWSl
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    offset = 4  # .edu <- to skip these characters and get the unique IRI
+    pos = full_iri.find("edu") + offset
+    return full_iri[pos:]
+
+
+def get_node_id(node):
+    """Node IDs are the unique identifier in the IRI. This is provided to the
+    front-end as a reference for the feed, but is never shown to the user.
+
+    Example http://webprotege.stanford.edu/R8znJBKduM7l8XDXMalSWSl
+
+    Parameters
+    ----------
+    node - A networkX node
+    """
+    offset = 4  # .edu <- to skip these characters and get the unique IRI
+    full_iri = node["iri"]
+    pos = full_iri.find("edu") + offset
+    return full_iri[pos:]
+
+
 def check_if_valid_postal_code(session_id):
+
     try:
         # Find the user's postal code and cast to an integer for lookup in the lrf_data table.
         # This will need to change if postal codes with letters are added later and the data type in the lrf_data table changes.
@@ -44,8 +76,10 @@ def check_if_valid_postal_code(session_id):
             if exists_in_lrf_table:
                 # Create a dictionary of lrf data for the specific postal code where the lrf_data table column names
                 # (the postal code and the IRIs) are the keys matched to the lrf_data table values for that postal code.
+                short_IRIs = [get_iri(long_iri) for long_iri in column_names_list[1:]]
+
                 lrf_single_postcode_dict = dict(
-                    zip(column_names_list, exists_in_lrf_table)
+                    zip(short_IRIs, exists_in_lrf_table[1:])
                 )
                 return lrf_single_postcode_dict
 
@@ -65,30 +99,36 @@ def get_starting_nodes(acyclic_graph):
     graph - an acyclic networkx graph of the climate mind ontology
     """
     starting_nodes = []
-    for node in B.nodes:
-        if not list(B.neighbors(node)):
+    for node in acyclic_graph.nodes:
+        if not list(acyclic_graph.neighbors(node)):
             if (
-                "test ontology" in B.nodes[node]
-                and B.nodes[node]["test ontology"][0] == "test ontology"
+                "test ontology" in acyclic_graph.nodes[node]
+                and acyclic_graph.nodes[node]["test ontology"][0] == "test ontology"
             ):
-                if "risk solution" in B.nodes[node]:
-                    if "risk solution" not in B.nodes[node]["risk solution"]:
+                if "risk solution" in acyclic_graph.nodes[node]:
+                    if (
+                        "risk solution"
+                        not in acyclic_graph.nodes[node]["risk solution"]
+                    ):
                         starting_nodes.append(node)
                 else:
                     starting_nodes.append(node)
         else:
-            neighbor_nodes = B.neighbors(node)
+            neighbor_nodes = acyclic_graph.neighbors(node)
             has_no_child = True
             for neighbor in neighbor_nodes:
-                if B[node][neighbor]["type"] == "causes_or_promotes":
+                if acyclic_graph[node][neighbor]["type"] == "causes_or_promotes":
                     has_no_child = False
             if has_no_child:
                 if (
-                    "test ontology" in B.nodes[node]
-                    and B.nodes[node]["test ontology"][0] == "test ontology"
+                    "test ontology" in acyclic_graph.nodes[node]
+                    and acyclic_graph.nodes[node]["test ontology"][0] == "test ontology"
                 ):
-                    if "risk solution" in B.nodes[node]:
-                        if "risk solution" not in B.nodes[node]["risk solution"]:
+                    if "risk solution" in acyclic_graph.nodes[node]:
+                        if (
+                            "risk solution"
+                            not in acyclic_graph.nodes[node]["risk solution"]
+                        ):
                             starting_nodes.append(node)
                     else:
                         starting_nodes.append(node)
@@ -106,14 +146,15 @@ def build_localised_acyclic_graph(G, session_id):
     """
     localised_acyclic_graph = make_acyclic(G)
     lrf_single_postcode_dict = check_if_valid_postal_code(session_id)
-    localised_acyclic_graph = add_lrf_data_to_graph(localised_acyclic_graph, lrf_single_postcode_dict)
+    localised_acyclic_graph = add_lrf_data_to_graph(
+        localised_acyclic_graph, lrf_single_postcode_dict
+    )
     starting_nodes = get_starting_nodes(localised_acyclic_graph)
 
     visited_dictionary = {}
     for starting_node in starting_nodes:
         local_graph(starting_node, localised_acyclic_graph, visited_dictionary)
 
-    breakpoint()
     return localised_acyclic_graph
 
 
@@ -138,26 +179,38 @@ def build_localised_acyclic_graph(G, session_id):
 def add_lrf_data_to_graph(graph, dict):
     graph_attributes = nx.get_node_attributes(graph, "all classes")
 
-    breakpoint()
-    effects = []
-    for node in graph_attributes:
-        if "risk" in graph_attributes[node]:
-            effects.append(node)
+    lrf_to_iri_dict = {}
+    for node in graph.nodes:
+        lrf_to_iri_dict[get_node_id(graph.nodes[node])] = node
 
-    nodes_with_lrf_data = []
+    for iri in dict.keys():
+        if dict[iri] == False:
+            nx.set_node_attributes(graph, {lrf_to_iri_dict[iri]: 0}, "isPossiblyLocal")
+        if dict[iri] == True:
+            nx.set_node_attributes(graph, {lrf_to_iri_dict[iri]: 1}, "isPossiblyLocal")
 
-    for effect in effects:
-        # Match iri format to lrf_data table format
-        iri = ("http://" + graph.nodes[effect]["iri"]).replace("edu.", "edu/")
-        if iri in dict:
-            if dict[iri] == False:
-                nx.set_node_attributes(graph, {effect: 0}, "isPossiblyLocal")
-            else:
-                nx.set_node_attributes(graph, {effect: 1}, "isPossiblyLocal")
+    # Nulls are treated as 1.
 
-            node_visited_dict[effect] = 1
-        else:
-            continue
+    # breakpoint()
+    # # effects = []
+    # # for node in graph_attributes:
+    # #     if "risk" in graph_attributes[node]:
+    # #         effects.append(node)
+
+    # nodes_with_lrf_data = []
+
+    # for effect in effects:
+    #     # Match iri format to lrf_data table format
+    #     iri = ("http://" + graph.nodes[effect]["iri"]).replace("edu.", "edu/")
+    #     if iri in dict:
+    #         if dict[iri] == False:
+    #             nx.set_node_attributes(graph, {effect: 0}, "isPossiblyLocal")
+    #         else:
+    #             nx.set_node_attributes(graph, {effect: 1}, "isPossiblyLocal")
+
+    #         node_visited_dict[effect] = 1
+    #     else:
+    #         continue
 
     return graph
 

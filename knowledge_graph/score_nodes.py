@@ -225,8 +225,10 @@ def get_solution_sources(node):
 
 
 def get_is_possibly_local(node):
-    breakpoint()
-    return node["isPossiblyLocal"]
+    if node["isPossiblyLocal"]:
+        return 1
+    else:
+        return 0
 
 
 def get_scores_vector(user_scores):
@@ -277,9 +279,10 @@ def simple_scoring(G, user_scores, session_id):
     localised_acyclic_graph = build_localised_acyclic_graph(G, session_id)
 
     for node in G.nodes:
-        if "personal_values_10" in G.nodes[node]:
+        if "personal_values_10" in G.nodes[node] and any(
+            G.nodes[node]["personal_values_10"]
+        ):
             node_values_associations_10 = G.nodes[node]["personal_values_10"]
-
             d = {
                 "effectId": get_node_id(G.nodes[node]),
                 "effectTitle": G.nodes[node]["label"],
@@ -287,7 +290,9 @@ def simple_scoring(G, user_scores, session_id):
                 "effectShortDescription": get_short_description(G.nodes[node]),
                 "imageUrl": get_image_url(G.nodes[node]),
                 "effectSources": get_causal_sources(G.nodes[node]),
-                "isPossiblyLocal": get_is_possibly_local(localised_acyclic_graph[node]),
+                "isPossiblyLocal": get_is_possibly_local(
+                    localised_acyclic_graph.nodes[node]
+                ),
                 "effectSpecificMythIRIs": get_effect_specific_myths(G.nodes[node], G),
             }
 
