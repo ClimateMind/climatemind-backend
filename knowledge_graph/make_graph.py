@@ -424,7 +424,8 @@ def local_graph(node, graph, visited_dictionary):
     returns:
     0 or 1 (the value for isPossiblyLocal for the node)
     """
-    if node == "increase in area burned by wildfire": breakpoint()
+    if node == "increase in area burned by wildfire":
+        breakpoint()
     if node in visited_dictionary.keys() and "isPossiblyLocal" in graph.nodes[node]:
         return graph.nodes[node]["isPossiblyLocal"]
     else:
@@ -438,9 +439,8 @@ def local_graph(node, graph, visited_dictionary):
         )
         return graph.nodes[node]["isPossiblyLocal"]
     else:
-        if (
-            "isPossiblyLocal" in graph.nodes[node]
-            and isinstance(graph.nodes[node]["isPossiblyLocal"],int)
+        if "isPossiblyLocal" in graph.nodes[node] and isinstance(
+            graph.nodes[node]["isPossiblyLocal"], int
         ):
             [
                 local_graph(parent, graph, visited_dictionary)
