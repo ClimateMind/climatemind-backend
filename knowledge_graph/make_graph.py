@@ -361,10 +361,6 @@ def make_acyclic(G):
     # nx.get_node_attributes(B, "direct classes")
     feedback_nodes = list()
     graph_attributes_dictionary = nx.get_node_attributes(B, "direct classes")
-<<<<<<< HEAD
-    all_myths = nx.get_node_attributes(B, "myth")
-=======
->>>>>>> develop
 
     for node in graph_attributes_dictionary:
         if "feedback loop" in graph_attributes_dictionary[node]:
@@ -396,8 +392,6 @@ def make_acyclic(G):
     return B
 
 
-<<<<<<< HEAD
-=======
 def causal_parents(node, graph):
     """
     Returns the nodes (string names) that are causal parents of the node (have the edge type "causes_or_promotes"), else returns empty list.
@@ -465,7 +459,6 @@ def local_graph(node, graph, visited_dictionary):
             return graph.nodes[node]["isPossiblyLocal"]
 
 
->>>>>>> develop
 def makeGraph(onto_path, edge_path, output_folder_path):
     """
     Main function to make networkx graph object from reference ontology and edge list.
