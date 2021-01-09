@@ -182,7 +182,6 @@ def add_lrf_data_to_graph(graph, dict):
     lrf_to_iri_dict = {}
     for node in graph.nodes:
         lrf_to_iri_dict[get_node_id(graph.nodes[node])] = node
-
     for iri in dict.keys():
         if dict[iri] == False:
             nx.set_node_attributes(graph, {lrf_to_iri_dict[iri]: 0}, "isPossiblyLocal")
@@ -211,7 +210,6 @@ def add_lrf_data_to_graph(graph, dict):
     #         node_visited_dict[effect] = 1
     #     else:
     #         continue
-
     return graph
 
 
