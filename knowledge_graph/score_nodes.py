@@ -225,8 +225,11 @@ def get_solution_sources(node):
 
 
 def get_is_possibly_local(node):
-    if node["isPossiblyLocal"]:
-        return 1
+    if "isPossiblyLocal" in node:
+        if node["isPossiblyLocal"]:
+            return 1
+        else:
+            return 0
     else:
         return 0
 
