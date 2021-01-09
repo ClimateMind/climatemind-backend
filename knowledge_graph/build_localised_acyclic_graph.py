@@ -106,7 +106,7 @@ def build_localised_acyclic_graph(G, session_id):
     """
     localised_acyclic_graph = make_acyclic(G)
     lrf_single_postcode_dict = check_if_valid_postal_code(session_id)
-    add_lrf_data_to_graph(localised_acyclic_graph, lrf_single_postcode_dict)
+    localised_acyclic_graph = add_lrf_data_to_graph(localised_acyclic_graph, lrf_single_postcode_dict)
     starting_nodes = get_starting_nodes(localised_acyclic_graph)
 
     visited_dictionary = {}
@@ -138,6 +138,7 @@ def build_localised_acyclic_graph(G, session_id):
 def add_lrf_data_to_graph(graph, dict):
     graph_attributes = nx.get_node_attributes(graph, "all classes")
 
+    breakpoint()
     effects = []
     for node in graph_attributes:
         if "risk" in graph_attributes[node]:
