@@ -1,6 +1,6 @@
 from knowledge_graph.models import Sessions
 from knowledge_graph import db
-from knowledge_graph.make_graph import make_acyclic
+from knowledge_graph.make_graph import make_acyclic, local_graph
 from sqlalchemy import create_engine
 import networkx as nx
 import os
@@ -56,29 +56,83 @@ def check_if_valid_postal_code(session_id):
         print(e)
 
 
+def get_starting_nodes(acyclic_graph):
+    """
+    Given a graph, find the terminal nodes (nodes that have no children with "causes_or_promotes" relationship) that are in the Test Ontology,
+    and also are not in the class 'risk solution' (whether directly or indirectly) [doesn't include solution nodes].
+
+    Parameters
+    graph - an acyclic networkx graph of the climate mind ontology
+    """
+    starting_nodes = []
+    for node in B.nodes:
+        if not list(B.neighbors(node)):
+            if (
+                "test ontology" in B.nodes[node]
+                and B.nodes[node]["test ontology"][0] == "test ontology"
+            ):
+                if "risk solution" in B.nodes[node]:
+                    if "risk solution" not in B.nodes[node]["risk solution"]:
+                        starting_nodes.append(node)
+                else:
+                    starting_nodes.append(node)
+        else:
+            neighbor_nodes = B.neighbors(node)
+            has_no_child = True
+            for neighbor in neighbor_nodes:
+                if B[node][neighbor]["type"] == "causes_or_promotes":
+                    has_no_child = False
+            if has_no_child:
+                if (
+                    "test ontology" in B.nodes[node]
+                    and B.nodes[node]["test ontology"][0] == "test ontology"
+                ):
+                    if "risk solution" in B.nodes[node]:
+                        if "risk solution" not in B.nodes[node]["risk solution"]:
+                            starting_nodes.append(node)
+                    else:
+                        starting_nodes.append(node)
+    return starting_nodes
+
+
 def build_localised_acyclic_graph(G, session_id):
+    """
+    Builds acyclic graph with all the nodes in it above the terminal nodes to have isPossiblyLocal field populated with 0 or 1,
+    (0 for certainly not local, and 1 for maybe local or certainly local).
+
+    Parameters
+    G - networkx graph of the climate mind ontology
+    session_id - session id from the SQL database
+    """
     localised_acyclic_graph = make_acyclic(G)
     lrf_single_postcode_dict = check_if_valid_postal_code(session_id)
+    add_lrf_data_to_graph(localised_acyclic_graph, lrf_single_postcode_dict)
+    starting_nodes = get_starting_nodes(localised_acyclic_graph)
 
-    def recursive_populating(updated_graph):
-        for node in updated_graph.nodes():
-            descendant_check = nx.descendants(updated_graph, node)
-            if not descendant_check:
-                populate_is_possibly_local(updated_graph, node)
+    visited_dictionary = {}
+    for starting_node in starting_nodes:
+        local_graph(starting_node, localised_acyclic_graph, visited_dictionary)
 
-    if lrf_single_postcode_dict:
-        updated_graph = add_lrf_data_to_graph(
-            localised_acyclic_graph, lrf_single_postcode_dict
-        )
-        localised_acyclic_graph = recursive_populating(updated_graph)
-
-        return localised_acyclic_graph
-
-    else:
-        return localised_acyclic_graph
+    breakpoint()
+    return localised_acyclic_graph
 
 
-node_visited_dict = dict()
+# def recursive_populating(updated_graph):
+#         for node in updated_graph.nodes():
+#             descendant_check = nx.descendants(updated_graph, node)
+#             if not descendant_check:
+#                 populate_is_possibly_local(updated_graph, node)
+
+#     if lrf_single_postcode_dict:
+#         updated_graph = add_lrf_data_to_graph(
+#             localised_acyclic_graph, lrf_single_postcode_dict
+#         )
+#         localised_acyclic_graph = recursive_populating(updated_graph)
+
+#         return localised_acyclic_graph
+
+#     else:
+#         return localised_acyclic_graph
 
 
 def add_lrf_data_to_graph(graph, dict):
@@ -107,85 +161,85 @@ def add_lrf_data_to_graph(graph, dict):
     return graph
 
 
-def populate_is_possibly_local(updated_graph, node):
+# def populate_is_possibly_local(updated_graph, node):
 
-    # If node has been visited, check next node.
-    if node in node_visited_dict:
-        pass
-    else:
-        # Check predecessors.
-        predecessor_nodes = updated_graph.predecessors(node)
+#     # If node has been visited, check next node.
+#     if node in node_visited_dict:
+#         pass
+#     else:
+#         # Check predecessors.
+#         predecessor_nodes = updated_graph.predecessors(node)
 
-        # Case: node has no predecessors.
-        if not predecessor_nodes:
-            nx.set_node_attributes(updated_graph, {node: 1}, "isPossiblyLocal")
-            node_visited_dict[node] = 1
-        else:
-            # Build dictionary of predecessors
-            predecessor_dict = dict()
-            for predecessor in predecessor_nodes:
-                if updated_graph[predecessor][node]["type"] == "causes_or_promotes":
-                    if "isPossiblyLocal" in updated_graph.nodes[predecessor]:
-                        value = updated_graph.nodes[predecessor]["isPossiblyLocal"]
-                    else:
-                        value = None
-                    predecessor_dict[predecessor] = value
-            if (
-                not "isPossiblyLocal" in updated_graph.nodes[node]
-                and len(predecessor_dict) == 1
-            ):
-                if predecessor_dict[predecessor] == 1:
-                    # Case: one predecessor with isPossiblyLocal marked as 1
-                    nx.set_node_attributes(updated_graph, {node: 1}, "isPossiblyLocal")
-                    node_visited_dict[node] = 1
-                    populate_is_possibly_local(updated_graph, predecessor)
-                elif predecessor_dict[predecessor] == 0:
-                    # Case: one predecessor with isPossiblyLocal marked as 0
-                    nx.set_node_attributes(updated_graph, {node: 0}, "isPossiblyLocal")
-                    node_visited_dict[node] = 1
-                    populate_is_possibly_local(updated_graph, predecessor)
-                else:
-                    # Case: one predecessor with no value for isPossiblyLocal
-                    populate_is_possibly_local(updated_graph, predecessor)
-            else:
-                if (
-                    not "isPossiblyLocal" in updated_graph[node]
-                    and 1 in predecessor_dict.values()
-                ):
-                    # Case: more than one predecessor, at least one with isPossiblyLocal marked as 1
-                    true_predecessors = []
-                    for predecessor in predecessor_dict:
-                        if predecessor_dict[predecessor] == 1:
-                            true_predecessors.append(predecessor)
+#         # Case: node has no predecessors.
+#         if not predecessor_nodes:
+#             nx.set_node_attributes(updated_graph, {node: 1}, "isPossiblyLocal")
+#             node_visited_dict[node] = 1
+#         else:
+#             # Build dictionary of predecessors
+#             predecessor_dict = dict()
+#             for predecessor in predecessor_nodes:
+#                 if updated_graph[predecessor][node]["type"] == "causes_or_promotes":
+#                     if "isPossiblyLocal" in updated_graph.nodes[predecessor]:
+#                         value = updated_graph.nodes[predecessor]["isPossiblyLocal"]
+#                     else:
+#                         value = None
+#                     predecessor_dict[predecessor] = value
+#             if (
+#                 not "isPossiblyLocal" in updated_graph.nodes[node]
+#                 and len(predecessor_dict) == 1
+#             ):
+#                 if predecessor_dict[predecessor] == 1:
+#                     # Case: one predecessor with isPossiblyLocal marked as 1
+#                     nx.set_node_attributes(updated_graph, {node: 1}, "isPossiblyLocal")
+#                     node_visited_dict[node] = 1
+#                     populate_is_possibly_local(updated_graph, predecessor)
+#                 elif predecessor_dict[predecessor] == 0:
+#                     # Case: one predecessor with isPossiblyLocal marked as 0
+#                     nx.set_node_attributes(updated_graph, {node: 0}, "isPossiblyLocal")
+#                     node_visited_dict[node] = 1
+#                     populate_is_possibly_local(updated_graph, predecessor)
+#                 else:
+#                     # Case: one predecessor with no value for isPossiblyLocal
+#                     populate_is_possibly_local(updated_graph, predecessor)
+#             else:
+#                 if (
+#                     not "isPossiblyLocal" in updated_graph[node]
+#                     and 1 in predecessor_dict.values()
+#                 ):
+#                     # Case: more than one predecessor, at least one with isPossiblyLocal marked as 1
+#                     true_predecessors = []
+#                     for predecessor in predecessor_dict:
+#                         if predecessor_dict[predecessor] == 1:
+#                             true_predecessors.append(predecessor)
 
-                    predecessor = true_predecessors[0]
-                    nx.set_node_attributes(updated_graph, {node: 1}, "isPossiblyLocal")
-                    node_visited_dict[node] = 1
-                    populate_is_possibly_local(updated_graph, predecessor)
+#                     predecessor = true_predecessors[0]
+#                     nx.set_node_attributes(updated_graph, {node: 1}, "isPossiblyLocal")
+#                     node_visited_dict[node] = 1
+#                     populate_is_possibly_local(updated_graph, predecessor)
 
-                elif (
-                    not "isPossiblyLocal" in updated_graph[node]
-                    and 0 in predecessor_dict.values()
-                ):
-                    # Case: more than one predecessor, at least one with isPossiblyLocal marked as 0, no 1s
-                    false_predecessors = []
-                    for predecessor in predecessor_dict:
-                        if predecessor_dict[predecessor] == 0:
-                            false_predecessors.append(predecessor)
+#                 elif (
+#                     not "isPossiblyLocal" in updated_graph[node]
+#                     and 0 in predecessor_dict.values()
+#                 ):
+#                     # Case: more than one predecessor, at least one with isPossiblyLocal marked as 0, no 1s
+#                     false_predecessors = []
+#                     for predecessor in predecessor_dict:
+#                         if predecessor_dict[predecessor] == 0:
+#                             false_predecessors.append(predecessor)
 
-                    predecessor = false_predecessors[0]
-                    nx.set_node_attributes(updated_graph, {node: 1}, "isPossiblyLocal")
-                    node_visited_dict[node] = 1
-                    populate_is_possibly_local(updated_graph, predecessor)
+#                     predecessor = false_predecessors[0]
+#                     nx.set_node_attributes(updated_graph, {node: 1}, "isPossiblyLocal")
+#                     node_visited_dict[node] = 1
+#                     populate_is_possibly_local(updated_graph, predecessor)
 
-                else:
-                    # Case: more than one predecessor, no values
-                    none_predecessors = []
-                    for predecessor in predecessor_dict:
-                        none_predecessors.append(predecessor)
-                    breakpoint()
-                    predecessor = none_predecessors[0]
-                    populate_is_possibly_local(updated_graph, predecessor)
+#                 else:
+#                     # Case: more than one predecessor, no values
+#                     none_predecessors = []
+#                     for predecessor in predecessor_dict:
+#                         none_predecessors.append(predecessor)
+#                     breakpoint()
+#                     predecessor = none_predecessors[0]
+#                     populate_is_possibly_local(updated_graph, predecessor)
 
 
 """
