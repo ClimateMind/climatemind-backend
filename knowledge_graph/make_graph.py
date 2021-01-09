@@ -404,7 +404,8 @@ def causal_parents(node, graph):
     if list(graph.predecessors(node)):
         possibleCausalParents = graph.predecessors(node)
         for possibleCausalParent in possibleCausalParents:
-            if possibleCausalParent == "Wildfires aren't caused by global warming": breakpoint()
+            if possibleCausalParent == "Wildfires aren't caused by global warming":
+                breakpoint()
             if graph[possibleCausalParent][node]["type"] == "causes_or_promotes":
                 node_causal_parents.append(possibleCausalParent)
     return node_causal_parents
@@ -436,17 +437,27 @@ def local_graph(node, graph, visited_dictionary):
         )
         return graph.nodes[node]["isPossiblyLocal"]
     else:
-        if "isPossiblyLocal" in graph.nodes[node] and graph.nodes[node]["isPossiblyLocal"]:    
-            [ local_graph(parent, graph, visited_dictionary) for parent in causal_parents(node, graph) ]
+        if (
+            "isPossiblyLocal" in graph.nodes[node]
+            and graph.nodes[node]["isPossiblyLocal"]
+        ):
+            [
+                local_graph(parent, graph, visited_dictionary)
+                for parent in causal_parents(node, graph)
+            ]
             return graph.nodes[node]["isPossiblyLocal"]
         else:
-            parentLabels = [ local_graph(parent, graph, visited_dictionary) for parent in causal_parents(node, graph) ]
+            parentLabels = [
+                local_graph(parent, graph, visited_dictionary)
+                for parent in causal_parents(node, graph)
+            ]
             nx.set_node_attributes(
                 graph,
                 {node: any(parentLabels)},
                 "isPossiblyLocal",
             )
             return graph.nodes[node]["isPossiblyLocal"]
+
 
 def makeGraph(onto_path, edge_path, output_folder_path):
     """
@@ -502,15 +513,17 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     remove_edge_properties_from_nodes(G, to_remove)
 
     # process the mitigation and adaptation solutions in the networkx object and add them into special attribute fields for each node for easy access in later for the API
-    
+
     B = make_acyclic(G)
     all_myths = nx.get_node_attributes(B, "myth")
-
 
     starting_nodes = []
     for node in B.nodes:
         if not list(B.neighbors(node)):
-            if "test ontology" in B.nodes[node] and B.nodes[node]["test ontology"][0] == "test ontology":
+            if (
+                "test ontology" in B.nodes[node]
+                and B.nodes[node]["test ontology"][0] == "test ontology"
+            ):
                 if "risk solution" in B.nodes[node]:
                     if "risk solution" not in B.nodes[node]["risk solution"]:
                         starting_nodes.append(node)
@@ -520,36 +533,38 @@ def makeGraph(onto_path, edge_path, output_folder_path):
             neighbor_nodes = B.neighbors(node)
             has_no_child = True
             for neighbor in neighbor_nodes:
-                if (B[node][neighbor]["type"] == "causes_or_promotes"): 
+                if B[node][neighbor]["type"] == "causes_or_promotes":
                     has_no_child = False
             if has_no_child:
-                if "test ontology" in B.nodes[node] and B.nodes[node]["test ontology"][0] == "test ontology":
+                if (
+                    "test ontology" in B.nodes[node]
+                    and B.nodes[node]["test ontology"][0] == "test ontology"
+                ):
                     if "risk solution" in B.nodes[node]:
                         if "risk solution" not in B.nodes[node]["risk solution"]:
                             starting_nodes.append(node)
                     else:
                         starting_nodes.append(node)
-# (Pdb) starting_nodes
-# ['political polarization', 
-# 'decrease in test scores', 
-# 'increase in health costs', 
-# 'decrease in population of moose available to hunt', 
-# 'increase in heat stroke', 
-# 'decrease in GDP', 
-# 'decrease in worker productivity', 
-# 'decrease in learning (without air conditioner)', 
-# 'increase in destruction to US military bases', 
-# 'increase in disproportionate effects on children', 
-# 'increase in disproportionate effects on minority groups', 
-# 'greenhouse-gas externality', 
-# 'builders are not required to check before building on a floodplain', 
-# 'deregulation', 
-# 'increase in disaster costs']
+    # (Pdb) starting_nodes
+    # ['political polarization',
+    # 'decrease in test scores',
+    # 'increase in health costs',
+    # 'decrease in population of moose available to hunt',
+    # 'increase in heat stroke',
+    # 'decrease in GDP',
+    # 'decrease in worker productivity',
+    # 'decrease in learning (without air conditioner)',
+    # 'increase in destruction to US military bases',
+    # 'increase in disproportionate effects on children',
+    # 'increase in disproportionate effects on minority groups',
+    # 'greenhouse-gas externality',
+    # 'builders are not required to check before building on a floodplain',
+    # 'deregulation',
+    # 'increase in disaster costs']
 
     acyclic_graph = B.copy()
     visited_dict = {}
     test_value = local_graph(starting_nodes[1], acyclic_graph, visited_dict)
-
 
     # feedback loop edges should be severed in the graph copy B
     edges_upstream_greenhouse_effect = nx.edge_dfs(
