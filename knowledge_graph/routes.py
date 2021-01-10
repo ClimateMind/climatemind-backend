@@ -12,6 +12,10 @@ from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.add_zip_code import add_zip_code
 
+import re
+
+from datetime import datetime
+
 from knowledge_graph.score_nodes import (
     get_user_nodes,
     get_user_actions,
@@ -41,6 +45,53 @@ value_id_map = {
 @auto.doc()
 def home() -> Tuple[str, int]:
     return "<h1>API for climatemind ontology</h1>", 200
+
+
+@app.route("/signup", methods=["GET"])
+@auto.doc()
+def signup() -> Tuple[Response, int]:
+    """
+    Adds a user to the database using their email and current timestamp.
+    """
+    email = request.args.get("email")
+    if email:
+        is_valid = check_email(email)
+
+        if is_valid:
+            now = datetime.now()
+
+            # Sample code for db entry
+            # user = Users(email=email, datetime=datetime)
+            # db.session.add(user)
+
+            # Temporary response that will be deleted (just testing for now)
+            response = {
+                "status": "Successfully added email",
+                "email": email,
+                "datetime": now,
+            }
+
+            return make_response(response), 200
+
+    return make_response("Invalid Email"), 400
+
+
+def check_email(email):
+    """
+    Checks an email format against the RFC 5322 specification.
+    """
+
+    # RFC 5322 Specification as Regex
+    regex = """(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"
+    (?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])
+    *\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:
+    (?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1
+    [0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a
+    \x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"""
+
+    if re.search(regex, email):
+        return True
+    return False
 
 
 @app.route("/ontology", methods=["GET"])
