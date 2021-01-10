@@ -404,8 +404,6 @@ def causal_parents(node, graph):
     if list(graph.predecessors(node)):
         possibleCausalParents = graph.predecessors(node)
         for possibleCausalParent in possibleCausalParents:
-            if possibleCausalParent == "Wildfires aren't caused by global warming":
-                breakpoint()
             if graph[possibleCausalParent][node]["type"] == "causes_or_promotes":
                 node_causal_parents.append(possibleCausalParent)
     return node_causal_parents
@@ -437,9 +435,8 @@ def local_graph(node, graph, visited_dictionary):
         )
         return graph.nodes[node]["isPossiblyLocal"]
     else:
-        if (
-            "isPossiblyLocal" in graph.nodes[node]
-            and graph.nodes[node]["isPossiblyLocal"]
+        if "isPossiblyLocal" in graph.nodes[node] and isinstance(
+            graph.nodes[node]["isPossiblyLocal"], int
         ):
             [
                 local_graph(parent, graph, visited_dictionary)

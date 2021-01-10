@@ -407,7 +407,7 @@ def get_feed_results(session_id, N_FEED_CARDS):
     # TODO: Update this to use same format as personal_values endpoint
     del scores["_sa_instance_state"]
 
-    recommended_nodes = get_user_nodes(scores, N_FEED_CARDS)
+    recommended_nodes = get_user_nodes(scores, N_FEED_CARDS, session_id)
     feed_entries = {"climateEffects": recommended_nodes}
     return feed_entries
 
