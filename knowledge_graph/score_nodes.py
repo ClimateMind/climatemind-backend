@@ -408,6 +408,7 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
     for solution in solution_names:
         try:
             s_dict = {
+                "iri": get_node_id(G.nodes[solution]),
                 "solutionTitle": G.nodes[solution]["label"],
                 "solutionType": "adaptation",
                 "shortDescription": get_short_description(G.nodes[solution]),
@@ -425,6 +426,7 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
     for solution in solution_names:
         try:
             s_dict = {
+                "iri": get_node_id(G.nodes[solution]),
                 "solutionTitle": G.nodes[solution]["label"],
                 "solutionType": "mitigation",
                 "shortDescription": get_short_description(G.nodes[solution]),
