@@ -167,7 +167,6 @@ def build_localised_acyclic_graph(G, session_id):
         return localised_acyclic_graph
 
 
-
 def add_lrf_data_to_graph(graph, dict):
     graph_attributes = nx.get_node_attributes(graph, "all classes")
 
@@ -181,4 +180,3 @@ def add_lrf_data_to_graph(graph, dict):
             nx.set_node_attributes(graph, {lrf_to_iri_dict[iri]: 1}, "isPossiblyLocal")
 
     return graph
-
