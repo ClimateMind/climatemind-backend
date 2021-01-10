@@ -64,5 +64,4 @@ class Sessions(db.Model):
 
 class Signup(db.Model):
     email = db.Column(db.String(254), primary_key=True)
-    signup_date = db.Column(db.Date)
-    signup_time = db.Column(db.Time)
+    signup_timestamp = db.Column(db.DateTime)
