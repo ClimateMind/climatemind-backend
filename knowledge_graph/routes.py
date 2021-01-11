@@ -11,6 +11,7 @@ from knowledge_graph import app, db, cache, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.add_zip_code import add_zip_code
+from knowledge_graph.Mind import Mind
 
 import re
 
@@ -54,6 +55,7 @@ def signup() -> Tuple[Response, int]:
     Adds a user to the database using their email and current timestamp.
     """
     email = request.args.get("email")
+    
     if email:
         is_valid = check_email(email)
 
@@ -72,8 +74,10 @@ def signup() -> Tuple[Response, int]:
             }
 
             return make_response(response), 200
-
-    return make_response("Invalid Email"), 400
+    
+    response = { "error" : "Invalid Email"}
+    
+    return make_response(response), 400
 
 
 def check_email(email):
@@ -104,7 +108,10 @@ def query() -> Tuple[Response, int]:
 
     searchResults = {}
 
-    mind = app.config["MIND"]
+    try:
+        mind = Mind()
+    except (FileNotFoundError, IsADirectoryError, ValueError):
+        return {"error" : "Ontology Failed to Load"}, 400
 
     try:
         for keyword in searchQueries:
