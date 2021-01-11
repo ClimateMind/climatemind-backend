@@ -60,3 +60,8 @@ class Sessions(db.Model):
     postal_code = db.Column(db.String(5))
     scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
     ip_address = db.Column(db.String(255), primary_key=False)
+
+
+class Signup(db.Model):
+    email = db.Column(db.String(254), primary_key=True)
+    signup_timestamp = db.Column(db.DateTime)
