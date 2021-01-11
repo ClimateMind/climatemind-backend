@@ -1,8 +1,8 @@
 """add all current tables
 
-Revision ID: 083ae7024cab
+Revision ID: ab0baf36c321
 Revises: 
-Create Date: 2021-01-01 15:32:33.230096
+Create Date: 2021-01-10 16:16:00.806610
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = "083ae7024cab"
+revision = "ab0baf36c321"
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -24,6 +24,12 @@ def upgrade():
         sa.Column("postal_code", sa.String(length=5), nullable=True),
         sa.Column("ip_address", sa.String(length=255), nullable=True),
         sa.PrimaryKeyConstraint("session_id"),
+    )
+    op.create_table(
+        "signup",
+        sa.Column("email", sa.String(length=254), nullable=False),
+        sa.Column("signup_timestamp", sa.DateTime(), nullable=True),
+        sa.PrimaryKeyConstraint("email"),
     )
     op.create_table(
         "users",
@@ -69,5 +75,6 @@ def downgrade():
     op.drop_index(op.f("ix_users_username"), table_name="users")
     op.drop_index(op.f("ix_users_email"), table_name="users")
     op.drop_table("users")
+    op.drop_table("signup")
     op.drop_table("sessions")
     # ### end Alembic commands ###
