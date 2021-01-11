@@ -20,8 +20,7 @@ then
     flask db upgrade -d $BASEDIR/migrations_local #this line used only if local database is being used
     python add_lrf_table.py
 else
-	flask db upgrade -d $BASEDIR/migrations_azure #this line used only if production databsae is being used 
-    python add_lrf_table.py
+    flask db upgrade -d $BASEDIR/migrations_azure #this line used only if production databsae is being used 
 fi
 	
 flask run --host=0.0.0.0
