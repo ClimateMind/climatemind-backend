@@ -36,8 +36,8 @@ class Mind:
             raise
 
     def search(self, query: str) -> Results:
-        """ Returns data for one node in the NetworkX Object
-        
+        """Returns data for one node in the NetworkX Object
+
         Parameters
         ----------
         query - The name of the node (str)

@@ -55,7 +55,7 @@ def signup() -> Tuple[Response, int]:
     Adds a user to the database using their email and current timestamp.
     """
     email = request.args.get("email")
-    
+
     if email:
         is_valid = check_email(email)
 
@@ -74,9 +74,9 @@ def signup() -> Tuple[Response, int]:
             }
 
             return make_response(response), 200
-    
-    response = { "error" : "Invalid Email"}
-    
+
+    response = {"error": "Invalid Email"}
+
     return make_response(response), 400
 
 
@@ -111,7 +111,7 @@ def query() -> Tuple[Response, int]:
     try:
         mind = Mind()
     except (FileNotFoundError, IsADirectoryError, ValueError):
-        return {"error" : "Ontology Failed to Load"}, 400
+        return {"error": "Ontology Failed to Load"}, 400
 
     try:
         for keyword in searchQueries:
