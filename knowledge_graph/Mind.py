@@ -1,6 +1,7 @@
 import sys
 
 from owlready2 import get_ontology
+import networkx as nx
 from typing import List
 
 from knowledge_graph import ontology_processing_utils
@@ -11,20 +12,22 @@ Results = List[str]
 
 class Mind:
     def __init__(self):
-        self.__ontology_source = "./climate_mind_ontology"
-        self.__ontology = self.__load_ontology()
+        self.__ontology_source = "./Climate_Mind_DiGraph.gpickle"
+        self.G = self.__load_ontology()
 
     def __load_ontology(self):
+        """Loads the NetworkX representation of the Ontology from the Gpickle file."""
         try:
-            onto = get_ontology(self.__ontology_source).load()
-            obj_properties = list(onto.object_properties())
-            [ontology_processing_utils.give_alias(x) for x in obj_properties]
-            return onto
+            G = nx.read_gpickle(self.__ontology_source)
+            return G
 
         except (FileNotFoundError, IsADirectoryError, ValueError):
             raise
 
     def _get_ontology(self):
+        """
+        Returns the NetworkX representation of the Ontology if found.
+        """
         try:
             if self.__ontology is None:
                 raise ValueError
@@ -33,13 +36,15 @@ class Mind:
             raise
 
     def search(self, query: str) -> Results:
+        """ Returns data for one node in the NetworkX Object
+        
+        Parameters
+        ----------
+        query - The name of the node (str)
+        """
         try:
-            return make_network.get_edges(self._get_ontology(), query)
-        except (ValueError, AttributeError):
-            raise ValueError
-
-    def multiParameterSearch(self) -> Results:
-        try:
-            return make_network.get_edges(self._get_ontology(), None)
+            for node in self.G.nodes:
+                if self.G.nodes[node]["label"] == query:
+                    return self.G.nodes[node]
         except (ValueError, AttributeError):
             raise ValueError
