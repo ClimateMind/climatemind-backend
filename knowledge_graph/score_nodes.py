@@ -419,7 +419,16 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
                 ),
                 "solutionSources": get_solution_sources(G.nodes[solution]),
             }
-            adaptation_solutions.append(s_dict)
+
+            # only include direct adaptation solutions (ignore adaptation solutions that are upstream for now)
+            for neighbor in G.neighbors(effect_name):
+                if (
+                    G[effect_name][neighbor]["type"]
+                    == "is_inhibited_or_prevented_or_blocked_or_slowed_by"
+                    and neighbor == solution
+                ):
+                    adaptation_solutions.append(s_dict)
+
         except:
             pass
     solution_names = G.nodes["increase in greenhouse effect"]["mitigation solutions"]
