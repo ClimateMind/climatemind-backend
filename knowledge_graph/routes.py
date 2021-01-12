@@ -9,16 +9,17 @@ from typing import Tuple
 
 from knowledge_graph import app, db, cache, auto
 from knowledge_graph.models import Scores
-from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.add_zip_code import add_zip_code
 
 import re
 
 from datetime import datetime
 
-from knowledge_graph.score_nodes import score_nodes
-from knowledge_graph.process_myths import process_myths
-from knowledge_graph.process_solutions import process_solutions
+from scoring.score_nodes import score_nodes
+from scoring.persist_scores import persist_scores
+
+from network_x_tools.process_myths import process_myths
+from network_x_tools.process_solutions import process_solutions
 
 from knowledge_graph.store_ip_address import store_ip_address
 

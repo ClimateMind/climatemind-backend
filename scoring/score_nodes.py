@@ -8,9 +8,10 @@ from knowledge_graph.ontology_processing_utils import (
     get_valid_test_ont,
     get_non_test_ont,
 )
-from knowledge_graph.process_myths import process_myths
-from knowledge_graph.network_x_utils import network_x_utils
-from knowledge_graph.process_solutions import process_solutions
+from network_x_tools.process_myths import process_myths
+from network_x_tools.network_x_utils import network_x_utils
+from network_x_tools.process_solutions import process_solutions
+
 from knowledge_graph.build_localised_acyclic_graph import build_localised_acyclic_graph
 import numpy as np
 import random
@@ -97,7 +98,6 @@ class score_nodes:
                         modified_user_scores_vector,
                         modified_node_values_associations_10,
                     )
-                    print(current_node["label"])
                     d["effectSolutions"] = self.SOL_PROCESSOR.get_user_actions(
                         current_node["label"]
                     )
