@@ -145,8 +145,13 @@ def get_effect_specific_myths(node, G):
     ----------
     node - A networkX node
     """
+
     try:
-        if "effect myths" in node:
+        # if node["label"] == "decrease in population of moose available to hunt": breakpoint()
+        if "impact myths" in node.keys() and node["impact myths"]:
+            G = get_pickle_file(
+                "Climate_Mind_DiGraph.gpickle"
+            )  # the graph G should be the same everywhere in the app but for some reason it is not... grr!
             IRIs = []
             for myth_name in node["impact myths"]:
                 myth = G.nodes[myth_name]
@@ -165,7 +170,8 @@ def get_solution_specific_myths(node, G):
     node - A networkX node
     """
     try:
-        if "solution myths" in node:
+        if "solution myths" in node.keys() and node["solution myths"]:
+            # G = get_pickle_file("Climate_Mind_DiGraph.gpickle") #the graph G should be the same everywhere in the app but for some reason it is not... grr!
             IRIs = []
             for myth_name in node["solution myths"]:
                 myth = G.nodes[myth_name]
@@ -435,7 +441,7 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
             pass
     solution_names = G.nodes["increase in greenhouse effect"]["mitigation solutions"]
     for solution in solution_names:
-        #if solution == "producing electricity via concentrated solar power": breakpoint()
+        # if solution == "producing electricity via concentrated solar power": breakpoint()
         try:
             s_dict = {
                 "iri": get_node_id(G.nodes[solution]),
