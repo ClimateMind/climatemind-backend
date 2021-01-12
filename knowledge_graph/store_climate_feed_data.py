@@ -5,31 +5,25 @@ from datetime import timezone
 
 
 def store_climate_feed_data(session_id, feed):
-    n = 1
-    for card in feed:
-        effect = ClimateFeed()
-        effect.session_id = session_id
-        dt = datetime.datetime.now(timezone.utc)
-        effect.event_ts = dt
-        effect.effect_position = n
-        effect.effect_iri = card["effectId"]
-        effect.effect_score = card["effectScore"]
-        solutions = card["effectSolutions"]
+    try:
+        for i in range(len(feed)):
+            effect = ClimateFeed()
+            effect.session_id = session_id
+            dt = datetime.datetime.now(timezone.utc)
+            effect.event_ts = dt
+            effect.effect_position = i + 1
+            effect.effect_iri = feed[i]["effectId"]
+            effect.effect_score = feed[i]["effectScore"]
+            solutions = feed[i]["effectSolutions"]
 
-        i = 1
-        for solution in solutions:
-            if i == 1:
-                effect.solution_1_iri = solution["iri"]
-            elif i == 2:
-                effect.solution_2_iri = solution["iri"]
-            elif i == 3:
-                effect.solution_3_iri = solution["iri"]
-            else:
-                effect.solution_4_iri = solution["iri"]
-            i += 1
+            for i in range(len(solutions)):
+                iri = solutions[i]["iri"]
+                column_name = "solution_" + str(i + 1) + "_iri"
+                setattr(effect, column_name, iri)
 
-        effect.isPossiblyLocal = card["isPossiblyLocal"]
+            effect.isPossiblyLocal = feed[i]["isPossiblyLocal"]
 
-        db.session.add(effect)
-        db.session.commit()
-        n += 1
+            db.session.add(effect)
+            db.session.commit()
+    except Exception as e:
+        print(e)
