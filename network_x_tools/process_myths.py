@@ -1,5 +1,5 @@
 from knowledge_graph import app
-from knowledge_graph.network_x_utils import network_x_utils
+from network_x_tools.network_x_utils import network_x_utils
 import networkx as nx
 
 
@@ -148,11 +148,8 @@ class process_myths:
         done in the current implementation).
         """
         general_myths = self.G.nodes["increase in greenhouse effect"]["general myths"]
-        print(general_myths)
         general_myths_details = []
         for myth in general_myths:
-            print(self.G.nodes)
-            print(myth)
             self.NX_UTILS.set_current_node(self.G.nodes[myth])
             self.node = self.G.nodes[myth]
             d = {
