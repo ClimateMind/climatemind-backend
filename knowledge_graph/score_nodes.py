@@ -148,7 +148,7 @@ def get_effect_specific_myths(node, G):
     try:
         if "effect myths" in node:
             IRIs = []
-            for myth_name in node["effect myths"]:
+            for myth_name in node["impact myths"]:
                 myth = G.nodes[myth_name]
                 IRIs.append(get_node_id(myth))
         return IRIs
@@ -435,6 +435,7 @@ def get_user_actions(effect_name, max_solutions, adaptation_to_mitigation_ratio)
             pass
     solution_names = G.nodes["increase in greenhouse effect"]["mitigation solutions"]
     for solution in solution_names:
+        #if solution == "producing electricity via concentrated solar power": breakpoint()
         try:
             s_dict = {
                 "iri": get_node_id(G.nodes[solution]),
