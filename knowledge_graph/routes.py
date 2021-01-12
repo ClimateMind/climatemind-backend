@@ -16,13 +16,9 @@ import re
 
 from datetime import datetime
 
-from knowledge_graph.score_nodes import (
-    get_user_nodes,
-    get_user_actions,
-    get_user_general_myth_nodes,
-    get_user_general_solution_nodes,
-    get_specific_myth_info,
-)
+from knowledge_graph.score_nodes import score_nodes
+from knowledge_graph.process_myths import process_myths
+from knowledge_graph.process_solutions import process_solutions
 
 from knowledge_graph.store_ip_address import store_ip_address
 
@@ -39,6 +35,9 @@ value_id_map = {
     9: "power",
     10: "security",
 }
+
+MYTH_PROCESSOR = process_myths()
+SOLUTION_PROCESSOR = process_solutions(4, 0.5)
 
 
 @app.route("/", methods=["GET"])
@@ -220,54 +219,12 @@ def receive_user_scores() -> Tuple[Response, int]:
         try:
             ip_address = None
             store_ip_address(ip_address, session_id)
-        except Exception as e:
-            print(e)
-    else:
-        try:
-            unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
-            if len(unprocessed_ip_address) != 0:
-                ip_address = unprocessed_ip_address[0]
-            # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
-            else:
-                ip_address = None
-            store_ip_address(ip_address, session_id)
-        except Exception as e:
-            print(e)
-
-    if (
-        os.environ["DATABASE_PARAMS"]
-        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
-    ):
-        try:
-            ip_address = None
-            store_ip_address(ip_address, session_id)
         except Exception:
             return make_response({"error": "error adding ip address locally"}), 500
     else:
         try:
             unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
             if len(unprocessed_ip_address) != 0:
-                ip_address = unprocessed_ip_address[0]
-            # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
-            else:
-                ip_address = None
-            store_ip_address(ip_address, session_id)
-        except Exception:
-            return make_response({"error": "error adding ip address in cloud"}), 500
-
-    if (
-        os.environ["DATABASE_PARAMS"]
-        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
-    ):
-        try:
-            ip_address = None
-            store_ip_address(ip_address, session_id)
-        except Exception:
-            return make_response({"error": "error adding ip address locally"}), 500
-    else:
-        try:
-            unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
-            if unprocessed_ip_address:
                 ip_address = unprocessed_ip_address[0]
             # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
             else:
@@ -341,7 +298,7 @@ def get_actions():
     effect_name = str(request.args.get("effect-name"))
 
     try:
-        actions = get_user_actions(effect_name)
+        actions = SOLUTION_PROCESSOR.get_user_actions(effect_name)
     except:
         return make_response("Invalid climate effect or no actions found"), 400
 
@@ -384,7 +341,8 @@ def get_feed_results(session_id, N_FEED_CARDS):
     # TODO: Update this to use same format as personal_values endpoint
     del scores["_sa_instance_state"]
 
-    recommended_nodes = get_user_nodes(scores, N_FEED_CARDS, session_id)
+    SCORE_NODES = score_nodes(scores, N_FEED_CARDS, session_id)
+    recommended_nodes = SCORE_NODES.get_user_nodes()
     feed_entries = {"climateEffects": recommended_nodes}
     return feed_entries
 
@@ -406,14 +364,14 @@ def get_general_myths():
     # scores = scores.__dict__
     # del scores["_sa_instance_state"]
 
-    recommended_general_myths = get_user_general_myth_nodes()
+    recommended_general_myths = MYTH_PROCESSOR.get_user_general_myth_nodes()
     climate_general_myths = {"myths": recommended_general_myths}
     return jsonify(climate_general_myths), 200
 
 
 @app.route("/myths/<string:iri>", methods=["GET"])
 def get_myth_info(iri):
-    myth_info = get_specific_myth_info(iri)
+    myth_info = MYTH_PROCESSOR.get_specific_myth_info(iri)
 
     if myth_info:
         specific_myth_info = {"myth": myth_info}
@@ -426,8 +384,8 @@ def get_myth_info(iri):
 @auto.doc()
 def get_general_solutions():
     """
-    The front-end needs general myths list and information to serve to user when they click the general myths menu button.
-    General myths are ordered based on relevance predicted from users personal values.
+    The front-end needs general solutions list and information to serve to user when they click the general solutions menu button.
+    General solutions are ordered based on relevance predicted from users personal values.
     """
     # session_id = str(request.args.get("session-id"))
     # try:
@@ -439,7 +397,7 @@ def get_general_solutions():
     # scores = scores.__dict__
     # del scores["_sa_instance_state"]
 
-    recommended_general_solutions = get_user_general_solution_nodes()
+    recommended_general_solutions = SOLUTION_PROCESSOR.get_user_general_solution_nodes()
     climate_general_solutions = {"solutions": recommended_general_solutions}
     return jsonify(climate_general_solutions), 200
 
