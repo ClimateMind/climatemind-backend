@@ -8,6 +8,7 @@ from knowledge_graph.make_graph import (
     get_non_test_ont,
 )
 from knowledge_graph.build_localised_acyclic_graph import build_localised_acyclic_graph
+from knowledge_graph.store_climate_feed_data import store_climate_feed_data
 import numpy as np
 import random
 from collections import OrderedDict
@@ -359,6 +360,7 @@ def get_user_nodes(user_scores, n, session_id):
     get_test_ontology(G, valid_test_ont, not_test_ont)
     climate_effects = simple_scoring(G, user_scores, session_id)
     best_nodes_for_user = get_best_nodes(climate_effects, n)
+    store_climate_feed_data(session_id, best_nodes_for_user)
     return best_nodes_for_user
 
 
