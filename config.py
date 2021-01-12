@@ -2,7 +2,7 @@ from flask import abort
 import os
 import urllib
 
-from knowledge_graph.Mind import Mind
+from knowledge_graph.network_x_processor import network_x_processor
 
 
 class BaseConfig(object):
@@ -22,6 +22,15 @@ class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = (
         "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(DB_CREDENTIALS)
     )
+
+    try:
+        nx_processor = network_x_processor()
+        G = nx_processor.get_graph()
+    except:
+        print(
+            """No Pickle File Exists, Please run Process_New_Ontology.py
+                    If you are processing the ontology, disregard this message"""
+        )
 
 
 class TestingConfig(BaseConfig):
