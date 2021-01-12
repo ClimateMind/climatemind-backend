@@ -380,7 +380,7 @@ def get_feed():
     relevant to a user to display in the user's feed.
 
     """
-    N_FEED_CARDS = 5
+    N_FEED_CARDS = 21
 
     session_id = str(request.args.get("session-id"))
 
