@@ -30,11 +30,8 @@ class process_myths:
         self.node = node
 
     def get_myth_claim(self):
-        """Myth claims are used by the front-end to display a description of a phrase or claim the user might hear when someone says the myth.
-
-        Parameters
-        ----------
-        node - A networkX myth node
+        """Myth claims are used by the front-end to display a description of a
+        phrase or claim the user might hear when someone says the myth.
         """
         try:
             return self.node["properties"]["schema_mythClaim"][0]
@@ -42,12 +39,10 @@ class process_myths:
             return "No myth claim available at present"
 
     def get_myth_rebuttal(self):
-        """Myth rebuttals are used by the front-end to display a description of a reason or rebuttal the user could say in response to someone saying the myth.
-        The rebuttals are the reason(s) why the myth is not true and what the science says is true.
-
-        Parameters
-        ----------
-        node - A networkX node
+        """Myth rebuttals are used by the front-end to display a description of a reason
+        or rebuttal the user could say in response to someone saying the myth. The
+        rebuttals are the reason(s) why the myth is not true and what the science
+        says is true.
         """
         try:
             return self.node["properties"]["schema_mythRebuttal"][0]
