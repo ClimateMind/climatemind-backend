@@ -675,7 +675,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     # process myths in networkx object to be easier for API
     general_myths = list()
 
-    #breakpoint()
+    # breakpoint()
     for myth in all_myths:
         node_neighbors = G.neighbors(myth)
         for neighbor in node_neighbors:
