@@ -11,7 +11,6 @@ from knowledge_graph import app, db, cache, auto
 from knowledge_graph.models import Scores
 from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.add_zip_code import add_zip_code
-from knowledge_graph.Mind import Mind
 
 import re
 
@@ -96,35 +95,6 @@ def check_email(email):
     if re.search(regex, email):
         return True
     return False
-
-
-@app.route("/ontology", methods=["GET"])
-@auto.doc()
-def query() -> Tuple[Response, int]:
-    """
-    description: Resource for accessing the contents of the ontology via queries.
-    """
-    searchQueries = request.args.getlist("query")
-
-    searchResults = {}
-
-    try:
-        mind = Mind()
-    except (FileNotFoundError, IsADirectoryError, ValueError):
-        return {"error": "Ontology Failed to Load"}, 400
-
-    try:
-        for keyword in searchQueries:
-            searchResults[keyword] = mind.search(keyword)
-
-    except ValueError:
-        # todo: currently returns no results at all if 1 keyword in an array isn't found. fix this.
-        return make_response("query keyword not found"), 400
-
-    response = Response(dumps(searchResults))
-    response.headers["Content-Type"] = "application/json"
-
-    return response, 200
 
 
 @app.route("/questions", methods=["GET"])
