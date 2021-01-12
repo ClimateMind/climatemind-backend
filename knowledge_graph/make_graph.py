@@ -680,29 +680,23 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         node_neighbors = G.neighbors(myth)
         for neighbor in node_neighbors:
             if G[myth][neighbor]["type"] == "is_a_myth_about":
+
+                impact_myths = []
                 if "risk solution" in G.nodes[neighbor].keys():
-                    if neighbor == "producing electricity via concentrated solar power": breakpoint()
-                    if (
-                        "solution myths" in G.nodes[neighbor].keys()
-                        and G.nodes[neighbor]["solution myths"]
-                    ):
-                        solution_myths = G.nodes[neighbor]["solution myths"].append(
-                            myth
-                        )
+                    if "solution myths" not in G.nodes[neighbor].keys():
+                        solution_myths = []
                     else:
-                        solution_myths = [myth]
-                    print(G.nodes[neighbor]["solution myths"])
+                        solution_myths = G.nodes[neighbor]["solution myths"]
+                    solution_myths.append(myth)
                     nx.set_node_attributes(
                         G, {neighbor: solution_myths}, "solution myths"
                     )
                 if neighbor in nodes_downstream_greenhouse_effect:
-                    if (
-                        "impact myths" in G.nodes[neighbor].keys()
-                        and G.nodes[neighbor]["impact myths"]
-                    ):
-                        impact_myths = G.nodes[neighbor]["impact myths"].append(myth)
+                    if "impact myths" not in G.nodes[neighbor].keys():
+                        impact_myths = []
                     else:
-                        impact_myths = [myth]
+                        impact_myths = G.nodes[neighbor]["impact myths"]
+                    impact_myths.append(myth)
                     nx.set_node_attributes(G, {neighbor: impact_myths}, "impact myths")
                 if neighbor in nodes_upstream_greenhouse_effect:
                     general_myths.append(myth)
