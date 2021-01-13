@@ -16,11 +16,16 @@ file = "lkp_postal_nodes.csv"
 engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
 
 # Create a new table (with data) based on the CSV file whenever the docker container is rebuilt.
-
-
-def add_lrf_data():
+def add_lrf_data(file):
+    """
+    Input: 
+        file = lkp_postal_nodes csv file
+    
+    Output:
+        SQL statement POST-ed to database through SQLAlchemy
+    """
     try:
-        data = pd.read_csv(file, index_col=0)
+        data = pd.read_csv(file=file, index_col=0)
         data.to_sql("lrf_data", engine, if_exists="replace")
     except Exception as e:
         print(e)
