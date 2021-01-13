@@ -2,7 +2,7 @@ from flask import abort
 import os
 import urllib
 
-from knowledge_graph.Mind import Mind
+from network_x_tools.network_x_processor import network_x_processor
 
 
 class BaseConfig(object):
@@ -13,12 +13,6 @@ class DevelopmentConfig(BaseConfig):
     DEBUG = True
     TESTING = True
 
-    # Temporary
-    # basedir = os.path.abspath(os.path.dirname(__file__))
-    # SQLALCHEMY_DATABASE_URI = #"sqlite:///" + os.path.join(basedir, "app.db")
-    # SQLALCHEMY_TRACK_MODIFICATIONS = False
-    # DATABASE_PARAMS = os.environ["DATABASE_PARAMS"]
-    # SQLALCHEMY_DATABASE_URI = "mssql+pyodbc:///?odbc_connect=%s" % DATABASE_PARAMS
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
@@ -28,14 +22,15 @@ class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_DATABASE_URI = (
         "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(DB_CREDENTIALS)
     )
-    # SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("%", "%%")
-
-    # End Temporary
 
     try:
-        MIND = Mind()
-    except (FileNotFoundError, IsADirectoryError, ValueError):
-        abort(404)
+        nx_processor = network_x_processor()
+        G = nx_processor.get_graph()
+    except:
+        print(
+            """No Pickle File Exists, Please run Process_New_Ontology.py
+                    If you are processing the ontology, disregard this message"""
+        )
 
 
 class TestingConfig(BaseConfig):
