@@ -1,7 +1,6 @@
 from knowledge_graph import app
 from network_x_tools.network_x_utils import network_x_utils
 import networkx as nx
-import pdb
 
 
 class process_myths:
@@ -95,11 +94,6 @@ class process_myths:
         This function takes a node and returns the IRIs of any myths about the impact.
         """
         try:
-            if (
-                self.node["label"]
-                == "producing electricity via utility-scale solar photovoltaics"
-            ):
-                print("here")
             if "impact myths" in self.node.keys() and self.node["impact myths"]:
                 if not self.G:
                     self.G = nx.read_gpickle("./Climate_Mind_DiGraph.gpickle")
