@@ -430,7 +430,7 @@ def local_graph(node, graph, visited_dictionary):
     if not causal_parents(node, graph):
         nx.set_node_attributes(
             graph,
-            {node: 1},
+            {node: 0},
             "isPossiblyLocal",
         )
         return graph.nodes[node]["isPossiblyLocal"]
