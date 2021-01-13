@@ -491,7 +491,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     # process the mitigation and adaptation solutions in the networkx object and add them into special attribute fields for each node for easy access in later for the API
 
     B = make_acyclic(G)
-    all_myths = nx.get_node_attributes(B, "myth")
+    all_myths = list(nx.get_node_attributes(B, "myth").keys())
 
     starting_nodes = []
     for node in B.nodes:
@@ -654,31 +654,28 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     # process myths in networkx object to be easier for API
     general_myths = list()
 
+    # breakpoint()
     for myth in all_myths:
         node_neighbors = G.neighbors(myth)
         for neighbor in node_neighbors:
             if G[myth][neighbor]["type"] == "is_a_myth_about":
+
+                impact_myths = []
                 if "risk solution" in G.nodes[neighbor].keys():
-                    if (
-                        "solution myths" in G.nodes[neighbor].keys()
-                        and G.nodes[neighbor]["solution myths"]
-                    ):
-                        solution_myths = G.nodes[neighbor]["solution myths"].append(
-                            myth
-                        )
+                    if "solution myths" not in G.nodes[neighbor].keys():
+                        solution_myths = []
                     else:
-                        solution_myths = [myth]
+                        solution_myths = G.nodes[neighbor]["solution myths"]
+                    solution_myths.append(myth)
                     nx.set_node_attributes(
                         G, {neighbor: solution_myths}, "solution myths"
                     )
                 if neighbor in nodes_downstream_greenhouse_effect:
-                    if (
-                        "impact myths" in G.nodes[neighbor].keys()
-                        and G.nodes[neighbor]["impact myths"]
-                    ):
-                        impact_myths = G.nodes[neighbor]["impact myths"].append(myth)
+                    if "impact myths" not in G.nodes[neighbor].keys():
+                        impact_myths = []
                     else:
-                        impact_myths = [myth]
+                        impact_myths = G.nodes[neighbor]["impact myths"]
+                    impact_myths.append(myth)
                     nx.set_node_attributes(G, {neighbor: impact_myths}, "impact myths")
                 if neighbor in nodes_upstream_greenhouse_effect:
                     general_myths.append(myth)
