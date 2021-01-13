@@ -37,6 +37,19 @@ value_id_map = {
     10: "security",
 }
 
+personal_values_categories = [
+    "security",
+    "conformity",
+    "benevolence",
+    "tradition",
+    "universalism",
+    "self_direction",
+    "stimulation",
+    "hedonism",
+    "achievement",
+    "power",
+]
+
 MYTH_PROCESSOR = process_myths()
 SOLUTION_PROCESSOR = process_solutions(4, 0.5)
 
@@ -47,13 +60,28 @@ def home() -> Tuple[str, int]:
     return "<h1>API for climatemind ontology</h1>", 200
 
 
-@app.route("/signup", methods=["GET"])
+@app.route("/signup", methods=["POST"])
 @auto.doc()
 def signup() -> Tuple[Response, int]:
     """
-    Adds a user to the database using their email and current timestamp.
+    Users want to be able to sign up with their email to save their personal values test
+    results. This adds a user to the database using their email and current timestamp.
+
+    Provided JSON Format
+    --------
+    {"email" : "example@example.com"}
     """
-    email = request.args.get("email")
+    parameter = request.json
+
+    if not parameter:
+        error = {"error": "Invalid Request, No JSON provided"}
+        return make_response(error), 400
+
+    try:
+        email = parameter["email"]
+    except:
+        error = {"error": "Invalid Request, No Email in JSON"}
+        return make_response(error), 400
 
     if email:
         is_valid = check_email(email)
@@ -81,7 +109,7 @@ def signup() -> Tuple[Response, int]:
 
 def check_email(email):
     """
-    Checks an email format against the RFC 5322 specification.
+    Checks an email format against the RFC 5322 specification and returns True if valid.
     """
 
     # RFC 5322 Specification as Regex
@@ -101,8 +129,8 @@ def check_email(email):
 @auto.doc()
 def get_questions() -> Tuple[Response, int]:
     """
-    Returns the list of available questions that can be presented to
-    the user.
+    Returns the list of available schwartz personal value questions that can be
+    presented to the user.
     """
     try:
         file = os.path.join(os.getcwd(), "json_files", "schwartz_questions.json")
@@ -120,16 +148,6 @@ def get_questions() -> Tuple[Response, int]:
 @app.route("/scores", methods=["POST"])
 @auto.doc()
 def user_scores() -> Tuple[Response, int]:
-    """
-    Users want to be able to get their score results after submitting the survey.
-    The user can answer 10 or 20 questions. If they answer 20, the scores are averaged between the 10 additional and 10 original questions to get 10 corresponding value scores.
-    Then to get a centered score for each value, each score value is subtracted from the overall average of all 10 or 20 questions. This score is returned in the response. on our server
-    """
-    if request.method == "POST":
-        return receive_user_scores()
-
-
-def receive_user_scores() -> Tuple[Response, int]:
     """Users want to be able to get their score results after submitting
     the survey. This method checks for a POST request from the front-end
     containing a JSON object with the users scores.
@@ -146,7 +164,6 @@ def receive_user_scores() -> Tuple[Response, int]:
         parameter = request.json
     # todo: handle exceptions properly here
     except Exception as ex:
-        print(ex)
         return make_response({"error": "Invalid User Response"}), 400
 
     value_scores = {}
@@ -244,29 +261,22 @@ def receive_user_scores() -> Tuple[Response, int]:
 @auto.doc()
 def get_personal_values():
     """
-    Returns the top 3 personal values of a user given a session ID.
+    Users want to know their personal values based on their schwartz questionnaire
+    results. This returns the top 3 personal values of a user given a session ID.
     """
     try:
         session_id = str(request.args.get("session-id"))
     # TODO: catch exceptions properly here
     except Exception:
-        return make_response("Invalid Session ID Format or No ID Provided"), 400
+        error = {"error": "Invalid Session ID Format or No ID Provided"}
+        return make_response(error), 400
 
-    scores = Scores.query.filter_by(session_id=session_id).first()
+    scores = Scores.query.filter_by(
+        session_id=session_id
+    ).first()  # Returns None if no results
+
     if scores:
         scores = scores.__dict__
-        personal_values_categories = [
-            "security",
-            "conformity",
-            "benevolence",
-            "tradition",
-            "universalism",
-            "self_direction",
-            "stimulation",
-            "hedonism",
-            "achievement",
-            "power",
-        ]
         sorted_scores = {key: scores[key] for key in personal_values_categories}
 
         top_scores = sorted(sorted_scores, key=sorted_scores.get, reverse=True)[:3]
@@ -276,7 +286,8 @@ def get_personal_values():
             with open(file) as f:
                 value_descriptions = load(f)
         except FileNotFoundError:
-            return make_response("Value Descriptions File Not Found"), 400
+            error = {"error": "Value Descriptions File Not Found"}
+            return make_response(error), 400
         descriptions = [value_descriptions[score] for score in top_scores]
 
         scores_and_descriptions = []
@@ -286,7 +297,8 @@ def get_personal_values():
         return jsonify(response), 200
 
     else:
-        return make_response("Invalid Session ID - Internal Server Error"), 400
+        error = {"error": "Invalid Session ID - Internal Server Error"}
+        return make_response(error), 400
 
 
 @app.route("/get_actions", methods=["GET"])
@@ -301,7 +313,8 @@ def get_actions():
     try:
         actions = SOLUTION_PROCESSOR.get_user_actions(effect_name)
     except:
-        return make_response("Invalid climate effect or no actions found"), 400
+        error = {"error": "Invalid climate effect or no actions found"}
+        return make_response(error), 400
 
     response = jsonify({"actions": actions})
     return response, 200
@@ -314,17 +327,24 @@ def get_feed():
     The front-end needs to request personalized climate change effects that are most
     relevant to a user to display in the user's feed.
 
+    PARAMETER (As GET)
+    --------
+    session-id : uuid4 as string
     """
     N_FEED_CARDS = 21
 
     session_id = str(request.args.get("session-id"))
 
-    feed_entries = get_feed_results(session_id, N_FEED_CARDS)
+    if session_id:
+        feed_entries = get_feed_results(session_id, N_FEED_CARDS)
+    else:
+        error = {"error": "No session id provided"}
+        return make_response(error), 400
 
     return jsonify(feed_entries), 200
 
 
-@cache.memoize(timeout=1200)
+@cache.memoize(timeout=1200)  # 20 Minutes
 def get_feed_results(session_id, N_FEED_CARDS):
     """
     Mitigation solutions are served randomly based on a user's highest scoring climate
@@ -332,46 +352,45 @@ def get_feed_results(session_id, N_FEED_CARDS):
     looks for an existing cache based on a user's session ID, or creates a new feed if
     one is not found.
     """
-    try:
-        scores = db.session.query(Scores).filter_by(session_id=session_id).first()
-    # TODO: catch exceptions properly here
-    except Exception:
-        return make_response("Invalid Session ID or No Information for ID")
-
-    scores = scores.__dict__
-    # TODO: Update this to use same format as personal_values endpoint
-    del scores["_sa_instance_state"]
-
-    SCORE_NODES = score_nodes(scores, N_FEED_CARDS, session_id)
-    recommended_nodes = SCORE_NODES.get_user_nodes()
-    feed_entries = {"climateEffects": recommended_nodes}
-    return feed_entries
+    scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    if scores:
+        scores = scores.__dict__
+        scores = {key: scores[key] for key in personal_values_categories}
+        SCORE_NODES = score_nodes(scores, N_FEED_CARDS, session_id)
+        recommended_nodes = SCORE_NODES.get_user_nodes()
+        feed_entries = {"climateEffects": recommended_nodes}
+        return feed_entries
+    else:
+        error = {"error": "Invalid Session ID or No Information for ID"}
+        return make_response(error), 400
 
 
 @app.route("/myths", methods=["GET"])
 @auto.doc()
 def get_general_myths():
     """
-    The front-end needs general myths list and information to serve to user when they click the general myths menu button.
-    General myths are ordered based on relevance predicted from users personal values.
+    The front-end needs a general myths list and information to serve to user when
+    they click the general myths menu button. General myths are ordered based on
+    relevance predicted from users personal values.
     """
-    # session_id = str(request.args.get("session-id"))
-    # try:
-    # scores = db.session.query(Scores).filter_by(session_id=session_id).first()
-    # TODO: catch exceptions properly here
-    # except Exception:
-    #    return make_response("Invalid Session ID or No Information for ID")
-
-    # scores = scores.__dict__
-    # del scores["_sa_instance_state"]
-
-    recommended_general_myths = MYTH_PROCESSOR.get_user_general_myth_nodes()
-    climate_general_myths = {"myths": recommended_general_myths}
-    return jsonify(climate_general_myths), 200
+    try:
+        recommended_general_myths = MYTH_PROCESSOR.get_user_general_myth_nodes()
+        climate_general_myths = {"myths": recommended_general_myths}
+        return jsonify(climate_general_myths), 200
+    except:
+        error = {"error": "Failed to Process Myths"}
+        return make_response(error), 400
 
 
 @app.route("/myths/<string:iri>", methods=["GET"])
 def get_myth_info(iri):
+    """
+    The front-end needs the ability to pull a single myth and it's relevant information
+    by providing an IRI (unique identifier for an ontology node).
+
+    Parameter (as GET)
+    iri - a unique identifier string
+    """
     myth_info = MYTH_PROCESSOR.get_specific_myth_info(iri)
 
     if myth_info:
@@ -385,19 +404,10 @@ def get_myth_info(iri):
 @auto.doc()
 def get_general_solutions():
     """
-    The front-end needs general solutions list and information to serve to user when they click the general solutions menu button.
-    General solutions are ordered based on relevance predicted from users personal values.
+    The front-end needs general solutions list and information to serve to user when
+    they click the general solutions menu button. General solutions are ordered based
+    on relevance predicted from users personal values.
     """
-    # session_id = str(request.args.get("session-id"))
-    # try:
-    # scores = db.session.query(Scores).filter_by(session_id=session_id).first()
-    # TODO: catch exceptions properly here
-    # except Exception:
-    #    return make_response("Invalid Session ID or No Information for ID")
-
-    # scores = scores.__dict__
-    # del scores["_sa_instance_state"]
-
     recommended_general_solutions = SOLUTION_PROCESSOR.get_user_general_solution_nodes()
     climate_general_solutions = {"solutions": recommended_general_solutions}
     return jsonify(climate_general_solutions), 200
