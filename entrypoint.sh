@@ -21,12 +21,12 @@ then
     python add_lrf_table.py
 else
     flask db upgrade -d $BASEDIR/migrations_azure #this line used only if production database is being used 
-    # NOTE: migrate and uprade must be run SEPARATELY for cloud migrations. 
+    # NOTE: migrate and upgrade must be run SEPARATELY for cloud migrations. 
     # COMMENT OUT the upgrade code and run the migration first.
     # AFTER migrating, manually edit the migration script to prevent the lrf table being dropped. 
     # THEN comment out the migrate command and run upgrade.
     # ONLY run the python add_lrf_table script if the csv file changes.
-    #python add_lrf_table.py
+    # python add_lrf_table.py
 fi
 	
 flask run --host=0.0.0.0
