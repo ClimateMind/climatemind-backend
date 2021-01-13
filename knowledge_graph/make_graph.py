@@ -15,6 +15,8 @@ from knowledge_graph.ontology_processing_utils import (
     save_graph_to_pickle,
     get_valid_test_ont,
     get_non_test_ont,
+    remove_non_test_nodes,
+    get_test_ontology,
 )
 import os
 
@@ -325,29 +327,6 @@ def remove_edge_properties_from_nodes(G, to_remove):
             if node not in list(to_delete)
         ]
         # DM: uh... won't `node not in list(to_delete)` always evaluate to false? What was meant to be here instead?
-
-
-def remove_non_test_nodes(G, node, valid_test_ont, not_test_ont):
-    if node in G.nodes:
-        is_test_ont = False
-        for c in G.nodes[node]["direct classes"]:
-            if c in valid_test_ont:
-                is_test_ont = True
-            if c in not_test_ont:
-                is_test_ont = False
-                break
-        if not is_test_ont:
-            G.remove_node(node)
-        else:
-            is_test_ont = False
-
-
-def get_test_ontology(G, valid_test_ont, not_test_ont):
-    for edge in list(G.edges):
-        node_a = edge[0]
-        node_b = edge[1]
-        remove_non_test_nodes(G, node_a, valid_test_ont, not_test_ont)
-        remove_non_test_nodes(G, node_b, valid_test_ont, not_test_ont)
 
 
 def make_acyclic(G):

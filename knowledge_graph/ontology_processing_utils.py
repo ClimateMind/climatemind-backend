@@ -55,6 +55,29 @@ def get_non_test_ont():
     }
 
 
+def remove_non_test_nodes(G, node, valid_test_ont, not_test_ont):
+    if node in G.nodes:
+        is_test_ont = False
+        for c in G.nodes[node]["direct classes"]:
+            if c in valid_test_ont:
+                is_test_ont = True
+            if c in not_test_ont:
+                is_test_ont = False
+                break
+        if not is_test_ont:
+            G.remove_node(node)
+        else:
+            is_test_ont = False
+
+
+def get_test_ontology(G, valid_test_ont, not_test_ont):
+    for edge in list(G.edges):
+        node_a = edge[0]
+        node_b = edge[1]
+        remove_non_test_nodes(G, node_a, valid_test_ont, not_test_ont)
+        remove_non_test_nodes(G, node_b, valid_test_ont, not_test_ont)
+
+
 def give_alias(property_object):
     label_name = property_object.label[0]
     label_name = label_name.replace("/", "_or_")
