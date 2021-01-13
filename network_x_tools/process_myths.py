@@ -18,9 +18,20 @@ class process_myths:
     """
 
     def __init__(self):
-        self.G = nx.read_gpickle("./Climate_Mind_DiGraph.gpickle")
+        self.G = None
         self.NX_UTILS = network_x_utils()
         self.node = None  # Current Node
+
+    def get_node_id(self, node):
+        """Node IDs are the unique identifier in the IRI. This is provided to the
+        front-end as a reference for the feed, but is never shown to the user.
+
+        Example http://webprotege.stanford.edu/R8znJBKduM7l8XDXMalSWSl
+        """
+        offset = 4  # .edu <- to skip these characters and get the unique IRI
+        full_iri = node["iri"]
+        pos = full_iri.find("edu") + offset
+        return full_iri[pos:]
 
     def set_current_node(self, node):
         """We usually pull multiple myth related items about a particular node. Rather
@@ -83,12 +94,13 @@ class process_myths:
         This function takes a node and returns the IRIs of any myths about the impact.
         """
         try:
-            if "effect myths" in self.node:
+            if "impact myths" in self.node.keys() and self.node["impact myths"]:
+                if not self.G:
+                    self.G = nx.read_gpickle("./Climate_Mind_DiGraph.gpickle")
                 IRIs = []
-                for myth_name in self.node["effect myths"]:
+                for myth_name in self.node["impact myths"]:
                     myth = self.G.nodes[myth_name]
-                    self.NX_UTILS.set_current_node(self.G.nodes[myth])
-                    IRIs.append(self.NX_UTILS.get_node_id())
+                    IRIs.append(self.get_node_id(self.G.nodes[myth_name]))
             return IRIs
         except:
             return []
@@ -98,12 +110,13 @@ class process_myths:
         This function takes a node and returns the IRIs of any myths about the solution.
         """
         try:
-            if "solution myths" in self.node:
+            if "solution myths" in self.node.keys() and self.node["solution myths"]:
+                if not self.G:
+                    self.G = nx.read_gpickle("./Climate_Mind_DiGraph.gpickle")
                 IRIs = []
                 for myth_name in self.node["solution myths"]:
                     myth = self.G.nodes[myth_name]
-                    self.NX_UTILS.set_current_node(self.G.nodes[myth])
-                    IRIs.append(self.NX_UTILS.get_node_id())
+                    IRIs.append(self.get_node_id(self.G.nodes[myth_name]))
             return IRIs
         except:
             return []
@@ -112,6 +125,8 @@ class process_myths:
         """
         Returns infomation for a specific myth.
         """
+        if not self.G:
+            self.G = nx.read_gpickle("./Climate_Mind_DiGraph.gpickle")
         all_myths = nx.get_node_attributes(self.G, "myth")
 
         specific_myth = None
@@ -142,6 +157,8 @@ class process_myths:
         The myths will later be ranked based on user's personal values (although not being
         done in the current implementation).
         """
+        if not self.G:
+            self.G = nx.read_gpickle("./Climate_Mind_DiGraph.gpickle")
         general_myths = self.G.nodes["increase in greenhouse effect"]["general myths"]
         general_myths_details = []
         for myth in general_myths:
