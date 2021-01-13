@@ -65,3 +65,17 @@ class Sessions(db.Model):
 class Signup(db.Model):
     email = db.Column(db.String(254), primary_key=True)
     signup_timestamp = db.Column(db.DateTime)
+
+
+class ClimateFeed(db.Model):
+    climate_feed_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    session_id = db.Column(db.String(256), db.ForeignKey("sessions.session_id"))
+    event_ts = db.Column(db.DateTime)
+    effect_position = db.Column(db.Integer)
+    effect_iri = db.Column(db.String(255))
+    effect_score = db.Column(db.Float)
+    solution_1_iri = db.Column(db.String(255))
+    solution_2_iri = db.Column(db.String(255))
+    solution_3_iri = db.Column(db.String(255))
+    solution_4_iri = db.Column(db.String(255))
+    isPossiblyLocal = db.Column(db.Boolean)
