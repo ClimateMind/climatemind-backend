@@ -1,7 +1,8 @@
 import unittest
 from knowledge_graph import db, app
-from knowledge_graph.persist_scores import persist_scores
 from knowledge_graph.models import Scores
+
+from scoring.persist_scores import persist_scores
 
 
 class TestPersistScores(unittest.TestCase):
