@@ -3,10 +3,10 @@ Subject
 
 ########72 characters##################################################
 # Fill in your name and email
-Authored-by: Ben Davis bengineerdavis@gmail.com
+Co-Authored-by: Ben Davis bengineerdavis@gmail.com
 
 # Add anyone else you're working with that's helping to make this commit
-Co-authored-by: Sean Payne sean.payne.es@gmail.com 
+Co-Authored-by: Sean Payne sean.payne.es@gmail.com 
 
 # Problem, Task, Reason for Commit
 Solution
