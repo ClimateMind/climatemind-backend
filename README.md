@@ -83,7 +83,7 @@ Start the container
 
 [Return to Table of Contents](#table-of-contents)
 
-[Swagger Documentation](http://localhost:5000/swagger) is available at detailing the API endpoints available and how they should be used. Whilst in development this can be for at [http://localhost:5000/swagger](http://localhost:5000/swagger).
+We intend to implement Swagger for our API docs [(click here for docs)](http://localhost:5000/swagger). Stay tuned here for more details.
 
 ---
 
