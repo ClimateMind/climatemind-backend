@@ -54,6 +54,7 @@ def signup() -> Tuple[Response, int]:
     Adds a user to the database using their email and current timestamp.
     """
     email = request.args.get("email")
+
     if email:
         is_valid = check_email(email)
 
@@ -73,7 +74,9 @@ def signup() -> Tuple[Response, int]:
 
             return make_response(response), 200
 
-    return make_response("Invalid Email"), 400
+    response = {"error": "Invalid Email"}
+
+    return make_response(response), 400
 
 
 def check_email(email):
@@ -92,32 +95,6 @@ def check_email(email):
     if re.search(regex, email):
         return True
     return False
-
-
-@app.route("/ontology", methods=["GET"])
-@auto.doc()
-def query() -> Tuple[Response, int]:
-    """
-    description: Resource for accessing the contents of the ontology via queries.
-    """
-    searchQueries = request.args.getlist("query")
-
-    searchResults = {}
-
-    mind = app.config["MIND"]
-
-    try:
-        for keyword in searchQueries:
-            searchResults[keyword] = mind.search(keyword)
-
-    except ValueError:
-        # todo: currently returns no results at all if 1 keyword in an array isn't found. fix this.
-        return make_response("query keyword not found"), 400
-
-    response = Response(dumps(searchResults))
-    response.headers["Content-Type"] = "application/json"
-
-    return response, 200
 
 
 @app.route("/questions", methods=["GET"])
