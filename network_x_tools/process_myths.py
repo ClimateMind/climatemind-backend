@@ -95,7 +95,10 @@ class process_myths:
         This function takes a node and returns the IRIs of any myths about the impact.
         """
         try:
-            if self.node["label"] == "producing electricity via utility-scale solar photovoltaics":
+            if (
+                self.node["label"]
+                == "producing electricity via utility-scale solar photovoltaics"
+            ):
                 print("here")
             if "impact myths" in self.node.keys() and self.node["impact myths"]:
                 if not self.G:
