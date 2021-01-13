@@ -1788,6 +1788,7 @@
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R9LbmQn2lAubsJN4nR1Sqzo"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me"/>
+        <schema:organizationSource rdf:resource="https://scientistsspeakup.org/a-state-on-fire-trends-and-solutions-to-california-wildfires/"/>
         <rdfs:label xml:lang="en">increase in vegetation during wet season</rdfs:label>
     </owl:NamedIndividual>
     
@@ -1971,6 +1972,7 @@
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
 
 Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+        <schema:mediaSource rdf:resource="https://www.forbes.com/sites/ucenergy/2018/08/29/heat-makes-people-less-productive-spelling-trouble-for-the-economy-and-future/?sh=65ebdf247bb1"/>
         <schema:mediaSource rdf:resource="https://www.washingtonpost.com/business/2018/07/17/heat-makes-you-dumb-four-charts/"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increasing frequency of heatwaves is negatively impacting standardized test scores.
 Students are scoring lower on standardized tests.</schema:shortDescription>
@@ -2313,6 +2315,8 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R9GcbtrddwRKc32cppns3qH"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.pnas.org/content/113/42/11770"/>
+        <schema:organizationSource rdf:resource="https://www.carbonbrief.org/factcheck-how-global-warming-has-increased-us-wildfires"/>
         <rdfs:label xml:lang="en">drier vegetation during dry season</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2499,7 +2503,7 @@ If adoption of fuel-saving technologies grows from 10 percent to 50-60 percent o
 Climate is always changing. We have had ice ages and warmer periods when alligators were found in Spitzbergen. Ice ages have occurred in a hundred thousand year cycle for the last 700 thousand years, and there have been previous periods that appear to have been warmer than the present despite CO2 levels being lower than they are now. More recently, we have had the medieval warm period and the little ice age. (from Richard Lindzen)</schema:mythClaim>
         <schema:mythFallacy rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Jumping to conclusions
 Past climate change actually sends the opposite message than what the myth concludes.</schema:mythFallacy>
-        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Greenhouse gasses, principally CO2, have controlled most ancient climate changes. This time around humans are the cause, mainly by our CO2 emissions.</schema:mythRebuttal>
+        <schema:mythRebuttal rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Greenhouse gases, principally CO2, have controlled most ancient climate changes. This time around humans are the cause, mainly by our CO2 emissions.</schema:mythRebuttal>
         <schema:organizationSource rdf:resource="https://skepticalscience.com/climate-change-little-ice-age-medieval-warm-period.htm"/>
         <schema:video rdf:resource="https://youtu.be/H5kejSYPD7U"/>
         <rdfs:label xml:lang="en">Climate has changed before</rdfs:label>
@@ -2537,10 +2541,11 @@ Past climate change actually sends the opposite message than what the myth concl
         <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <dc:source rdf:resource="https://www.nwf.org/~/media/PDFs/Global-Warming/Reports/NowheretoRun-BigGameWildlife-LowResFinal_110613.ashx"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.sciencedirect.com/science/article/pii/S2590332220302517"/>
         <schema:image rdf:resource="https://i.imgur.com/mBvpx7w.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A full grown bull Moose can reach 1,300 pounds and stand 6 ft tall at their shoulders, making a fine trophy for any sport hunter. These majestic creatures have evolved to live in colder climates. As heatwaves become more frequent and severe, these animals become heat-stressed and have access to less suitable habitat. By 2050, the total habitat for all mammals is expected to decline globally by 5%–16% of the 2015 level. This can be seen in Minnesota, where a decrease in moose population from 4,000 in 1983 to 100 in 2008 coincided with an average temperature increase of 3 to 4 degrees Fahrenheit.
 
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+In addition to reduced habitat, warmer temperatures have enabled the increase in winter ticks. Moose have been found with 50,000 to 70,000 ticks (ten to twenty times more than normal). Ticks weaken the moose and leave them more susceptible to disease. As temperatures continue to rise, viewing and hunting opportunities will continue to decrease. Without intervention we could soon see the loss of this big-game animal.</schema:longDescription>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The frequency (and severity) of heatwaves are increasing, causing declines in moose populations. Moose are suited to colder climates and have thick fur and when stressed by overheating they stop grazing and lose body fat that&apos;s essential for them to survive come winter. The number of moose alive to pursue and kill for sport are declining.</schema:shortDescription>
         <rdfs:label xml:lang="en">decrease in population of moose available to hunt</rdfs:label>
         <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The moose population is decreasing due to an increase frequency of heat waves.</skos:definition>
@@ -2727,9 +2732,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <dc:source rdf:resource="https://www.rollcall.com/2019/06/12/military-bases-unprepared-for-gathering-climate-change-storm/"/>
         <dc:source rdf:resource="https://www.un.org/en/chronicle/article/greatest-threat-global-security-climate-change-not-merely-environmental-problem"/>
         <schema:image rdf:resource="https://i.imgur.com/pmq3Nhr.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Global warming impacts increase the risk of damage to military bases. These impacts include more frequent floods, drought, wildfires, stronger hurricanes, and sea level rise. A 2019 US Defense Department report estimates two-thirds of military installations in the USA will be at risk in the next two decades. Including American territories and foreign nations, the US military has more than 300,000 buildings globally, many of which will be under threat from climate change impacts. Rebuilding and making bases more resilient is expensive. For example, in 2018 Tyndall Air Force Base in Florida was heavily damaged by Hurricane Michael and will cost at least $4.25 billion to rebuild.
 
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+This example illustrates how climate change is a threat to national security. So it&apos;s critical to implement actions that avert future damage and prevent the threat from worsening beyond control by reducing emissions as much as possible.</schema:longDescription>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Increasing hurricane strength and increasing floods are causing increased destruction to US military bases. Every year more and more military bases in the US take on increased damage.</schema:shortDescription>
         <webprotege:R9GAVktwjcLydvN9COHeohM rdf:resource="https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689/"/>
         <webprotege:R9GAVktwjcLydvN9COHeohM rdf:resource="https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095"/>
@@ -2954,10 +2959,12 @@ Looking at one region or a short period ignores the full picture.</schema:mythFa
         <dc:source rdf:resource="https://www.researchgate.net/profile/Bas_Amelung/publication/249701105_Implications_of_Global_Climate_Change_for_Tourism_Flows_and_Seasonality/links/0f3175362279bd6b6b000000.pdf"/>
         <dc:source rdf:resource="https://www.travelpulse.com/news/destinations/how-climate-change-is-affecting-tourism.html"/>
         <dc:source rdf:resource="https://www.weforum.org/agenda/2017/06/healthy-coral-reefs-are-good-for-tourism-and-tourism-can-be-good-for-reefs/"/>
+        <schema:governmentSource rdf:resource="https://floridadep.gov/rcp/coral"/>
         <schema:image rdf:resource="https://i.imgur.com/BZ2gRk3.jpg"/>
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
 
 Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+        <schema:mediaSource rdf:resource="https://www.newscientist.com/article/2256873-how-climate-change-impacts-the-great-barrier-reef-tourism-industry/"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increase in coral bleaching and destruction seen in many tourist destinations is leading to declines in tourism. People are traveling less to tourist destinations.</schema:shortDescription>
         <rdfs:label xml:lang="en">decrease in tourism</rdfs:label>
     </owl:NamedIndividual>
@@ -3225,10 +3232,14 @@ The Petition Project features over 31,000 scientists signing the petition statin
         <dc:source rdf:resource="https://www.youtube.com/watch?v=fA6mpexcyN4"/>
         <dc:source rdf:resource="https://www.youtube.com/watch?v=dcWlVN02kDQ&amp;feature=emb_title"/>
         <schema:image rdf:resource="https://i.imgur.com/ktZeIPJ.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Corals depend on symbiotic algae (small marine &apos;plants&apos; which live inside the corals) for energy. Global warming causes increases in ocean temperatures, which increase the frequency of marine heatwaves. These high temperatures stress corals and cause them to release the algae, so the corals become colourless and will die without algae. Half the world&apos;s reef systems have already been destroyed.
 
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Warming oceans are causing increases in marine heatwaves which are causing increases in coral bleaching and destruction. Corals are increasingly turning white and dying as they expel the algae that contributes to their vibrant color and provides 90% of their energy source.</schema:shortDescription>
+Coral reefs have the highest biodiversity of all marine ecosystems on the planet. They are important habitats for many fish species. Many people also highly value coral reefs for their beauty.  Corals come in a rich array of colours and shapes, and shelter a wide range of marine life from sea turtles to brightly-coloured clownfish and angelfish. Parrotfish graze on the reefs themselves, producing the fine white sand characteristic of tropical beaches.
+
+Reefs are also valuable fishery grounds and tourist destinations. They help protect coastlines from erosion and storms. So as well as being of high intrinsic value, the loss of coral reefs threatens economies and leads to property damage.
+
+Under climate change, marine heatwaves have doubled since 1982. If CO2 emissions aren&apos;t reduced, in the future these heatwaves will occur 50 times more often than they do today. To protect our valuable coral reef systems, we need to act to reduce emissions now.</schema:longDescription>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Warming oceans are causing increases in marine heatwaves which in turn are causing increases in coral bleaching and destruction. Corals are increasingly turning white and dying as they expel the algae that contributes to their vibrant color and provides 90% of their energy source.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in coral bleaching and destruction</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3689,10 +3700,19 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <dc:source rdf:resource="https://www.thebalance.com/heat-wave-causes-list-effect-on-the-economy-4173881"/>
         <dc:source rdf:resource="https://www.washingtonpost.com/weather/2019/08/19/climate-change-could-cost-us-up-percent-its-gdp-by-study-finds/"/>
         <dc:source rdf:resource="https://www.weforum.org/agenda/2017/06/healthy-coral-reefs-are-good-for-tourism-and-tourism-can-be-good-for-reefs/"/>
+        <schema:governmentSource rdf:resource="https://www.osti.gov/biblio/813396"/>
         <schema:image rdf:resource="https://i.imgur.com/NNK9Na4.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">A decrease in Gross Domestic Profit (GDP) is when a country&apos;s economy contracts rather than expands in a financial quarter.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gross Domestic Profit (GDP) is a measure of the health of the economy. GDP is already significantly smaller than it could be due to the effects of global warming. Each 1.8° Fahrenheit (1 degree Celsius) of warming reduces growth by 1% on average. One reason for this is an increased frequency of heat waves and extreme temperatures.
 
-GDP is significantly smaller than it could be because of the increased frequency of heat waves and decreased tourism caused by global warming. These effects will continue to worsen as global temperatures continue to rise if appropriate adaptation and mitigation measured aren&apos;t taken.</schema:longDescription>
+Heat affects people&apos;s ability to concentrate and their health, causing lower labor productivity and employee absenteeism, which in turn affect the success of companies and their contribution to the economy. Studies indicate an average 2% decrease in work performance per °C temperature rise (1.8° F) when the temperature is above 25°C (77°F). 
+
+IThe frequency of intense heat waves (4-day, 1-in-5 year events) has generally increased since the 1960s in most regions. In 2019, heatwave related health care costs alone were $3.8 trillion. It&apos;s projected that heatwaves will lead to a $2 trillion loss in labor productivity by 2030.
+
+Additionally, marine heatwaves damage and kill coral reefs (which are worth $36 billion a year to the world economy), affecting tourism and the fishing industry and further contributing to the decline in GDP.
+
+If appropriate adaptation and mitigation measures aren&apos;t taken, as global temperatures continue to rise we can expect a 7.2% cut to GDP per person worldwide and a 10.5% cut in the USA by 2100. Taking action now to cut emissions in line with the international Paris agreement could limit the loss to 1.1%, helping to protect the economy and people&apos;s livelihoods.</schema:longDescription>
+        <schema:mediaSource rdf:resource="https://www.vox.com/2018/7/27/17611940/heat-wave-2018-cost-workers-deaths-health-climate-change"/>
+        <schema:organizationSource rdf:resource="http://www.impactlab.org/research/estimating-economic-damage-from-climate-change-in-the-united-states/"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The total value of goods produced and services provided each year are increasingly being constrained. Global warming is decreasing GDP by increasing in the frequency of heat waves and shrinking the tourism industry, among other impacts.</schema:shortDescription>
         <rdfs:label xml:lang="en">decrease in GDP</rdfs:label>
         <skos:definition rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An increase in heatwaves is causing a decrease in North American Gross Domestic Product (GDP)</skos:definition>
@@ -4845,12 +4865,14 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
         <schema:academicSource rdf:resource="https://www.richmondfed.org/-/media/richmondfedorg/publications/research/economic_brief/2018/pdf/eb_18-08.pdf"/>
         <schema:academicSourceNoPaywall rdf:resource="https://academic.oup.com/reep/article/10/2/347/1753081"/>
         <schema:academicSourceNoPaywall rdf:resource="https://bfi.uchicago.edu/wp-content/uploads/BFI-WP_2018-69.pdf"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.sciencedirect.com/science/article/pii/S2590332220302517"/>
         <schema:academicSourceNoPaywall rdf:resource="https://www.sciencedirect.com/science/article/pii/S2542519618302377?via%3Dihub"/>
         <schema:mediaSource rdf:resource="https://epic.uchicago.edu/news/hot-temperatures-decrease-worker-productivity-economic-output/"/>
         <schema:mediaSource rdf:resource="https://phys.org/news/2018-08-temperatures-worker-productivity-global-losses.html"/>
         <schema:mediaSource rdf:resource="https://www.entrepreneur.com/article/319479"/>
         <schema:mediaSource rdf:resource="https://www.forbes.com/sites/ucenergy/2018/08/29/heat-makes-people-less-productive-spelling-trouble-for-the-economy-and-future/#5287dc267bb1"/>
         <schema:mediaSource rdf:resource="https://www.motherjones.com/environment/2019/02/climate-change-isnt-just-frying-the-planet-its-fraying-our-nerves/"/>
+        <schema:mediaSource rdf:resource="https://www.vox.com/2018/7/27/17611940/heat-wave-2018-cost-workers-deaths-health-climate-change"/>
         <schema:mediaSource rdf:resource="https://www.washingtonpost.com/business/2018/07/17/heat-makes-you-dumb-four-charts/"/>
         <schema:organizationSource rdf:resource="https://news.stanford.edu/2019/03/29/effects-climate-change-suicide-rates/"/>
         <rdfs:label xml:lang="en">increase in frequency of heatwaves</rdfs:label>
@@ -4925,11 +4947,15 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
         <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
         <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.pnas.org/content/113/42/11770"/>
         <schema:image rdf:resource="https://i.imgur.com/hXjwCS0.jpg"/>
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
 
 Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://calmatters.org/environment/california-wildfires/2019/11/7-affordable-ways-to-protect-your-home-from-wildfires/"/>
+        <schema:organizationSource rdf:resource="https://scientistsspeakup.org/a-state-on-fire-trends-and-solutions-to-california-wildfires/"/>
+        <schema:organizationSource rdf:resource="https://www.carbonbrief.org/factcheck-how-global-warming-has-increased-us-wildfires"/>
+        <schema:organizationSource rdf:resource="https://www.ucsusa.org/resources/western-wildfires-and-climate-change"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increase in vegetation during wet season combined with drier vegetation during dry season is causing an increase in the area burned by wildfires. More land and property is being burned by wildfires. Fires burn more than twice as large as they used to due to human-induced climate change.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in area burned by wildfire</rdfs:label>
     </owl:NamedIndividual>

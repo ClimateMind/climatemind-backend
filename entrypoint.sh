@@ -10,7 +10,7 @@ BASEDIR="$(dirname "${BASH_SOURCE[0]}")"
 # flask db upgrade -d $BASEDIR/migrations
 # flask db init -d $BASEDIR/migrations_local
 # flask db init -d $BASEDIR/migrations_azure
-# flask db migrate -m "CM-354 add signup table" -d $BASEDIR/migrations_azure
+# flask db migrate -m "CM-334 - task CM-359 - add climate_feed table" -d $BASEDIR/migrations_azure
 # flask db migrate -m "add all current tables" -d $BASEDIR/migrations_local
 
 # flask db upgrade -d $BASEDIR/migrations_local #this line needs to switch automatically between local and azure based on the DATABASE_PARAMS global variable. 
@@ -20,7 +20,13 @@ then
     flask db upgrade -d $BASEDIR/migrations_local #this line used only if local database is being used
     python add_lrf_table.py
 else
-    flask db upgrade -d $BASEDIR/migrations_azure #this line used only if production databsae is being used 
+    flask db upgrade -d $BASEDIR/migrations_azure #this line used only if production database is being used 
+    # NOTE: migrate and upgrade must be run SEPARATELY for cloud migrations. 
+    # COMMENT OUT the upgrade code and run the migration first.
+    # AFTER migrating, manually edit the migration script to prevent the lrf table being dropped. 
+    # THEN comment out the migrate command and run upgrade.
+    # ONLY run the python add_lrf_table script if the csv file changes.
+    # python add_lrf_table.py
 fi
 	
 flask run --host=0.0.0.0
