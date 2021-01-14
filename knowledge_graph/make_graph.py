@@ -264,36 +264,46 @@ def set_edge_properties(G):
     ]
 
     to_remove = {}
+    # breakpoint()
     for edge in list(G.edges):
+        # breakpoint()
         node_a = edge[0]
         node_b = edge[1]
         edge_attributes_dict = {}
+        # breakpoint()
         for prop in G.nodes[node_a]["properties"].keys():
+            # breakpoint()
             if prop in source_types:
                 intersection = set(G.nodes[node_a]["properties"][prop]) & set(
                     G.nodes[node_b]["properties"][prop]
                 )
-
+                # breakpoint()
                 if intersection:
                     # add intersection to edge property dictionary, ensuring if items already exist for that key, then they are added to the list
                     if prop in edge_attributes_dict.keys():
                         edge_attributes_dict[prop] = edge_attributes_dict[prop].extend(
                             list(intersection)
                         )
+                        # breakpoint()
                     else:
                         edge_attributes_dict[prop] = list(intersection)
                     if (node_a, prop) in to_remove.keys():
                         to_remove[(node_a, prop)] = (
                             to_remove[(node_a, prop)] | intersection
                         )
+                        # breakpoint()
                     else:
                         to_remove[(node_a, prop)] = intersection
                     if (node_b, prop) in to_remove.keys():
                         to_remove[(node_b, prop)] = (
                             to_remove[(node_b, prop)] | intersection
                         )
+                        # breakpoint()
                     else:
                         to_remove[(node_b, prop)] = intersection
+                    
+                    # if any(to_remove):
+                    #       breakpoint()
 
         # add edge_attributes_dict to edge
         G.add_edge(node_a, node_b, properties=edge_attributes_dict)
@@ -304,7 +314,6 @@ def set_edge_properties(G):
         #     {(node_a,node_b): edge_attributes_dict},
         #     "properties",
         # )
-
     return list(to_remove)
 
 
@@ -321,11 +330,17 @@ def remove_edge_properties_from_nodes(G, to_remove):
         node = item[0]
         prop = item[1]
         to_delete = item
+        breakpoint()
         G.nodes[node]["properties"][prop] = [
             node
             for node in list(G.nodes[node]["properties"][prop])
             if node not in list(to_delete)
         ]
+
+        # looking at code for when node matches delete list
+        if node in list(G.nodes[node]["properties"][prop]) and to_delete:
+            breakpoint()
+
         # DM: uh... won't `node not in list(to_delete)` always evaluate to false? What was meant to be here instead?
 
 
@@ -484,9 +499,13 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     for src, tgt, kind in df_edges.values:
         G.add_edge(src, tgt, type=kind, properties=None)
 
+    # breakpoint()
     add_ontology_data_to_graph_nodes(G, onto)
+    # breakpoint()
     to_remove = set_edge_properties(G)
+    # breakpoint()
     remove_edge_properties_from_nodes(G, to_remove)
+    # breakpoint()
 
     # process the mitigation and adaptation solutions in the networkx object and add them into special attribute fields for each node for easy access in later for the API
 
