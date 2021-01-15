@@ -8,8 +8,12 @@ import re
 def store_subscription_data(session_id, email):
     try:
         valid_email = check_email(email)
+        in_db = Signup.query.get(email)
+        print(in_db)
 
-        if valid_email:
+        if in_db:
+            return {"error": "Email already in db"}, 409
+        elif valid_email:
             try:
                 new_subscription = Signup()
                 new_subscription.email = email
@@ -27,9 +31,11 @@ def store_subscription_data(session_id, email):
                     "datetime": now,
                 }
 
-                return response
+                return response, 201
             except Exception as e:
                 print(e)
+        else:
+            return {"message": "Invalid email"}, 400
     except Exception as e:
         print(e)
 
