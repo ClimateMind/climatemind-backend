@@ -60,69 +60,21 @@ def home() -> Tuple[str, int]:
     return "<h1>API for climatemind ontology</h1>", 200
 
 
-@app.route("/signup", methods=["POST"])
+@app.route("/subscribe", methods=["POST"])
 @auto.doc()
-def signup() -> Tuple[Response, int]:
-    """
-    Users want to be able to sign up with their email to save their personal values test
-    results. This adds a user to the database using their email and current timestamp.
-
-    Provided JSON Format
-    --------
-    {"email" : "example@example.com"}
-    """
-    parameter = request.json
-
-    if not parameter:
-        error = {"error": "Invalid Request, No JSON provided"}
-        return make_response(error), 400
-
+def subscribe():
     try:
-        email = parameter["email"]
-    except:
-        error = {"error": "Invalid Request, No Email in JSON"}
-        return make_response(error), 400
-
-    if email:
-        is_valid = check_email(email)
-
-        if is_valid:
-            now = datetime.now()
-
-            # Sample code for db entry
-            # user = Users(email=email, datetime=datetime)
-            # db.session.add(user)
-
-            # Temporary response that will be deleted (just testing for now)
-            response = {
-                "status": "Successfully added email",
-                "email": email,
-                "datetime": now,
-            }
-
-            return make_response(response), 200
-
-    response = {"error": "Invalid Email"}
-
-    return make_response(response), 400
-
-
-def check_email(email):
-    """
-    Checks an email format against the RFC 5322 specification and returns True if valid.
-    """
-
-    # RFC 5322 Specification as Regex
-    regex = """(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"
-    (?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])
-    *\")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:
-    (?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1
-    [0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a
-    \x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])"""
-
-    if re.search(regex, email):
-        return True
-    return False
+        request_body = request.json
+        email = request_body["email"]
+        session_id = request_body["sessionId"]
+        response = store_subscription_data(session_id, email)
+        if response:
+            return response, 201
+        else:
+            return make_response({"error": "Invalid Email"}), 400
+    except Exception as e:
+        print(e)
+        return make_response({"error": "Invalid Request"}), 400
 
 
 @app.route("/questions", methods=["GET"])
