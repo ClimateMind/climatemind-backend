@@ -52,13 +52,10 @@ def subscribe():
         email = request_body["email"]
         session_id = request_body["sessionId"]
         response = store_subscription_data(session_id, email)
-        if response:
-            return response, 201
-        else:
-            return make_response({"error": "Invalid Email"}), 400
+        return response
     except Exception as e:
         print(e)
-        return make_response({"error": "Invalid Request"}), 400
+        return {"error": "Invalid Request"}, 400
 
 
 @app.route("/questions", methods=["GET"])
