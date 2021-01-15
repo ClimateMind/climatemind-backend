@@ -73,7 +73,6 @@ def subscribe():
         else:
             return make_response({"error": "Invalid Email"}), 400
     except Exception as e:
-        print(e)
         return make_response({"error": "Invalid Request"}), 400
 
 
