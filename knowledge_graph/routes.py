@@ -49,6 +49,7 @@ def home() -> Tuple[str, int]:
 
 @app.route("/signup", methods=["GET"])
 @auto.doc()
+<<<<<<< HEAD
 def signup() -> Tuple[Response, int]:
     """
     Adds a user to the database using their email and current timestamp.
@@ -95,6 +96,18 @@ def check_email(email):
     if re.search(regex, email):
         return True
     return False
+=======
+def subscribe():
+    try:
+        request_body = request.json
+        email = request_body["email"]
+        session_id = request_body["sessionId"]
+        response = store_subscription_data(session_id, email)
+        return response
+    except Exception as e:
+        print(e)
+        return {"error": "Invalid Request"}, 400
+>>>>>>> fixing_my_mistakes
 
 
 @app.route("/questions", methods=["GET"])
