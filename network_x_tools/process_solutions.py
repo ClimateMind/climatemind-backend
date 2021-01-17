@@ -9,8 +9,17 @@ import networkx as nx
 
 
 class process_solutions:
+
+    """
+
+    Class used for Solution related functions. Uses a fresh copy of the NetworkX graph to
+    return relevant information about solutions including mitigations and adaptations.
+
+    Any additional functions related to solutions should be added here.
+    """
+
     def __init__(self, max_solutions=4, adaptation_to_mitigation_ratio=0.5):
-        self.G = None
+        self.G = app.config["G"].copy()
         self.NX_UTILS = network_x_utils()
         self.MYTH_PROCESS = process_myths()
         self.MAX_SOLUTIONS = max_solutions
@@ -44,8 +53,6 @@ class process_solutions:
         solutions. The myths will later be ranked based on user's personal values
         (although not being done in the current implementation).
         """
-        if not self.G:
-            self.G = nx.read_gpickle("./Climate_Mind_DiGraph.gpickle")
         general_solutions = self.G.nodes["increase in greenhouse effect"][
             "mitigation solutions"
         ]
@@ -77,8 +84,6 @@ class process_solutions:
         """Takes the name of a climate effect and returns a list of actions associated
         with that node.
         """
-        if not self.G:
-            self.G = nx.read_gpickle("./Climate_Mind_DiGraph.gpickle")
         solution_names = self.G.nodes[effect_name]["adaptation solutions"]
         adaptation_solutions = []
         mitigation_solutions = []
