@@ -18,7 +18,7 @@ class process_myths:
     """
 
     def __init__(self):
-        self.G = app.config["G"]
+        self.G = None
         self.NX_UTILS = network_x_utils()
         self.node = None  # Current Node
 
@@ -95,6 +95,8 @@ class process_myths:
         """
         try:
             if "impact myths" in self.node.keys() and self.node["impact myths"]:
+                if not self.G:
+                    self.G = nx.read_gpickle("./Climate_Mind_DiGraph.gpickle")
                 IRIs = []
                 for myth_name in self.node["impact myths"]:
                     myth = self.G.nodes[myth_name]
@@ -109,6 +111,8 @@ class process_myths:
         """
         try:
             if "solution myths" in self.node.keys() and self.node["solution myths"]:
+                if not self.G:
+                    self.G = nx.read_gpickle("./Climate_Mind_DiGraph.gpickle")
                 IRIs = []
                 for myth_name in self.node["solution myths"]:
                     myth = self.G.nodes[myth_name]
@@ -121,6 +125,8 @@ class process_myths:
         """
         Returns infomation for a specific myth.
         """
+        if not self.G:
+            self.G = nx.read_gpickle("./Climate_Mind_DiGraph.gpickle")
         all_myths = nx.get_node_attributes(self.G, "myth")
 
         specific_myth = None
@@ -151,6 +157,8 @@ class process_myths:
         The myths will later be ranked based on user's personal values (although not being
         done in the current implementation).
         """
+        if not self.G:
+            self.G = nx.read_gpickle("./Climate_Mind_DiGraph.gpickle")
         general_myths = self.G.nodes["increase in greenhouse effect"]["general myths"]
         general_myths_details = []
         for myth in general_myths:

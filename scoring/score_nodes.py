@@ -20,7 +20,7 @@ from collections import OrderedDict
 
 class score_nodes:
     def __init__(self, user_scores, n, session_id):
-        self.G = app.config["G"].copy()
+        self.G = app.config["G"]
         self.USER_SCORES = user_scores
         self.N = n  # Number of Nodes to return for user feed
         self.SESSION_ID = session_id
