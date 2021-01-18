@@ -12,9 +12,9 @@ def store_subscription_data(session_id, email):
         valid_session_id = Sessions.query.get(session_id)
 
         if in_db:
-            return {"message": "Email already in db"}, 409
+            return {"error": "Email already in db"}, 409
         elif not valid_session_id:
-            return {"message": "Invalid session ID"}, 500
+            return {"error": "Invalid session ID"}, 500
         elif valid_email:
             try:
                 new_subscription = Signup()
@@ -35,11 +35,11 @@ def store_subscription_data(session_id, email):
 
                 return response, 201
             except:
-                return {"message": "Error saving to db"}, 500
+                return {"error": "Error saving to db"}, 500
         else:
-            return {"message": "Invalid email"}, 400
+            return {"error": "Invalid email"}, 400
     except:
-        return {"message": "Error querying the db"}, 500
+        return {"error": "Error querying the db"}, 500
 
 
 def check_email(email):
