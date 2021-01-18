@@ -268,7 +268,9 @@ def set_edge_properties(G):
         node_a = edge[0]
         node_b = edge[1]
         edge_attributes_dict = {}
+        # breakpoint()
         for prop in G.nodes[node_a]["properties"].keys():
+            # breakpoint()
             if prop in source_types:
                 intersection = set(G.nodes[node_a]["properties"][prop]) & set(
                     G.nodes[node_b]["properties"][prop]
@@ -281,6 +283,9 @@ def set_edge_properties(G):
                         )
                     else:
                         edge_attributes_dict[prop] = list(intersection)
+                        # see when something comes up here
+                        if any(intersection):
+                            breakpoint()
                     if (node_a, prop) in to_remove.keys():
                         to_remove[(node_a, prop)] = (
                             to_remove[(node_a, prop)] | intersection
