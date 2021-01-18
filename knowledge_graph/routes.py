@@ -67,7 +67,7 @@ def subscribe():
         response = store_subscription_data(session_id, email)
         return response
     except:
-        return {"message": "Invalid request"}, 400
+        return {"error": "Invalid request"}, 400
 
 
 @app.route("/questions", methods=["GET"])
@@ -82,7 +82,7 @@ def get_questions() -> Tuple[Response, int]:
         with open(file) as json_file:
             data = load(json_file)
     except FileNotFoundError:
-        return {"message": "Schwartz questions not found"}, 404
+        return {"error": "Schwartz questions not found"}, 404
 
     response = Response(dumps(data))
     response.headers["Content-Type"] = "application/json"
@@ -109,7 +109,7 @@ def user_scores() -> Tuple[Response, int]:
         parameter = request.json
     # todo: handle exceptions properly here
     except:
-        return {"message": "Invalid user response"}, 400
+        return {"error": "Invalid user response"}, 400
 
     value_scores = {}
     overall_sum = 0
@@ -125,9 +125,9 @@ def user_scores() -> Tuple[Response, int]:
     zipcode = parameter["zipCode"]
 
     if len(questions["SetOne"]) < RESPONSES_TO_ADD:
-        return {"message": "Not enough set one scores"}, 400
+        return {"error": "Not enough set one scores"}, 400
     elif len(questions["SetOne"]) > RESPONSES_TO_ADD:
-        return {"message": "Too many set one scores"}, 400
+        return {"error": "Too many set one scores"}, 400
 
     for value in questions["SetOne"]:
         questionID = value["questionId"]
@@ -135,7 +135,7 @@ def user_scores() -> Tuple[Response, int]:
         overall_sum += score
 
         if value_id_map[questionID] in value_scores:
-            return {"message": "Duplicate question ID"}, 400
+            return {"error": "Duplicate question ID"}, 400
 
         value_scores[value_id_map[questionID]] = score
 
@@ -149,7 +149,7 @@ def user_scores() -> Tuple[Response, int]:
             overall_sum += score
 
             if questionID in value_scores.keys:
-                return {"message": "Duplicate question ID"}, 400
+                return {"error": "Duplicate question ID"}, 400
 
             value_scores[name] = avg_score
 
@@ -167,13 +167,13 @@ def user_scores() -> Tuple[Response, int]:
     try:
         persist_scores(value_scores)
     except KeyError:
-        return {"message": "Invalid key"}, 400
+        return {"error": "Invalid key"}, 400
 
     if zipcode:
         try:
             add_zip_code(zipcode, session_id)
         except:
-            return {"message": "Error adding zipcode to db"}, 500
+            return {"error": "Error adding zipcode to db"}, 500
 
     if (
         os.environ["DATABASE_PARAMS"]
@@ -183,7 +183,7 @@ def user_scores() -> Tuple[Response, int]:
             ip_address = None
             store_ip_address(ip_address, session_id)
         except:
-            return {"message": "Error adding ip address locally"}, 500
+            return {"error": "Error adding ip address locally"}, 500
     else:
         try:
             unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
@@ -194,7 +194,7 @@ def user_scores() -> Tuple[Response, int]:
                 ip_address = None
             store_ip_address(ip_address, session_id)
         except:
-            return {"message": "Error adding ip address in cloud"}, 500
+            return {"error": "Error adding ip address in cloud"}, 500
 
     response = {"sessionId": session_id}
 
@@ -213,7 +213,7 @@ def get_personal_values():
         session_id = str(request.args.get("session-id"))
     # TODO: catch exceptions properly here
     except:
-        return {"message": "Invalid session ID format or no ID provided"}, 400
+        return {"error": "Invalid session ID format or no ID provided"}, 400
 
     scores = Scores.query.filter_by(session_id=session_id).first()
     if scores:
@@ -227,7 +227,7 @@ def get_personal_values():
             with open(file) as f:
                 value_descriptions = load(f)
         except FileNotFoundError:
-            return {"message": "Value descriptions file not found"}, 404
+            return {"error": "Value descriptions file not found"}, 404
         descriptions = [value_descriptions[score] for score in top_scores]
 
         scores_and_descriptions = []
@@ -237,7 +237,7 @@ def get_personal_values():
         return jsonify(response), 200
 
     else:
-        return {"message": "Invalid session ID"}, 500
+        return {"error": "Invalid session ID"}, 500
 
 
 @app.route("/get_actions", methods=["GET"])
@@ -252,7 +252,7 @@ def get_actions():
     try:
         actions = SOLUTION_PROCESSOR.get_user_actions(effect_name)
     except:
-        return {"message": "Invalid climate effect or no actions found"}, 400
+        return {"error": "Invalid climate effect or no actions found"}, 400
 
     response = jsonify({"actions": actions})
     return response, 200
@@ -278,7 +278,7 @@ def get_feed():
         feed_entries = get_feed_results(session_id, N_FEED_CARDS)
         return feed_entries
     else:
-        return {"message": "No session ID provided"}, 400
+        return {"error": "No session ID provided"}, 400
 
 
 @cache.memoize(timeout=1200)  # 20 minutes
@@ -299,7 +299,7 @@ def get_feed_results(session_id, N_FEED_CARDS):
         feed_entries = {"climateEffects": recommended_nodes}
         return jsonify(feed_entries), 200
     else:
-        return {"message": "Invalid session ID or no information for ID"}, 400
+        return {"error": "Invalid session ID or no information for ID"}, 400
 
 
 @app.route("/myths", methods=["GET"])
@@ -316,7 +316,7 @@ def get_general_myths():
         climate_general_myths = {"myths": recommended_general_myths}
         return jsonify(climate_general_myths), 200
     except:
-        return {"message": "Failed to process myths"}, 500
+        return {"error": "Failed to process myths"}, 500
 
 
 @app.route("/myths/<string:iri>", methods=["GET"])
@@ -335,7 +335,7 @@ def get_myth_info(iri):
         specific_myth_info = {"myth": myth_info}
         return jsonify(specific_myth_info), 200
     else:
-        return {"message": "IRI does not exist"}, 400
+        return {"error": "IRI does not exist"}, 400
 
 
 @app.route("/solutions", methods=["GET"])
@@ -353,7 +353,7 @@ def get_general_solutions():
         climate_general_solutions = {"solutions": recommended_general_solutions}
         return jsonify(climate_general_solutions), 200
     except:
-        return {"message": "Failed to process general solutions"}, 500
+        return {"error": "Failed to process general solutions"}, 500
 
 
 @app.route("/documentation")
