@@ -4,7 +4,7 @@ ENV FLASK_ENV=development
 
 RUN mkdir -p /usr/share/man/man1
 RUN apt-get update
-RUN apt-get -y install gcc default-jre graphviz libgraphviz-dev graphviz-dev pkg-config
+RUN apt-get -y install gcc default-jre graphviz libgraphviz-dev graphviz-dev pkg-config git
 RUN apt-get install --reinstall build-essential -y
 
 #install sqlcmd and odbc and others
