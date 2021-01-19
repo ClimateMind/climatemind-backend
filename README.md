@@ -123,9 +123,12 @@ Or the following for the general docker instance:
 ```
 # Run the docker instance in the background and attach to the docker image
 docker-compose up -d
-docker-attach climatemind-backend_web_1
+docker attach climatemindproduct_web_1
 # Navigate to the frontend directory in a separate terminal
 cd climatemind-frontend
+
+# If desired, you can link the local frontend app and test (you can also just use
+#postman and breakpoints will still happen)
 # First time only - Install npm
 npm -i
 # Start the local frontend server with npm
