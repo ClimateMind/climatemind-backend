@@ -1,6 +1,6 @@
 import networkx as nx
 from networkx.readwrite import json_graph
-from knowledge_graph import app
+# from knowledge_graph import app
 import os
 
 
