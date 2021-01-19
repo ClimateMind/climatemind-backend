@@ -1,3 +1,4 @@
+git+https://github.com/ClimateMind/climatemind-ontology-processing.git
 alembic==1.4.2
 altgraph==0.10.2
 api==0.0.7
