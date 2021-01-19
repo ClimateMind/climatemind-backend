@@ -486,7 +486,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     remove_edge_properties_from_nodes(G, to_remove)
 
     # process the mitigation and adaptation solutions in the networkx object and add them into special attribute fields for each node for easy access in later for the API
-    
+
     B = make_acyclic(G)
     all_myths = list(nx.get_node_attributes(B, "myth").keys())
 
@@ -568,7 +568,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
                 == "is_inhibited_or_prevented_or_blocked_or_slowed_by"
             ):  # bad to hard code in 'is_inhibited_or_prevented_or_blocked_or_slowed_by'
                 mitigation_solutions.append(neighbor)
-    
+
     mitigation_solutions = list(set(mitigation_solutions))
     # update the networkx object to have a 'mitigation solutions' field and include in it all nodes from mitigation_solutions
     nx.set_node_attributes(
@@ -735,7 +735,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
 
             # remove duplicate urls
             sources_list = list(dict.fromkeys(sources_list))
-            
+
             # remove urls that aren't active or aren't real
             sources_list = [url for url in sources_list if validators.url(url)]
 
@@ -747,9 +747,9 @@ def makeGraph(onto_path, edge_path, output_folder_path):
 
     # output_folder_path = "../PUT_NEW_OWL_FILE_IN_HERE/"
     save_graph_to_pickle(G, output_folder_path)
-    
+
     T = G.copy()
-    
+
     valid_test_ont = get_valid_test_ont()
     not_test_ont = get_non_test_ont()
     get_test_ontology(T, valid_test_ont, not_test_ont)
