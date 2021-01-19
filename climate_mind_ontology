@@ -1763,6 +1763,10 @@
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R7mLbehY8dCnSQTN6qcKsrF"/>
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RnbPKhyIQNnShkRKHqGrGm"/>
+        <schema:mediaSource rdf:resource="https://grist.org/article/californias-next-megaflood-would-be-worse-than-eight-hurricane-katrinas/"/>
+        <schema:mediaSource rdf:resource="https://insideclimatenews.org/news/02062020/extreme-rain-study-climate-change/"/>
+        <schema:organizationSource rdf:resource="https://www.c2es.org/content/extreme-weather-and-climate-change/"/>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This could be good source for links but site appears to be Medium-style op-ed host: https://www.mic.com/p/extreme-weather-cost-the-us-almost-100-billion-in-damage-last-year-54606913</rdfs:comment>
         <rdfs:label xml:lang="en">increase in extreme precipitation</rdfs:label>
     </owl:NamedIndividual>
     
@@ -1788,7 +1792,15 @@
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <webprotege:R9CwbN07KWclNYuuQZRcTVo rdf:resource="http://webprotege.stanford.edu/R9LbmQn2lAubsJN4nR1Sqzo"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.pnas.org/content/116/12/5393"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://yaleclimateconnections.org/2019/07/wildfires-and-climate-change-whats-the-connection/"/>
+        <schema:mediaSource rdf:resource="https://laist.com/2019/04/19/california_fire_season_2019_rain.php"/>
+        <schema:mediaSource rdf:resource="https://www.climatecentral.org/gallery/graphics/can-rain-cause-more-fire"/>
+        <schema:mediaSource rdf:resource="https://www.sacbee.com/news/california/article227101284.html"/>
+        <schema:organizationSource rdf:resource="https://climate.ncsu.edu/edu/Wildfire"/>
         <schema:organizationSource rdf:resource="https://scientistsspeakup.org/a-state-on-fire-trends-and-solutions-to-california-wildfires/"/>
+        <schema:organizationSource rdf:resource="https://www.edf.org/blog/2019/04/29/all-snow-and-rain-year-california-could-face-even-worse-fire-season-heres-why"/>
+        <schema:organizationSource rdf:resource="https://www.ucsusa.org/resources/western-wildfires-and-climate-change"/>
         <rdfs:label xml:lang="en">increase in vegetation during wet season</rdfs:label>
     </owl:NamedIndividual>
     
@@ -1969,9 +1981,9 @@
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <schema:academicSource rdf:resource="https://scholar.harvard.edu/files/jisungpark/files/paper_nyc_aejep.pdf"/>
         <schema:image rdf:resource="https://i.imgur.com/v4L98MC.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">More frequent heat waves due to climate change are disrupting students’ test scores, impacting their ability to achieve their goals. Studies show that as temperatures rise, our brain functions slow down. College students taking identical exams had an 11% lower chance of passing when the temperature was 90 degrees Fahrenheit compared to 72 degrees Fahrenheit.
 
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+Air conditioning is a potential solution, but comes with its own challenges. For many people around the world air conditioning is unaffordable. 87% of homes in the US have air conditioning compared to only 5% of homes in India. Even within the US access to air conditioning is not evenly distributed throughout society. School districts in wealthy areas have money to afford air conditioning, improving the test scores of their students and widening the education gap. Even with equitable air conditioning, the electrical consumption, and therefore greenhouse gas emissions, of more air conditioners need to be considered. Deploying solutions which fight climate change will help educate the students of tomorrow and allow them to achieve their goals and contribute to society.</schema:longDescription>
         <schema:mediaSource rdf:resource="https://www.forbes.com/sites/ucenergy/2018/08/29/heat-makes-people-less-productive-spelling-trouble-for-the-economy-and-future/?sh=65ebdf247bb1"/>
         <schema:mediaSource rdf:resource="https://www.washingtonpost.com/business/2018/07/17/heat-makes-you-dumb-four-charts/"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increasing frequency of heatwaves is negatively impacting standardized test scores.
@@ -2104,11 +2116,18 @@ Just because species can adapt to some climate change doesn’t mean they can ad
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <dc:source rdf:resource="https://www.nrdc.org/sites/default/files/accountingcosts.pdf"/>
         <schema:academicSource rdf:resource="https://agupubs.onlinelibrary.wiley.com/doi/full/10.1029/2019GH000202"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.lancetcountdown.org/2019-report/"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(19)32596-6/fulltext"/>
+        <schema:governmentSource rdf:resource="https://health2016.globalchange.gov/"/>
+        <schema:governmentSource rdf:resource="https://www.cdc.gov/climateandhealth/effects/default.htm"/>
         <schema:image rdf:resource="https://i.imgur.com/Py3LMXw.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Climate change can affect human health in at least two ways: first by worsening  pre-existing health problems and second by creating new health issues. Climate change induces health effects that are varied and diverse, and include respiratory and cardiovascular diseases, premature deaths due to extreme weather events, changes in the prevalence and geographical distribution of food- and water-borne illnesses and other infectious diseases, and threats to mental health.
 
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increases in the frequency of heatwaves are causing many medical problems and forcing many individuals to need to seek medical care. More and more individuals are needing medical care.</schema:shortDescription>
+Just 10 extreme events associated with climate change in 2012 cost the United States $1.6 billion in healthcare and lost wages, according to the National Resources Defense Council.  In total, these events, stretching from Washington to Florida, led to an estimated 917 deaths, more than 20,000 hospitalizations and nearly $10 billion (in 2018 dollars) in health-related costs. The two highest estimated costs events were for Hurricane Sandy at $3.2 billion and wildfires in Washington at $2.3 billion.
+
+As humans continue emitting heat-trapping gasses and climate change continues to intensify,  its effects on health worsen too. These highlight the need to take mitigation actions against climate change and adapt to its unavoidable health impacts.</schema:longDescription>
+        <schema:organizationSource rdf:resource="https://www.nrdc.org/sites/default/files/accountingcosts.pdf"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Climate change has resulted in billions of dollars in health-related costs in the U.S alone. Worsening climate effects would pose more health risks and cost billions more of taxpayers&apos; money.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in health costs</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2316,7 +2335,12 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <rdf:type rdf:resource="http://webprotege.stanford.edu/RBpjpLtI6OD4Rbm7grr6kJK"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me"/>
         <schema:academicSourceNoPaywall rdf:resource="https://www.pnas.org/content/113/42/11770"/>
+        <schema:governmentSource rdf:resource="https://climate.nasa.gov/news/2891/a-drier-future-sets-the-stage-for-more-wildfires/"/>
+        <schema:mediaSource rdf:resource="https://api.nationalgeographic.com/distribution/public/amp/science/2020/09/climate-change-increases-risk-fires-western-us"/>
+        <schema:mediaSource rdf:resource="https://laist.com/2019/10/28/california-fires-explained-why-they-are-getting-worse.php"/>
+        <schema:mediaSource rdf:resource="https://www.nytimes.com/interactive/2020/09/24/climate/fires-worst-year-california-oregon-washington.html"/>
         <schema:organizationSource rdf:resource="https://www.carbonbrief.org/factcheck-how-global-warming-has-increased-us-wildfires"/>
+        <schema:organizationSource rdf:resource="https://www.carbonbrief.org/explainer-how-climate-change-is-affecting-wildfires-around-the-world/amp"/>
         <rdfs:label xml:lang="en">drier vegetation during dry season</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2358,12 +2382,13 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <dc:source rdf:resource="https://www.climate.gov/news-features/blogs/beyond-data/2018s-billion-dollar-disasters-context"/>
         <dc:source rdf:resource="https://www.nytimes.com/2019/07/11/climate/hurricane-tropical-storms.html"/>
         <schema:image rdf:resource="https://i.imgur.com/yySRJVV.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Between 1980 and 2019, climate-related disasters in the US caused $1.75 trillion total in losses. And in the past three years alone, the annual number of climate-related disasters costing over a billion dollars has doubled relative to the past; events are happening more frequently, with 28 of them occurring in 2018 and 2019 alone. These costly events often include large hurricanes, putting our coastal communities most at risk.
 
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+With the continued emissions of heat trapping gases by humans, we are driving oceans to warm, fueling more powerful hurricanes. Additionally, this warming is causing hurricanes to more frequently and rapidly intensify and sometimes even stall, where hurricanes grow in strength very quickly and then move very slowly over land, inflicting even more costly damage. 
+As of 2020, the five costliest hurricanes of all time each occurred after 2005 (Irma 2017, Sandy 2012, Maria 2017, Harvey 2017, Katrina 2005) and totaled $497 billion in associated losses. Human-induced climate change played a significant role in increasing these damages. For example, the warming from human heat-trapping emissions have made hurricanes Katrina, Irma and Maria drop upwards to 9 percent more rainfall, increasing flood damages. Reducing emissions and preparing our cities are key to keep our communities safe.</schema:longDescription>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increasing frequency of severe hurricanes is just one of many climate impacts that are driving increases in disaster costs. Extreme weather events are causing more damage.</schema:shortDescription>
         <webprotege:R9GAVktwjcLydvN9COHeohM rdf:resource="https://www.foxbusiness.com/economy/costliest-hurricanes-us-history"/>
-        <rdfs:label xml:lang="en">increase in disaster costs</rdfs:label>
+        <rdfs:label xml:lang="en">increase in hurricane costs</rdfs:label>
     </owl:NamedIndividual>
     
 
@@ -2566,6 +2591,7 @@ In addition to reduced habitat, warmer temperatures have enabled the increase in
         </rdf:type>
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Multistrata agroforestry systems mimic natural forests in structure. Multiple layers of trees and crops achieve high rates of both carbon sequestration and food production. Multistrata agroforestry can be integrated into some existing agricultural systems; others can be converted or restored to it. If adopted on another 39-66 million hectares by 2050, from 100 million hectares currently, 11.3-20.4 gigatons of carbon dioxide could be sequestered. Average sequestration rate of 4.45 tons of carbon per hectare per year is strong, as is financial return: $1.7-3 trillion lifetime, on a $54-92 billion initial investment and lifetime operational cost of $142.9-245.4.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/multistrata-agroforestry"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Multistrata agroforestry systems mimic natural forests in structure. Multiple layers of trees and crops achieve high rates of both carbon sequestration and food production.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Multistrata agroforestry systems mimic natural forests in structure. Multiple layers of trees and crops achieve high rates of both carbon sequestration and food production. Multistrata agroforestry can be integrated into some existing agricultural systems; others can be converted or restored to it. If adopted on another 39-66 million hectares by 2050, from 100 million hectares currently, 11.3-20.4 gigatons of carbon dioxide could be sequestered. Average sequestration rate of 4.45 tons of carbon per hectare per year is strong, as is financial return: $1.7-3 trillion lifetime, on a $54-92 billion initial investment and lifetime operational cost of $142.9-245.4.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in multistrata agroforestry</rdfs:label>
     </owl:NamedIndividual>
@@ -2675,9 +2701,9 @@ In addition to reduced habitat, warmer temperatures have enabled the increase in
         <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <schema:image rdf:resource="https://i.imgur.com/AjyIno0.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Climate change and rising temperatures are strongly linked to increasing suicide rates, threatening the stability of the future generation’s prosperity. In the United States, suicide is the second most-common cause of death among Americans between 10 and 34 years of age  and the rates continue to climb. If a month is 1 degree Celsius warmer than normal, then its suicide rate will increase by 0.7 percent in the United States and 2.1 percent in Mexico. Given the warming trends from our continued emissions of heat-trapping gases, Stanford researchers found the US and Mexico can expect between 9,000 to 40,000 additional suicides by 2050 if significant action is not taken. A European study conducted in 2016 found climatic indicators to be a better predictor of suicide than socioeconomic factors after studying 29 countries over 13 years.
 
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+Studies have found heat waves have the ability to affect our capacity to regulate our emotions, leading to other mental health issues such as depression and post-traumatic stress disorder in addition to suicide. Combatting these psychological effects is a national concern and requires serious investments in money and time. Across the US, $232,000 is spent for every 1,000 employees on treatments for these mental health issues and lost work time. Notably, availability of air conditioners does not prevent the impacts of heat on suicide. In addition to increased funding for suicide prevention, hospitals and other organizations can work to disseminate information on building individual resiliency behaviors. Investing in these preventative measures and addressing climate change could save thousands of lives from suicide alone.</schema:longDescription>
         <schema:mediaSource rdf:resource="https://www.motherjones.com/environment/2019/02/climate-change-isnt-just-frying-the-planet-its-fraying-our-nerves/"/>
         <schema:organizationSource rdf:resource="https://news.stanford.edu/2019/03/29/effects-climate-change-suicide-rates/"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The warming air in the atmosphere is causing more heatwaves. This combined with warming days and nights is causing increases in suicide. Rising temperature and climate change are not direct motivations for suicide. Instead, temperature and climate increase the risk of suicide by affecting the likelihood that an individual situation leads to an attempt at self-harm. More people are triggered to intentionally cause their own death.</schema:shortDescription>
@@ -2735,6 +2761,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Global warming impacts increase the risk of damage to military bases. These impacts include more frequent floods, drought, wildfires, stronger hurricanes, and sea level rise. A 2019 US Defense Department report estimates two-thirds of military installations in the USA will be at risk in the next two decades. Including American territories and foreign nations, the US military has more than 300,000 buildings globally, many of which will be under threat from climate change impacts. Rebuilding and making bases more resilient is expensive. For example, in 2018 Tyndall Air Force Base in Florida was heavily damaged by Hurricane Michael and will cost at least $4.25 billion to rebuild.
 
 This example illustrates how climate change is a threat to national security. So it&apos;s critical to implement actions that avert future damage and prevent the threat from worsening beyond control by reducing emissions as much as possible.</schema:longDescription>
+        <schema:mediaSource rdf:resource="https://insideclimatenews.org/news/18012019/military-bases-climate-change-risks-wildfires-flooding-defense-department-report-congress/"/>
+        <schema:mediaSource rdf:resource="https://www.capitalgazette.com/environment/ac-cn-proceedings-except-20191013-43rodczawne7ziviweim72cvmq-story.html"/>
+        <schema:organizationSource rdf:resource="https://www.ucsusa.org/resources/us-military-front-lines-rising-seas"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Increasing hurricane strength and increasing floods are causing increased destruction to US military bases. Every year more and more military bases in the US take on increased damage.</schema:shortDescription>
         <webprotege:R9GAVktwjcLydvN9COHeohM rdf:resource="https://www.defenseone.com/threats/2019/06/these-are-us-military-bases-most-threatened-climate-change/157689/"/>
         <webprotege:R9GAVktwjcLydvN9COHeohM rdf:resource="https://www.politico.com/story/2019/01/18/pentagon-military-installations-climate-1098095"/>
@@ -2825,6 +2854,9 @@ This example illustrates how climate change is a threat to national security. So
         <dc:source rdf:resource="https://www.ajtmh.org/content/journals/10.4269/ajtmh.2009.80.640"/>
         <dc:source rdf:resource="https://www.ncbi.nlm.nih.gov/books/NBK223342/pdf/Bookshelf_NBK223342.pdf#page=16"/>
         <dc:source rdf:resource="https://www.sciencedirect.com/science/article/pii/S0962629807000601"/>
+        <schema:mediaSource rdf:resource="https://www.economist.com/international/2019/05/23/how-climate-change-can-fuel-wars"/>
+        <schema:mediaSource rdf:resource="https://www.eenews.net/stories/1060118349"/>
+        <schema:organizationSource rdf:resource="https://greenhumanrights.com/climate-change-will-drive-the-largest-refugee-crisis-in-history/"/>
         <rdfs:label xml:lang="en">increase in climate refugees</rdfs:label>
     </owl:NamedIndividual>
     
@@ -2961,9 +2993,9 @@ Looking at one region or a short period ignores the full picture.</schema:mythFa
         <dc:source rdf:resource="https://www.weforum.org/agenda/2017/06/healthy-coral-reefs-are-good-for-tourism-and-tourism-can-be-good-for-reefs/"/>
         <schema:governmentSource rdf:resource="https://floridadep.gov/rcp/coral"/>
         <schema:image rdf:resource="https://i.imgur.com/BZ2gRk3.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Tourism supports the livelihoods of an estimated one in ten people worldwide andaround 80% occurs around coastal destinations. Coral reefs are popular and exciting places for sightseeing, swimming, snorkelling, diving and boating. For example, Australia&apos;s Great Barrier Reef annually attracts 1.9 million visits, generates AUD$5.4 billion from tourism and supports 54,000 jobs. Florida&apos;s Coral Reef has an annual estimated tourism value of $1.1 billion and supports 71,000 jobs.
 
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+Warming oceans due to climate change are causing increases in heatwaves occurring in the ocean (marine heatwaves). The frequency of these marine heatwaves has doubled since 1982, increasing coral bleaching and destruction. Already over 50% of coral reefs have been lost. If yearly CO2 emissions aren&apos;t reduced, in the future these heatwaves will occur 50 times more often than they do today, causing over 97% of all coral reefs to die off along with much of the coastal marine life they support. The loss of coral reefs makes coastal destinations less attractive to tourists and negatively affects local economies.</schema:longDescription>
         <schema:mediaSource rdf:resource="https://www.newscientist.com/article/2256873-how-climate-change-impacts-the-great-barrier-reef-tourism-industry/"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increase in coral bleaching and destruction seen in many tourist destinations is leading to declines in tourism. People are traveling less to tourist destinations.</schema:shortDescription>
         <rdfs:label xml:lang="en">decrease in tourism</rdfs:label>
@@ -3172,10 +3204,19 @@ Based on historic growth on large farming operations, the Project Drawdown analy
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RO1J1OifvuO602qTIrSXdB"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RrH4kPiYwZ0tSRSz4lnaYW"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RzalB19SQSGGVxprHL33Ik"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.ahajournals.org/doi/10.1161/01.str.0000026865.52610.5b"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4465283/"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5836577/"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.pnas.org/content/115/38/9592.long"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.sciencedirect.com/science/article/abs/pii/S0035378718309767"/>
         <schema:governmentSource rdf:resource="https://www.eia.gov/energyexplained/coal/coal-and-the-environment.php"/>
         <schema:governmentSource rdf:resource="https://www.epa.gov/sciencematters/linking-air-pollution-and-heart-disease"/>
+        <schema:governmentSource rdf:resource="https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma"/>
+        <schema:mediaSource rdf:resource="https://www.theguardian.com/environment/2019/oct/21/scores-more-heart-attacks-and-strokes-on-high-pollution-days-figures-show"/>
         <schema:organizationSource rdf:resource="https://www.cancer.org/latest-news/world-health-organization-outdoor-air-pollution-causes-cancer.html"/>
         <schema:organizationSource rdf:resource="https://www.climatecentral.org/news/climate-change-is-threatening-air-quality-across-the-country-2019"/>
+        <schema:organizationSource rdf:resource="https://www.hsph.harvard.edu/c-change/subtopics/climate-change-and-asthma/"/>
+        <schema:organizationSource rdf:resource="https://www.lung.org/blog/asthma-and-climate-change"/>
         <rdfs:label xml:lang="en">increase in toxic air pollutants (air pollution)</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3286,11 +3327,11 @@ Under climate change, marine heatwaves have doubled since 1982. If CO2 emissions
         <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <schema:image rdf:resource="https://i.imgur.com/qAgMmlv.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Breathing polluted air leads to increased risk of lung cancer. Smoking tobacco isn&apos;t the only thing that can cause lung cancer. Air pollution can too. In the US, 20% of people who die from lung cancer have never smoked or used tobacco. And globally, exposure to air pollution has been the fourth highest global mortality risk factor. Burning fossil fuels releases particulate matter (PM), which causes an increased risk for lung cancer under long term exposure. The number of deaths related to PM 2.5 exposure have increased from 3.5 million in 1990 to 4.2 million in 2015.
 
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+Particulate matter can also come from sources other than fossil fuels, such as from toxic smoke from wildfires that burn larger areas of land due to human-induced climate change.   Policies that limit heat-trapping gases are needed to prevent runaway climate change and to preserve our health and wellbeing by preventing the creation of toxic air pollution from burning fossil fuels.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://www.cancer.org/latest-news/world-health-organization-outdoor-air-pollution-causes-cancer.html"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increasing amount of warm days and nights and the increasing frequency of heatwaves are causing outdoor air pollution from burning fossil fuels to become more toxic, increasing the number of individuals who develop lung cancer. More individuals are developing cancer in their lungs. According to the World Health Organization, 29% of all deaths and disease from lung cancer is linked to ambient air pollution.</schema:shortDescription>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Deteriorating air quality as a result of climate change is expected to increase cases of lung cancer. In addition to rising cases, those with lung cancer will experience exacerbated symptoms.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in lung cancer</rdfs:label>
     </owl:NamedIndividual>
     
@@ -3332,9 +3373,9 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <dc:source rdf:resource="https://www.cnn.com/2018/10/29/health/air-pollution-children-health-who-india-intl/index.html"/>
         <dc:source rdf:resource="https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution"/>
         <schema:image rdf:resource="https://i.imgur.com/HSXcxcT.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Air pollution refers to any pollutant in the air which can harm human health. Over time, the amount of pollution in the air has increased due to human activity, disproportionately affecting the wellbeing of children. A large part of a child’s lung develops after birth. Because of this, exposure to increased levels of pollution puts children at a greater risk of reduced lung growth, respiratory infections, and developing future chronic conditions such as cardiovascular disease. Approximately 93% of the world’s children under the age of 15 breathe air that is harmful to their health. In 2016 alone, it was estimated 600,000 children died from acute lower respiratory infections related to polluted air. 
 
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+Studies have been conducted which show that reducing air pollution can protect against these harmful impacts. A 2016 report looked at children living in Southern California across three separate time periods (1993-2001, 1996-2004, 2003-2012) and found the children living during periods of better air quality suffered fewer bronchial symptoms. The WHO recommends policies such as the use of renewable energy to curb emissions, to improve air quality and help secure children’s futures around the world.</schema:longDescription>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The effects that global warming has on air pollution and those with asthma disproportionately affect children. Individuals under the age of 18 are disproportionately affected by climate impacts.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in disproportionate effects on children</rdfs:label>
     </owl:NamedIndividual>
@@ -3391,6 +3432,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
 
 If the total protected area of peatlands increases from 8.84 million hectares to 266.7-448.6 million hectares by 2050, approximately 14.9-27 gigatons of carbon dioxide emissions can be avoided. In addition, protection would secure the intact stock of 520-875 gigatons of carbon, or roughly 1906-3207 gigatons of carbon dioxide equivalent. Though peatlands comprise only 3 percent of global land area, they are the most organic-rich soils; their degradation would release an enormous amount of carbon. Project Drawdown analysis shows that rewetting of 35.2-47.0 million hectares of currently degraded peatlands could avoid additional 11.1-14.9 gigatons of carbon dioxide emissions.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/peatland-protection-and-rewetting"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Forestry, farming, and fuel-extraction are among the threats to carbon-rich peatlands. Protection and rewetting can reduce emissions from degradation, while supporting peatlands’ role as carbon sinks.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Forestry, farming, and fuel-extraction are among the threats to carbon-rich peatlands. Protection and rewetting can reduce emissions from degradation, while supporting peatlands’ role as carbon sinks. 
 
 If the total protected area of peatlands increases from 8.84 million hectares to 266.7-448.6 million hectares by 2050, approximately 14.9-27 gigatons of carbon dioxide emissions can be avoided. In addition, protection would secure the intact stock of 520-875 gigatons of carbon, or roughly 1906-3207 gigatons of carbon dioxide equivalent. Though peatlands comprise only 3 percent of global land area, they are the most organic-rich soils; their degradation would release an enormous amount of carbon. Project Drawdown analysis shows that rewetting of 35.2-47.0 million hectares of currently degraded peatlands could avoid additional 11.1-14.9 gigatons of carbon dioxide emissions.</rdfs:comment>
@@ -3702,13 +3744,11 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <dc:source rdf:resource="https://www.weforum.org/agenda/2017/06/healthy-coral-reefs-are-good-for-tourism-and-tourism-can-be-good-for-reefs/"/>
         <schema:governmentSource rdf:resource="https://www.osti.gov/biblio/813396"/>
         <schema:image rdf:resource="https://i.imgur.com/NNK9Na4.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gross Domestic Profit (GDP) is a measure of the health of the economy. GDP is already significantly smaller than it could be due to the effects of global warming. Each 1.8° Fahrenheit (1 degree Celsius) of warming reduces growth by 1% on average. One reason for this is an increased frequency of heat waves and extreme temperatures.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Gross Domestic Profit (GDP) is a measure of the health of the economy. GDP is already significantly smaller than it could be due to the effects of global warming. Each 1.8° Fahrenheit (1 degree Celsius) of warming reduces growth by 1% on average, and the planet has already warmed by 1.8° Fahrenheit. One reason for this is an increased frequency of heat waves and extreme temperatures. 
 
 Heat affects people&apos;s ability to concentrate and their health, causing lower labor productivity and employee absenteeism, which in turn affect the success of companies and their contribution to the economy. Studies indicate an average 2% decrease in work performance per °C temperature rise (1.8° F) when the temperature is above 25°C (77°F). 
 
-IThe frequency of intense heat waves (4-day, 1-in-5 year events) has generally increased since the 1960s in most regions. In 2019, heatwave related health care costs alone were $3.8 trillion. It&apos;s projected that heatwaves will lead to a $2 trillion loss in labor productivity by 2030.
-
-Additionally, marine heatwaves damage and kill coral reefs (which are worth $36 billion a year to the world economy), affecting tourism and the fishing industry and further contributing to the decline in GDP.
+The frequency of intense heat waves (4-day, 1-in-5 year events) has generally increased since the 1960s in most regions. It&apos;s projected that heatwaves will lead to a $2 trillion loss in labor productivity by 2030. Additionally, marine heatwaves damage and kill coral reefs (which are worth $36 billion a year to the world economy), affecting tourism and the fishing industry and further contributing to the decline in GDP.
 
 If appropriate adaptation and mitigation measures aren&apos;t taken, as global temperatures continue to rise we can expect a 7.2% cut to GDP per person worldwide and a 10.5% cut in the USA by 2100. Taking action now to cut emissions in line with the international Paris agreement could limit the loss to 1.1%, helping to protect the economy and people&apos;s livelihoods.</schema:longDescription>
         <schema:mediaSource rdf:resource="https://www.vox.com/2018/7/27/17611940/heat-wave-2018-cost-workers-deaths-health-climate-change"/>
@@ -4477,6 +4517,9 @@ Just because measurements have uncertainty doesn&apos;t mean it&apos;s unknowabl
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
 
 Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+        <schema:mediaSource rdf:resource="https://www.economist.com/international/2019/05/23/how-climate-change-can-fuel-wars"/>
+        <schema:mediaSource rdf:resource="https://www.eenews.net/stories/1060118349"/>
+        <schema:organizationSource rdf:resource="https://greenhumanrights.com/climate-change-will-drive-the-largest-refugee-crisis-in-history/"/>
         <schema:organizationSource rdf:resource="https://www.psychologicalscience.org/observer/global-warming-and-violent-behavior"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The continued rise in frequency of warm days and night in addition to heatwaves are driving increases in physical violence. More people are harming others through acts of physical aggression.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in physical violence</rdfs:label>
@@ -4630,6 +4673,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <webprotege:RftWPEDTNGrriaufjBA6oG rdf:resource="http://webprotege.stanford.edu/R7d1FZLrHT7jiNDiQHltEdz"/>
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An agroforestry practice, silvopasture integrates trees, pasture, and forage into a single system. Incorporating trees improves land health and significantly increases carbon sequestration. Project Drawdown estimates that silvopasture is currently practiced on 550 million hectares of land globally. If adoption expands to 720-772 million hectares by 2050—out of the 823 million hectares theoretically suitable for silvopasture—carbon dioxide emissions can be reduced by 26.6-42.3 gigatons. This reduction is a result of the high annual carbon sequestration rate of 2.74 tons of carbon per hectare per year in soil and biomass. Farmers could realize financial gains from revenue diversification of $1.7-2.3 trillion, on investment of $206-273 billion and lifetime operational cost of $2-3 trillion to implement.</schema:longDescription>
         <schema:organizationSource rdf:resource="https://drawdown.org/solutions/silvopasture"/>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An agroforestry practice, silvopasture integrates trees, pasture, and forage into a single system. Incorporating trees improves land health and significantly increases carbon sequestration.</schema:shortDescription>
         <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">An agroforestry practice, silvopasture integrates trees, pasture, and forage into a single system. Incorporating trees improves land health and significantly increases carbon sequestration. Project Drawdown estimates that silvopasture is currently practiced on 550 million hectares of land globally. If adoption expands to 720-772 million hectares by 2050—out of the 823 million hectares theoretically suitable for silvopasture—carbon dioxide emissions can be reduced by 26.6-42.3 gigatons. This reduction is a result of the high annual carbon sequestration rate of 2.74 tons of carbon per hectare per year in soil and biomass. Farmers could realize financial gains from revenue diversification of $1.7-2.3 trillion, on investment of $206-273 billion and lifetime operational cost of $2-3 trillion to implement.</rdfs:comment>
         <rdfs:label xml:lang="en">increase in silvopasture</rdfs:label>
     </owl:NamedIndividual>
@@ -4669,13 +4713,15 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <dc:source rdf:resource="https://www.ilo.org/wcmsp5/groups/public/---dgreports/---dcomm/---publ/documents/publication/wcms_711919.pdf"/>
         <schema:academicSource rdf:resource="https://www.richmondfed.org/-/media/richmondfedorg/publications/research/economic_brief/2018/pdf/eb_18-08.pdf"/>
         <schema:image rdf:resource="https://i.imgur.com/woTYFhN.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">High heat affects people&apos;s ability to concentrate and their health, causing lower labor productivity and employee absenteeism. This is an occupational health and safety issue and negatively affects the success of companies and their contribution to the economy.
 
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+For every 1.8°F (1 °C) rise in temperatures above 77°F (25°C) there is an average 2% decrease in work performance. This is due to both physiological and cognitive impairment caused by heat exhaustion and dehydration, and a higher risk of injury. High heat negatively affects people in offices with no or inadequate air conditioning, and those working outside such as agriculture, construction and logistics workers. People are also more likely to stay home during heat waves, with resulting loss of income. To make up for reduced output, workers have to work longer hours or more workers have to be hired, both of which cause higher costs to the organization.
+
+Human-caused climate change is already having impacts on worker productivity. The frequency of intense heat waves (4-day, 1-in-5 year events) has generally increased since the 1960s in most regions.   Already up to 10-15% of annual daylight hours are so hot that productivity is lost. It&apos;s projected that heatwaves will lead to a $2 trillion loss in labor productivity by 2030.</schema:longDescription>
         <schema:mediaSource rdf:resource="https://www.entrepreneur.com/article/319479"/>
         <schema:organizationSource rdf:resource="https://news.harvard.edu/gazette/story/2019/11/researcher-analyzes-effects-of-climate-change-on-productivity/"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increase in frequency and severity of heatwaves are driving increases in worker absenteeism. Additionally heatwaves are causing increasingly hot work environment temperatures for those working outside. Both of these as well as the 
-increasing frequency of warm days and nights are causing declines in worker productivity. Workers are not able to get as much work done.</schema:shortDescription>
+increasing frequency of warm days and nights are causing declines in worker productivity.</schema:shortDescription>
         <rdfs:label xml:lang="en">decrease in worker productivity</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4754,6 +4800,8 @@ Bamboo is planted on 33.52 million hectares today. We assume that it will be gro
     <owl:NamedIndividual rdf:about="http://webprotege.stanford.edu/RDz5mIeKH8dVyDEr7S7wE3">
         <rdf:type rdf:resource="http://webprotege.stanford.edu/R838w4SBo4dM5MSU3oylFcu"/>
         <webprotege:RC4Vw57ldiXcejEfZ16R7JR rdf:resource="http://webprotege.stanford.edu/RO1J1OifvuO602qTIrSXdB"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4829390/"/>
+        <schema:mediaSource rdf:resource="https://www.vox.com/2020/5/7/21250550/allergy-season-2020-pollen-climate-change-coronavirus-pandemic"/>
         <schema:organizationSource rdf:resource="https://www.climatecentral.org/gallery/graphics/more-co2-more-pollen"/>
         <rdfs:label xml:lang="en">increase in pollen released by plants</rdfs:label>
     </owl:NamedIndividual>
@@ -4865,16 +4913,26 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
         <schema:academicSource rdf:resource="https://www.richmondfed.org/-/media/richmondfedorg/publications/research/economic_brief/2018/pdf/eb_18-08.pdf"/>
         <schema:academicSourceNoPaywall rdf:resource="https://academic.oup.com/reep/article/10/2/347/1753081"/>
         <schema:academicSourceNoPaywall rdf:resource="https://bfi.uchicago.edu/wp-content/uploads/BFI-WP_2018-69.pdf"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.karger.com/Article/Fulltext/398787"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.lancetcountdown.org/2019-report/"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.nature.com/articles/s41569-020-00473-5"/>
         <schema:academicSourceNoPaywall rdf:resource="https://www.sciencedirect.com/science/article/pii/S2590332220302517"/>
         <schema:academicSourceNoPaywall rdf:resource="https://www.sciencedirect.com/science/article/pii/S2542519618302377?via%3Dihub"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.thelancet.com/journals/lancet/article/PIIS0140-6736(19)32596-6/fulltext"/>
+        <schema:governmentSource rdf:resource="https://health2016.globalchange.gov/"/>
+        <schema:governmentSource rdf:resource="https://www.cdc.gov/climateandhealth/effects/default.htm"/>
         <schema:mediaSource rdf:resource="https://epic.uchicago.edu/news/hot-temperatures-decrease-worker-productivity-economic-output/"/>
         <schema:mediaSource rdf:resource="https://phys.org/news/2018-08-temperatures-worker-productivity-global-losses.html"/>
+        <schema:mediaSource rdf:resource="https://qz.com/1222399/climate-change-could-also-be-responsible-for-an-increase-in-heart-attacks/"/>
+        <schema:mediaSource rdf:resource="https://www.bbc.com/news/health-10917611"/>
         <schema:mediaSource rdf:resource="https://www.entrepreneur.com/article/319479"/>
         <schema:mediaSource rdf:resource="https://www.forbes.com/sites/ucenergy/2018/08/29/heat-makes-people-less-productive-spelling-trouble-for-the-economy-and-future/#5287dc267bb1"/>
         <schema:mediaSource rdf:resource="https://www.motherjones.com/environment/2019/02/climate-change-isnt-just-frying-the-planet-its-fraying-our-nerves/"/>
+        <schema:mediaSource rdf:resource="https://www.sciencedaily.com/releases/2019/03/190312123645.htm"/>
         <schema:mediaSource rdf:resource="https://www.vox.com/2018/7/27/17611940/heat-wave-2018-cost-workers-deaths-health-climate-change"/>
         <schema:mediaSource rdf:resource="https://www.washingtonpost.com/business/2018/07/17/heat-makes-you-dumb-four-charts/"/>
         <schema:organizationSource rdf:resource="https://news.stanford.edu/2019/03/29/effects-climate-change-suicide-rates/"/>
+        <schema:organizationSource rdf:resource="https://www.nrdc.org/sites/default/files/accountingcosts.pdf"/>
         <rdfs:label xml:lang="en">increase in frequency of heatwaves</rdfs:label>
     </owl:NamedIndividual>
     
@@ -4948,15 +5006,27 @@ Under some business-as-usual projections, 23 million hybrid vehicles will be in 
         <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
         <schema:academicSourceNoPaywall rdf:resource="https://www.pnas.org/content/113/42/11770"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.pnas.org/content/116/12/5393"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://yaleclimateconnections.org/2019/07/wildfires-and-climate-change-whats-the-connection/"/>
+        <schema:governmentSource rdf:resource="https://climate.nasa.gov/news/2891/a-drier-future-sets-the-stage-for-more-wildfires/"/>
         <schema:image rdf:resource="https://i.imgur.com/hXjwCS0.jpg"/>
-        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
+        <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Recent years have seen record-shattering wildfires seasons. Although not the only factor, climate change is contributing to larger, more severe wildfires, and longer wildfire seasons. Warming temperatures and lower precipitation dry out vegetation and soils, allowing fuel to accumulate and making wildfires more likely. Estimates suggest human-caused climate change has doubled the cumulative forest fire area since 1984 and extended the wildfire season by 78 days relative to the 1970s—almost three additional months per year when a fire could start. Under conservative levels of future warming, 11 states in the U.S. are predicted to experience an increase of 200% or more in average burned area for 2010-2039 relative to 1961-2004 levels.
 
-Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+Increasing wildfire size and severity pose an enormous threat to animal and human life and property, as vividly demonstrated by the 2020 wildfires in places as disparate as California, Australia, and Brazil. This threat is compounded by increasing human development in fire-prone areas such as forest and chaparral habitats. Policies designed to prevent wildfires such as prescribed burns, which remove fuel from the landscape, can help mitigate this threat, as can individual actions including creating defensible space around homes and buildings. However, curbing the trend of increasing wildfire size and severity will likely require aggressive climate policy aimed at limiting the magnitude of future warming.</schema:longDescription>
+        <schema:mediaSource rdf:resource="https://api.nationalgeographic.com/distribution/public/amp/science/2020/09/climate-change-increases-risk-fires-western-us"/>
+        <schema:mediaSource rdf:resource="https://laist.com/2019/04/19/california_fire_season_2019_rain.php"/>
+        <schema:mediaSource rdf:resource="https://laist.com/2019/10/28/california-fires-explained-why-they-are-getting-worse.php"/>
+        <schema:mediaSource rdf:resource="https://www.climatecentral.org/gallery/graphics/can-rain-cause-more-fire"/>
+        <schema:mediaSource rdf:resource="https://www.nytimes.com/interactive/2020/09/24/climate/fires-worst-year-california-oregon-washington.html"/>
+        <schema:mediaSource rdf:resource="https://www.sacbee.com/news/california/article227101284.html"/>
         <schema:organizationSource rdf:resource="https://calmatters.org/environment/california-wildfires/2019/11/7-affordable-ways-to-protect-your-home-from-wildfires/"/>
+        <schema:organizationSource rdf:resource="https://climate.ncsu.edu/edu/Wildfire"/>
         <schema:organizationSource rdf:resource="https://scientistsspeakup.org/a-state-on-fire-trends-and-solutions-to-california-wildfires/"/>
         <schema:organizationSource rdf:resource="https://www.carbonbrief.org/factcheck-how-global-warming-has-increased-us-wildfires"/>
+        <schema:organizationSource rdf:resource="https://www.carbonbrief.org/explainer-how-climate-change-is-affecting-wildfires-around-the-world/amp"/>
+        <schema:organizationSource rdf:resource="https://www.edf.org/blog/2019/04/29/all-snow-and-rain-year-california-could-face-even-worse-fire-season-heres-why"/>
         <schema:organizationSource rdf:resource="https://www.ucsusa.org/resources/western-wildfires-and-climate-change"/>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increase in vegetation during wet season combined with drier vegetation during dry season is causing an increase in the area burned by wildfires. More land and property is being burned by wildfires. Fires burn more than twice as large as they used to due to human-induced climate change.</schema:shortDescription>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Warmer and drier conditions promote the accumulation of dry vegetation on the landscape, making wildfires more likely. Wildfires are increasing in size and severity, and the length of the wildfire season is increasing.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in area burned by wildfire</rdfs:label>
     </owl:NamedIndividual>
     
@@ -5008,15 +5078,20 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
         <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</webprotege:RIm21qcU1or1RI1rFv04h8>
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
-        <dc:source rdf:resource="https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution"/>
-        <dc:source rdf:resource="https://www.cnn.com/2018/10/29/health/air-pollution-children-health-who-india-intl/index.html"/>
-        <dc:source rdf:resource="https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma"/>
-        <dc:source rdf:resource="https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution"/>
-        <dc:source rdf:resource="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893/"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3359893/"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4465283/"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4829390/"/>
+        <schema:governmentSource rdf:resource="https://www.epa.gov/sciencematters/links-between-air-pollution-and-childhood-asthma"/>
         <schema:image rdf:resource="https://i.imgur.com/hFLUKso.jpg"/>
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
 
 Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+        <schema:mediaSource rdf:resource="https://www.cnn.com/2018/10/29/health/air-pollution-children-health-who-india-intl/index.html"/>
+        <schema:mediaSource rdf:resource="https://www.vox.com/2020/5/7/21250550/allergy-season-2020-pollen-climate-change-coronavirus-pandemic"/>
+        <schema:organizationSource rdf:resource="https://www.blf.org.uk/support-for-you/risks-to-childrens-lungs/air-pollution"/>
+        <schema:organizationSource rdf:resource="https://www.hsph.harvard.edu/c-change/subtopics/climate-change-and-asthma/"/>
+        <schema:organizationSource rdf:resource="https://www.lung.org/blog/asthma-and-climate-change"/>
+        <schema:organizationSource rdf:resource="https://www.lung.org/clean-air/outdoors/who-is-at-risk/children-and-air-pollution"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lower quality air from increasing toxic air pollutants in addition to the increasing amount of pollen released by plants due to higher levels of CO2 are both driving increases in asthma complications. Individuals with asthma are experiencing more frequent or worsened attacks and symptoms.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in asthma complications</rdfs:label>
     </owl:NamedIndividual>
@@ -5132,7 +5207,7 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
 
 Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
-        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increase in asthma complications caused by worsening air pollution and increased seasonal pollen disproportionately affects minorities. Black and latino individuals are disproportionately affected by climate impacts.</schema:shortDescription>
+        <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increase in asthma complications caused by worsening air pollution and increased seasonal pollen disproportionately affects minorities. Black and Latino individuals are disproportionately affected by climate impacts.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in disproportionate effects on minority groups</rdfs:label>
     </owl:NamedIndividual>
     
@@ -5293,7 +5368,15 @@ This focuses on a few good impacts of global warming but ignores the overwhelmin
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
 
 Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+        <schema:mediaSource rdf:resource="https://grist.org/article/californias-next-megaflood-would-be-worse-than-eight-hurricane-katrinas/"/>
+        <schema:mediaSource rdf:resource="https://insideclimatenews.org/news/02062020/extreme-rain-study-climate-change/"/>
+        <schema:mediaSource rdf:resource="https://insideclimatenews.org/news/18012019/military-bases-climate-change-risks-wildfires-flooding-defense-department-report-congress/"/>
+        <schema:mediaSource rdf:resource="https://www.capitalgazette.com/environment/ac-cn-proceedings-except-20191013-43rodczawne7ziviweim72cvmq-story.html"/>
+        <schema:mediaSource rdf:resource="https://www.climatecentral.org/news/report-pouring-it-on-climate-change-intensifies-heavy-rain-events"/>
+        <schema:organizationSource rdf:resource="https://www.c2es.org/content/extreme-weather-and-climate-change/"/>
+        <schema:organizationSource rdf:resource="https://www.ucsusa.org/resources/us-military-front-lines-rising-seas"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The air in the atmosphere is warming leading to more moisture held in clouds and increasing the frequency of heatwaves and warm days and nights. These are causing more evaporation and extreme rainfall. Both of these, in addition to warming oceans driving stronger hurricanes with larger storm surges, are causing the continued increases in flooding of land and property. More and more land and property are getting inundated with water.</schema:shortDescription>
+        <rdfs:comment rdf:datatype="http://www.w3.org/2001/XMLSchema#string">This could be good source for links but site appears to be Medium-style op-ed host: https://www.mic.com/p/extreme-weather-cost-the-us-almost-100-billion-in-damage-last-year-54606913</rdfs:comment>
         <rdfs:label xml:lang="en">increase in flooding of land and property</rdfs:label>
     </owl:NamedIndividual>
     
@@ -5415,10 +5498,15 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
         <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.ahajournals.org/doi/10.1161/01.str.0000026865.52610.5b"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5836577/"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.pnas.org/content/115/38/9592.long"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.sciencedirect.com/science/article/abs/pii/S0035378718309767"/>
         <schema:image rdf:resource="https://i.imgur.com/72erlzT.jpg"/>
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
 
 Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+        <schema:mediaSource rdf:resource="https://www.theguardian.com/environment/2019/oct/21/scores-more-heart-attacks-and-strokes-on-high-pollution-days-figures-show"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">The increasing amount of warm days and nights and the increasing frequency of heatwaves are causing outdoor air pollution from burning fossil fuels to become more toxic, amplifying the role air pollution has on increasing the risk of stroke. The threat is rising for emergency health events where the brain is deprived of oxygen.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in risk of stroke</rdfs:label>
     </owl:NamedIndividual>
@@ -5568,11 +5656,16 @@ Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mat
         <webprotege:REzYnHPPpgMg4dbeNFePz2 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:REzYnHPPpgMg4dbeNFePz2>
         <webprotege:RIm21qcU1or1RI1rFv04h8 rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RIm21qcU1or1RI1rFv04h8>
         <webprotege:RQKI9lWMw7q8t3NRB4Dy7V rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">0</webprotege:RQKI9lWMw7q8t3NRB4Dy7V>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.karger.com/Article/Fulltext/398787"/>
+        <schema:academicSourceNoPaywall rdf:resource="https://www.nature.com/articles/s41569-020-00473-5"/>
         <schema:governmentSource rdf:resource="https://www.epa.gov/sciencematters/linking-air-pollution-and-heart-disease"/>
         <schema:image rdf:resource="https://i.imgur.com/jZi7c06.jpg"/>
         <schema:longDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Proin libero nunc consequat interdum varius. Enim eu turpis egestas pretium aenean pharetra. Elit ullamcorper dignissim cras tincidunt lobortis feugiat. Proin sagittis nisl rhoncus mattis. Ullamcorper morbi tincidunt ornare massa eget egestas purus. Ultrices in iaculis nunc sed augue lacus viverra vitae. Pellentesque dignissim enim sit amet venenatis urna cursus eget nunc. Nunc congue nisi vitae suscipit tellus mauris a diam maecenas. Eget est lorem ipsum dolor sit amet consectetur. Quis lectus nulla at volutpat. Urna molestie at elementum eu facilisis. Magnis dis parturient montes nascetur ridiculus mus mauris vitae ultricies.
 
 Non quam lacus suspendisse faucibus. Nunc consequat interdum varius sit amet mattis vulputate. Posuere urna nec tincidunt praesent semper feugiat nibh sed. Leo urna molestie at elementum. Viverra tellus in hac habitasse platea dictumst. Enim ut tellus elementum sagittis vitae et leo duis. Nunc sed augue lacus viverra vitae congue eu. Vivamus at augue eget arcu. Tellus cras adipiscing enim eu turpis egestas pretium. Luctus accumsan tortor posuere ac ut consequat semper.</schema:longDescription>
+        <schema:mediaSource rdf:resource="https://qz.com/1222399/climate-change-could-also-be-responsible-for-an-increase-in-heart-attacks/"/>
+        <schema:mediaSource rdf:resource="https://www.bbc.com/news/health-10917611"/>
+        <schema:mediaSource rdf:resource="https://www.sciencedaily.com/releases/2019/03/190312123645.htm"/>
         <schema:shortDescription rdf:datatype="http://www.w3.org/2001/XMLSchema#string">Not only does breathing air pollution from burning fossil fuels increase the risk of heart attacks, increasingly warm air temperatures are also raising the risk of heart attacks. The threat is rising for emergency health events where the heart is deprived of oxygen.</schema:shortDescription>
         <rdfs:label xml:lang="en">increase in risk of heart attack</rdfs:label>
     </owl:NamedIndividual>

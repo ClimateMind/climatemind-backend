@@ -2,9 +2,11 @@
 
 import os
 import argparse
+
 # from knowledge_graph import app
 import knowledge_graph.make_network
 import knowledge_graph.make_graph
+
 # from network_x_tools.network_x_processor import network_x_processor
 
 
