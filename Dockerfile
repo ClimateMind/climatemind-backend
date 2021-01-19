@@ -4,7 +4,7 @@ ENV FLASK_ENV=development
 
 RUN mkdir -p /usr/share/man/man1
 RUN apt-get update
-RUN apt-get -y install gcc default-jre graphviz libgraphviz-dev graphviz-dev pkg-config git
+RUN apt-get -y install gcc default-jre graphviz libgraphviz-dev graphviz-dev pkg-config
 RUN apt-get install --reinstall build-essential -y
 
 #install sqlcmd and odbc and others
@@ -23,6 +23,7 @@ RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
 
 RUN curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list
 RUN apt-get update
+RUN apt install -y git
 
 RUN ACCEPT_EULA=Y apt-get install msodbcsql17
 RUN ACCEPT_EULA=Y apt-get install mssql-tools
