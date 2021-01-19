@@ -145,9 +145,6 @@ def add_ontology_data_to_graph_nodes(G, onto):
             prop: getattr(ontology_node, prop) for prop in data_properties
         }
 
-        # if(attributes_dict["data_properties"]["hedonism"]==1):
-        # 	breakpoint()
-
         # format personal_values_10 and personal_values_19 to facilitate easier scoring later by the climate mind app
         # these are hard coded in and the order is very important. Later can change so these aren't hard coded and the order is always alphebetical(?)
         # use the compute function to collapse a value with multiple subvalues into one number. As long as there's any 1, then the final value is 1 (otherwise 0). None if all are None.
@@ -489,7 +486,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     remove_edge_properties_from_nodes(G, to_remove)
 
     # process the mitigation and adaptation solutions in the networkx object and add them into special attribute fields for each node for easy access in later for the API
-
+    
     B = make_acyclic(G)
     all_myths = list(nx.get_node_attributes(B, "myth").keys())
 
@@ -571,7 +568,8 @@ def makeGraph(onto_path, edge_path, output_folder_path):
                 == "is_inhibited_or_prevented_or_blocked_or_slowed_by"
             ):  # bad to hard code in 'is_inhibited_or_prevented_or_blocked_or_slowed_by'
                 mitigation_solutions.append(neighbor)
-
+    
+    mitigation_solutions = list(set(mitigation_solutions))
     # update the networkx object to have a 'mitigation solutions' field and include in it all nodes from mitigation_solutions
     nx.set_node_attributes(
         G,
@@ -616,7 +614,6 @@ def makeGraph(onto_path, edge_path, output_folder_path):
         )  # gets unique nodes
         node_adaptation_solutions = list()
         for intermediateNode in intermediate_nodes:
-            # if intermediateNode == 'increase in area burned by wildfire': breakpoint()
             node_neighbors = G.neighbors(intermediateNode)
             for neighbor in node_neighbors:
                 if (
@@ -654,7 +651,6 @@ def makeGraph(onto_path, edge_path, output_folder_path):
     # process myths in networkx object to be easier for API
     general_myths = list()
 
-    # breakpoint()
     for myth in all_myths:
         node_neighbors = G.neighbors(myth)
         for neighbor in node_neighbors:
@@ -739,9 +735,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
 
             # remove duplicate urls
             sources_list = list(dict.fromkeys(sources_list))
-
-            # if target_node == "increase in flooding of land and property":
-            #    breakpoint()
+            
             # remove urls that aren't active or aren't real
             sources_list = [url for url in sources_list if validators.url(url)]
 
@@ -753,12 +747,14 @@ def makeGraph(onto_path, edge_path, output_folder_path):
 
     # output_folder_path = "../PUT_NEW_OWL_FILE_IN_HERE/"
     save_graph_to_pickle(G, output_folder_path)
-
+    
+    T = G.copy()
+    
     valid_test_ont = get_valid_test_ont()
     not_test_ont = get_non_test_ont()
-    get_test_ontology(G, valid_test_ont, not_test_ont)
+    get_test_ontology(T, valid_test_ont, not_test_ont)
 
-    save_test_ontology_to_json(G, output_folder_path)
+    save_test_ontology_to_json(T, output_folder_path)
 
 
 def main(args):
