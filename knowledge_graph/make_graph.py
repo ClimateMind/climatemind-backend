@@ -518,22 +518,6 @@ def makeGraph(onto_path, edge_path, output_folder_path):
                             starting_nodes.append(node)
                     else:
                         starting_nodes.append(node)
-    # (Pdb) starting_nodes
-    # ['political polarization',
-    # 'decrease in test scores',
-    # 'increase in health costs',
-    # 'decrease in population of moose available to hunt',
-    # 'increase in heat stroke',
-    # 'decrease in GDP',
-    # 'decrease in worker productivity',
-    # 'decrease in learning (without air conditioner)',
-    # 'increase in destruction to US military bases',
-    # 'increase in disproportionate effects on children',
-    # 'increase in disproportionate effects on minority groups',
-    # 'greenhouse-gas externality',
-    # 'builders are not required to check before building on a floodplain',
-    # 'deregulation',
-    # 'increase in disaster costs']
 
     acyclic_graph = B.copy()
     visited_dict = {}
@@ -657,6 +641,7 @@ def makeGraph(onto_path, edge_path, output_folder_path):
             if G[myth][neighbor]["type"] == "is_a_myth_about":
 
                 impact_myths = []
+
                 if "risk solution" in G.nodes[neighbor].keys():
                     if "solution myths" not in G.nodes[neighbor].keys():
                         solution_myths = []
