@@ -246,7 +246,7 @@ def add_ontology_data_to_graph_nodes(G, onto):
 def set_edge_properties(G):
     """
     Copy annotation property attributes that exist on both nodes to their connecting edge.
-    
+
     As a work-around the OWL file format, edge attributes are stored in its neighboring nodes.
     When Owlready2 converts this to valid Python datatypes, we find these attributes in a nested
     "properties" dictionary.
@@ -267,18 +267,18 @@ def set_edge_properties(G):
     ]
 
     to_remove = {}
-   
+
     for edge in list(G.edges):
         # first node in edge
         node_a = edge[0]
-        
+
         # second node in edge
         node_b = edge[1]
-        
+
         # shortcuts to look at all keys of 'properties' (networkx node attributes) for a given edge
         props_a = G.nodes[node_a]["properties"]
         props_b = G.nodes[node_b]["properties"]
-        
+
         """
         We to make sure we have matching, qualified node attribute keys defined before looping through nodes.
 
@@ -292,9 +292,9 @@ def set_edge_properties(G):
         shared_prop_keys &= set(source_types)
 
         edge_attributes_dict = {}
-        # loop through prop keys of node 
+        # loop through prop keys of node
         for prop in list(shared_prop_keys):
-            # first, add prop keys and their list of shared values to a dict for us to add to edges later 
+            # first, add prop keys and their list of shared values to a dict for us to add to edges later
             # filter for common property values for any given node pair's 'prop' key
             intersection = set(props_a[prop]) & set(props_b[prop])
             # confirm there are non-empty list values for a given prop key
@@ -304,27 +304,27 @@ def set_edge_properties(G):
                     # breakpoint()
                 edge_attributes_dict[prop] = list(intersection)
 
-                # add new value to property value list for a given key into 'to_remove' dict   
+                # add new value to property value list for a given key into 'to_remove' dict
                 if {(node_a, prop), (node_b, prop)} <= to_remove.keys():
                     to_remove[(node_a, prop)] = to_remove[(node_a, prop)] | intersection
                     to_remove[(node_b, prop)] = to_remove[(node_b, prop)] | intersection
                 else:
                     to_remove[(node_a, prop)] = intersection
-                    to_remove[(node_b, prop)] = intersection   
-                
+                    to_remove[(node_b, prop)] = intersection
+
                 # add edge_attributes_dict to edge
                 nx.set_edge_attributes(
                     G,
-                    {(node_a,node_b): edge_attributes_dict},
+                    {(node_a, node_b): edge_attributes_dict},
                     "properties",
-                    )
-            
+                )
+
     return list(to_remove)
 
 
 def remove_edge_properties_from_nodes(G, to_remove):
     """Remove redundant, networkx, edge-only "properties" attributes from the edge's connecting node pair. The nodes and attributes are targeted based
-    on key value pairs in the 'to_remove' dictionary made previously by the 'set_edge_properties()' function. 
+    on key value pairs in the 'to_remove' dictionary made previously by the 'set_edge_properties()' function.
 
     Parameters
     ----------
