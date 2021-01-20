@@ -284,34 +284,40 @@ def set_edge_properties(G):
 
         Use set intersection to look for shared node "properties" keys that also also valid for edge attributes  
         """
-        propset_a = set(props_a.keys())
-        propset_b = set(props_b.keys())
-        shared = propset_a & propset_b & set(source_types) 
+        # find common keys in both nodes
+        prop_keys_a = set(props_a.keys())
+        prop_keys_b = set(props_b.keys())
+        shared_prop_keys = prop_keys_a & prop_keys_b
+        # identify common shared node keys that should be in their corresponding edges
+        shared_prop_keys &= set(source_types)
 
         edge_attributes_dict = {}
-        # loop through prop keys of node a, match key values to node b, and add only attributes valid for the corresponding edge 
-        for prop in props_a:
-            print(edge_attributes_dict)
-            # remove prop keys with empty lists and None values
-            if props_a[prop]: 
-                # breakpoint()
-                # prop's key value should be equal and present in both nodes
-                if (props_a[prop] == props_b[prop]) and (prop in shared):
-                    # breakpoint() 
-                    # extend value list if key in dict exists
-                    if prop in edge_attributes_dict:
-                        edge_attributes_dict[prop].extend(props_a[prop])
-                        breakpoint()
-                    edge_attributes_dict[prop] = list(props_a[prop])
-                    breakpoint()  
-                            
+        # loop through prop keys of node 
+        for prop in list(shared_prop_keys):
+            # first, add prop keys and their list of shared values to a dict for us to add to edges later 
+            # filter for common property values for any given node pair's 'prop' key
+            intersection = set(props_a[prop]) & set(props_b[prop])
+            # confirm there are non-empty list values for a given prop key
+            if intersection:
+                if prop in edge_attributes_dict.keys():
+                    edge_attributes_dict[prop].extend(intersection)
+                    # breakpoint()
+                edge_attributes_dict[prop] = list(intersection)
 
-        # add edge_attributes_dict to edge
-        nx.set_edge_attributes(
-            G,
-            {(node_a,node_b): edge_attributes_dict},
-            "properties",
-            )
+                # add new value to property value list for a given key into 'to_remove' dict   
+                if {(node_a, prop), (node_b, prop)} <= to_remove.keys():
+                    to_remove[(node_a, prop)] = to_remove[(node_a, prop)] | intersection
+                    to_remove[(node_b, prop)] = to_remove[(node_b, prop)] | intersection
+                else:
+                    to_remove[(node_a, prop)] = intersection
+                    to_remove[(node_b, prop)] = intersection   
+                
+                # add edge_attributes_dict to edge
+                nx.set_edge_attributes(
+                    G,
+                    {(node_a,node_b): edge_attributes_dict},
+                    "properties",
+                    )
             
     return list(to_remove)
 
