@@ -244,9 +244,12 @@ def add_ontology_data_to_graph_nodes(G, onto):
 
 
 def set_edge_properties(G):
-    """Add edge annotation properties that exist on both nodes of an edge
-    and create a list of properties to remove from the nodes.
-    (Only source properties that exist on both nodes of an edge are only for the edge)
+    """
+    Copy annotation property attributes that exist on both nodes to their connecting edge.
+    
+    As a work-around the OWL file format, edge attributes are stored in its neighboring nodes.
+    When Owlready2 converts this to valid Python datatypes, we find these attributes in a nested
+    "properties" dictionary.
 
     Parameters
     ----------
@@ -264,50 +267,52 @@ def set_edge_properties(G):
     ]
 
     to_remove = {}
+   
     for edge in list(G.edges):
+        # first node in edge
         node_a = edge[0]
+        
+        # second node in edge
         node_b = edge[1]
+        
+        # shortcuts to look at all keys of 'properties' (networkx node attributes) for a given edge
+        props_a = G.nodes[node_a]["properties"]
+        props_b = G.nodes[node_b]["properties"]
+        
+        """
+        We to make sure we have matching, qualified node attribute keys defined before looping through nodes.
+
+        Use set intersection to look for shared node "properties" keys that also also valid for edge attributes  
+        """
+        propset_a = set(props_a.keys())
+        propset_b = set(props_b.keys())
+        shared = propset_a & propset_b & set(source_types) 
+
         edge_attributes_dict = {}
-        # breakpoint()
-        for prop in G.nodes[node_a]["properties"].keys():
-            # breakpoint()
-            if prop in source_types:
-                intersection = set(G.nodes[node_a]["properties"][prop]) & set(
-                    G.nodes[node_b]["properties"][prop]
-                )
-                if intersection:
-                    # add intersection to edge property dictionary, ensuring if items already exist for that key, then they are added to the list
-                    if prop in edge_attributes_dict.keys():
-                        edge_attributes_dict[prop] = edge_attributes_dict[prop].extend(
-                            list(intersection)
-                        )
-                    else:
-                        edge_attributes_dict[prop] = list(intersection)
-                        # see when something comes up here
-                        if any(intersection):
-                            breakpoint()
-                    if (node_a, prop) in to_remove.keys():
-                        to_remove[(node_a, prop)] = (
-                            to_remove[(node_a, prop)] | intersection
-                        )
-                    else:
-                        to_remove[(node_a, prop)] = intersection
-                    if (node_b, prop) in to_remove.keys():
-                        to_remove[(node_b, prop)] = (
-                            to_remove[(node_b, prop)] | intersection
-                        )
-                    else:
-                        to_remove[(node_b, prop)] = intersection
+        # loop through prop keys of node a, match key values to node b, and add only attributes valid for the corresponding edge 
+        for prop in props_a:
+            print(edge_attributes_dict)
+            # remove prop keys with empty lists and None values
+            if props_a[prop]: 
+                # breakpoint()
+                # prop's key value should be equal and present in both nodes
+                if (props_a[prop] == props_b[prop]) and (prop in shared):
+                    # breakpoint() 
+                    # extend value list if key in dict exists
+                    if prop in edge_attributes_dict:
+                        edge_attributes_dict[prop].extend(props_a[prop])
+                        breakpoint()
+                    edge_attributes_dict[prop] = list(props_a[prop])
+                    breakpoint()  
+                            
 
         # add edge_attributes_dict to edge
-        G.add_edge(node_a, node_b, properties=edge_attributes_dict)
-
-        # alternative way of adding attributes to edges is commented out below:
-        # nx.set_edge_attributes(
-        #     G,
-        #     {(node_a,node_b): edge_attributes_dict},
-        #     "properties",
-        # )
+        nx.set_edge_attributes(
+            G,
+            {(node_a,node_b): edge_attributes_dict},
+            "properties",
+            )
+            
     return list(to_remove)
 
 
