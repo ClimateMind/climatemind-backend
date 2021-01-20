@@ -3,7 +3,7 @@ import networkx as nx
 import sys
 from collections import Counter
 from knowledge_graph import app
-from knowledge_graph.ontology_processing_utils import (
+from scoring.scoring_utils import (
     get_test_ontology,
     get_valid_test_ont,
     get_non_test_ont,
