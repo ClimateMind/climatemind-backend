@@ -11,4 +11,6 @@ the climatemind ontology.
 
 onto_path = "PUT_NEW_OWL_FILE_IN_HERE/climate_mind_ontology"
 output_folder_path = os.getcwd()
-ontology_processing.process_new_ontology_file.processOntology(onto_path, output_folder_path)
+ontology_processing.process_new_ontology_file.processOntology(
+    onto_path, output_folder_path
+)
