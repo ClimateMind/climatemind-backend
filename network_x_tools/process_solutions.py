@@ -54,13 +54,15 @@ class process_solutions:
 
     def get_user_general_solution_nodes(self):
         """Returns a list of general solutions and some information about those general
-        solutions. The myths will later be ranked based on user's personal values
-        (although not being done in the current implementation).
+        solutions. The solutions are ordered from highest to lowest CO2 Equivalent
+        Reduced / Sequestered (2020–2050) in Gigatons from Project Drawdown scenario 2.
         """
         general_solutions = self.G.nodes["increase in greenhouse effect"][
             "mitigation solutions"
         ]
+
         general_solutions_details = []
+        general_solutions_no_co2 = []
 
         for solution in general_solutions:
             try:
@@ -75,17 +77,28 @@ class process_solutions:
                     "imageUrl": self.NX_UTILS.get_image_url_or_none(),
                     "solutionSpecificMythIRIs": self.MYTH_PROCESS.get_solution_specific_myths(),
                     "solutionSources": self.NX_UTILS.get_solution_sources(),
+                    "solutionCo2EqReduced": self.NX_UTILS.get_co2_eq_reduced(),
                 }
             except:
                 pass
 
-            if d not in general_solutions_details:
+            if d not in general_solutions_details and d["solutionCo2EqReduced"]:
                 general_solutions_details.append(d)
+            elif d not in general_solutions_no_co2:
+                general_solutions_no_co2.append(d)
 
-        return general_solutions_details
+        general_solutions_sorted = sorted(
+            general_solutions_details,
+            key=lambda k: k["solutionCo2EqReduced"],
+            reverse=True,
+        )
+        general_solutions_sorted.extend(general_solutions_no_co2)
+
+        return general_solutions_sorted
 
     def get_user_actions(self, effect_name):
-        """Takes the name of a climate effect and returns a list of actions associated
+        """
+        Takes the name of a climate effect and returns a list of actions associated
         with that node.
         """
         solution_names = self.G.nodes[effect_name]["adaptation solutions"]
