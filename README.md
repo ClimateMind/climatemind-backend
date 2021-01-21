@@ -108,6 +108,36 @@ Follow these instructions to process a new version of a Climate Mind ontology OW
         docker exec -it $CLIMATEMIND_ID python process_new_ontology_and_visualize.py
     ```
 
+## Backend Debugging
+
+We use pdb to debug and troubleshoot issues. You can run pdb a few ways. First you need to set a breakpoint() in the code where you want to stop and examine the state of variables.
+
+Then run one of the following for scripts:
+```
+# For Scripts (eg. process_new_ontology_file.py):
+# Note that this is only for scripts that have to be run
+docker exec -it $CLIMATEMIND_ID python process_new_ontology_file.py
+```
+
+Or the following for the general docker instance:
+```
+# Run the docker instance in the background and attach to the docker image
+docker-compose up -d
+docker attach climatemindproduct_web_1
+# Navigate to the frontend directory in a separate terminal
+cd climatemind-frontend
+
+# If desired, you can link the local frontend app and test (you can also just use
+#postman and breakpoints will still happen)
+# First time only - Install npm
+npm -i
+# Start the local frontend server with npm
+npm start
+```
+
+Now you will have breakpoints in the docker container that you can interact with. Learn more about what
+you can do in the [pdb documentation](https://docs.python.org/3/library/pdb.html)
+
 ## Database
 [Flask migrate](https://flask-migrate.readthedocs.io/en/latest/) is used to handle database structure migrations. 
 Whenever the data model changes, you need to manually run `flask db migrate -m "Name of migration"`

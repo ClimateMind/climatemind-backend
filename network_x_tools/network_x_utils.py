@@ -109,3 +109,13 @@ class network_x_utils:
                 return 0
         else:
             return 0
+
+    def get_co2_eq_reduced(self):
+        """
+        Returns the solution's CO2 Equivalent Reduced / Sequestered (2020–2050) in Gigatons.
+        Values taken from Project Drawdown scenario 2.
+        """
+        if "CO2_eq_reduced" in self.node["data_properties"]:
+            return self.node["data_properties"]["CO2_eq_reduced"]
+        else:
+            return 0

@@ -1,3 +1,4 @@
+git+https://github.com/ClimateMind/climatemind-ontology-processing.git
 alembic==1.4.2
 altgraph==0.10.2
 api==0.0.7
@@ -65,7 +66,6 @@ pytest==6.0.2
 python-dateutil==2.8.1
 python-dotenv==0.14.0
 python-editor==1.0.4
-pytest==6.0.2
 pytz==2020.1
 pyyaml==5.3.1
 requests==2.24.0

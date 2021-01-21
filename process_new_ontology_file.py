@@ -2,10 +2,12 @@
 
 import os
 import argparse
-from knowledge_graph import app
+
+# from knowledge_graph import app
 import knowledge_graph.make_network
 import knowledge_graph.make_graph
-from network_x_tools.network_x_processor import network_x_processor
+
+# from network_x_tools.network_x_processor import network_x_processor
 
 
 def newest(path):
@@ -77,14 +79,15 @@ def main(args):
     # process the OWL ontology file
     processOntology(onto_path=onto_path, output_folder_path=output_folder_path)
 
-    try:
-        nx_processor = network_x_processor()
-    except:
-        raise FileNotFoundError("Pickle File Failed to Load as Config Variable")
-    try:
-        app.config["G"] = nx_processor.get_graph()
-    except:
-        raise ValidationError("Unable to Load Graph")
+    # Better to use some form of checking that the ontology was processed that doesn't require the Climate Mind Flask app.
+    # try:
+    #     nx_processor = network_x_processor()
+    # except:
+    #     raise FileNotFoundError("Pickle File Failed to Load as Config Variable")
+    # try:
+    #     app.config["G"] = nx_processor.get_graph()
+    # except:
+    #     raise ValidationError("Unable to Load Graph")
 
 
 if __name__ == "__main__":

@@ -19,8 +19,23 @@ from collections import OrderedDict
 
 
 class score_nodes:
+
+    """
+
+    After users have completed their survey, they want to receive personalized suggestions
+    for issues that affect them and actions they can take that will directly impact those
+    issues.
+
+    This class handles the scoring functions. Currently the scoring works by associating
+    a user's values with relevant issues (nodes). In the future this will be expanded to
+    include their location (zip code) and occupation.
+
+    Any scoring related functions should be added here.
+
+    """
+
     def __init__(self, user_scores, n, session_id):
-        self.G = app.config["G"]
+        self.G = app.config["G"].copy()
         self.USER_SCORES = user_scores
         self.N = n  # Number of Nodes to return for user feed
         self.SESSION_ID = session_id
