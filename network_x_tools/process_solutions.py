@@ -62,7 +62,6 @@ class process_solutions:
         ]
 
         general_solutions_details = []
-        general_solutions_no_co2 = []
 
         for solution in general_solutions:
             try:
@@ -82,19 +81,10 @@ class process_solutions:
             except:
                 pass
 
-            if d not in general_solutions_details and d["solutionCo2EqReduced"]:
+            if d not in general_solutions_details:
                 general_solutions_details.append(d)
-            elif d not in general_solutions_no_co2:
-                general_solutions_no_co2.append(d)
 
-        general_solutions_sorted = sorted(
-            general_solutions_details,
-            key=lambda k: k["solutionCo2EqReduced"],
-            reverse=True,
-        )
-        general_solutions_sorted.extend(general_solutions_no_co2)
-
-        return general_solutions_sorted
+        return general_solutions_details
 
     def get_user_actions(self, effect_name):
         """
