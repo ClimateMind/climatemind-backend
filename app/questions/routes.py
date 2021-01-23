@@ -5,6 +5,7 @@ from flask import Response
 
 from app import auto
 
+
 @bp.route("/questions", methods=["GET"])
 @auto.doc()
 def get_questions():

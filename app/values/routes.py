@@ -10,6 +10,7 @@ from app.models import Scores
 
 from app import auto
 
+
 @bp.route("/personal_values", methods=["GET"])
 @auto.doc()
 def get_personal_values():
@@ -24,9 +25,9 @@ def get_personal_values():
         return {"error": "Invalid session ID format or no ID provided"}, 400
 
     scores = Scores.query.filter_by(session_id=session_id).first()
-    
+
     if scores:
-    
+
         personal_values_categories = [
             "security",
             "conformity",
@@ -39,7 +40,7 @@ def get_personal_values():
             "achievement",
             "power",
         ]
-        
+
         scores = scores.__dict__
         sorted_scores = {key: scores[key] for key in personal_values_categories}
 

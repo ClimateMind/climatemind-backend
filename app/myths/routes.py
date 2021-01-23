@@ -7,6 +7,7 @@ MYTH_PROCESSOR = process_myths()
 
 from app import auto
 
+
 @bp.route("/myths", methods=["GET"])
 @auto.doc()
 def get_general_myths():
@@ -20,10 +21,10 @@ def get_general_myths():
         recommended_general_myths = MYTH_PROCESSOR.get_user_general_myth_nodes()
         climate_general_myths = {"myths": recommended_general_myths}
         return jsonify(climate_general_myths), 200
-        
+
     except:
         return {"error": "Failed to process myths"}, 500
-        
+
 
 @bp.route("/myths/<string:iri>", methods=["GET"])
 def get_myth_info(iri):
@@ -38,6 +39,6 @@ def get_myth_info(iri):
     if myth_info:
         specific_myth_info = {"myth": myth_info}
         return jsonify(specific_myth_info), 200
-        
+
     else:
         return {"error": "IRI does not exist"}, 400

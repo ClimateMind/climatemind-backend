@@ -6,6 +6,7 @@ from app import auto
 
 SOLUTION_PROCESSOR = process_solutions(4, 0.5)
 
+
 @bp.route("/get_actions", methods=["GET"])
 @auto.doc()
 def get_actions():
@@ -22,6 +23,7 @@ def get_actions():
 
     response = jsonify({"actions": actions})
     return response, 200
+
 
 @bp.route("/solutions", methods=["GET"])
 @auto.doc()

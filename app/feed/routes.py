@@ -6,6 +6,7 @@ from app.models import Scores
 
 from app import db, auto, cache
 
+
 @bp.route("/feed", methods=["GET"])
 @auto.doc()
 def get_feed():
@@ -38,7 +39,7 @@ def get_feed_results(session_id, N_FEED_CARDS):
     scores = db.session.query(Scores).filter_by(session_id=session_id).first()
 
     if scores:
-    
+
         personal_values_categories = [
             "security",
             "conformity",
@@ -51,14 +52,14 @@ def get_feed_results(session_id, N_FEED_CARDS):
             "achievement",
             "power",
         ]
-        
+
         scores = scores.__dict__
         scores = {key: scores[key] for key in personal_values_categories}
-        
+
         SCORE_NODES = score_nodes(scores, N_FEED_CARDS, session_id)
         recommended_nodes = SCORE_NODES.get_user_nodes()
         feed_entries = {"climateEffects": recommended_nodes}
         return jsonify(feed_entries), 200
-        
+
     else:
         return {"error": "Invalid session ID or no information for ID"}, 400
