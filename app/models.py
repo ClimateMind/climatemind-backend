@@ -1,8 +1,9 @@
 import os
-from knowledge_graph import app, db
+from flask import current_app
+from app import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from knowledge_graph import login
+from app import login
 
 # Azure
 from sqlalchemy import create_engine

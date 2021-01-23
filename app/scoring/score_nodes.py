@@ -2,17 +2,17 @@ import pickle
 import networkx as nx
 import sys
 from collections import Counter
-from knowledge_graph import app
-from scoring.scoring_utils import (
+from flask import current_app
+from app.scoring.scoring_utils import (
     get_test_ontology,
     get_valid_test_ont,
     get_non_test_ont,
 )
-from network_x_tools.process_myths import process_myths
-from network_x_tools.network_x_utils import network_x_utils
-from network_x_tools.process_solutions import process_solutions
+from app.myths.process_myths import process_myths
+from app.network_x_tools.network_x_utils import network_x_utils
+from app.solutions.process_solutions import process_solutions
 
-from knowledge_graph.build_localised_acyclic_graph import build_localised_acyclic_graph
+from app.scoring.build_localised_acyclic_graph import build_localised_acyclic_graph
 import numpy as np
 import random
 from collections import OrderedDict
@@ -35,7 +35,7 @@ class score_nodes:
     """
 
     def __init__(self, user_scores, n, session_id):
-        self.G = app.config["G"].copy()
+        self.G = current_app.config["G"].copy()
         self.USER_SCORES = user_scores
         self.N = n  # Number of Nodes to return for user feed
         self.SESSION_ID = session_id

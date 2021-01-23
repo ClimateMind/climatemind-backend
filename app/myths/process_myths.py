@@ -1,5 +1,5 @@
-from knowledge_graph import app
-from network_x_tools.network_x_utils import network_x_utils
+from flask import current_app
+from app.network_x_tools.network_x_utils import network_x_utils
 import networkx as nx
 
 
@@ -19,7 +19,7 @@ class process_myths:
     """
 
     def __init__(self):
-        self.G = app.config["G"].copy()
+        self.G = current_app.config["G"].copy()
         self.NX_UTILS = network_x_utils()
         self.node = None  # Current Node
 

@@ -1,7 +1,7 @@
-from knowledge_graph import app
+from flask import current_app
 
-from network_x_tools.network_x_utils import network_x_utils
-from network_x_tools.process_myths import process_myths
+from app.network_x_tools.network_x_utils import network_x_utils
+from app.myths.process_myths import process_myths
 
 import numpy as np
 import random
@@ -23,7 +23,7 @@ class process_solutions:
     """
 
     def __init__(self, max_solutions=4, adaptation_to_mitigation_ratio=0.5):
-        self.G = app.config["G"].copy()
+        self.G = current_app.config["G"].copy()
         self.NX_UTILS = network_x_utils()
         self.MYTH_PROCESS = process_myths()
         self.MAX_SOLUTIONS = max_solutions
