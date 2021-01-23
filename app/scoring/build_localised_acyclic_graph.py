@@ -1,5 +1,5 @@
-from knowledge_graph.models import Sessions
-from knowledge_graph import db
+from app.models import Sessions
+from app import db
 from sqlalchemy import create_engine
 import networkx as nx
 import os

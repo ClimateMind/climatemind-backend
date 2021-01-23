@@ -1,5 +1,5 @@
-from knowledge_graph import db
-from knowledge_graph.models import ClimateFeed
+from app import db
+from app.models import ClimateFeed
 import datetime
 from datetime import timezone
 
