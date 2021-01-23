@@ -1,8 +1,8 @@
 from flask import request
 
-from app.auth import bp
+from app.subscribe import bp
 
-from app.auth.store_subscription_data import store_subscription_data
+from app.subscribe.store_subscription_data import store_subscription_data
 
 from app import auto
 
