@@ -1,14 +1,15 @@
 import unittest
-from knowledge_graph import db, app
-from knowledge_graph.models import Scores
+from flask import current_app
+from app import db
+from app.models import Scores
 
-from scoring.persist_scores import persist_scores
+from app.scoring.persist_scores import persist_scores
 
 
 class TestPersistScores(unittest.TestCase):
     def setUp(self) -> None:
 
-        self.app = app.test_client()
+        self.app = current_app.test_client()
         db.init_app(app)
 
         Scores.__table__.create(db.session.bind, checkfirst=True)

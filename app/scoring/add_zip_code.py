@@ -1,7 +1,7 @@
 import re
 
-from knowledge_graph import db
-from knowledge_graph.models import Sessions
+from app import db
+from app.models import Sessions
 
 
 def add_zip_code(zipcode, session_id):
