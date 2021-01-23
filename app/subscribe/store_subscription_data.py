@@ -1,5 +1,5 @@
-from knowledge_graph import db
-from knowledge_graph.models import Signup, Sessions
+from app import db
+from app.models import Signup, Sessions
 import datetime
 from datetime import timezone
 import re

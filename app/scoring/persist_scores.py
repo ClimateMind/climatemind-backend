@@ -1,7 +1,7 @@
 from typing import Type
 
-from knowledge_graph import db
-from knowledge_graph.models import Scores, Sessions
+from app import db
+from app.models import Scores, Sessions
 
 
 def persist_scores(scores: dict) -> Type[KeyError]:

@@ -1,7 +1,7 @@
 from typing import Type
 
-from knowledge_graph import db
-from knowledge_graph.models import Sessions
+from app import db
+from app.models import Sessions
 
 
 def store_ip_address(ip_address, session_id):

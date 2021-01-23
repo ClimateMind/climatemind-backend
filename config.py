@@ -2,7 +2,7 @@ from flask import abort
 import os
 import urllib
 
-from network_x_tools.network_x_processor import network_x_processor
+from app.network_x_tools.network_x_processor import network_x_processor
 
 
 class BaseConfig(object):
