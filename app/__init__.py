@@ -34,9 +34,9 @@ def create_app(config_class=DevelopmentConfig):
 
         app.register_blueprint(errors_bp)
 
-        from app.auth import bp as auth_bp
+        from app.subscribe import bp as subscribe_bp
 
-        app.register_blueprint(auth_bp, url_prefix="/auth")
+        app.register_blueprint(subscribe_bp)
 
         from app.feed import bp as feed_bp
 
