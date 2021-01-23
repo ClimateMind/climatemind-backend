@@ -5,7 +5,7 @@ import networkx as nx
 
 class network_x_processor:
     def __init__(self):
-        self.graph_file = "./gpickle/Climate_Mind_DiGraph.gpickle"
+        self.graph_file = "./output/Climate_Mind_DiGraph.gpickle"
         self.G = self.load_graph()
 
     def load_graph(self):

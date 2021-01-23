@@ -11,6 +11,7 @@ from app.scoring.scoring_utils import (
 from app.myths.process_myths import process_myths
 from app.network_x_tools.network_x_utils import network_x_utils
 from app.solutions.process_solutions import process_solutions
+from app.feed.store_climate_feed_data import store_climate_feed_data
 
 from app.scoring.build_localised_acyclic_graph import build_localised_acyclic_graph
 import numpy as np
@@ -146,4 +147,5 @@ class score_nodes:
         self.SOL_PROCESSOR = process_solutions()
         self.simple_scoring()
         self.get_best_nodes()
+        store_climate_feed_data(self.SESSION_ID, self.BEST_NODES)
         return self.BEST_NODES
