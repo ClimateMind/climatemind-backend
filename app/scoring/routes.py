@@ -11,6 +11,7 @@ from app.scoring.add_zip_code import add_zip_code
 
 from app import auto
 
+
 @bp.route("/scores", methods=["POST"])
 @auto.doc()
 def user_scores():
@@ -47,7 +48,7 @@ def user_scores():
         return {"error": "Not enough set one scores"}, 400
     elif len(questions["SetOne"]) > RESPONSES_TO_ADD:
         return {"error": "Too many set one scores"}, 400
-        
+
     value_id_map = {
         1: "conformity",
         2: "tradition",

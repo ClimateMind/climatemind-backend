@@ -6,6 +6,7 @@ from app.auth.store_subscription_data import store_subscription_data
 
 from app import auto
 
+
 @bp.route("/subscribe", methods=["POST"])
 @auto.doc()
 def subscribe():
