@@ -181,6 +181,22 @@ def add_lrf_data_to_graph(graph, dict):
     return graph
 
 
+def causal_parents(node, graph):
+    """
+    Returns the nodes (string names) that are causal parents of the node (have the edge type "causes_or_promotes"), else returns empty list.
+    Parameters
+    node - name of the node (string)
+    graph - networkx graph object
+    """
+    node_causal_parents = []
+    if list(graph.predecessors(node)):
+        possibleCausalParents = graph.predecessors(node)
+        for possibleCausalParent in possibleCausalParents:
+            if graph[possibleCausalParent][node]["type"] == "causes_or_promotes":
+                node_causal_parents.append(possibleCausalParent)
+    return node_causal_parents
+
+
 def local_graph(node, graph, visited_dictionary):
     """
     Recursive function that modifies a graph node amd all the upstream parents based on if the climate change node could possibly be a local concept for the user.
