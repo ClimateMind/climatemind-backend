@@ -62,6 +62,10 @@ def create_app(config_class=DevelopmentConfig):
 
         app.register_blueprint(personal_values_bp)
 
+        from app.documentation import bp as documentation_bp
+
+        app.register_blueprint(documentation_bp)
+
     return app
 
 
