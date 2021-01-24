@@ -7,6 +7,7 @@ from app.scoring import bp
 from app.scoring.persist_scores import persist_scores
 
 from app.scoring.store_ip_address import store_ip_address
+from app.post_code.store_post_code import store_post_code
 
 from app import auto
 
@@ -41,6 +42,7 @@ def user_scores():
     session_id = str(uuid.uuid4())
 
     questions = parameter["questionResponses"]
+    postal_code = parameter["zipCode"]
 
     if len(questions["SetOne"]) < RESPONSES_TO_ADD:
         return {"error": "Not enough set one scores"}, 400
@@ -99,6 +101,12 @@ def user_scores():
         persist_scores(value_scores)
     except KeyError:
         return {"error": "Invalid key"}, 400
+
+    if postal_code:
+        try:
+            store_post_code(postal_code, session_id)
+        except:
+            return {"error": "Error adding zipcode to db"}, 500
 
     if (
         os.environ["DATABASE_PARAMS"]
