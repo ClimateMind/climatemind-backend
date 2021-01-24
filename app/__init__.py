@@ -58,9 +58,9 @@ def create_app(config_class=DevelopmentConfig):
 
         app.register_blueprint(questions_bp)
 
-        from app.values import bp as values_bp
+        from app.personal_values import bp as personal_values_bp
 
-        app.register_blueprint(values_bp)
+        app.register_blueprint(personal_values_bp)
 
     return app
 

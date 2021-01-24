@@ -14,7 +14,9 @@ def get_questions():
     presented to the user.
     """
     try:
-        file = os.path.join(os.getcwd(), "json_files", "schwartz_questions.json")
+        file = os.path.join(
+            os.getcwd(), "app/questions/static", "schwartz_questions.json"
+        )
         with open(file) as json_file:
             data = load(json_file)
     except FileNotFoundError:
