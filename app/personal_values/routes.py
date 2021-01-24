@@ -4,7 +4,7 @@ from flask import jsonify, request
 
 from json import load
 
-from app.values import bp
+from app.personal_values import bp
 
 from app.models import Scores
 
@@ -47,7 +47,9 @@ def get_personal_values():
         top_scores = sorted(sorted_scores, key=sorted_scores.get, reverse=True)[:3]
 
         try:
-            file = os.path.join(os.getcwd(), "json_files", "value_descriptions.json")
+            file = os.path.join(
+                os.getcwd(), "app/personal_values/static", "value_descriptions.json"
+            )
             with open(file) as f:
                 value_descriptions = load(f)
         except FileNotFoundError:
