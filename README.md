@@ -195,3 +195,4 @@ Cd into the climatemind-backend directory on your computer to run black commands
 Run Black locally to see which files need formatting using `python3 -m black --check ./`
 
 Use Black to automatically format your files using `python3 -m black ./`
+
