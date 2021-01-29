@@ -1,15 +1,18 @@
-# Climatemind Backend Contribution Doc
+# Contributing to Climate Mind
 
-# Contents
+## Contents
 
-1. Intro
-2. What is this repository?
-3. Dependencies and Getting Started
-4. Getting in Touch and Communication
-5. Change Process and how to contribute
-6. Additional Resources and Information
+1. [Intro](#intro)
+2. [Communication Channels](#communication-channels)
+3. [How to Contribute](#how-to-contribute)
+4. [Making a PR](#making-a-pr)
+5. [Reviewing a PR](#reviewing-a-pr)
+6. [Merging](#merging)
+7. [Code Style](#code-style)
+8. [Additional Resources](#additional-resources)
 
-## 1. Intro
+## Intro
+
 
 **Hello, and welcome to the official Climatemind backend repository!**
 
@@ -19,100 +22,62 @@ This project would not exist if it wasn't for driven and curious individuals who
 
 **We thank you for being one of them.**
 
-The information below will take you through everything you will need to know in order to contribute to the backend of Climatemind. We are firm believers in open source and as such we want to make it as easy as possible for anyone to contribute. Please do read the doc to ensure that you can get up and running as quickly as possible, and that the change request process makes sense!
+At the moment, we do not accept anonymous PRs, but we'd love to recruit some more volunteers to be consistent 
+members of our team. If you are interested in joining us, please [reach out to us.](https://climatemind.us18.list-manage.com/subscribe?u=a8795c1814f6dfd3ce4561a17&id=b451cfd1ed)
 
-## 2. What is Climatemind-Backend
+Or email us at [hello@climatemind.org](hello@climatemind.org) with your Resume and Github.
 
-Climatemind-backend contains the codebase used as part of the climatemind App. This codebase is effectively a Python API, built to serve a React frontend (if frontend dev. is more to your liking, head on over to: https://github.com/ClimateMind/climatemind-frontend!).
+## Communication Channels
 
-## 3. Getting Started & Dependencies
+The Climatemind project is run by teams, distributed all over the globe. All of the communication is done on a dedicated group of slack channels. For now, an invite is required to join a channel. Simply send off an email to: hello@climatemind.org to receive an invite. :)
 
-#### Getting started with local development:
-
-The setup requires docker. You can download it here: <a>https://www.docker.com/products/docker-desktop</a>. Once installed, run container with:
-
-    $ docker-compose up
-        
-NOTE: On Windows it is running in a strict secure mode. You need to add the source directory to the Docker Resources:
-    *Settings / Resources / File Sharing -> add the application root directory*.
-
-You can also start the container in the background with:
-
-    $ docker-compose up -d
-
-To stop the container, run:
-
-    $ docker-compose down
-
-#### For deployment:
-
-The Docker lifecycle is to build the image and run it only once. After that you can stop or start the image.
-
-*To build:*
-    
-    $ docker build -t "climatemind-backend:0.1" .
-
-*Check the built image:*
-
-    $ docker images climatemind-backend
-    
-*Running Docker:*
-
-    $ docker run -d --name climatemind-backend --publish 5000:5000 climatemind-backend:0.1
-
-*Stopping the container:*
-
-    $ docker stop climatemind-backend
-
-*Starting the container:*
-
-    $ docker start climatemind-backend
-
-    
-## 4. Main Communication Channels
-The Climatemind project is run by teams, distributed all over the globe. All of the communication is done on a dedicated group of slack channels. For now, an invite is required to join a channel. Simply send off an email to: <a>hello@climatemind.org</a> to receive an invite. :)
-
-There is a weekly “standup” usually occurring on Zoom on Sunday evenings (20:00 GMT+1) that is open for everyone that wants to join. The standup is recorded for those that cannot attend. It is recommended to join or listen to the recording in order to sync up with the other members. There is also a separate non-recorded zoom room for breakout discussions etc. 
+There is a weekly “standup” usually occurring on Zoom on Sunday evenings (20:00 GMT+1) that is open for everyone that wants to join. The standup is recorded for those that cannot attend. It is recommended to join or listen to the recording in order to sync up with the other members. There is also a separate non-recorded zoom room for breakout discussions etc.
 
 NOTE: To get access to the rooms, please ask for an invite on Slack.
 
-For the complete information re: what is currently worked on, what is in the project backlog etc., see the Pivotal tracker dedicated to the project: <a>https://www.pivotaltracker.com/n/projects/2444098</a>
+## How to Contribute
 
-If you want to **suggest a new feature** it’s a good idea to discuss it in Slack with the backend team. It is also a good idea to check out the backlog in Pivotal tracker to ensure that the feature isn’t already in the works. We are always looking for new ideas to collaborate on so don't be shy in suggesting new ones!
-## 5. How to Contribute & Change Process
+Our project management is handled in Jira. If you don't already have access to our Jira, please request access from someone on the team.
 
-The start of your workflow should be to look at Pivotal tracker and see what tasks need to be done. Pivotal tracker is the tool that tracks the project's progression (effectively a kanban board). Before writing any code, head on over to <a>https://www.pivotaltracker.com/n/projects/2444098</a>. Your workflow should resemble that of the below steps:
+If you're assigned a task in Jira, make sure to use the ticket number in your branch name. For example, if the ticket is CM-57 you could make `CM-57-Fixing-API-Errors` as a name.
 
-#### Workflow
+If you want to suggest a new feature it’s a good idea to discuss it in Slack with the backend team. It is also a good idea to check out the backlog in Jira to ensure that the feature isn’t already in the works. We are always looking for new ideas to collaborate on so don't be shy in suggesting new ones!
 
-1. Click 'start' on a Pivotal story (or make a new story by following our story writing guide, then click 'start'). If there isn’t a story that accurately reflects the change you want to make, consult with the backend team on Slack.
+## Making a PR
 
-2. To start contributing a change, first make sure you have the latest version of the project by pulling it down from github. Next, make a branch from master named in accordance with your change is trying to accomplish, for example:
+We have limited credits with CircleCI. It's fine to make commits or PRs as needed, but before making a PR please do the following:
 
-        $ git checkout -b feature/{pivotal-story-ID}-short-meaningful-title-of-the-branch
+1. Test your code locally using Postman to ensure that the endpoints return valid responses.
+2. Format your code using Pep8 Styling (see below)
+3. If your changes affect how the app is run, please modify the documentation accordingly.
+4. If your functionality needs to be tested, please include at least one test.
+5. Ensure that the lint and build tests pass before requesting a review.
+6. Include the Jira ticket number in the PR (ex. "Cm-57 Fixing API Errors")
 
-	Make sure you include the pivotal-story-id in the branch name. This provides some nifty integration that links your branch to the Pivotal tracker :)
+## Reviewing a PR
 
-	Once starting the work, try to make commits onto your branch with useful and descriptive messages so that the team can understand what you are trying to accomplish and so support can be provided in the process. 
+1. If the code is modified, make sure to pull the branch and test that the endpoints are working.
+2. Make sure the code has passed linting and black before approving
 
-3. When you are happy with the changes you've made, proceed by going on the repository website: <a>https://github.com/ClimateMind/climatemind-backend</a> and create a **pull request** for your changes to be merged into master.
+## Merging
 
-	If the climatemind repo has changed significantly between the time you started and finished your changes, you may be asked to rebase your branch. You can read more about what this means here: <a>https://git-scm.com/book/en/v2/Git-Branching-Rebasing</a>s
+The original contributor should merge their branch after receiving one approval review.
 
-4. After at least one approval by a maintainer, the branch will be merged and you must the branch. The project follows the PEP8 style standard and any change that does not comply with PEP8 will be forced to do so before being merged.
+## Code Style
 
-5. Once your change is integrated, make sure you change the Pivotal story status to capture the conclusion of the change.
+The Python code style is formatted using [Black](https://pypi.org/project/black/). 
+Black is a file formatter that converts your code to follow [PEP 8](https://www.python.org/dev/peps/pep-0008/) standards. 
+PEP 8 provides guidelines and best practices for writing Python, and is the standard style used for modern Python libraries. 
 
-If you have any questions or thoughts, please don't hesitate to reach out on Slack :)
-## 6. Additional Resources and Information
+Open the terminal/command line and install Black by running `pip install black`. Note: Python 3.6.0+ is required.
 
-Here’s a quick collection of resources if you need to readup on the various libraries and technologies used:
+1. Use the terminal/command-line to navigate to the climatemind-backend directory
+2. Run Black locally to see which files need formatting using `python3 -m black --check ./`
+3. Use Black to automatically format your files using `python3 -m black ./`
 
-Flask (webdev framework): <a>https://flask.palletsprojects.com/en/1.1.x/quickstart/</a>
+## Additional Resources
 
-
-NetworkX (graph analytics): <a>https://networkx.github.io/</a>
-
-Owl2ready (Python Ontology wrapper): <a>https://pypi.org/project/Owlready2/</a>
-
-Docker (containerization framework): <a>https://www.docker.com/get-started</a>
+1. [Flask Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
+2. [NetworkX](https://networkx.github.io/)
+3. [Owl2Ready](https://pypi.org/project/Owlready2/)
+4. [Docker](https://www.docker.com/get-started)

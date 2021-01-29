@@ -2,13 +2,16 @@
 
 ## Contents
 
-1. Intro
-2. Communication Channels
-3. Making a PR
-4. Reviewing a PR
-5. Merging
-6. Code Style
-7. Additional Resources
+1. [Intro](#intro)
+2. [Communication Channels](#communication-channels)
+3. [How to Contribute](#how-to-contribute)
+4. [Making a PR](#making-a-pr)
+5. [Reviewing a PR](#reviewing-a-pr)
+6. [Merging](#merging)
+7. [Code Style](#code-style)
+8. [Additional Resources](#additional-resources)
+
+## Intro
 
 
 **Hello, and welcome to the official Climatemind backend repository!**
@@ -48,7 +51,8 @@ We have limited credits with CircleCI. It's fine to make commits or PRs as neede
 2. Format your code using Pep8 Styling (see below)
 3. If your changes affect how the app is run, please modify the documentation accordingly.
 4. If your functionality needs to be tested, please include at least one test.
-4. Ensure that the lint and build tests pass before requesting a review.
+5. Ensure that the lint and build tests pass before requesting a review.
+6. Include the Jira ticket number in the PR (ex. "Cm-57 Fixing API Errors")
 
 ## Reviewing a PR
 
