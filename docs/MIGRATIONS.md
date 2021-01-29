@@ -76,11 +76,18 @@ docker-compose up
 ```
 
 9. Manually edit the migration script to stop it from dropping the lrf table - remove code from both upgrade and downgrade.
-10. Comment the migrate code out and the upgrade code block back in entrypoint.sh up to the command to upgrade the azure db. Exclude the notes and the command to run the python add lrf script (this should only be run if the lrf data has changed and needs to be added).
-11. Docker down, build, up
+10. Re-Comment the migrate code out and the upgrade code block back in entrypoint.sh. Exclude the notes and the command to run the python add lrf script (this should only be run if the lrf data has changed and needs to be added).
+11. Run the following again:
+
+```
+docker-compose down
+docker-compose build
+docker-compose up
+```
+
 12. Delete the cloud db parameters on line 13 and uncomment line 12 to put the local credentials back in docker-compose.yml
-12. Check that the cloud db has been updated
-13. Test the changes
+13. Check that the cloud db has been updated
+14. Test the changes
 
 Co-written by
 @seanmajorpayne @y-himanen
