@@ -126,9 +126,11 @@ When you're done working, stop the container. Stopping containers will remove co
 
     docker-compose down
     
-## Testing the Application Locally (with no front-end)
+## Trying the Application Locally (with no front-end)
 
 If you'd like to test the endpoints, you can do this with Postman.
+
+Register for and install Postman from their [website](https://www.postman.com).
 
 We have a collection of tests already available that you can run. Request access from any of the backend team members to our collections.
 
@@ -149,17 +151,18 @@ git clone https://github.com/ClimateMind/climatemind-frontend.git
 npm -i
 ```
 
-3. Navigate to the /climatemind-backend directory
-4. Start the Docker Instance and attach to it
+### Every Time
+4. Navigate to the /climatemind-backend directory
+5. Start the Docker Instance and attach to it
 
 ```
 docker-compose up -d
 docker attach climate-backend_web_1
 ```
 
-5. Open up a second terminal/command-line instance
-6. Navigate to the /climatemind-frontend directory
-7. Start NPM
+6. Open up a second terminal/command-line instance
+7. Navigate to the /climatemind-frontend directory
+8. Start NPM
 ```
 npm start
 ```
@@ -169,8 +172,9 @@ and have access to the fully functioning application locally!
 
 ## Running the application with Docker (for deployment)
 
-The Docker lifecycle is to build the image and run it only once. After that you can stop or start the image.
 **_If you are a new developer on the team, you do not need to do this._**
+
+The Docker lifecycle is to build the image and run it only once. After that you can stop or start the image.
 
 Building Docker image
 
@@ -198,7 +202,34 @@ Start the container
 
 The app can be debugged using pdb. You can do this two ways.
 
-1) Use Postman to test the 
+1. Use Postman to test the API without a front-end instance
+2. Use the front-end instance to interact with the API
+
+For either test, you need to add a breakpoint() into the code where you want the application
+to pause for debugging.
+
+For more information about PDB review their [documentation](https://docs.python.org/3/library/pdb.html).
+
+**To test with Postman**
+
+Navigate to the climatemind-backend directory and run:
+
+```
+docker-compose up -d
+docker attach climatemind-backend
+```
+
+The terminal/command-line can now be used to interact with PDB. Once the code hits a stopping point, you will see (pdb) in this terminal/command-line instance.
+
+**To test with Front-End**
+
+Run the same commands listed above. Then open up a second terminal and run:
+
+```
+npm start
+```
+
+The terminal/command-line can now be used to interact with PDB. Once the code hits a stopping point, you will see (pdb) in this terminal/command-line instance.
 
 ## Api documentation
 
@@ -207,9 +238,6 @@ The app can be debugged using pdb. You can do this two ways.
 [Swagger Documentation](http://localhost:5000/swagger) will be available soon, detailing the API endpoints and how they should be used. Whilst in development this can be found at [http://localhost:5000/swagger](http://localhost:5000/swagger).
 
 ---
-
-Now you will have breakpoints in the docker container that you can interact with. Learn more about what
-you can do in the [pdb documentation](https://docs.python.org/3/library/pdb.html)
 
 ## Database
 [Flask migrate](https://flask-migrate.readthedocs.io/en/latest/) is used to handle database structure migrations. 
