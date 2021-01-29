@@ -8,7 +8,7 @@
 
 ## TOC
 
-1. [What is this repo?](#what-is-this-repo?)
+1. [What is this repo?](#what-is-this-repo)
 2. [How this works](#how-this-works)
 3. [Overview](#overview)
 4. [Installing the Project](#installing-the-project)
@@ -22,7 +22,7 @@
 12. [API Documentation](#api-documentation)
 13. [FAQ](#faq)
 
-## 1. What is this repo?
+## What is this repo?
 
 The [Climate Mind application](https://app.climatemind.org) makes conversations about climate change easier, by letting users explore climate issues
 that speak to their personal values. We aim to inspire users to take action with a range of attractive solutions consistent 
@@ -241,3 +241,8 @@ A: The .gpickle file needs to be in the climatemind-backend/output folder. As lo
 
 **Q: How does the production application get access to the climate data?**
 A: The .gpickle file is included in the commits to the repo. When this is pushed to the main branch, the production application has access to the .gpickle file
+
+## Special Thanks
+
+Git history loses contributions when a file is moved, so thank you to the following people who worked on the previous version.
+@NickCallaghan @biotom @rodriguesk @znurgl @y-himanen

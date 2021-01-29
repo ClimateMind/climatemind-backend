@@ -3,10 +3,84 @@
 When changes are made to the database structure, migrations are performed with Flask-Migrate to
 update these changes within SQLalchemy.
 
-TODO: @y-himanen needs to update this to the current process.
+Migrations happen in two places, locally and within the Azure Cloud. The steps to run the migrations
+differ slightly between the two.
 
-## Database
-[Flask migrate](https://flask-migrate.readthedocs.io/en/latest/) is used to handle database structure migrations. 
-Whenever the data model changes, you need to manually run `flask db migrate -m "Name of migration"`
-This will generate a file under `/migrations/version` which then should be checked into GIT. Whenever the API starts up, it calls `flask db upgrade`. 
-This command will automatically apply any new migrations to the database. No manual scripts or post release commands are required!
+You will need to run a migration anytime the models in the models.py file are changed.
+
+## Running A Local Migration
+
+1. Update the relevant model
+2. Open the climatemind-backend/migrations\_local/versions folder and delete the .py file inside.
+3. Open the entrypoint.sh file in the climatemind-backend directory
+4. Uncomment the following:
+```
+# flask db migrate -m "add all current tables" -d $BASEDIR/migrations_local
+```
+
+**_Make sure the $BASEDIR/migrations\_azure line IS COMMENTED OUT_**
+
+5. Navigate to the climatemind-backend directory using the terminal/command-line. Run:
+
+```
+docker-compose down
+docker-compose build
+docker-compose up
+```
+
+6. Review the output in terminal/command-line and ensure the local tables have been created
+7. Test the API endpoints locally to ensure the application is still working 
+
+## Running A Cloud Migration
+
+1. Update the relevant model
+2. Open the entrypoint.sh file in the climatemind-backend directory
+3. Uncomment the following:
+```
+# flask db migrate -m "CM-### - MESSAGE_HERE" -d $BASEDIR/migrations_azure
+
+```
+**_Make sure the $BASEDIR/migrations\_local line IS COMMENTED OUT_**
+
+4. Comment out the following, so that upgrades are not run simultaneously.
+```
+if [ "$DATABASE\_PARAMS" = "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;" ]
+then
+    flask db upgrade -d $BASEDIR/migrations_local #this line used only if local database is being used
+    python add\_lrf\_table.py
+else
+    flask db upgrade -d $BASEDIR/migrations\_azure #this line used only if production database is being used 
+    # NOTE: migrate and upgrade must be run SEPARATELY for cloud migrations. 
+    # COMMENT OUT the upgrade code and run the migration first.
+    # AFTER migrating, manually edit the migration script to prevent the lrf table being dropped. 
+    # THEN comment out the migrate command and run upgrade.
+    # ONLY run the python add\_lrf\_table script if the csv file changes.
+    # python add\_lrf\_table.py
+fi
+```
+
+5. Open docker-compose.yml
+6. Comment out the following
+
+```
+DATABASE\_PARAMS: Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;
+```
+
+7. After this line, copy paste the DATABASE_PARAMS using the cloud db credentials from azure console (this should be uncommented so it runs)
+8. Navigate to the climatemind-backend directory (locally) and run the following:
+
+```
+docker-compose down
+docker-compose build
+docker-compose up
+```
+
+9. Manually edit the migration script to stop it from dropping the lrf table - remove code from both upgrade and downgrade.
+10. Comment the migrate code out and the upgrade code block back in entrypoint.sh up to the command to upgrade the azure db. Exclude the notes and the command to run the python add lrf script (this should only be run if the lrf data has changed and needs to be added).
+11. Docker down, build, up
+12. Delete the cloud db parameters on line 13 and uncomment line 12 to put the local credentials back in docker-compose.yml
+12. Check that the cloud db has been updated
+13. Test the changes
+
+Co-written by
+@seanmajorpayne @y-himanen
