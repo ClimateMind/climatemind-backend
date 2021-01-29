@@ -81,3 +81,8 @@ Open the terminal/command line and install Black by running `pip install black`.
 2. [NetworkX](https://networkx.github.io/)
 3. [Owl2Ready](https://pypi.org/project/Owlready2/)
 4. [Docker](https://www.docker.com/get-started)
+
+## Special Thanks
+
+Git history loses contributions when a file is moved, so thank you to the following people who worked on the previous version.
+@NickCallaghan @biotom @rodriguesk @Expan75
