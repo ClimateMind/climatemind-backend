@@ -6,6 +6,24 @@
 ![](https://img.shields.io/badge/Tools-Docker-informational?style=flat&logo=docker&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Server-Azure-informational?style=flat&logo=microsoft-azure&logoColor=white&color=2bbc8a)
 
+## TOC
+
+1. [What is this repo?](#what-is-this-repo?)
+2. [How this works](#how-this-works)
+3. [Overview](#overview)
+4. [Installing the Project](#installing-the-project)
+5. [Installing Docker](#installing-docker)
+6. [Installing the Ontology-Processing Repo](#install-the-ontology-processing-repo)
+7. [Process the Ontology](#process-the-ontology)
+8. [Running the application](#running-the-application)
+9. [Local API](#local-api)
+10. [Local App](#local-app)
+11. [Backend Debugging](#backend-debugging)
+12. [API Documentation](#api-documentation)
+13. [FAQ](#faq)
+
+## 1. What is this repo?
+
 The [Climate Mind application](https://app.climatemind.org) makes conversations about climate change easier, by letting users explore climate issues
 that speak to their personal values. We aim to inspire users to take action with a range of attractive solutions consistent 
 with their values that they can get excited about.
@@ -25,16 +43,16 @@ found in the /output directory and read by the application.
 
 Detailed instructions for processing the ontology can be found [below](#owl-file-processing) or in the [climatemind-ontology-processing repo](https://github.com/ClimateMind/climatemind-ontology-processing).
 
-## How to Run the App
+## Overview
 
 In order to use this application you need to:
 
 1. Install the project
 2. Install Docker
-2. Install the Ontology Processing repo through Pip
-2. Download the Ontology file and process it to create the .gpickle
-3. Build the application with Docker
-3. Launch the application with Docker
+3. Install the Ontology Processing repo through Pip
+4. Download the Ontology file and process it to create the .gpickle
+5. Build the application with Docker
+6. Launch the application with Docker
 
 Following are more details about each of these steps
 
@@ -95,7 +113,7 @@ python3 process.py
 6. Check the climatemind-backend/Output folder. If you did this correctly, there should be a .gpickle file.
 7. You can now run the app and it will automatically use this gpickle file to load climate data into the app.
 
-## Running the application with Docker Compose (for development)
+## Running the application
 
 **_Before doing what's below, be sure the Docker application is running and the command line working directory is changed to the climatemind-backend path._**
 
@@ -126,7 +144,7 @@ When you're done working, stop the container. Stopping containers will remove co
 
     docker-compose down
     
-## Trying the Application Locally (with no front-end)
+## Local API
 
 If you'd like to test the endpoints, you can do this with Postman.
 
@@ -134,7 +152,7 @@ Register for and install Postman from their [website](https://www.postman.com).
 
 We have a collection of tests already available that you can run. Request access from any of the backend team members to our collections.
 
-## Trying the Application Locally (with front-end)
+## Local App
 
 If you'd like to test the application locally with the front-end interface, you need to do the following:
 
