@@ -84,7 +84,7 @@ python3 -m pip install git+https://github.com/ClimateMind/climatemind-ontology-p
 python3 -m pip install git+https://github.com/ClimateMind/climatemind-ontology-processing.git --upgrade
 ```
 
-4. Run the process.py script by executing the following:
+5. Run the process.py script by executing the following:
 
 ```
 python3 process.py
@@ -92,8 +92,8 @@ python3 process.py
 
 **_Ensure that you are in the /process\_ontology folder when you run this or the command will not find the file._**
 
-5. Check the climatemind-backend/Output folder. If you did this correctly, there should be a .gpickle file.
-6. You can now run the app and it will automatically use this gpickle file to load climate data into the app.
+6. Check the climatemind-backend/Output folder. If you did this correctly, there should be a .gpickle file.
+7. You can now run the app and it will automatically use this gpickle file to load climate data into the app.
 
 ## Running the application with Docker Compose (for development)
 
@@ -125,11 +125,52 @@ The application should now be running on localhost. You can access it at http://
 When you're done working, stop the container. Stopping containers will remove containers, networks, volumes, and images created by docker-compose up.
 
     docker-compose down
+    
+## Testing the Application Locally (with no front-end)
+
+If you'd like to test the endpoints, you can do this with Postman.
+
+We have a collection of tests already available that you can run. Request access from any of the backend team members to our collections.
+
+## Trying the Application Locally (with front-end)
+
+If you'd like to test the application locally with the front-end interface, you need to do the following:
+
+### First Time
+1. Use terminal/command-line to navigate to any directory located outside of the climatemind-backend
+2. Clone the front-end repo
+
+```
+git clone https://github.com/ClimateMind/climatemind-frontend.git
+```
+
+3. Install NPM
+```
+npm -i
+```
+
+3. Navigate to the /climatemind-backend directory
+4. Start the Docker Instance and attach to it
+
+```
+docker-compose up -d
+docker attach climate-backend_web_1
+```
+
+5. Open up a second terminal/command-line instance
+6. Navigate to the /climatemind-frontend directory
+7. Start NPM
+```
+npm start
+```
+
+You should now be able to open [http://localhost:3000/](http://localhost:3000/) or [http://127.0.0.1:3000/](http://127.0.0.1:3000/)
+and have access to the fully functioning application locally!
 
 ## Running the application with Docker (for deployment)
 
 The Docker lifecycle is to build the image and run it only once. After that you can stop or start the image.
-**_If you are a new developer on the team, you do not need to do this_**
+**_If you are a new developer on the team, you do not need to do this._**
 
 Building Docker image
 
@@ -155,30 +196,9 @@ Start the container
 
 ## Backend Debugging
 
-We use pdb to debug and troubleshoot issues. You can run pdb a few ways. First you need to set a breakpoint() in the code where you want to stop and examine the state of variables.
+The app can be debugged using pdb. You can do this two ways.
 
-Then run one of the following for scripts:
-```
-# For Scripts (eg. process_new_ontology_file.py):
-# Note that this is only for scripts that have to be run
-docker exec -it $CLIMATEMIND_ID python process_new_ontology_file.py
-```
-
-Or the following for the general docker instance:
-```
-# Run the docker instance in the background and attach to the docker image
-docker-compose up -d
-docker attach climatemindproduct_web_1
-# Navigate to the frontend directory in a separate terminal
-cd climatemind-frontend
-
-# If desired, you can link the local frontend app and test (you can also just use
-#postman and breakpoints will still happen)
-# First time only - Install npm
-npm -i
-# Start the local frontend server with npm
-npm start
-```
+1) Use Postman to test the 
 
 ## Api documentation
 
