@@ -1,10 +1,44 @@
 # Contributing to Climate Mind
 
-Thank you for your interest in contributing to Climate Mind. At the moment, we do not accept anonymous PRs, 
-but we'd love to recruit some more volunteers to be consistent members of our team. If you are interested in joining us,
-please [reach out to us.](https://climatemind.us18.list-manage.com/subscribe?u=a8795c1814f6dfd3ce4561a17&id=b451cfd1ed)
+## Contents
+
+1. Intro
+2. Communication Channels
+3. Making a PR
+4. Reviewing a PR
+5. Merging
+6. Code Style
+7. Additional Resources
+
+
+**Hello, and welcome to the official Climatemind backend repository!**
+
+If you've found your way here, you have likely heard of the Climatemind Project. Don't worry if you haven't! Just head on over to <a>https://climatemind.org/</a> for an intro.
+
+This project would not exist if it wasn't for driven and curious individuals who are passionate about solving the issues of climate change.
+
+**We thank you for being one of them.**
+
+At the moment, we do not accept anonymous PRs, but we'd love to recruit some more volunteers to be consistent 
+members of our team. If you are interested in joining us, please [reach out to us.](https://climatemind.us18.list-manage.com/subscribe?u=a8795c1814f6dfd3ce4561a17&id=b451cfd1ed)
 
 Or email us at [hello@climatemind.org](hello@climatemind.org) with your Resume and Github.
+
+## Communication Channels
+
+The Climatemind project is run by teams, distributed all over the globe. All of the communication is done on a dedicated group of slack channels. For now, an invite is required to join a channel. Simply send off an email to: hello@climatemind.org to receive an invite. :)
+
+There is a weekly “standup” usually occurring on Zoom on Sunday evenings (20:00 GMT+1) that is open for everyone that wants to join. The standup is recorded for those that cannot attend. It is recommended to join or listen to the recording in order to sync up with the other members. There is also a separate non-recorded zoom room for breakout discussions etc.
+
+NOTE: To get access to the rooms, please ask for an invite on Slack.
+
+## How to Contribute
+
+Our project management is handled in Jira. If you don't already have access to our Jira, please request access from someone on the team.
+
+If you're assigned a task in Jira, make sure to use the ticket number in your branch name. For example, if the ticket is CM-57 you could make `CM-57-Fixing-API-Errors` as a name.
+
+If you want to suggest a new feature it’s a good idea to discuss it in Slack with the backend team. It is also a good idea to check out the backlog in Jira to ensure that the feature isn’t already in the works. We are always looking for new ideas to collaborate on so don't be shy in suggesting new ones!
 
 ## Making a PR
 
@@ -36,5 +70,12 @@ Open the terminal/command line and install Black by running `pip install black`.
 1. Use the terminal/command-line to navigate to the climatemind-backend directory
 2. Run Black locally to see which files need formatting using `python3 -m black --check ./`
 3. Use Black to automatically format your files using `python3 -m black ./`
+
+## Additional Resources
+
+1. [Flask Mega Tutorial](https://blog.miguelgrinberg.com/post/the-flask-mega-tutorial-part-i-hello-world)
+2. [NetworkX](https://networkx.github.io/)
+3. [Owl2Ready](https://pypi.org/project/Owlready2/)
+4. [Docker](https://www.docker.com/get-started)
 
 
