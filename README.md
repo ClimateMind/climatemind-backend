@@ -72,8 +72,11 @@ python3 -m pip install git+https://github.com/ClimateMind/climatemind-ontology-p
 
 ## Process the Ontology
 
+**_Follow these steps every time you are made aware of an update to the Ontology._**
+
+
 1. Download a fresh copy of the ontology from web protege. Make sure it's the RDF/XML format (check the downloaded item has .owl at the end of it!).
-2. Put the .owl file into the PUT\_NEW\_OWL\_FILE\_IN\_HERE folder
+2. Put the .owl file into the /PUT\_NEW\_OWL\_FILE\_IN\_HERE folder
 3. Using the terminal/command-line, navigate to the climatemind-backend/process\_ontology folder.
 4. Make sure you are using the latest copy of the Ontology-Processing-Repo by running:
 
@@ -87,10 +90,10 @@ python3 -m pip install git+https://github.com/ClimateMind/climatemind-ontology-p
 python3 process.py
 ```
 
-**_Ensure that you are in the process\_ontology folder when you run this or the command will not find the file._**
+**_Ensure that you are in the /process\_ontology folder when you run this or the command will not find the file._**
 
 5. Check the climatemind-backend/Output folder. If you did this correctly, there should be a .gpickle file.
-6. You can now run the app and it will automatically use this gpickle file.
+6. You can now run the app and it will automatically use this gpickle file to load climate data into the app.
 
 ## Running the application with Docker Compose (for development)
 
@@ -214,3 +217,14 @@ Cd into the climatemind-backend directory on your computer to run black commands
 Run Black locally to see which files need formatting using `python3 -m black --check ./`
 
 Use Black to automatically format your files using `python3 -m black ./`
+
+## FAQ
+
+**Q: Is Docker needed to process the ontology?**
+A: No, Docker has nothing to do with the ontology processing
+
+**Q: Which files need to be in the repo for the app to have access to the data?**
+A: The .gpickle file needs to be in the climatemind-backend/output folder. As long as it has this file, the app will have data to work with. _The OWL File is not needed in the backend-repo_
+
+**Q: How does the production application get access to the climate data?**
+A: The .gpickle file is included in the commits to the repo. When this is pushed to the main branch, the production application has access to the .gpickle file
