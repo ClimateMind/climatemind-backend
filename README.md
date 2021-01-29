@@ -56,7 +56,7 @@ Install [Docker](https://www.docker.com/products/docker-desktop) through their w
 
 **_Be sure git is installed on your computer before installing the repo_**
 
-Open up your command prompt/terminal (it doesn't matter what directory you're in) and install the package as follows:
+Open up your command prompt/terminal (it doesn't matter which directory you're in) and install the package as follows:
 
 Be sure you have installed all requirements first by running:
 
@@ -70,6 +70,28 @@ Then, install the package via pip install:
 python3 -m pip install git+https://github.com/ClimateMind/climatemind-ontology-processing.git
 ```
 
+## Process the Ontology
+
+1. Download a fresh copy of the ontology from web protege. Make sure it's the RDF/XML format (check the downloaded item has .owl at the end of it!).
+2. Put the .owl file into the PUT\_NEW\_OWL\_FILE\_IN\_HERE folder
+3. Using the terminal/command-line, navigate to the climatemind-backend/process\_ontology folder.
+4. Make sure you are using the latest copy of the Ontology-Processing-Repo by running:
+
+```
+python3 -m pip install git+https://github.com/ClimateMind/climatemind-ontology-processing.git --upgrade
+```
+
+4. Run the process.py script by executing the following:
+
+```
+python3 process.py
+```
+
+**_Ensure that you are in the process\_ontology folder when you run this or the command will not find the file._**
+
+5. Check the climatemind-backend/Output folder. If you did this correctly, there should be a .gpickle file.
+6. You can now run the app and it will automatically use this gpickle file.
+
 ## Running the application with Docker Compose (for development)
 
 **_Before doing what's below, be sure the Docker application is running and the command line working directory is changed to the climatemind-backend path._**
@@ -78,17 +100,17 @@ Windows users - you may experience problems with building or starting the contai
 
     git config --global core.autocrlf false
 
-Build the image container to download and install code dependencies needed for running the app using the build command below.
-
-**_SPECIAL NOTE_**: _Whenever the backend repo has added new dependancies in the requirements.txt file the docker image will need to be re-built by re-running the build command._
+Build the image container to download and install code dependencies needed for running the app:
 
     docker-compose build
+
+**_SPECIAL NOTE_**: _Whenever the backend repo has added new dependancies in the requirements.txt file the docker image will need to be re-built by re-running the build command._
 
 Start in foreground (good for debugging flask and see the logs). You can stop it with [CTRL + C] on OSX, Windows, and Linux.
 
     docker-compose up
 
-Start in background (best for when trying to visualize the ontology or when attaching the docker instance to the front-end application)
+Start in background (best for when trying to attach the docker instance to the front-end application)
 
     docker-compose up -d
     
@@ -126,60 +148,7 @@ Start the container
 
     docker start climatemind-backend
 
-## Api documentation
-
-[AutoDoc](http://localhost:5000/documentation) Our API is currently documented using AutoDoc. This will soon be deprecated and replaced with Swagger. 
-
-[Swagger Documentation](http://localhost:5000/swagger) will be available soon, detailing the API endpoints and how they should be used. Whilst in development this can be found at [http://localhost:5000/swagger](http://localhost:5000/swagger).
-
 ---
-
-## OWL File Processing
-
-Climatemind uses an ontology to store climate change data and relationships. This data
-is stored as an RDF/XML file and is not easily worked with in Python.
-
-We need to convert this file to a NetworkX object and save it as a Pickle file so it is
-easier to work with. Luckily, since we've already written the code for this, we've made
-this process relatively simple. Our code is available as a Pip install.
-
-Complete the following instructions to process the OWL file.
-
-### Do this your first time
-
-Be sure git is installed on your computer first. Open up your command prompt/terminal and
-install the package as follows:
-
-Install the package via pip install:
-
-```
-python3 -m pip install git+https://github.com/ClimateMind/climatemind-ontology-processing.git
-```
-
-Be sure you have installed all requirements first by doing:
-
-```
-python3 -m pip install -r https://raw.githubusercontent.com/ClimateMind/climatemind-ontology-processing/main/requirements.txt
-```
-
-Now you're all set up and ready to roll!
-
-### Do this every time
-
-1. Download a fresh copy of the ontology from web protege. Make sure it's the RDF/XML format (check the downloaded item has .owl at the end of it!).
-2. Put the .owl file into the PUT\_NEW\_OWL\_FILE\_IN\_HERE folder
-3. Using the terminal/command-line, navigate to the climatemind-backend/process\_ontology folder.
-4. Run the process.py script by executing the following
-
-```
-python3 process.py
-```
-
-Ensure that you are in the process\_ontology folder when you run this or the command will not
-find the file.
-
-5. Check the climatemind-backend/gpickle folder. If you did this correctly, there should be a .pickle file.
-6. You can now run the app and it will automatically use this gpickle file.
 
 ## Backend Debugging
 
@@ -207,6 +176,14 @@ npm -i
 # Start the local frontend server with npm
 npm start
 ```
+
+## Api documentation
+
+[AutoDoc](http://localhost:5000/documentation) Our API is currently documented using AutoDoc. This will soon be deprecated and replaced with Swagger. 
+
+[Swagger Documentation](http://localhost:5000/swagger) will be available soon, detailing the API endpoints and how they should be used. Whilst in development this can be found at [http://localhost:5000/swagger](http://localhost:5000/swagger).
+
+---
 
 Now you will have breakpoints in the docker container that you can interact with. Learn more about what
 you can do in the [pdb documentation](https://docs.python.org/3/library/pdb.html)
