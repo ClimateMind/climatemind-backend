@@ -2,6 +2,28 @@
 
 [![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
 
+The [Climate Mind application](https://app.climatemind.org) makes conversations about climate change easier, by letting users explore climate issues
+that speak to their personal values. We aim to inspire users to take action with a range of attractive solutions consistent 
+with their values that they can get excited about.
+
+The application currently presents solutions based on their personal values (as determined by a questionnaire) and their location (zip code).
+In the future, we plan to add the user's occupation as an option to personalize the results.
+
+## An Overview of How this Works
+
+In order to serve users with relevant climate information our data team has organized climate data into an Ontology. Don't let
+the fancy term overwhelm you, as it is (at the end of the day) a data structure.
+
+## Installing the Project
+
+To intall the code to your local machine, navigate to the desired parent folder via the command line and clone the repo
+
+```
+git clone https://github.com/ClimateMind/climatemind-backend.git
+```
+
+You will now have access to our backend code.
+
 This project uses Docker. Install it through their website: https://www.docker.com/products/docker-desktop
 
 **_Before doing what's below, be sure the Docker application is running and the command line working directory is changed to the climatemind-backend path._**
@@ -22,11 +44,11 @@ Start in foreground (good for debugging flask and see the logs). You can stop it
 
     docker-compose up
 
-Start in background (best for when trying to visualize the ontology)
+Start in background (best for when trying to visualize the ontology or when attaching the docker instance to the front-end application)
 
     docker-compose up -d
 
-Stop the container when running in the background. Stops containers and removes containers, networks, volumes, and images created by docker-compose up.
+When you're done working, stop the container when running in the background. Stopping containers will remove containers, networks, volumes, and images created by docker-compose up.
 
     docker-compose down
 
@@ -35,6 +57,7 @@ Stop the container when running in the background. Stops containers and removes 
 ## Running the application with Docker (for deployment)
 
 The Docker lifecycle is to build the image and run it only once. After that you can stop or start the image.
+**_If you are a new developer on the team, you do not need to do this_**
 
 Building Docker image
 
@@ -58,39 +81,11 @@ Start the container
 
 ## Api documentation
 
-[Swagger Documentation](http://localhost:5000/swagger) is available, detailing the API endpoints and how they should be used. Whilst in development this can be found at [http://localhost:5000/swagger](http://localhost:5000/swagger).
+[AutoDoc](http://localhost:5000/documentation) Our API is currently documented using AutoDoc. This will soon be deprecated and replaced with Swagger. 
+
+[Swagger Documentation](http://localhost:5000/swagger) will be available soon, detailing the API endpoints and how they should be used. Whilst in development this can be found at [http://localhost:5000/swagger](http://localhost:5000/swagger).
 
 ---
-
-## Processing a new Climate Mind OWL ontology file
-
-Follow these instructions to process a new version of a Climate Mind ontology OWL file into files used by Climate Mind (such as Networkx pickle file, test ontology JSON, edge list output CSV, etc).
-
-1. Download the new OWL ontology file (if haven't already) and put it in the proper place:
-    * Download the OWL ontology file by going to webprotege.stanford.edu and downloading in the format 'RDF/XML'. (If you don't have access, simply email hello@climatemind.org with your webprotege username to get access). 
-    * Unzip the download and go into the folder and move/copy the single ontology file to the folder in the climatemind-backend directory folder named 'PUT_NEW_OWL_FILE_IN_HERE'
-
-2. Change the directory to be the climatemind-backend by using the following command. The part in caps should be replaced with the path to climatemind-backend on your system (for mac):
-
-   for OSX: `cd PATH_TO_CLIMATEMIND-BACKEND`
-
-3. Remove any pre-existing docker container, build the new docker container, and start the new container in developer mode by running the following:
-
-    ```
-        docker-compose down
-        docker-compose build
-        docker-compose up -d
-    ```
-    
-4. Store the docker container id as a variable by doing:
-    * FOR MAC/LINUX:
-    ```
-        CLIMATEMIND_ID=$(docker ps -lq)
-    ```
-    * FOR PC with powershell:
-    ```
-        $CLIMATEMIND_ID=$(docker ps -lq)
-    ```
 
 ## OWL File Processing
 
