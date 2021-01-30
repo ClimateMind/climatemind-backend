@@ -57,7 +57,7 @@ workflows:
       - cypress/run:
           requires:
             - build
-          start: docker start climatemindbackend
+          start: build
           wait-on: 'http://localhost:5000'
 
   build-deploy:
