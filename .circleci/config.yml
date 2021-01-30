@@ -2,6 +2,8 @@ version: 2.1
 orbs:
   azure-acr: circleci/azure-acr@0.2.0
   python: circleci/python@1.0.0
+  cypress: cypress-io/cypress@1
+
 jobs:
   lint:
     executor: python/default
@@ -44,9 +46,9 @@ jobs:
       - run:
           name: "Install packages"
           command: pip install pytest requests==2.24.0
-      # - run:
-      #     name: Api Tests
-      #     command: python -m pytest ./api_tests
+      - run:
+          name: Api Tests
+          command: npx run cypress:headless
 
 
 workflows:
