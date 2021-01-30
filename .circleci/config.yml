@@ -28,9 +28,9 @@ jobs:
     machine: true
     steps:
       - checkout
-      # - run:
-      #     name: Build docker image
-      #     command: docker build -t "climatemindbackend:$CIRCLE_BUILD_NUM" .
+      - run:
+          name: Build docker image
+          command: docker build -t "climatemindbackend:$CIRCLE_BUILD_NUM" .
       - run:
           name: Run docker
           command: docker run -d --name climatemindbackend --publish 5000:5000 climatemindbackend:$CIRCLE_BUILD_NUM
@@ -38,6 +38,9 @@ jobs:
           name: Run & Start App
           command: docker start climatemindbackend
           background: true
+      - run:
+          name: Cypress API Tests
+          command: cypress run
 
 workflows:
   version: 2
