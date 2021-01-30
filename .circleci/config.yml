@@ -46,14 +46,15 @@ workflows:
       - build:
           requires:
             - lint
-      - test:
-          requires:
-            - lint
-      # - cypress/run:
+      # - test:
       #     requires:
       #       - lint
-      #     name: Cypress API Tests
-      #     wait-on: "http://0.0.0.0:5000/questions"
+      - cypress/run:
+          requires:
+            - lint
+          start: docker-compose up
+          name: Cypress API Tests
+          wait-on: "http://0.0.0.0:5000/questions"
 
   build-deploy:
     jobs:
