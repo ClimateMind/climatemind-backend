@@ -37,9 +37,6 @@ jobs:
       - run:
           name: Docker Compose Up
           command: docker-compose up -d
-      - run:
-          name: Cypress API Tests
-          command: npx cypress run
 
 workflows:
   version: 2
@@ -47,17 +44,16 @@ workflows:
   build_and_test:
     jobs:
       - lint
-
       - build:
           requires:
             - lint
       - test:
           requires:
             - lint
-      # - cypress/run:
-      #     requires:
-      #       - lint
-      #       - test
+      - cypress/run:
+          requires:
+            - lint
+            - test
 
   build-deploy:
     jobs:
