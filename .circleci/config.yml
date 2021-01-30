@@ -28,18 +28,9 @@ jobs:
     machine: true
     steps:
       - checkout
-      - setup_remote_docker:
-          docker_layer_caching: true
       - run: 
           name: Docker compose
           command: docker-compose up    
-  # test:
-  #   machine: true
-  #   steps:
-  #     - checkout
-  #     # - cypress/run:
-  #     #     name: Cypress API Tests
-  #     #     wait-on: 'http://localhost:5000'
 
 workflows:
   version: 2
@@ -56,6 +47,8 @@ workflows:
           requires:
             - lint
       - cypress/run:
+          requires:
+            - lint
           name: Cypress API Tests
           wait-on: 'http://0.0.0.0:5000'
 
