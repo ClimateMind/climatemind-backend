@@ -50,7 +50,7 @@ workflows:
           requires:
             - lint
           name: Cypress API Tests
-          wait-on: 'http://localhost:5000'
+          wait-on: 'http://localhost:5000/questions'
 
   build-deploy:
     jobs:
