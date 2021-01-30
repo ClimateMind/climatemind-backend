@@ -60,7 +60,6 @@ workflows:
             - lint
             - test
           name: Cypress API Tests
-          wait-on: "http://0.0.0.0:5000/questions"
 
   build-deploy:
     jobs:
