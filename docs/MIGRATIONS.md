@@ -75,8 +75,58 @@ docker-compose build
 docker-compose up
 ```
 
-9. Manually edit the migration script to stop it from dropping the lrf table - remove code from both upgrade and downgrade.
-10. Re-Comment the migrate code out and the upgrade code block back in entrypoint.sh. Exclude the notes and the command to run the python add lrf script (this should only be run if the lrf data has changed and needs to be added).
+9. In the climatemind-backend/migrations-azure/versions folder open put\_lrf\_table\_back.py
+10. Remove the following code from upgrade()
+
+```
+op.drop_index("ix_lrf_data_postal_code", table_name="lrf_data")
+op.drop_table("lrf_data")
+```
+
+11. Remove the following code from downgrade()
+
+```
+op.create_table(
+        "lrf_data",
+        sa.Column("postal_code", sa.BIGINT(), autoincrement=False, nullable=True),
+        sa.Column(
+            "http://webprotege.stanford.edu/R9vkBr0EApzeMGfa0rJGo9G",
+            mssql.BIT(),
+            autoincrement=False,
+            nullable=True,
+        ),
+        sa.Column(
+            "http://webprotege.stanford.edu/RJAL6Zu9F3EHB35HCs3cYD",
+            mssql.BIT(),
+            autoincrement=False,
+            nullable=True,
+        ),
+        sa.Column(
+            "http://webprotege.stanford.edu/RcIHdxpjQwjr8EG8yMhEYV",
+            mssql.BIT(),
+            autoincrement=False,
+            nullable=True,
+        ),
+        sa.Column(
+            "http://webprotege.stanford.edu/RDudF9SBo28CKqKpRN9poYL",
+            mssql.BIT(),
+            autoincrement=False,
+            nullable=True,
+        ),
+        sa.Column(
+            "http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me",
+            mssql.BIT(),
+            autoincrement=False,
+            nullable=True,
+        ),
+    )
+    op.create_index(
+        "ix_lrf_data_postal_code", "lrf_data", ["postal_code"], unique=False
+    )
+```
+
+
+10. In climatemind-backend/entrypoint.sh, Re-Comment the migrate code out and the upgrade code block back. Exclude the notes and the command to run the python add lrf script (this should only be run if the lrf data has changed and needs to be added).
 11. Run the following again:
 
 ```
@@ -85,7 +135,7 @@ docker-compose build
 docker-compose up
 ```
 
-12. Delete the cloud db parameters on line 13 and uncomment line 12 to put the local credentials back in docker-compose.yml
+12. In climatemind-backend/docker-compose.yml, delete the DATABASE\_PARAMS with the azure parameters and uncomment the original DATABASE\_PARAMS line.
 13. Check that the cloud db has been updated
 14. Test the changes
 
