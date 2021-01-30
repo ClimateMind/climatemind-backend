@@ -21,22 +21,24 @@ jobs:
     steps:
       - checkout
       # build the application image
-      - run: 
+      - run:
           name: Docker Build
           command: docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
-  docker_compose: 
+  docker_compose:
     machine: true
     steps:
       - checkout
-      - run: 
+      - run:
           name: Docker compose
-          command: docker-compose up    
+          command: docker-compose up
+      - cypress/run:
+          name: Cypress API Tests
+          wait-on: "http://0.0.0.0:5000/questions"
 
 workflows:
   version: 2
 
   build_and_test:
-
     jobs:
       - lint
 
@@ -46,11 +48,11 @@ workflows:
       - docker_compose:
           requires:
             - lint
-      - cypress/run:
-          requires:
-            - lint
-          name: Cypress API Tests
-          wait-on: 'http://0.0.0.0:5000/questions'
+      # - cypress/run:
+      #     requires:
+      #       - lint
+      #     name: Cypress API Tests
+      #     wait-on: "http://0.0.0.0:5000/questions"
 
   build-deploy:
     jobs:
