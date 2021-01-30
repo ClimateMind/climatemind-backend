@@ -39,7 +39,7 @@ jobs:
           command: docker-compose up -d
       - run:
           name: Ping Localhost
-          command: ping -c 3 127.0.01:5000
+          command: ping -c 3 127.0.0.1:5000
 
 workflows:
   version: 2
