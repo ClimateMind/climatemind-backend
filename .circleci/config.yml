@@ -16,6 +16,14 @@ jobs:
           name: Linter
           command: python3 -m black --check ./
 
+  api_tests:
+    executor: cypress-io/cypress@1
+    steps:
+      - checkout
+      - run:
+          name: Run Tests
+          command: npx run cypress:headless
+
   build:
     machine: true
     steps:
@@ -46,9 +54,8 @@ jobs:
       - run:
           name: "Install packages"
           command: pip install pytest requests==2.24.0
-      - run:
-          name: Api Tests
-          command: npx run cypress:headless
+      - api_tests
+
 
 
 workflows:
