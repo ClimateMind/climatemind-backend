@@ -24,7 +24,7 @@ jobs:
       - run:
           name: Docker Build
           command: docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
-  test:
+  test_env:
     machine: true
     steps:
       - checkout
@@ -36,10 +36,7 @@ jobs:
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
           name: Docker Compose Up
-          command: docker-compose up -d
-      - run:
-          name: Ping Localhost
-          command: ping -c 3 0.0.0.0:5000
+          command: docker-compose up
 
 workflows:
   version: 2
@@ -50,13 +47,13 @@ workflows:
       - build:
           requires:
             - lint
-      - test:
+      - test_env:
           requires:
             - lint
       - cypress/run:
           requires:
             - lint
-            - test
+            - test_env
 
   build-deploy:
     jobs:
