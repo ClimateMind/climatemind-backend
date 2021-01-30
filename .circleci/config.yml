@@ -24,16 +24,16 @@ jobs:
           name: Run Tests
           command: npx run cypress:headless
 
+  # build:
+  #   machine: true
+  #   steps:
+  #     - checkout
+
+  #     # build the application image
+  #     - run: |
+  #         docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
+
   build:
-    machine: true
-    steps:
-      - checkout
-
-      # build the application image
-      - run: |
-          docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
-
-  build_test:
     machine: true
     steps:
       - checkout
@@ -51,12 +51,6 @@ jobs:
       - run:
           name: "Set Python Version"
           command: pyenv global 3.5.2
-      - run:
-          name: "Install packages"
-          command: pip install pytest requests==2.24.0
-      - api_tests
-
-
 
 workflows:
   version: 2
@@ -66,9 +60,13 @@ workflows:
     jobs:
       - lint
 
-      - build_test:
+      - build:
           requires:
             - lint
+      - api_tests:
+          requires:
+            - lint
+            - build
 
   build-deploy:
     jobs:
