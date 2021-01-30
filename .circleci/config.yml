@@ -37,10 +37,10 @@ jobs:
       - run:
           name: Docker Compose Up
           command: docker-compose up -d
-      - run:
-          name: Cypress API Tests
-          command: cypress/run
-          wait-on: "http://0.0.0.0:5000/questions"
+      # - run:
+      #     name: Cypress API Tests
+      #     command: cypress/run
+      #     wait-on: "http://0.0.0.0:5000/questions"
 
 workflows:
   version: 2
@@ -55,12 +55,12 @@ workflows:
       - test:
           requires:
             - lint
-      # - cypress/run:
-      #     requires:
-      #       - lint
-      #     start: docker-compose up
-      #     name: Cypress API Tests
-      #     wait-on: "http://0.0.0.0:5000/questions"
+      - cypress/run:
+          requires:
+            - lint
+            - test
+          name: Cypress API Tests
+          wait-on: "http://0.0.0.0:5000/questions"
 
   build-deploy:
     jobs:
