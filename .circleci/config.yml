@@ -1,6 +1,7 @@
 version: 2.1
 orbs:
   azure-acr: circleci/azure-acr@0.2.0
+  node: circleci/node@3.0.0
   python: circleci/python@1.0.0
   cypress: cypress-io/cypress@1
 
@@ -25,7 +26,7 @@ jobs:
   #         docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
 
   test:
-    machine: true
+    executor: node/default
     steps:
       - checkout
       - run:
