@@ -10,6 +10,11 @@ API endpoint.
 """
 
 
+@bp.route("/")
+def documentation():
+    return "Welcome to Climate Mind"
+
+
 @bp.route("/documentation")
 def documentation():
     return auto.html()
