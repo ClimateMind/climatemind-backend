@@ -31,13 +31,13 @@ jobs:
       - run: 
           name: Docker compose
           command: docker-compose up    
-  test:
-    machine: true
-    steps:
-      - checkout
-      - cypress/run:
-          name: Cypress API Tests
-          wait-on: 'http://localhost:5000'
+  # test:
+  #   machine: true
+  #   steps:
+  #     - checkout
+  #     # - cypress/run:
+  #     #     name: Cypress API Tests
+  #     #     wait-on: 'http://localhost:5000'
 
 workflows:
   version: 2
@@ -53,9 +53,9 @@ workflows:
       - docker_compose:
           requires:
             - lint
-      - test:
-          requires:
-            - lint
+      - cypress/run:
+          name: Cypress API Tests
+          wait-on: 'http://localhost:5000'
 
   build-deploy:
     jobs:
