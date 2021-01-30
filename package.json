@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "Cypress api tests for the climatemind api",
   "scripts": {
-    "test": "npx cypress open",
-    "test:headless": "npx cypress open"
+    "cypress": "npx cypress open",
+    "cypress:headless": "npx cypress run"
   },
   "author": "",
   "license": "MIT"
