@@ -15,14 +15,14 @@ jobs:
       - run:
           name: Linter
           command: python3 -m black --check ./
-  build:
-    machine: true
-    steps:
-      - checkout
+  # build:
+  #   machine: true
+  #   steps:
+  #     - checkout
 
-      # build the application image
-      - run: |
-          docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
+  #     # build the application image
+  #     - run: |
+  #         docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
 
   test:
     machine: true
@@ -40,7 +40,7 @@ jobs:
           background: true
       - run:
           name: Cypress API Tests
-          command: cypress run
+          command: npx cypress run
 
 workflows:
   version: 2
@@ -50,13 +50,12 @@ workflows:
     jobs:
       - lint
 
-      - build:
-          requires:
-            - lint
+      # - build:
+      #     requires:
+      #       - lint
       - test:
           requires:
             - lint
-            - build
 
   build-deploy:
     jobs:
