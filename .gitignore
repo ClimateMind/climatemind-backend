@@ -67,6 +67,6 @@ climate_mind_ontology
 *.gpickle
 
 
-#node
-
+#node/cypress
 /node_modules
+/cypress/videos
