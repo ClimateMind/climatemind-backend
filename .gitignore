@@ -65,3 +65,8 @@ climate_mind_ontology
 
 *.owl
 *.gpickle
+
+
+#node
+
+/node_modules
