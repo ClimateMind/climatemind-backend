@@ -55,7 +55,7 @@ workflows:
             - lint
       - cypress/run:
           name: Cypress API Tests
-          wait-on: 'http://localhost:5000'
+          wait-on: 'http://0.0.0.0:5000'
 
   build-deploy:
     jobs:
