@@ -15,15 +15,6 @@ jobs:
       - run:
           name: Linter
           command: python3 -m black --check ./
-
-  api_tests:
-    executor: cypress-io
-    steps:
-      - checkout
-      - run:
-          name: Run Tests
-          command: npx run cypress:headless
-
   # build:
   #   machine: true
   #   steps:
@@ -63,7 +54,7 @@ workflows:
       - build:
           requires:
             - lint
-      - api_tests:
+      - cypress/run:
           requires:
             - lint
             - build
