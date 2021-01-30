@@ -37,10 +37,16 @@ jobs:
       - run:
           name: Docker Compose Up
           command: docker-compose up -d
+      - persist_to_workspace:
+          root: .
+          paths:
+            - .
+      # - run:
+      #     name: Install Dependencies
+      #     command: docker-compose up -d
       # - run:
       #     name: Cypress API Tests
-      #     command: cypress/run
-      #     wait-on: "http://0.0.0.0:5000/questions"
+      #     command: npx cypress run
 
 workflows:
   version: 2
