@@ -21,23 +21,17 @@ jobs:
     steps:
       - checkout
       # build the application image
-      # - run: 
-      #     name: Docker Build
-      #     command: docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
-      # - run:
-      #     name: Docker Run
-      #     command: docker run -d --name climatemindbackend --publish 5000:5000 climatemindbackend:$CIRCLE_BUILD_NUM
-      # - run:
-      #     name: Run & Start App
-      #     command: docker start climatemindbackend
-      #     background: true
+      - run: 
+          name: Docker Build
+          command: docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
+      
+  test:
+    machine: true
+    steps:
+      - checkout
       - run: 
           name: Docker compose
           command: docker-compose up
-  test:
-    executor: node/default
-    steps:
-      - checkout
       - run:
           name: Cypress API Tests
           command: npx cypress run
@@ -56,7 +50,6 @@ workflows:
       - test:
           requires:
             - lint
-            - build
 
   build-deploy:
     jobs:
