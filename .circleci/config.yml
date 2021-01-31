@@ -35,8 +35,8 @@ jobs:
             chmod +x ~/docker-compose
             sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
-          name: Docker Compose Up
-          command: docker-compose up
+          name: Docker Compose Build
+          command: docker-compose build
 
 workflows:
   version: 2
@@ -54,6 +54,8 @@ workflows:
           requires:
             - lint
             - test_env
+          pre-steps:
+            - run: "docker-compose up"
 
   build-deploy:
     jobs:
