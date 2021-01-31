@@ -24,20 +24,15 @@ jobs:
       - run:
           name: Docker Build
           command: docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
-  test_env:
+  cypress:
+    # Set up test environment and run cypress tests
     machine:
       image: ubuntu-2004:202010-01
     steps:
       - checkout
-      # - run:
-      #     name: Install Docker Compose
-      #     command: |
-      #       curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-      #       chmod +x ~/docker-compose
-      #       sudo mv ~/docker-compose /usr/local/bin/docker-compose
       - run:
-          name: Node version
-          command: node -v
+          name: Install Node Dependencies
+          command: npm i
       - run:
           name: Docker Compose Build
           command: docker-compose build
@@ -60,15 +55,9 @@ workflows:
       - build:
           requires:
             - lint
-      - test_env:
+      - cypress:
           requires:
             - lint
-      # - cypress/run:
-      #     requires:
-      #       - lint
-      #       - test_env
-      #     pre-steps:
-      #       - run: "docker-compose up"
 
   build-deploy:
     jobs:
