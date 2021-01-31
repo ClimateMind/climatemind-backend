@@ -42,8 +42,11 @@ jobs:
           name: Docker Compose Build
           command: docker-compose build
       - run:
-          name: Docker Compose Build
+          name: Docker Compose Up
           command: docker-compose up -d
+      - run:
+          name: Wait on Server
+          command: npx wait-on http://localhost:5000/questions
       - run:
           name: Cypress Run
           command: npx cypress run
