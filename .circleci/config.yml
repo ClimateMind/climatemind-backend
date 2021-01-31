@@ -32,7 +32,7 @@ jobs:
       - checkout
       - run:
           name: Node version
-          run: node -v
+          command: node -v
       # - run:
       #     name: Install Docker Compose
       #     command: |
