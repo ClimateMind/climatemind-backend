@@ -26,17 +26,26 @@ jobs:
           command: docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
   test_env:
     machine: true
-    steps:
-      - checkout
-      - run:
-          name: Install Docker Compose
-          command: |
-            curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            sudo mv ~/docker-compose /usr/local/bin/docker-compose
-      - run:
-          name: Docker Compose Build
-          command: docker-compose build
+    build:
+      docker:
+        - image: cimg/node:15.6.0
+      steps:
+        - checkout
+        - run:
+            name: Install Docker Compose
+            command: |
+              curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+              chmod +x ~/docker-compose
+              sudo mv ~/docker-compose /usr/local/bin/docker-compose
+        - run:
+            name: Docker Compose Build
+            command: docker-compose build
+        - run:
+            name: Docker Compose Build
+            command: docker-compose up -d
+        - run:
+            name: Cypress Run
+            command: npx cypress run
 
 workflows:
   version: 2
@@ -50,12 +59,12 @@ workflows:
       - test_env:
           requires:
             - lint
-      - cypress/run:
-          requires:
-            - lint
-            - test_env
-          pre-steps:
-            - run: "docker-compose up"
+      # - cypress/run:
+      #     requires:
+      #       - lint
+      #       - test_env
+      #     pre-steps:
+      #       - run: "docker-compose up"
 
   build-deploy:
     jobs:
