@@ -31,20 +31,23 @@ jobs:
     steps:
       - checkout
       - run:
-          name: Install Docker Compose
-          command: |
-            curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
-            chmod +x ~/docker-compose
-            sudo mv ~/docker-compose /usr/local/bin/docker-compose
-      - run:
-          name: Docker Compose Build
-          command: docker-compose build
-      - run:
-          name: Docker Compose Build
-          command: docker-compose up -d
-      - run:
-          name: Cypress Run
-          command: npx cypress run
+          name: Node version
+          run: node -v
+      # - run:
+      #     name: Install Docker Compose
+      #     command: |
+      #       curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > ~/docker-compose
+      #       chmod +x ~/docker-compose
+      #       sudo mv ~/docker-compose /usr/local/bin/docker-compose
+      # - run:
+      #     name: Docker Compose Build
+      #     command: docker-compose build
+      # - run:
+      #     name: Docker Compose Build
+      #     command: docker-compose up -d
+      # - run:
+      #     name: Cypress Run
+      #     command: npx cypress run
 
 workflows:
   version: 2
