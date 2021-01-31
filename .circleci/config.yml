@@ -25,8 +25,9 @@ jobs:
           name: Docker Build
           command: docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
   test_env:
-    docker:
-      - image: cimg/node:15.6.0
+    machine: true
+    # docker:
+    #   - image: cimg/node:15.6.0
     steps:
       - checkout
       - run:
