@@ -1,6 +1,6 @@
 /// <reference types="cypress" />
 
-describe("QUESTIONS", () => {
+describe("/questions endpoint", () => {
   it("GET Questions", () => {
     cy.request("http://localhost:5000/questions").should((response) => {
       expect(response.status).to.equal(200);
