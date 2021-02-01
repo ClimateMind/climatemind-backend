@@ -1,7 +1,10 @@
 version: 2.1
 orbs:
   azure-acr: circleci/azure-acr@0.2.0
+  node: circleci/node@3.0.0
   python: circleci/python@1.0.0
+  cypress: cypress-io/cypress@1
+
 jobs:
   lint:
     executor: python/default
@@ -13,51 +16,46 @@ jobs:
       - run:
           name: Linter
           command: python3 -m black --check ./
-
   build:
     machine: true
     steps:
       - checkout
-
       # build the application image
-      - run: |
-          docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
-
-  build_test:
-    machine: true
+      - run:
+          name: Docker Build
+          command: docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
+  cypress:
+    # Set up test environment and run cypress tests
+    machine:
+      image: ubuntu-2004:202010-01
     steps:
       - checkout
-
       - run:
-          name: Build docker image
-          command: docker build -t "climatemindbackend:$CIRCLE_BUILD_NUM" .
+          name: Install Node Dependencies
+          command: npm i
       - run:
-          name: Run docker
-          command: docker run -d --name climatemindbackend --publish 5000:5000 climatemindbackend:$CIRCLE_BUILD_NUM
+          name: Docker Compose Build
+          command: docker-compose build
       - run:
-          name: Run & Start App
-          command: docker start climatemindbackend
-          background: true
+          name: Docker Compose Up
+          command: docker-compose up -d
       - run:
-          name: "Set Python Version"
-          command: pyenv global 3.5.2
+          name: Wait on Server
+          command: npx wait-on http://localhost:5000/questions
       - run:
-          name: "Install packages"
-          command: pip install pytest requests==2.24.0
-      # - run:
-      #     name: Api Tests
-      #     command: python -m pytest ./api_tests
-
+          name: Cypress Run
+          command: npx cypress run
 
 workflows:
   version: 2
 
   build_and_test:
-
     jobs:
       - lint
-
-      - build_test:
+      - build:
+          requires:
+            - lint
+      - cypress:
           requires:
             - lint
 

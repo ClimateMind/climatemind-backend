@@ -66,6 +66,10 @@ def create_app(config_class=DevelopmentConfig):
 
         app.register_blueprint(documentation_bp)
 
+        from app.post_code import bp as post_code_bp
+
+        app.register_blueprint(post_code_bp)
+
     return app
 
 
