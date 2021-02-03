@@ -8,7 +8,6 @@ describe("/myths endpoint", () => {
       expect(response.headers["access-control-allow-origin"]).to.equal("*");
       expect(response.body).to.be.a("object");
       expect(response.body).to.have.property("myths");
-      expect(response.body.myths).to.be.a("object");
       expect(response.body.myths).to.not.have.length(0);
       expect(response.body.myths).first().to.not.have.length(0);
       expect(response.body.myths).first().to.have.property("faultyLogicDescription");
@@ -36,9 +35,9 @@ describe("/myths endpoint", () => {
         expect(myth.iri).to.be.a("string");
         expect(myth.mythClaim).to.be.a("string");
         expect(myth.mythRebuttal).to.be.a("string");
-        expect(myth.mythSources).to.be.a("list");
+        expect(myth.mythSources).to.be.a("array");
         expect(myth.mythTitles).to.be.a("string");
-        expect(myth.mythVideos).to.be.a("list")
+        expect(myth.mythVideos).to.be.a("array")
       });
     });
   });
