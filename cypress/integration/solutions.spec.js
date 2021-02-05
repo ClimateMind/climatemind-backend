@@ -1,6 +1,5 @@
 /// <reference types="cypress" />
-
-describe("Solutions", () => {
+ 
   it("GET Solutions", () => {
     cy.request("http://localhost:5000/solutions").should((response) => {
       expect(response.status).to.equal(200);
@@ -25,7 +24,7 @@ describe("Solutions", () => {
         expect(solution).to.have.property("solutionSpecificMythIRIs");
         expect(solution).to.have.property("solutionTitle");
         expect(solution).to.have.property("solutionType");
-        
+
         expect(solution.imageUrl).to.satisfy(function(s){
             return s === null || typeof s == 'string'
         });
@@ -39,7 +38,7 @@ describe("Solutions", () => {
             return s === null || typeof s == 'string'
         });
         expect(solution.solutionCo2EqReduced).to.satisfy(function(s){
-            return s === null || typeof s == 'float'
+            return s === null || typeof s == 'number'
         });
         expect(solution.solutionSources).to.satisfy(function(s){
             return s === null || Array.isArray(s)
@@ -56,5 +55,5 @@ describe("Solutions", () => {
       });
     });
   });
-  
+
 });
