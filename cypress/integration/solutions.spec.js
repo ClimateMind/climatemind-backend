@@ -16,7 +16,7 @@ describe("Solutions", () => {
     cy.request("http://localhost:5000/solutions").should((response) => {
       const solutions = response.body.solutions;
       solutions.forEach((solution) => {
-        expect(solution).to.have.property("imageURL");
+        expect(solution).to.have.property("imageUrl");
         expect(solution).to.have.property("iri");
         expect(solution).to.have.property("longDescription");
         expect(solution).to.have.property("shortDescription");
@@ -26,7 +26,7 @@ describe("Solutions", () => {
         expect(solution).to.have.property("solutionTitle");
         expect(solution).to.have.property("solutionType");
         
-        expect(solution.imageURL).to.satisfy(function(s){
+        expect(solution.imageUrl).to.satisfy(function(s){
             return s === null || typeof s == 'string'
         });
         expect(solution.iri).to.satisfy(function(s){
