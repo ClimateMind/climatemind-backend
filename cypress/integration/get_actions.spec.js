@@ -7,7 +7,7 @@ describe("/get_actions endpoint", () => {
       expect(response.headers["content-type"]).to.equal("application/json");
       expect(response.headers["access-control-allow-origin"]).to.equal("*");
       expect(response.body).to.be.a("object");
-      expect(response.body).to.have.property("solutions");
+      expect(response.body).to.have.property("actions");
       expect(response.body.solutions).to.not.have.length(0);
     });
   });
