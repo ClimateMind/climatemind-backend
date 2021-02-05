@@ -36,13 +36,13 @@ describe("/myths endpoint", () => {
             return s === null || typeof s == 'string'
         });
         expect(myth.mythSources).to.satisfy(function(s){
-            return s === null || typeof s == 'Array'
+            return s === null || Array.isArray(s)
         });
         expect(myth.mythTitle).to.satisfy(function(s){
             return s === null || typeof s == 'string'
         });
         expect(myth.mythVideos).to.satisfy(function(s){
-            return s === null || typeof s == 'Array'
+            return s === null || Array.isArray(s)
         });
       });
     });
