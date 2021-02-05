@@ -8,7 +8,7 @@ describe("/get_actions endpoint", () => {
       expect(response.headers["access-control-allow-origin"]).to.equal("*");
       expect(response.body).to.be.a("object");
       expect(response.body).to.have.property("actions");
-      expect(response.body.solutions).to.not.have.length(0);
+      expect(response.body.actions).to.not.have.length(0);
     });
   });
 
