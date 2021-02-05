@@ -23,6 +23,27 @@ describe("/myths endpoint", () => {
         expect(myth).to.have.property("mythSources");
         expect(myth).to.have.property("mythTitle");
         expect(myth).to.have.property("mythVideos");
+        expect(myth.faultyLogicDescription).to.satisfy(function(s){
+            return s === null || typeof s == 'string'
+        });
+        expect(myth.iri).to.satisfy(function(s){
+            return s === null || typeof s == 'string'
+        });
+        expect(myth.mythClaim).to.satisfy(function(s){
+            return s === null || typeof s == 'string'
+        });
+        expect(myth.mythRebuttal).to.satisfy(function(s){
+            return s === null || typeof s == 'string'
+        });
+        expect(myth.mythSources).to.satisfy(function(s){
+            return s === null || typeof s == 'Array'
+        });
+        expect(myth.mythTitle).to.satisfy(function(s){
+            return s === null || typeof s == 'string'
+        });
+        expect(myth.mythVideos).to.satisfy(function(s){
+            return s === null || typeof s == 'Array'
+        });
       });
     });
   });
