@@ -12,9 +12,9 @@ We have chosen our database tools to make it as easy as possible for developers 
 
 Looking at entrypoint.sh you will see that there are two commands that are run every time a migration is done - the migrate command and the upgrade command. The migrate command is what triggers the auto-generation of the migration script. Alembic will look for any changes in the models and automatically create a migration script based on these. These changes are then applied through the upgrade command.
 
-For local migrations, the migrate and upgrade commands are run one after another. In practice, this means that Docker will generate an empty set of tables every time the project is spun up locally, with the exception of the LRF (location relevance flag) data. The LRF table will be generated with a full set of data every time, using a separate script that is also run as part of the local migration process. 
+The project is set up so you will get an empty set of tables to work with every time the project is spun up locally, with the exception of the LRF (location relevance flag) data. The LRF table will be generated with a full set of data every time, using a separate script that is also run when the Docker container is spun up. 
 
-For cloud migrations, the migrate and upgrade commands are run separately. We do not run the add_lrf_table.py script unless the LRF data needs to be updated. Due to this, the auto-generated script will assume that the LRF data should be dropped. The command to drop this table must be deleted from the migration script before running upgrade. 
+The process works a little differently in the cloud, and the migrate and upgrade commands must be run separately when performing cloud migrations. We do not run the add_lrf_table.py script unless the LRF data needs to be updated. Due to this, Alembic will assume that the LRF data should be dropped and generate a migration script accordingly. The command to drop the LRF table must be deleted from the migration script before running upgrade. 
 
 ## Running a Local Migration
 

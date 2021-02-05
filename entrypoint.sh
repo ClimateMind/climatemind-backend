@@ -25,7 +25,7 @@ fi
 flask run --host=0.0.0.0
 
 # NOTE: migrate and upgrade must be run SEPARATELY for cloud migrations. 
-# COMMENT OUT the upgrade code and run the migration first.
+# COMMENT OUT the upgrade code and run the migrate command first.
 # AFTER migrating, manually edit the migration script to prevent the lrf table being dropped. 
 # THEN comment out the migrate command and run upgrade.
 # IF the CSV file changes and the lrf table needs to be updated in the cloud, add:
