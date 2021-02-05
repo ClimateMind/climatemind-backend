@@ -24,8 +24,6 @@ def add_lrf_data():
         data.to_sql("lrf_data", engine, if_exists="replace")
     except Exception as e:
         print(e)
-    else:
-        pass
 
 
 if __name__ == "__main__":

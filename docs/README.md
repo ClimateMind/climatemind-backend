@@ -34,10 +34,10 @@ In the future, we plan to add the user's occupation as an option to personalize 
 ## How this Works
 
 In order to serve users with relevant climate information our data team has organized climate data into an Ontology. Don't let
-the fancy term overwhelm you, as it is (at the end of the day) a data structure. It contains information about the relationships between climate issues, solutions,
+the fancy term overwhelm you, as it is (at the end of the day) just a data structure. It contains information about the relationships between climate issues, solutions,
 myths, and other data.
 
-However, this data structure, in it's native form, is not easy to work with. We have another repo [climatemind-ontology-processing](https://github.com/ClimateMind/climatemind-ontology-processing)
+However, this data structure, in its native form, is not easy to work with. We have another repo [climatemind-ontology-processing](https://github.com/ClimateMind/climatemind-ontology-processing)
 which does all of the hard work to convert this data into an easy to work with graph structure (known as NetworkX). This graph is packaged into the .gpickle file
 found in the /output directory and read by the application.
 
@@ -223,7 +223,7 @@ npm start
 
 The terminal/command-line can now be used to interact with PDB. Once the code hits a stopping point, you will see (pdb) in this terminal/command-line instance.
 
-## Api documentation
+## API documentation
 
 [AutoDoc](http://localhost:5000/documentation) Our API is currently documented using AutoDoc. This will soon be deprecated and replaced with Swagger. 
 
@@ -241,6 +241,9 @@ A: The .gpickle file needs to be in the climatemind-backend/output folder. As lo
 
 **Q: How does the production application get access to the climate data?**
 A: The .gpickle file is included in the commits to the repo. When this is pushed to the main branch, the production application has access to the .gpickle file
+
+**Q: Where can I find more information about contributing to the project?**
+A: You will find a guide to contributing and other documentation relevant to the project in the [docs](https://github.com/ClimateMind/climatemind-backend/tree/develop/docs) folder.
 
 ## Special Thanks
 
