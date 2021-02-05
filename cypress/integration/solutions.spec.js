@@ -39,7 +39,7 @@ describe("Solutions", () => {
             return s === null || typeof s == 'string'
         });
         expect(solution.solutionCo2EqReduced).to.satisfy(function(s){
-            return s === null || typeof s == 'float'
+            return s === null || typeof s == 'number'
         });
         expect(solution.solutionSources).to.satisfy(function(s){
             return s === null || Array.isArray(s)
