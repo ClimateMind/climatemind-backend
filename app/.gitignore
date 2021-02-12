@@ -3,3 +3,6 @@ Climate_Mind_Digraph_Test_Ont.json
 Climate_Mind_DiGraph.gpickle
 .idea
 .idea/*
+
+# Environment variables
+*.env

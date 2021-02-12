@@ -55,15 +55,15 @@ flask db migrate -m "add all current tables" -d $BASEDIR/migrations_local
 
 ```
 
-5. Comment out the following, so that upgrades are not run simultaneously.
+5. Comment out the following block of code, so that upgrades are not run simultaneously.
 
 ```
-if [ "$DATABASE\_PARAMS" = "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;" ]
+if [ "$DATABASE_PARAMS" = "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;" ]
 then
     flask db upgrade -d $BASEDIR/migrations_local #this line used only if local database is being used
-    python add\_lrf\_table.py
+    python add_lrf_table.py
 else
-    flask db upgrade -d $BASEDIR/migrations\_azure #this line used only if production database is being used 
+    flask db upgrade -d $BASEDIR/migrations_azure #this line used only if production database is being used 
 fi
 ```
 
@@ -71,11 +71,21 @@ fi
 7. Comment out the following:
 
 ```
-DATABASE\_PARAMS: Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;
+DATABASE_PARAMS: Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;
+```
+8. Comment in the following:
+
+```
+DATABASE_PARAMS: ${CLOUD_DB_PARAMS}
 ```
 
-8. Under the previous line, add DATABASE_PARAMS: and the cloud db credentials from the Azure portal (this should be uncommented so it runs).
-9. Navigate to the climatemind-backend directory (locally) and run the following:
+9. The command above means that the CLOUD_DB_PARAMS variable needs to be set. Create an un-named .env file in the root directory of the project (where the docker-compose.yml is) and add the cloud db parameters as shown below. This file is gitignored and will/should NOT be pushed to the repository. The credentials can be found through the Azure portal (contact a member of the core team).
+    
+    ```
+    CLOUD_DB_PARAMS=put_the_real_cloud_db_params_here_with_no_spaces_before__or_after_the_equals_sign_and_no_quotation_marks
+    ```
+
+10. Navigate to the climatemind-backend directory (locally) and run the following:
 
 ```
 docker-compose down
@@ -83,15 +93,16 @@ docker-compose build
 docker-compose up
 ```
 
-10. In the climatemind-backend/migrations-azure/versions folder you will see a new migration script has been generated. Open this script. Do NOT delete or edit any other scripts in this folder (it is important to preserve the history).
-11. Check that the changes you are making are correct in the script, and remove the following code from upgrade():
+11. In the climatemind-backend/migrations-azure/versions folder you will see a new migration script has been generated. Open this script. 
+Do NOT delete or edit any other scripts in this folder (it is important to preserve the history).
+12. Check that the changes you are making are correct in the script, and remove the following code from upgrade():
 
 ```
 op.drop_index("ix_lrf_data_postal_code", table_name="lrf_data")
 op.drop_table("lrf_data")
 ```
 
-12. Remove the following code from downgrade():
+13. Remove the following code from downgrade():
 
 ```
 op.create_table(
@@ -133,8 +144,8 @@ op.create_table(
     )
 ```
 
-13. In climatemind-backend/entrypoint.sh, re-comment the migrate code out and the upgrade code block back in. 
-14. Run the following again:
+14. In climatemind-backend/entrypoint.sh, re-comment the migrate code out and the upgrade code block back in. 
+15. Run the following again:
 
 ```
 docker-compose down
@@ -142,9 +153,9 @@ docker-compose build
 docker-compose up
 ```
 
-15. In climatemind-backend/docker-compose.yml, delete the DATABASE\_PARAMS with the azure parameters and uncomment the original DATABASE\_PARAMS line to put the local credentials back in.
-16. Check that the cloud db has been updated
-17. Test the changes before pushing to GitHub.
+16. In climatemind-backend/docker-compose.yml, comment out the DATABASE_PARAMS with the cloud parameters and uncomment the original DATABASE_PARAMS line to put the local credentials back in.
+17. Check that the cloud db has been updated
+18. Test the changes before pushing to GitHub.
 
 Co-written by
 @seanmajorpayne @y-himanen
