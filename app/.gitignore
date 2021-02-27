@@ -1,0 +1,8 @@
+#Climate Mind ontology, network, and graph data objects don't belong in this directory
+Climate_Mind_Digraph_Test_Ont.json
+Climate_Mind_DiGraph.gpickle
+.idea
+.idea/*
+
+# Environment variables
+*.env

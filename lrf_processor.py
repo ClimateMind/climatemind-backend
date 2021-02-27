@@ -1,7 +1,7 @@
 import argparse
 import pandas as pd
-from knowledge_graph import db
-from knowledge_graph.models import Zip, Iri, Lrf
+from app import db
+from app.models import Zip, Iri, Lrf
 
 
 def add_iris_to_db(df):
