@@ -39,7 +39,7 @@ def user_scores():
     POSITIVITY_CONSTANT = 3.5
     RESPONSES_TO_ADD = 10
 
-    session_id = str(uuid.uuid4())
+    session_uuid = uuid.uuid4()
 
     questions = parameter["questionResponses"]
     postal_code = parameter["zipCode"]
@@ -95,7 +95,7 @@ def user_scores():
 
         value_scores[value] = centered_score
 
-    value_scores["session-id"] = session_id
+    value_scores["session-id"] = session_uuid
 
     try:
         persist_scores(value_scores)
@@ -104,7 +104,7 @@ def user_scores():
 
     if postal_code:
         try:
-            store_post_code(postal_code, session_id)
+            store_post_code(postal_code, session_uuid)
         except:
             return {"error": "Error adding zipcode to db"}, 500
 
@@ -114,7 +114,7 @@ def user_scores():
     ):
         try:
             ip_address = None
-            store_ip_address(ip_address, session_id)
+            store_ip_address(ip_address, session_uuid)
         except:
             return {"error": "Error adding ip address locally"}, 500
     else:
@@ -125,11 +125,11 @@ def user_scores():
             # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
             else:
                 ip_address = None
-            store_ip_address(ip_address, session_id)
+            store_ip_address(ip_address, session_uuid)
         except:
             return {"error": "Error adding ip address in cloud"}, 500
 
-    response = {"sessionId": session_id}
+    response = {"sessionId": session_uuid}
 
     response = jsonify(response)
     return response, 201

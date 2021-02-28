@@ -4,13 +4,13 @@ import datetime
 from datetime import timezone
 
 
-def store_climate_feed_data(session_id, feed):
+def store_climate_feed_data(session_uuid, feed):
     try:
+        dt = datetime.datetime.now(timezone.utc)
         for i in range(len(feed)):
             effect = ClimateFeed()
-            effect.session_id = session_id
-            dt = datetime.datetime.now(timezone.utc)
-            effect.event_ts = dt
+            effect.session_uuid = session_uuid
+            effect.event_timestamp = dt
             effect.effect_position = i + 1
             effect.effect_iri = feed[i]["effectId"]
             effect.effect_score = feed[i]["effectScore"]

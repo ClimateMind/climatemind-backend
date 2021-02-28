@@ -5,21 +5,20 @@ from datetime import timezone
 import re
 
 
-def store_subscription_data(session_id, email):
+def store_subscription_data(session_uuid, email):
     try:
         valid_email = check_email(email)
-        in_db = Signup.query.get(email)
-        valid_session_id = Sessions.query.get(session_id)
-
+        in_db = Signup.query.filter_by(email=email).first()
+        valid_session_uuid = Sessions.query.get(session_uuid)
         if in_db:
             return {"error": "Email already in db"}, 409
-        elif not valid_session_id:
+        elif not valid_session_uuid:
             return {"error": "Invalid session ID"}, 500
         elif valid_email:
             try:
                 new_subscription = Signup()
                 new_subscription.email = email
-                new_subscription.session_id = session_id
+                new_subscription.session_uuid = session_uuid
                 now = datetime.datetime.now(timezone.utc)
                 new_subscription.signup_timestamp = now
 
@@ -29,7 +28,7 @@ def store_subscription_data(session_id, email):
                 response = {
                     "message": "Successfully added email",
                     "email": email,
-                    "sessionId": session_id,
+                    "sessionId": session_uuid,
                     "datetime": now,
                 }
 

@@ -21,7 +21,7 @@ class TestPersistScores(unittest.TestCase):
 
     def test_successful_persisting(self):
         test_data = {
-            "session_id": "1",
+            "session_uuid": "1",
             "security": 1.0,
             "conformity": 1.0,
             "benevolence": 1.0,
@@ -35,7 +35,7 @@ class TestPersistScores(unittest.TestCase):
         }
 
         expected_scores = Scores()
-        expected_scores.session_id = test_data["session_id"]
+        expected_scores.session_uuid = test_data["session_uuid"]
         expected_scores.security = test_data["security"]
         expected_scores.conformity = test_data["conformity"]
         expected_scores.benevolence = test_data["benevolence"]
@@ -49,9 +49,9 @@ class TestPersistScores(unittest.TestCase):
 
         persist_scores(test_data)
 
-        test_scores = db.session.query(Scores).filter_by(session_id="1").one()
+        test_scores = db.session.query(Scores).filter_by(session_uuid="1").one()
 
-        self.assertEqual(test_scores.session_id, expected_scores.session_id)
+        self.assertEqual(test_scores.session_uuid, expected_scores.session_uuid)
 
         self.tearDown()
 
