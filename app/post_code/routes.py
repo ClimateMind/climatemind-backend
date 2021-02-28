@@ -18,9 +18,9 @@ def post_code():
 
     try:
         request_body = request.json
-        session_id = request_body["sessionId"]
+        session_uuid = request_body["sessionId"]
         postal_code = request_body["postCode"]
-        return store_post_code(postal_code, session_id)
+        return store_post_code(postal_code, session_uuid)
 
     except:
         return {"error": "Invalid request"}, 400

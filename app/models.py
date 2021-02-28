@@ -9,6 +9,7 @@ from app import login
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
+from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 
 
 """ Contains all of the table structures for the database.
@@ -17,10 +18,11 @@ from sqlalchemy.orm import sessionmaker
 
 
 class Users(UserMixin, db.Model):
-    user_id = db.Column(db.String(256), primary_key=True)
     username = db.Column(db.String(64), index=True, unique=True)
+    user_created_timestamp = db.Column(db.DateTime)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
+    user_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
     scores = db.relationship("Scores", backref="owner", lazy="dynamic")
 
     def set_password(self, password):
@@ -36,12 +38,11 @@ class Users(UserMixin, db.Model):
 
 @login.user_loader
 def load_user(id):
-    return User.query.get(Int(id))
+    return Users.query.get(id)
 
 
 class Scores(db.Model):
     scores_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    session_id = db.Column(db.String(256), db.ForeignKey("sessions.session_id"))
     security = db.Column(db.Float, index=False, unique=False)
     conformity = db.Column(db.Float, index=False, unique=False)
     benevolence = db.Column(db.Float, index=False, unique=False)
@@ -52,27 +53,29 @@ class Scores(db.Model):
     hedonism = db.Column(db.Float, index=False, unique=False)
     achievement = db.Column(db.Float, index=False, unique=False)
     power = db.Column(db.Float, index=False, unique=False)
-    user_id = db.Column(db.String(256), db.ForeignKey("users.user_id"))
+    user_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"))
+    scores_created_timestamp = db.Column(db.DateTime)
+    session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
 
 
 class Sessions(db.Model):
-    session_id = db.Column(db.String(256), primary_key=True)
     # postal code variable type for SQL will need to change when scaling up to accept longer postal codes
     postal_code = db.Column(db.String(5))
     scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
     ip_address = db.Column(db.String(255), primary_key=False)
+    session_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
 
 
 class Signup(db.Model):
-    email = db.Column(db.String(254), primary_key=True)
-    session_id = db.Column(db.String(256), db.ForeignKey("sessions.session_id"))
+    email = db.Column(db.String(254))
     signup_timestamp = db.Column(db.DateTime)
+    session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
+    signup_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 
 
 class ClimateFeed(db.Model):
     climate_feed_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    session_id = db.Column(db.String(256), db.ForeignKey("sessions.session_id"))
-    event_ts = db.Column(db.DateTime)
+    event_timestamp = db.Column(db.DateTime)
     effect_position = db.Column(db.Integer)
     effect_iri = db.Column(db.String(255))
     effect_score = db.Column(db.Float)
@@ -81,3 +84,4 @@ class ClimateFeed(db.Model):
     solution_3_iri = db.Column(db.String(255))
     solution_4_iri = db.Column(db.String(255))
     isPossiblyLocal = db.Column(db.Boolean)
+    session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
