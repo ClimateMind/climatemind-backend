@@ -73,3 +73,5 @@ climate_mind_ontology
 #node/cypress
 /node_modules
 /cypress/videos
+
+.vscode

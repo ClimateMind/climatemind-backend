@@ -6,7 +6,7 @@
 ![](https://img.shields.io/badge/Tools-Docker-informational?style=flat&logo=docker&logoColor=white&color=2bbc8a)
 ![](https://img.shields.io/badge/Server-Azure-informational?style=flat&logo=microsoft-azure&logoColor=white&color=2bbc8a)
 
-## TOC
+## Table of Contents
 
 1. [What is this repo?](#what-is-this-repo)
 2. [How this works](#how-this-works)
