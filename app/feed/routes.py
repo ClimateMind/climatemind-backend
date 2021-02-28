@@ -5,6 +5,7 @@ from app.scoring.score_nodes import score_nodes
 from app.models import Scores
 
 from app import db, auto, cache
+import uuid
 
 
 @bp.route("/feed", methods=["GET"])
@@ -19,24 +20,24 @@ def get_feed():
     """
     N_FEED_CARDS = 21
 
-    session_id = str(request.args.get("session-id"))
+    session_uuid = uuid.UUID(request.args.get("session-id"))
 
-    if session_id:
-        feed_entries = get_feed_results(session_id, N_FEED_CARDS)
+    if session_uuid:
+        feed_entries = get_feed_results(session_uuid, N_FEED_CARDS)
         return feed_entries
     else:
         return {"error": "No session ID provided"}, 400
 
 
 @cache.memoize(timeout=1200)  # 20 minutes
-def get_feed_results(session_id, N_FEED_CARDS):
+def get_feed_results(session_uuid, N_FEED_CARDS):
     """
     Mitigation solutions are served randomly based on a user's highest scoring climate
     impacts. The order of these should not change when a page is refreshed. This method
     looks for an existing cache based on a user's session ID, or creates a new feed if
     one is not found.
     """
-    scores = db.session.query(Scores).filter_by(session_id=session_id).first()
+    scores = db.session.query(Scores).filter_by(session_uuid=session_uuid).first()
 
     if scores:
 
@@ -56,7 +57,7 @@ def get_feed_results(session_id, N_FEED_CARDS):
         scores = scores.__dict__
         scores = {key: scores[key] for key in personal_values_categories}
 
-        SCORE_NODES = score_nodes(scores, N_FEED_CARDS, session_id)
+        SCORE_NODES = score_nodes(scores, N_FEED_CARDS, session_uuid)
         recommended_nodes = SCORE_NODES.get_user_nodes()
         feed_entries = {"climateEffects": recommended_nodes}
         return jsonify(feed_entries), 200
