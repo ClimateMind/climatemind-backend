@@ -4,8 +4,8 @@ from app import db
 from app.models import Sessions
 
 
-def store_ip_address(ip_address, session_id):
-    userSession = Sessions.query.filter_by(session_id=session_id).first()
+def store_ip_address(ip_address, session_uuid):
+    userSession = Sessions.query.filter_by(session_uuid=session_uuid).first()
 
     if ip_address:
         ip_address = str(ip_address)

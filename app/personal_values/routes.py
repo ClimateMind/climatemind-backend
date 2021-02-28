@@ -19,12 +19,12 @@ def get_personal_values():
     results. This returns the top 3 personal values of a user given a session ID.
     """
     try:
-        session_id = str(request.args.get("session-id"))
+        session_uuid = request.args.get("session-id")
 
     except:
         return {"error": "Invalid session ID format or no ID provided"}, 400
 
-    scores = Scores.query.filter_by(session_id=session_id).first()
+    scores = Scores.query.filter_by(session_uuid=session_uuid).first()
 
     if scores:
 
