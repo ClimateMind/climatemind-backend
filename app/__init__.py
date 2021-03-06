@@ -1,21 +1,8 @@
 from flask import Flask
-from flask_selfdoc import Autodoc
 from flask_cors import CORS
-from flask_login import LoginManager
-from flask_migrate import Migrate
-from flask_sqlalchemy import SQLAlchemy
-from flask_caching import Cache
+from app.extensions import db, migrate, login, cache, auto, jwt
 
 from config import DevelopmentConfig
-
-db = SQLAlchemy()
-migrate = Migrate()
-login = LoginManager()
-login.login_view = "auth.login"
-login.login_message = "Please log in to access this page."
-cache = Cache()
-auto = Autodoc()
-
 
 def create_app(config_class=DevelopmentConfig):
     app = Flask(__name__)
@@ -27,8 +14,13 @@ def create_app(config_class=DevelopmentConfig):
     cache.init_app(app)
     auto.init_app(app)
     CORS(app)
-
+    jwt.init_app(app)
+    
     with app.app_context():
+    
+        from app.auth import bp as auth_bp
+        
+        app.register_blueprint(auth_bp)
 
         from app.errors import bp as errors_bp
 
