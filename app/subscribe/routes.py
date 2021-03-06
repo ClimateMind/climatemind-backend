@@ -16,7 +16,6 @@ def subscribe():
         request_body = request.json
         email = request_body["email"]
         session_uuid = uuid.UUID(request_body["sessionId"])
-        breakpoint()
         response = store_subscription_data(session_uuid, email)
         return response
     except:
