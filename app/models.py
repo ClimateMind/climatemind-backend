@@ -23,10 +23,10 @@ class Users(db.Model):
     password_hash = db.Column(db.String(128))
     user_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
     scores = db.relationship("Scores", backref="owner", lazy="dynamic")
-    
+
     def set_password(self, password):
-        self.password_hash = generate_password_hash(password)   
-         
+        self.password_hash = generate_password_hash(password)
+
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
@@ -34,7 +34,6 @@ class Users(db.Model):
     def get_user(cls, username):
         user = cls.query.filter_by(username=username).one_or_none()
         return user
-
 
     def __repr__(self):
         """ Tells Python how to print """
@@ -56,7 +55,7 @@ def user_lookup_callback(_jwt_header, jwt_data):
     Register a callback function that loades a user from your database whenever
     a protected route is accessed. This should return any python object on a
     successful lookup, or None if the lookup failed for any reason (for example
-    if the user has been deleted from the database).    
+    if the user has been deleted from the database).
     """
     identity = jwt_data["sub"]
     print("here")
