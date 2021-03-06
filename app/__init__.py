@@ -4,6 +4,7 @@ from app.extensions import db, migrate, login, cache, auto, jwt
 
 from config import DevelopmentConfig
 
+
 def create_app(config_class=DevelopmentConfig):
     app = Flask(__name__)
     app.config.from_object(config_class)
@@ -15,11 +16,11 @@ def create_app(config_class=DevelopmentConfig):
     auto.init_app(app)
     CORS(app)
     jwt.init_app(app)
-    
+
     with app.app_context():
-    
+
         from app.auth import bp as auth_bp
-        
+
         app.register_blueprint(auth_bp)
 
         from app.errors import bp as errors_bp

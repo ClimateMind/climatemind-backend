@@ -10,6 +10,7 @@ from app import db, auto
 
 import uuid
 
+
 @bp.route("/login", methods=["POST"])
 @auto.doc()
 def login():
@@ -21,19 +22,16 @@ def login():
     password = r.get("password", None)
     user = Users.get_user(username)
     if not user or not user.check_password(password):
-        return jsonify(
-            {
-                "error" : "Wrong username or password"
-            }
-        ), 401
+        return jsonify({"error": "Wrong username or password"}), 401
     access_token = create_access_token(identity=user)
     response = {
-        "access_token" : access_token,
-        "username" : user.username,
-        "email" : user.email,
-        "user_uuid" : user.user_uuid,
+        "access_token": access_token,
+        "username": user.username,
+        "email": user.email,
+        "user_uuid": user.user_uuid,
     }
     return jsonify(response)
+
 
 @bp.route("/protected", methods=["GET"])
 @jwt_required()
@@ -44,35 +42,21 @@ def protected():
         email=current_user.email,
     )
 
+
 @bp.route("/register", methods=["POST"])
 def register():
     r = request.get_json(force=True)
     username = r.get("username", None)
     password = r.get("password", None)
     email = r.get("email", None)
-    
+
     user = Users.get_user(username)
     if user:
-        return jsonify(
-            {
-                "Error" : "Username already taken"
-            }
-        ), 401
+        return jsonify({"Error": "Username already taken"}), 401
     else:
         session_uuid = uuid.uuid4()
-        user = Users(
-            username=username,
-            email=email,
-            user_uuid=session_uuid
-        )
+        user = Users(username=username, email=email, user_uuid=session_uuid)
         user.set_password(password)
         db.session.add(user)
         db.session.commit()
-    return jsonify(
-        {
-            "Message" : "Succesfully created user"
-        }
-    ), 200
-        
-            
-            
+    return jsonify({"Message": "Succesfully created user"}), 200
