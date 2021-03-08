@@ -85,3 +85,13 @@ class ClimateFeed(db.Model):
     solution_4_iri = db.Column(db.String(255))
     isPossiblyLocal = db.Column(db.Boolean)
     session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
+
+
+class AnalyticsData(db.Model):
+    analytics_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    category = db.Column(db.String(50))
+    action = db.Column(db.String(50))
+    label = db.Column(db.String(50))
+    session_uuid = db.Column(UNIQUEIDENTIFIER)
+    event_timestamp = db.Column(db.DateTime)
+    value = db.Column(db.String(255))
