@@ -1,9 +1,8 @@
 import os
 from flask import current_app
-from app import db
+from app.extensions import db, login, jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
-from app import login
 
 # Azure
 from sqlalchemy import create_engine
@@ -17,7 +16,7 @@ from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 """
 
 
-class Users(UserMixin, db.Model):
+class Users(db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     user_created_timestamp = db.Column(db.DateTime)
     email = db.Column(db.String(120), index=True, unique=True)
@@ -31,14 +30,36 @@ class Users(UserMixin, db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    @classmethod
+    def get_user(cls, username):
+        user = cls.query.filter_by(username=username).one_or_none()
+        return user
+
     def __repr__(self):
         """ Tells Python how to print """
         return "<User {}>".format(self.username)
 
 
-@login.user_loader
-def load_user(id):
-    return Users.query.get(id)
+@jwt.user_identity_loader
+def user_identity_lookup(user):
+    """
+    Register a callback function that takes whatever object is passed in as the
+    identity when creating JWTs and converts it to a JSON serializable format.
+    """
+    return user.user_uuid
+
+
+@jwt.user_lookup_loader
+def user_lookup_callback(_jwt_header, jwt_data):
+    """
+    Register a callback function that loades a user from your database whenever
+    a protected route is accessed. This should return any python object on a
+    successful lookup, or None if the lookup failed for any reason (for example
+    if the user has been deleted from the database).
+    """
+    identity = jwt_data["sub"]
+    print("here")
+    return Users.query.filter_by(user_uuid=identity).one_or_none()
 
 
 class Scores(db.Model):
