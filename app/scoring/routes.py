@@ -81,7 +81,7 @@ def user_scores():
             avg_score = (value_scores[name] + score) / NUMBER_OF_SETS
             overall_sum += score
 
-            if questionID in value_scores.keys:
+            if questionID in value_scores.keys():
                 return {"error": "Duplicate question ID"}, 400
 
             value_scores[name] = avg_score
