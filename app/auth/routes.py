@@ -26,12 +26,14 @@ def login():
     if not user or not user.check_password(password):
         return jsonify({"error": "Wrong username or password"}), 401
     access_token = create_access_token(identity=user)
-    response = jsonify({
-        "access_token": access_token,
-        "username": user.username,
-        "email": user.email,
-        "user_uuid": user.user_uuid,
-    })
+    response = jsonify(
+        {
+            "access_token": access_token,
+            "username": user.username,
+            "email": user.email,
+            "user_uuid": user.user_uuid,
+        }
+    )
     set_access_cookies(response, access_token)
     return response
 
