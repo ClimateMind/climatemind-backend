@@ -1,10 +1,10 @@
-from flask import request, jsonify
+from flask import request, jsonify, make_response
 from app.auth import bp
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
-from flask_jwt_extended import set_access_cookies
-from flask_jwt_extended import unset_jwt_cookies
+from flask_jwt_extended import create_refresh_token
+from flask_jwt_extended import get_jwt_identity
 
 from app.models import Users
 
@@ -26,15 +26,29 @@ def login():
     if not user or not user.check_password(password):
         return jsonify({"error": "Wrong username or password"}), 401
     access_token = create_access_token(identity=user)
-    response = jsonify(
-        {
-            "access_token": access_token,
-            "username": user.username,
-            "email": user.email,
-            "user_uuid": user.user_uuid,
-        }
+    refresh_token = create_refresh_token(identity=user)
+    response = make_response(
+        jsonify(
+            {
+                "access_token": access_token,
+                "username": user.username,
+                "email": user.email,
+                "user_uuid": user.user_uuid,
+            }
+        )
     )
-    set_access_cookies(response, access_token)
+    response.set_cookie('refresh_token', refresh_token)
+    return response
+
+
+@bp.route("/refresh", methods=["POST"])
+@jwt_required(refresh=True)
+def refresh():
+    identity = get_jwt_identity()
+    access_token = create_access_token(identity=identity)
+    refresh_token = create_refresh_token(identity=user)
+    response = make_response(jsonify(access_token=access_token))
+    response.set_cookie('refresh_token', refresh_token)
     return response
 
 
@@ -65,10 +79,3 @@ def register():
         db.session.add(user)
         db.session.commit()
     return jsonify({"Message": "Succesfully created user"}), 200
-
-
-@bp.route("/logout", methods=["POST"])
-def logout():
-    response = jsonify({"message": "logout successful"})
-    unset_jwt_cookies(response)
-    return response
