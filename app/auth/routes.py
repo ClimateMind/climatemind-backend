@@ -37,7 +37,7 @@ def login():
             }
         )
     )
-    response.set_cookie('refresh_token', refresh_token)
+    response.set_cookie("refresh_token", refresh_token)
     return response
 
 
@@ -49,7 +49,7 @@ def refresh():
     access_token = create_access_token(identity=user)
     refresh_token = create_refresh_token(identity=user)
     response = make_response(jsonify(access_token=access_token))
-    response.set_cookie('refresh_token', refresh_token)
+    response.set_cookie("refresh_token", refresh_token)
     return response
 
 
