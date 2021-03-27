@@ -18,11 +18,14 @@ class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     JWT_COOKIE_SECURE = False
-    JWT_TOKEN_LOCATION = ["cookies"]
+    JWT_TOKEN_LOCATION = ["headers"]
     JWT_SECRET_KEY = "super-secret"  # TODO Change for production & use env variable.
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=5)
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=7)
-
+    JWT_ACCESS_COOKIE_NAME = "access_token"
+    JWT_REFRESH_COOKIE_NAME = "refresh_token"
+    JWT_COOKIE_CSRF_PROTECT = False
+    
     CACHE_TYPE = "simple"
 
     DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")

@@ -31,7 +31,7 @@ class Users(db.Model):
         return check_password_hash(self.password_hash, password)
 
     @classmethod
-    def get_user(cls, username):
+    def find_by_username(cls, username):
         user = cls.query.filter_by(username=username).one_or_none()
         return user
 
@@ -58,7 +58,6 @@ def user_lookup_callback(_jwt_header, jwt_data):
     if the user has been deleted from the database).
     """
     identity = jwt_data["sub"]
-    print("here")
     return Users.query.filter_by(user_uuid=identity).one_or_none()
 
 

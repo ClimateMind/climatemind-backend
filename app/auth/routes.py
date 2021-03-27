@@ -22,10 +22,10 @@ def login():
     r = request.get_json(force=True)
     username = r.get("username", None)
     password = r.get("password", None)
-    user = Users.get_user(username)
+    user = db.session.query(Users).filter_by(username=username).one_or_none()
     if not user or not user.check_password(password):
         return jsonify({"error": "Wrong username or password"}), 401
-    access_token = create_access_token(identity=user)
+    access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
     response = make_response(
         jsonify(
@@ -45,7 +45,8 @@ def login():
 @jwt_required(refresh=True)
 def refresh():
     identity = get_jwt_identity()
-    access_token = create_access_token(identity=identity)
+    user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
+    access_token = create_access_token(identity=user)
     refresh_token = create_refresh_token(identity=user)
     response = make_response(jsonify(access_token=access_token))
     response.set_cookie('refresh_token', refresh_token)
@@ -69,7 +70,7 @@ def register():
     password = r.get("password", None)
     email = r.get("email", None)
 
-    user = Users.get_user(username)
+    user = Users.find_by_username(username)
     if user:
         return jsonify({"Error": "Username already taken"}), 401
     else:
