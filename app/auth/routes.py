@@ -37,7 +37,7 @@ def login():
             }
         )
     )
-    response.set_cookie("refresh_token", refresh_token)
+    response.set_cookie("refresh_token", refresh_token, httponly=True)
     return response
 
 

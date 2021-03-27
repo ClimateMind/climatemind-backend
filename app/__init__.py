@@ -1,8 +1,8 @@
 from flask import Flask
-from flask_cors import CORS
 from datetime import datetime
 from datetime import timezone
 from datetime import timedelta
+from flask_cors import CORS
 from app.extensions import db, migrate, login, cache, auto, jwt
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt
@@ -21,8 +21,19 @@ def create_app(config_class=DevelopmentConfig):
     login.init_app(app)
     cache.init_app(app)
     auto.init_app(app)
-    CORS(app)
     jwt.init_app(app)
+    cors = CORS(
+        app,
+        resources={
+            r"/*": {
+                "origins": [
+                    "https://app.climatemind.org/",
+                    "https://app-frontend-test-001.azurewebsites.net/",
+                    "http://localhost:3000/",
+                ]
+            }
+        },
+    )
 
     with app.app_context():
 
