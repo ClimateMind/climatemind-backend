@@ -1,3 +1,4 @@
+from app import models
 from flask import Flask
 from datetime import datetime
 from datetime import timezone
@@ -22,18 +23,7 @@ def create_app(config_class=DevelopmentConfig):
     cache.init_app(app)
     auto.init_app(app)
     jwt.init_app(app)
-    cors = CORS(
-        app,
-        resources={
-            r"/*": {
-                "origins": [
-                    "https://app.climatemind.org/",
-                    "https://app-frontend-test-001.azurewebsites.net/",
-                    "http://localhost:3000/",
-                ]
-            }
-        },
-    )
+    CORS(app, supports_credentials=True)
 
     with app.app_context():
 
@@ -82,6 +72,3 @@ def create_app(config_class=DevelopmentConfig):
         app.register_blueprint(post_code_bp)
 
     return app
-
-
-from app import models
