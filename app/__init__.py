@@ -23,7 +23,19 @@ def create_app(config_class=DevelopmentConfig):
     cache.init_app(app)
     auto.init_app(app)
     jwt.init_app(app)
-    CORS(app, supports_credentials=True)
+    CORS(
+        app,
+        resources={
+            r"/*": {
+                "origins": [
+                    "http://127.0.0.1:3000",
+                    "http://localhost:3000",
+                    "http://0.0.0.0:3000",
+                ]
+            }
+        },
+        supports_credentials=True,
+    )
 
     with app.app_context():
 
