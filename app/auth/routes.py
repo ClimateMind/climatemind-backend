@@ -37,8 +37,7 @@ def login():
             }
         )
     )
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 
@@ -49,9 +48,9 @@ def refresh():
     user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
     access_token = create_access_token(identity=user)
     refresh_token = create_refresh_token(identity=user)
+    print(refresh_token)
     response = make_response(jsonify(access_token=access_token))
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 
