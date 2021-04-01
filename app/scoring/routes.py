@@ -62,7 +62,7 @@ def user_scores():
 
     process_scores = ProcessScores(questions)
     process_scores.calculate_scores("SetOne")
-    if questions["SetTwo"]:
+    if "SetTwo" in questions:
         process_scores.calculate_scores("SetTwo")
     process_scores.center_scores()
     value_scores = process_scores.get_value_scores()
