@@ -88,7 +88,9 @@ class ProcessScores:
                 ip_address = None
                 store_ip_address(ip_address, session_uuid)
             except:
-                abort(make_response(jsonify(error="Error adding ip address locally"), 500))
+                abort(
+                    make_response(jsonify(error="Error adding ip address locally"), 500)
+                )
         else:
             try:
                 unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
@@ -99,4 +101,8 @@ class ProcessScores:
                     ip_address = None
                 store_ip_address(ip_address, session_uuid)
             except:
-                abort(make_response(jsonify(error="Error adding ip address in cloud"), 500))
+                abort(
+                    make_response(
+                        jsonify(error="Error adding ip address in cloud"), 500
+                    )
+                )
