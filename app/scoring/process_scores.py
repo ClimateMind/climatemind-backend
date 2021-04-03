@@ -1,5 +1,5 @@
 import os
-from flask import abort
+from flask import abort, make_response, jsonify
 from app.scoring.store_ip_address import store_ip_address
 
 
@@ -88,7 +88,7 @@ class ProcessScores:
                 ip_address = None
                 store_ip_address(ip_address, session_uuid)
             except:
-                abort(500, description="Error adding ip address locally")
+                abort(make_response(jsonify(error="Error adding ip address locally"), 500))
         else:
             try:
                 unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
@@ -99,4 +99,4 @@ class ProcessScores:
                     ip_address = None
                 store_ip_address(ip_address, session_uuid)
             except:
-                abort(500, description="Error adding ip address in cloud")
+                abort(make_response(jsonify(error="Error adding ip address in cloud"), 500))
