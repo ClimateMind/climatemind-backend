@@ -1,4 +1,4 @@
-from flask import jsonify, request, abort
+from flask import jsonify, request, abort, make_response
 
 import uuid
 import os
@@ -51,14 +51,14 @@ def user_scores():
 
     parameter = request.json
     if not parameter:
-        abort(400, description="No user response provided")
+        abort(make_response(jsonify(error="No user response provided"), 400))
 
     responses_to_add = 10
 
     questions = parameter["questionResponses"]
 
     if len(questions["SetOne"]) != responses_to_add:
-        abort(400, description="Invalid number of questions provided")
+        abort(make_response(jsonify(error="Invalid number of questions provided"), 400))
 
     process_scores = ProcessScores(questions)
     process_scores.calculate_scores("SetOne")
@@ -77,7 +77,7 @@ def user_scores():
         try:
             store_post_code(postal_code, session_uuid)
         except:
-            abort(500, description="Error adding zipcode to db")
+            abort(make_response(jsonify(error="Error adding zipcode to db"), 500))
 
     process_scores.process_ip_address(request, session_uuid)
 
