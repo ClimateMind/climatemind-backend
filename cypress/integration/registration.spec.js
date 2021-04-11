@@ -10,6 +10,10 @@ const user2 = {
   password: "password",
 };
 
+const successMessage = "Succesfully created user";
+const badReqMessage = "email and password must be included in request body";
+const alreadyRegisteredMessage = "Email already regsitered";
+
 describe("User Registration", () => {
   it("It can register a user", () => {
     cy.request("POST", "http://localhost:5000/register", user1).should(
@@ -18,8 +22,8 @@ describe("User Registration", () => {
         expect(response.headers["content-type"]).to.equal("application/json");
         expect(response.body).to.be.a("object");
         expect(response.body).to.have.property("message");
-        expect(response.body.Message).to.satisfy(function (s) {
-          return s === "Succesfully created user";
+        expect(response.body.message).to.satisfy(function (s) {
+          return s === successMessage;
         });
       }
     );
@@ -33,7 +37,7 @@ describe("User Registration", () => {
         expect(response.body).to.be.a("object");
         expect(response.body).to.have.property("message");
         expect(response.body.Message).to.satisfy(function (s) {
-          return s === "Succesfully created user";
+          return s === successMessage;
         });
       }
     );
@@ -46,7 +50,7 @@ describe("User Registration", () => {
         expect(response.body).to.be.a("object");
         expect(response.body).to.have.property("error");
         expect(response.body.Message).to.satisfy(function (s) {
-          return s === "Email already regsitered";
+          return s === alreadyRegisteredMessage;
         });
       }
     );
@@ -63,7 +67,7 @@ describe("User Registration", () => {
         expect(response.body).to.be.a("object");
         expect(response.body).to.have.property("error");
         expect(response.body.Message).to.satisfy(function (s) {
-          return s === "email and password must be included in request body";
+          return s === badReqMessage;
         });
       }
     );
@@ -71,7 +75,7 @@ describe("User Registration", () => {
 
   it("It handles a missing password", () => {
     const body = {
-      email: "test3@example.com",
+      email: "missingpassword@example.com",
     };
     cy.request("POST", "http://localhost:5000/register", body).should(
       (response) => {
@@ -80,7 +84,7 @@ describe("User Registration", () => {
         expect(response.body).to.be.a("object");
         expect(response.body).to.have.property("error");
         expect(response.body.Message).to.satisfy(function (s) {
-          return s === "email and password must be included in request body";
+          return s === badReqMessage;
         });
       }
     );
@@ -93,7 +97,7 @@ describe("User Registration", () => {
       expect(response.body).to.be.a("object");
       expect(response.body).to.have.property("error");
       expect(response.body.Message).to.satisfy(function (s) {
-        return s === "email and password must be included in request body";
+        return s === badReqMessage;
       });
     });
   });

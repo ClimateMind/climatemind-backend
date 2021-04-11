@@ -31,9 +31,10 @@ def login():
         jsonify(
             {
                 "access_token": access_token,
-                "username": user.username,
-                "email": user.email,
-                "user_uuid": user.user_uuid,
+                "user": {
+                    "email": user.email,
+                    "user_uuid": user.user_uuid,
+                }
             }
         )
     )
@@ -42,8 +43,8 @@ def login():
     return response
 
 
-@bp.route("/refresh", methods=["POST"])
-@jwt_required(refresh=True)
+@ bp.route("/refresh", methods=["POST"])
+@ jwt_required(refresh=True)
 def refresh():
     identity = get_jwt_identity()
     user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
@@ -56,17 +57,16 @@ def refresh():
     return response
 
 
-@bp.route("/protected", methods=["GET"])
-@jwt_required()
+@ bp.route("/protected", methods=["GET"])
+@ jwt_required()
 def protected():
     return jsonify(
         uuid=current_user.user_uuid,
-        username=current_user.username,
         email=current_user.email,
     )
 
 
-@bp.route("/register", methods=["POST"])
+@ bp.route("/register", methods=["POST"])
 def register():
     r = request.get_json(force=True)
     username = r.get("username", None)
