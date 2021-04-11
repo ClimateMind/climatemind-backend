@@ -37,7 +37,8 @@ def login():
             }
         )
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token,
+                        path="/refresh", httponly=True)
     return response
 
 
@@ -50,7 +51,8 @@ def refresh():
     refresh_token = create_refresh_token(identity=user)
     print(refresh_token)
     response = make_response(jsonify(access_token=access_token))
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token,
+                        path="/refresh", httponly=True)
     return response
 
 
@@ -73,11 +75,11 @@ def register():
 
     user = Users.find_by_username(username)
     if user:
-        return jsonify({"Error": "Username already taken"}), 401
+        return jsonify({"error": "Username already taken"}), 401
     else:
         session_uuid = uuid.uuid4()
         user = Users(username=username, email=email, user_uuid=session_uuid)
         user.set_password(password)
         db.session.add(user)
         db.session.commit()
-    return jsonify({"Message": "Succesfully created user"}), 200
+    return jsonify({"message": "Succesfully created user"}), 201
