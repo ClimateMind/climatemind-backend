@@ -42,16 +42,16 @@ def get_personal_values():
         ]
 
         scores = scores.__dict__
-        sorted_scores = {key: scores[key]
-                         for key in personal_values_categories}
 
         # All scores and accoiated values for response
         all_scores = [{'personalValue': key, 'score': scores[key]}
-                      for key in sorted_scores]
+                      for key in personal_values_categories]
 
         # Top 3 personal values
         top_scores = sorted(
-            sorted_scores, key=sorted_scores.get, reverse=True)[:3]
+            all_scores, key=lambda value: value['score'], reverse=True)[:3]
+
+        print(top_scores)
 
         # Fetch descriptions
         try:
@@ -62,16 +62,18 @@ def get_personal_values():
                 value_descriptions = load(f)
         except FileNotFoundError:
             return {"error": "Value descriptions file not found"}, 404
-        descriptions = [value_descriptions[score] for score in top_scores]
+        # descriptions = [value_descriptions[score.personalValue]
+        #                 for score in top_scores]
 
-        # Add descriptions to top 3 personal values
-        scores_and_descriptions = []
-        for i in range(len(top_scores)):
-            scores_and_descriptions.append(descriptions[i])
+        # # Add descriptions to top 3 personal values
+        # scores_and_descriptions = []
+        # for i in range(len(top_scores)):
+        #     scores_and_descriptions.append(descriptions[i])
 
         # Build and return response
         response = {
-            "personalValues": scores_and_descriptions,
+            # "personalValues": scores_and_descriptions,
+            "personalValues": top_scores,
             "scores": all_scores
         }
         return jsonify(response), 200
