@@ -6,10 +6,11 @@ def normalize_scores(values):
     max_score = max([value["score"] for value in values])
 
     for val in values:
-        normalized_value = range_min + (val["score"] - min_score) * \
-            (range_max - range_min) / (max_score - min_score)
+        normalized_value = range_min + (val["score"] - min_score) * (
+            range_max - range_min
+        ) / (max_score - min_score)
 
         val["score"] = round(normalized_value, 1)
-        print(val['score'])
+        print(val["score"])
 
     return values
