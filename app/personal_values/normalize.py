@@ -1,5 +1,5 @@
 def normalize_scores(values):
-    # This normalise function rescales the users score between the users score
+    # This normalise function rescales the users score between a given range for better display
     range_min = 0
     range_max = 6
     min_score = min([value["score"] for value in values])
