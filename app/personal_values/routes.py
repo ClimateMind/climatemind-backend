@@ -42,10 +42,18 @@ def get_personal_values():
         ]
 
         scores = scores.__dict__
-        sorted_scores = {key: scores[key] for key in personal_values_categories}
+        sorted_scores = {key: scores[key]
+                         for key in personal_values_categories}
 
-        top_scores = sorted(sorted_scores, key=sorted_scores.get, reverse=True)[:3]
+        # All scores and accoiated values for response
+        all_scores = [{'personalValue': key, 'score': scores[key]}
+                      for key in sorted_scores]
 
+        # Top 3 personal values
+        top_scores = sorted(
+            sorted_scores, key=sorted_scores.get, reverse=True)[:3]
+
+        # Fetch descriptions
         try:
             file = os.path.join(
                 os.getcwd(), "app/personal_values/static", "value_descriptions.json"
@@ -56,11 +64,17 @@ def get_personal_values():
             return {"error": "Value descriptions file not found"}, 404
         descriptions = [value_descriptions[score] for score in top_scores]
 
+        # Add descriptions to top 3 personal values
         scores_and_descriptions = []
         for i in range(len(top_scores)):
             scores_and_descriptions.append(descriptions[i])
-        response = {"personalValues": scores_and_descriptions}
+
+        # Build and return response
+        response = {
+            "personalValues": scores_and_descriptions,
+            "scores": all_scores
+        }
         return jsonify(response), 200
 
     else:
-        return {"error": "Invalid session ID"}, 500
+        return {"error": "Invalid session ID"}, 400
