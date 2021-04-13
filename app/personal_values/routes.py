@@ -11,12 +11,22 @@ from app.models import Scores
 from app import auto
 
 
+def normalize_scores(values):
+    min_score = min([value['score'] for value in values])
+    max_score = max([value['score'] for value in values])
+    # TODO: Check this correct way to normalise scores
+    for val in values:
+        val['score'] = (val['score'] - min_score) / \
+            (max_score - min_score) * 10
+    return values
+
+
 @bp.route("/personal_values", methods=["GET"])
 @auto.doc()
 def get_personal_values():
     """
     Users want to know their personal values based on their Schwartz questionnaire
-    results. This returns the top 3 personal values of a user given a session ID.
+    results. This returns the top 3 personal values with descriptions plus all scores for a user given a session ID.
     """
     try:
         session_uuid = request.args.get("session-id")
@@ -47,11 +57,11 @@ def get_personal_values():
         all_scores = [{'personalValue': key, 'score': scores[key]}
                       for key in personal_values_categories]
 
+        normalized_scores = normalize_scores(all_scores)
+
         # Top 3 personal values
         top_scores = sorted(
             all_scores, key=lambda value: value['score'], reverse=True)[:3]
-
-        print(top_scores)
 
         # Fetch descriptions
         try:
@@ -62,19 +72,16 @@ def get_personal_values():
                 value_descriptions = load(f)
         except FileNotFoundError:
             return {"error": "Value descriptions file not found"}, 404
-        # descriptions = [value_descriptions[score.personalValue]
-        #                 for score in top_scores]
+        print(top_scores)
 
-        # # Add descriptions to top 3 personal values
-        # scores_and_descriptions = []
-        # for i in range(len(top_scores)):
-        #     scores_and_descriptions.append(descriptions[i])
+        # Add desciptions for top 3 values to retrun
+        values_and_descriptions = [value_descriptions[score['personalValue']]
+                                   for score in top_scores]
 
         # Build and return response
         response = {
-            # "personalValues": scores_and_descriptions,
-            "personalValues": top_scores,
-            "scores": all_scores
+            "personalValues": values_and_descriptions,
+            "valueScores": normalized_scores
         }
         return jsonify(response), 200
 
