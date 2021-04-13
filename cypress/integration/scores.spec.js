@@ -41,6 +41,25 @@ describe("Scores endpoint", () => {
       expect(response.headers["access-control-allow-origin"]).to.equal("*");
       expect(response.body).to.be.a("object");
       expect(response.body).to.have.property("personalValues");
+      expect(response.body.valueScores).to.have.length(10);
+      const { personalValues } = response.body;
+      const { valueScores } = response.body;
+      // P Values have all the right properties
+      personalValues.forEach((value) => {
+        expect(value).to.have.property("id");
+        expect(value).to.have.property("description");
+        expect(value).to.have.property("shortDescription");
+        expect(value).to.have.property("name");
+      });
+      // Scores have all the right properties and valid values
+      valueScores.forEach((score) => {
+        expect(score).to.have.property("personalValue");
+        expect(score).to.satisfy(function (s) {
+          const isValid =
+            typeof s.score === "number" && s.score >= 0 && s.score <= 10;
+          return isValid;
+        });
+      });
     });
   });
 
