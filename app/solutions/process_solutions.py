@@ -2,6 +2,7 @@ from flask import current_app
 
 from app.network_x_tools.network_x_utils import network_x_utils
 from app.myths.process_myths import process_myths
+from app.errors.errors import CustomError
 
 import numpy as np
 import random
@@ -64,22 +65,20 @@ class process_solutions:
         general_solutions_details = []
 
         for solution in general_solutions:
-            try:
-                self.NX_UTILS.set_current_node(self.G.nodes[solution])
-                self.MYTH_PROCESS.set_current_node(self.G.nodes[solution])
-                d = {
-                    "iri": self.NX_UTILS.get_node_id(),
-                    "solutionTitle": self.G.nodes[solution]["label"],
-                    "solutionType": "mitigation",
-                    "shortDescription": self.NX_UTILS.get_short_description(),
-                    "longDescription": self.NX_UTILS.get_description(),
-                    "imageUrl": self.NX_UTILS.get_image_url_or_none(),
-                    "solutionSpecificMythIRIs": self.MYTH_PROCESS.get_solution_specific_myths(),
-                    "solutionSources": self.NX_UTILS.get_solution_sources(),
-                    "solutionCo2EqReduced": self.NX_UTILS.get_co2_eq_reduced(),
-                }
-            except:
-                pass
+
+            self.NX_UTILS.set_current_node(self.G.nodes[solution])
+            self.MYTH_PROCESS.set_current_node(self.G.nodes[solution])
+            d = {
+                "iri": self.NX_UTILS.get_node_id(),
+                "solutionTitle": self.G.nodes[solution]["label"],
+                "solutionType": "mitigation",
+                "shortDescription": self.NX_UTILS.get_short_description(),
+                "longDescription": self.NX_UTILS.get_description(),
+                "imageUrl": self.NX_UTILS.get_image_url_or_none(),
+                "solutionSpecificMythIRIs": self.MYTH_PROCESS.get_solution_specific_myths(),
+                "solutionSources": self.NX_UTILS.get_solution_sources(),
+                "solutionCo2EqReduced": self.NX_UTILS.get_co2_eq_reduced(),
+            }
 
             if d not in general_solutions_details:
                 general_solutions_details.append(d)
@@ -119,7 +118,10 @@ class process_solutions:
                         adaptation_solutions.append(s_dict)
 
             except:
-                pass
+                raise CustomError(
+                    message="An error occurred while processing the adaptation solutions for a climate effect in the user's personalized feed."
+                )
+
         solution_names = self.G.nodes["increase in greenhouse effect"][
             "mitigation solutions"
         ]
@@ -139,7 +141,10 @@ class process_solutions:
                 }
                 mitigation_solutions.append(s_dict)
             except:
-                pass
+                raise CustomError(
+                    message="An error occurred while processing the mitigation solutions for a climate effect in the user's personalized feed."
+                )
+
         solutions = self.solution_randomizer(
             adaptation_solutions,
             mitigation_solutions,

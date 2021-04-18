@@ -1,7 +1,7 @@
 from flask import jsonify, request
 from app.scoring import bp
 from app.scoring.score_nodes import score_nodes
-
+from app.errors.errors import InvalidUsageError, DatabaseError, CustomError
 from app.models import Scores
 
 from app import db, auto, cache
@@ -19,14 +19,16 @@ def get_feed():
     session-id : uuid4 as string
     """
     N_FEED_CARDS = 21
+    try:
+        session_uuid = uuid.UUID(request.args.get("session-id"))
+    except:
+        raise InvalidUsageError(
+            message="Malformed request. Session id provided to get feed is not a valid UUID."
+        )
 
-    session_uuid = uuid.UUID(request.args.get("session-id"))
+    feed_entries = get_feed_results(session_uuid, N_FEED_CARDS)
 
-    if session_uuid:
-        feed_entries = get_feed_results(session_uuid, N_FEED_CARDS)
-        return feed_entries
-    else:
-        return {"error": "No session ID provided"}, 400
+    return feed_entries
 
 
 @cache.memoize(timeout=1200)  # 20 minutes
@@ -57,10 +59,17 @@ def get_feed_results(session_uuid, N_FEED_CARDS):
         scores = scores.__dict__
         scores = {key: scores[key] for key in personal_values_categories}
 
-        SCORE_NODES = score_nodes(scores, N_FEED_CARDS, session_uuid)
-        recommended_nodes = SCORE_NODES.get_user_nodes()
-        feed_entries = {"climateEffects": recommended_nodes}
-        return jsonify(feed_entries), 200
+        try:
+            SCORE_NODES = score_nodes(scores, N_FEED_CARDS, session_uuid)
+            recommended_nodes = SCORE_NODES.get_user_nodes()
+            feed_entries = {"climateEffects": recommended_nodes}
+            return jsonify(feed_entries), 200
+        except:
+            raise CustomError(
+                message="Cannot get feed results. Something went wrong while processing the user's recommended nodes."
+            )
 
     else:
-        return {"error": "Invalid session ID or no information for ID"}, 400
+        raise DatabaseError(
+            message="Cannot get feed results. Session id not in database."
+        )

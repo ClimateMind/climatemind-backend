@@ -2,6 +2,7 @@ from app import db
 from app.models import ClimateFeed
 import datetime
 from datetime import timezone
+from app.errors.errors import DatabaseError
 
 
 def store_climate_feed_data(session_uuid, feed):
@@ -25,5 +26,7 @@ def store_climate_feed_data(session_uuid, feed):
 
             db.session.add(effect)
             db.session.commit()
-    except Exception as e:
-        print(e)
+    except:
+        raise DatabaseError(
+            message="An error occurred while saving the feed to database."
+        )

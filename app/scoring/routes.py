@@ -1,4 +1,5 @@
-from flask import jsonify, request, abort, make_response
+from flask import jsonify, request, make_response
+
 
 import uuid
 import os
@@ -8,7 +9,8 @@ from app.scoring.persist_scores import persist_scores
 from app.scoring.process_scores import ProcessScores
 
 from app.scoring.store_ip_address import store_ip_address
-from app.post_code.store_post_code import store_post_code
+from app.post_code.store_post_code import store_post_code, check_post_code
+from app.errors.errors import InvalidUsageError, DatabaseError
 
 from app import auto
 
@@ -50,18 +52,24 @@ def user_scores():
     """
 
     parameter = request.json
+
     if not parameter:
-        abort(make_response(jsonify(error="No user response provided"), 400))
+        raise InvalidUsageError(
+            message="Cannot post scores. No user response provided."
+        )
 
     responses_to_add = 10
 
     questions = parameter["questionResponses"]
 
     if len(questions["SetOne"]) != responses_to_add:
-        abort(make_response(jsonify(error="Invalid number of questions provided"), 400))
+        raise InvalidUsageError(
+            message="Cannot post scores. Invalid number of questions provided"
+        )
 
     process_scores = ProcessScores(questions)
     process_scores.calculate_scores("SetOne")
+
     if "SetTwo" in questions:
         process_scores.calculate_scores("SetTwo")
     process_scores.center_scores()
@@ -73,11 +81,13 @@ def user_scores():
 
     postal_code = parameter["zipCode"]
 
-    if postal_code:
+    if postal_code and check_post_code(postal_code):
         try:
             store_post_code(postal_code, session_uuid)
         except:
-            abort(make_response(jsonify(error="Error adding zipcode to db"), 500))
+            raise DatabaseError(
+                message="An error occurred while adding the postcode associated with these scores to the database."
+            )
 
     process_scores.process_ip_address(request, session_uuid)
 
