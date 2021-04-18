@@ -4,6 +4,7 @@ from typing import Type
 
 from app import db
 from app.models import Scores, Sessions
+from app.errors.errors import DatabaseError
 
 
 def persist_scores(scores):
@@ -43,4 +44,6 @@ def persist_scores(scores):
         db.session.commit()
 
     except:
-        abort(500, description="Unable to save provided question data")
+        raise DatabaseError(
+            message="An error occurred while trying to save the user's scores to the database."
+        )
