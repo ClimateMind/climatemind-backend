@@ -71,7 +71,7 @@ def get_personal_values():
         values_and_descriptions = [
             value_descriptions[score["personalValue"]] for score in top_scores
         ]
-             
+
         # Build and return response
         response = {
             "personalValues": values_and_descriptions,
@@ -82,4 +82,4 @@ def get_personal_values():
     else:
         raise DatabaseError(
             message="Cannot get personal values. Session id is not in database."
-        ) 
+        )
