@@ -7,13 +7,15 @@ from app import auto
 from app.errors.errors import InvalidUsageError, DatabaseError
 import uuid
 
+from app.personal_values.normalize import normalize_scores
+
 
 @bp.route("/personal_values", methods=["GET"])
 @auto.doc()
 def get_personal_values():
     """
     Users want to know their personal values based on their Schwartz questionnaire
-    results. This returns the top 3 personal values of a user given a session ID.
+    results. This returns the top 3 personal values with descriptions plus all scores for a user given a session ID.
     """
     try:
         session_uuid = uuid.UUID(request.args.get("session-id"))
@@ -41,10 +43,21 @@ def get_personal_values():
         ]
 
         scores = scores.__dict__
-        sorted_scores = {key: scores[key] for key in personal_values_categories}
 
-        top_scores = sorted(sorted_scores, key=sorted_scores.get, reverse=True)[:3]
+        # All scores and accoiated values for response
+        all_scores = [
+            {"personalValue": key, "score": scores[key]}
+            for key in personal_values_categories
+        ]
 
+        normalized_scores = normalize_scores(all_scores)
+
+        # Top 3 personal values
+        top_scores = sorted(all_scores, key=lambda value: value["score"], reverse=True)[
+            :3
+        ]
+
+        # Fetch descriptions
         try:
             file = os.path.join(
                 os.getcwd(), "app/personal_values/static", "value_descriptions.json"
@@ -54,15 +67,19 @@ def get_personal_values():
         except FileNotFoundError:
             return jsonify({"error": "Value descriptions file not found"}), 404
 
-        descriptions = [value_descriptions[score] for score in top_scores]
-        scores_and_descriptions = []
-
-        for i in range(len(top_scores)):
-            scores_and_descriptions.append(descriptions[i])
-        response = {"personalValues": scores_and_descriptions}
+        # Add desciptions for top 3 values to retrun
+        values_and_descriptions = [
+            value_descriptions[score["personalValue"]] for score in top_scores
+        ]
+             
+        # Build and return response
+        response = {
+            "personalValues": values_and_descriptions,
+            "valueScores": normalized_scores,
+        }
         return jsonify(response), 200
 
     else:
         raise DatabaseError(
             message="Cannot get personal values. Session id is not in database."
-        )
+        ) 
