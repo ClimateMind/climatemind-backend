@@ -1,6 +1,7 @@
 from flask import jsonify, request
 from app.solutions import bp
 from app.solutions.process_solutions import process_solutions
+from app.errors.errors import InvalidUsageError, CustomError
 
 from app import auto
 
@@ -11,15 +12,15 @@ SOLUTION_PROCESSOR = process_solutions(4, 0.5)
 @auto.doc()
 def get_actions():
     """
-    The front-end needs to request personalized actions to take against climate change
-    based on a specified climate effect.
+    The front-end needs to request actions to take against climate change
+    based on a specified climate effect in the user's personalized feed.
     """
     effect_name = str(request.args.get("effect-name"))
 
     try:
         actions = SOLUTION_PROCESSOR.get_user_actions(effect_name)
     except:
-        return {"error": "Invalid climate effect or no actions found"}, 400
+        raise CustomError(message="This endpoint is not currently in use.")
 
     response = jsonify({"actions": actions})
     return response, 200
@@ -40,4 +41,6 @@ def get_general_solutions():
         climate_general_solutions = {"solutions": recommended_general_solutions}
         return jsonify(climate_general_solutions), 200
     except:
-        return {"error": "Failed to process general solutions"}, 500
+        raise CustomError(
+            message="An error occurred while processing the user's general solution nodes."
+        )

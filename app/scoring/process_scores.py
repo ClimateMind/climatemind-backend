@@ -1,6 +1,7 @@
 import os
 from flask import abort, make_response, jsonify
 from app.scoring.store_ip_address import store_ip_address
+from app.errors.errors import DatabaseError
 
 
 class ProcessScores:
@@ -88,8 +89,8 @@ class ProcessScores:
                 ip_address = None
                 store_ip_address(ip_address, session_uuid)
             except:
-                abort(
-                    make_response(jsonify(error="Error adding ip address locally"), 500)
+                raise DatabaseError(
+                    message="An error occurred while saving the user's ip address to the local database."
                 )
         else:
             try:
@@ -101,8 +102,6 @@ class ProcessScores:
                     ip_address = None
                 store_ip_address(ip_address, session_uuid)
             except:
-                abort(
-                    make_response(
-                        jsonify(error="Error adding ip address in cloud"), 500
-                    )
+                raise DatabaseError(
+                    message="An error occurred while saving the user's ip address to the production database."
                 )

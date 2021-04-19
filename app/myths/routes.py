@@ -1,6 +1,7 @@
 from flask import current_app, jsonify, request
 from app.myths import bp
 from app.myths.process_myths import process_myths
+from app.errors.errors import CustomError, InvalidUsageError
 
 
 MYTH_PROCESSOR = process_myths()
@@ -23,7 +24,7 @@ def get_general_myths():
         return jsonify(climate_general_myths), 200
 
     except:
-        return {"error": "Failed to process myths"}, 500
+        raise CustomError(message="Something went wrong while processing the myths.")
 
 
 @bp.route("/myths/<string:iri>", methods=["GET"])
@@ -34,11 +35,19 @@ def get_myth_info(iri):
     Parameter (as GET)
     iri - a unique identifier string
     """
-    myth_info = MYTH_PROCESSOR.get_specific_myth_info(iri)
+
+    try:
+        myth_info = MYTH_PROCESSOR.get_specific_myth_info(iri)
+    except:
+        raise CustomError(
+            message="Something went wrong while processing the individual myth."
+        )
 
     if myth_info:
         specific_myth_info = {"myth": myth_info}
         return jsonify(specific_myth_info), 200
 
     else:
-        return {"error": "IRI does not exist"}, 400
+        raise InvalidUsageError(
+            message="IRI provided does not match any individual myth."
+        )
