@@ -1,14 +1,11 @@
 import os
-
 from flask import jsonify, request
-
 from json import load
-
 from app.personal_values import bp
-
 from app.models import Scores
-
 from app import auto
+from app.errors.errors import InvalidUsageError, DatabaseError
+import uuid
 
 from app.personal_values.normalize import normalize_scores
 
@@ -21,10 +18,12 @@ def get_personal_values():
     results. This returns the top 3 personal values with descriptions plus all scores for a user given a session ID.
     """
     try:
-        session_uuid = request.args.get("session-id")
+        session_uuid = uuid.UUID(request.args.get("session-id"))
 
     except:
-        return {"error": "Invalid session ID format or no ID provided"}, 400
+        raise InvalidUsageError(
+            message="Malformed request. Session id provided to get personal values is not a valid UUID."
+        )
 
     scores = Scores.query.filter_by(session_uuid=session_uuid).first()
 
@@ -66,8 +65,7 @@ def get_personal_values():
             with open(file) as f:
                 value_descriptions = load(f)
         except FileNotFoundError:
-            return {"error": "Value descriptions file not found"}, 404
-        print(top_scores)
+            return jsonify({"error": "Value descriptions file not found"}), 404
 
         # Add desciptions for top 3 values to retrun
         values_and_descriptions = [
@@ -82,4 +80,6 @@ def get_personal_values():
         return jsonify(response), 200
 
     else:
-        return {"error": "Invalid session ID"}, 400
+        raise DatabaseError(
+            message="Cannot get personal values. Session id is not in database."
+        )
