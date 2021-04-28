@@ -1,6 +1,7 @@
 /// <reference types="cypress" />
 
 import scores from "../fixtures/postScores.json";
+import scoresAllTheSame from "../fixtures/postScoresAllSameAnswer.json";
 import scoresSetTwo from "../fixtures/postScoresSetTwo.json";
 
 let sessionId; // store the session id from the post to chech we can retreive the values and scores.
@@ -84,6 +85,26 @@ describe("Scores endpoint", () => {
       expect(response.body).to.be.a("object");
       expect(response.body).to.have.property("sessionId");
       expect(response.body.sessionId).to.be.a("string");
+    });
+  });
+
+  it("When the user answers the same for every question each value should be scored in the middle of the range", () => {
+    //Post scores with all the same answer
+    cy.request("POST", "/scores", scoresAllTheSame).should((response) => {
+      sessionId = response.body["sessionId"];
+
+      // Check the personal values scores for the corresponding sessions are correct
+      cy.request(
+        `http://localhost:5000/personal_values?session-id=${sessionId}`
+      ).should((response) => {
+        expect(response.status).to.equal(200);
+        // Each personal value has a score in the middle of the range.
+        const { valueScores } = response.body;
+        valueScores.forEach((score) => {
+          expect(score).to.have.property("personalValue");
+          expect(score.score).to.equal(3);
+        });
+      });
     });
   });
 });
