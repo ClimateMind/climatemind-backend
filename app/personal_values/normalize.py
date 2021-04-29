@@ -8,7 +8,7 @@ def normalize_scores(values):
     # If all question responses are the same return the middle of the range for each personal value
     if max_score - min_score == 0:
         for val in values:
-            val["score"] = range_max / 2
+            val["score"] = range_max / 2 + range_min
         return values
 
     # Or normailse scores if not
