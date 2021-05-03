@@ -77,13 +77,15 @@ class Scores(db.Model):
     power = db.Column(db.Float, index=False, unique=False)
     user_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"))
     scores_created_timestamp = db.Column(db.DateTime)
-    session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
+    session_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
 
 
 class Sessions(db.Model):
     # postal code variable type for SQL will need to change when scaling up allow longer postal codes
     postal_code = db.Column(db.String(5))
-    scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
+    scores = db.relationship(
+        "Scores", backref="owner_of_scores", lazy="dynamic")
     ip_address = db.Column(db.String(255), primary_key=False)
     session_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
 
@@ -91,12 +93,14 @@ class Sessions(db.Model):
 class Signup(db.Model):
     email = db.Column(db.String(254))
     signup_timestamp = db.Column(db.DateTime)
-    session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
+    session_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
     signup_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
 
 
 class ClimateFeed(db.Model):
-    climate_feed_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
+    climate_feed_id = db.Column(
+        db.Integer, primary_key=True, autoincrement=True)
     event_timestamp = db.Column(db.DateTime)
     effect_position = db.Column(db.Integer)
     effect_iri = db.Column(db.String(255))
@@ -106,7 +110,8 @@ class ClimateFeed(db.Model):
     solution_3_iri = db.Column(db.String(255))
     solution_4_iri = db.Column(db.String(255))
     isPossiblyLocal = db.Column(db.Boolean)
-    session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
+    session_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
 
 
 class AnalyticsData(db.Model):
