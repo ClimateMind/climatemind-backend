@@ -9,7 +9,7 @@ describe("User can login", () => {
   it("User can login", () => {
     // Register Test User
     const testUser = {
-      full-name: "test user"
+      full-name: "test user",
       email: "login@example.com",
       password: "PassWord7!",
     };
