@@ -2,7 +2,8 @@ from flask import request
 
 from app.subscribe import bp
 
-from app.subscribe.store_subscription_data import store_subscription_data
+from app.subscribe.store_subscription_data import store_subscription_data, check_email
+from app.errors.errors import InvalidUsageError
 
 from app import auto
 
@@ -16,7 +17,14 @@ def subscribe():
         request_body = request.json
         email = request_body["email"]
         session_uuid = uuid.UUID(request_body["sessionId"])
-        response = store_subscription_data(session_uuid, email)
-        return response
     except:
-        return {"error": "Invalid request"}, 400
+        raise InvalidUsageError(
+            message="Unable to post subscriber information. Check the request parameters."
+        )
+
+    if check_email(email):
+        return store_subscription_data(session_uuid, email)
+    else:
+        raise InvalidUsageError(
+            message="Cannot post subscriber information. Subscriber email is invalid."
+        )

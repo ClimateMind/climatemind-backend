@@ -1,7 +1,7 @@
 import os
 from json import dumps, load
 from app.questions import bp
-from flask import Response
+from flask import Response, jsonify
 
 from app import auto
 
@@ -20,7 +20,7 @@ def get_questions():
         with open(file) as json_file:
             data = load(json_file)
     except FileNotFoundError:
-        return {"error": "Schwartz questions not found"}, 404
+        return jsonify({"error": "Schwartz questions not found"}), 404
 
     response = Response(dumps(data))
     response.headers["Content-Type"] = "application/json"

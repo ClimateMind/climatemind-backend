@@ -1,7 +1,7 @@
 import re
-
 from app import db
 from app.models import Sessions
+from app.errors.errors import DatabaseError
 
 
 def store_post_code(post_code, session_uuid):
@@ -10,30 +10,29 @@ def store_post_code(post_code, session_uuid):
     A regular expression is used to check whether the post code contains 5 digits.
     If the post code is valid, it is committed to the Sessions table alongside the session_uuid.
     """
-    regex = re.compile(r"(\b\d{5})\b")
-    post_code_valid = regex.search(post_code)
-
-    if post_code_valid:
+    s = Sessions.query.filter_by(session_uuid=session_uuid).first()
+    if s:
         try:
-            s = Sessions.query.filter_by(session_uuid=session_uuid).first()
-        except:
-            return {"error": "Error querying the database"}, 500
-
-        s.postal_code = post_code
-
-        try:
+            s.postal_code = post_code
             db.session.commit()
 
             response = {
-                "message": "Successfully added post code",
+                "message": "Successfully added post code to the database.",
                 "postCode": post_code,
                 "sessionId": session_uuid,
             }
-
             return response, 201
-
         except:
-            return {"error": "Error saving to the database"}, 500
-
+            raise DatabaseError(
+                message="Something went wrong while saving post code to the database."
+            )
     else:
-        return {"error": "Invalid Postal Code"}, 500
+        raise DatabaseError(
+            message="Cannot save post code. Session id is not in database."
+        )
+
+
+def check_post_code(post_code):
+    regex = re.compile(r"(\b\d{5})\b")
+    post_code_valid = regex.search(post_code)
+    return post_code_valid

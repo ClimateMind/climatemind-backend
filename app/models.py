@@ -1,7 +1,8 @@
 import os
 from flask import current_app
-from app.extensions import db, login, jwt
+from app.extensions import db, jwt
 from werkzeug.security import generate_password_hash, check_password_hash
+
 from flask_login import UserMixin
 
 # Azure
@@ -79,7 +80,7 @@ class Scores(db.Model):
 
 
 class Sessions(db.Model):
-    # postal code variable type for SQL will need to change when scaling up to accept longer postal codes
+    # postal code variable type for SQL will need to change when scaling up allow longer postal codes
     postal_code = db.Column(db.String(5))
     scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
     ip_address = db.Column(db.String(255), primary_key=False)
