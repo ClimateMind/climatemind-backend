@@ -4,9 +4,19 @@ from typing import Type
 
 from app import db
 from app.models import Scores, Sessions
+from app.errors.errors import DatabaseError
 
 
-def persist_scores(scores: dict) -> Type[KeyError]:
+def persist_scores(scores):
+    """
+    Saves user scores and session id into the database
+
+    Args: scores
+        scores: A dictionary mapping personal values to user scores
+
+    Returns: An error if one occurs
+
+    """
     try:
         # db.session = getSession()
 
@@ -33,5 +43,7 @@ def persist_scores(scores: dict) -> Type[KeyError]:
         db.session.add(userScores)
         db.session.commit()
 
-    except KeyError as ke:
-        print(ke)
+    except:
+        raise DatabaseError(
+            message="An error occurred while trying to save the user's scores to the database."
+        )
