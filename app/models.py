@@ -2,12 +2,12 @@ import os
 from flask import current_app
 from app.extensions import db, login, jwt
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
+# from flask_login import UserMixin
 
 # Azure
 # from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
+# from sqlalchemy.ext.declarative import declarative_base
+# from sqlalchemy.orm import sessionmaker
 from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 
 
