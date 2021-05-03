@@ -12,7 +12,7 @@ BASEDIR="$(dirname "${BASH_SOURCE[0]}")"
 # flask db init -d $BASEDIR/migrations_azure
 
 # flask db migrate -m "add all current tables" -d $BASEDIR/migrations_local
-# flask db migrate -m "CM-563 Users can register for accounts" -d $BASEDIR/migrations_azure
+# flask db migrate -m "CM-563 Add full_name to users" -d $BASEDIR/migrations_azure
 
 if [ "$DATABASE_PARAMS" = "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;" ]
 then

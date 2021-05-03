@@ -7,6 +7,9 @@ from flask_jwt_extended import create_refresh_token
 from flask_jwt_extended import get_jwt_identity
 from app.subscribe.store_subscription_data import check_email
 
+from app.errors.errors import InvalidUsageError, DatabaseError
+
+
 from app.models import Users
 
 from app import db, auto
@@ -41,6 +44,7 @@ def login():
             {
                 "access_token": access_token,
                 "user": {
+                    "full_name": user.full_name,
                     "email": user.email,
                     "user_uuid": user.uuid,
                 },
@@ -67,6 +71,7 @@ def refresh():
 @jwt_required()
 def protected():
     return jsonify(
+        full_name=current_user.full_name,
         uuid=current_user.uuid,
         email=current_user.email,
     )
@@ -75,8 +80,14 @@ def protected():
 @bp.route("/register", methods=["POST"])
 def register():
     r = request.get_json(force=True)
+    full_name = r.get("full-name", None)
     email = r.get("email", None)
     password = r.get("password", None)
+
+    if not valid_name(full_name):
+        raise InvalidUsageError(
+            message="Full name must be between 2 and 50 characters."
+        )
 
     if check_email(email):
         user = Users.find_by_username(email)
@@ -92,7 +103,7 @@ def register():
         raise InvalidUsageError(message="Email is already registered to an account.")
     else:
         session_uuid = uuid.uuid4()
-        user = Users(email=email, uuid=session_uuid)
+        user = Users(full_name=full_name, email=email, uuid=session_uuid)
         user.set_password(password)
 
         try:
@@ -110,6 +121,7 @@ def register():
             {
                 "access_token": access_token,
                 "user": {
+                    "full_name": user.full_name,
                     "email": user.email,
                     "user_uuid": user.uuid,
                 },
@@ -121,7 +133,16 @@ def register():
     return response
 
 
+def valid_name(full_name):
+    if not full_name:
+        return False
+    return 2 <= len(full_name) <= 50
+
+
 def password_valid(password):
+    if not password:
+        return False
+
     conds = [
         lambda s: any(x.isupper() for x in s),
         lambda s: any(x.islower() for x in s),
