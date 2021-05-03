@@ -80,7 +80,7 @@ def protected():
 @bp.route("/register", methods=["POST"])
 def register():
     r = request.get_json(force=True)
-    full_name = r.get("full-name", None)
+    full_name = r.get("fullname", None)
     email = r.get("email", None)
     password = r.get("password", None)
 
