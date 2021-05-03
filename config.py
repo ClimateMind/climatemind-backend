@@ -28,6 +28,11 @@ class DevelopmentConfig(BaseConfig):
     JWT_COOKIE_CSRF_PROTECT = False
     # JWT_REFRESH_COOKIE_PATH = "/refresh"
     CACHE_TYPE = "simple"
+    CORS_ORIGINS = [
+        "http://127.0.0.1:3000",
+        "http://localhost:3000",
+        "http://0.0.0.0:3000",
+    ]
 
     DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
     SQLALCHEMY_DATABASE_URI = (
