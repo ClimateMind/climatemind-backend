@@ -34,12 +34,11 @@ def login():
                 "user": {
                     "email": user.email,
                     "user_uuid": user.uuid,
-                }
+                },
             }
         )
     )
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 
@@ -52,8 +51,7 @@ def refresh():
     refresh_token = create_refresh_token(identity=user)
     print(refresh_token)
     response = make_response(jsonify(access_token=access_token))
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 

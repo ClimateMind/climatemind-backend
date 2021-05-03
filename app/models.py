@@ -35,7 +35,7 @@ class Users(db.Model):
         return user
 
     def __repr__(self):
-        """ Tells Python how to print """
+        """Tells Python how to print"""
         return "<User {}>".format(self.email)
 
 
