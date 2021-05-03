@@ -5,6 +5,7 @@ from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import create_refresh_token
 from flask_jwt_extended import get_jwt_identity
+from app.subscribe.store_subscription_data import check_email
 
 from app.models import Users
 
@@ -22,9 +23,17 @@ def login():
     r = request.get_json(force=True)
     email = r.get("email", None)
     password = r.get("password", None)
-    user = db.session.query(Users).filter_by(email=email).one_or_none()
+
+    if check_email(email):
+        user = db.session.query(Users).filter_by(email=email).one_or_none()
+    else:
+        raise InvalidUsageError(
+            message="Email is improperly formatted. Check your email and try again."
+        )
+
     if not user or not user.check_password(password):
-        return jsonify({"error": "Wrong username or password"}), 401
+        raise InvalidUsageError(message="Wrong email or password. Try again.")
+
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
     response = make_response(
@@ -49,7 +58,6 @@ def refresh():
     user = db.session.query(Users).filter_by(uuid=identity).one_or_none()
     access_token = create_access_token(identity=user)
     refresh_token = create_refresh_token(identity=user)
-    print(refresh_token)
     response = make_response(jsonify(access_token=access_token))
     response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
@@ -70,13 +78,54 @@ def register():
     email = r.get("email", None)
     password = r.get("password", None)
 
-    user = Users.find_by_username(email)
+    if check_email(email):
+        user = Users.find_by_username(email)
+    else:
+        raise InvalidUsageError(
+            message="Email is improperly formatted. Check your email and try again."
+        )
+
+    if not password_valid(password):
+        raise InvalidUsageError(message="Password is in an invalid format.")
+
     if user:
-        return jsonify({"error": "Username already taken"}), 401
+        raise InvalidUsageError(message="Email is already registered to an account.")
     else:
         session_uuid = uuid.uuid4()
         user = Users(email=email, uuid=session_uuid)
         user.set_password(password)
-        db.session.add(user)
-        db.session.commit()
-    return jsonify({"message": "Succesfully created user"}), 201
+
+        try:
+            db.session.add(user)
+            db.session.commit()
+        except:
+            raise DatabaseError(
+                message="An error occurred while adding user to the database."
+            )
+
+    access_token = create_access_token(identity=user, fresh=True)
+    refresh_token = create_refresh_token(identity=user)
+    response = make_response(
+        jsonify(
+            {
+                "access_token": access_token,
+                "user": {
+                    "email": user.email,
+                    "user_uuid": user.uuid,
+                },
+            }
+        ),
+        201,
+    )
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    return response
+
+
+def password_valid(password):
+    conds = [
+        lambda s: any(x.isupper() for x in s),
+        lambda s: any(x.islower() for x in s),
+        lambda s: any(x.isdigit() for x in s),
+        lambda s: 8 <= len(s) <= 20,
+    ]
+    return all(cond(password) for cond in conds)
