@@ -1,13 +1,15 @@
 /// <reference types="cypress" />
 
 const user1 = {
+  full-name: "user one"
   email: "test1@example.com",
-  password: "password",
+  password: "PassWord7!",
 };
 
 const user2 = {
+  full-name: "user two"
   email: "test2@example.com",
-  password: "password",
+  password: "PassWord7!",
 };
 
 const successMessage = "Succesfully created user";
