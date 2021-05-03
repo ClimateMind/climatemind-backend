@@ -20,9 +20,9 @@ def login():
     Logs a user in by parsing a POST request containing user credentials.
     """
     r = request.get_json(force=True)
-    username = r.get("username", None)
+    email = r.get("email", None)
     password = r.get("password", None)
-    user = db.session.query(Users).filter_by(username=username).one_or_none()
+    user = db.session.query(Users).filter_by(email=email).one_or_none()
     if not user or not user.check_password(password):
         return jsonify({"error": "Wrong username or password"}), 401
     access_token = create_access_token(identity=user, fresh=True)
@@ -33,7 +33,7 @@ def login():
                 "access_token": access_token,
                 "user": {
                     "email": user.email,
-                    "user_uuid": user.user_uuid,
+                    "user_uuid": user.uuid,
                 }
             }
         )
@@ -43,11 +43,11 @@ def login():
     return response
 
 
-@ bp.route("/refresh", methods=["POST"])
-@ jwt_required(refresh=True)
+@bp.route("/refresh", methods=["POST"])
+@jwt_required(refresh=True)
 def refresh():
     identity = get_jwt_identity()
-    user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
+    user = db.session.query(Users).filter_by(uuid=identity).one_or_none()
     access_token = create_access_token(identity=user)
     refresh_token = create_refresh_token(identity=user)
     print(refresh_token)
@@ -57,28 +57,27 @@ def refresh():
     return response
 
 
-@ bp.route("/protected", methods=["GET"])
-@ jwt_required()
+@bp.route("/protected", methods=["GET"])
+@jwt_required()
 def protected():
     return jsonify(
-        uuid=current_user.user_uuid,
+        uuid=current_user.uuid,
         email=current_user.email,
     )
 
 
-@ bp.route("/register", methods=["POST"])
+@bp.route("/register", methods=["POST"])
 def register():
     r = request.get_json(force=True)
-    username = r.get("username", None)
-    password = r.get("password", None)
     email = r.get("email", None)
+    password = r.get("password", None)
 
-    user = Users.find_by_username(username)
+    user = Users.find_by_username(email)
     if user:
         return jsonify({"error": "Username already taken"}), 401
     else:
         session_uuid = uuid.uuid4()
-        user = Users(username=username, email=email, user_uuid=session_uuid)
+        user = Users(email=email, uuid=session_uuid)
         user.set_password(password)
         db.session.add(user)
         db.session.commit()
