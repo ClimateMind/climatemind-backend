@@ -9,8 +9,9 @@ describe("User can login", () => {
   it("User can login", () => {
     // Register Test User
     const testUser = {
+      full-name: "test user"
       email: "login@example.com",
-      password: "password",
+      password: "PassWord7!",
     };
     cy.request("POST", "http://localhost:5000/register", testUser);
 
