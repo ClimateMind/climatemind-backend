@@ -1,6 +1,6 @@
 # import os
 # from flask import current_app
-from app.extensions import db, login, jwt
+from app.extensions import db, jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 # from flask_login import UserMixin
 
