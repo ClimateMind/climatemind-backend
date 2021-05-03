@@ -1,14 +1,13 @@
-# import os
-# from flask import current_app
-from app.extensions import db, jwt
+import os
+from flask import current_app
+from app.extensions import db, login, jwt
 from werkzeug.security import generate_password_hash, check_password_hash
-
-# from flask_login import UserMixin
+from flask_login import UserMixin
 
 # Azure
-# from sqlalchemy import create_engine
-# from sqlalchemy.ext.declarative import declarative_base
-# from sqlalchemy.orm import sessionmaker
+from sqlalchemy import create_engine
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
 from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 
 
@@ -81,8 +80,7 @@ class Scores(db.Model):
 
 
 class Sessions(db.Model):
-    # postal code variable type for SQL
-    # will need to change when scaling up allow longer postal codes
+    # postal code variable type for SQL will need to change when scaling up to accept longer postal codes
     postal_code = db.Column(db.String(5))
     scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
     ip_address = db.Column(db.String(255), primary_key=False)
@@ -108,13 +106,3 @@ class ClimateFeed(db.Model):
     solution_4_iri = db.Column(db.String(255))
     isPossiblyLocal = db.Column(db.Boolean)
     session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
-
-
-class AnalyticsData(db.Model):
-    analytics_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    category = db.Column(db.String(50))
-    action = db.Column(db.String(50))
-    label = db.Column(db.String(50))
-    session_uuid = db.Column(UNIQUEIDENTIFIER)
-    event_timestamp = db.Column(db.DateTime)
-    value = db.Column(db.String(255))
