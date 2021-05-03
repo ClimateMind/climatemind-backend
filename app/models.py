@@ -81,7 +81,8 @@ class Scores(db.Model):
 
 
 class Sessions(db.Model):
-    # postal code variable type for SQL will need to change when scaling up to accept longer postal codes
+    # postal code variable type for SQL
+    # will need to change when scaling up allow longer postal codes
     postal_code = db.Column(db.String(5))
     scores = db.relationship(
         "Scores", backref="owner_of_scores", lazy="dynamic")
