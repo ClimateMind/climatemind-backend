@@ -7,7 +7,7 @@ from flask_jwt_extended import create_refresh_token
 from flask_jwt_extended import get_jwt_identity
 from app.subscribe.store_subscription_data import check_email
 
-from app.errors.errors import InvalidUsageError, DatabaseError
+from app.errors.errors import InvalidUsageError, DatabaseError, UnauthorizedError
 
 
 from app.models import Users
@@ -30,18 +30,19 @@ def login():
     if check_email(email):
         user = db.session.query(Users).filter_by(email=email).one_or_none()
     else:
-        raise InvalidUsageError(
+        raise UnauthorizedError(
             message="Email is improperly formatted. Check your email and try again."
         )
 
     if not user or not user.check_password(password):
-        raise InvalidUsageError(message="Wrong email or password. Try again.")
+        raise UnauthorizedError(message="Wrong email or password. Try again.")
 
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
     response = make_response(
         jsonify(
             {
+                "message": "successfully logged in user"
                 "access_token": access_token,
                 "user": {
                     "full_name": user.full_name,
@@ -49,7 +50,7 @@ def login():
                     "user_uuid": user.uuid,
                 },
             }
-        )
+        ), 201
     )
     response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
@@ -141,7 +142,9 @@ def valid_name(full_name):
 
 def password_valid(password):
     if not password:
-        return False
+        raise InvalidUsageError(
+            message="Email is missing. Check your email and try again."
+        )
 
     conds = [
         lambda s: any(x.isupper() for x in s),
