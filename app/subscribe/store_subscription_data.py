@@ -49,7 +49,12 @@ def check_email(email):
     """
     if not email:
         raise InvalidUsageError(
-            message="Email is missing. Check your email and try again."
+            message="Email and password must included in the request body"
+        )
+
+    if not isinstance(email, str):
+        raise InvalidUsageError(
+            message="Wrong email or password. Try again."
         )
 
     # RFC 5322 Specification as Regex
