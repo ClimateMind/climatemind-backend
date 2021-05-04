@@ -53,7 +53,7 @@ def check_email(email):
         )
 
     if not isinstance(email, str):
-        raise InvalidUsageError(message="Wrong email or password. Try again.")
+        raise UnauthorizedError(message="Wrong email or password. Try again.")
 
     # RFC 5322 Specification as Regex
     regex = """(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"

@@ -12,9 +12,9 @@ const user2 = {
   password: "PassWord7!",
 };
 
-const successMessage = "Succesfully created user";
-const badReqMessage = "email and password must be included in request body";
-const alreadyRegisteredMessage = "Email already regsitered";
+const successMessage = "Successfully created user";
+const badReqMessage = "Email and password must included in the request body";
+const alreadyRegisteredMessage = "Email already registered";
 
 describe("User Registration", () => {
   it("It can register a user", () => {
@@ -45,7 +45,12 @@ describe("User Registration", () => {
     );
   });
   it("It handles if the user already exists", () => {
-    cy.request("POST", "http://localhost:5000/register", user2).should(
+    cy.request({
+        url: "http://localhost:5000/register",
+        method: "POST",
+        body: user2,
+        failOnStatusCode: false
+    }).should(
       (response) => {
         expect(response.status).to.equal(401);
         expect(response.headers["content-type"]).to.equal("application/json");
@@ -62,7 +67,12 @@ describe("User Registration", () => {
     const body = {
       password: "password",
     };
-    cy.request("POST", "http://localhost:5000/register", body).should(
+    cy.request({
+        url: "http://localhost:5000/register",
+        method: "POST",
+        body: body,
+        failOnStatusCode: false
+    }).should(
       (response) => {
         expect(response.status).to.equal(400);
         expect(response.headers["content-type"]).to.equal("application/json");
@@ -79,7 +89,12 @@ describe("User Registration", () => {
     const body = {
       email: "missingpassword@example.com",
     };
-    cy.request("POST", "http://localhost:5000/register", body).should(
+    cy.request({
+        url: "http://localhost:5000/register",
+        method: "POST",
+        body: body,
+        failOnStatusCode: false
+    }).should(
       (response) => {
         expect(response.status).to.equal(400);
         expect(response.headers["content-type"]).to.equal("application/json");
@@ -93,7 +108,11 @@ describe("User Registration", () => {
   });
 
   it("It handles a missing body", () => {
-    cy.request("POST", "http://localhost:5000/register").should((response) => {
+    cy.request({
+        url: "http://localhost:5000/register",
+        method: "POST",
+        failOnStatusCode: false
+    }).should((response) => {
       expect(response.status).to.equal(400);
       expect(response.headers["content-type"]).to.equal("application/json");
       expect(response.body).to.be.a("object");
