@@ -42,7 +42,7 @@ def login():
     response = make_response(
         jsonify(
             {
-                "message": "successfully logged in user"
+                "message": "successfully logged in user",
                 "access_token": access_token,
                 "user": {
                     "full_name": user.full_name,
@@ -50,7 +50,8 @@ def login():
                     "user_uuid": user.uuid,
                 },
             }
-        ), 201
+        ),
+        201,
     )
     response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
