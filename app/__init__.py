@@ -26,7 +26,7 @@ def create_app(config_class=DevelopmentConfig):
     CORS(
         app,
         resources={
-            r"/*": {
+            r"/refresh": {
                 "origins": [
                     "http://127.0.0.1:3000",
                     "http://localhost:3000",

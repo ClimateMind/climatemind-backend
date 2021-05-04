@@ -2,7 +2,7 @@ from flask import current_app, jsonify, request
 from app.myths import bp
 from app.myths.process_myths import process_myths
 from app.errors.errors import CustomError, InvalidUsageError
-
+from flask_cors import cross_origin
 
 MYTH_PROCESSOR = process_myths()
 
@@ -10,6 +10,7 @@ from app import auto
 
 
 @bp.route("/myths", methods=["GET"])
+@cross_origin()
 @auto.doc()
 def get_general_myths():
     """
@@ -28,6 +29,7 @@ def get_general_myths():
 
 
 @bp.route("/myths/<string:iri>", methods=["GET"])
+@cross_origin()
 def get_myth_info(iri):
     """
     The front-end needs the ability to pull a single myth and its relevant information

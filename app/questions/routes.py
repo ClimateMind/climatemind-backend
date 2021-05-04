@@ -2,11 +2,13 @@ import os
 from json import dumps, load
 from app.questions import bp
 from flask import Response, jsonify
+from flask_cors import cross_origin
 
 from app import auto
 
 
 @bp.route("/questions", methods=["GET"])
+@cross_origin()
 @auto.doc()
 def get_questions():
     """
