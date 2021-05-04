@@ -32,6 +32,9 @@ def login():
     else:
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
+    if not password_valid(password):
+        raise InvalidUsageError(message="Wrong email or password. Try again.")
+
     if not user or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
@@ -98,7 +101,7 @@ def register():
         raise InvalidUsageError(message="Wrong email or password. Try again.")
 
     if user:
-        raise InvalidUsageError(message="Email is already registered to an account.")
+        raise UnauthorizedError(message="Email already registered")
     else:
         session_uuid = uuid.uuid4()
         user = Users(full_name=full_name, email=email, uuid=session_uuid)
@@ -117,6 +120,7 @@ def register():
     response = make_response(
         jsonify(
             {
+                "message": "Successfully created user",
                 "access_token": access_token,
                 "user": {
                     "full_name": user.full_name,
