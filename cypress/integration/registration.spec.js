@@ -31,7 +31,7 @@ describe("User Registration", () => {
     );
   });
 
-  it("Can regsiter another user", () => {
+  it("Can register another user", () => {
     cy.request("POST", "http://localhost:5000/register", user2).should(
       (response) => {
         expect(response.status).to.equal(201);
