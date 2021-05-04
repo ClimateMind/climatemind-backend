@@ -38,7 +38,7 @@ describe("User Registration", () => {
         expect(response.headers["content-type"]).to.equal("application/json");
         expect(response.body).to.be.a("object");
         expect(response.body).to.have.property("message");
-        expect(response.body.Message).to.satisfy(function (s) {
+        expect(response.body.Mmssage).to.satisfy(function (s) {
           return s === successMessage;
         });
       }
@@ -56,7 +56,7 @@ describe("User Registration", () => {
         expect(response.headers["content-type"]).to.equal("application/json");
         expect(response.body).to.be.a("object");
         expect(response.body).to.have.property("error");
-        expect(response.body.Message).to.satisfy(function (s) {
+        expect(response.body.message).to.satisfy(function (s) {
           return s === alreadyRegisteredMessage;
         });
       }
@@ -78,7 +78,7 @@ describe("User Registration", () => {
         expect(response.headers["content-type"]).to.equal("application/json");
         expect(response.body).to.be.a("object");
         expect(response.body).to.have.property("error");
-        expect(response.body.Message).to.satisfy(function (s) {
+        expect(response.body.message).to.satisfy(function (s) {
           return s === badReqMessage;
         });
       }
@@ -100,7 +100,7 @@ describe("User Registration", () => {
         expect(response.headers["content-type"]).to.equal("application/json");
         expect(response.body).to.be.a("object");
         expect(response.body).to.have.property("error");
-        expect(response.body.Message).to.satisfy(function (s) {
+        expect(response.body.message).to.satisfy(function (s) {
           return s === badReqMessage;
         });
       }
@@ -117,7 +117,7 @@ describe("User Registration", () => {
       expect(response.headers["content-type"]).to.equal("application/json");
       expect(response.body).to.be.a("object");
       expect(response.body).to.have.property("error");
-      expect(response.body.Message).to.satisfy(function (s) {
+      expect(response.body.message).to.satisfy(function (s) {
         return s === badReqMessage;
       });
     });
