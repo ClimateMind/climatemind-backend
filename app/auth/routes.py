@@ -140,9 +140,7 @@ def register():
 
 def valid_name(full_name):
     if not full_name:
-        raise InvalidUsageError(
-            message="Full name is missing. Check your name and try again."
-        )
+        raise InvalidUsageError(message="Full name is missing")
     return 2 <= len(full_name) <= 50
 
 
