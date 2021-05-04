@@ -3,12 +3,14 @@ from flask import request
 from app.post_code import bp
 from app.post_code.store_post_code import store_post_code, check_post_code
 from app.errors.errors import InvalidUsageError
+from flask_cors import cross_origin
 
 from app import auto
 import uuid
 
 
 @bp.route("/post-code", methods=["POST"])
+@cross_origin()
 @auto.doc()
 def post_code():
     """

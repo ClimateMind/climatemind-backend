@@ -8,9 +8,11 @@ from app.errors.errors import InvalidUsageError, DatabaseError
 import uuid
 
 from app.personal_values.normalize import normalize_scores
+from flask_cors import cross_origin
 
 
 @bp.route("/personal_values", methods=["GET"])
+@cross_origin()
 @auto.doc()
 def get_personal_values():
     """

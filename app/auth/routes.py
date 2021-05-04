@@ -16,14 +16,30 @@ from app import db, auto
 
 import uuid
 
+"""
+A series of endpoints for authentication.
+Valid durations for the access and refresh tokens are specified in config.py
+Valid URLS to access the refresh endpoint are specified in app/__init__.py
+"""
+
 
 @bp.route("/login", methods=["POST"])
 @auto.doc()
 def login():
     """
     Logs a user in by parsing a POST request containing user credentials.
+    User provides email/password.
+
+    Returns: errors if data is not valid.
+    Returns: Access token and refresh token otherwise.
     """
-    r = request.get_json(force=True)
+    r = request.get_json(force=True, silent=True)
+
+    if not r:
+        raise InvalidUsageError(
+            message="Email and password must included in the request body"
+        )
+
     email = r.get("email", None)
     password = r.get("password", None)
 
@@ -32,13 +48,7 @@ def login():
     else:
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
-    if not user:
-        raise UnauthorizedError(message="Wrong email or password. Try again.")
-
-    if not password_valid(password):
-        raise InvalidUsageError(message="Wrong email or password. Try again.")
-
-    if not user.check_password(password):
+    if not user or not password_valid(password) or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
     access_token = create_access_token(identity=user, fresh=True)
@@ -64,6 +74,11 @@ def login():
 @bp.route("/refresh", methods=["POST"])
 @jwt_required(refresh=True)
 def refresh():
+    """
+    Creates a refresh token and returns a new access token and refresh token to the user.
+    This endpoint can only be accessed by URLs allowed from CORS.
+    These URLs are specified in app/__init__.py
+    """
     identity = get_jwt_identity()
     user = db.session.query(Users).filter_by(uuid=identity).one_or_none()
     access_token = create_access_token(identity=user)
@@ -76,6 +91,9 @@ def refresh():
 @bp.route("/protected", methods=["GET"])
 @jwt_required()
 def protected():
+    """
+    A temporary test endpoint for accessing a protected resource
+    """
     return jsonify(
         full_name=current_user.full_name,
         uuid=current_user.uuid,
@@ -85,7 +103,23 @@ def protected():
 
 @bp.route("/register", methods=["POST"])
 def register():
-    r = request.get_json(force=True)
+    """
+    Registration endpoint
+
+    Takes a full_name, email, and password, validates this data and saves the user into the database.
+    The user should automatically be logged in upon successful registration.
+    The same email cannot be used for more than one account.
+
+    Returns: Errors if any data is invalid
+    Returns: Access Token and Refresh Token otherwise
+    """
+    r = request.get_json(force=True, silent=True)
+
+    if not r:
+        raise InvalidUsageError(
+            message="Email and password must included in the request body"
+        )
+
     full_name = r.get("fullname", None)
     email = r.get("email", None)
     password = r.get("password", None)
@@ -95,28 +129,15 @@ def register():
             message="Full name must be between 2 and 50 characters."
         )
 
-    if check_email(email):
+    if check_email(email) and password_valid(password):
         user = Users.find_by_username(email)
     else:
-        raise InvalidUsageError(message="Wrong email or password. Try again.")
-
-    if not password_valid(password):
         raise InvalidUsageError(message="Wrong email or password. Try again.")
 
     if user:
         raise UnauthorizedError(message="Email already registered")
     else:
-        session_uuid = uuid.uuid4()
-        user = Users(full_name=full_name, email=email, uuid=session_uuid)
-        user.set_password(password)
-
-        try:
-            db.session.add(user)
-            db.session.commit()
-        except:
-            raise DatabaseError(
-                message="An error occurred while adding user to the database."
-            )
+        user = add_user_to_db(full_name, email, password)
 
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
@@ -138,13 +159,45 @@ def register():
     return response
 
 
+def add_user_to_db(full_name, email, password):
+    """
+    Adds user to database or throws an error if unable to do so.
+
+    Parameters:
+        full_name (str)
+        email (str)
+        password (str)
+
+    Returns: the user object
+    """
+    session_uuid = uuid.uuid4()
+    user = Users(full_name=full_name, email=email, uuid=session_uuid)
+    user.set_password(password)
+
+    try:
+        db.session.add(user)
+        db.session.commit()
+    except:
+        raise DatabaseError(
+            message="An error occurred while adding user to the database."
+        )
+    return user
+
+
 def valid_name(full_name):
+    """
+    Names must be between 2 and 50 characters.
+    """
     if not full_name:
         raise InvalidUsageError(message="Full name is missing")
     return 2 <= len(full_name) <= 50
 
 
 def password_valid(password):
+    """
+    Passwords must contain uppercase and lowercase letters, and digits.
+    Passwords must be between 8 and 20 characters.
+    """
     if not password:
         raise InvalidUsageError(
             message="Email and password must included in the request body"

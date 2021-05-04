@@ -2,6 +2,7 @@ from flask import jsonify, request
 from app.solutions import bp
 from app.solutions.process_solutions import process_solutions
 from app.errors.errors import InvalidUsageError, CustomError
+from flask_cors import cross_origin
 
 from app import auto
 
@@ -9,6 +10,7 @@ SOLUTION_PROCESSOR = process_solutions(4, 0.5)
 
 
 @bp.route("/get_actions", methods=["GET"])
+@cross_origin()
 @auto.doc()
 def get_actions():
     """
@@ -27,6 +29,7 @@ def get_actions():
 
 
 @bp.route("/solutions", methods=["GET"])
+@cross_origin()
 @auto.doc()
 def get_general_solutions():
     """
