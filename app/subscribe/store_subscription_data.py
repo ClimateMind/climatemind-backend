@@ -4,7 +4,7 @@ from app.errors.errors import AlreadyExistsError, DatabaseError
 import datetime
 from datetime import timezone
 import re
-from app.errors.errors import InvalidUsageError
+from app.errors.errors import InvalidUsageError, UnauthorizedError
 
 
 def store_subscription_data(session_uuid, email):
