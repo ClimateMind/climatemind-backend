@@ -30,12 +30,15 @@ def login():
     if check_email(email):
         user = db.session.query(Users).filter_by(email=email).one_or_none()
     else:
-        raise InvalidUsageError(message="Wrong email or password. Try again.")
+        raise UnauthorizedError(message="Wrong email or password. Try again.")
+
+    if not user:
+        raise UnauthorizedError(message="Wrong email or password. Try again.")
 
     if not password_valid(password):
         raise InvalidUsageError(message="Wrong email or password. Try again.")
 
-    if not user or not user.check_password(password):
+    if not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
     access_token = create_access_token(identity=user, fresh=True)
