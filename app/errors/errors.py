@@ -6,6 +6,10 @@ class CustomError(Exception):
         self.message = message
 
 
+class UnauthorizedError(CustomError):
+    status_code = 401
+
+
 class InvalidUsageError(CustomError):
     status_code = 400
 

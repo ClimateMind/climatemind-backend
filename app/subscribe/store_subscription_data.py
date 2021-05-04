@@ -47,7 +47,9 @@ def check_email(email):
     Checks an email format against the RFC 5322 specification.
     """
     if not email:
-        return False
+        raise InvalidUsageError(
+            message="Email is missing. Check your email and try again."
+        )
 
     # RFC 5322 Specification as Regex
     regex = """(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"
