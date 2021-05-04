@@ -30,9 +30,7 @@ def login():
     if check_email(email):
         user = db.session.query(Users).filter_by(email=email).one_or_none()
     else:
-        raise UnauthorizedError(
-            message="Wrong email or password. Try again."
-        )
+        raise UnauthorizedError(message="Wrong email or password. Try again.")
 
     if not user or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
@@ -94,9 +92,7 @@ def register():
     if check_email(email):
         user = Users.find_by_username(email)
     else:
-        raise InvalidUsageError(
-            message="Wrong email or password. Try again."
-        )
+        raise InvalidUsageError(message="Wrong email or password. Try again.")
 
     if not password_valid(password):
         raise InvalidUsageError(message="Wrong email or password. Try again.")
