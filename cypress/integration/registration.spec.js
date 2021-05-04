@@ -65,6 +65,7 @@ describe("User Registration", () => {
 
   it("It handles a missing email", () => {
     const body = {
+      fullname: "test user",
       password: "password",
     };
     cy.request({
@@ -87,6 +88,7 @@ describe("User Registration", () => {
 
   it("It handles a missing password", () => {
     const body = {
+      fullname: "test user",
       email: "missingpassword@example.com",
     };
     cy.request({
