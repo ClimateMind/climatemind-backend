@@ -1,7 +1,7 @@
 /// <reference types="cypress" />
 
 // Expected error responses
-const badLoginMessage = "Wrong username or password";
+const badLoginMessage = "Wrong email or password. Try again.";
 const invalidReqMessage =
   "Email and password must included in the request body";
 

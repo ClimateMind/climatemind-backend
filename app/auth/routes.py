@@ -31,7 +31,7 @@ def login():
         user = db.session.query(Users).filter_by(email=email).one_or_none()
     else:
         raise UnauthorizedError(
-            message="Email is improperly formatted. Check your email and try again."
+            message="Wrong email or password. Try again."
         )
 
     if not user or not user.check_password(password):
@@ -51,7 +51,7 @@ def login():
                 },
             }
         ),
-        201,
+        200,
     )
     response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
@@ -95,11 +95,11 @@ def register():
         user = Users.find_by_username(email)
     else:
         raise InvalidUsageError(
-            message="Email is improperly formatted. Check your email and try again."
+            message="Wrong email or password. Try again."
         )
 
     if not password_valid(password):
-        raise InvalidUsageError(message="Password is in an invalid format.")
+        raise InvalidUsageError(message="Wrong email or password. Try again.")
 
     if user:
         raise InvalidUsageError(message="Email is already registered to an account.")
@@ -146,7 +146,7 @@ def valid_name(full_name):
 def password_valid(password):
     if not password:
         raise InvalidUsageError(
-            message="Email is missing. Check your email and try again."
+            message="Email and password must included in the request body"
         )
 
     conds = [
