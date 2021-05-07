@@ -37,13 +37,14 @@ def get_general_solutions():
     they click the general solutions menu button. General solutions are ordered based
     on relevance predicted from users personal values.
     """
-    try:
-        recommended_general_solutions = (
-            SOLUTION_PROCESSOR.get_user_general_solution_nodes()
-        )
-        climate_general_solutions = {"solutions": recommended_general_solutions}
-        return jsonify(climate_general_solutions), 200
-    except:
-        raise CustomError(
-            message="An error occurred while processing the user's general solution nodes."
-        )
+    session_id = request.args.get("session-id")
+    #try:
+    recommended_general_solutions = (
+        SOLUTION_PROCESSOR.get_user_general_solution_nodes(session_id)
+    )
+    climate_general_solutions = {"solutions": recommended_general_solutions}
+    return jsonify(climate_general_solutions), 200
+    # except:
+    #     raise CustomError(
+    #         message="An error occurred while processing the user's general solution nodes."
+    #     )

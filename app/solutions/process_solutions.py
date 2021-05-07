@@ -1,12 +1,16 @@
 from flask import current_app
 
+from app import db
 from app.network_x_tools.network_x_utils import network_x_utils
 from app.myths.process_myths import process_myths
 from app.errors.errors import CustomError
+from app.models import Scores
 
 import numpy as np
 import random
-import networkx as nx
+import pickle
+import sklearn # This is used even though it isn't directly referenced
+import sys
 
 
 class process_solutions:
@@ -53,7 +57,7 @@ class process_solutions:
             )
         return solutions
 
-    def get_user_general_solution_nodes(self):
+    def get_user_general_solution_nodes(self, session_id):
         """Returns a list of general solutions and some information about those general
         solutions. The solutions are ordered from highest to lowest CO2 Equivalent
         Reduced / Sequestered (2020–2050) in Gigatons from Project Drawdown scenario 2.
@@ -64,13 +68,38 @@ class process_solutions:
 
         general_solutions_details = []
 
+        # Identify whether or not user is radically political
+        user_scores_vector = np.array(self.get_scores_vector(session_id))
+        ml_scores = [user_scores_vector]
+
+        liberal_model = pickle.load(open("ml_models/political_preference/models/RandomForest_liberal_0.785.pickle", "rb"))
+        user_liberal = liberal_model.predict(ml_scores)
+
+        conservative_model = pickle.load(open("ml_models/political_preference/models/RandomForest_conservative_0.738.pickle", "rb"))
+        user_conservative = conservative_model.predict(ml_scores)
+
         for solution in general_solutions:
 
-            self.NX_UTILS.set_current_node(self.G.nodes[solution])
-            self.MYTH_PROCESS.set_current_node(self.G.nodes[solution])
+            current_solution = self.G.nodes[solution]
+            self.NX_UTILS.set_current_node(current_solution)
+            self.MYTH_PROCESS.set_current_node(current_solution)
+
+            # Filter out nodes that oppose radical political users
+            if "conservative" in current_solution or "liberal" in current_solution:
+                print('This is standard output', file=sys.stdout)
+
+                solution_conservative = current_solution["political_value"][0]
+                solution_liberal = current_solution["political_value"][1]
+
+                if user_liberal and solution_conservative:
+                    continue
+
+                if user_conservative and solution_liberal:
+                    continue
+
             d = {
                 "iri": self.NX_UTILS.get_node_id(),
-                "solutionTitle": self.G.nodes[solution]["label"],
+                "solutionTitle": current_solution["label"],
                 "solutionType": "mitigation",
                 "shortDescription": self.NX_UTILS.get_short_description(),
                 "longDescription": self.NX_UTILS.get_description(),
@@ -93,13 +122,16 @@ class process_solutions:
         solution_names = self.G.nodes[effect_name]["adaptation solutions"]
         adaptation_solutions = []
         mitigation_solutions = []
+
         for solution in solution_names:
             try:
-                self.NX_UTILS.set_current_node(self.G.nodes[solution])
-                self.MYTH_PROCESS.set_current_node(self.G.nodes[solution])
+                current_solution = self.G.nodes[solution]
+                self.NX_UTILS.set_current_node(current_solution)
+                self.MYTH_PROCESS.set_current_node(current_solution)
+
                 s_dict = {
                     "iri": self.NX_UTILS.get_node_id(),
-                    "solutionTitle": self.G.nodes[solution]["label"],
+                    "solutionTitle": current_solution["label"],
                     "solutionType": "adaptation",
                     "shortDescription": self.NX_UTILS.get_short_description(),
                     "longDescription": self.NX_UTILS.get_description(),
@@ -150,3 +182,18 @@ class process_solutions:
             mitigation_solutions,
         )
         return solutions
+
+    def get_scores_vector(self, session_id):
+        scores = db.session.query(Scores).filter_by(session_uuid=session_id).one_or_none()
+        return [
+            scores.achievement,
+            scores.benevolence,
+            scores.conformity,
+            scores.hedonism,
+            scores.power,
+            scores.security,
+            scores.self_direction,
+            scores.stimulation,
+            scores.tradition,
+            scores.universalism,
+        ]
