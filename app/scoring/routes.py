@@ -11,6 +11,7 @@ from app.scoring.process_scores import ProcessScores
 from app.scoring.store_ip_address import store_ip_address
 from app.post_code.store_post_code import store_post_code, check_post_code
 from app.errors.errors import InvalidUsageError, DatabaseError
+from flask_cors import cross_origin
 
 from app import auto
 
@@ -29,6 +30,7 @@ value_id_map = {
 
 
 @bp.route("/scores", methods=["POST"])
+@cross_origin()
 @auto.doc()
 def user_scores():
     """

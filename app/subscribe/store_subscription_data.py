@@ -4,6 +4,7 @@ from app.errors.errors import AlreadyExistsError, DatabaseError
 import datetime
 from datetime import timezone
 import re
+from app.errors.errors import InvalidUsageError, UnauthorizedError
 
 
 def store_subscription_data(session_uuid, email):
@@ -46,6 +47,13 @@ def check_email(email):
     """
     Checks an email format against the RFC 5322 specification.
     """
+    if not email:
+        raise InvalidUsageError(
+            message="Email and password must included in the request body"
+        )
+
+    if not isinstance(email, str):
+        raise UnauthorizedError(message="Wrong email or password. Try again.")
 
     # RFC 5322 Specification as Regex
     regex = """(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|\"

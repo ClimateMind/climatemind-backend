@@ -1,6 +1,7 @@
 from flask import abort
 import os
 import urllib
+from datetime import timedelta
 
 from app.network_x_tools.network_x_processor import network_x_processor
 
@@ -16,10 +17,16 @@ class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    JWT_ACCESS_LIFESPAN = {"hours": 24}
-    JWT_REFRESH_LIFESPAN = {"days": 30}
+    JWT_COOKIE_SECURE = False
+    JWT_TOKEN_LOCATION = ["headers", "cookies"]
+    # TODO Change for production & use env variable.
     JWT_SECRET_KEY = "super-secret"
-
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=1)
+    JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=14)
+    JWT_ACCESS_COOKIE_NAME = "access_token"
+    JWT_REFRESH_COOKIE_NAME = "refresh_token"
+    JWT_COOKIE_CSRF_PROTECT = False
+    # JWT_REFRESH_COOKIE_PATH = "/refresh"
     CACHE_TYPE = "simple"
 
     DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
