@@ -1,8 +1,12 @@
 from flask import jsonify, request
+from app import db
+from app.models import Scores
 from app.solutions import bp
 from app.solutions.process_solutions import process_solutions
 from app.errors.errors import InvalidUsageError, CustomError
 from flask_cors import cross_origin
+import numpy as np
+import pickle
 
 from app import auto
 
@@ -38,13 +42,49 @@ def get_general_solutions():
     on relevance predicted from users personal values.
     """
     session_id = request.args.get("session-id")
-    #try:
-    recommended_general_solutions = (
-        SOLUTION_PROCESSOR.get_user_general_solution_nodes(session_id)
-    )
-    climate_general_solutions = {"solutions": recommended_general_solutions}
-    return jsonify(climate_general_solutions), 200
-    # except:
-    #     raise CustomError(
-    #         message="An error occurred while processing the user's general solution nodes."
-    #     )
+    if session_id:
+        user_scores = [np.array(get_scores_vector(session_id))]
+        user_liberal, user_conservative = predict_radical_political(user_scores)
+    else:
+        user_liberal, user_conservative = None, None
+
+    try:
+        recommended_general_solutions = (
+            SOLUTION_PROCESSOR.get_user_general_solution_nodes(user_liberal, user_conservative)
+        )
+        climate_general_solutions = {"solutions": recommended_general_solutions}
+        return jsonify(climate_general_solutions), 200
+    except:
+        raise CustomError(
+            message="An error occurred while processing the user's general solution nodes."
+        )
+
+def predict_radical_political(user_scores):
+    user_liberal = None
+    user_conservative = None
+
+    if user_scores:
+        liberal_model = pickle.load(
+            open("ml_models/political_preference/models/RandomForest_liberal_0.785.pickle", "rb"))
+        user_liberal = liberal_model.predict(user_scores)
+
+        conservative_model = pickle.load(
+            open("ml_models/political_preference/models/RandomForest_conservative_0.738.pickle", "rb"))
+        user_conservative = conservative_model.predict(user_scores)
+
+    return user_liberal, user_conservative
+
+def get_scores_vector(session_id):
+    scores = db.session.query(Scores).filter_by(session_uuid=session_id).one_or_none()
+    return [
+        scores.achievement,
+        scores.benevolence,
+        scores.conformity,
+        scores.hedonism,
+        scores.power,
+        scores.security,
+        scores.self_direction,
+        scores.stimulation,
+        scores.tradition,
+        scores.universalism,
+]
