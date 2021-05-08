@@ -68,9 +68,15 @@ def get_general_solutions():
 
 
 def predict_radical_political(user_scores):
-    user_liberal = None
-    user_conservative = None
+    """
+    Predicts whether or not the user is radically liberal or radically conservative
 
+    Args:
+        user_scores: A 2D array containing the user's value scores
+
+    Returns: Booleans for liberal and conservative ex. (1, 0)
+
+    """
     liberal_model = pickle.load(
         open(
             "ml_models/political_preference/models/RandomForest_liberal_0.785.pickle",
@@ -91,6 +97,15 @@ def predict_radical_political(user_scores):
 
 
 def get_scores_vector(session_id):
+    """
+    Finds user scores in the database based on session_id
+
+    Args:
+        session_id: (str) UUID4
+
+    Returns: A vector of scores (or None if user not found)
+
+    """
     scores = db.session.query(Scores).filter_by(session_uuid=session_id).one_or_none()
     if scores:
         return [
