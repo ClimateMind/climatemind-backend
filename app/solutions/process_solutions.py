@@ -9,7 +9,7 @@ from app.models import Scores
 import numpy as np
 import random
 import pickle
-import sklearn # This is used even though it isn't directly referenced
+import sklearn  # This is used even though it isn't directly referenced
 import sys
 
 
@@ -171,7 +171,9 @@ class process_solutions:
         return solutions
 
     def get_scores_vector(self, session_id):
-        scores = db.session.query(Scores).filter_by(session_uuid=session_id).one_or_none()
+        scores = (
+            db.session.query(Scores).filter_by(session_uuid=session_id).one_or_none()
+        )
         return [
             scores.achievement,
             scores.benevolence,
