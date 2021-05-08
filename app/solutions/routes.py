@@ -93,15 +93,18 @@ def predict_radical_political(user_scores):
 
 def get_scores_vector(session_id):
     scores = db.session.query(Scores).filter_by(session_uuid=session_id).one_or_none()
-    return [
-        scores.achievement,
-        scores.benevolence,
-        scores.conformity,
-        scores.hedonism,
-        scores.power,
-        scores.security,
-        scores.self_direction,
-        scores.stimulation,
-        scores.tradition,
-        scores.universalism,
-    ]
+    if scores:
+        return [
+            scores.achievement,
+            scores.benevolence,
+            scores.conformity,
+            scores.hedonism,
+            scores.power,
+            scores.security,
+            scores.self_direction,
+            scores.stimulation,
+            scores.tradition,
+            scores.universalism,
+        ]
+    else:
+        return None
