@@ -44,20 +44,28 @@ def get_general_solutions():
     session_id = request.args.get("session-id")
     if session_id:
         user_scores = [np.array(get_scores_vector(session_id))]
+    else:
+        user_scores = None
+
+    if user_scores:
         user_liberal, user_conservative = predict_radical_political(user_scores)
     else:
         user_liberal, user_conservative = None, None
 
     try:
         recommended_general_solutions = (
-            SOLUTION_PROCESSOR.get_user_general_solution_nodes(user_liberal, user_conservative)
+            SOLUTION_PROCESSOR.get_user_general_solution_nodes(
+                user_liberal, user_conservative
+            )
         )
         climate_general_solutions = {"solutions": recommended_general_solutions}
         return jsonify(climate_general_solutions), 200
+
     except:
         raise CustomError(
             message="An error occurred while processing the user's general solution nodes."
         )
+
 
 def predict_radical_political(user_scores):
     user_liberal = None
@@ -65,14 +73,23 @@ def predict_radical_political(user_scores):
 
     if user_scores:
         liberal_model = pickle.load(
-            open("ml_models/political_preference/models/RandomForest_liberal_0.785.pickle", "rb"))
+            open(
+                "ml_models/political_preference/models/RandomForest_liberal_0.785.pickle",
+                "rb",
+            )
+        )
         user_liberal = liberal_model.predict(user_scores)
 
         conservative_model = pickle.load(
-            open("ml_models/political_preference/models/RandomForest_conservative_0.738.pickle", "rb"))
+            open(
+                "ml_models/political_preference/models/RandomForest_conservative_0.738.pickle",
+                "rb",
+            )
+        )
         user_conservative = conservative_model.predict(user_scores)
 
     return user_liberal, user_conservative
+
 
 def get_scores_vector(session_id):
     scores = db.session.query(Scores).filter_by(session_uuid=session_id).one_or_none()
@@ -87,4 +104,4 @@ def get_scores_vector(session_id):
         scores.stimulation,
         scores.tradition,
         scores.universalism,
-]
+    ]
