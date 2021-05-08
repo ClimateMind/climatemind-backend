@@ -71,22 +71,21 @@ def predict_radical_political(user_scores):
     user_liberal = None
     user_conservative = None
 
-    if user_scores:
-        liberal_model = pickle.load(
-            open(
-                "ml_models/political_preference/models/RandomForest_liberal_0.785.pickle",
-                "rb",
-            )
+    liberal_model = pickle.load(
+        open(
+            "ml_models/political_preference/models/RandomForest_liberal_0.785.pickle",
+            "rb",
         )
-        user_liberal = liberal_model.predict(user_scores)
+    )
+    user_liberal = liberal_model.predict(user_scores)
 
-        conservative_model = pickle.load(
-            open(
-                "ml_models/political_preference/models/RandomForest_conservative_0.738.pickle",
-                "rb",
-            )
+    conservative_model = pickle.load(
+        open(
+            "ml_models/political_preference/models/RandomForest_conservative_0.738.pickle",
+            "rb",
         )
-        user_conservative = conservative_model.predict(user_scores)
+    )
+    user_conservative = conservative_model.predict(user_scores)
 
     return user_liberal, user_conservative
 
