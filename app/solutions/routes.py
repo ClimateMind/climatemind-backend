@@ -81,7 +81,7 @@ def predict_radical_political(user_scores):
         open(
             "ml_models/political_preference/models/NaiveBayes_liberal_0.641.pickle",
             "rb",
-        ) #ml_models/political_preference/models/RandomForest_liberal_0.785.pickle
+        )  # ml_models/political_preference/models/RandomForest_liberal_0.785.pickle
     )
     user_liberal = liberal_model.predict(user_scores)
 
@@ -89,7 +89,7 @@ def predict_radical_political(user_scores):
         open(
             "ml_models/political_preference/models/NaiveBayes_conservative_0.586.pickle",
             "rb",
-        ) #ml_models/political_preference/models/RandomForest_conservative_0.738.pickle
+        )  # ml_models/political_preference/models/RandomForest_conservative_0.738.pickle
     )
     user_conservative = conservative_model.predict(user_scores)
 
