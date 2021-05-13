@@ -77,23 +77,27 @@ def predict_radical_political(user_scores):
     Returns: Booleans for liberal and conservative ex. (1, 0)
 
     """
-    liberal_model = pickle.load(
-        open(
-            "ml_models/political_preference/models/NaiveBayes_liberal_0.641.pickle",
-            "rb",
-        )  # ml_models/political_preference/models/RandomForest_liberal_0.785.pickle
-    )
-    user_liberal = liberal_model.predict(user_scores)
+    try:
+        liberal_model = pickle.load(
+            open(
+                "ml_models/political_preference/models/NaiveBayes_liberal_0.641.pickle",
+                "rb",
+            )
+        )
+        user_liberal = liberal_model.predict(user_scores)
 
-    conservative_model = pickle.load(
-        open(
-            "ml_models/political_preference/models/NaiveBayes_conservative_0.586.pickle",
-            "rb",
-        )  # ml_models/political_preference/models/RandomForest_conservative_0.738.pickle
-    )
-    user_conservative = conservative_model.predict(user_scores)
+        conservative_model = pickle.load(
+            open(
+                "ml_models/political_preference/models/NaiveBayes_conservative_0.586.pickle",
+                "rb",
+            )
+        )
+        user_conservative = conservative_model.predict(user_scores)
 
-    return user_liberal, user_conservative
+        return user_liberal, user_conservative
+
+    except pickle.PickleError:
+        raise CustomError(message="Pickle Error when processing ml models")
 
 
 def get_scores_vector(session_id):
@@ -106,19 +110,26 @@ def get_scores_vector(session_id):
     Returns: A vector of scores (or None if user not found)
 
     """
-    scores = db.session.query(Scores).filter_by(session_uuid=session_id).one_or_none()
-    if scores:
-        return [
-            scores.achievement,
-            scores.benevolence,
-            scores.conformity,
-            scores.hedonism,
-            scores.power,
-            scores.security,
-            scores.self_direction,
-            scores.stimulation,
-            scores.tradition,
-            scores.universalism,
-        ]
-    else:
-        return None
+    try:
+        scores = (
+            db.session.query(Scores).filter_by(session_uuid=session_id).one_or_none()
+        )
+        if scores:
+            return [
+                scores.achievement,
+                scores.benevolence,
+                scores.conformity,
+                scores.hedonism,
+                scores.power,
+                scores.security,
+                scores.self_direction,
+                scores.stimulation,
+                scores.tradition,
+                scores.universalism,
+            ]
+        else:
+            return None
+    except:
+        raise DatabaseError(
+            message="Cannot get scores based on session_id. Failed to query database."
+        )
