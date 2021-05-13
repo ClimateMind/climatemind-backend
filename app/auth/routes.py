@@ -5,6 +5,7 @@ from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import create_refresh_token
 from flask_jwt_extended import get_jwt_identity
+from flask_cors import cross_origin
 from app.subscribe.store_subscription_data import check_email
 
 from app.errors.errors import InvalidUsageError, DatabaseError, UnauthorizedError
@@ -24,6 +25,7 @@ Valid URLS to access the refresh endpoint are specified in app/__init__.py
 
 
 @bp.route("/login", methods=["POST"])
+@cross_origin()
 @auto.doc()
 def login():
     """
@@ -89,6 +91,7 @@ def refresh():
 
 
 @bp.route("/protected", methods=["GET"])
+@cross_origin()
 @jwt_required()
 def protected():
     """
@@ -102,6 +105,7 @@ def protected():
 
 
 @bp.route("/register", methods=["POST"])
+@cross_origin()
 def register():
     """
     Registration endpoint
