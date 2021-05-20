@@ -11,7 +11,7 @@ from app.subscribe.store_subscription_data import check_email
 from app.errors.errors import InvalidUsageError, DatabaseError, UnauthorizedError
 
 
-from app.models import Users
+from app.models import Users, Scores
 
 from app import db, auto
 
@@ -53,6 +53,12 @@ def login():
     if not user or not password_valid(password) or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
+    scores = db.session.query(Scores).filter_by(user_uuid=user.uuid).one_or_none()
+    if scores:
+        session_id = scores.session_uuid
+    else:
+        session_id = None
+
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
     response = make_response(
@@ -64,6 +70,7 @@ def login():
                     "full_name": user.full_name,
                     "email": user.email,
                     "user_uuid": user.uuid,
+                    "session_id": session_id,
                 },
             }
         ),
@@ -127,6 +134,7 @@ def register():
     full_name = r.get("fullname", None)
     email = r.get("email", None)
     password = r.get("password", None)
+    session_id = r.get("session-id", None)
 
     if not valid_name(full_name):
         raise InvalidUsageError(
@@ -142,6 +150,9 @@ def register():
         raise UnauthorizedError(message="Email already registered")
     else:
         user = add_user_to_db(full_name, email, password)
+
+    if session_id:
+        link_user_to_session(session_id, user.uuid)
 
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
@@ -186,6 +197,28 @@ def add_user_to_db(full_name, email, password):
             message="An error occurred while adding user to the database."
         )
     return user
+
+
+def link_user_to_session(session_id, user_uuid):
+    """
+    If a user has already taken the survey, they will have a session-id and
+    a set of scores which should be linked to their new account.
+
+    Parameters:
+        session_id (uuid4 as str)
+    """
+    # try:
+    scores = db.session.query(Scores).filter_by(session_uuid=session_id).one_or_none()
+    # except:
+    # raise DatabaseError(
+    #    message="An error occurred while querying the scores from the database."
+    # )
+
+    if scores:
+        scores.user_uuid = user_uuid
+        db.session.commit()
+    else:
+        raise InvalidUsageError(message="session-id is not associated with any scores.")
 
 
 def valid_name(full_name):

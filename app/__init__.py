@@ -83,4 +83,8 @@ def create_app(config_class=DevelopmentConfig):
 
         app.register_blueprint(post_code_bp)
 
+        from app.users import bp as user_bp
+
+        app.register_blueprint(user_bp)
+
     return app
