@@ -55,7 +55,13 @@ def login():
     if not user or not password_valid(password) or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
-    scores = db.session.query(Scores).filter_by(user_uuid=user.uuid).one_or_none()
+    scores = (
+        db.session.query(Scores)
+        .filter_by(user_uuid=user.uuid)
+        .order_by(desc("scores_created_timestamp"))
+        .first()
+    )
+    
     if scores:
         session_id = scores.session_uuid
     else:
