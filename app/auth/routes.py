@@ -23,7 +23,6 @@ import uuid
 A series of endpoints for authentication.
 Valid durations for the access and refresh tokens are specified in config.py
 Valid URLS to access the refresh endpoint are specified in app/__init__.py
-test
 """
 
 
@@ -56,8 +55,7 @@ def login():
     if not user or not password_valid(password) or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
-    scores = db.session.query(Scores).filter_by(
-        user_uuid=user.uuid).one_or_none()
+    scores = db.session.query(Scores).filter_by(user_uuid=user.uuid).one_or_none()
     if scores:
         session_id = scores.session_uuid
     else:
@@ -80,8 +78,7 @@ def login():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 
@@ -98,8 +95,7 @@ def refresh():
     access_token = create_access_token(identity=user)
     refresh_token = create_refresh_token(identity=user)
     response = make_response(jsonify(access_token=access_token))
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 
@@ -149,9 +145,7 @@ def register():
         )
 
     if not valid_session_id(session_id):
-        raise InvalidUsageError(
-            message="Session ID is not a valid UUID4 format."
-        )
+        raise InvalidUsageError(message="Session ID is not a valid UUID4 format.")
 
     scores = get_scores(session_id)
 
@@ -184,8 +178,7 @@ def register():
         ),
         201,
     )
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 
@@ -270,7 +263,9 @@ def valid_session_id(session_id):
     Returns: True if valid
     """
     regex = re.compile(
-        '^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}\Z', re.I)
+        "^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}\Z",
+        re.I,
+    )
     match = regex.match(session_id)
     return bool(match)
 
@@ -293,9 +288,8 @@ def get_scores(session_id):
         scores = (
             db.session.query(Scores)
             .filter_by(session_uuid=session_id)
-            .order_by(
-                desc('scores_created_timestamp')
-            ).first()
+            .order_by(desc("scores_created_timestamp"))
+            .first()
         )
     except:
         raise DatabaseError(
