@@ -108,6 +108,7 @@ def refresh():
 
 
 @bp.route("/logout", methods=["POST"])
+@cross_origin()
 def logout():
     """
     Logs the user out by unsetting the refresh token cook
