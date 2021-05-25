@@ -61,7 +61,7 @@ def login():
         .order_by(desc("scores_created_timestamp"))
         .first()
     )
-    
+
     if scores:
         session_id = scores.session_uuid
     else:
