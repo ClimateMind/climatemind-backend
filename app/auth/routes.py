@@ -54,17 +54,15 @@ def login():
     if not user or not password_valid(password) or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
-    #try:
-    scores = (
-        db.session.query(Scores)
-        .filter_by(user_uuid=user.uuid)
-        .order_by(desc("scores_created_timestamp"))
-        .first()
-    )
-    # except:
-    #     raise DatabaseError(
-    #         message="Failed to query scores from the database."
-    #     )
+    try:
+        scores = (
+            db.session.query(Scores)
+            .filter_by(user_uuid=user.uuid)
+            .order_by(desc("scores_created_timestamp"))
+            .first()
+        )
+    except:
+        raise DatabaseError(message="Failed to query scores from the database.")
 
     if scores:
         session_id = scores.session_uuid
@@ -82,7 +80,7 @@ def login():
                     "full_name": user.full_name,
                     "email": user.email,
                     "user_uuid": user.uuid,
-                    "session_id": session_id
+                    "session_id": session_id,
                 },
             }
         ),

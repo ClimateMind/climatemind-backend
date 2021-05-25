@@ -147,5 +147,3 @@ class ProcessScores:
             raise DatabaseError(
                 message="An error occurred while trying to save the user's scores to the database."
             )
-
-
