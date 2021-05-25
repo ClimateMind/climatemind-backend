@@ -18,13 +18,10 @@ def persist_scores(scores):
 
     """
     try:
-        # db.session = getSession()
-
         userSession = Sessions()
         userSession.session_uuid = scores["session-id"]
 
         db.session.add(userSession)
-        # db.session.commit()
 
         userScores = Scores()
         userScores.session_uuid = scores["session-id"]
