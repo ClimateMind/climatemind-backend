@@ -7,6 +7,7 @@ from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import create_refresh_token
 from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import unset_jwt_cookies
 from flask_cors import cross_origin
 from app.subscribe.store_subscription_data import check_email
 
@@ -112,7 +113,7 @@ def logout():
     Logs the user out by unsetting the refresh token cook
     """
     response = make_response({"message": "User logged out"})
-    response.set_cookie("refresh_token", "", expires=0)
+    unset_jwt_cookies(response)
     return response, 200
 
 
