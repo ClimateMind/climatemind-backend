@@ -56,12 +56,16 @@ def login():
     if not user or not password_valid(password) or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
-    scores = (
-        db.session.query(Scores)
-        .filter_by(user_uuid=user.uuid)
-        .order_by(desc("scores_created_timestamp"))
-        .first()
-    )
+    try:
+        scores = (
+            db.session.query(Scores)
+            .filter_by(user_uuid=user.uuid)
+            .order_by(desc("scores_created_timestamp"))
+            .first()
+        )
+    except:
+        raise DatabaseError(
+            message="Failed to query scores from the database.")
 
     if scores:
         session_id = scores.session_uuid
@@ -85,7 +89,8 @@ def login():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token,
+                        path="/refresh", httponly=True)
     return response
 
 
@@ -102,7 +107,8 @@ def refresh():
     access_token = create_access_token(identity=user)
     refresh_token = create_refresh_token(identity=user)
     response = make_response(jsonify(access_token=access_token))
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token,
+                        path="/refresh", httponly=True)
     return response
 
 
@@ -163,7 +169,8 @@ def register():
         )
 
     if not valid_session_id(session_id):
-        raise InvalidUsageError(message="Session ID is not a valid UUID4 format.")
+        raise InvalidUsageError(
+            message="Session ID is not a valid UUID4 format.")
 
     scores = get_scores(session_id)
 
@@ -196,7 +203,8 @@ def register():
         ),
         201,
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token,
+                        path="/refresh", httponly=True)
     return response
 
 

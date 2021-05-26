@@ -1,7 +1,11 @@
 import os
+import datetime
+from datetime import timezone
+from app import db
 from flask import abort, make_response, jsonify
 from app.scoring.store_ip_address import store_ip_address
 from app.errors.errors import DatabaseError
+from app.models import Scores, Sessions
 
 
 class ProcessScores:
@@ -97,7 +101,6 @@ class ProcessScores:
                 unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
                 if len(unprocessed_ip_address) != 0:
                     ip_address = unprocessed_ip_address[0]
-                # request.environ.get("HTTP_X_REAL_IP", request.remote_addr)
                 else:
                     ip_address = None
                 store_ip_address(ip_address, session_uuid)
@@ -105,3 +108,42 @@ class ProcessScores:
                 raise DatabaseError(
                     message="An error occurred while saving the user's ip address to the production database."
                 )
+
+    def persist_scores(self, user_uuid):
+        """
+        Saves user scores and session id into the database
+
+        Args: scores
+            scores: A dictionary mapping personal values to user scores
+
+        Returns: An error if one occurs
+
+        """
+        try:
+            user_session = Sessions(session_uuid=self.value_scores["session-id"])
+            db.session.add(user_session)
+
+            user_scores = Scores()
+            user_scores.session_uuid = self.value_scores["session-id"]
+            user_scores.security = self.value_scores["security"]
+            user_scores.conformity = self.value_scores["conformity"]
+            user_scores.benevolence = self.value_scores["benevolence"]
+            user_scores.tradition = self.value_scores["tradition"]
+            user_scores.universalism = self.value_scores["universalism"]
+            user_scores.self_direction = self.value_scores["self-direction"]
+            user_scores.stimulation = self.value_scores["stimulation"]
+            user_scores.hedonism = self.value_scores["hedonism"]
+            user_scores.achievement = self.value_scores["achievement"]
+            user_scores.power = self.value_scores["power"]
+            user_scores.scores_created_timestamp = datetime.datetime.now(timezone.utc)
+
+            if user_uuid:
+                user_scores.user_uuid = user_uuid
+
+            db.session.add(user_scores)
+            db.session.commit()
+
+        except:
+            raise DatabaseError(
+                message="An error occurred while trying to save the user's scores to the database."
+            )
