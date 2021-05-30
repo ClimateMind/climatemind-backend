@@ -77,16 +77,6 @@ class process_solutions:
             # Filter out nodes that oppose radical political users
             solution_conservative = current_solution["data_properties"]["conservative"]
             solution_liberal = current_solution["data_properties"]["liberal"]
-            #solution_conservative = False
-            #solution_liberal = False
-
-            # if "conservative" in current_solution["data_properties"]:
-            #     if current_solution["data_properties"]["conservative"] == 1:
-            #         solution_conservative = True
-            #
-            # if "liberal" in current_solution["data_properties"]:
-            #     if current_solution["data_properties"]["liberal"] == 1:
-            #         solution_liberal = True
 
             if user_liberal and solution_conservative:
                 continue
