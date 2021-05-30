@@ -1,4 +1,5 @@
 from flask import request, jsonify, make_response
+from sqlalchemy import desc
 from app.auth import bp
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import current_user
@@ -11,7 +12,7 @@ from app.subscribe.store_subscription_data import check_email
 from app.errors.errors import InvalidUsageError, DatabaseError, UnauthorizedError
 
 
-from app.models import Users
+from app.models import Users, Scores
 
 from app import db, auto
 
@@ -53,6 +54,21 @@ def login():
     if not user or not password_valid(password) or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
+    try:
+        scores = (
+            db.session.query(Scores)
+            .filter_by(user_uuid=user.uuid)
+            .order_by(desc("scores_created_timestamp"))
+            .first()
+        )
+    except:
+        raise DatabaseError(message="Failed to query scores from the database.")
+
+    if scores:
+        session_id = scores.session_uuid
+    else:
+        session_id = None
+
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
     response = make_response(
@@ -64,6 +80,7 @@ def login():
                     "full_name": user.full_name,
                     "email": user.email,
                     "user_uuid": user.uuid,
+                    "session_id": session_id,
                 },
             }
         ),
