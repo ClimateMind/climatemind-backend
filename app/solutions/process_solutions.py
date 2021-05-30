@@ -83,7 +83,7 @@ class process_solutions:
                     solution_conservative = True
 
             if "liberal" in current_solution["data_properties"]:
-                if current_solution["data_properties"]["conservative"] == 1:
+                if current_solution["data_properties"]["liberal"] == 1:
                     solution_liberal = True
 
             if user_liberal and solution_conservative:
