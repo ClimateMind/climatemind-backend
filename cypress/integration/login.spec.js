@@ -1,4 +1,5 @@
 /// <reference types="cypress" />
+import postScores from "../fixtures/postScores.json";
 
 // Expected error responses
 const badLoginMessage = "Wrong email or password. Try again.";
@@ -13,19 +14,34 @@ describe("User can login", () => {
       email: "login@example.com",
       password: "PassWord7!",
     };
-    cy.request("POST", "http://localhost:5000/register", testUser);
 
-    cy.request("POST", "http://localhost:5000/login", testUser).should(
+    // Post scores to register user
+    cy.request("POST", "http://localhost:5000/scores", postScores).should(
       (response) => {
-        expect(response.status).to.equal(200);
-        expect(response.headers["content-type"]).to.equal("application/json");
-        expect(response.headers["access-control-allow-origin"]).to.equal("*");
-        expect(response.body).to.be.a("object");
-        expect(response.body).to.have.property("access_token");
-        expect(response.body).to.have.property("user");
-        expect(response.body.access_token).to.satisfy(function (s) {
-          return typeof s === "string";
-        });
+        testUser.sessionId = response.body.sessionId;
+
+        // TODO: This test is horrible, tidy up when we have data seeding
+        cy.request("POST", "http://localhost:5000/register", testUser).should(
+          (response) => {
+            cy.request("POST", "http://localhost:5000/login", testUser).should(
+              (response) => {
+                expect(response.status).to.equal(200);
+                expect(response.headers["content-type"]).to.equal(
+                  "application/json"
+                );
+                expect(
+                  response.headers["access-control-allow-origin"]
+                ).to.equal("*");
+                expect(response.body).to.be.a("object");
+                expect(response.body).to.have.property("access_token");
+                expect(response.body).to.have.property("user");
+                expect(response.body.access_token).to.satisfy(function (s) {
+                  return typeof s === "string";
+                });
+              }
+            );
+          }
+        );
       }
     );
   });
@@ -36,21 +52,19 @@ describe("User can login", () => {
       password: "password",
     };
     cy.request({
-        url: "http://localhost:5000/login",
-        method: "POST",
-        body: invalidUser,
-        failOnStatusCode: false
-    }).should(
-      (response) => {
-        expect(response.status).to.equal(401);
-        expect(response.headers["content-type"]).to.equal("application/json");
-        expect(response.body).to.be.a("object");
-        expect(response.body).to.have.property("error");
-        expect(response.body.error).to.satisfy(function (s) {
-          return s === badLoginMessage;
-        });
-      }
-    );
+      url: "http://localhost:5000/login",
+      method: "POST",
+      body: invalidUser,
+      failOnStatusCode: false,
+    }).should((response) => {
+      expect(response.status).to.equal(401);
+      expect(response.headers["content-type"]).to.equal("application/json");
+      expect(response.body).to.be.a("object");
+      expect(response.body).to.have.property("error");
+      expect(response.body.error).to.satisfy(function (s) {
+        return s === badLoginMessage;
+      });
+    });
   });
   it("It handles invalid email", () => {
     const body = {
@@ -58,62 +72,56 @@ describe("User can login", () => {
       password: "password",
     };
     cy.request({
-        url: "http://localhost:5000/login",
-        method: "POST",
-        body: body,
-        failOnStatusCode: false
-    }).should(
-      (response) => {
-        expect(response.status).to.equal(401);
-        expect(response.headers["content-type"]).to.equal("application/json");
-        expect(response.body).to.be.a("object");
-        expect(response.body).to.have.property("error");
-        expect(response.body.error).to.satisfy(function (s) {
-          return s === badLoginMessage;
-        });
-      }
-    );
+      url: "http://localhost:5000/login",
+      method: "POST",
+      body: body,
+      failOnStatusCode: false,
+    }).should((response) => {
+      expect(response.status).to.equal(401);
+      expect(response.headers["content-type"]).to.equal("application/json");
+      expect(response.body).to.be.a("object");
+      expect(response.body).to.have.property("error");
+      expect(response.body.error).to.satisfy(function (s) {
+        return s === badLoginMessage;
+      });
+    });
   });
   it("It handles missing email", () => {
     const body = {
       password: "password",
     };
     cy.request({
-        url: "http://localhost:5000/login",
-        method: "POST",
-        body: body,
-        failOnStatusCode: false
-    }).should(
-      (response) => {
-        expect(response.status).to.equal(400);
-        expect(response.headers["content-type"]).to.equal("application/json");
-        expect(response.body).to.be.a("object");
-        expect(response.body).to.have.property("error");
-        expect(response.body.error).to.satisfy(function (s) {
-          return s === invalidReqMessage;
-        });
-      }
-    );
+      url: "http://localhost:5000/login",
+      method: "POST",
+      body: body,
+      failOnStatusCode: false,
+    }).should((response) => {
+      expect(response.status).to.equal(400);
+      expect(response.headers["content-type"]).to.equal("application/json");
+      expect(response.body).to.be.a("object");
+      expect(response.body).to.have.property("error");
+      expect(response.body.error).to.satisfy(function (s) {
+        return s === invalidReqMessage;
+      });
+    });
   });
   it("It handles missing password", () => {
     const body = {
       email: "login@example.com",
     };
     cy.request({
-        url: "http://localhost:5000/login",
-        method: "POST",
-        body: body,
-        failOnStatusCode: false
-    }).should(
-      (response) => {
-        expect(response.status).to.equal(400);
-        expect(response.headers["content-type"]).to.equal("application/json");
-        expect(response.body).to.be.a("object");
-        expect(response.body).to.have.property("error");
-        expect(response.body.error).to.satisfy(function (s) {
-          return s === invalidReqMessage;
-        });
-      }
-    );
+      url: "http://localhost:5000/login",
+      method: "POST",
+      body: body,
+      failOnStatusCode: false,
+    }).should((response) => {
+      expect(response.status).to.equal(400);
+      expect(response.headers["content-type"]).to.equal("application/json");
+      expect(response.body).to.be.a("object");
+      expect(response.body).to.have.property("error");
+      expect(response.body.error).to.satisfy(function (s) {
+        return s === invalidReqMessage;
+      });
+    });
   });
 });
