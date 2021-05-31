@@ -1,11 +1,13 @@
 from flask import request, jsonify, make_response
 from sqlalchemy import desc
 from app.auth import bp
+import regex as re
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import create_refresh_token
 from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import unset_jwt_cookies
 from flask_cors import cross_origin
 from app.subscribe.store_subscription_data import check_email
 
@@ -107,6 +109,17 @@ def refresh():
     return response
 
 
+@bp.route("/logout", methods=["POST"])
+@cross_origin()
+def logout():
+    """
+    Logs the user out by unsetting the refresh token cook
+    """
+    response = make_response({"message": "User logged out"})
+    unset_jwt_cookies(response)
+    return response, 200
+
+
 @bp.route("/protected", methods=["GET"])
 @cross_origin()
 @jwt_required()
@@ -130,6 +143,7 @@ def register():
     Takes a full_name, email, and password, validates this data and saves the user into the database.
     The user should automatically be logged in upon successful registration.
     The same email cannot be used for more than one account.
+    Users will have to take the quiz before registering, meaning the session-id is linked to scores.
 
     Returns: Errors if any data is invalid
     Returns: Access Token and Refresh Token otherwise
@@ -144,11 +158,17 @@ def register():
     full_name = r.get("fullname", None)
     email = r.get("email", None)
     password = r.get("password", None)
+    session_id = r.get("sessionId", None)
 
     if not valid_name(full_name):
         raise InvalidUsageError(
             message="Full name must be between 2 and 50 characters."
         )
+
+    if not valid_session_id(session_id):
+        raise InvalidUsageError(message="Session ID is not a valid UUID4 format.")
+
+    scores = get_scores(session_id)
 
     if check_email(email) and password_valid(password):
         user = Users.find_by_username(email)
@@ -159,6 +179,8 @@ def register():
         raise UnauthorizedError(message="Email already registered")
     else:
         user = add_user_to_db(full_name, email, password)
+
+    link_user_to_scores(scores, user.uuid)
 
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
@@ -171,6 +193,7 @@ def register():
                     "full_name": user.full_name,
                     "email": user.email,
                     "user_uuid": user.uuid,
+                    "session_id": scores.session_uuid,
                 },
             }
         ),
@@ -205,6 +228,24 @@ def add_user_to_db(full_name, email, password):
     return user
 
 
+def link_user_to_scores(scores, user_uuid):
+    """
+    If a user has already taken the survey, they will have a session-id and
+    a set of scores which should be linked to their new account.
+
+    Parameters:
+        scores (database object)
+        user_uuid (uuid4 as str)
+    """
+    try:
+        scores.user_uuid = user_uuid
+        db.session.commit()
+    except:
+        raise DatabaseError(
+            message="An error occurred while querying the scores from the database."
+        )
+
+
 def valid_name(full_name):
     """
     Names must be between 2 and 50 characters.
@@ -231,3 +272,54 @@ def password_valid(password):
         lambda s: 8 <= len(s) <= 20,
     ]
     return all(cond(password) for cond in conds)
+
+
+def valid_session_id(session_id):
+    """
+    Checks for valid UUID4 format
+    xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx
+
+    Parameters: session_id (str)
+
+    Returns: True if valid
+    """
+    regex = re.compile(
+        "^[a-f0-9]{8}-?[a-f0-9]{4}-?4[a-f0-9]{3}-?[89ab][a-f0-9]{3}-?[a-f0-9]{12}\Z",
+        re.I,
+    )
+    match = regex.match(session_id)
+    return bool(match)
+
+
+def get_scores(session_id):
+    """
+    Validates that a session exists within the DB by checking the scores
+    table for the most recent scores associated with the provided session id.
+
+    Users may have multiple session IDs if they retake the quiz, so we need to
+    return the most recently created version.
+
+    Parameters:
+        session_id (uuid4 as str)
+
+    Returns: Scores entry if exists
+    Otherwise throws error
+    """
+    try:
+        scores = (
+            db.session.query(Scores)
+            .filter_by(session_uuid=session_id)
+            .order_by(desc("scores_created_timestamp"))
+            .first()
+        )
+    except:
+        raise DatabaseError(
+            message="An error occurred while querying the scores from the database."
+        )
+
+    if not scores:
+        raise InvalidUsageError(
+            "Provided session ID is not associated with any quiz scores."
+        )
+
+    return scores
