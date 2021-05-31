@@ -7,6 +7,7 @@ from app.errors.errors import InvalidUsageError, CustomError
 from flask_cors import cross_origin
 import numpy as np
 import pickle
+import uuid
 
 from app import auto
 
@@ -41,11 +42,14 @@ def get_general_solutions():
     they click the general solutions menu button. General solutions are ordered based
     on relevance predicted from users personal values.
     """
-    session_id = request.args.get("session-id")
-    if session_id:
+    try:
+        session_id = uuid.UUID(request.args.get("session-id"))
         user_scores = [np.array(get_scores_vector(session_id))]
-    else:
+    except:
         user_scores = None
+        raise InvalidUsageError(
+            message="Malformed request. Session id provided to get solutions is not a valid UUID."
+        )
 
     if user_scores:
         user_liberal, user_conservative = predict_radical_political(user_scores)
