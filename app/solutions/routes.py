@@ -42,14 +42,17 @@ def get_general_solutions():
     they click the general solutions menu button. General solutions are ordered based
     on relevance predicted from users personal values.
     """
-    try:
-        session_id = uuid.UUID(request.args.get("session-id"))
-        user_scores = [np.array(get_scores_vector(session_id))]
-    except:
-        user_scores = None
-        raise InvalidUsageError(
-            message="Malformed request. Session id provided to get solutions is not a valid UUID."
-        )
+    session_id = request.args.get("session-id")
+    user_scores = None
+
+    if session_id:
+        try:
+            session_id = uuid.UUID(request.args.get("session-id"))
+            user_scores = [np.array(get_scores_vector(session_id))]
+        except:
+            raise InvalidUsageError(
+                message="Malformed request. Session id provided to get solutions is not a valid UUID."
+            )
 
     if user_scores:
         user_liberal, user_conservative = predict_radical_political(user_scores)
