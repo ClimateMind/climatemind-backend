@@ -1,12 +1,16 @@
 from flask import current_app
 
+from app import db
 from app.network_x_tools.network_x_utils import network_x_utils
 from app.myths.process_myths import process_myths
 from app.errors.errors import CustomError
+from app.models import Scores
 
 import numpy as np
 import random
-import networkx as nx
+import pickle
+import sklearn  # This is used even though it isn't directly referenced
+import sys
 
 
 class process_solutions:
@@ -53,7 +57,7 @@ class process_solutions:
             )
         return solutions
 
-    def get_user_general_solution_nodes(self):
+    def get_user_general_solution_nodes(self, user_liberal, user_conservative):
         """Returns a list of general solutions and some information about those general
         solutions. The solutions are ordered from highest to lowest CO2 Equivalent
         Reduced / Sequestered (2020–2050) in Gigatons from Project Drawdown scenario 2.
@@ -66,11 +70,23 @@ class process_solutions:
 
         for solution in general_solutions:
 
-            self.NX_UTILS.set_current_node(self.G.nodes[solution])
-            self.MYTH_PROCESS.set_current_node(self.G.nodes[solution])
+            current_solution = self.G.nodes[solution]
+            self.NX_UTILS.set_current_node(current_solution)
+            self.MYTH_PROCESS.set_current_node(current_solution)
+
+            # Filter out nodes that oppose radical political users
+            solution_liberal = current_solution["data_properties"]["liberal"]
+            solution_conservative = current_solution["data_properties"]["conservative"]
+
+            if user_liberal and solution_liberal == -1:
+                continue
+
+            if user_conservative and solution_conservative == -1:
+                continue
+
             d = {
                 "iri": self.NX_UTILS.get_node_id(),
-                "solutionTitle": self.G.nodes[solution]["label"],
+                "solutionTitle": current_solution["label"],
                 "solutionType": "mitigation",
                 "shortDescription": self.NX_UTILS.get_short_description(),
                 "longDescription": self.NX_UTILS.get_description(),
@@ -93,13 +109,16 @@ class process_solutions:
         solution_names = self.G.nodes[effect_name]["adaptation solutions"]
         adaptation_solutions = []
         mitigation_solutions = []
+
         for solution in solution_names:
             try:
-                self.NX_UTILS.set_current_node(self.G.nodes[solution])
-                self.MYTH_PROCESS.set_current_node(self.G.nodes[solution])
+                current_solution = self.G.nodes[solution]
+                self.NX_UTILS.set_current_node(current_solution)
+                self.MYTH_PROCESS.set_current_node(current_solution)
+
                 s_dict = {
                     "iri": self.NX_UTILS.get_node_id(),
-                    "solutionTitle": self.G.nodes[solution]["label"],
+                    "solutionTitle": current_solution["label"],
                     "solutionType": "adaptation",
                     "shortDescription": self.NX_UTILS.get_short_description(),
                     "longDescription": self.NX_UTILS.get_description(),
@@ -150,3 +169,20 @@ class process_solutions:
             mitigation_solutions,
         )
         return solutions
+
+    def get_scores_vector(self, session_id):
+        scores = (
+            db.session.query(Scores).filter_by(session_uuid=session_id).one_or_none()
+        )
+        return [
+            scores.achievement,
+            scores.benevolence,
+            scores.conformity,
+            scores.hedonism,
+            scores.power,
+            scores.security,
+            scores.self_direction,
+            scores.stimulation,
+            scores.tradition,
+            scores.universalism,
+        ]

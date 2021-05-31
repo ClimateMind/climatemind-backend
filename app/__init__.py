@@ -1,6 +1,14 @@
+from app import models
 from flask import Flask
+from datetime import datetime
+from datetime import timezone
+from datetime import timedelta
 from flask_cors import CORS
 from app.extensions import db, migrate, login, cache, auto, jwt
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import set_access_cookies
 
 from config import DevelopmentConfig
 
@@ -14,8 +22,20 @@ def create_app(config_class=DevelopmentConfig):
     login.init_app(app)
     cache.init_app(app)
     auto.init_app(app)
-    CORS(app)
     jwt.init_app(app)
+    CORS(
+        app,
+        resources={
+            r"/refresh": {
+                "origins": [
+                    "http://127.0.0.1:3000",
+                    "http://localhost:3000",
+                    "http://0.0.0.0:3000",
+                ]
+            }
+        },
+        supports_credentials=True,
+    )
 
     with app.app_context():
 
@@ -64,6 +84,3 @@ def create_app(config_class=DevelopmentConfig):
         app.register_blueprint(post_code_bp)
 
     return app
-
-
-from app import models

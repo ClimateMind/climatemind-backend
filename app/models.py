@@ -1,7 +1,8 @@
 import os
 from flask import current_app
-from app.extensions import db, login, jwt
+from app.extensions import db, jwt
 from werkzeug.security import generate_password_hash, check_password_hash
+
 from flask_login import UserMixin
 
 # Azure
@@ -17,11 +18,11 @@ from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 
 
 class Users(db.Model):
-    username = db.Column(db.String(64), index=True, unique=True)
-    user_created_timestamp = db.Column(db.DateTime)
+    uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
     email = db.Column(db.String(120), index=True, unique=True)
+    full_name = db.Column(db.String(50), index=False, unique=False, nullable=False)
+    user_created_timestamp = db.Column(db.DateTime)
     password_hash = db.Column(db.String(128))
-    user_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
     scores = db.relationship("Scores", backref="owner", lazy="dynamic")
 
     def set_password(self, password):
@@ -31,13 +32,13 @@ class Users(db.Model):
         return check_password_hash(self.password_hash, password)
 
     @classmethod
-    def get_user(cls, username):
-        user = cls.query.filter_by(username=username).one_or_none()
+    def find_by_username(cls, email):
+        user = cls.query.filter_by(email=email).one_or_none()
         return user
 
     def __repr__(self):
-        """ Tells Python how to print """
-        return "<User {}>".format(self.username)
+        """Tells Python how to print"""
+        return "<User {}>".format(self.email)
 
 
 @jwt.user_identity_loader
@@ -46,7 +47,7 @@ def user_identity_lookup(user):
     Register a callback function that takes whatever object is passed in as the
     identity when creating JWTs and converts it to a JSON serializable format.
     """
-    return user.user_uuid
+    return user.uuid
 
 
 @jwt.user_lookup_loader
@@ -58,8 +59,7 @@ def user_lookup_callback(_jwt_header, jwt_data):
     if the user has been deleted from the database).
     """
     identity = jwt_data["sub"]
-    print("here")
-    return Users.query.filter_by(user_uuid=identity).one_or_none()
+    return Users.query.filter_by(uuid=identity).one_or_none()
 
 
 class Scores(db.Model):
@@ -74,13 +74,13 @@ class Scores(db.Model):
     hedonism = db.Column(db.Float, index=False, unique=False)
     achievement = db.Column(db.Float, index=False, unique=False)
     power = db.Column(db.Float, index=False, unique=False)
-    user_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"))
+    user_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("users.uuid"))
     scores_created_timestamp = db.Column(db.DateTime)
     session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
 
 
 class Sessions(db.Model):
-    # postal code variable type for SQL will need to change when scaling up to accept longer postal codes
+    # postal code variable type for SQL will need to change when scaling up allow longer postal codes
     postal_code = db.Column(db.String(5))
     scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
     ip_address = db.Column(db.String(255), primary_key=False)
