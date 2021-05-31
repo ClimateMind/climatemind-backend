@@ -3,12 +3,14 @@ from app.scoring import bp
 from app.scoring.score_nodes import score_nodes
 from app.errors.errors import InvalidUsageError, DatabaseError, CustomError
 from app.models import Scores
+from flask_cors import cross_origin
 
 from app import db, auto, cache
 import uuid
 
 
 @bp.route("/feed", methods=["GET"])
+@cross_origin()
 @auto.doc()
 def get_feed():
     """

@@ -1,16 +1,18 @@
 from flask import jsonify, request, make_response
 
-
 import uuid
 import os
 
 from app.scoring import bp
-from app.scoring.persist_scores import persist_scores
 from app.scoring.process_scores import ProcessScores
 
 from app.scoring.store_ip_address import store_ip_address
 from app.post_code.store_post_code import store_post_code, check_post_code
 from app.errors.errors import InvalidUsageError, DatabaseError
+from flask_cors import cross_origin
+
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import current_user
 
 from app import auto
 
@@ -29,6 +31,8 @@ value_id_map = {
 
 
 @bp.route("/scores", methods=["POST"])
+@cross_origin()
+@jwt_required(optional=True)
 @auto.doc()
 def user_scores():
     """
@@ -77,7 +81,11 @@ def user_scores():
 
     session_uuid = uuid.uuid4()
     value_scores["session-id"] = session_uuid
-    persist_scores(value_scores)
+
+    user_uuid = None
+    if current_user:
+        user_uuid = current_user.uuid
+    process_scores.persist_scores(user_uuid)
 
     postal_code = parameter["zipCode"]
 
