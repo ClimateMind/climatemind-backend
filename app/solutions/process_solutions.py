@@ -75,8 +75,8 @@ class process_solutions:
             self.MYTH_PROCESS.set_current_node(current_solution)
 
             # Filter out nodes that oppose radical political users
-            solution_conservative = current_solution["conservative"]
-            solution_liberal = current_solution["liberal"]
+            solution_conservative = current_solution["data_properties"]["conservative"]
+            solution_liberal = current_solution["data_properties"]["liberal"]
 
             if user_liberal and solution_conservative:
                 continue
