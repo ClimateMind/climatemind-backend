@@ -3,10 +3,11 @@ from app import db
 from app.models import Scores
 from app.solutions import bp
 from app.solutions.process_solutions import process_solutions
-from app.errors.errors import InvalidUsageError, CustomError
+from app.errors.errors import InvalidUsageError, CustomError, DatabaseError
 from flask_cors import cross_origin
 import numpy as np
 import pickle
+import uuid
 
 from app import auto
 
@@ -42,12 +43,24 @@ def get_general_solutions():
     on relevance predicted from users personal values.
     """
     session_id = request.args.get("session-id")
+    user_scores = None
+
     if session_id:
-        user_scores = [np.array(get_scores_vector(session_id))]
-    else:
-        user_scores = None
+        try:
+            session_id = uuid.UUID(request.args.get("session-id"))
+            user_scores = get_scores_vector(session_id)
+        except:
+            raise InvalidUsageError(
+                message="Malformed request. Session id provided to get solutions is not a valid UUID."
+            )
+
+    if user_scores == "Not in db":
+        raise InvalidUsageError(
+            message="Malformed request. Session id provided is not in database."
+        )
 
     if user_scores:
+        user_scores = [np.array(user_scores)]
         user_liberal, user_conservative = predict_radical_political(user_scores)
     else:
         user_liberal, user_conservative = None, None
@@ -128,7 +141,7 @@ def get_scores_vector(session_id):
                 scores.universalism,
             ]
         else:
-            return None
+            return "Not in db"
     except:
         raise DatabaseError(
             message="Cannot get scores based on session_id. Failed to query database."
