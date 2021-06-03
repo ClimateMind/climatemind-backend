@@ -13,7 +13,6 @@ from app.subscribe.store_subscription_data import check_email
 
 from app.errors.errors import InvalidUsageError, DatabaseError, UnauthorizedError
 
-
 from app.models import Users, Scores
 
 from app import db, auto
@@ -170,10 +169,14 @@ def register():
 
     scores = get_scores(session_id)
 
-    if check_email(email) and password_valid(password):
-        user = Users.find_by_username(email)
-    else:
-        raise InvalidUsageError(message="Wrong email or password. Try again.")
+    if not check_email(email):
+        raise InvalidUsageError(message="The email {} is invalid.".format(email))
+    if not password_valid(password):
+        raise InvalidUsageError(
+            message=f"Password does not fit the requirements."
+            f"Password must be between 8-20 characters and contain at least one uppercase letter, one lowercase "
+            f"letter, one number and one special character."
+        )
 
     if user:
         raise UnauthorizedError(message="Email already registered")
