@@ -167,16 +167,15 @@ def register():
     if not valid_session_id(session_id):
         raise InvalidUsageError(message="Session ID is not a valid UUID4 format.")
 
-
     scores = get_scores(session_id)
 
     if not check_email(email):
         raise InvalidUsageError(message="The email {} is invalid.".format(email))
     if not password_valid(password):
         raise InvalidUsageError(
-            message=f"Password does not fit the requirements."
-            f"Password must be between 8-20 characters and contain at least one uppercase letter, one lowercase "
-            f"letter, one number and one special character."
+            message="Password does not fit the requirements."
+            "Password must be between 8-20 characters and contain at least one uppercase letter, one lowercase "
+            "letter, one number and one special character."
         )
 
     user = Users.find_by_username(email)
