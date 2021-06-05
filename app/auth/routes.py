@@ -167,6 +167,7 @@ def register():
     if not valid_session_id(session_id):
         raise InvalidUsageError(message="Session ID is not a valid UUID4 format.")
 
+
     scores = get_scores(session_id)
 
     if not check_email(email):
@@ -178,6 +179,7 @@ def register():
             f"letter, one number and one special character."
         )
 
+    user = Users.find_by_username(email)
     if user:
         raise UnauthorizedError(message="Email already registered")
     else:
