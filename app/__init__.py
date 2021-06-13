@@ -24,16 +24,18 @@ def create_app(config_class=DevelopmentConfig):
     auto.init_app(app)
     jwt.init_app(app)
 
-    origins = {
-        "origins": [
-            "http://127.0.0.1:3000",
-            "http://localhost:3000",
-            "http://0.0.0.0:3000",
-            "https://app-frontend-test-001.azurewebsites.net/",
-            "https://app-frontend-prod-001.azurewebsites.net/",
-            "https://app.climatemind.org/",
-        ]
-    },
+    origins = (
+        {
+            "origins": [
+                "http://127.0.0.1:3000",
+                "http://localhost:3000",
+                "http://0.0.0.0:3000",
+                "https://app-frontend-test-001.azurewebsites.net/",
+                "https://app-frontend-prod-001.azurewebsites.net/",
+                "https://app.climatemind.org/",
+            ]
+        },
+    )
 
     CORS(
         app,
