@@ -23,37 +23,25 @@ def create_app(config_class=DevelopmentConfig):
     cache.init_app(app)
     auto.init_app(app)
     jwt.init_app(app)
+
+    origins = {
+        "origins": [
+            "http://127.0.0.1:3000",
+            "http://localhost:3000",
+            "http://0.0.0.0:3000",
+            "https://app-frontend-test-001.azurewebsites.net/",
+            "https://app-frontend-prod-001.azurewebsites.net/",
+            "https://app.climatemind.org/",
+        ]
+    },
+
     CORS(
         app,
         resources={
-            r"/refresh": {
-                "origins": [
-                    "http://127.0.0.1:3000",
-                    "http://localhost:3000",
-                    "http://0.0.0.0:3000",
-                ]
-            },
-            r"/login": {
-                "origins": [
-                    "http://127.0.0.1:3000",
-                    "http://localhost:3000",
-                    "http://0.0.0.0:3000",
-                ]
-            },
-            r"/register": {
-                "origins": [
-                    "http://127.0.0.1:3000",
-                    "http://localhost:3000",
-                    "http://0.0.0.0:3000",
-                ]
-            },
-            r"/logout": {
-                "origins": [
-                    "http://127.0.0.1:3000",
-                    "http://localhost:3000",
-                    "http://0.0.0.0:3000",
-                ]
-            },
+            r"/refresh": origins,
+            r"/login": origins,
+            r"/register": origins,
+            r"/logout": origins,
         },
         supports_credentials=True,
     )
