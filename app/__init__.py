@@ -32,6 +32,27 @@ def create_app(config_class=DevelopmentConfig):
                     "http://localhost:3000",
                     "http://0.0.0.0:3000",
                 ]
+            },
+            r"/login": {
+                "origins": [
+                    "http://127.0.0.1:3000",
+                    "http://localhost:3000",
+                    "http://0.0.0.0:3000",
+                ]
+            },
+            r"/register": {
+                "origins": [
+                    "http://127.0.0.1:3000",
+                    "http://localhost:3000",
+                    "http://0.0.0.0:3000",
+                ]
+            },
+            r"/logout": {
+                "origins": [
+                    "http://127.0.0.1:3000",
+                    "http://localhost:3000",
+                    "http://0.0.0.0:3000",
+                ]
             }
         },
         supports_credentials=True,
