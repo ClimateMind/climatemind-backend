@@ -31,8 +31,7 @@ class DevelopmentConfig(BaseConfig):
 
     DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
     SQLALCHEMY_DATABASE_URI = (
-        "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(
-            DB_CREDENTIALS)
+        "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(DB_CREDENTIALS)
     )
 
     try:
