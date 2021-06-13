@@ -21,17 +21,18 @@ class DevelopmentConfig(BaseConfig):
     JWT_TOKEN_LOCATION = ["headers", "cookies"]
     # TODO Change for production & use env variable.
     JWT_SECRET_KEY = "super-secret"
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(days=1)
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=15)
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=14)
     JWT_ACCESS_COOKIE_NAME = "access_token"
     JWT_REFRESH_COOKIE_NAME = "refresh_token"
     JWT_COOKIE_CSRF_PROTECT = False
-    # JWT_REFRESH_COOKIE_PATH = "/refresh"
+    JWT_REFRESH_COOKIE_PATH = "/refresh"
     CACHE_TYPE = "simple"
 
     DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
     SQLALCHEMY_DATABASE_URI = (
-        "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(DB_CREDENTIALS)
+        "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(
+            DB_CREDENTIALS)
     )
 
     try:
