@@ -31,7 +31,7 @@ describe("User can login", () => {
                 );
                 expect(
                   response.headers["access-control-allow-origin"]
-                ).to.equal("*");
+                ).to.equal("http://localhost:3000");
                 expect(response.body).to.be.a("object");
                 expect(response.body).to.have.property("access_token");
                 expect(response.body).to.have.property("user");

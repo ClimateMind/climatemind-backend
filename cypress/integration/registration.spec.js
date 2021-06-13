@@ -31,7 +31,7 @@ describe("User Registration", () => {
               "application/json"
             );
             expect(response.headers["access-control-allow-origin"]).to.equal(
-              "*"
+              "http://localhost:3000"
             );
             expect(response.body).to.be.a("object");
             expect(response.body).to.have.property("message");
