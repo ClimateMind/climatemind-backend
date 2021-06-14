@@ -44,7 +44,12 @@ class ProcessScores:
 
         """
         for value in self.questions[set_name]:
-            question_id = value["questionId"]
+
+            if set_name == "SetOne":
+                question_id = value["questionId"]
+            elif set_name == "SetTwo":
+                question_id = value["questionId"] - 10
+
             name = self.value_id_map[question_id]
             score = value["answerId"]
 
