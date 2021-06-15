@@ -12,6 +12,8 @@ from flask_jwt_extended import set_access_cookies
 
 from config import DevelopmentConfig
 
+from errors.handlers import register_mail_handler
+
 
 def create_app(config_class=DevelopmentConfig):
     app = Flask(__name__)
@@ -23,6 +25,9 @@ def create_app(config_class=DevelopmentConfig):
     cache.init_app(app)
     auto.init_app(app)
     jwt.init_app(app)
+
+    register_mail_handler(app)
+
     CORS(
         app,
         resources={
