@@ -49,7 +49,7 @@ def register_mail_handler(app):
 @cross_origin()
 def handle_custom_error(error):
     response = jsonify({"error": error.message}), error.status_code
-    current_app.logger.error(response)
+    current_app.logger.error(error.message)
 
     return response
 
@@ -60,7 +60,7 @@ def handle_database_error(error):
     db.session.rollback()
     response = jsonify({"error": error.message}), error.status_code
 
-    current_app.logger.error(response)
+    current_app.logger.error(error.message)
     return response
 
 
@@ -72,5 +72,5 @@ def handle_existing_resource_error(error):
         error.status_code,
     )
 
-    current_app.logger.error(response)
+    current_app.logger.error(error.message)
     return response

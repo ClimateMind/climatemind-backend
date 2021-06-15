@@ -12,7 +12,7 @@ from flask_jwt_extended import set_access_cookies
 
 from config import DevelopmentConfig
 
-from errors.handlers import register_mail_handler
+from app.errors.handlers import register_mail_handler
 
 
 def create_app(config_class=DevelopmentConfig):
