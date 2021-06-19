@@ -16,6 +16,7 @@ class EmailErrorFormatter(logging.Formatter):
     Formats error logs to include request information (e.g. URL, HTTP method)
     Converts the whole `request` dict into string format
     """
+
     def format(self, record):
         """
         Required method to implement a custom formatter. Inserts request information into the email, so we know
