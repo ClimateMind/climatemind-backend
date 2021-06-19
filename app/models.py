@@ -3,8 +3,6 @@ from flask import current_app
 from app.extensions import db, jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from flask_login import UserMixin
-
 # Azure
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -18,6 +16,7 @@ from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 
 
 class Users(db.Model):
+    __tablename__ = "users"
     uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
     email = db.Column(db.String(120), index=True, unique=True)
     full_name = db.Column(db.String(50), index=False, unique=False, nullable=False)
@@ -63,6 +62,7 @@ def user_lookup_callback(_jwt_header, jwt_data):
 
 
 class Scores(db.Model):
+    __tablename__ = "scores"
     scores_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     security = db.Column(db.Float, index=False, unique=False)
     conformity = db.Column(db.Float, index=False, unique=False)
@@ -81,6 +81,7 @@ class Scores(db.Model):
 
 class Sessions(db.Model):
     # postal code variable type for SQL will need to change when scaling up allow longer postal codes
+    __tablename__ = "sessions"
     postal_code = db.Column(db.String(5))
     scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
     ip_address = db.Column(db.String(255), primary_key=False)
@@ -88,6 +89,7 @@ class Sessions(db.Model):
 
 
 class Signup(db.Model):
+    __tablename__ = "signup"
     email = db.Column(db.String(254))
     signup_timestamp = db.Column(db.DateTime)
     session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
@@ -95,6 +97,7 @@ class Signup(db.Model):
 
 
 class ClimateFeed(db.Model):
+    __tablename__ = "climate_feed"
     climate_feed_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     event_timestamp = db.Column(db.DateTime)
     effect_position = db.Column(db.Integer)
@@ -109,6 +112,7 @@ class ClimateFeed(db.Model):
 
 
 class AnalyticsData(db.Model):
+    __tablename__ = "analytics_data"
     analytics_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     category = db.Column(db.String(50))
     action = db.Column(db.String(50))
@@ -116,3 +120,4 @@ class AnalyticsData(db.Model):
     session_uuid = db.Column(UNIQUEIDENTIFIER)
     event_timestamp = db.Column(db.DateTime)
     value = db.Column(db.String(255))
+    page_url = db.Column(db.String(255))
