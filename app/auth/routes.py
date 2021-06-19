@@ -73,8 +73,7 @@ def login():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 
@@ -108,8 +107,7 @@ def refresh():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 
@@ -168,14 +166,12 @@ def register():
         )
 
     if not valid_session_id(session_id):
-        raise InvalidUsageError(
-            message="Session ID is not a valid UUID4 format.")
+        raise InvalidUsageError(message="Session ID is not a valid UUID4 format.")
 
     scores = get_scores(session_id)
 
     if not check_email(email):
-        raise InvalidUsageError(
-            message="The email {} is invalid.".format(email))
+        raise InvalidUsageError(message="The email {} is invalid.".format(email))
     if not password_valid(password):
         raise InvalidUsageError(
             message="Password does not fit the requirements."
@@ -208,8 +204,7 @@ def register():
         ),
         201,
     )
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 
@@ -224,8 +219,7 @@ def get_session_id_for_user(user):
         )
 
     except:
-        raise DatabaseError(
-            message="Failed to query scores from the database.")
+        raise DatabaseError(message="Failed to query scores from the database.")
 
     if scores:
         session_id = scores.session_uuid
