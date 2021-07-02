@@ -1,8 +1,8 @@
 """add all current tables
 
-Revision ID: 0d005e73ff5d
+Revision ID: be205aee76b4
 Revises: 
-Create Date: 2021-05-03 22:16:30.768039
+Create Date: 2021-06-19 16:24:33.473194
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mssql
 
 # revision identifiers, used by Alembic.
-revision = "0d005e73ff5d"
+revision = "be205aee76b4"
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -27,6 +27,7 @@ def upgrade():
         sa.Column("session_uuid", mssql.UNIQUEIDENTIFIER(), nullable=True),
         sa.Column("event_timestamp", sa.DateTime(), nullable=True),
         sa.Column("value", sa.String(length=255), nullable=True),
+        sa.Column("page_url", sa.String(length=255), nullable=True),
         sa.PrimaryKeyConstraint("analytics_id"),
     )
     op.create_table(
