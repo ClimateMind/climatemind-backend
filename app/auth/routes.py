@@ -27,7 +27,6 @@ Valid URLS to access the refresh endpoint are specified in app/__init__.py
 
 
 @bp.route("/login", methods=["POST"])
-@cross_origin()
 @auto.doc()
 def login():
     """
@@ -55,23 +54,9 @@ def login():
     if not user or not password_valid(password) or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
-    try:
-        scores = (
-            db.session.query(Scores)
-            .filter_by(user_uuid=user.uuid)
-            .order_by(desc("scores_created_timestamp"))
-            .first()
-        )
-    except:
-        raise DatabaseError(message="Failed to query scores from the database.")
-
-    if scores:
-        session_id = scores.session_uuid
-    else:
-        session_id = None
-
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
+    session_id = get_session_id_for_user(user)
 
     response = make_response(
         jsonify(
@@ -104,13 +89,29 @@ def refresh():
     user = db.session.query(Users).filter_by(uuid=identity).one_or_none()
     access_token = create_access_token(identity=user)
     refresh_token = create_refresh_token(identity=user)
-    response = make_response(jsonify(access_token=access_token))
+
+    session_id = get_session_id_for_user(user)
+
+    response = make_response(
+        jsonify(
+            {
+                "message": "successfully refreshed token",
+                "access_token": access_token,
+                "user": {
+                    "full_name": user.full_name,
+                    "email": user.email,
+                    "user_uuid": user.uuid,
+                    "session_id": session_id,
+                },
+            }
+        ),
+        200,
+    )
     response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 
 @bp.route("/logout", methods=["POST"])
-@cross_origin()
 def logout():
     """
     Logs the user out by unsetting the refresh token cook
@@ -135,7 +136,6 @@ def protected():
 
 
 @bp.route("/register", methods=["POST"])
-@cross_origin()
 def register():
     """
     Registration endpoint
@@ -206,6 +206,27 @@ def register():
     )
     response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
+
+
+def get_session_id_for_user(user):
+
+    try:
+        scores = (
+            db.session.query(Scores)
+            .filter_by(user_uuid=user.uuid)
+            .order_by(desc("scores_created_timestamp"))
+            .first()
+        )
+
+    except:
+        raise DatabaseError(message="Failed to query scores from the database.")
+
+    if scores:
+        session_id = scores.session_uuid
+    else:
+        session_id = None
+
+    return session_id
 
 
 def add_user_to_db(full_name, email, password):
