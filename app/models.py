@@ -17,7 +17,6 @@ from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 
 class Sessions(db.Model):
     __tablename__ = "sessions"
-    scores = db.relationship("Scores", backref="owner_of_scores", lazy="dynamic")
     ip_address = db.Column(db.String(255), primary_key=False)
     user_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"))
     session_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
@@ -33,7 +32,6 @@ class Users(db.Model):
     first_name = db.Column(db.String(50), index=False, unique=False, nullable=False)
     last_name = db.Column(db.String(50), index=False, unique=False, nullable=False)
     quiz_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("scores.quiz_uuid"))
-    scores = db.relationship("Scores", backref="owner", lazy="dynamic")
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
