@@ -1,9 +1,10 @@
+import logging
+from logging.handlers import RotatingFileHandler
 from app import db
 from flask import jsonify
 from app.errors import bp
 from app.errors.errors import DatabaseError, AlreadyExistsError, CustomError
 from flask_cors import cross_origin
-
 
 @bp.app_errorhandler(CustomError)
 @cross_origin()
