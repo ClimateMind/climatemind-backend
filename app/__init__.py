@@ -92,4 +92,8 @@ def create_app(config_class=DevelopmentConfig):
 
         app.register_blueprint(post_code_bp)
 
+        from app.session import bp as session_bp
+
+        app.register_blueprint(session_bp)
+
     return app
