@@ -42,21 +42,21 @@ def get_general_solutions():
     they click the general solutions menu button. General solutions are ordered based
     on relevance predicted from users personal values.
     """
-    session_id = request.args.get("session-id")
+    quiz_uuid = request.args.get("quizId")
     user_scores = None
 
-    if session_id:
+    if quiz_uuid:
         try:
-            session_id = uuid.UUID(request.args.get("session-id"))
-            user_scores = get_scores_vector(session_id)
+            quiz_uuid = uuid.UUID(request.args.get("quizId"))
+            user_scores = get_scores_vector(quiz_uuid)
         except:
             raise InvalidUsageError(
-                message="Malformed request. Session id provided to get solutions is not a valid UUID."
+                message="Malformed request. Quiz ID provided to get solutions is not a valid UUID."
             )
 
     if user_scores == "Not in db":
         raise InvalidUsageError(
-            message="Malformed request. Session id provided is not in database."
+            message="Malformed request. Quid ID provided is not in database."
         )
 
     if user_scores:
@@ -113,20 +113,18 @@ def predict_radical_political(user_scores):
         raise CustomError(message="Pickle Error when processing ml models")
 
 
-def get_scores_vector(session_id):
+def get_scores_vector(quiz_uuid):
     """
-    Finds user scores in the database based on session_id
+    Finds user scores in the database based on quiz_uuid
 
     Args:
-        session_id: (str) UUID4
+        quiz_uuid: (str) UUID4
 
-    Returns: A vector of scores (or None if user not found)
+    Returns: A vector of scores (or None if user scores not found)
 
     """
     try:
-        scores = (
-            db.session.query(Scores).filter_by(session_uuid=session_id).one_or_none()
-        )
+        scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).one_or_none()
         if scores:
             return [
                 scores.achievement,
@@ -144,5 +142,5 @@ def get_scores_vector(session_id):
             return "Not in db"
     except:
         raise DatabaseError(
-            message="Cannot get scores based on session_id. Failed to query database."
+            message="Cannot get scores based on quiz_uuid. Failed to query database."
         )
