@@ -1,8 +1,8 @@
 """add all current tables
 
-Revision ID: 5628eb6395f7
+Revision ID: 8beed814613d
 Revises: 
-Create Date: 2021-07-07 19:19:55.046808
+Create Date: 2021-07-08 08:36:31.708700
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mssql
 
 # revision identifiers, used by Alembic.
-revision = "5628eb6395f7"
+revision = "8beed814613d"
 down_revision = None
 branch_labels = None
 depends_on = None
