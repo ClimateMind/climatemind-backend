@@ -5,7 +5,6 @@ from app.errors.errors import DatabaseError
 
 
 def store_session(session_uuid, session_created_timestamp, user_uuid):
-    breakpoint()
     try:
         current_user_session = Sessions()
         current_user_session.session_uuid = session_uuid
