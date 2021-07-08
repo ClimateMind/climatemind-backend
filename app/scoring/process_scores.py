@@ -87,11 +87,8 @@ class ProcessScores:
 
         """
         try:
-            user_session = Sessions(session_uuid=self.value_scores["session-id"])
-            db.session.add(user_session)
-
             user_scores = Scores()
-            user_scores.session_uuid = self.value_scores["session-id"]
+            user_scores.quiz_uuid = self.value_scores["quiz_uuid"]
             user_scores.security = self.value_scores["security"]
             user_scores.conformity = self.value_scores["conformity"]
             user_scores.benevolence = self.value_scores["benevolence"]
