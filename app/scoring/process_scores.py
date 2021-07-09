@@ -3,7 +3,7 @@ from datetime import timezone
 from app import db
 from flask import abort, make_response, jsonify
 from app.errors.errors import DatabaseError
-from app.models import Scores, Sessions
+from app.models import Scores, Users
 
 
 class ProcessScores:
@@ -87,11 +87,8 @@ class ProcessScores:
 
         """
         try:
-            user_session = Sessions(session_uuid=self.value_scores["session-id"])
-            db.session.add(user_session)
-
             user_scores = Scores()
-            user_scores.session_uuid = self.value_scores["session-id"]
+            user_scores.quiz_uuid = self.value_scores["quiz_uuid"]
             user_scores.security = self.value_scores["security"]
             user_scores.conformity = self.value_scores["conformity"]
             user_scores.benevolence = self.value_scores["benevolence"]
@@ -106,6 +103,8 @@ class ProcessScores:
 
             if user_uuid:
                 user_scores.user_uuid = user_uuid
+                user = Users.query.filter_by(user_uuid=user_uuid).first()
+                user.quiz_uuid = self.value_scores["quiz_uuid"]
 
             db.session.add(user_scores)
             db.session.commit()
