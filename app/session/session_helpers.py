@@ -1,14 +1,29 @@
 import os
+import uuid
+from uuid import uuid4
 from app import db
 from app.models import Sessions
 from app.errors.errors import DatabaseError
 
 
 def store_session(session_uuid, session_created_timestamp, user_uuid):
+    """
+    Stores the current session's id and timestamp in the sessions table.
+    Checks if the user is logged in, and stores the user_uuid in the sessions table if they are.
+
+    Args:
+        session_uuid: UUID4
+        session_created_timestamp: datetime
+        user_uuid: UUID4
+
+    Returns:
+        None or DatabaseError
+    """
     try:
         current_user_session = Sessions()
         current_user_session.session_uuid = session_uuid
         current_user_session.session_created_timestamp = session_created_timestamp
+
         if user_uuid:
             current_user_session.user_uuid = user_uuid
 
@@ -22,7 +37,7 @@ def store_session(session_uuid, session_created_timestamp, user_uuid):
 
 def process_ip_address(request, session_uuid):
     """
-    Save a user's IP address information into the database with their session_uuid.
+    Check's the user's IP address information and calls another functoin to store it in the database with their session_uuid.
     Provided credentials are for the locally generated database (not production).
 
     Args:
@@ -57,6 +72,16 @@ def process_ip_address(request, session_uuid):
 
 
 def store_ip_address(ip_address, session_uuid):
+    """
+    Stores the user's IP address in the sessions table with their session_uuid.
+
+    Args:
+        ip_address: str
+        session_uuid: UUID4
+    Returns:
+        None or DatabaseError
+
+    """
     current_user_session = Sessions.query.filter_by(session_uuid=session_uuid).first()
 
     if ip_address:
