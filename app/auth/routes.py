@@ -153,7 +153,7 @@ def register():
 
     if not r:
         raise InvalidUsageError(
-            message="Email and password must included in the request body"
+            message="Email and password must be included in the request body."
         )
 
     first_name = r.get("firstName", None)
@@ -162,9 +162,13 @@ def register():
     password = r.get("password", None)
     quiz_uuid = r.get("quizId", None)
 
-    if not valid_name(first_name) or not valid_name(last_name):
+    if not valid_name(first_name):
         raise InvalidUsageError(
-            message="First and last name must be between 2 and 50 characters."
+            message="First name must be between 2 and 50 characters."
+        )
+    elif not valid_name(last_name):
+        raise InvalidUsageError(
+            message="Last name must be between 2 and 50 characters."
         )
 
     try:

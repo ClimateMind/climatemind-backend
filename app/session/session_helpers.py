@@ -37,7 +37,7 @@ def store_session(session_uuid, session_created_timestamp, user_uuid):
 
 def process_ip_address(request, session_uuid):
     """
-    Check's the user's IP address information and calls another functoin to store it in the database with their session_uuid.
+    Check's the user's IP address information and calls another function to store it in the database with their session_uuid.
     Provided credentials are for the locally generated database (not production).
 
     Args:
