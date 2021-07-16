@@ -16,6 +16,7 @@ from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 
 
 class Sessions(db.Model):
+    # postal code variable type for SQL will need to change when scaling up allow longer postal codes
     __tablename__ = "sessions"
     ip_address = db.Column(db.String(255), primary_key=False)
     user_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"))
