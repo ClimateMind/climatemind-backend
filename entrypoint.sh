@@ -14,7 +14,7 @@ BASEDIR="$(dirname "${BASH_SOURCE[0]}")"
 
 # flask db migrate -m "add all current tables" -d $BASEDIR/migrations_local
 # flask db migrate -m "CM-563 Add full_name to users" -d $BASEDIR/migrations_azure
-# flask db migrate -m "CM-749 add page_url column to analytics table" -d $BASEDIR/migrations_test_db
+# flask db migrate -m "CM-768 remove all relationships from tables" -d $BASEDIR/migrations_test_db
 
 if [ "$DATABASE_PARAMS" = "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;" ]
 then
@@ -22,7 +22,7 @@ then
     python add_lrf_table.py
 else
     flask db upgrade -d $BASEDIR/migrations_test_db #this line used only if cloud test db is being used
-    #flask db upgrade -d $BASEDIR/migrations_azure #this line used only if production database is being used 
+    # flask db upgrade -d $BASEDIR/migrations_azure #this line used only if production database is being used 
 fi
 	
 flask run --host=0.0.0.0
