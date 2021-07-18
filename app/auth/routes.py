@@ -174,7 +174,7 @@ def register():
     try:
         quiz_uuid = uuid.UUID(quiz_uuid)
     except:
-        raise ValueError(message="Quiz ID is not a valid UUID4 format.")
+        raise InvalidUsageError(message="Quiz ID is not a valid UUID4 format.")
 
     if not scores_in_db(quiz_uuid):
         raise DatabaseError(message="Quiz ID is not in the db.")
