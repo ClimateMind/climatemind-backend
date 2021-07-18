@@ -176,6 +176,9 @@ def register():
     except:
         raise ValueError(message="Quiz ID is not a valid UUID4 format.")
 
+    if not scores_in_db(quiz_uuid):
+        raise DatabaseError(message="Quiz ID is not in the db.")
+
     if not check_email(email):
         raise InvalidUsageError(message=f"The email {email} is invalid.")
 
@@ -254,7 +257,7 @@ def valid_name(name):
     Names must be between 2 and 50 characters.
     """
     if not name:
-        raise InvalidUsageError(message="Name is missing")
+        raise InvalidUsageError(message="Name is missing.")
     return 2 <= len(name) <= 50
 
 
@@ -265,7 +268,7 @@ def password_valid(password):
     """
     if not password:
         raise InvalidUsageError(
-            message="Email and password must included in the request body"
+            message="Email and password must be included in the request body."
         )
 
     conds = [
@@ -275,3 +278,14 @@ def password_valid(password):
         lambda s: 8 <= len(s) <= 20,
     ]
     return all(cond(password) for cond in conds)
+
+
+def scores_in_db(quiz_uuid):
+    """
+    Check that the quizId received from the frontend is in the scores table in the db.
+    """
+    scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).first()
+    if scores:
+        return True
+    else:
+        return False
