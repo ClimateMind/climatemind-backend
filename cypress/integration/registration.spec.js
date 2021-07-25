@@ -2,13 +2,15 @@
 import postScores from "../fixtures/postScores.json";
 
 const user1 = {
-  fullname: "user one",
+  firstName: "user",
+  lastName: "one",
   email: "test1@example.com",
   password: "PassWord7!",
 };
 
 const user2 = {
-  fullname: "user two",
+  firstName: "user",
+  lastName: "two",
   email: "test@example.com",
   password: "PassWord7!",
 };
@@ -22,7 +24,7 @@ describe("User Registration", () => {
     // TODO: Remove this POST Scores request when we can seed data
     cy.request("POST", "http://localhost:5000/scores", postScores).should(
       (response) => {
-        user1.sessionId = response.body.sessionId;
+        user1.quizId = response.body.quizId;
 
         cy.request("POST", "http://localhost:5000/register", user1).should(
           (response) => {
@@ -48,7 +50,7 @@ describe("User Registration", () => {
     // TODO: Remove this POST Scores request when we can seed data
     cy.request("POST", "http://localhost:5000/scores", postScores).should(
       (response) => {
-        user2.sessionId = response.body.sessionId;
+        user2.quizId = response.body.quizId;
 
         cy.request("POST", "http://localhost:5000/register", user2).should(
           (response) => {

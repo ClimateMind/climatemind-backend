@@ -6,13 +6,13 @@ const badLoginMessage = "Wrong email or password. Try again.";
 const invalidReqMessage =
   "Email and password must included in the request body";
 
-describe.only("User can login", () => {
+describe("User can login", () => {
   it("User can login", () => {
     // Register Test User
     const testUser = {
       firstName: "test",
       lastName: "user",
-      email: "test4@example.com",
+      email: "test6@example.com",
       password: "PassWord7!",
       quizId: "30d54be8-c7ff-43f9-bfb3-8d427bc6eefa",
     };
