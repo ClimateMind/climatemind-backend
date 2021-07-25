@@ -6,7 +6,7 @@ import scoresSetTwo from "../fixtures/postScoresSetTwo.json";
 
 let quizId; // store the session id from the post to chech we can retreive the values and scores.
 
-describe.only("Scores endpoint", () => {
+describe("Scores endpoint", () => {
   it("can Post Scores", () => {
     // Write Tests
     cy.request("POST", "/scores", scores).should((response) => {
