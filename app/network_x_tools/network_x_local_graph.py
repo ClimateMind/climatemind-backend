@@ -1,5 +1,6 @@
 import networkx as nx
 
+
 def make_acyclic(G):
     """
     Converts a climate mind graph into an acyclic version by removing all the feedback loop edges.
@@ -42,7 +43,6 @@ def make_acyclic(G):
     return B
 
 
-
 def causal_parents(node, graph):
     """
     Returns the nodes (string names) that are causal parents of the node (have the edge type "causes_or_promotes"), else returns empty list.
@@ -57,7 +57,6 @@ def causal_parents(node, graph):
             if graph[possibleCausalParent][node]["type"] == "causes_or_promotes":
                 node_causal_parents.append(possibleCausalParent)
     return node_causal_parents
-
 
 
 def local_graph(node, graph, visited_dictionary):
@@ -103,4 +102,3 @@ def local_graph(node, graph, visited_dictionary):
                 "isPossiblyLocal",
             )
             return graph.nodes[node]["isPossiblyLocal"]
-
