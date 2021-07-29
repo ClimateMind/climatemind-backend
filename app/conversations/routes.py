@@ -22,9 +22,7 @@ def create_conversation_invite():
     invited_name = r.get("invitedUserName")
 
     if not invited_name:
-        raise InvalidUsageError(
-            message="Must provide the name of the invited user."
-        )
+        raise InvalidUsageError(message="Must provide the name of the invited user.")
 
     valid_name(invited_name)
 
@@ -33,10 +31,7 @@ def create_conversation_invite():
 
     conversation_uuid = uuid.uuid4()
 
-    response = {
-        "message": "conversation created",
-        "conversationId": conversation_uuid
-    }
+    response = {"message": "conversation created", "conversationId": conversation_uuid}
 
     return jsonify(response), 201
 
@@ -53,17 +48,14 @@ def get_conversations():
             "invitedUserName": "Sean",
             "createdByUserId": uuid.uuid4(),
             "createdDateTime": "1995-22-12 07:45:34",
-            "conversationId": uuid.uuid4()
+            "conversationId": uuid.uuid4(),
         },
         {
             "invitedUserName": "Nick",
             "createdByUserId": uuid.uuid4(),
             "createdDateTime": "1995-22-12 08:20:21",
-            "conversationId": uuid.uuid4()
-        }
+            "conversationId": uuid.uuid4(),
+        },
     )
 
     return response
-
-
-
