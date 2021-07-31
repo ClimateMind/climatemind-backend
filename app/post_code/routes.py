@@ -15,14 +15,14 @@ import uuid
 def post_code():
     """
 
-    Accepts a sessionId and postCode and updates the Sessions object in the database
+    Accepts a quizId and postCode and updates the Scores object in the database
     to include the post code.
 
     """
 
     try:
         request_body = request.json
-        session_uuid = uuid.UUID(request_body["sessionId"])
+        quiz_uuid = uuid.UUID(request_body["quizId"])
         post_code = request_body["postCode"]
     except:
         raise InvalidUsageError(
@@ -30,6 +30,6 @@ def post_code():
         )
 
     if check_post_code(post_code):
-        return store_post_code(post_code, session_uuid)
+        return store_post_code(post_code, quiz_uuid)
     else:
         raise InvalidUsageError(message="The postcode provided is not valid.")
