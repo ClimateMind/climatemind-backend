@@ -4,7 +4,7 @@ from sqlalchemy import create_engine
 import networkx as nx
 import os
 import urllib
-from ontology_processing.graph_creation.make_graph import (
+from app.network_x_tools.network_x_local_graph import (
     causal_parents,
     make_acyclic,
     local_graph,

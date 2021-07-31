@@ -6,8 +6,6 @@ import os
 from app.scoring import bp
 from app.scoring.process_scores import ProcessScores
 
-from app.scoring.store_ip_address import store_ip_address
-from app.post_code.store_post_code import store_post_code, check_post_code
 from app.errors.errors import InvalidUsageError, DatabaseError
 from flask_cors import cross_origin
 
@@ -50,7 +48,7 @@ def user_scores():
     Then to get a centered score for each value, each score value is subtracted
     from the overall average of all 10 or 20 questions.
 
-    A session ID is saved with the scores in the database.
+    A quiz ID is saved with the scores in the database.
 
     Returns: SessionID (UUID4)
     """
@@ -68,7 +66,7 @@ def user_scores():
 
     if len(questions["SetOne"]) != responses_to_add:
         raise InvalidUsageError(
-            message="Cannot post scores. Invalid number of questions provided"
+            message="Cannot post scores. Invalid number of questions provided."
         )
 
     process_scores = ProcessScores(questions)
@@ -79,25 +77,13 @@ def user_scores():
     process_scores.center_scores()
     value_scores = process_scores.get_value_scores()
 
-    session_uuid = uuid.uuid4()
-    value_scores["session-id"] = session_uuid
+    quiz_uuid = uuid.uuid4()
+    value_scores["quiz_uuid"] = quiz_uuid
 
     user_uuid = None
     if current_user:
-        user_uuid = current_user.uuid
+        user_uuid = current_user.user_uuid
     process_scores.persist_scores(user_uuid)
 
-    postal_code = parameter["zipCode"]
-
-    if postal_code and check_post_code(postal_code):
-        try:
-            store_post_code(postal_code, session_uuid)
-        except:
-            raise DatabaseError(
-                message="An error occurred while adding the postcode associated with these scores to the database."
-            )
-
-    process_scores.process_ip_address(request, session_uuid)
-
-    response = {"sessionId": session_uuid}
+    response = {"quizId": quiz_uuid}
     return jsonify(response), 201
