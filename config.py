@@ -19,8 +19,7 @@ class DevelopmentConfig(BaseConfig):
 
     JWT_COOKIE_SECURE = False
     JWT_TOKEN_LOCATION = ["headers", "cookies"]
-    # TODO Change for production & use env variable.
-    JWT_SECRET_KEY = "super-secret"
+    JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "DEFAULT_KEY")
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=15)
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=14)
     JWT_ACCESS_COOKIE_NAME = "access_token"
