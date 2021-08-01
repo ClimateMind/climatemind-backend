@@ -16,7 +16,7 @@ const user2 = {
 };
 
 const successMessage = "Successfully created user";
-const badReqMessage = "Email and password must included in the request body";
+const badReqMessage = "Email and password must be included in the request body";
 const alreadyRegisteredMessage = "Email already registered";
 
 describe("User Registration", () => {
