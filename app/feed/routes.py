@@ -2,7 +2,7 @@ from flask import jsonify, request
 from app.scoring import bp
 from app.scoring.score_nodes import score_nodes
 from app.errors.errors import InvalidUsageError, DatabaseError, CustomError
-from app.models import Scores
+from app.models import Scores, Sessions
 from flask_cors import cross_origin
 
 from app import db, auto, cache
@@ -28,13 +28,27 @@ def get_feed():
             message="Malformed request. Quiz ID provided to get feed is not a valid UUID."
         )
 
-    feed_entries = get_feed_results(quiz_uuid, N_FEED_CARDS)
+    session_uuid = request.headers.get("X-Session-Id")
+
+    try:
+        session_uuid = uuid.UUID(session_uuid)
+    except:
+        raise InvalidUsageError(
+            message="Session ID used to get feed is not a valid UUID."
+        )
+
+    valid_session_uuid = Sessions.query.get(session_uuid)
+
+    if valid_session_uuid:
+        feed_entries = get_feed_results(quiz_uuid, N_FEED_CARDS, session_uuid)
+    else:
+        raise InvalidUsageError(message="Session ID used to get feed is not in the db.")
 
     return feed_entries
 
 
 @cache.memoize(timeout=1200)  # 20 minutes
-def get_feed_results(quiz_uuid, N_FEED_CARDS):
+def get_feed_results(quiz_uuid, N_FEED_CARDS, session_uuid):
     """
     Mitigation solutions are served randomly based on a user's highest scoring climate
     impacts. The order of these should not change when a page is refreshed. This method
@@ -62,7 +76,7 @@ def get_feed_results(quiz_uuid, N_FEED_CARDS):
         scores = {key: scores[key] for key in personal_values_categories}
 
         try:
-            SCORE_NODES = score_nodes(scores, N_FEED_CARDS, quiz_uuid)
+            SCORE_NODES = score_nodes(scores, N_FEED_CARDS, quiz_uuid, session_uuid)
             recommended_nodes = SCORE_NODES.get_user_nodes()
             feed_entries = {"climateEffects": recommended_nodes}
             return jsonify(feed_entries), 200

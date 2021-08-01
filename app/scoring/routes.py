@@ -1,3 +1,4 @@
+from app.models import Sessions
 from flask import jsonify, request, make_response
 
 import uuid
@@ -83,7 +84,25 @@ def user_scores():
     user_uuid = None
     if current_user:
         user_uuid = current_user.user_uuid
-    process_scores.persist_scores(user_uuid)
+
+    session_uuid = request.headers.get("X-Session-Id")
+
+    if session_uuid:
+        try:
+            session_uuid = uuid.UUID(session_uuid)
+        except:
+            raise InvalidUsageError(
+                message="Session ID used to post scores is not a valid UUID."
+            )
+
+    valid_session_uuid = Sessions.query.get(session_uuid)
+
+    if valid_session_uuid:
+        process_scores.persist_scores(user_uuid, session_uuid)
+    else:
+        raise InvalidUsageError(
+            message="Session ID used to save scores is not in the db."
+        )
 
     response = {"quizId": quiz_uuid}
     return jsonify(response), 201
