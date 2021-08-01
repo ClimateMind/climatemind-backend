@@ -170,10 +170,8 @@ class process_solutions:
         )
         return solutions
 
-    def get_scores_vector(self, session_id):
-        scores = (
-            db.session.query(Scores).filter_by(session_uuid=session_id).one_or_none()
-        )
+    def get_scores_vector(self, quiz_uuid):
+        scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).one_or_none()
         return [
             scores.achievement,
             scores.benevolence,
