@@ -49,7 +49,7 @@ def check_email(email):
     """
     if not email:
         raise InvalidUsageError(
-            message="Email and password must included in the request body"
+            message="Email and password must be included in the request body"
         )
 
     if not isinstance(email, str):
