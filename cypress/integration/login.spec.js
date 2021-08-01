@@ -4,7 +4,7 @@ import postScores from "../fixtures/postScores.json";
 // Expected error responses
 const badLoginMessage = "Wrong email or password. Try again.";
 const invalidReqMessage =
-  "Email and password must included in the request body";
+  "Email and password must be included in the request body";
 
 describe("User can login", () => {
   it("User can login", () => {
