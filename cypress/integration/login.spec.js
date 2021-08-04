@@ -4,21 +4,23 @@ import postScores from "../fixtures/postScores.json";
 // Expected error responses
 const badLoginMessage = "Wrong email or password. Try again.";
 const invalidReqMessage =
-  "Email and password must included in the request body";
+  "Email and password must be included in the request body";
 
 describe("User can login", () => {
   it("User can login", () => {
     // Register Test User
     const testUser = {
-      fullname: "test user",
-      email: "login@example.com",
+      firstName: "test",
+      lastName: "user",
+      email: "test6@example.com",
       password: "PassWord7!",
+      quizId: "30d54be8-c7ff-43f9-bfb3-8d427bc6eefa",
     };
 
     // Post scores to register user
     cy.request("POST", "http://localhost:5000/scores", postScores).should(
       (response) => {
-        testUser.sessionId = response.body.sessionId;
+        testUser.quizId = response.body.quizId;
 
         // TODO: This test is horrible, tidy up when we have data seeding
         cy.request("POST", "http://localhost:5000/register", testUser).should(
@@ -115,12 +117,12 @@ describe("User can login", () => {
       body: body,
       failOnStatusCode: false,
     }).should((response) => {
-      expect(response.status).to.equal(400);
+      expect(response.status).to.equal(401);
       expect(response.headers["content-type"]).to.equal("application/json");
       expect(response.body).to.be.a("object");
       expect(response.body).to.have.property("error");
       expect(response.body.error).to.satisfy(function (s) {
-        return s === invalidReqMessage;
+        return s === badLoginMessage;
       });
     });
   });
