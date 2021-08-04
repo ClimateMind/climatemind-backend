@@ -29,7 +29,6 @@ Valid URLS to access the refresh endpoint are specified in app/__init__.py
 
 @bp.route("/login", methods=["POST"])
 @auto.doc()
-@cross_origin(supports_credentials=True)
 def login():
     """
     Logs a user in by parsing a POST request containing user credentials.
@@ -81,7 +80,6 @@ def login():
 
 @bp.route("/refresh", methods=["POST"])
 @jwt_required(refresh=True)
-@cross_origin(supports_credentials=True)
 def refresh():
     """
     Creates a refresh token and returns a new access token and refresh token to the user.
@@ -124,7 +122,7 @@ def logout():
 
 
 @bp.route("/protected", methods=["GET"])
-@cross_origin(supports_credentials=True)
+@cross_origin()
 @jwt_required()
 def protected():
     """
@@ -139,7 +137,6 @@ def protected():
 
 
 @bp.route("/register", methods=["POST"])
-@cross_origin(supports_credentials=True)
 def register():
     """
     Registration endpoint
