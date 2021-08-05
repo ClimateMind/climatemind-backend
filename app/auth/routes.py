@@ -48,7 +48,7 @@ def login():
     password = r.get("password", None)
 
     if password and check_email(email):
-        user = db.session.query(Users).filter_by(user_email=r["email"]).one_or_none()
+        user = db.session.query(Users).filter_by(user_email=email).one_or_none()
     else:
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
