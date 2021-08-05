@@ -117,12 +117,12 @@ describe("User can login", () => {
       body: body,
       failOnStatusCode: false,
     }).should((response) => {
-      expect(response.status).to.equal(401);
+      expect(response.status).to.equal(400);
       expect(response.headers["content-type"]).to.equal("application/json");
       expect(response.body).to.be.a("object");
       expect(response.body).to.have.property("error");
       expect(response.body.error).to.satisfy(function (s) {
-        return s === badLoginMessage;
+        return s === invalidReqMessage;
       });
     });
   });

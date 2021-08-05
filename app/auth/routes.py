@@ -48,9 +48,11 @@ def login():
     password = r.get("password", None)
 
     if not password or not email:
-        raise UnauthorizedError(message="Wrong email or password. Try again.")
+        raise InvalidUsageError(
+            message="Email and password must be included in the request body"
+        )
 
-    user = db.session.query(Users).filter_by(user_email=email).one_or_none()
+    user = db.session.query(Users).filter_by(user_email=str(email)).one_or_none()
 
     if not user or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
