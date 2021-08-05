@@ -153,7 +153,7 @@ def register():
 
     if not r:
         raise InvalidUsageError(
-            message="Parameters must be included in the request body."
+            message="JSON body must be included in the request body."
         )
 
     for param in ("firstName", "lastName", "email", "password", "quizId"):
@@ -185,7 +185,7 @@ def register():
         raise DatabaseError(message="Quiz ID is not in the db.")
 
     if not check_email(r["email"]):
-        raise InvalidUsageError(message=f"The email {email} is invalid.")
+        raise InvalidUsageError(message=f"The email {r['email']} is invalid.")
 
     if not password_valid(r["password"]):
         raise InvalidUsageError(
