@@ -158,9 +158,7 @@ def register():
 
     for param in ("firstName", "lastName", "email", "password", "quizId"):
         if param not in r:
-            raise InvalidUsageError(
-                message=f"{param} is missing from the request"
-            )
+            raise InvalidUsageError(message=f"{param} is missing from the request")
 
     def valid_name(name):
         return 2 <= len(name) <= 50
