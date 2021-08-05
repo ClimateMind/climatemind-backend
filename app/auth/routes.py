@@ -47,12 +47,12 @@ def login():
     email = r.get("email", None)
     password = r.get("password", None)
 
-    if check_email(email):
-        user = db.session.query(Users).filter_by(user_email=email).one_or_none()
+    if password and check_email(email):
+        user = db.session.query(Users).filter_by(user_email=r["email"]).one_or_none()
     else:
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
-    if not user or not password_valid(password) or not user.check_password(password):
+    if not user or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
     access_token = create_access_token(identity=user, fresh=True)
@@ -153,52 +153,56 @@ def register():
 
     if not r:
         raise InvalidUsageError(
-            message="Email and password must be included in the request body."
+            message="Parameters must be included in the request body."
         )
 
-    first_name = r.get("firstName", None)
-    last_name = r.get("lastName", None)
-    email = r.get("email", None)
-    password = r.get("password", None)
-    quiz_uuid = r.get("quizId", None)
+    for param in ("firstName", "lastName", "email", "password", "quizId"):
+        if param not in r:
+            raise InvalidUsageError(
+                message="{} is missing from the request".format(param)
+            )
 
-    if not valid_name(first_name):
+    def valid_name(name):
+        return 2 <= len(name) <= 50
+
+    if not valid_name(r["firstName"]):
         raise InvalidUsageError(
             message="First name must be between 2 and 50 characters."
         )
 
-    elif not valid_name(last_name):
+    if not valid_name(r["lastName"]):
         raise InvalidUsageError(
             message="Last name must be between 2 and 50 characters."
         )
 
-    if not quiz_uuid:
-        raise InvalidUsageError(message="Quiz UUID must be included to register.")
-
     try:
-        quiz_uuid = uuid.UUID(quiz_uuid)
+        quiz_uuid = uuid.UUID(r["quizId"])
 
     except:
         raise InvalidUsageError(message="Quiz UUID is improperly formatted.")
 
-    if not scores_in_db(quiz_uuid):
+    scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).first()
+
+    if not scores:
         raise DatabaseError(message="Quiz ID is not in the db.")
 
-    if not check_email(email):
+    if not check_email(r["email"]):
         raise InvalidUsageError(message=f"The email {email} is invalid.")
 
-    if not password_valid(password):
+    if not password_valid(r["password"]):
         raise InvalidUsageError(
             message="Password does not fit the requirements."
             "Password must be between 8-20 characters and contain at least one uppercase letter, one lowercase "
             "letter, one number and one special character."
         )
 
-    user = Users.find_by_username(email)
+    user = Users.find_by_username(r["email"])
     if user:
         raise UnauthorizedError(message="Email already registered")
     else:
-        user = add_user_to_db(first_name, last_name, email, password, quiz_uuid)
+        user = add_user_to_db(
+            r["firstName"], r["lastName"], r["email"], r["password"], quiz_uuid
+        )
 
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
@@ -257,25 +261,11 @@ def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
     return user
 
 
-def valid_name(name):
-    """
-    Names must be between 2 and 50 characters.
-    """
-    if not name:
-        raise InvalidUsageError(message="Name is missing.")
-    return 2 <= len(name) <= 50
-
-
 def password_valid(password):
     """
     Passwords must contain uppercase and lowercase letters, and digits.
     Passwords must be between 8 and 20 characters.
     """
-    if not password:
-        raise InvalidUsageError(
-            message="Email and password must be included in the request body."
-        )
-
     conds = [
         lambda s: any(x.isupper() for x in s),
         lambda s: any(x.islower() for x in s),
@@ -283,14 +273,3 @@ def password_valid(password):
         lambda s: 8 <= len(s) <= 20,
     ]
     return all(cond(password) for cond in conds)
-
-
-def scores_in_db(quiz_uuid):
-    """
-    Check that the quizId received from the frontend is in the scores table in the db.
-    """
-    scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).first()
-    if scores:
-        return True
-    else:
-        return False
