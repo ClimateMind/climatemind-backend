@@ -179,7 +179,7 @@ def register():
     except:
         raise InvalidUsageError(message="Quiz UUID is improperly formatted.")
 
-    scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).first()
+    scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).one_or_none()
 
     if not scores:
         raise DatabaseError(message="Quiz ID is not in the db.")
