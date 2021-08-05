@@ -159,7 +159,7 @@ def register():
     for param in ("firstName", "lastName", "email", "password", "quizId"):
         if param not in r:
             raise InvalidUsageError(
-                message="{} is missing from the request".format(param)
+                message=f"{param} is missing from the request"
             )
 
     def valid_name(name):
