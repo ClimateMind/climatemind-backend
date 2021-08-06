@@ -2,7 +2,7 @@
 import postScores from "../fixtures/postScores.json";
 import scores from "../fixtures/postScores.json";
 
-import { generateFirstName, generateLastName, generateEmail, generatePassword } from '../support/utils/GenerateRandomUsers';
+import { generateFirstName, generateLastName, generateEmail, generatePassword } from './utils/generateRandomUsers';
 
 const successMessage = "Successfully created user";
 const badReqMessage = "Email and password must be included in the request body";

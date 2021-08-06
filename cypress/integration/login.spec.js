@@ -1,8 +1,7 @@
 /// <reference types="cypress" /> 
 import scores from "../fixtures/postScores.json";
 
-import { generateFirstName, generateLastName, generateEmail, generatePassword } from '../support/utils/GenerateRandomUsers';
-
+import { generateFirstName, generateLastName, generateEmail, generatePassword } from './utils/generateRandomUsers';
 
 // Expected error responses
 const badLoginMessage = "Wrong email or password. Try again.";
