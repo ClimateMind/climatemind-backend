@@ -112,6 +112,27 @@ class ClimateFeed(db.Model):
     session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
 
 
+class Conversation(db.Model):
+    __tablename__ = "conversation"
+    conversation_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
+    sender_user_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"), index=True, nullable=False
+    )
+    sender_session_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"), nullable=False
+    )
+    receiver_session_uuid = db.Column(
+        UNIQUEIDENTIFIER,
+        db.ForeignKey("sessions.session_uuid"),
+        index=False,
+        unique=False,
+        nullable=True,
+    )
+    receiver_name = db.Column(db.String(50), index=False, unique=False, nullable=False)
+    conversation_status = db.Column(db.Integer)
+    conversation_create_time = db.Column(db.DateTime)
+
+
 class AnalyticsData(db.Model):
     __tablename__ = "analytics_data"
     analytics_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
