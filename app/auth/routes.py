@@ -41,7 +41,7 @@ def login():
 
     if not r:
         raise InvalidUsageError(
-            message="Email and password must be included in the request body"
+            message="Email and password must be included in the request body."
         )
 
     email = r.get("email", None)
