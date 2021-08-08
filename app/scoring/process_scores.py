@@ -76,7 +76,7 @@ class ProcessScores:
 
             self.value_scores[value] = centered_score
 
-    def persist_scores(self, user_uuid):
+    def persist_scores(self, user_uuid, session_uuid):
         """
         Saves user scores and session id into the database
 
@@ -100,6 +100,7 @@ class ProcessScores:
             user_scores.achievement = self.value_scores["achievement"]
             user_scores.power = self.value_scores["power"]
             user_scores.scores_created_timestamp = datetime.datetime.now(timezone.utc)
+            user_scores.session_uuid = session_uuid
 
             if user_uuid:
                 user_scores.user_uuid = user_uuid
