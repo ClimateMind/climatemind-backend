@@ -41,7 +41,7 @@ def login():
 
     if not r:
         raise InvalidUsageError(
-            message="Email and password must be included in the request body"
+            message="Email and password must be included in the request body."
         )
 
     email = r.get("email", None)
@@ -167,7 +167,7 @@ def register():
             message="First name must be between 2 and 50 characters."
         )
 
-    elif not valid_name(last_name):
+    if not valid_name(last_name):
         raise InvalidUsageError(
             message="Last name must be between 2 and 50 characters."
         )
@@ -212,7 +212,7 @@ def register():
                     "last_name": user.last_name,
                     "email": user.user_email,
                     "user_uuid": user.user_uuid,
-                    "session_id": user.quiz_uuid,
+                    "quiz_id": user.quiz_uuid,
                 },
             }
         ),
