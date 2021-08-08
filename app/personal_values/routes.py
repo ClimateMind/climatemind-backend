@@ -17,17 +17,17 @@ from flask_cors import cross_origin
 def get_personal_values():
     """
     Users want to know their personal values based on their Schwartz questionnaire
-    results. This returns the top 3 personal values with descriptions plus all scores for a user given a session ID.
+    results. This returns the top 3 personal values with descriptions plus all scores for a user given a quiz ID.
     """
     try:
-        session_uuid = uuid.UUID(request.args.get("session-id"))
+        quiz_uuid = uuid.UUID(request.args.get("quizId"))
 
     except:
         raise InvalidUsageError(
-            message="Malformed request. Session id provided to get personal values is not a valid UUID."
+            message="Malformed request. Quiz ID provided to get personal values is not a valid UUID."
         )
 
-    scores = Scores.query.filter_by(session_uuid=session_uuid).first()
+    scores = Scores.query.filter_by(quiz_uuid=quiz_uuid).first()
 
     if scores:
 
@@ -83,5 +83,5 @@ def get_personal_values():
 
     else:
         raise DatabaseError(
-            message="Cannot get personal values. Session id is not in database."
+            message="Cannot get personal values. Quiz ID is not in database."
         )

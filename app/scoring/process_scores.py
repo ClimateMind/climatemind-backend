@@ -1,11 +1,9 @@
-import os
 import datetime
 from datetime import timezone
 from app import db
 from flask import abort, make_response, jsonify
-from app.scoring.store_ip_address import store_ip_address
 from app.errors.errors import DatabaseError
-from app.models import Scores, Sessions
+from app.models import Scores, Users
 
 
 class ProcessScores:
@@ -78,43 +76,7 @@ class ProcessScores:
 
             self.value_scores[value] = centered_score
 
-    def process_ip_address(self, request, session_uuid):
-        """
-        Save a user's IP address information into the database with their session_id.
-        Provided credentials are for locally generated database (not production).
-
-        Args:
-            request: Request
-            session_uuid: UUID4
-
-        Returns: Error and Status Code if they exist, otherwise None
-        """
-
-        if (
-            os.environ["DATABASE_PARAMS"]
-            == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
-        ):
-            try:
-                ip_address = None
-                store_ip_address(ip_address, session_uuid)
-            except:
-                raise DatabaseError(
-                    message="An error occurred while saving the user's ip address to the local database."
-                )
-        else:
-            try:
-                unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")
-                if len(unprocessed_ip_address) != 0:
-                    ip_address = unprocessed_ip_address[0]
-                else:
-                    ip_address = None
-                store_ip_address(ip_address, session_uuid)
-            except:
-                raise DatabaseError(
-                    message="An error occurred while saving the user's ip address to the production database."
-                )
-
-    def persist_scores(self, user_uuid):
+    def persist_scores(self, user_uuid, session_uuid):
         """
         Saves user scores and session id into the database
 
@@ -125,11 +87,8 @@ class ProcessScores:
 
         """
         try:
-            user_session = Sessions(session_uuid=self.value_scores["session-id"])
-            db.session.add(user_session)
-
             user_scores = Scores()
-            user_scores.session_uuid = self.value_scores["session-id"]
+            user_scores.quiz_uuid = self.value_scores["quiz_uuid"]
             user_scores.security = self.value_scores["security"]
             user_scores.conformity = self.value_scores["conformity"]
             user_scores.benevolence = self.value_scores["benevolence"]
@@ -141,9 +100,12 @@ class ProcessScores:
             user_scores.achievement = self.value_scores["achievement"]
             user_scores.power = self.value_scores["power"]
             user_scores.scores_created_timestamp = datetime.datetime.now(timezone.utc)
+            user_scores.session_uuid = session_uuid
 
             if user_uuid:
                 user_scores.user_uuid = user_uuid
+                user = Users.query.filter_by(user_uuid=user_uuid).first()
+                user.quiz_uuid = self.value_scores["quiz_uuid"]
 
             db.session.add(user_scores)
             db.session.commit()
