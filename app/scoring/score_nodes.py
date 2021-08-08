@@ -35,11 +35,11 @@ class score_nodes:
 
     """
 
-    def __init__(self, user_scores, n, session_uuid):
+    def __init__(self, user_scores, n, quiz_uuid, session_uuid):
         self.G = current_app.config["G"].copy()
         self.USER_SCORES = user_scores
         self.N = n  # Number of Nodes to return for user feed
-        self.SESSION_UUID = session_uuid
+        self.QUIZ_UUID = quiz_uuid
         self.NX_UTILS = network_x_utils()
         self.MYTH_PROCESSOR = None
         self.SOL_PROCESSOR = None
@@ -48,6 +48,7 @@ class score_nodes:
         self.RATIO = 0.5  # ratio of number of adaptation to mitigation solutions to aspire to show in the user's feed
         self.BEST_NODES = None
         self.CLIMATE_EFFECTS = None
+        self.SESSION_UUID = session_uuid
 
     def get_scores_vector(self):
         """Extracts scores from a dictionary and returns the scores as a vector.
@@ -76,9 +77,7 @@ class score_nodes:
         climate_effects = []
         user_scores_vector = np.array(self.get_scores_vector())
         modified_user_scores_vector = np.power(user_scores_vector, self.ALPHA)
-        localised_acyclic_graph = build_localised_acyclic_graph(
-            self.G, self.SESSION_UUID
-        )
+        localised_acyclic_graph = build_localised_acyclic_graph(self.G, self.QUIZ_UUID)
 
         for node in self.G.nodes:
             current_node = self.G.nodes[node]
