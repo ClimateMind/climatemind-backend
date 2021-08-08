@@ -18,6 +18,5 @@ def normalize_scores(values):
         ) / (max_score - min_score)
 
         val["score"] = round(normalized_value, 1)
-        print(val["score"])
 
     return values

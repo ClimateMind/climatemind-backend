@@ -172,10 +172,14 @@ def register():
             message="Last name must be between 2 and 50 characters."
         )
 
+    if not quiz_uuid:
+        raise InvalidUsageError(message="Quiz UUID must be included to register.")
+
     try:
         quiz_uuid = uuid.UUID(quiz_uuid)
+
     except:
-        raise InvalidUsageError(message="Quiz ID is not a valid UUID4 format.")
+        raise InvalidUsageError(message="Quiz UUID is improperly formatted.")
 
     if not scores_in_db(quiz_uuid):
         raise DatabaseError(message="Quiz ID is not in the db.")
