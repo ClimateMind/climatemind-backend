@@ -87,13 +87,15 @@ def user_scores():
 
     session_uuid = request.headers.get("X-Session-Id")
 
-    if session_uuid:
-        try:
-            session_uuid = uuid.UUID(session_uuid)
-        except:
-            raise InvalidUsageError(
-                message="Session ID used to post scores is not a valid UUID."
-            )
+    if not session_uuid:
+        raise InvalidUsageError(message="Cannot post scores without a session ID.")
+
+    try:
+        session_uuid = uuid.UUID(session_uuid)
+    except:
+        raise InvalidUsageError(
+            message="Session ID used to post scores is not a valid UUID."
+        )
 
     valid_session_uuid = Sessions.query.get(session_uuid)
 

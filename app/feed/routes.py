@@ -30,6 +30,9 @@ def get_feed():
 
     session_uuid = request.headers.get("X-Session-Id")
 
+    if not session_uuid:
+        raise InvalidUsageError(message="Cannot get feed without a session ID.")
+
     try:
         session_uuid = uuid.UUID(session_uuid)
     except:
