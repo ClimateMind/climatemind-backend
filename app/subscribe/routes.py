@@ -25,6 +25,11 @@ def subscribe():
             message="Unable to post subscriber information. Check the request parameters."
         )
 
+    if not session_uuid:
+        raise InvalidUsageError(
+            message="Cannot post subscriber information without a session ID."
+        )
+
     if check_email(email):
         return store_subscription_data(session_uuid, email)
     else:
