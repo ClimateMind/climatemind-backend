@@ -29,9 +29,9 @@ def create_app(config_class=DevelopmentConfig):
             "http://127.0.0.1:3000",
             "http://localhost:3000",
             "http://0.0.0.0:3000",
-            "https://app-frontend-test-001.azurewebsites.net/",
-            "https://app-frontend-prod-001.azurewebsites.net/",
-            "https://app.climatemind.org/",
+            "https://app-frontend-test-001.azurewebsites.net:80",
+            "https://app-frontend-prod-001.azurewebsites.net:80",
+            "https://app.climatemind.org:80",
         ]
     }
 
