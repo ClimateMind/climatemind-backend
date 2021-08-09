@@ -1,5 +1,6 @@
 from app.conversations import bp
 from app import db
+from app.auth.utils import uuidType, validate_uuid
 from app.models import Users, Conversation, Sessions
 from app.errors.errors import DatabaseError
 from flask_jwt_extended import get_jwt_identity
@@ -45,6 +46,8 @@ def create_conversation_invite():
     ==========
     The unique conversation UUID and a datetime stamp
     """
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
     r = request.get_json(force=True, silent=True)
     if not r:
         raise InvalidUsageError(
@@ -65,20 +68,12 @@ def create_conversation_invite():
     if not user:
         raise DatabaseError(message="No user found for the provided JWT token.")
 
-    try:
-        current_session = (
-            db.session.query(Sessions).filter_by(user_uuid=user.user_uuid).first()
-        )
-
-    except AttributeError:
-        raise DatabaseError(message="No session found for the logged in user.")
-
     conversation_uuid = uuid.uuid4()
 
     conversation = Conversation(
         conversation_uuid=conversation_uuid,
         sender_user_uuid=user.user_uuid,
-        sender_session_uuid=current_session.session_uuid,
+        sender_session_uuid=session_uuid,
         receiver_name=invited_name,
         conversation_status=ConversationStatus.Invited,
         conversation_create_time=datetime.datetime.now(timezone.utc),
@@ -112,6 +107,8 @@ def get_conversations():
     ===========
     A list of the user's conversations with the relevant names, UUIDs and creation dates.
     """
+    session_uuid = request.headers.get("X-Session-Id")
+    validate_uuid(session_uuid, uuidType.SESSION)
     identity = get_jwt_identity()
     user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
 
