@@ -3,6 +3,7 @@ from app.scoring import bp
 from app.scoring.score_nodes import score_nodes
 from app.errors.errors import InvalidUsageError, DatabaseError, CustomError
 from app.models import Scores
+from app.auth.utils import uuidType, validate_uuid
 from flask_cors import cross_origin
 
 from app import db, auto, cache
@@ -21,12 +22,8 @@ def get_feed():
     session-id : uuid4 as string
     """
     N_FEED_CARDS = 21
-    try:
-        quiz_uuid = uuid.UUID(request.args.get("quizId"))
-    except:
-        raise InvalidUsageError(
-            message="Malformed request. Quiz ID provided to get feed is not a valid UUID."
-        )
+    quiz_uuid = request.args.get("quizId")
+    quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
 
     feed_entries = get_feed_results(quiz_uuid, N_FEED_CARDS)
 

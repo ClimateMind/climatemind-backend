@@ -169,18 +169,3 @@ class process_solutions:
             mitigation_solutions,
         )
         return solutions
-
-    def get_scores_vector(self, quiz_uuid):
-        scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).one_or_none()
-        return [
-            scores.achievement,
-            scores.benevolence,
-            scores.conformity,
-            scores.hedonism,
-            scores.power,
-            scores.security,
-            scores.self_direction,
-            scores.stimulation,
-            scores.tradition,
-            scores.universalism,
-        ]

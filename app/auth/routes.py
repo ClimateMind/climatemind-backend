@@ -2,6 +2,7 @@ from datetime import datetime, timezone
 from flask import request, jsonify, make_response
 from sqlalchemy import desc
 from app.auth import bp
+from app.auth.utils import uuidType, validate_uuid
 import regex as re
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import current_user
@@ -171,10 +172,7 @@ def register():
             message="Last name must be between 2 and 50 characters."
         )
 
-    try:
-        quiz_uuid = uuid.UUID(quiz_uuid)
-    except:
-        raise InvalidUsageError(message="Quiz ID is not a valid UUID4 format.")
+    quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
 
     if not scores_in_db(quiz_uuid):
         raise DatabaseError(message="Quiz ID is not in the db.")

@@ -31,8 +31,6 @@ class score_nodes:
     a user's values with relevant issues (nodes). In the future this will be expanded to
     include their location (zip code) and occupation.
 
-    Any scoring related functions should be added here.
-
     """
 
     def __init__(self, user_scores, n, quiz_uuid):
