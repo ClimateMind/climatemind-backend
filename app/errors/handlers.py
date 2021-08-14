@@ -1,5 +1,6 @@
 from app import db
 from flask import jsonify
+from flask import make_response
 from app.errors import bp
 from app.errors.errors import DatabaseError, AlreadyExistsError, CustomError
 from flask_cors import cross_origin
@@ -28,3 +29,8 @@ def handle_existing_resource_error(error):
         error.status_code,
     )
     return response
+
+
+@bp.app_errorhandler(429)
+def ratelimit_handler(e):
+    return make_response(jsonify(error="ratelimit exceeded %s" % e.description), 429)

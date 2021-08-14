@@ -17,6 +17,7 @@ from app.errors.errors import InvalidUsageError, DatabaseError, UnauthorizedErro
 from app.models import Users, Scores
 
 from app import db, auto
+from app import limiter
 
 import uuid
 
@@ -29,6 +30,7 @@ Valid URLS to access the refresh endpoint are specified in app/__init__.py
 
 @bp.route("/login", methods=["POST"])
 @auto.doc()
+@limiter.limit("20/day;10/minute;2/second")
 def login():
     """
     Logs a user in by parsing a POST request containing user credentials.
@@ -121,22 +123,8 @@ def logout():
     return response, 200
 
 
-@bp.route("/protected", methods=["GET"])
-@cross_origin()
-@jwt_required()
-def protected():
-    """
-    A temporary test endpoint for accessing a protected resource
-    """
-    return jsonify(
-        first_name=current_user.first_name,
-        last_name=current_user.last_name,
-        uuid=current_user.user_uuid,
-        email=current_user.user_email,
-    )
-
-
 @bp.route("/register", methods=["POST"])
+@limiter.limit("20/day;10/minute;2/second")
 def register():
     """
     Registration endpoint
