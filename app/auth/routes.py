@@ -30,7 +30,7 @@ Valid URLS to access the refresh endpoint are specified in app/__init__.py
 
 @bp.route("/login", methods=["POST"])
 @auto.doc()
-@limiter.limit("100/day;50/hour;10/minute;2/second")
+@limiter.limit("100/day;50/hour;10/minute;5/second")
 def login():
     """
     Logs a user in by parsing a POST request containing user credentials.
@@ -82,7 +82,7 @@ def login():
 
 @bp.route("/refresh", methods=["POST"])
 @jwt_required(refresh=True)
-@limiter.exempt()
+@limiter.exempt
 def refresh():
     """
     Creates a refresh token and returns a new access token and refresh token to the user.
@@ -125,7 +125,7 @@ def logout():
 
 
 @bp.route("/register", methods=["POST"])
-@limiter.limit("100/day;50/hour;10/minute;2/second")
+@limiter.limit("100/day;50/hour;10/minute;5/second")
 def register():
     """
     Registration endpoint
