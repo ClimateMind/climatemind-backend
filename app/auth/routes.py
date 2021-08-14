@@ -82,7 +82,7 @@ def login():
 
 @bp.route("/refresh", methods=["POST"])
 @jwt_required(refresh=True)
-@limiter.exempt()
+@limiter.exempt
 def refresh():
     """
     Creates a refresh token and returns a new access token and refresh token to the user.
