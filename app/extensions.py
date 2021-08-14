@@ -7,6 +7,7 @@ from flask_jwt_extended import JWTManager
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
+
 db = SQLAlchemy()
 migrate = Migrate()
 login = LoginManager()
