@@ -3,6 +3,7 @@ from flask import request, jsonify, make_response
 from sqlalchemy import desc
 from app.auth import bp
 import regex as re
+import requests
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
@@ -220,6 +221,15 @@ def register():
     )
     response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
+
+
+@bp.route("/captcha", methods=["POST"])
+def captcha():
+    recaptcha_response = request.args.get("recaptchaResponse", None)
+    secret_key = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"  # For local testing, no security risk
+    data = {"secret": secret_key, "response": recaptcha_response}
+    resp = requests.post("https://www.google.com/recaptcha/api/siteverify", data=data)
+    return resp.json(), 200
 
 
 def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
