@@ -277,10 +277,8 @@ def password_valid(password):
         )
 
     conds = [
-        lambda s: any(x.isupper() for x in s),
-        lambda s: any(x.islower() for x in s),
-        lambda s: any(x.isdigit() for x in s),
-        lambda s: 8 <= len(s) <= 20,
+        lambda s: any(x.isdigit() or not x.isalnum() for x in s),
+        lambda s: 8 <= len(s),
     ]
     return all(cond(password) for cond in conds)
 
