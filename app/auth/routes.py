@@ -19,6 +19,7 @@ from app.models import Users, Scores
 from app import db, auto
 
 import uuid
+import re
 
 """
 A series of endpoints for authentication.
@@ -189,9 +190,8 @@ def register():
 
     if not password_valid(password):
         raise InvalidUsageError(
-            message="Password does not fit the requirements."
-            "Password must be between 8-20 characters and contain at least one uppercase letter, one lowercase "
-            "letter, one number and one special character."
+            message="Password does not fit the requirements. "
+            "Password must be between 8-128 characters, contain at least one number or special character, and cannot contain any spaces."
         )
 
     user = Users.find_by_username(email)
@@ -268,8 +268,9 @@ def valid_name(name):
 
 def password_valid(password):
     """
-    Passwords must contain uppercase and lowercase letters, and digits.
-    Passwords must be between 8 and 20 characters.
+    Passwords must contain at least one digit or special character.
+    Passwords must be between 8 and 128 characters.
+    Passwords cannot contain spaces.
     """
     if not password:
         raise InvalidUsageError(
@@ -278,7 +279,8 @@ def password_valid(password):
 
     conds = [
         lambda s: any(x.isdigit() or not x.isalnum() for x in s),
-        lambda s: 8 <= len(s),
+        lambda s: all(not x.isspace() for x in s),
+        lambda s: 8 <= len(s) <= 128,
     ]
     return all(cond(password) for cond in conds)
 
