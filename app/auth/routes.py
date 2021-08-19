@@ -19,7 +19,6 @@ from app.models import Users, Scores
 from app import db, auto
 
 import uuid
-import re
 
 """
 A series of endpoints for authentication.
