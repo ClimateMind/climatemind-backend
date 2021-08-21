@@ -60,13 +60,15 @@ def create_conversation_invite():
         return 2 < len(name) < 50
 
     if not invited_name or not valid_name(invited_name):
-        raise InvalidUsageError(message="Must provide the name of the invited user.")
+        raise InvalidUsageError(
+            message="Must provide the name of the invited user.")
 
     identity = get_jwt_identity()
     user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
 
     if not user:
-        raise DatabaseError(message="No user found for the provided JWT token.")
+        raise DatabaseError(
+            message="No user found for the provided JWT token.")
 
     conversation_uuid = uuid.uuid4()
 
@@ -86,7 +88,8 @@ def create_conversation_invite():
     except SQLAlchemyError:
         raise DatabaseError(message="Failed to add conversation to database")
 
-    response = {"message": "conversation created", "conversationId": conversation_uuid}
+    response = {"message": "conversation created",
+                "conversationId": conversation_uuid}
 
     return jsonify(response), 201
 
@@ -116,7 +119,8 @@ def get_conversations():
         raise DatabaseError(message="No user found for the provided JWT token")
 
     conversations = (
-        db.session.query(Conversation).filter_by(sender_user_uuid=user.user_uuid).all()
+        db.session.query(Conversation).filter_by(
+            sender_user_uuid=user.user_uuid).all()
     )
 
     results = []
