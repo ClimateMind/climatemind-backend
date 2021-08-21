@@ -23,10 +23,10 @@ class ConversationStatus(IntEnum):
     This enum should not be modified unless the frontend is involved in the change.
     """
 
-    Invited = 1
-    Visited = 2
-    QuizCompleted = 3
-    ConversationCompleted = 4
+    Invited = 0
+    Visited = 1
+    QuizCompleted = 2
+    ConversationCompleted = 3
 
 
 @bp.route("/conversation", methods=["POST"])
