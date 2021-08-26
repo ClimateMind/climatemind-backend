@@ -1,3 +1,4 @@
+import os
 from datetime import datetime, timezone
 from flask import request, jsonify, make_response
 from sqlalchemy import desc
@@ -35,7 +36,7 @@ def login():
     Logs a user in by parsing a POST request containing user credentials.
     User provides email/password.
 
-    Returns: errors if data is not valid.
+    Returns: errors if data is not valid or captcha fails.
     Returns: Access token and refresh token otherwise.
     """
     r = request.get_json(force=True, silent=True)
@@ -55,6 +56,18 @@ def login():
 
     if not user or not password_valid(password) or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
+
+    # Verify captcha with Google
+    recaptcha_response = request.args.get("recaptchaToken", None)
+    secret_key = os.environ.get("RECAPTCHA_SECRET_KEY")
+    data = {"secret": secret_key, "response": recaptcha_response}
+    resp = requests.post(
+        "https://www.google.com/recaptcha/api/siteverify", data=data
+    ).json()
+
+    # Google will return True/False in the success field, resp must be json to properly access
+    if not resp["success"]:
+        raise UnauthorizedError(message="Captcha did not succeed.")
 
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
@@ -221,15 +234,6 @@ def register():
     )
     response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
-
-
-@bp.route("/captcha", methods=["POST"])
-def captcha():
-    recaptcha_response = request.args.get("recaptchaResponse", None)
-    secret_key = "6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe"  # For local testing, no security risk
-    data = {"secret": secret_key, "response": recaptcha_response}
-    resp = requests.post("https://www.google.com/recaptcha/api/siteverify", data=data)
-    return resp.json(), 200
 
 
 def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
