@@ -48,6 +48,7 @@ def login():
 
     email = r.get("email", None)
     password = r.get("password", None)
+    recaptcha_token = r.get("recaptchaToken", None)
 
     if check_email(email):
         user = db.session.query(Users).filter_by(user_email=email).one_or_none()
@@ -58,9 +59,8 @@ def login():
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
     # Verify captcha with Google
-    recaptcha_response = request.args.get("recaptchaToken", None)
     secret_key = os.environ.get("RECAPTCHA_SECRET_KEY")
-    data = {"secret": secret_key, "response": recaptcha_response}
+    data = {"secret": secret_key, "response": recaptcha_token}
     resp = requests.post(
         "https://www.google.com/recaptcha/api/siteverify", data=data
     ).json()
