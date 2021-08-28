@@ -1,8 +1,10 @@
+import os
 from datetime import datetime, timezone
 from flask import request, jsonify, make_response
 from sqlalchemy import desc
 from app.auth import bp
 import regex as re
+import requests
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
@@ -34,7 +36,7 @@ def login():
     Logs a user in by parsing a POST request containing user credentials.
     User provides email/password.
 
-    Returns: errors if data is not valid.
+    Returns: errors if data is not valid or captcha fails.
     Returns: Access token and refresh token otherwise.
     """
     r = request.get_json(force=True, silent=True)
@@ -46,6 +48,7 @@ def login():
 
     email = r.get("email", None)
     password = r.get("password", None)
+    recaptcha_token = r.get("recaptchaToken", None)
 
     if check_email(email):
         user = db.session.query(Users).filter_by(user_email=email).one_or_none()
@@ -54,6 +57,17 @@ def login():
 
     if not user or not password_valid(password) or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
+
+    # Verify captcha with Google
+    secret_key = os.environ.get("RECAPTCHA_SECRET_KEY")
+    data = {"secret": secret_key, "response": recaptcha_token}
+    resp = requests.post(
+        "https://www.google.com/recaptcha/api/siteverify", data=data
+    ).json()
+
+    # Google will return True/False in the success field, resp must be json to properly access
+    if not resp["success"]:
+        raise UnauthorizedError(message="Captcha did not succeed.")
 
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
