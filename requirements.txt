@@ -29,6 +29,8 @@ Flask-Login==0.5.0
 Flask-Migrate==2.5.3
 Flask-SQLAlchemy==2.4.4
 Flask-Selfdoc==1.2.3
+Flask-Limiter==1.4
+limits==1.5.1
 future==0.18.2
 graphviz==0.14.1
 idna==2.10

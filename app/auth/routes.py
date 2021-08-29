@@ -19,8 +19,9 @@ from app.errors.errors import InvalidUsageError, DatabaseError, UnauthorizedErro
 from app.models import Users, Scores
 
 from app import db, auto
+from app import limiter
 
-import uuid
+import uuid, os
 
 """
 A series of endpoints for authentication.
@@ -29,8 +30,22 @@ Valid URLS to access the refresh endpoint are specified in app/__init__.py
 """
 
 
+@limiter.request_filter
+def ip_whitelist():
+    local = None
+
+    if (
+        os.environ["DATABASE_PARAMS"]
+        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
+    ):
+        local = request.remote_addr == "127.0.0.1" or os.environ.get("VPN")
+
+    return local
+
+
 @bp.route("/login", methods=["POST"])
 @auto.doc()
+@limiter.limit("100/day;50/hour;10/minute;5/second")
 def login():
     """
     Logs a user in by parsing a POST request containing user credentials.
@@ -94,6 +109,7 @@ def login():
 
 @bp.route("/refresh", methods=["POST"])
 @jwt_required(refresh=True)
+@limiter.exempt
 def refresh():
     """
     Creates a refresh token and returns a new access token and refresh token to the user.
@@ -135,22 +151,8 @@ def logout():
     return response, 200
 
 
-@bp.route("/protected", methods=["GET"])
-@cross_origin()
-@jwt_required()
-def protected():
-    """
-    A temporary test endpoint for accessing a protected resource
-    """
-    return jsonify(
-        first_name=current_user.first_name,
-        last_name=current_user.last_name,
-        uuid=current_user.user_uuid,
-        email=current_user.user_email,
-    )
-
-
 @bp.route("/register", methods=["POST"])
+@limiter.limit("100/day;50/hour;10/minute;5/second")
 def register():
     """
     Registration endpoint
@@ -163,6 +165,7 @@ def register():
     Returns: Errors if any data is invalid
     Returns: Access Token and Refresh Token otherwise
     """
+
     r = request.get_json(force=True, silent=True)
 
     if not r:
