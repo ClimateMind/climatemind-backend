@@ -30,7 +30,14 @@ Valid URLS to access the refresh endpoint are specified in app/__init__.py
 
 @limiter.request_filter
 def ip_whitelist():
-    local = request.remote_addr == "127.0.0.1" or os.environ.get("VPN")
+    local = None
+
+    if (
+        os.environ["DATABASE_PARAMS"]
+        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
+    ):
+        local = request.remote_addr == "127.0.0.1" or os.environ.get("VPN")
+
     return local
 
 
