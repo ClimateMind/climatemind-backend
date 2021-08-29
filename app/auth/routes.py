@@ -1,9 +1,11 @@
+import os
 from datetime import datetime, timezone
 from flask import request, jsonify, make_response
 from sqlalchemy import desc
 from app.auth import bp
 from app.auth.utils import uuidType, validate_uuid
 import regex as re
+import requests
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
@@ -35,7 +37,7 @@ def login():
     Logs a user in by parsing a POST request containing user credentials.
     User provides email/password.
 
-    Returns: errors if data is not valid.
+    Returns: errors if data is not valid or captcha fails.
     Returns: Access token and refresh token otherwise.
     """
     r = request.get_json(force=True, silent=True)
@@ -47,6 +49,7 @@ def login():
 
     email = r.get("email", None)
     password = r.get("password", None)
+    recaptcha_token = r.get("recaptchaToken", None)
 
     if check_email(email):
         user = db.session.query(Users).filter_by(user_email=email).one_or_none()
@@ -55,6 +58,17 @@ def login():
 
     if not user or not password_valid(password) or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
+
+    # Verify captcha with Google
+    secret_key = os.environ.get("RECAPTCHA_SECRET_KEY")
+    data = {"secret": secret_key, "response": recaptcha_token}
+    resp = requests.post(
+        "https://www.google.com/recaptcha/api/siteverify", data=data
+    ).json()
+
+    # Google will return True/False in the success field, resp must be json to properly access
+    if not resp["success"]:
+        raise UnauthorizedError(message="Captcha did not succeed.")
 
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
@@ -183,9 +197,8 @@ def register():
 
     if not password_valid(password):
         raise InvalidUsageError(
-            message="Password does not fit the requirements."
-            "Password must be between 8-20 characters and contain at least one uppercase letter, one lowercase "
-            "letter, one number and one special character."
+            message="Password does not fit the requirements. "
+            "Password must be between 8-128 characters, contain at least one number or special character, and cannot contain any spaces."
         )
 
     user = Users.find_by_username(email)
@@ -262,8 +275,9 @@ def valid_name(name):
 
 def password_valid(password):
     """
-    Passwords must contain uppercase and lowercase letters, and digits.
-    Passwords must be between 8 and 20 characters.
+    Passwords must contain at least one digit or special character.
+    Passwords must be between 8 and 128 characters.
+    Passwords cannot contain spaces.
     """
     if not password:
         raise InvalidUsageError(
@@ -271,10 +285,9 @@ def password_valid(password):
         )
 
     conds = [
-        lambda s: any(x.isupper() for x in s),
-        lambda s: any(x.islower() for x in s),
-        lambda s: any(x.isdigit() for x in s),
-        lambda s: 8 <= len(s) <= 20,
+        lambda s: any(x.isdigit() or not x.isalnum() for x in s),
+        lambda s: all(not x.isspace() for x in s),
+        lambda s: 8 <= len(s) <= 128,
     ]
     return all(cond(password) for cond in conds)
 
