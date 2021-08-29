@@ -19,13 +19,19 @@ from app.models import Users, Scores
 from app import db, auto
 from app import limiter
 
-import uuid
+import uuid, os
 
 """
 A series of endpoints for authentication.
 Valid durations for the access and refresh tokens are specified in config.py
 Valid URLS to access the refresh endpoint are specified in app/__init__.py
 """
+
+
+@limiter.request_filter
+def ip_whitelist():
+    local = request.remote_addr == "127.0.0.1" or os.environ.get("VPN")
+    return local
 
 
 @bp.route("/login", methods=["POST"])
@@ -138,6 +144,7 @@ def register():
     Returns: Errors if any data is invalid
     Returns: Access Token and Refresh Token otherwise
     """
+
     r = request.get_json(force=True, silent=True)
 
     if not r:
