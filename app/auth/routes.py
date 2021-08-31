@@ -13,6 +13,7 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import unset_jwt_cookies
 from flask_cors import cross_origin
 from app.subscribe.store_subscription_data import check_email
+import sqlalchemy.exc.DBAPIError
 
 from app.errors.errors import InvalidUsageError, DatabaseError, UnauthorizedError
 
@@ -32,6 +33,10 @@ Valid URLS to access the refresh endpoint are specified in app/__init__.py
 
 @limiter.request_filter
 def ip_whitelist():
+    """
+    Adds localhost IP to the rate limiter's whitelist when operating in development environments.
+    Prevents conflicts with Cypress testing & VPNs.
+    """
     local = None
 
     if (
@@ -65,12 +70,12 @@ def login():
     password = r.get("password", None)
     recaptcha_token = r.get("recaptchaToken", None)
 
-    if not password or not email:
+    if not password or not email or not recaptcha_token:
         raise InvalidUsageError(
-            message="Email and password must be included in the request body"
+            message="Email, password and recaptcha must be included in the request body."
         )
 
-    user = db.session.query(Users).filter_by(user_email=str(email)).one_or_none()
+    user = db.session.query(Users).filter_by(user_email=email).one_or_none()
 
     if not user or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
@@ -171,25 +176,20 @@ def register():
     r = request.get_json(force=True, silent=True)
 
     if not r:
-        raise InvalidUsageError(
-            message="JSON body must be included in the request body."
-        )
+        raise InvalidUsageError(message="JSON body must be included in the request.")
 
     for param in ("firstName", "lastName", "email", "password", "quizId"):
         if param not in r:
-            raise InvalidUsageError(message=f"{param} is missing from the request")
+            raise InvalidUsageError(
+                message=f"{param} must be included in the request body."
+            )
 
     def valid_name(name):
         return 2 <= len(name) <= 50
 
-    if not valid_name(r["firstName"]):
+    if not valid_name(r["firstName"]) or not valid_name(r["lastName"]):
         raise InvalidUsageError(
-            message="First name must be between 2 and 50 characters."
-        )
-
-    if not valid_name(r["lastName"]):
-        raise InvalidUsageError(
-            message="Last name must be between 2 and 50 characters."
+            message="First & last name must be between 2 and 50 characters."
         )
 
     # TODO: When conversations PR integrated, replace try except with UUID checker
@@ -272,10 +272,12 @@ def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
     try:
         db.session.add(user)
         db.session.commit()
-    except:
+
+    except DBAPIError:
         raise DatabaseError(
             message="An error occurred while adding user to the database."
         )
+
     return user
 
 
