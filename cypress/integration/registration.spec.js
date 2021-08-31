@@ -202,7 +202,7 @@ describe("User Registration", () => {
                         expect(response.body).to.have.property("error");
                         expect(response.body.error).to.be.a("string");
                         expect(response.body.error).to.satisfy(function (s) {
-                            return s === badReqMessage;
+                            return s === missingEmail;
                         });
                     }
                 );
