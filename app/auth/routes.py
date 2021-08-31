@@ -13,7 +13,7 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import unset_jwt_cookies
 from flask_cors import cross_origin
 from app.subscribe.store_subscription_data import check_email
-import sqlalchemy.exc.DBAPIError
+from sqlalchemy.exc import SQLAlchemyError
 
 from app.errors.errors import InvalidUsageError, DatabaseError, UnauthorizedError
 
@@ -56,14 +56,14 @@ def login():
     Logs a user in by parsing a POST request containing user credentials.
     User provides email/password.
 
-    Returns: errors if data is not valid or captcha fails.
+    Returns: Errors if data is not valid or captcha fails.
     Returns: Access token and refresh token otherwise.
     """
     r = request.get_json(force=True, silent=True)
 
     if not r:
         raise InvalidUsageError(
-            message="Email and password must be included in the request body."
+            message="Email, password and recaptcha must be included in the request body."
         )
 
     email = r.get("email", None)
@@ -122,6 +122,8 @@ def refresh():
     Creates a refresh token and returns a new access token and refresh token to the user.
     This endpoint can only be accessed by URLs allowed from CORS.
     These URLs are specified in app/__init__.py
+
+    Returns: A new refresh token and access token.
     """
     identity = get_jwt_identity()
     user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
@@ -169,8 +171,7 @@ def register():
     The same email cannot be used for more than one account.
     Users will have to take the quiz before registering, meaning the quiz_uuid is linked to scores.
 
-    Returns: Errors if any data is invalid
-    Returns: Access Token and Refresh Token otherwise
+    Returns: Access Token and Refresh Token, or errors if any data is invalid
     """
 
     r = request.get_json(force=True, silent=True)
@@ -255,7 +256,7 @@ def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
         password (str)
         quiz_uuid (uuid)
 
-    Returns: the user object
+    Returns: The user object
     """
     user_uuid = uuid.uuid4()
     user_created_timestamp = datetime.now(timezone.utc)
@@ -273,7 +274,7 @@ def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
         db.session.add(user)
         db.session.commit()
 
-    except DBAPIError:
+    except SQLAlchemyError:
         raise DatabaseError(
             message="An error occurred while adding user to the database."
         )
@@ -286,6 +287,8 @@ def password_valid(password):
     Passwords must contain at least one digit or special character.
     Passwords must be between 8 and 128 characters.
     Passwords cannot contain spaces.
+
+    Returns: True if password meets conditions, False otherwise
     """
     conds = [
         lambda s: any(x.isdigit() or not x.isalnum() for x in s),
