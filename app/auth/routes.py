@@ -21,7 +21,7 @@ from app.models import Users, Scores
 from app import db, auto
 from app import limiter
 
-import uuid, os
+import uuid
 
 """
 A series of endpoints for authentication.
@@ -192,10 +192,11 @@ def register():
             message="Last name must be between 2 and 50 characters."
         )
 
+    # TODO: When conversations PR integrated, replace try except with UUID checker
     try:
         quiz_uuid = uuid.UUID(r["quizId"])
 
-    except:
+    except TypeError:
         raise InvalidUsageError(message="Quiz UUID is improperly formatted.")
 
     scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).one_or_none()
@@ -208,8 +209,9 @@ def register():
 
     if not password_valid(r["password"]):
         raise InvalidUsageError(
-            message="Password does not fit the requirements. "
-            "Password must be between 8-128 characters, contain at least one number or special character, and cannot contain any spaces."
+            message="""Password does not fit the requirements.
+            "Password must be between 8-128 characters, contain at least 
+            one number or special character, and cannot contain any spaces."""
         )
 
     user = Users.find_by_username(r["email"])
