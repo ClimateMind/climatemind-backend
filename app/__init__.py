@@ -4,7 +4,7 @@ from datetime import datetime
 from datetime import timezone
 from datetime import timedelta
 from flask_cors import CORS
-from app.extensions import db, migrate, login, cache, auto, jwt
+from app.extensions import db, migrate, login, cache, auto, jwt, limiter
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt
 from flask_jwt_extended import get_jwt_identity
@@ -23,6 +23,7 @@ def create_app(config_class=DevelopmentConfig):
     cache.init_app(app)
     auto.init_app(app)
     jwt.init_app(app)
+    limiter.init_app(app)
 
     origins = {
         "origins": [
@@ -42,6 +43,7 @@ def create_app(config_class=DevelopmentConfig):
             r"/login": origins,
             r"/register": origins,
             r"/logout": origins,
+            r"/captcha": origins,
         },
         supports_credentials=True,
     )

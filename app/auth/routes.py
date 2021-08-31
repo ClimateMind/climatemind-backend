@@ -1,8 +1,10 @@
+import os
 from datetime import datetime, timezone
 from flask import request, jsonify, make_response
 from sqlalchemy import desc
 from app.auth import bp
 import regex as re
+import requests
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
@@ -17,8 +19,9 @@ from app.errors.errors import InvalidUsageError, DatabaseError, UnauthorizedErro
 from app.models import Users, Scores
 
 from app import db, auto
+from app import limiter
 
-import uuid
+import uuid, os
 
 """
 A series of endpoints for authentication.
@@ -27,25 +30,40 @@ Valid URLS to access the refresh endpoint are specified in app/__init__.py
 """
 
 
+@limiter.request_filter
+def ip_whitelist():
+    local = None
+
+    if (
+        os.environ["DATABASE_PARAMS"]
+        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
+    ):
+        local = request.remote_addr == "127.0.0.1" or os.environ.get("VPN")
+
+    return local
+
+
 @bp.route("/login", methods=["POST"])
 @auto.doc()
+@limiter.limit("100/day;50/hour;10/minute;5/second")
 def login():
     """
     Logs a user in by parsing a POST request containing user credentials.
     User provides email/password.
 
-    Returns: errors if data is not valid.
+    Returns: errors if data is not valid or captcha fails.
     Returns: Access token and refresh token otherwise.
     """
     r = request.get_json(force=True, silent=True)
 
     if not r:
         raise InvalidUsageError(
-            message="Email and password must be included in the request body"
+            message="Email and password must be included in the request body."
         )
 
     email = r.get("email", None)
     password = r.get("password", None)
+    recaptcha_token = r.get("recaptchaToken", None)
 
     if not password or not email:
         raise InvalidUsageError(
@@ -56,6 +74,17 @@ def login():
 
     if not user or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
+
+    # Verify captcha with Google
+    secret_key = os.environ.get("RECAPTCHA_SECRET_KEY")
+    data = {"secret": secret_key, "response": recaptcha_token}
+    resp = requests.post(
+        "https://www.google.com/recaptcha/api/siteverify", data=data
+    ).json()
+
+    # Google will return True/False in the success field, resp must be json to properly access
+    if not resp["success"]:
+        raise UnauthorizedError(message="Captcha did not succeed.")
 
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
@@ -82,6 +111,7 @@ def login():
 
 @bp.route("/refresh", methods=["POST"])
 @jwt_required(refresh=True)
+@limiter.exempt
 def refresh():
     """
     Creates a refresh token and returns a new access token and refresh token to the user.
@@ -123,22 +153,8 @@ def logout():
     return response, 200
 
 
-@bp.route("/protected", methods=["GET"])
-@cross_origin()
-@jwt_required()
-def protected():
-    """
-    A temporary test endpoint for accessing a protected resource
-    """
-    return jsonify(
-        first_name=current_user.first_name,
-        last_name=current_user.last_name,
-        uuid=current_user.user_uuid,
-        email=current_user.user_email,
-    )
-
-
 @bp.route("/register", methods=["POST"])
+@limiter.limit("100/day;50/hour;10/minute;5/second")
 def register():
     """
     Registration endpoint
@@ -151,6 +167,7 @@ def register():
     Returns: Errors if any data is invalid
     Returns: Access Token and Refresh Token otherwise
     """
+
     r = request.get_json(force=True, silent=True)
 
     if not r:
@@ -191,9 +208,8 @@ def register():
 
     if not password_valid(r["password"]):
         raise InvalidUsageError(
-            message="Password does not fit the requirements."
-            "Password must be between 8-20 characters and contain at least one uppercase letter, one lowercase "
-            "letter, one number and one special character."
+            message="Password does not fit the requirements. "
+            "Password must be between 8-128 characters, contain at least one number or special character, and cannot contain any spaces."
         )
 
     user = Users.find_by_username(r["email"])
@@ -216,7 +232,7 @@ def register():
                     "last_name": user.last_name,
                     "email": user.user_email,
                     "user_uuid": user.user_uuid,
-                    "session_id": user.quiz_uuid,
+                    "quiz_id": user.quiz_uuid,
                 },
             }
         ),
@@ -263,13 +279,13 @@ def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
 
 def password_valid(password):
     """
-    Passwords must contain uppercase and lowercase letters, and digits.
-    Passwords must be between 8 and 20 characters.
+    Passwords must contain at least one digit or special character.
+    Passwords must be between 8 and 128 characters.
+    Passwords cannot contain spaces.
     """
     conds = [
-        lambda s: any(x.isupper() for x in s),
-        lambda s: any(x.islower() for x in s),
-        lambda s: any(x.isdigit() for x in s),
-        lambda s: 8 <= len(s) <= 20,
+        lambda s: any(x.isdigit() or not x.isalnum() for x in s),
+        lambda s: all(not x.isspace() for x in s),
+        lambda s: 8 <= len(s) <= 128,
     ]
     return all(cond(password) for cond in conds)
