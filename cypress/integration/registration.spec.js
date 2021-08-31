@@ -7,7 +7,9 @@ import { generateFirstName, generateLastName, generateEmail, generatePassword } 
 const successMessage = "Successfully created user";
 const badReqMessage = "Email and password must be included in the request body";
 const alreadyRegisteredMessage = "Email already registered";
-const missingPassword = "Email and password must be included in the request body.";
+const missingEmail = "email must be included in the request body.";
+const missingPassword = "password must be included in the request body.";
+const missingBody = "JSON body must be included in the request.";
 let session_Id;
 let quiz_Id;
 
@@ -280,7 +282,7 @@ describe("User Registration", () => {
                         expect(response.body).to.have.property("error");
                         expect(response.body.error).to.be.a("string");
                         expect(response.body.error).to.satisfy(function (s) {
-                            return s === missingPassword;
+                            return s === missingBody;
                         });
                     }
                 );
