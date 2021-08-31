@@ -35,7 +35,7 @@ class score_nodes:
 
     """
 
-    def __init__(self, user_scores, n, quiz_uuid):
+    def __init__(self, user_scores, n, quiz_uuid, session_uuid):
         self.G = current_app.config["G"].copy()
         self.USER_SCORES = user_scores
         self.N = n  # Number of Nodes to return for user feed
@@ -48,6 +48,7 @@ class score_nodes:
         self.RATIO = 0.5  # ratio of number of adaptation to mitigation solutions to aspire to show in the user's feed
         self.BEST_NODES = None
         self.CLIMATE_EFFECTS = None
+        self.SESSION_UUID = session_uuid
 
     def get_scores_vector(self):
         """Extracts scores from a dictionary and returns the scores as a vector.
@@ -147,5 +148,5 @@ class score_nodes:
         self.SOL_PROCESSOR = process_solutions()
         self.simple_scoring()
         self.get_best_nodes()
-        # store_climate_feed_data(self.SESSION_UUID, self.BEST_NODES)
+        store_climate_feed_data(self.SESSION_UUID, self.BEST_NODES)
         return self.BEST_NODES
