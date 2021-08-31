@@ -60,13 +60,13 @@ class network_x_utils:
             # Default image url if image is added
             return "https://yaleclimateconnections.org/wp-content/uploads/2018/04/041718_child_factories.jpg"
 
-    def get_image_url_or_none(node):
+    def get_image_url_or_none(self):
         """Images are displayed to the user in the climate feed to accompany an explanation
         of the climate effects. The front-end is provided with the URL and then requests
         these images from our server.
         """
         try:
-            return node["properties"]["schema_image"][0]
+            return self.node["properties"]["schema_image"][0]
         except:
             # Default image url if image is added
             return None
