@@ -98,4 +98,8 @@ def create_app(config_class=DevelopmentConfig):
 
         app.register_blueprint(session_bp)
 
+        from app.email import bp as email_bp
+
+        app.register_blueprint(email_bp)
+
     return app
