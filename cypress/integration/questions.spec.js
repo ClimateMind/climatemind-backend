@@ -2,7 +2,7 @@
 
 describe("'/questions' endpoint", () => {
     it("User should get Questions", () => {
-        cy.request("GET", "http://localhost:5000/questions")
+        cy.questionsEndpoint()
             .should((response) => {
                 expect(response.status).to.equal(200);
                 expect(response.headers["content-type"])
@@ -13,12 +13,12 @@ describe("'/questions' endpoint", () => {
                 expect(response.body).to.have.property("SetOne");
                 expect(response.body).to.have.property("SetTwo");
                 expect(response.body).to.have.property("Answers");
-                expect(response.body).to.have.property("Directions");   
+                expect(response.body).to.have.property("Directions");
             });
     });
 
-    it("SetOne should have the correct properties", () => {
-        cy.request("GET", "http://localhost:5000/questions")
+    it("SetOne questions should have the correct properties", () => {
+        cy.questionsEndpoint()
             .should((response) => {
                 expect(response.body.SetOne).to.be.an("array");
                 expect(response.body.SetOne).to.have.length(10);
@@ -31,12 +31,11 @@ describe("'/questions' endpoint", () => {
                     expect(response.body.SetOne[SetOneIndex].value).to.be.a("string");
                     expect(response.body.SetOne[SetOneIndex].question).to.be.a("string");
                 }
-             });
-        
+            });
     });
 
-    it("SetTwo should have the correct properties", () => {
-        cy.request("GET", "http://localhost:5000/questions")
+    it("SetTwo questions should have the correct properties", () => {
+        cy.questionsEndpoint()
             .should((response) => {
                 expect(response.body.SetTwo).to.be.an("array");
                 //expect((Object.keys(response.body.SetTwo).length)).to.eq(10);
@@ -51,11 +50,11 @@ describe("'/questions' endpoint", () => {
                     expect(response.body.SetTwo[SetTwoIndex].question).to.be.a("string");
                 }
             });
-        
+
     });
 
     it("Answers should have the correct properties", () => {
-        cy.request("GET", "http://localhost:5000/questions")
+        cy.questionsEndpoint()
             .should((response) => {
                 expect(response.body.Answers).to.be.an("array");
                 expect(response.body.Answers).to.have.length(6);
@@ -66,11 +65,11 @@ describe("'/questions' endpoint", () => {
                     expect(response.body.Answers[AnswersIndex].id).to.be.a("number");
                     expect(response.body.Answers[AnswersIndex].text).to.be.a("string");
                 }
-             });
+            });
     });
 
     it("Directions should have the correct properties", () => {
-        cy.request("GET", "http://localhost:5000/questions")
+        cy.questionsEndpoint()
             .should((response) => {
                 expect(response.body.Directions).to.be.a("string");
             })
