@@ -44,6 +44,7 @@ def create_app(config_class=DevelopmentConfig):
             r"/register": origins,
             r"/logout": origins,
             r"/captcha": origins,
+            r"/email": origins,
         },
         supports_credentials=True,
     )
