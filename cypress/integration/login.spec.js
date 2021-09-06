@@ -11,10 +11,10 @@ import {
 // Expected error responses
 const badLoginMessage = "Wrong email or password. Try again.";
 const invalidReqMessage =
-  "Email and password must be included in the request body";
+  "Email, password and recaptcha must be included in the request body.";
 
 const missingPassword =
-  "Email and password must be included in the request body.";
+  "Email, password and recaptcha must be included in the request body.";
 let session_Id;
 let quiz_Id;
 
@@ -398,7 +398,7 @@ describe("Login Tests", () => {
               expect(response.body.error).to.satisfy(function (s) {
                 return (
                   s ===
-                  "Email and password must be included in the request body."
+                  "Email, password and recaptcha must be included in the request body."
                 );
               });
             });
