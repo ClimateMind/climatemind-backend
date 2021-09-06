@@ -188,16 +188,17 @@ def register():
     def valid_name(name):
         return 2 <= len(name) <= 50
 
-    if not valid_name(r["firstName"]) or not valid_name(r["lastName"]):
-        raise InvalidUsageError(
-            message="First & last name must be between 2 and 50 characters."
-        )
+    for param in ("firstName", "lastName"):
+        if not valid_name(r[param]):
+            raise InvalidUsageError(
+                message=f"{param} must be between 2 and 50 characters."
+            )
 
     # TODO: When conversations PR integrated, replace try except with UUID checker
     try:
         quiz_uuid = uuid.UUID(r["quizId"])
 
-    except TypeError:
+    except (TypeError, ValueError):
         raise InvalidUsageError(message="Quiz UUID is improperly formatted.")
 
     scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).one_or_none()
@@ -210,9 +211,7 @@ def register():
 
     if not password_valid(r["password"]):
         raise InvalidUsageError(
-            message="""Password does not fit the requirements.
-            "Password must be between 8-128 characters, contain at least 
-            one number or special character, and cannot contain any spaces."""
+            message="Password does not fit the requirements. Password must be between 8-128 characters, contain at least one number or special character, and cannot contain any spaces."
         )
 
     user = Users.find_by_username(r["email"])
