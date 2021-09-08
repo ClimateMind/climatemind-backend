@@ -4,6 +4,9 @@ from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
 from flask_caching import Cache
 from flask_jwt_extended import JWTManager
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
+
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -13,3 +16,6 @@ login.login_message = "Please log in to access this page."
 cache = Cache()
 auto = Autodoc()
 jwt = JWTManager()
+limiter = Limiter(
+    key_func=get_remote_address, default_limits=["1000 per day", "200 per hour"]
+)
