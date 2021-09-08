@@ -186,14 +186,10 @@ def register():
                 message=f"{param} must be included in the request body."
             )
 
-    def valid_name(name):
-        return 2 <= len(name) <= 50
-
-
     quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
-    
+
     for param in ("firstName", "lastName"):
-        if not valid_name(r[param]):
+        if not 2 <= len(r[param]) <= 50:
             raise InvalidUsageError(
                 message=f"{param} must be between 2 and 50 characters."
             )
