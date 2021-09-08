@@ -186,7 +186,7 @@ def register():
                 message=f"{param} must be included in the request body."
             )
 
-    quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
+    quiz_uuid = validate_uuid(r["quizId"], uuidType.QUIZ)
 
     for param in ("firstName", "lastName"):
         if not 2 <= len(r[param]) <= 50:
@@ -194,7 +194,7 @@ def register():
                 message=f"{param} must be between 2 and 50 characters."
             )
 
-    scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).one_or_none()
+    scores = db.session.query(Scores).filter_by(quiz_uuid=r["quizId"]).one_or_none()
 
     if not scores:
         raise DatabaseError(message="Quiz ID is not in the db.")
@@ -212,7 +212,7 @@ def register():
         raise UnauthorizedError(message="Email already registered")
     else:
         user = add_user_to_db(
-            r["firstName"], r["lastName"], r["email"], r["password"], quiz_uuid
+            r["firstName"], r["lastName"], r["email"], r["password"], r["quizId"]
         )
 
     access_token = create_access_token(identity=user, fresh=True)
