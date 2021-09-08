@@ -14,12 +14,14 @@ from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import unset_jwt_cookies
 from flask_cors import cross_origin
 from app.subscribe.store_subscription_data import check_email
+from sqlalchemy.exc import SQLAlchemyError
 
 from app.errors.errors import InvalidUsageError, DatabaseError, UnauthorizedError
 
 from app.models import Users, Scores
 
 from app import db, auto
+from app import limiter
 
 import uuid
 
@@ -30,33 +32,53 @@ Valid URLS to access the refresh endpoint are specified in app/__init__.py
 """
 
 
+@limiter.request_filter
+def ip_whitelist():
+    """
+    Adds localhost IP to the rate limiter's whitelist when operating in development environments.
+    Prevents conflicts with Cypress testing & VPNs.
+    """
+    local = None
+
+    if (
+        os.environ["DATABASE_PARAMS"]
+        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
+    ):
+        local = request.remote_addr == "127.0.0.1" or os.environ.get("VPN")
+
+    return local
+
+
 @bp.route("/login", methods=["POST"])
 @auto.doc()
+@limiter.limit("100/day;50/hour;10/minute;5/second")
 def login():
     """
     Logs a user in by parsing a POST request containing user credentials.
     User provides email/password.
 
-    Returns: errors if data is not valid or captcha fails.
+    Returns: Errors if data is not valid or captcha fails.
     Returns: Access token and refresh token otherwise.
     """
     r = request.get_json(force=True, silent=True)
 
     if not r:
         raise InvalidUsageError(
-            message="Email and password must be included in the request body."
+            message="Email, password and recaptcha must be included in the request body."
         )
 
     email = r.get("email", None)
     password = r.get("password", None)
     recaptcha_token = r.get("recaptchaToken", None)
 
-    if check_email(email):
-        user = db.session.query(Users).filter_by(user_email=email).one_or_none()
-    else:
-        raise UnauthorizedError(message="Wrong email or password. Try again.")
+    if not password or not email or not recaptcha_token:
+        raise InvalidUsageError(
+            message="Email, password and recaptcha must be included in the request body."
+        )
 
-    if not user or not password_valid(password) or not user.check_password(password):
+    user = db.session.query(Users).filter_by(user_email=email).one_or_none()
+
+    if not user or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
     # Verify captcha with Google
@@ -95,11 +117,14 @@ def login():
 
 @bp.route("/refresh", methods=["POST"])
 @jwt_required(refresh=True)
+@limiter.exempt
 def refresh():
     """
     Creates a refresh token and returns a new access token and refresh token to the user.
     This endpoint can only be accessed by URLs allowed from CORS.
     These URLs are specified in app/__init__.py
+
+    Returns: A new refresh token and access token.
     """
     identity = get_jwt_identity()
     user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
@@ -136,22 +161,8 @@ def logout():
     return response, 200
 
 
-@bp.route("/protected", methods=["GET"])
-@cross_origin()
-@jwt_required()
-def protected():
-    """
-    A temporary test endpoint for accessing a protected resource
-    """
-    return jsonify(
-        first_name=current_user.first_name,
-        last_name=current_user.last_name,
-        uuid=current_user.user_uuid,
-        email=current_user.user_email,
-    )
-
-
 @bp.route("/register", methods=["POST"])
+@limiter.limit("100/day;50/hour;10/minute;5/second")
 def register():
     """
     Registration endpoint
@@ -161,51 +172,52 @@ def register():
     The same email cannot be used for more than one account.
     Users will have to take the quiz before registering, meaning the quiz_uuid is linked to scores.
 
-    Returns: Errors if any data is invalid
-    Returns: Access Token and Refresh Token otherwise
+    Returns: Access Token and Refresh Token, or errors if any data is invalid
     """
+
     r = request.get_json(force=True, silent=True)
 
     if not r:
-        raise InvalidUsageError(
-            message="Email and password must be included in the request body."
-        )
+        raise InvalidUsageError(message="JSON body must be included in the request.")
 
-    first_name = r.get("firstName", None)
-    last_name = r.get("lastName", None)
-    email = r.get("email", None)
-    password = r.get("password", None)
-    quiz_uuid = r.get("quizId", None)
+    for param in ("firstName", "lastName", "email", "password", "quizId"):
+        if param not in r:
+            raise InvalidUsageError(
+                message=f"{param} must be included in the request body."
+            )
 
-    if not valid_name(first_name):
-        raise InvalidUsageError(
-            message="First name must be between 2 and 50 characters."
-        )
+    def valid_name(name):
+        return 2 <= len(name) <= 50
 
-    if not valid_name(last_name):
-        raise InvalidUsageError(
-            message="Last name must be between 2 and 50 characters."
-        )
 
     quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
+    
+    for param in ("firstName", "lastName"):
+        if not valid_name(r[param]):
+            raise InvalidUsageError(
+                message=f"{param} must be between 2 and 50 characters."
+            )
 
-    if not scores_in_db(quiz_uuid):
+    scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).one_or_none()
+
+    if not scores:
         raise DatabaseError(message="Quiz ID is not in the db.")
 
-    if not check_email(email):
-        raise InvalidUsageError(message=f"The email {email} is invalid.")
+    if not check_email(r["email"]):
+        raise InvalidUsageError(message=f"The email {r['email']} is invalid.")
 
-    if not password_valid(password):
+    if not password_valid(r["password"]):
         raise InvalidUsageError(
-            message="Password does not fit the requirements. "
-            "Password must be between 8-128 characters, contain at least one number or special character, and cannot contain any spaces."
+            message="Password does not fit the requirements. Password must be between 8-128 characters, contain at least one number or special character, and cannot contain any spaces."
         )
 
-    user = Users.find_by_username(email)
+    user = Users.find_by_username(r["email"])
     if user:
         raise UnauthorizedError(message="Email already registered")
     else:
-        user = add_user_to_db(first_name, last_name, email, password, quiz_uuid)
+        user = add_user_to_db(
+            r["firstName"], r["lastName"], r["email"], r["password"], quiz_uuid
+        )
 
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
@@ -240,7 +252,7 @@ def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
         password (str)
         quiz_uuid (uuid)
 
-    Returns: the user object
+    Returns: The user object
     """
     user_uuid = uuid.uuid4()
     user_created_timestamp = datetime.now(timezone.utc)
@@ -257,20 +269,13 @@ def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
     try:
         db.session.add(user)
         db.session.commit()
-    except:
+
+    except SQLAlchemyError:
         raise DatabaseError(
             message="An error occurred while adding user to the database."
         )
+
     return user
-
-
-def valid_name(name):
-    """
-    Names must be between 2 and 50 characters.
-    """
-    if not name:
-        raise InvalidUsageError(message="Name is missing.")
-    return 2 <= len(name) <= 50
 
 
 def password_valid(password):
@@ -278,26 +283,12 @@ def password_valid(password):
     Passwords must contain at least one digit or special character.
     Passwords must be between 8 and 128 characters.
     Passwords cannot contain spaces.
-    """
-    if not password:
-        raise InvalidUsageError(
-            message="Email and password must be included in the request body."
-        )
 
+    Returns: True if password meets conditions, False otherwise
+    """
     conds = [
         lambda s: any(x.isdigit() or not x.isalnum() for x in s),
         lambda s: all(not x.isspace() for x in s),
         lambda s: 8 <= len(s) <= 128,
     ]
     return all(cond(password) for cond in conds)
-
-
-def scores_in_db(quiz_uuid):
-    """
-    Check that the quizId received from the frontend is in the scores table in the db.
-    """
-    scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).first()
-    if scores:
-        return True
-    else:
-        return False
