@@ -34,55 +34,54 @@ const rateLimitPerHour = "ratelimit exceeded 50 per 1 hour";
 const rateLimitPerDay = "ratelimit exceeded 100 per 1 day";
 
 describe("'/email' endpoint", () => {
-    describe("logged in user", () => {
-        beforeEach(() => {
-            cy.sessionEndpoint().should((response) => {
-                session_Id = response.body.sessionId
+    beforeEach(() => {
+        cy.sessionEndpoint().should((response) => {
+            session_Id = response.body.sessionId
+        }).then(() => {
+            cy.scoresEndpoint(scores, session_Id).should((response) => {
+                set_one_quizId = response.body.quizId;
             }).then(() => {
-                cy.scoresEndpoint(scores, session_Id).should((response) => {
-                    set_one_quizId = response.body.quizId;
-                }).then(() => {
-                    user = {
-                        firstName: faker.name.firstName(),
-                        lastName: faker.name.lastName(),
-                        email: faker.internet.email(),
-                        password: `@7${faker.internet.password()}`,
-                        quizId: set_one_quizId
-                    };
+                user = {
+                    firstName: faker.name.firstName(),
+                    lastName: faker.name.lastName(),
+                    email: faker.internet.email(),
+                    password: `@7${faker.internet.password()}`,
+                    quizId: set_one_quizId
+                };
 
-                    cy.registerEndpoint(user).should((response) => {
-                        if (response.status == 201) {
-                            expect(response.status).to.equal(201);
-                            expect(response.body.message).to.satisfy(function (s) {
-                                return s === successMessage;
+                cy.registerEndpoint(user).should((response) => {
+                    if (response.status == 201) {
+                        expect(response.status).to.equal(201);
+                        expect(response.body.message).to.satisfy(function (s) {
+                            return s === successMessage;
+                        });
+                        accessToken = response.body.access_token;
+                    } else {
+                        expect(response.status).to.equal(429);
+                        expect(response.body).to.have.property("error");
+                        errorMessage = response.body;
+                        if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                            expect(response.body.error).to.satisfy(function (s) {
+                                return s === rateLimitPerSecond;
                             });
-                            accessToken = response.body.access_token;
-                        } else {
-                            expect(response.status).to.equal(429);
-                            expect(response.body).to.have.property("error");
-                            errorMessage = response.body;
-                            if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
-                                expect(response.body.error).to.satisfy(function (s) {
-                                    return s === rateLimitPerSecond;
-                                });
-                            } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
-                                expect(response.body.error).to.satisfy(function (s) {
-                                    return s === rateLimitPerMinute;
-                                });
-                            } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
-                                expect(response.body.error).to.satisfy(function (s) {
-                                    return s === rateLimitPerHour;
-                                });
-                            }
-                            else expect(response.body.error).to.satisfy(function (s) {
-                                return s === rateLimitPerDay;
+                        } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                            expect(response.body.error).to.satisfy(function (s) {
+                                return s === rateLimitPerMinute;
+                            });
+                        } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                            expect(response.body.error).to.satisfy(function (s) {
+                                return s === rateLimitPerHour;
                             });
                         }
-                    });
+                        else expect(response.body.error).to.satisfy(function (s) {
+                            return s === rateLimitPerDay;
+                        });
+                    }
                 });
             });
         });
-
+    });
+    describe("logged in user Udating their email", () => {
         it("should get current email", () => {
             cy.emailEndpoint(accessToken)
                 .should((response) => {
@@ -98,7 +97,7 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-        it("should update email", () => {
+        it("should update current email", () => {
             newEmail = faker.internet.email();
             confirmNewEmail = newEmail;
 
@@ -122,7 +121,7 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-        it("should handle invalid email format", () => {
+        it("should handle invalid email format when updating current email", () => {
             newEmail = faker.lorem.word();
             confirmNewEmail = newEmail;
 
@@ -170,7 +169,7 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-        it("should handle missing newEmail", () => {
+        it("should handle missing newEmail when updating email", () => {
             newEmail = faker.internet.email();
             confirmNewEmail = newEmail;
             
@@ -193,7 +192,7 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-        it("should handle missing confirmEmail", () => {
+        it("should handle missing confirmEmail when updating email", () => {
             newEmail = faker.internet.email();
             
             updateEmailBody = {
@@ -215,7 +214,7 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-        it("should handle missing password", () => {
+        it("should handle missing password when updating email", () => {
             newEmail = faker.internet.email();
             confirmNewEmail = newEmail;
             
@@ -238,7 +237,7 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-        it("should handle invalid password", () => {
+        it("should handle invalid password when updating email", () => {
             newEmail = faker.internet.email();
             confirmNewEmail = newEmail;
             
@@ -262,7 +261,7 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-        it("should handle an existing email", () => {
+        it("should handle an existing email when updating email", () => {
             let user2 = {
                 firstName: faker.name.firstName(),
                 lastName: faker.name.lastName(),
@@ -298,17 +297,19 @@ describe("'/email' endpoint", () => {
                     });
                 });
         });
+    });
 
+    describe("logging in with an updated email", () => {
         it("should log a user in with their updated email", () => {
             newEmail = faker.internet.email();
             confirmNewEmail = newEmail;
-            
+
             updateEmailBody = {
                 "newEmail": newEmail,
                 "confirmEmail": confirmNewEmail,
                 "password": user.password
             };
-            
+
             expect(updateEmailBody.password).to.equal(user.password);
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
                 .should((response) => {
@@ -318,7 +319,7 @@ describe("'/email' endpoint", () => {
                         return s === successEmailUpdateMessage;
                     });
                 });
-            
+
             let user_updatedEmail = {
                 "email": updateEmailBody.newEmail,
                 "password": updateEmailBody.password,
@@ -335,13 +336,13 @@ describe("'/email' endpoint", () => {
         it("should not log a user in with their old email", () => {
             newEmail = faker.internet.email();
             confirmNewEmail = newEmail;
-            
+
             updateEmailBody = {
                 "newEmail": newEmail,
                 "confirmEmail": confirmNewEmail,
                 "password": user.password
             };
-            
+
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
                 .should((response) => {
                     expect(response.status).to.equal(200);
@@ -349,7 +350,7 @@ describe("'/email' endpoint", () => {
                         return s === successEmailUpdateMessage;
                     });
                 });
-            
+
             user_oldEmail = {
                 "email": user.email,
                 "password": user.password,
@@ -367,7 +368,7 @@ describe("'/email' endpoint", () => {
         });
     });
 
-    describe("unlogged in user", () => {
+    describe("unlogged in user trying to update their email", () => {
         it("should handle trying to get current email without an access_token", () => {
             cy.request({
                 method: 'GET',
@@ -405,7 +406,7 @@ describe("'/email' endpoint", () => {
         });
     });
 
-    describe("Expired Token", () => {
+    describe("Updating email with an Expired Token", () => {
         it("should handle trying to get current email with an Expired Token", () => {
             cy.emailEndpoint(expiredAccessToken)
                 .should((response) => {
