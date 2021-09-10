@@ -12,21 +12,26 @@ let updateEmailBody;
 let newEmail;
 let confirmNewEmail;
 let user_oldEmail;
+let errorMessage;
 
-
-let successEmailUpdateMessage = "User email successfully updated.";
-let invalidEmailFormatMessage = "Cannot update email. Email is not formatted correctly.";
-let notMatchMessage = "Cannot update email. New email address and confirm new email address do not match.";
-let missingNewEmailMessage = "newEmail must be included in the request body.";
-let missingConfirmNewEmailMessage = "confirmEmail must be included in the request body.";
-let missingPasswordMessage = "password must be included in the request body.";
-let invalidPasswordMessage = "Cannot update email. Incorrect password.";
-let emailAlreadyExistsInDBMessage = "Cannot update email. Email already exists in the database."
+const successMessage = "Successfully created user";
+const successEmailUpdateMessage = "User email successfully updated.";
+const invalidEmailFormatMessage = "Cannot update email. Email is not formatted correctly.";
+const notMatchMessage = "Cannot update email. New email address and confirm new email address do not match.";
+const missingNewEmailMessage = "newEmail must be included in the request body.";
+const missingConfirmNewEmailMessage = "confirmEmail must be included in the request body.";
+const missingPasswordMessage = "password must be included in the request body.";
+const invalidPasswordMessage = "Cannot update email. Incorrect password.";
+const emailAlreadyExistsInDBMessage = "Cannot update email. Email already exists in the database."
 const badLoginMessage = "Wrong email or password. Try again.";
 const successfulLoginMessage = "successfully logged in user";
-let MissingJWTMessage = 'Missing JWT in headers or cookies (Missing Authorization Header; Missing cookie "access_token")'
+const MissingJWTMessage = 'Missing JWT in headers or cookies (Missing Authorization Header; Missing cookie "access_token")'
 const expiredAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjMwNDcyOTUzLCJqdGkiOiIyZTMzZThjNy1iNTQyLTQ5MmQtYjVkMS0xNmU4NWFlZjlhYzIiLCJuYmYiOjE2MzA0NzI5NTMsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiI1RDZFNjM0MS1CRjJBLTRGM0ItOTBCOS04NzA5NTUwN0YxOEYiLCJleHAiOjE2MzA0NzM4NTN9.osRQqeVJJaHitPtBmjB2mjwY3PIhgnEzX5Z4-fLzlBc";
-let expiredAccessTokenMessage = "Token has expired";
+const expiredAccessTokenMessage = "Token has expired";
+const rateLimitPerSecond = "ratelimit exceeded 5 per 1 second";
+const rateLimitPerMinute = "ratelimit exceeded 10 per 1 minute";
+const rateLimitPerHour = "ratelimit exceeded 50 per 1 hour";
+const rateLimitPerDay = "ratelimit exceeded 100 per 1 day";
 
 describe("'/email' endpoint", () => {
     describe("logged in user", () => {
@@ -41,13 +46,38 @@ describe("'/email' endpoint", () => {
                         firstName: faker.name.firstName(),
                         lastName: faker.name.lastName(),
                         email: faker.internet.email(),
-                        password: faker.internet.password(),
+                        password: `@7${faker.internet.password()}`,
                         quizId: set_one_quizId
                     };
 
                     cy.registerEndpoint(user).should((response) => {
-                        expect(response.status).to.equal(201);
-                        accessToken = response.body.access_token;
+                        if (response.status == 201) {
+                            expect(response.status).to.equal(201);
+                            expect(response.body.message).to.satisfy(function (s) {
+                                return s === successMessage;
+                            });
+                            accessToken = response.body.access_token;
+                        } else {
+                            expect(response.status).to.equal(429);
+                            expect(response.body).to.have.property("error");
+                            errorMessage = response.body;
+                            if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                                expect(response.body.error).to.satisfy(function (s) {
+                                    return s === rateLimitPerSecond;
+                                });
+                            } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                                expect(response.body.error).to.satisfy(function (s) {
+                                    return s === rateLimitPerMinute;
+                                });
+                            } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                                expect(response.body.error).to.satisfy(function (s) {
+                                    return s === rateLimitPerHour;
+                                });
+                            }
+                            else expect(response.body.error).to.satisfy(function (s) {
+                                return s === rateLimitPerDay;
+                            });
+                        }
                     });
                 });
             });
@@ -237,7 +267,7 @@ describe("'/email' endpoint", () => {
                 firstName: faker.name.firstName(),
                 lastName: faker.name.lastName(),
                 email: faker.internet.email(),
-                password: faker.internet.password(),
+                password: `@7${faker.internet.password()}`,
                 quizId: set_one_quizId
             };
 
@@ -344,7 +374,7 @@ describe("'/email' endpoint", () => {
                 url: 'http://localhost:5000/email',
                 failOnStatusCode: false,
             })
-                .should((response) => {
+            .should((response) => {
                     expect(response.status).to.equal(401);
                     expect(response.headers["content-type"]).to.equal("application/json");
                     expect(response.body).to.be.an("object");

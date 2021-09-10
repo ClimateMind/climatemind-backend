@@ -15,6 +15,10 @@ const badReqMessage2 = "Email and password must be included in the request body.
 const missingName = "Name is missing.";
 const invalidQuizIdMessage = "Quiz ID is not a valid UUID4 format.";
 const quizIdIsRequiredMessage = "Quiz UUID must be included to register."
+const rateLimitPerSecond = "ratelimit exceeded 5 per 1 second";
+const rateLimitPerMinute = "ratelimit exceeded 10 per 1 minute";
+const rateLimitPerHour = "ratelimit exceeded 50 per 1 hour";
+const rateLimitPerDay = "ratelimit exceeded 100 per 1 day";
 
 
 describe("'/register' endpoint", () => {
@@ -36,23 +40,46 @@ describe("'/register' endpoint", () => {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
-            password: faker.internet.password(),
+            password: `@7${faker.internet.password()}`,
             quizId: set_one_quizId
         };
 
         cy.registerEndpoint(user).should((response) => {
-            expect(response.status).to.equal(201);
-            expect(response.headers["content-type"]).to.equal(
-                "application/json"
-            );
-            expect(response.headers["access-control-allow-origin"]).to.equal(
-                "http://0.0.0.0:3000"
-            );
-            expect(response.body).to.be.a("object");
-            expect(response.body).to.have.property("message");
-            expect(response.body.message).to.satisfy(function (s) {
-                return s === successMessage;
-            });
+            if (response.status == 201) {
+                expect(response.status).to.equal(201);
+                expect(response.headers["content-type"]).to.equal(
+                    "application/json"
+                );
+                expect(response.headers["access-control-allow-origin"]).to.equal(
+                    "http://0.0.0.0:3000"
+                );
+                expect(response.body).to.be.a("object");
+                expect(response.body).to.have.property("message");
+                expect(response.body.message).to.satisfy(function (s) {
+                    return s === successMessage;
+                });
+
+            } else {
+                expect(response.status).to.equal(429);
+                expect(response.body).to.have.property("error");
+                let errorMessage = response.body;
+                if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerSecond;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerMinute;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerHour;
+                    });
+                }
+                else expect(response.body.error).to.satisfy(function (s) {
+                    return s === rateLimitPerDay;
+                });
+            }
         });
 
     });
@@ -62,23 +89,46 @@ describe("'/register' endpoint", () => {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
-            password: faker.internet.password(),
+            password: `@7${faker.internet.password()}`,
             quizId: set_one_quizId
         };
 
         cy.registerEndpoint(user).should((response) => {
-            expect(response.status).to.equal(201);
-            expect(response.headers["content-type"]).to.equal(
-                "application/json"
-            );
-            expect(response.headers["access-control-allow-origin"]).to.equal(
-                "http://0.0.0.0:3000"
-            );
-            expect(response.body).to.be.a("object");
-            expect(response.body).to.have.property("message");
-            expect(response.body.message).to.satisfy(function (s) {
-                return s === successMessage;
-            });
+            if (response.status == 201) {
+                expect(response.status).to.equal(201);
+                expect(response.headers["content-type"]).to.equal(
+                    "application/json"
+                );
+                expect(response.headers["access-control-allow-origin"]).to.equal(
+                    "http://0.0.0.0:3000"
+                );
+                expect(response.body).to.be.a("object");
+                expect(response.body).to.have.property("message");
+                expect(response.body.message).to.satisfy(function (s) {
+                    return s === successMessage;
+                });
+
+            } else {
+                expect(response.status).to.equal(429);
+                expect(response.body).to.have.property("error");
+                let errorMessage = response.body;
+                if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerSecond;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerMinute;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerHour;
+                    });
+                }
+                else expect(response.body.error).to.satisfy(function (s) {
+                    return s === rateLimitPerDay;
+                });
+            }
         });
     });
 
@@ -87,19 +137,42 @@ describe("'/register' endpoint", () => {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
-            password: faker.internet.password(),
+            password: `@7${faker.internet.password()}`,
             quizId: set_two_quizId
         };
 
         cy.registerEndpoint(user).then(() => {
             cy.registerEndpoint(user).should((response) => {
-                expect(response.status).to.equal(401);
-                expect(response.headers["content-type"]).to.equal("application/json");
-                expect(response.body).to.be.a("object");
-                expect(response.body).to.have.property("error");
-                expect(response.body.error).to.satisfy(function (s) {
-                    return s === alreadyRegisteredMessage;
-                });
+                if (response.status == 401) {
+                    expect(response.status).to.equal(401);
+                    expect(response.headers["content-type"]).to.equal("application/json");
+                    expect(response.body).to.be.a("object");
+                    expect(response.body).to.have.property("error");
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === alreadyRegisteredMessage;
+                    });
+
+                } else {
+                    expect(response.status).to.equal(429);
+                    expect(response.body).to.have.property("error");
+                    let errorMessage = response.body;
+                    if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                        expect(response.body.error).to.satisfy(function (s) {
+                            return s === rateLimitPerSecond;
+                        });
+                    } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                        expect(response.body.error).to.satisfy(function (s) {
+                            return s === rateLimitPerMinute;
+                        });
+                    } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                        expect(response.body.error).to.satisfy(function (s) {
+                            return s === rateLimitPerHour;
+                        });
+                    }
+                    else expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerDay;
+                    });
+                }
             });
         });
     });
@@ -108,19 +181,41 @@ describe("'/register' endpoint", () => {
         user = {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
-            password: faker.internet.password(),
+            password: `@7${faker.internet.password()}`,
             quizId: set_one_quizId
         };
 
         cy.registerEndpoint(user).should((response) => {
-            expect(response.status).to.equal(400);
-            expect(response.headers["content-type"]).to.equal("application/json");
-            expect(response.body).to.be.a("object");
-            expect(response.body).to.have.property("error");
-            expect(response.body.error).to.be.a("string");
-            expect(response.body.error).to.satisfy(function (s) {
-                return s === badReqMessage1;
-            });
+            if (response.status == 400) {
+                expect(response.status).to.equal(400);
+                expect(response.headers["content-type"]).to.equal("application/json");
+                expect(response.body).to.be.a("object");
+                expect(response.body).to.have.property("error");
+                expect(response.body.error).to.be.a("string");
+                expect(response.body.error).to.satisfy(function (s) {
+                    return s === badReqMessage1;
+                });
+            } else {
+                expect(response.status).to.equal(429);
+                expect(response.body).to.have.property("error");
+                let errorMessage = response.body;
+                if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerSecond;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerMinute;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerHour;
+                    });
+                }
+                else expect(response.body.error).to.satisfy(function (s) {
+                    return s === rateLimitPerDay;
+                });
+            }
         });
 
     });
@@ -134,26 +229,71 @@ describe("'/register' endpoint", () => {
         };
 
         cy.registerEndpoint(user).should((response) => {
-            expect(response.status).to.equal(400);
-            expect(response.headers["content-type"]).to.equal("application/json");
-            expect(response.body).to.be.a("object");
-            expect(response.body).to.have.property("error");
-            expect(response.body.error).to.satisfy(function (s) {
-                return s === badReqMessage2;
-            });
+            if (response.status == 400) {
+                expect(response.status).to.equal(400);
+                expect(response.headers["content-type"]).to.equal("application/json");
+                expect(response.body).to.be.a("object");
+                expect(response.body).to.have.property("error");
+                expect(response.body.error).to.satisfy(function (s) {
+                    return s === badReqMessage2;
+                });
+
+            } else {
+                expect(response.status).to.equal(429);
+                expect(response.body).to.have.property("error");
+                let errorMessage = response.body;
+                if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerSecond;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerMinute;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerHour;
+                    });
+                }
+                else expect(response.body.error).to.satisfy(function (s) {
+                    return s === rateLimitPerDay;
+                });
+            }
         });
     });
 
     it("should handle a missing body", () => {
         cy.registerEndpoint().should((response) => {
-            expect(response.status).to.equal(400);
-            expect(response.headers["content-type"]).to.equal("application/json");
-            expect(response.body).to.be.a("object");
-            expect(response.body).to.have.property("error");
-            expect(response.body.error).to.be.a("string");
-            expect(response.body.error).to.satisfy(function (s) {
-                return s === badReqMessage2;
-            });
+            if (response.status == 400) {
+                expect(response.status).to.equal(400);
+                expect(response.headers["content-type"]).to.equal("application/json");
+                expect(response.body).to.be.a("object");
+                expect(response.body).to.have.property("error");
+                expect(response.body.error).to.be.a("string");
+                expect(response.body.error).to.satisfy(function (s) {
+                    return s === badReqMessage2;
+                });
+            } else {
+                expect(response.status).to.equal(429);
+                expect(response.body).to.have.property("error");
+                let errorMessage = response.body;
+                if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerSecond;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerMinute;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerHour;
+                    });
+                }
+                else expect(response.body.error).to.satisfy(function (s) {
+                    return s === rateLimitPerDay;
+                });
+            }
         });
     });
 
@@ -161,19 +301,42 @@ describe("'/register' endpoint", () => {
         user = {
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
-            password: faker.internet.password(),
+            password: `@7${faker.internet.password()}`,
             quizId: set_one_quizId
         };
 
         cy.registerEndpoint(user).should((response) => {
-            expect(response.status).to.equal(400);
-            expect(response.headers["content-type"]).to.equal("application/json");
-            expect(response.body).to.be.a("object");
-            expect(response.body).to.have.property("error");
-            expect(response.body.error).to.be.a("string");
-            expect(response.body.error, { timeout: 3000 }).to.satisfy(function (s) {
-                return s === missingName;
-            });
+            if (response.status == 400) {
+                expect(response.status).to.equal(400);
+                expect(response.headers["content-type"]).to.equal("application/json");
+                expect(response.body).to.be.a("object");
+                expect(response.body).to.have.property("error");
+                expect(response.body.error).to.be.a("string");
+                expect(response.body.error, { timeout: 3000 }).to.satisfy(function (s) {
+                    return s === missingName;
+                });
+
+            } else {
+                expect(response.status).to.equal(429);
+                expect(response.body).to.have.property("error");
+                let errorMessage = response.body;
+                if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerSecond;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerMinute;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerHour;
+                    });
+                }
+                else expect(response.body.error).to.satisfy(function (s) {
+                    return s === rateLimitPerDay;
+                });
+            }
         });
     });
 
@@ -181,19 +344,42 @@ describe("'/register' endpoint", () => {
         user = {
             firstName: faker.name.firstName(),
             email: faker.internet.email(),
-            password: faker.internet.password(),
+            password: `@7${faker.internet.password()}`,
             quizId: set_one_quizId
         };
 
         cy.registerEndpoint(user).should((response) => {
-            expect(response.status).to.equal(400);
-            expect(response.headers["content-type"]).to.equal("application/json");
-            expect(response.body).to.be.a("object");
-            expect(response.body).to.have.property("error");
-            expect(response.body.error).to.be.a("string");
-            expect(response.body.error).to.satisfy(function (s) {
-                return s === missingName;
-            });
+            if (response.status == 400) {
+                expect(response.status).to.equal(400);
+                expect(response.headers["content-type"]).to.equal("application/json");
+                expect(response.body).to.be.a("object");
+                expect(response.body).to.have.property("error");
+                expect(response.body.error).to.be.a("string");
+                expect(response.body.error).to.satisfy(function (s) {
+                    return s === missingName;
+                });
+
+            } else {
+                expect(response.status).to.equal(429);
+                expect(response.body).to.have.property("error");
+                let errorMessage = response.body;
+                if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerSecond;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerMinute;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerHour;
+                    });
+                }
+                else expect(response.body.error).to.satisfy(function (s) {
+                    return s === rateLimitPerDay;
+                });
+            }
         });
     });
 
@@ -202,18 +388,41 @@ describe("'/register' endpoint", () => {
             firstName: faker.name.firstName(),
             lastName: faker.name.lastName(),
             email: faker.internet.email(),
-            password: faker.internet.password()
+            password: `@7${faker.internet.password()}`
         };
 
         cy.registerEndpoint(user).should((response) => {
-            expect(response.status).to.equal(400);
-            expect(response.headers["content-type"]).to.equal("application/json");
-            expect(response.body).to.be.a("object");
-            expect(response.body).to.have.property("error");
-            expect(response.body.error).to.be.a("string");
-            expect(response.body.error).to.satisfy(function (s) {
-                return s === quizIdIsRequiredMessage;
-            });
+            if (response.status == 400) {
+                expect(response.status).to.equal(400);
+                expect(response.headers["content-type"]).to.equal("application/json");
+                expect(response.body).to.be.a("object");
+                expect(response.body).to.have.property("error");
+                expect(response.body.error).to.be.a("string");
+                expect(response.body.error).to.satisfy(function (s) {
+                    return s === quizIdIsRequiredMessage;
+                });
+
+            } else {
+                expect(response.status).to.equal(429);
+                expect(response.body).to.have.property("error");
+                let errorMessage = response.body;
+                if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerSecond;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerMinute;
+                    });
+                } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerHour;
+                    });
+                }
+                else expect(response.body.error).to.satisfy(function (s) {
+                    return s === rateLimitPerDay;
+                });
+            }
         });
     });
 });
