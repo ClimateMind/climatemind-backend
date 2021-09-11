@@ -327,6 +327,7 @@ describe("'/email' endpoint", () => {
             };
 
             cy.loginEndpoint(user_updatedEmail).should((response) => {
+                expect(response.body.message).to.be.a("string")
                 expect(response.status).to.equal(200);
                 expect(response.body.message).to.satisfy(function (s) {
                     return s === successfulLoginMessage;
