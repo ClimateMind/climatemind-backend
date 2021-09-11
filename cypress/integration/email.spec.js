@@ -97,59 +97,6 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-       /* it("should update current email", () => {
-            newEmail = faker.internet.email();
-            confirmNewEmail = newEmail;
-
-            updateEmailBody = {
-                "newEmail": newEmail,
-                "confirmEmail": confirmNewEmail,
-                "password": user.password
-            };
-
-            cy.updateEmailEndpoint(accessToken, updateEmailBody)
-                .should((response) => {
-                    expect(response.status).to.equal(200);
-                    expect(response.headers["content-type"]).to.equal("application/json");
-                    expect(response.headers["access-control-allow-origin"]).to.equal("*");
-                    expect(response.body).to.be.an("object");
-                    expect(response.body).to.have.property("message");
-                    expect(response.body.message).to.be.a("string");
-                    expect(response.body.message).to.satisfy(function (s) {
-                        return s === successEmailUpdateMessage;
-                    });
-                });
-
-            //Login with an updated email
-            let user_updatedEmail = {
-                "email": updateEmailBody.newEmail,
-                "password": updateEmailBody.password,
-            };
-
-            cy.loginEndpoint(user_updatedEmail).should((response) => {
-                expect(response.body.message).to.be.a("string")
-                expect(response.status).to.equal(200);
-                expect(response.body.message).to.satisfy(function (s) {
-                    return s === successfulLoginMessage;
-                });
-            });
-
-            //Login with old email
-            user_oldEmail = {
-                "email": user.email,
-                "password": user.password,
-            };
-
-            cy.loginEndpoint(user_oldEmail).should((response) => {
-                expect(response.status).to.equal(401);
-                expect(response.body).to.be.an("object");
-                expect(response.body).to.have.property("error");
-                expect(response.body.error).to.be.a("string");
-                expect(response.body.error).to.satisfy(function (s) {
-                    return s === badLoginMessage;
-                });
-            });
-        });*/
         it("should update current email", () => {
             newEmail = faker.internet.email();
             confirmNewEmail = newEmail;
@@ -187,8 +134,6 @@ describe("'/email' endpoint", () => {
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
                 .should((response) => {
                     expect(response.status).to.equal(200);
-                    expect(response.headers["content-type"]).to.equal("application/json");
-                    expect(response.headers["access-control-allow-origin"]).to.equal("*");
                     expect(response.body).to.be.an("object");
                     expect(response.body).to.have.property("message");
                     expect(response.body.message).to.be.a("string");
@@ -196,6 +141,7 @@ describe("'/email' endpoint", () => {
                         return s === successEmailUpdateMessage;
                     });
                 });
+            
             //Login with an updated email
             let user_updatedEmail = {
                 "email": updateEmailBody.newEmail,
@@ -224,8 +170,6 @@ describe("'/email' endpoint", () => {
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
                 .should((response) => {
                     expect(response.status).to.equal(200);
-                    expect(response.headers["content-type"]).to.equal("application/json");
-                    expect(response.headers["access-control-allow-origin"]).to.equal("*");
                     expect(response.body).to.be.an("object");
                     expect(response.body).to.have.property("message");
                     expect(response.body.message).to.be.a("string");
@@ -428,78 +372,6 @@ describe("'/email' endpoint", () => {
                 });
         });
     });
-/*
-    describe("logging in with an updated email", () => {
-        it("should log a user in with their updated email", () => {
-            newEmail = faker.internet.email();
-            confirmNewEmail = newEmail;
-
-            updateEmailBody = {
-                "newEmail": newEmail,
-                "confirmEmail": confirmNewEmail,
-                "password": user.password
-            };
-
-            expect(updateEmailBody.password).to.equal(user.password);
-            cy.updateEmailEndpoint(accessToken, updateEmailBody)
-                .should((response) => {
-                    expect(response.body.message).to.be.a("string")
-                    expect(response.status).to.equal(200);
-                    //expect(response.body.message).to.be.a("string")
-                    expect(response.body.message).to.satisfy(function (s) {
-                        return s === successEmailUpdateMessage;
-                    });
-                });
-
-            let user_updatedEmail = {
-                "email": updateEmailBody.newEmail,
-                "password": updateEmailBody.password,
-            };
-
-            cy.loginEndpoint(user_updatedEmail).should((response) => {
-                expect(response.body.message).to.be.a("string")
-                expect(response.status).to.equal(200);
-                expect(response.body.message).to.satisfy(function (s) {
-                    return s === successfulLoginMessage;
-                });
-            });
-        });
-
-        it("should not log a user in with their old email", () => {
-            newEmail = faker.internet.email();
-            confirmNewEmail = newEmail;
-
-            updateEmailBody = {
-                "newEmail": newEmail,
-                "confirmEmail": confirmNewEmail,
-                "password": user.password
-            };
-
-            cy.updateEmailEndpoint(accessToken, updateEmailBody)
-                .should((response) => {
-                    expect(response.body.message).to.be.a("string")
-                    expect(response.status).to.equal(200);
-                    expect(response.body.message).to.satisfy(function (s) {
-                        return s === successEmailUpdateMessage;
-                    });
-                });
-
-            user_oldEmail = {
-                "email": user.email,
-                "password": user.password,
-            };
-
-            cy.loginEndpoint(user_oldEmail).should((response) => {
-                expect(response.status).to.equal(401);
-                expect(response.body).to.be.an("object");
-                expect(response.body).to.have.property("error");
-                expect(response.body.error).to.be.a("string");
-                expect(response.body.error).to.satisfy(function (s) {
-                    return s === badLoginMessage;
-                });
-            });
-        });
-    });*/
 
     describe("unlogged in user trying to update their email", () => {
         it("should handle trying to get current email without an access_token", () => {
