@@ -195,6 +195,30 @@ describe("'/email' endpoint", () => {
             });
         });
 
+        it("should handle updating current email using that current email", () => {
+            newEmail = user.email;
+            confirmNewEmail = newEmail;
+
+            updateEmailBody = {
+                "newEmail": newEmail,
+                "confirmEmail": confirmNewEmail,
+                "password": user.password
+            };
+
+            cy.updateEmailEndpoint(accessToken, updateEmailBody)
+                .should((response) => {
+                    expect(response.status).to.equal(409);
+                    expect(response.headers["content-type"]).to.equal("application/json");
+                    expect(response.headers["access-control-allow-origin"]).to.equal("*");
+                    expect(response.body).to.be.an("object");
+                    expect(response.body).to.have.property("error");
+                    expect(response.body.error).to.be.a("string");
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === emailAlreadyExistsInDBMessage;
+                    });
+                });
+        });
+
         it("should handle invalid email format when updating current email", () => {
             newEmail = faker.lorem.word();
             confirmNewEmail = newEmail;
@@ -243,7 +267,7 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-        it("should handle missing newEmail when updating email", () => {
+        it("should handle updating email without newEmail", () => {
             newEmail = faker.internet.email();
             confirmNewEmail = newEmail;
             
@@ -266,7 +290,7 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-        it("should handle missing confirmEmail when updating email", () => {
+        it("should handle updating email without confirmEmail", () => {
             newEmail = faker.internet.email();
             
             updateEmailBody = {
@@ -288,7 +312,7 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-        it("should handle missing password when updating email", () => {
+        it("should handle updating email without password", () => {
             newEmail = faker.internet.email();
             confirmNewEmail = newEmail;
             
@@ -311,7 +335,7 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-        it("should handle invalid password when updating email", () => {
+        it("should handle updating email using invalid password", () => {
             newEmail = faker.internet.email();
             confirmNewEmail = newEmail;
             
@@ -335,7 +359,7 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-        it("should handle an existing email when updating email", () => {
+        it("should handle updating email using an existing email", () => {
             let user2 = {
                 firstName: faker.name.firstName(),
                 lastName: faker.name.lastName(),

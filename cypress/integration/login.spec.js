@@ -27,7 +27,7 @@ let user_invalidPassword;
 let errorMessage;
 
 describe("'/login' endpoint", () => {
-  before(() => {
+  beforeEach(() => {
     cy.sessionEndpoint().should((response) => {
       session_Id = response.body.sessionId
     }).then(() => {
