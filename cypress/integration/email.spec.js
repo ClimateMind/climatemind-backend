@@ -313,8 +313,9 @@ describe("'/email' endpoint", () => {
             expect(updateEmailBody.password).to.equal(user.password);
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
                 .should((response) => {
-                    expect(response.status).to.equal(200);
                     expect(response.body.message).to.be.a("string")
+                    expect(response.status).to.equal(200);
+                    //expect(response.body.message).to.be.a("string")
                     expect(response.body.message).to.satisfy(function (s) {
                         return s === successEmailUpdateMessage;
                     });
@@ -345,6 +346,7 @@ describe("'/email' endpoint", () => {
 
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
                 .should((response) => {
+                    expect(response.body.message).to.be.a("string")
                     expect(response.status).to.equal(200);
                     expect(response.body.message).to.satisfy(function (s) {
                         return s === successEmailUpdateMessage;
