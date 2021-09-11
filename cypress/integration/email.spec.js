@@ -106,7 +106,7 @@ describe("'/email' endpoint", () => {
                 "confirmEmail": confirmNewEmail,
                 "password": user.password
             };
-            
+
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
                 .should((response) => {
                     expect(response.status).to.equal(200);
@@ -119,6 +119,36 @@ describe("'/email' endpoint", () => {
                         return s === successEmailUpdateMessage;
                     });
                 });
+
+            //Login with an updated email
+            let user_updatedEmail = {
+                "email": updateEmailBody.newEmail,
+                "password": updateEmailBody.password,
+            };
+
+            cy.loginEndpoint(user_updatedEmail).should((response) => {
+                expect(response.body.message).to.be.a("string")
+                expect(response.status).to.equal(200);
+                expect(response.body.message).to.satisfy(function (s) {
+                    return s === successfulLoginMessage;
+                });
+            });
+
+            //Login with old email
+            user_oldEmail = {
+                "email": user.email,
+                "password": user.password,
+            };
+
+            cy.loginEndpoint(user_oldEmail).should((response) => {
+                expect(response.status).to.equal(401);
+                expect(response.body).to.be.an("object");
+                expect(response.body).to.have.property("error");
+                expect(response.body.error).to.be.a("string");
+                expect(response.body.error).to.satisfy(function (s) {
+                    return s === badLoginMessage;
+                });
+            });
         });
 
         it("should handle invalid email format when updating current email", () => {
@@ -298,7 +328,7 @@ describe("'/email' endpoint", () => {
                 });
         });
     });
-
+/*
     describe("logging in with an updated email", () => {
         it("should log a user in with their updated email", () => {
             newEmail = faker.internet.email();
@@ -369,7 +399,7 @@ describe("'/email' endpoint", () => {
                 });
             });
         });
-    });
+    });*/
 
     describe("unlogged in user trying to update their email", () => {
         it("should handle trying to get current email without an access_token", () => {
