@@ -34,54 +34,55 @@ const rateLimitPerHour = "ratelimit exceeded 50 per 1 hour";
 const rateLimitPerDay = "ratelimit exceeded 100 per 1 day";
 
 describe("'/email' endpoint", () => {
-    beforeEach(() => {
-        cy.sessionEndpoint().should((response) => {
-            session_Id = response.body.sessionId
-        }).then(() => {
-            cy.scoresEndpoint(scores, session_Id).should((response) => {
-                set_one_quizId = response.body.quizId;
+    describe("logged in user Udating their email", () => {
+        beforeEach(() => {
+            cy.sessionEndpoint().should((response) => {
+                session_Id = response.body.sessionId
             }).then(() => {
-                user = {
-                    firstName: faker.name.firstName(),
-                    lastName: faker.name.lastName(),
-                    email: faker.internet.email(),
-                    password: `@7${faker.internet.password()}`,
-                    quizId: set_one_quizId
-                };
+                cy.scoresEndpoint(scores, session_Id).should((response) => {
+                    set_one_quizId = response.body.quizId;
+                }).then(() => {
+                    user = {
+                        firstName: faker.name.firstName(),
+                        lastName: faker.name.lastName(),
+                        email: faker.internet.email(),
+                        password: `@7${faker.internet.password()}`,
+                        quizId: set_one_quizId
+                    };
 
-                cy.registerEndpoint(user).should((response) => {
-                    if (response.status == 201) {
-                        expect(response.status).to.equal(201);
-                        expect(response.body.message).to.satisfy(function (s) {
-                            return s === successMessage;
-                        });
-                        accessToken = response.body.access_token;
-                    } else {
-                        expect(response.status).to.equal(429);
-                        expect(response.body).to.have.property("error");
-                        errorMessage = response.body;
-                        if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
-                            expect(response.body.error).to.satisfy(function (s) {
-                                return s === rateLimitPerSecond;
+                    cy.registerEndpoint(user).should((response) => {
+                        if (response.status == 201) {
+                            expect(response.status).to.equal(201);
+                            expect(response.body.message).to.satisfy(function (s) {
+                                return s === successMessage;
                             });
-                        } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
-                            expect(response.body.error).to.satisfy(function (s) {
-                                return s === rateLimitPerMinute;
-                            });
-                        } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
-                            expect(response.body.error).to.satisfy(function (s) {
-                                return s === rateLimitPerHour;
+                            accessToken = response.body.access_token;
+                        } else {
+                            expect(response.status).to.equal(429);
+                            expect(response.body).to.have.property("error");
+                            errorMessage = response.body;
+                            if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                                expect(response.body.error).to.satisfy(function (s) {
+                                    return s === rateLimitPerSecond;
+                                });
+                            } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                                expect(response.body.error).to.satisfy(function (s) {
+                                    return s === rateLimitPerMinute;
+                                });
+                            } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                                expect(response.body.error).to.satisfy(function (s) {
+                                    return s === rateLimitPerHour;
+                                });
+                            }
+                            else expect(response.body.error).to.satisfy(function (s) {
+                                return s === rateLimitPerDay;
                             });
                         }
-                        else expect(response.body.error).to.satisfy(function (s) {
-                            return s === rateLimitPerDay;
-                        });
-                    }
+                    });
                 });
             });
         });
-    });
-    describe("logged in user Udating their email", () => {
+
         it("should get current email", () => {
             cy.emailEndpoint(accessToken)
                 .should((response) => {

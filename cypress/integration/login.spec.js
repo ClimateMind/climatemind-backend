@@ -106,6 +106,7 @@ describe("'/login' endpoint", () => {
         expect(response.body.user.quiz_id).to.be.an("string");
 
       } else {
+        expect(response.body.error).to.be.a("string");
         expect(response.status).to.equal(429);
         expect(response.body).to.have.property("error");
         let errorMessage = response.body;
@@ -270,6 +271,7 @@ describe("'/login' endpoint", () => {
         });
 
       } else {
+        expect(response.body.error).to.be.a("string");
         expect(response.status).to.equal(429);
         expect(response.body).to.have.property("error");
         let errorMessage = response.body;
