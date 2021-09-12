@@ -7,6 +7,7 @@ var faker = require("faker");
 let session_Id;
 let set_one_quizId;
 let user;
+let user2;
 let accessToken;
 let updateEmailBody;
 let newEmail;
@@ -58,44 +59,6 @@ describe("'/email' endpoint", () => {
                             });
                             accessToken = response.body.access_token;
                         } else {
-                            expect(response.status).to.equal(429);
-                            expect(response.body).to.have.property("error");
-                            errorMessage = response.body;
-                            if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
-                                expect(response.body.error).to.satisfy(function (s) {
-                                    return s === rateLimitPerSecond;
-                                });
-                            } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
-                                expect(response.body.error).to.satisfy(function (s) {
-                                    return s === rateLimitPerMinute;
-                                });
-                            } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
-                                expect(response.body.error).to.satisfy(function (s) {
-                                    return s === rateLimitPerHour;
-                                });
-                            }
-                            else expect(response.body.error).to.satisfy(function (s) {
-                                return s === rateLimitPerDay;
-                            });
-                        }
-                    });
-
-                    let user2 = {
-                        firstName: faker.name.firstName(),
-                        lastName: faker.name.lastName(),
-                        email: faker.internet.email(),
-                        password: `@7${faker.internet.password()}`,
-                        quizId: set_one_quizId
-                    };
-
-                    cy.registerEndpoint(user2).should((response) => {
-                        if (response.status == 201) {
-                            expect(response.status).to.equal(201);
-                            expect(response.body.message).to.satisfy(function (s) {
-                                return s === successMessage;
-                            });
-                            accessToken = response.body.access_token;
-                        } else{
                             expect(response.status).to.equal(429);
                             expect(response.body).to.have.property("error");
                             errorMessage = response.body;
@@ -196,7 +159,7 @@ describe("'/email' endpoint", () => {
             });
         });
 
-        it("should not log a user in with an email", () => {
+        it("should not log a user in with an old email", () => {
             newEmail = faker.internet.email();
             confirmNewEmail = newEmail;
 
@@ -234,8 +197,68 @@ describe("'/email' endpoint", () => {
             });
         });
 
-        it("should handle updating current email using that current email", () => {
+        it("should handle updating email using current email or any other already registered", () => {
             newEmail = user.email;
+            confirmNewEmail = newEmail;
+
+            updateEmailBody = {
+                "newEmail": newEmail,
+                "confirmEmail": confirmNewEmail,
+                "password": user.password
+            };
+
+            cy.updateEmailEndpoint(accessToken, updateEmailBody)
+                .should((response) => {
+                    expect(response.status).to.equal(409);
+                    expect(response.headers["content-type"]).to.equal("application/json");
+                    expect(response.headers["access-control-allow-origin"]).to.equal("*");
+                    expect(response.body).to.be.an("object");
+                    expect(response.body).to.have.property("error");
+                    expect(response.body.error).to.be.a("string");
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === emailAlreadyExistsInDBMessage;
+                    });
+                });
+            
+            //any other already registered
+            user2 = {
+                firstName: faker.name.firstName(),
+                lastName: faker.name.lastName(),
+                email: faker.internet.email(),
+                password: `@7${faker.internet.password()}`,
+                quizId: set_one_quizId
+            };
+
+            cy.registerEndpoint(user2).should((response) => {
+                if (response.status == 201) {
+                    expect(response.status).to.equal(201);
+                    expect(response.body.message).to.satisfy(function (s) {
+                        return s === successMessage;
+                    });
+                    accessToken = response.body.access_token;
+                } else {
+                    expect(response.status).to.equal(429);
+                    expect(response.body).to.have.property("error");
+                    errorMessage = response.body;
+                    if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                        expect(response.body.error).to.satisfy(function (s) {
+                            return s === rateLimitPerSecond;
+                        });
+                    } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                        expect(response.body.error).to.satisfy(function (s) {
+                            return s === rateLimitPerMinute;
+                        });
+                    } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                        expect(response.body.error).to.satisfy(function (s) {
+                            return s === rateLimitPerHour;
+                        });
+                    }
+                    else expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerDay;
+                    });
+                }
+            });
+            newEmail = user2.email;
             confirmNewEmail = newEmail;
 
             updateEmailBody = {
@@ -398,67 +421,6 @@ describe("'/email' endpoint", () => {
                 });
         });
 
-        it("should handle updating email using an existing email", () => {
-            /*let user2 = {
-                firstName: faker.name.firstName(),
-                lastName: faker.name.lastName(),
-                email: faker.internet.email(),
-                password: `@7${faker.internet.password()}`,
-                quizId: set_one_quizId
-            };
-
-            cy.registerEndpoint(user2).should((response) => {
-                if (response.status == 201) {
-                    expect(response.status).to.equal(201);
-                    expect(response.body.message).to.satisfy(function (s) {
-                        return s === successMessage;
-                    });
-                    accessToken = response.body.access_token;
-                } else if (response.status == 429){
-                    expect(response.status).to.equal(429);
-                    expect(response.body).to.have.property("error");
-                    errorMessage = response.body;
-                    if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
-                        expect(response.body.error).to.satisfy(function (s) {
-                            return s === rateLimitPerSecond;
-                        });
-                    } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
-                        expect(response.body.error).to.satisfy(function (s) {
-                            return s === rateLimitPerMinute;
-                        });
-                    } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
-                        expect(response.body.error).to.satisfy(function (s) {
-                            return s === rateLimitPerHour;
-                        });
-                    }
-                    else expect(response.body.error).to.satisfy(function (s) {
-                        return s === rateLimitPerDay;
-                    });
-                }
-            }); */
-
-            newEmail = user2.email;
-            confirmNewEmail = newEmail;
-
-            updateEmailBody = {
-                "newEmail": newEmail,
-                "confirmEmail": confirmNewEmail,
-                "password": user.password
-            };
-            
-            cy.updateEmailEndpoint(accessToken, updateEmailBody)
-                .should((response) => {
-                    expect(response.status).to.equal(409);
-                    expect(response.headers["content-type"]).to.equal("application/json");
-                    expect(response.headers["access-control-allow-origin"]).to.equal("*");
-                    expect(response.body).to.be.an("object");
-                    expect(response.body).to.have.property("error");
-                    expect(response.body.error).to.be.a("string");
-                    expect(response.body.error).to.satisfy(function (s) {
-                        return s === emailAlreadyExistsInDBMessage;
-                    });
-                });
-        });
     });
 
     describe("unlogged in user trying to update their email", () => {
