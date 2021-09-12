@@ -105,7 +105,8 @@ describe("'/login' endpoint", () => {
         expect(response.body.user.user_uuid).to.be.an("string");
         expect(response.body.user.quiz_id).to.be.an("string");
 
-      } else {
+      }
+      else if (response.status == 429) {
         expect(response.body.error).to.be.a("string");
         expect(response.status).to.equal(429);
         expect(response.body).to.have.property("error");
@@ -125,6 +126,11 @@ describe("'/login' endpoint", () => {
         }
         else expect(response.body.error).to.satisfy(function (s) {
           return s === rateLimitPerDay;
+        });
+      } else {
+        expect(response.status).to.equal(401);
+        expect(response.body.message).to.satisfy(function (s) {
+          return s === badLoginMessage;
         });
       }
     });

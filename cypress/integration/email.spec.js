@@ -376,7 +376,7 @@ describe("'/email' endpoint", () => {
                         return s === successMessage;
                     });
                     accessToken = response.body.access_token;
-                } else {
+                } else if (response.status == 429){
                     expect(response.status).to.equal(429);
                     expect(response.body).to.have.property("error");
                     errorMessage = response.body;
@@ -395,6 +395,12 @@ describe("'/email' endpoint", () => {
                     }
                     else expect(response.body.error).to.satisfy(function (s) {
                         return s === rateLimitPerDay;
+                    });
+                }
+                else {
+                    expect(response.status).to.equal(401);
+                    expect(response.body.message).to.satisfy(function (s) {
+                        return s === badLoginMessage;
                     });
                 }
             });
