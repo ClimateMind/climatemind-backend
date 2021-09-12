@@ -81,58 +81,28 @@ describe("'/login' endpoint", () => {
     };
 
     cy.loginEndpoint(user_validCredentials).should((response) => {
-      if (response.status == 200) {
-        expect(response.status).to.equal(200);
-        expect(response.headers["content-type"]).to.equal(
-          "application/json"
-        );
-        expect(response.headers["access-control-allow-origin"]).to.equal(
-          "http://0.0.0.0:3000"
-        );
-        expect(response.body).to.be.an("object");
-        expect(response.body).to.have.property("message");
-        expect(response.body).to.have.property("access_token");
-        expect(response.body).to.have.property("user");
-        expect(response.body.message).to.satisfy(function (s) {
-          return typeof s === "string";
-        });
-        expect(response.body.access_token).to.satisfy(function (s) {
-          return typeof s === "string";
-        });
-        expect(response.body.user.first_name).to.be.an("string");
-        expect(response.body.user.last_name).to.be.an("string");
-        expect(response.body.user.email).to.be.an("string");
-        expect(response.body.user.user_uuid).to.be.an("string");
-        expect(response.body.user.quiz_id).to.be.an("string");
-
-      }
-      else if (response.status == 429) {
-        expect(response.body.error).to.be.a("string");
-        expect(response.status).to.equal(429);
-        expect(response.body).to.have.property("error");
-        let errorMessage = response.body;
-        if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
-          expect(response.body.error).to.satisfy(function (s) {
-            return s === rateLimitPerSecond;
-          });
-        } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
-          expect(response.body.error).to.satisfy(function (s) {
-            return s === rateLimitPerMinute;
-          });
-        } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
-          expect(response.body.error).to.satisfy(function (s) {
-            return s === rateLimitPerHour;
-          });
-        }
-        else expect(response.body.error).to.satisfy(function (s) {
-          return s === rateLimitPerDay;
-        });
-      } else {
-        expect(response.status).to.equal(401);
-        expect(response.body.message).to.satisfy(function (s) {
-          return s === badLoginMessage;
-        });
-      }
+      expect(response.status).to.equal(200);
+      expect(response.headers["content-type"]).to.equal(
+        "application/json"
+      );
+      expect(response.headers["access-control-allow-origin"]).to.equal(
+        "http://0.0.0.0:3000"
+      );
+      expect(response.body).to.be.an("object");
+      expect(response.body).to.have.property("message");
+      expect(response.body).to.have.property("access_token");
+      expect(response.body).to.have.property("user");
+      expect(response.body.message).to.satisfy(function (s) {
+        return typeof s === "string";
+      });
+      expect(response.body.access_token).to.satisfy(function (s) {
+        return typeof s === "string";
+      });
+      expect(response.body.user.first_name).to.be.an("string");
+      expect(response.body.user.last_name).to.be.an("string");
+      expect(response.body.user.email).to.be.an("string");
+      expect(response.body.user.user_uuid).to.be.an("string");
+      expect(response.body.user.quiz_id).to.be.an("string");
     });
   });
 
