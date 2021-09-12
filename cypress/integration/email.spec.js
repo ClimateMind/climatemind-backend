@@ -79,6 +79,44 @@ describe("'/email' endpoint", () => {
                             });
                         }
                     });
+
+                    let user2 = {
+                        firstName: faker.name.firstName(),
+                        lastName: faker.name.lastName(),
+                        email: faker.internet.email(),
+                        password: `@7${faker.internet.password()}`,
+                        quizId: set_one_quizId
+                    };
+
+                    cy.registerEndpoint(user2).should((response) => {
+                        if (response.status == 201) {
+                            expect(response.status).to.equal(201);
+                            expect(response.body.message).to.satisfy(function (s) {
+                                return s === successMessage;
+                            });
+                            accessToken = response.body.access_token;
+                        } else{
+                            expect(response.status).to.equal(429);
+                            expect(response.body).to.have.property("error");
+                            errorMessage = response.body;
+                            if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                                expect(response.body.error).to.satisfy(function (s) {
+                                    return s === rateLimitPerSecond;
+                                });
+                            } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                                expect(response.body.error).to.satisfy(function (s) {
+                                    return s === rateLimitPerMinute;
+                                });
+                            } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                                expect(response.body.error).to.satisfy(function (s) {
+                                    return s === rateLimitPerHour;
+                                });
+                            }
+                            else expect(response.body.error).to.satisfy(function (s) {
+                                return s === rateLimitPerDay;
+                            });
+                        }
+                    });
                 });
             });
         });
@@ -361,7 +399,7 @@ describe("'/email' endpoint", () => {
         });
 
         it("should handle updating email using an existing email", () => {
-            let user2 = {
+            /*let user2 = {
                 firstName: faker.name.firstName(),
                 lastName: faker.name.lastName(),
                 email: faker.internet.email(),
@@ -397,13 +435,7 @@ describe("'/email' endpoint", () => {
                         return s === rateLimitPerDay;
                     });
                 }
-                else {
-                    expect(response.status).to.equal(401);
-                    expect(response.body.message).to.satisfy(function (s) {
-                        return s === badLoginMessage;
-                    });
-                }
-            });
+            }); */
 
             newEmail = user2.email;
             confirmNewEmail = newEmail;
