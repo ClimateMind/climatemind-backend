@@ -1,8 +1,8 @@
 /// <reference types="cypress" />
 
 describe("/myths endpoint", () => {
-    it("User should get myths", () => {
-        cy.request("GET", "http://localhost:5000/myths")
+    it("should get myths", () => {
+        cy.mythsEndpoint()
             .should((response) => {
                 expect(response.status).to.equal(200);
                 expect(response.headers["content-type"]).to.equal("application/json");
@@ -11,11 +11,11 @@ describe("/myths endpoint", () => {
                 expect(response.body).to.have.property("myths");
                 expect(response.body.myths).to.be.an("array");
                 expect(response.body.myths).to.not.have.length(0);
-        });
+            });
     });
 
-    it("Each myth has the correct properties", () => {
-        cy.request("http://localhost:5000/myths").should((response) => {
+    it("should get correct myths with correct properties", () => {
+        cy.mythsEndpoint().should((response) => {
             const myths = response.body.myths;
             myths.forEach((myth) => {
                 expect(myth).to.have.property("faultyLogicDescription");

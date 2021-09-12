@@ -1,8 +1,25 @@
 /// <reference types="cypress" />
 
-describe("/get_actions endpoint", () => {
+import scores from "../fixtures/postScores.json";
+
+let session_Id;
+let set_one_quizId;
+let effectNameValue = "increase in flooding of land and property";
+
+describe("'/get_actions' endpoint", () => {
+
+    beforeEach(() => {
+        cy.sessionEndpoint().should((response) => {
+            session_Id = response.body.sessionId
+        }).then(() => {
+            cy.scoresEndpoint(scores, session_Id).should((response) => {
+                set_one_quizId = response.body.quizId;
+            });
+        });
+    });
+
     it("should get actions", () => {
-        cy.request("GET","http://localhost:5000/get_actions?effect-name=increase in flooding of land and property").should((response) => {
+        cy.getActionsEndpoint(effectNameValue).should((response) => {
             expect(response.status).to.equal(200);
             expect(response.headers["content-type"]).to.equal("application/json");
             expect(response.headers["access-control-allow-origin"]).to.equal("*");
@@ -12,41 +29,41 @@ describe("/get_actions endpoint", () => {
         });
     });
 
-    it("Each action has the correct properties", () => {
-        cy.request("http://localhost:5000/get_actions?effect-name=increase in flooding of land and property").should((response) => {
-            const solutions = response.body.actions;
-            solutions.forEach((solution) => {
-                expect(solution).to.have.property("imageUrl");
-                expect(solution).to.have.property("iri");
-                expect(solution).to.have.property("longDescription");
-                expect(solution).to.have.property("shortDescription");
-                expect(solution).to.have.property("solutionSources");
-                expect(solution).to.have.property("solutionSpecificMythIRIs");
-                expect(solution).to.have.property("solutionTitle");
-                expect(solution).to.have.property("solutionType");
+    it("should get action with correct data", () => {
+        cy.getActionsEndpoint(effectNameValue).should((response) => {
+            const actions = response.body.actions;
+            actions.forEach((actions) => {
+                expect(actions).to.have.property("imageUrl");
+                expect(actions).to.have.property("iri");
+                expect(actions).to.have.property("longDescription");
+                expect(actions).to.have.property("shortDescription");
+                expect(actions).to.have.property("solutionSources");
+                expect(actions).to.have.property("solutionSpecificMythIRIs");
+                expect(actions).to.have.property("solutionTitle");
+                expect(actions).to.have.property("solutionType");
 
-                expect(solution.imageUrl).to.satisfy(function (s) {
+                expect(actions.imageUrl).to.satisfy(function (s) {
                     return s === null || typeof s == 'string'
                 });
-                expect(solution.iri).to.satisfy(function (s) {
+                expect(actions.iri).to.satisfy(function (s) {
                     return s === null || typeof s == 'string'
                 });
-                expect(solution.longDescription).to.satisfy(function (s) {
+                expect(actions.longDescription).to.satisfy(function (s) {
                     return s === null || typeof s == 'string'
                 });
-                expect(solution.shortDescription).to.satisfy(function (s) {
+                expect(actions.shortDescription).to.satisfy(function (s) {
                     return s === null || typeof s == 'string'
                 });
-                expect(solution.solutionSources).to.satisfy(function (s) {
+                expect(actions.solutionSources).to.satisfy(function (s) {
                     return s === null || Array.isArray(s)
                 });
-                expect(solution.solutionSpecificMythIRIs).to.satisfy(function (s) {
+                expect(actions.solutionSpecificMythIRIs).to.satisfy(function (s) {
                     return s === null || Array.isArray(s)
                 });
-                expect(solution.solutionTitle).to.satisfy(function (s) {
+                expect(actions.solutionTitle).to.satisfy(function (s) {
                     return s === null || typeof s == 'string'
                 });
-                expect(solution.solutionType).to.satisfy(function (s) {
+                expect(actions.solutionType).to.satisfy(function (s) {
                     return s === null || typeof s == 'string'
                 });
             });
