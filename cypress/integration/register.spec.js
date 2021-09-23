@@ -9,9 +9,9 @@ let set_one_quizId;
 let set_two_quizId;
 let user;
 const successMessage = "Successfully created user";
-const badReqMessage1 = "Email and password must be included in the request body";
+const badReqMessage = "email must be included in the request body.";
 const alreadyRegisteredMessage = "Email already registered";
-const badReqMessage2 = "Email and password must be included in the request body.";
+const missingPasswordMessage = "password must be included in the request body.";
 const missingName = "Name is missing.";
 const invalidQuizIdMessage = "Quiz ID is not a valid UUID4 format.";
 const quizIdIsRequiredMessage = "Quiz UUID must be included to register."
@@ -19,7 +19,10 @@ const rateLimitPerSecond = "ratelimit exceeded 5 per 1 second";
 const rateLimitPerMinute = "ratelimit exceeded 10 per 1 minute";
 const rateLimitPerHour = "ratelimit exceeded 50 per 1 hour";
 const rateLimitPerDay = "ratelimit exceeded 100 per 1 day";
-
+const missingBodyMessage = "JSON body must be included in the request.";
+const missingFirstNameMessage = "firstName must be included in the request body."
+const missingLastNameMessage = "lastName must be included in the request body.";
+const missingQuizIdMessage = "quizId must be included in the request body.";
 
 describe("'/register' endpoint", () => {
     before(() => {
@@ -193,7 +196,7 @@ describe("'/register' endpoint", () => {
                 expect(response.body).to.have.property("error");
                 expect(response.body.error).to.be.a("string");
                 expect(response.body.error).to.satisfy(function (s) {
-                    return s === badReqMessage1;
+                    return s === badReqMessage;
                 });
             } else {
                 expect(response.status).to.equal(429);
@@ -235,7 +238,7 @@ describe("'/register' endpoint", () => {
                 expect(response.body).to.be.a("object");
                 expect(response.body).to.have.property("error");
                 expect(response.body.error).to.satisfy(function (s) {
-                    return s === badReqMessage2;
+                    return s === missingPasswordMessage;
                 });
 
             } else {
@@ -271,7 +274,7 @@ describe("'/register' endpoint", () => {
                 expect(response.body).to.have.property("error");
                 expect(response.body.error).to.be.a("string");
                 expect(response.body.error).to.satisfy(function (s) {
-                    return s === badReqMessage2;
+                    return s === missingBodyMessage; 
                 });
             } else {
                 expect(response.status).to.equal(429);
@@ -313,7 +316,7 @@ describe("'/register' endpoint", () => {
                 expect(response.body).to.have.property("error");
                 expect(response.body.error).to.be.a("string");
                 expect(response.body.error, { timeout: 3000 }).to.satisfy(function (s) {
-                    return s === missingName;
+                    return s === missingFirstNameMessage;
                 });
 
             } else {
@@ -356,7 +359,7 @@ describe("'/register' endpoint", () => {
                 expect(response.body).to.have.property("error");
                 expect(response.body.error).to.be.a("string");
                 expect(response.body.error).to.satisfy(function (s) {
-                    return s === missingName;
+                    return s === missingLastNameMessage;
                 });
 
             } else {
@@ -399,7 +402,7 @@ describe("'/register' endpoint", () => {
                 expect(response.body).to.have.property("error");
                 expect(response.body.error).to.be.a("string");
                 expect(response.body.error).to.satisfy(function (s) {
-                    return s === quizIdIsRequiredMessage;
+                    return s === missingQuizIdMessage;
                 });
 
             } else {
