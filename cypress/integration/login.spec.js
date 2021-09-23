@@ -34,11 +34,11 @@ describe("'/login' endpoint", () => {
         set_one_quizId = response.body.quizId;
       }).then(() => {
         user = {
-          firstName: faker.name.firstName(),
-          lastName: faker.name.lastName(),
-          email: faker.internet.email(),
-          password: `@7${faker.internet.password()}`,
-          quizId: set_one_quizId
+          "firstName": faker.name.firstName(),
+          "lastName": faker.name.lastName(),
+          "email": faker.internet.email(),
+          "password": `@7${faker.internet.password()}`,
+          "quizId": set_one_quizId
         };
         cy.registerEndpoint(user).should((response) => {
           if (response.status == 201) {
@@ -81,7 +81,7 @@ describe("'/login' endpoint", () => {
     };
 
     cy.loginEndpoint(user_validCredentials).should((response) => {
-      /*expect(response.status).to.equal(200);
+      expect(response.status).to.equal(200);
       expect(response.headers["content-type"]).to.equal(
         "application/json"
       );
@@ -91,8 +91,8 @@ describe("'/login' endpoint", () => {
       expect(response.body).to.be.an("object");
       expect(response.body).to.have.property("message");
       expect(response.body).to.have.property("access_token");
-      expect(response.body).to.have.property("user");*/
-      expect(response.body.error).to.be.an("object");
+      expect(response.body).to.have.property("user");
+      //expect(response.body.error).to.be.an("object");
       expect(response.body.message).to.satisfy(function (s) {
         return typeof s === "string";
       });
