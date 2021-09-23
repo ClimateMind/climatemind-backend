@@ -75,9 +75,9 @@ describe("'/login' endpoint", () => {
 
   it("should log a user in", () => {
     user_validCredentials = {
-      "email": user.email,
-      "password": user.password,
-      "recaptchaToken": recaptcha_Token
+      email: user.email,
+      password: user.password,
+      recaptchaToken: recaptcha_Token
     };
 
     cy.loginEndpoint(user_validCredentials).should((response) => {
@@ -92,7 +92,6 @@ describe("'/login' endpoint", () => {
       expect(response.body).to.have.property("message");
       expect(response.body).to.have.property("access_token");
       expect(response.body).to.have.property("user");
-      //expect(response.body.error).to.be.an("object");
       expect(response.body.message).to.satisfy(function (s) {
         return typeof s === "string";
       });
