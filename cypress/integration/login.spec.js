@@ -73,6 +73,40 @@ describe("'/login' endpoint", () => {
     });
   });
 
+  it("should log a user in", () => {
+    user_validCredentials = {
+      "email": user.email,
+      "password": user.password,
+      "recaptchaToken": recaptcha_Token
+    };
+
+    cy.loginEndpoint(user_validCredentials).should((response) => {
+      /*expect(response.status).to.equal(200);
+      expect(response.headers["content-type"]).to.equal(
+        "application/json"
+      );
+      expect(response.headers["access-control-allow-origin"]).to.equal(
+        "http://0.0.0.0:3000"
+      );
+      expect(response.body).to.be.an("object");
+      expect(response.body).to.have.property("message");
+      expect(response.body).to.have.property("access_token");
+      expect(response.body).to.have.property("user");*/
+      expect(response.body.error).to.be.an("object");
+      expect(response.body.message).to.satisfy(function (s) {
+        return typeof s === "string";
+      });
+      expect(response.body.access_token).to.satisfy(function (s) {
+        return typeof s === "string";
+      });
+      expect(response.body.user.first_name).to.be.an("string");
+      expect(response.body.user.last_name).to.be.an("string");
+      expect(response.body.user.email).to.be.an("string");
+      expect(response.body.user.user_uuid).to.be.an("string");
+      expect(response.body.user.quiz_id).to.be.an("string");
+    });
+  });
+
   it("should handle incorrect credentials", () => {
     user_invalidCredentials = {
       email: "invalid@example.com",
@@ -112,39 +146,6 @@ describe("'/login' endpoint", () => {
           return s === rateLimitPerDay;
         });
       }
-    });
-  });
-
-  it("should log a user in", () => {
-    user_validCredentials = {
-      "email": user.email,
-      "password": user.password,
-      "recaptchaToken": recaptcha_Token
-    };
-
-    cy.loginEndpoint(user_validCredentials).should((response) => {
-      expect(response.status).to.equal(200);
-      expect(response.headers["content-type"]).to.equal(
-        "application/json"
-      );
-      expect(response.headers["access-control-allow-origin"]).to.equal(
-        "http://0.0.0.0:3000"
-      );
-      expect(response.body).to.be.an("object");
-      expect(response.body).to.have.property("message");
-      expect(response.body).to.have.property("access_token");
-      expect(response.body).to.have.property("user");
-      expect(response.body.message).to.satisfy(function (s) {
-        return typeof s === "string";
-      });
-      expect(response.body.access_token).to.satisfy(function (s) {
-        return typeof s === "string";
-      });
-      expect(response.body.user.first_name).to.be.an("string");
-      expect(response.body.user.last_name).to.be.an("string");
-      expect(response.body.user.email).to.be.an("string");
-      expect(response.body.user.user_uuid).to.be.an("string");
-      expect(response.body.user.quiz_id).to.be.an("string");
     });
   });
 
