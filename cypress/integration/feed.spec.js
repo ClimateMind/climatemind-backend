@@ -63,7 +63,12 @@ describe("'/feed' endpoint", () => {
                     expect(response.body.climateEffects[climateEffectionsIndex].effectSolutions[effectSolutionsIndex]).to.have.property("solutionTitle");
                     expect(response.body.climateEffects[climateEffectionsIndex].effectSolutions[effectSolutionsIndex]).to.have.property("solutionType");
 
-                    expect(response.body.climateEffects[climateEffectionsIndex].effectSolutions[effectSolutionsIndex].imageUrl).to.be.a("null");
+                    if ((response.body.climateEffects[climateEffectionsIndex].effectSolutions[effectSolutionsIndex].imageUrl) == null) {
+                        expect(response.body.climateEffects[climateEffectionsIndex].effectSolutions[effectSolutionsIndex].imageUrl).to.be.a("null");
+                        
+                    } else {
+                        expect(response.body.climateEffects[climateEffectionsIndex].effectSolutions[effectSolutionsIndex].imageUrl).to.be.a("string");
+                    }
                     expect(response.body.climateEffects[climateEffectionsIndex].effectSolutions[effectSolutionsIndex].iri).to.be.a("string");
                     expect(response.body.climateEffects[climateEffectionsIndex].effectSolutions[effectSolutionsIndex].longDescription).to.be.a("string");
                     expect(response.body.climateEffects[climateEffectionsIndex].effectSolutions[effectSolutionsIndex].shortDescription).to.be.a("string");

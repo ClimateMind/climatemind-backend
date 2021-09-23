@@ -33,6 +33,7 @@ const rateLimitPerSecond = "ratelimit exceeded 5 per 1 second";
 const rateLimitPerMinute = "ratelimit exceeded 10 per 1 minute";
 const rateLimitPerHour = "ratelimit exceeded 50 per 1 hour";
 const rateLimitPerDay = "ratelimit exceeded 100 per 1 day";
+let recaptcha_Token = "03AGdBq27Tmja4W082LAEVoYyuuALGQwMVxOuOGDduLCQSTWWFuTtc4hQsc-KUVhsJQlBzEjdtxTqs1kXHusJCk2husZjY44rA-opJLWOgJuVUIoGtXozHtYhtmR5DibuJ3idGLalZ00niqnaa0zHC73hWPzc1CtnUO258nZLh1uxePi7DI-afWQd6aa4-EuRcPabG_E500r9S4RReTg42WtP8SNrqEdFoG9UdPoIF2aGCArHD6GqhQzwOev8_jeKUzcxq_1wEvxiID2ow7rxK339PCeTgO9Zz9fPnhTZ6mKaa_tmL1bSQ2zvWvA0Z5An3YvMP3sureZVR_mhJP2r84sYw9WbuI6hRr1oUGtTGuACB-IBqqE5m-meetr870N2Gl-vp3veeEyo34HLj5iDOr6YwyIXWBKam7mDHfhjps1QeiN90291e6CxaFd-bOkeazZyu2_aEPblNwIiUBl0BobqJ2dT2HlxXCRma0QDuX4xLvwh8_ayrJGo9t6nRxQHghZ2ZEh450bM0bVFAqkIGAqYv_EvYj7_XgQ";
 
 describe("'/email' endpoint", () => {
     describe("logged in user Udating their email", () => {
@@ -148,6 +149,7 @@ describe("'/email' endpoint", () => {
             let user_updatedEmail = {
                 "email": updateEmailBody.newEmail,
                 "password": updateEmailBody.password,
+                "recaptchaToken": recaptcha_Token
             };
 
             cy.loginEndpoint(user_updatedEmail).should((response) => {
@@ -184,6 +186,7 @@ describe("'/email' endpoint", () => {
             user_oldEmail = {
                 "email": user.email,
                 "password": user.password,
+                "recaptchaToken": recaptcha_Token
             };
 
             cy.loginEndpoint(user_oldEmail).should((response) => {

@@ -6,10 +6,8 @@ var faker = require("faker");
 // Expected error responses
 const successMessage = "Successfully created user";
 const badLoginMessage = "Wrong email or password. Try again.";
-const invalidReqMessage1 =
-  "Email and password must be included in the request body";
-const invalidReqMessage2 =
-  "Email and password must be included in the request body.";
+const invalidReqMessage =
+  "Email, password and recaptcha must be included in the request body.";
 const rateLimitPerSecond = "ratelimit exceeded 5 per 1 second";
 const rateLimitPerMinute = "ratelimit exceeded 10 per 1 minute";
 const rateLimitPerHour = "ratelimit exceeded 50 per 1 hour";
@@ -25,6 +23,7 @@ let user_missingEmail;
 let user_missingPassword;
 let user_invalidPassword;
 let errorMessage;
+let recaptcha_Token = "03AGdBq27Tmja4W082LAEVoYyuuALGQwMVxOuOGDduLCQSTWWFuTtc4hQsc-KUVhsJQlBzEjdtxTqs1kXHusJCk2husZjY44rA-opJLWOgJuVUIoGtXozHtYhtmR5DibuJ3idGLalZ00niqnaa0zHC73hWPzc1CtnUO258nZLh1uxePi7DI-afWQd6aa4-EuRcPabG_E500r9S4RReTg42WtP8SNrqEdFoG9UdPoIF2aGCArHD6GqhQzwOev8_jeKUzcxq_1wEvxiID2ow7rxK339PCeTgO9Zz9fPnhTZ6mKaa_tmL1bSQ2zvWvA0Z5An3YvMP3sureZVR_mhJP2r84sYw9WbuI6hRr1oUGtTGuACB-IBqqE5m-meetr870N2Gl-vp3veeEyo34HLj5iDOr6YwyIXWBKam7mDHfhjps1QeiN90291e6CxaFd-bOkeazZyu2_aEPblNwIiUBl0BobqJ2dT2HlxXCRma0QDuX4xLvwh8_ayrJGo9t6nRxQHghZ2ZEh450bM0bVFAqkIGAqYv_EvYj7_XgQ";
 
 describe("'/login' endpoint", () => {
   beforeEach(() => {
@@ -78,6 +77,7 @@ describe("'/login' endpoint", () => {
     user_validCredentials = {
       "email": user.email,
       "password": user.password,
+      "recaptchaToken": recaptcha_Token
     };
 
     cy.loginEndpoint(user_validCredentials).should((response) => {
@@ -110,6 +110,7 @@ describe("'/login' endpoint", () => {
     user_invalidCredentials = {
       email: "invalid@example.com",
       password: "@Invalid1password",
+      "recaptchaToken": recaptcha_Token
     };
     cy.loginEndpoint(user_invalidCredentials).should((response) => {
       if (response.status == 401) {
@@ -150,7 +151,8 @@ describe("'/login' endpoint", () => {
   it("should handle invalid email", () => {
     user_invalidEmail = {
       email: "invalid@example.com",
-      password: user.password
+      password: user.password,
+      "recaptchaToken": recaptcha_Token
     };
     cy.loginEndpoint(user_invalidEmail).should((response) => {
       if (response.status == 401) {
@@ -190,7 +192,8 @@ describe("'/login' endpoint", () => {
 
   it("should handle missing email", () => {
     user_missingEmail = {
-      password: user.password
+      password: user.password,
+      "recaptchaToken": recaptcha_Token
     };
     cy.loginEndpoint(user_missingEmail).should((response) => {
       if (response.status == 400) {
@@ -202,7 +205,7 @@ describe("'/login' endpoint", () => {
         expect(response.body).to.have.property("error");
         expect(response.body.error).to.be.a("string");
         expect(response.body.error).to.satisfy(function (s) {
-          return s === invalidReqMessage1;
+          return s === invalidReqMessage;
         });
 
       } else {
@@ -231,7 +234,8 @@ describe("'/login' endpoint", () => {
 
   it("should handle missing password", () => {
     user_missingPassword = {
-      email: user.email
+      email: user.email,
+      "recaptchaToken": recaptcha_Token
     };
     cy.loginEndpoint(user_missingPassword).should((response) => {
       if (response.status == 400) {
@@ -243,7 +247,7 @@ describe("'/login' endpoint", () => {
         expect(response.body).to.have.property("error");
         expect(response.body.error).to.be.a("string");
         expect(response.body.error).to.satisfy(function (s) {
-          return s === invalidReqMessage2;
+          return s === invalidReqMessage;
         });
 
       } else {
@@ -274,7 +278,8 @@ describe("'/login' endpoint", () => {
   it("should handle invalid password", () => {
     user_invalidPassword = {
       email: user.email,
-      password: "@ClimateMind1234!"
+      password: "@ClimateMind1234!",
+      "recaptchaToken": recaptcha_Token
     };
     cy.loginEndpoint(user_invalidPassword).should((response) => {
       if (response.status == 401) {
@@ -314,6 +319,9 @@ describe("'/login' endpoint", () => {
   });
 
   it("should handle missing credentials", () => {
+    user_invalidPassword = {
+      "recaptchaToken": recaptcha_Token
+    };
     cy.loginEndpoint().should((response) => {
       if (response.status == 400) {
         expect(response.status).to.equal(400);
@@ -323,7 +331,7 @@ describe("'/login' endpoint", () => {
         expect(response.body).to.be.a("object");
         expect(response.body).to.have.property("error");
         expect(response.body.error).to.satisfy(function (s) {
-          return s === invalidReqMessage2;
+          return s === invalidReqMessage;
         });
 
       } else {

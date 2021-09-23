@@ -42,7 +42,12 @@ describe("'/solutions' endpoint", () => {
                 expect(response.body.solutions[solutionIndex]).to.have.property("solutionTitle");
                 expect(response.body.solutions[solutionIndex]).to.have.property("solutionType");
 
-                expect(response.body.solutions[solutionIndex].imageUrl).to.be.a("null");
+                if ((response.body.solutions[solutionIndex].imageUrl) == null) {
+                    expect(response.body.solutions[solutionIndex].imageUrl).to.be.a("null");
+
+                } else {
+                    expect(response.body.solutions[solutionIndex].imageUrl).to.be.a("string");
+                }
                 expect(response.body.solutions[solutionIndex].iri).to.be.a("string");
                 expect(response.body.solutions[solutionIndex].longDescription).to.be.a("string");
                 expect(response.body.solutions[solutionIndex].shortDescription).to.be.a("string");
