@@ -1,8 +1,8 @@
 from app.conversations import bp
 from app import db
-from app.auth.utils import uuidType, validate_uuid
-from app.models import Users, Conversation, Sessions
-from app.errors.errors import DatabaseError
+from app.auth.utils import uuidType, validate_uuid, check_uuid_in_db
+from app.models import Users, Conversations, Sessions
+from app.errors.errors import DatabaseError, InvalidUsageError
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask import request, jsonify, make_response
@@ -48,6 +48,8 @@ def create_conversation_invite():
     """
     session_uuid = request.headers.get("X-Session-Id")
     session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
     r = request.get_json(force=True, silent=True)
     if not r:
         raise InvalidUsageError(
@@ -60,7 +62,9 @@ def create_conversation_invite():
         return 2 < len(name) < 50
 
     if not invited_name or not valid_name(invited_name):
-        raise InvalidUsageError(message="Must provide the name of the invited user.")
+        raise InvalidUsageError(
+            message="Must provide a name for the invited user that is between 2-50 characters long."
+        )
 
     identity = get_jwt_identity()
     user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
@@ -70,19 +74,18 @@ def create_conversation_invite():
 
     conversation_uuid = uuid.uuid4()
 
-    conversation = Conversation(
+    conversation = Conversations(
         conversation_uuid=conversation_uuid,
         sender_user_uuid=user.user_uuid,
         sender_session_uuid=session_uuid,
         receiver_name=invited_name,
         conversation_status=ConversationStatus.Invited,
-        conversation_create_time=datetime.datetime.now(timezone.utc),
+        conversation_created_timestamp=datetime.datetime.now(timezone.utc),
     )
 
     try:
         db.session.add(conversation)
         db.session.commit()
-
     except SQLAlchemyError:
         raise DatabaseError(message="Failed to add conversation to database")
 
@@ -109,6 +112,7 @@ def get_conversations():
     """
     session_uuid = request.headers.get("X-Session-Id")
     validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
     identity = get_jwt_identity()
     user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
 
@@ -116,7 +120,10 @@ def get_conversations():
         raise DatabaseError(message="No user found for the provided JWT token")
 
     conversations = (
-        db.session.query(Conversation).filter_by(sender_user_uuid=user.user_uuid).all()
+        db.session.query(Conversations)
+        .filter_by(sender_user_uuid=user.user_uuid)
+        .order_by(Conversations.conversation_created_timestamp)
+        .all()
     )
 
     results = []
@@ -125,7 +132,7 @@ def get_conversations():
             {
                 "invitedUserName": conversation.receiver_name,
                 "createdByUserId": user.user_uuid,
-                "createdDateTime": conversation.conversation_create_time,
+                "createdDateTime": conversation.conversation_created_timestamp,
                 "conversationId": conversation.conversation_uuid,
                 "conversationStatus": conversation.conversation_status,
             }

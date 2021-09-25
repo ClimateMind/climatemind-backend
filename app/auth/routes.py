@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from flask import request, jsonify, make_response
 from sqlalchemy import desc
 from app.auth import bp
-from app.auth.utils import uuidType, validate_uuid
+from app.auth.utils import uuidType, validate_uuid, check_if_local
 import regex as re
 import requests
 from flask_jwt_extended import create_access_token
@@ -38,15 +38,7 @@ def ip_whitelist():
     Adds localhost IP to the rate limiter's whitelist when operating in development environments.
     Prevents conflicts with Cypress testing & VPNs.
     """
-    local = None
-
-    if (
-        os.environ["DATABASE_PARAMS"]
-        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
-    ):
-        local = request.remote_addr == "127.0.0.1" or os.environ.get("VPN")
-
-    return local
+    return check_if_local()
 
 
 @bp.route("/login", methods=["POST"])
@@ -71,9 +63,9 @@ def login():
     password = r.get("password", None)
     recaptcha_token = r.get("recaptchaToken", None)
 
-    if not password or not email or not recaptcha_token:
+    if not password or not email:
         raise InvalidUsageError(
-            message="Email, password and recaptcha must be included in the request body."
+            message="Email and password must be included in the request body."
         )
 
     user = db.session.query(Users).filter_by(user_email=email).one_or_none()
@@ -81,16 +73,23 @@ def login():
     if not user or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
-    # Verify captcha with Google
-    secret_key = os.environ.get("RECAPTCHA_SECRET_KEY")
-    data = {"secret": secret_key, "response": recaptcha_token}
-    resp = requests.post(
-        "https://www.google.com/recaptcha/api/siteverify", data=data
-    ).json()
+    if not check_if_local():
+        # Verify captcha with Google
+        secret_key = os.environ.get("RECAPTCHA_SECRET_KEY")
 
-    # Google will return True/False in the success field, resp must be json to properly access
-    if not resp["success"]:
-        raise UnauthorizedError(message="Captcha did not succeed.")
+        if not recaptcha_token:
+            raise InvalidUsageError(
+                message="Recaptcha token must be included in the request body."
+            )
+
+        data = {"secret": secret_key, "response": recaptcha_token}
+        resp = requests.post(
+            "https://www.google.com/recaptcha/api/siteverify", data=data
+        ).json()
+
+        # Google will return True/False in the success field, resp must be json to properly access
+        if not resp["success"]:
+            raise UnauthorizedError(message="Captcha did not succeed.")
 
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
