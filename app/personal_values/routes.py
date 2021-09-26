@@ -3,6 +3,7 @@ from flask import jsonify, request
 from json import load
 from app.personal_values import bp
 from app.models import Scores
+from app.auth.utils import uuidType, validate_uuid
 from app import auto
 from app.errors.errors import InvalidUsageError, DatabaseError
 import uuid
@@ -19,13 +20,8 @@ def get_personal_values():
     Users want to know their personal values based on their Schwartz questionnaire
     results. This returns the top 3 personal values with descriptions plus all scores for a user given a quiz ID.
     """
-    try:
-        quiz_uuid = uuid.UUID(request.args.get("quizId"))
-
-    except:
-        raise InvalidUsageError(
-            message="Malformed request. Quiz ID provided to get personal values is not a valid UUID."
-        )
+    quiz_uuid = request.args.get("quizId")
+    quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
 
     scores = Scores.query.filter_by(quiz_uuid=quiz_uuid).first()
 
@@ -46,7 +42,7 @@ def get_personal_values():
 
         scores = scores.__dict__
 
-        # All scores and accoiated values for response
+        # All scores and associated values for response
         all_scores = [
             {"personalValue": key, "score": scores[key]}
             for key in personal_values_categories
@@ -69,7 +65,7 @@ def get_personal_values():
         except FileNotFoundError:
             return jsonify({"error": "Value descriptions file not found"}), 404
 
-        # Add desciptions for top 3 values to retrun
+        # Add descriptions for top 3 values to return
         values_and_descriptions = [
             value_descriptions[score["personalValue"]] for score in top_scores
         ]

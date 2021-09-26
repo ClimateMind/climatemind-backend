@@ -2,6 +2,7 @@ from flask import request
 
 from app.post_code import bp
 from app.post_code.store_post_code import store_post_code, check_post_code
+from app.auth.utils import uuidType, validate_uuid
 from app.errors.errors import InvalidUsageError
 from flask_cors import cross_origin
 
@@ -20,11 +21,17 @@ def post_code():
 
     """
 
-    try:
-        request_body = request.json
-        quiz_uuid = uuid.UUID(request_body["quizId"])
-        post_code = request_body["postCode"]
-    except:
+    r = request.get_json(force=True, silent=True)
+
+    if not r:
+        raise InvalidUsageError(message="JSON body must be included.")
+
+    quiz_uuid = r.get("quizId", None)
+    quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
+
+    post_code = r.get("postCode", None)
+
+    if not post_code:
         raise InvalidUsageError(
             message="Unable to post postcode. Check the request parameters."
         )

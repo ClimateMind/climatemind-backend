@@ -11,7 +11,7 @@ def normalize_scores(values):
             val["score"] = range_max / 2 + range_min
         return values
 
-    # Or normailse scores if not
+    # Or normalize scores if not
     for val in values:
         normalized_value = range_min + (val["score"] - min_score) * (
             range_max - range_min
