@@ -12,21 +12,8 @@ def store_subscription_data(session_uuid, email):
 
     email_in_db = Signup.query.filter_by(signup_email=email).first()
 
-    try:
-        valid_uuid = uuid.UUID(session_uuid)
-    except:
-        raise InvalidUsageError(
-            message="Session ID used to sign up is not a valid UUID."
-        )
-
-    valid_session_uuid = Sessions.query.get(session_uuid)
-
     if email_in_db:
         raise AlreadyExistsError(message="Subscriber email address")
-    elif not valid_session_uuid:
-        raise DatabaseError(
-            message="Cannot save subscription information. Session ID not in the database."
-        )
     else:
         try:
             new_subscription = Signup()

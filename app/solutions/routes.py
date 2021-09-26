@@ -4,7 +4,7 @@ from app.models import Scores
 from app.solutions import bp
 from app.solutions.process_solutions import process_solutions
 from app.errors.errors import InvalidUsageError, CustomError, DatabaseError
-from app.auth.utils import uuidType, validate_uuid
+from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
 from flask_cors import cross_origin
 import numpy as np
 import pickle
@@ -48,6 +48,7 @@ def get_general_solutions():
 
     if quiz_uuid:
         quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
+        check_uuid_in_db(quiz_uuid, uuidType.QUIZ)
 
         user_scores = (
             db.session.query(
