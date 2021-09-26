@@ -6,8 +6,8 @@ var faker = require("faker");
 // Expected error responses
 const successMessage = "Successfully created user";
 const badLoginMessage = "Wrong email or password. Try again.";
-const invalidReqMessage =
-  "Email, password and recaptcha must be included in the request body.";
+const invalidReqMessage2 =
+  "Email and password must be included in the request body.";
 const rateLimitPerSecond = "ratelimit exceeded 5 per 1 second";
 const rateLimitPerMinute = "ratelimit exceeded 10 per 1 minute";
 const rateLimitPerHour = "ratelimit exceeded 50 per 1 hour";
@@ -205,7 +205,7 @@ describe("'/login' endpoint", () => {
         expect(response.body).to.have.property("error");
         expect(response.body.error).to.be.a("string");
         expect(response.body.error).to.satisfy(function (s) {
-          return s === invalidReqMessage;
+          return s === invalidReqMessage2;
         });
 
       } else {
@@ -247,7 +247,7 @@ describe("'/login' endpoint", () => {
         expect(response.body).to.have.property("error");
         expect(response.body.error).to.be.a("string");
         expect(response.body.error).to.satisfy(function (s) {
-          return s === invalidReqMessage;
+          return s === invalidReqMessage2;
         });
 
       } else {

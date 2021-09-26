@@ -194,3 +194,17 @@ Cypress.Commands.add('updateEmailEndpoint', (accessToken, updateEmailBody) => {
         })
         .then(cy.wrap);
 });
+
+Cypress.Commands.add('conversationsEndpoint', (accessToken, session_Id) => {
+    return cy
+        .request({
+            method: 'GET',
+            url: 'http://localhost:5000/conversations',
+            headers: {
+                'Authorization': `Bearer ${accessToken}`,
+                'X-Session-Id': session_Id
+            },
+            failOnStatusCode: false,
+        })
+        .then(cy.wrap);
+});

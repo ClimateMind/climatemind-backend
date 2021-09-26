@@ -103,4 +103,8 @@ def create_app(config_class=DevelopmentConfig):
 
         app.register_blueprint(email_bp)
 
+        from app.conversations import bp as conversations_bp
+
+        app.register_blueprint(conversations_bp)
+
     return app
