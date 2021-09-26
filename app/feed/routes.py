@@ -2,6 +2,7 @@ from flask import jsonify, request
 from app.scoring import bp
 from app.scoring.score_nodes import score_nodes
 from app.errors.errors import InvalidUsageError, DatabaseError, CustomError
+from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
 from app.models import Scores, Sessions
 from flask_cors import cross_origin
 
@@ -21,31 +22,19 @@ def get_feed():
     session-id : uuid4 as string
     """
     N_FEED_CARDS = 21
-    try:
-        quiz_uuid = uuid.UUID(request.args.get("quizId"))
-    except:
-        raise InvalidUsageError(
-            message="Malformed request. Quiz ID provided to get feed is not a valid UUID."
-        )
+    quiz_uuid = request.args.get("quizId")
+    quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
+    check_uuid_in_db(quiz_uuid, uuidType.QUIZ)
 
     session_uuid = request.headers.get("X-Session-Id")
 
     if not session_uuid:
         raise InvalidUsageError(message="Cannot get feed without a session ID.")
 
-    try:
-        session_uuid = uuid.UUID(session_uuid)
-    except:
-        raise InvalidUsageError(
-            message="Session ID used to get feed is not a valid UUID."
-        )
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
 
-    valid_session_uuid = Sessions.query.get(session_uuid)
-
-    if valid_session_uuid:
-        feed_entries = get_feed_results(quiz_uuid, N_FEED_CARDS, session_uuid)
-    else:
-        raise InvalidUsageError(message="Session ID used to get feed is not in the db.")
+    feed_entries = get_feed_results(quiz_uuid, N_FEED_CARDS, session_uuid)
 
     return feed_entries
 
