@@ -8,27 +8,22 @@ def store_post_code(post_code, quiz_uuid):
     """
     Post codes are (optionally) given by the user to localise their feed and show the climate change impacts most relevant to where they live.
     A regular expression is used to check whether the post code contains 5 digits.
-    If the post code is valid, it is committed to the Sessions table alongside the session_uuid.
+    If the post code is valid, it is committed to the Scores table.
     """
     s = Scores.query.filter_by(quiz_uuid=quiz_uuid).first()
-    if s:
-        try:
-            s.postal_code = post_code
-            db.session.commit()
+    try:
+        s.postal_code = post_code
+        db.session.commit()
 
-            response = {
-                "message": "Successfully added postal code to the database.",
-                "postCode": post_code,
-                "quizId": quiz_uuid,
-            }
-            return response, 201
-        except:
-            raise DatabaseError(
-                message="Something went wrong while saving post code to the database."
-            )
-    else:
+        response = {
+            "message": "Successfully added postal code to the database.",
+            "postCode": post_code,
+            "quizId": quiz_uuid,
+        }
+        return response, 201
+    except:
         raise DatabaseError(
-            message="Cannot save post code. Quiz id is not in database."
+            message="Something went wrong while saving post code to the database."
         )
 
 

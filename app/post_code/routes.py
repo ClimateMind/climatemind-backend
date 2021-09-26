@@ -2,7 +2,7 @@ from flask import request
 
 from app.post_code import bp
 from app.post_code.store_post_code import store_post_code, check_post_code
-from app.auth.utils import uuidType, validate_uuid
+from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
 from app.errors.errors import InvalidUsageError
 from flask_cors import cross_origin
 
@@ -28,6 +28,7 @@ def post_code():
 
     quiz_uuid = r.get("quizId", None)
     quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
+    check_uuid_in_db(quiz_uuid, uuidType.QUIZ)
 
     post_code = r.get("postCode", None)
 

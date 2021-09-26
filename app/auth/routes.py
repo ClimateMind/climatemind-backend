@@ -3,7 +3,7 @@ from datetime import datetime, timezone
 from flask import request, jsonify, make_response
 from sqlalchemy import desc
 from app.auth import bp
-from app.auth.utils import uuidType, validate_uuid, check_if_local
+from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid, check_if_local
 import regex as re
 import requests
 from flask_jwt_extended import create_access_token
@@ -186,17 +186,13 @@ def register():
             )
 
     quiz_uuid = validate_uuid(r["quizId"], uuidType.QUIZ)
+    check_uuid_in_db(quiz_uuid, uuidType.QUIZ)
 
     for param in ("firstName", "lastName"):
         if not 2 <= len(r[param]) <= 50:
             raise InvalidUsageError(
                 message=f"{param} must be between 2 and 50 characters."
             )
-
-    scores = db.session.query(Scores).filter_by(quiz_uuid=r["quizId"]).one_or_none()
-
-    if not scores:
-        raise DatabaseError(message="Quiz ID is not in the db.")
 
     if not check_email(r["email"]):
         raise InvalidUsageError(message=f"The email {r['email']} is invalid.")

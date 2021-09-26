@@ -4,7 +4,7 @@ from app.subscribe import bp
 
 from app.subscribe.store_subscription_data import store_subscription_data, check_email
 from app.errors.errors import InvalidUsageError
-from app.auth.utils import uuidType, validate_uuid
+from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
 from flask_cors import cross_origin
 from flask import request
 
@@ -24,12 +24,14 @@ def subscribe():
 
     email = r.get("email", None)
     session_uuid = r.get("sessionId", None)
-    validate_uuid(session_uuid, uuidType.SESSION)
 
     if not session_uuid:
         raise InvalidUsageError(
             message="Cannot post subscriber information without a session ID."
         )
+
+    validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
 
     if check_email(email):
         return store_subscription_data(session_uuid, email)
