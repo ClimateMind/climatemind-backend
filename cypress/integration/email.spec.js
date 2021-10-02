@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+// /// <reference types="cypress" />
 
 import scores from "../fixtures/postScores.json"
 
@@ -37,7 +37,7 @@ let recaptcha_Token = "03AGdBq27Tmja4W082LAEVoYyuuALGQwMVxOuOGDduLCQSTWWFuTtc4hQ
 
 describe("'/email' endpoint", () => {
     describe("logged in user Udating their email", () => {
-        before(() => {
+        beforeEach(() => {
             cy.sessionEndpoint().should((response) => {
                 session_Id = response.body.sessionId
             }).then(() => {
