@@ -37,7 +37,7 @@ let recaptcha_Token = "03AGdBq27Tmja4W082LAEVoYyuuALGQwMVxOuOGDduLCQSTWWFuTtc4hQ
 
 describe("'/email' endpoint", () => {
     describe("logged in user Udating their email", () => {
-        beforeEach(() => {
+        before(() => {
             cy.sessionEndpoint().should((response) => {
                 session_Id = response.body.sessionId
             }).then(() => {
