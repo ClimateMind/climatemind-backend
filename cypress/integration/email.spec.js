@@ -200,7 +200,7 @@ describe("'/email' endpoint", () => {
             });
         });
 
-        it("should handle updating email using current email or any other already registered", () => {
+        it.only("should handle updating email using current email or any other already registered", () => {
             newEmail = user.email;
             confirmNewEmail = newEmail;
 
