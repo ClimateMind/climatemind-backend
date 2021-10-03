@@ -200,36 +200,13 @@ describe("'/email' endpoint", () => {
             });
         });
 
-        it("should handle updating email using current email or any other already registered", () => {
-            newEmail = user1.email;
-            confirmNewEmail = newEmail;
-
-            updateEmailBody = {
-                "newEmail": newEmail,
-                "confirmEmail": confirmNewEmail,
-                "password": user1.password
-            };
-
-            cy.updateEmailEndpoint(accessToken, updateEmailBody)
-                .should((response) => {
-                    expect(response.status).to.equal(409);
-                    expect(response.headers["content-type"]).to.equal("application/json");
-                    expect(response.headers["access-control-allow-origin"]).to.equal("*");
-                    expect(response.body).to.be.an("object");
-                    expect(response.body).to.have.property("error");
-                    expect(response.body.error).to.be.a("string");
-                    expect(response.body.error).to.satisfy(function (s) {
-                        return s === emailAlreadyExistsInDBMessage;
-                    });
-                });
-            
-            //any other already registered
+        it("should handle updating email using an already registered email", () => {
             user2 = {
-                firstName: faker.name.firstName(),
-                lastName: faker.name.lastName(),
-                email: faker.internet.email(),
-                password: `@7${faker.internet.password()}`,
-                quizId: set_one_quizId
+                "firstName": faker.name.firstName(),
+                "lastName": faker.name.lastName(),
+                "email": faker.internet.email(),
+                "password": `@7${faker.internet.password()}`,
+                "quizId": set_one_quizId
             };
 
             cy.registerEndpoint(user2).should((response) => {
@@ -261,6 +238,8 @@ describe("'/email' endpoint", () => {
                     });
                 }
             });
+
+            //update email with an already registered email
             newEmail = user2.email;
             confirmNewEmail = newEmail;
 
