@@ -85,6 +85,30 @@ describe("'/email' endpoint", () => {
             });
         });
 
+        it("should handle updating email using current user's email", () => {
+            newEmail = user1.email;
+            confirmNewEmail = newEmail;
+
+            updateEmailBody = {
+                "newEmail": newEmail,
+                "confirmEmail": confirmNewEmail,
+                "password": user1.password
+            };
+
+            cy.updateEmailEndpoint(accessToken, updateEmailBody)
+                .should((response) => {
+                    expect(response.status).to.equal(409);
+                    expect(response.headers["content-type"]).to.equal("application/json");
+                    expect(response.headers["access-control-allow-origin"]).to.equal("*");
+                    expect(response.body).to.be.an("object");
+                    expect(response.body).to.have.property("error");
+                    expect(response.body.error).to.be.a("string");
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === emailAlreadyExistsInDBMessage;
+                    });
+                });
+        });
+
         it("should get current email", () => {
             cy.emailEndpoint(accessToken)
                 .should((response) => {
@@ -198,6 +222,69 @@ describe("'/email' endpoint", () => {
                     return s === badLoginMessage;
                 });
             });
+        });
+
+        it("should handle updating email using an already registered email", () => {
+            user2 = {
+                "firstName": faker.name.firstName(),
+                "lastName": faker.name.lastName(),
+                "email": faker.internet.email(),
+                "password": `@7${faker.internet.password()}`,
+                "quizId": set_one_quizId
+            };
+
+            cy.registerEndpoint(user2).should((response) => {
+                if (response.status == 201) {
+                    expect(response.status).to.equal(201);
+                    expect(response.body.message).to.satisfy(function (s) {
+                        return s === successMessage;
+                    });
+                    accessToken = response.body.access_token;
+                } else {
+                    expect(response.status).to.equal(429);
+                    expect(response.body).to.have.property("error");
+                    errorMessage = response.body;
+                    if (JSON.stringify(errorMessage).includes("5 per 1 second")) {
+                        expect(response.body.error).to.satisfy(function (s) {
+                            return s === rateLimitPerSecond;
+                        });
+                    } else if (JSON.stringify(errorMessage).includes("10 per 1 minute")) {
+                        expect(response.body.error).to.satisfy(function (s) {
+                            return s === rateLimitPerMinute;
+                        });
+                    } else if (JSON.stringify(errorMessage).includes("50 per 1 hour")) {
+                        expect(response.body.error).to.satisfy(function (s) {
+                            return s === rateLimitPerHour;
+                        });
+                    }
+                    else expect(response.body.error).to.satisfy(function (s) {
+                        return s === rateLimitPerDay;
+                    });
+                }
+            });
+
+            //update email with an already registered email
+            newEmail = user2.email;
+            confirmNewEmail = newEmail;
+
+            updateEmailBody = {
+                "newEmail": newEmail,
+                "confirmEmail": confirmNewEmail,
+                "password": user1.password
+            };
+
+            cy.updateEmailEndpoint(accessToken, updateEmailBody)
+                .should((response) => {
+                    expect(response.status).to.equal(409);
+                    expect(response.headers["content-type"]).to.equal("application/json");
+                    expect(response.headers["access-control-allow-origin"]).to.equal("*");
+                    expect(response.body).to.be.an("object");
+                    expect(response.body).to.have.property("error");
+                    expect(response.body.error).to.be.a("string");
+                    expect(response.body.error).to.satisfy(function (s) {
+                        return s === emailAlreadyExistsInDBMessage;
+                    });
+                });
         });
 
         it("should handle invalid email format when updating current email", () => {
@@ -339,7 +426,6 @@ describe("'/email' endpoint", () => {
                     });
                 });
         });
-
     });
 
     describe("unlogged in user trying to update their email", () => {
