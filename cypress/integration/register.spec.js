@@ -10,7 +10,7 @@ let set_two_quizId;
 let user;
 const successMessage = "Successfully created user";
 const badReqMessage = "email must be included in the request body.";
-const alreadyRegisteredMessage = "Email already registered";
+const alreadyRegisteredMessage = "Cannot register email. Email already exists in the database.";
 const missingPasswordMessage = "password must be included in the request body.";
 const missingName = "Name is missing.";
 const invalidQuizIdMessage = "Quiz ID is not a valid UUID4 format.";

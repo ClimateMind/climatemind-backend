@@ -41,7 +41,7 @@ class Users(db.Model):
         return check_password_hash(self.password_hash, password)
 
     @classmethod
-    def find_by_username(cls, email):
+    def find_by_email(cls, email):
         user = cls.query.filter_by(user_email=email).one_or_none()
         return user
 
