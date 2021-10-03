@@ -234,8 +234,8 @@ describe("'/email' endpoint", () => {
             };
 
             cy.registerEndpoint(user2).should((response) => {
-                if (response.status == 200) {
-                    expect(response.status).to.equal(200);
+                if (response.status == 201) {
+                    expect(response.status).to.equal(201);
                     expect(response.body.message).to.satisfy(function (s) {
                         return s === successMessage;
                     });
