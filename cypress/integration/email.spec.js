@@ -6,13 +6,13 @@ var faker = require("faker");
 
 let session_Id;
 let set_one_quizId;
-let user;
+let user1;
 let user2;
 let accessToken;
 let updateEmailBody;
 let newEmail;
 let confirmNewEmail;
-let user_oldEmail;
+let user1_oldEmail;
 let errorMessage;
 
 const successMessage = "Successfully created user";
@@ -37,22 +37,22 @@ let recaptcha_Token = "03AGdBq27Tmja4W082LAEVoYyuuALGQwMVxOuOGDduLCQSTWWFuTtc4hQ
 
 describe("'/email' endpoint", () => {
     describe("logged in user Udating their email", () => {
-        before(() => {
+        beforeEach(() => {
             cy.sessionEndpoint().should((response) => {
                 session_Id = response.body.sessionId
             }).then(() => {
                 cy.scoresEndpoint(scores, session_Id).should((response) => {
                     set_one_quizId = response.body.quizId;
                 }).then(() => {
-                    user = {
-                        firstName: faker.name.firstName(),
-                        lastName: faker.name.lastName(),
-                        email: faker.internet.email(),
-                        password: `@7${faker.internet.password()}`,
-                        quizId: set_one_quizId
+                    user1 = {
+                        "firstName": faker.name.firstName(),
+                        "lastName": faker.name.lastName(),
+                        "email": faker.internet.email(),
+                        "password": `@7${faker.internet.password()}`,
+                        "quizId": set_one_quizId
                     };
 
-                    cy.registerEndpoint(user).should((response) => {
+                    cy.registerEndpoint(user1).should((response) => {
                         if (response.status == 201) {
                             expect(response.status).to.equal(201);
                             expect(response.body.message).to.satisfy(function (s) {
@@ -95,7 +95,7 @@ describe("'/email' endpoint", () => {
                     expect(response.body).to.have.property("currentEmail");
                     expect(response.body.currentEmail).to.be.a("string");
                     expect(response.body.currentEmail).to.satisfy(function (s) {
-                        return s === user.email;
+                        return s === user1.email;
                     });
                 });
         });
@@ -107,7 +107,7 @@ describe("'/email' endpoint", () => {
             updateEmailBody = {
                 "newEmail": newEmail,
                 "confirmEmail": confirmNewEmail,
-                "password": user.password
+                "password": user1.password
             };
 
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
@@ -131,7 +131,7 @@ describe("'/email' endpoint", () => {
             updateEmailBody = {
                 "newEmail": newEmail,
                 "confirmEmail": confirmNewEmail,
-                "password": user.password
+                "password": user1.password
             };
 
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
@@ -168,7 +168,7 @@ describe("'/email' endpoint", () => {
             updateEmailBody = {
                 "newEmail": newEmail,
                 "confirmEmail": confirmNewEmail,
-                "password": user.password
+                "password": user1.password
             };
 
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
@@ -183,13 +183,13 @@ describe("'/email' endpoint", () => {
                 });
             
             //Login with old email
-            user_oldEmail = {
-                "email": user.email,
-                "password": user.password,
+            user1_oldEmail = {
+                "email": user1.email,
+                "password": user1.password,
                 "recaptchaToken": recaptcha_Token
             };
 
-            cy.loginEndpoint(user_oldEmail).should((response) => {
+            cy.loginEndpoint(user1_oldEmail).should((response) => {
                 expect(response.status).to.equal(401);
                 expect(response.body).to.be.an("object");
                 expect(response.body).to.have.property("error");
@@ -201,13 +201,13 @@ describe("'/email' endpoint", () => {
         });
 
         it("should handle updating email using current email or any other already registered", () => {
-            newEmail = user.email;
+            newEmail = user1.email;
             confirmNewEmail = newEmail;
 
             updateEmailBody = {
-                "newEmail": newEmail,
+                "newEmail": user1.email,
                 "confirmEmail": confirmNewEmail,
-                "password": user.password
+                "password": user1.password
             };
 
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
@@ -267,7 +267,7 @@ describe("'/email' endpoint", () => {
             updateEmailBody = {
                 "newEmail": newEmail,
                 "confirmEmail": confirmNewEmail,
-                "password": user.password
+                "password": user1.password
             };
 
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
@@ -291,7 +291,7 @@ describe("'/email' endpoint", () => {
             updateEmailBody = {
                 "newEmail": newEmail,
                 "confirmEmail": confirmNewEmail,
-                "password": user.password
+                "password": user1.password
             };
             
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
@@ -315,7 +315,7 @@ describe("'/email' endpoint", () => {
             updateEmailBody = {
                 "newEmail": newEmail,
                 "confirmEmail": confirmNewEmail,
-                "password": user.password
+                "password": user1.password
             };
             
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
@@ -338,7 +338,7 @@ describe("'/email' endpoint", () => {
             
             updateEmailBody = {
                 "confirmEmail": confirmNewEmail,
-                "password": user.password
+                "password": user1.password
             };
             
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
@@ -360,7 +360,7 @@ describe("'/email' endpoint", () => {
             
             updateEmailBody = {
                 "newEmail": newEmail,
-                "password": user.password
+                "password": user1.password
             };
             
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
