@@ -1,3 +1,4 @@
+from sqlalchemy.exc import SQLAlchemyError
 from app.subscribe.store_subscription_data import check_email
 from flask import request, jsonify
 
@@ -68,10 +69,10 @@ def update_email():
             message="Cannot update email. New email address and confirm new email address do not match."
         )
 
-    email_already_used = Users.query.filter_by(user_email=new_email).first()
+    user = Users.find_by_email(new_email)
 
     # TODO The already exists error format makes this unclear to read in the code, despite the response being clear. Backend to discuss new strategy.
-    if email_already_used:
+    if user:
         raise AlreadyExistsError(message="Cannot update email. Email")
 
     if not current_user.check_password(password):
@@ -80,7 +81,7 @@ def update_email():
     try:
         current_user.user_email = new_email
         db.session.commit()
-    except:
+    except SQLAlchemyError:
         raise DatabaseError(
             message="Something went wrong while trying to update the email in the db."
         )

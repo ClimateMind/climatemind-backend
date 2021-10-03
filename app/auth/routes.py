@@ -16,7 +16,12 @@ from flask_cors import cross_origin
 from app.subscribe.store_subscription_data import check_email
 from sqlalchemy.exc import SQLAlchemyError
 
-from app.errors.errors import InvalidUsageError, DatabaseError, UnauthorizedError
+from app.errors.errors import (
+    AlreadyExistsError,
+    InvalidUsageError,
+    DatabaseError,
+    UnauthorizedError,
+)
 
 from app.models import Users, Scores
 
@@ -202,9 +207,9 @@ def register():
             message="Password does not fit the requirements. Password must be between 8-128 characters, contain at least one number or special character, and cannot contain any spaces."
         )
 
-    user = Users.find_by_username(r["email"])
+    user = Users.find_by_email(r["email"])
     if user:
-        raise UnauthorizedError(message="Email already registered")
+        raise AlreadyExistsError(message="Cannot register email. Email")
     else:
         user = add_user_to_db(
             r["firstName"], r["lastName"], r["email"], r["password"], r["quizId"]
