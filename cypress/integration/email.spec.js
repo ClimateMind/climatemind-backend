@@ -205,7 +205,7 @@ describe("'/email' endpoint", () => {
             confirmNewEmail = newEmail;
 
             updateEmailBody = {
-                "newEmail": user1.email,
+                "newEmail": newEmail,
                 "confirmEmail": confirmNewEmail,
                 "password": user1.password
             };
