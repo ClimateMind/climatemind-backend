@@ -147,7 +147,7 @@ describe("'/register' endpoint", () => {
         cy.registerEndpoint(user).then(() => {
             cy.registerEndpoint(user).should((response) => {
                 if (response.status == 401) {
-                    expect(response.status).to.equal(401);
+                    expect(response.status).to.equal(409);
                     expect(response.headers["content-type"]).to.equal("application/json");
                     expect(response.body).to.be.a("object");
                     expect(response.body).to.have.property("error");
