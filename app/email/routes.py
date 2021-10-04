@@ -70,7 +70,7 @@ def update_email():
         )
 
     user = Users.find_by_email(new_email)
-    breakpoint()
+    
     # TODO The already exists error format makes this unclear to read in the code, despite the response being clear. Backend to discuss new strategy.
     if user:
         raise AlreadyExistsError(message="Cannot update email. Email")
