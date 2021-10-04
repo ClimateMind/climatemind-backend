@@ -273,8 +273,6 @@ describe("'/email' endpoint", () => {
                 "password": user1.password
             };
             
-            cy.wait(25000)
-            
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
                 .should((response) => {
                     
