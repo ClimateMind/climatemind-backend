@@ -1,9 +1,9 @@
 from app.conversations import bp
 from app import db
 from app.auth.utils import uuidType, validate_uuid, check_uuid_in_db
-from app.models import Users, Conversations, Sessions
-from app.errors.errors import DatabaseError, InvalidUsageError
-from flask_jwt_extended import get_jwt_identity
+from app.models import Users, Conversations, Sessions, Scores
+from app.errors.errors import DatabaseError, InvalidUsageError, UnauthorizedError
+from flask_jwt_extended import get_jwt_identity, get_current_user
 from flask_jwt_extended import jwt_required
 from flask import request, jsonify, make_response
 from flask_cors import cross_origin
@@ -12,6 +12,7 @@ from datetime import timezone
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import desc
 from enum import IntEnum
+from scipy.stats import kendalltau
 import uuid
 
 
@@ -113,8 +114,7 @@ def get_conversations():
     session_uuid = request.headers.get("X-Session-Id")
     validate_uuid(session_uuid, uuidType.SESSION)
     check_uuid_in_db(session_uuid, uuidType.SESSION)
-    identity = get_jwt_identity()
-    user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
+    user = get_current_user()
 
     if not user:
         raise DatabaseError(message="No user found for the provided JWT token")
@@ -141,3 +141,76 @@ def get_conversations():
     response = {"conversations": results}
 
     return jsonify(response), 200
+
+
+@bp.route("/shared-values", methods=["GET"])
+@cross_origin()
+@jwt_required()
+def shared_values():
+    session_uuid = request.headers.get("X-Session-Id")
+    validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+    user = get_current_user()
+
+    if not user:
+        raise DatabaseError(message="No user found for the provided JWT token")
+
+    r = request.get_json(force=True, silent=True)
+    if not r:
+        raise InvalidUsageError(
+            message="Must provide a JSON body with the Conversation ID."
+        )
+
+    conversation_id = r.get("conversationId")
+    conversation = db.session.query(Conversations).filter_by(conversation_id=conversation_id).one_or_none()
+
+    if not conversation:
+        raise InvalidUsageError(
+            message="conversationId is Invalid."
+        )
+
+    sender_scores = db.session.query(Scores).join(Sessions).filter(
+        Scores.session_uuid == conversation.sender_session_uuid
+    ).one_or_none()
+
+    receiver_scores = db.session.query(Scores).join(Sessions).filter(
+        Scores.session_uuid == conversation.receiver_session_uuid
+    ).one_or_none()
+
+    if not sender_scores or not receiver_scores:
+        raise DatabaseError(
+            message="Conversation is missing required data."
+        )
+
+    # User needs to be associated with a conversation to access it
+    if sender_scores.user_uuid != user.user_uuid and receiver_scores.user_uuid != user.user_uuid:
+        raise DatabaseError(
+            message="conversationId is Invalid."
+        )
+
+    personal_values_categories = [
+        "achievement",
+        "benevolence",
+        "conformity",
+        "hedonism",
+        "power",
+        "security",
+        "self_direction",
+        "stimulation",
+        "tradition",
+        "universalism",
+    ]
+
+    sender_scores = sender_scores.__dict__
+    sender_scores = [sender_scores[key] for key in personal_values_categories]
+
+    receiver_scores = receiver_scores.__dict__
+    receiver_scores = [receiver_scores[key] for key in personal_values_categories]
+
+    similarity_score = (kendalltau(a, b).correlation + 1) / 2
+
+    return jsonify({"similarityScore": similarity_score}), 200
+
+
+
+
