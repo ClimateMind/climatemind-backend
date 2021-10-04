@@ -270,8 +270,10 @@ describe("'/email' endpoint", () => {
             updateEmailBody = {
                 "newEmail": newEmail,
                 "confirmEmail": confirmNewEmail,
-                "password": user2.password
+                "password": user1.password
             };
+
+            cy.wait(60000)
 
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
                 .should((response) => {
