@@ -270,7 +270,7 @@ describe("'/email' endpoint", () => {
             updateEmailBody = {
                 "newEmail": newEmail,
                 "confirmEmail": confirmNewEmail,
-                "password": user1.password
+                "password": user2.password
             };
 
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
