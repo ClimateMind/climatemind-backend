@@ -272,11 +272,12 @@ describe("'/email' endpoint", () => {
                 "confirmEmail": confirmNewEmail,
                 "password": user1.password
             };
-
-            cy.wait(60000)
-
+            
+            cy.wait(25000)
+            
             cy.updateEmailEndpoint(accessToken, updateEmailBody)
                 .should((response) => {
+                    
                     expect(response.status).to.equal(409);
                     expect(response.headers["content-type"]).to.equal("application/json");
                     expect(response.headers["access-control-allow-origin"]).to.equal("*");
