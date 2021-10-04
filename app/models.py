@@ -42,8 +42,7 @@ class Users(db.Model):
 
     @classmethod
     def find_by_email(cls, email):
-        # user = cls.query.filter_by(user_email=email).one_or_none()
-        user = cls.query.filter_by(user_email=email).first()
+        user = cls.query.filter_by(user_email=email).one_or_none()
         return user
 
     def __repr__(self):
