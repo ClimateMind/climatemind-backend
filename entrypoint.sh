@@ -8,7 +8,7 @@ BASEDIR="$(dirname "${BASH_SOURCE[0]}")"
 # flask db downgrade -d $BASEDIR/migrations
 # flask db stamp -d $BASEDIR/migrations 04f4c14bd4af
 # flask db upgrade -d $BASEDIR/migrations
-flask db init -d $BASEDIR/migrations_local
+# flask db init -d $BASEDIR/migrations_local
 # flask db init -d $BASEDIR/migrations_azure
 # flask db init -d $BASEDIR/migrations_test_db
 

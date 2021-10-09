@@ -69,14 +69,14 @@ def update_email():
             message="Cannot update email. New email address and confirm new email address do not match."
         )
 
+    if not current_user.check_password(password):
+        raise UnauthorizedError(message="Cannot update email. Incorrect password.")
+
     user = Users.find_by_email(new_email)
 
     # TODO The already exists error format makes this unclear to read in the code, despite the response being clear. Backend to discuss new strategy.
     if user:
         raise AlreadyExistsError(message="Cannot update email. Email")
-
-    if not current_user.check_password(password):
-        raise UnauthorizedError(message="Cannot update email. Incorrect password.")
 
     try:
         current_user.user_email = new_email
