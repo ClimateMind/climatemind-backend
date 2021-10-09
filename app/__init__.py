@@ -44,6 +44,7 @@ def create_app(config_class=DevelopmentConfig):
             r"/register": origins,
             r"/logout": origins,
             r"/captcha": origins,
+            r"/email": origins,
         },
         supports_credentials=True,
     )
@@ -97,6 +98,10 @@ def create_app(config_class=DevelopmentConfig):
         from app.session import bp as session_bp
 
         app.register_blueprint(session_bp)
+
+        from app.email import bp as email_bp
+
+        app.register_blueprint(email_bp)
 
         from app.conversations import bp as conversations_bp
 

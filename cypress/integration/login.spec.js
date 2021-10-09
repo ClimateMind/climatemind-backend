@@ -1,4 +1,4 @@
-/// <reference types="cypress" />
+//  /// <reference types="cypress" />
 
 import scores from "../fixtures/postScores.json";
 var faker = require("faker");
@@ -6,8 +6,7 @@ var faker = require("faker");
 // Expected error responses
 const successMessage = "Successfully created user";
 const badLoginMessage = "Wrong email or password. Try again.";
-const invalidReqMessage =
-  "Email, password and recaptcha must be included in the request body.";
+const invalidReqMessage1 = "Email, password and recaptcha must be included in the request body."
 const invalidReqMessage2 =
   "Email and password must be included in the request body.";
 const rateLimitPerSecond = "ratelimit exceeded 5 per 1 second";
@@ -333,7 +332,7 @@ describe("'/login' endpoint", () => {
         expect(response.body).to.be.a("object");
         expect(response.body).to.have.property("error");
         expect(response.body.error).to.satisfy(function (s) {
-          return s === invalidReqMessage;
+          return s === invalidReqMessage1;
         });
 
       } else {
