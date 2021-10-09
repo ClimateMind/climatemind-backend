@@ -8,7 +8,7 @@ BASEDIR="$(dirname "${BASH_SOURCE[0]}")"
 # flask db downgrade -d $BASEDIR/migrations
 # flask db stamp -d $BASEDIR/migrations 04f4c14bd4af
 # flask db upgrade -d $BASEDIR/migrations
-flask db init -d $BASEDIR/migrations_local
+# flask db init -d $BASEDIR/migrations_local
 # flask db init -d $BASEDIR/migrations_azure
 # flask db init -d $BASEDIR/migrations_test_db
 
@@ -25,7 +25,7 @@ else
     # flask db upgrade -d $BASEDIR/migrations_azure #this line used only if production database is being used
 fi
 
-flask run --host=0.0.0.0
+gunicorn --bind 0.0.0.0:5000 climatemind:app
 
 # NOTE: migrate and upgrade must be run SEPARATELY for cloud migrations.
 # COMMENT OUT the upgrade code and run the migrate command first.
