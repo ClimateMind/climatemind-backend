@@ -3,6 +3,7 @@ from datetime import datetime, timezone
 from flask import request, jsonify, make_response
 from sqlalchemy import desc
 from app.auth import bp
+from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid, check_if_local
 import regex as re
 import requests
 from flask_jwt_extended import create_access_token
@@ -15,7 +16,12 @@ from flask_cors import cross_origin
 from app.subscribe.store_subscription_data import check_email
 from sqlalchemy.exc import SQLAlchemyError
 
-from app.errors.errors import InvalidUsageError, DatabaseError, UnauthorizedError
+from app.errors.errors import (
+    AlreadyExistsError,
+    InvalidUsageError,
+    DatabaseError,
+    UnauthorizedError,
+)
 
 from app.models import Users, Scores
 
@@ -37,15 +43,7 @@ def ip_whitelist():
     Adds localhost IP to the rate limiter's whitelist when operating in development environments.
     Prevents conflicts with Cypress testing & VPNs.
     """
-    local = None
-
-    if (
-        os.environ["DATABASE_PARAMS"]
-        == "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;"
-    ):
-        local = request.remote_addr == "127.0.0.1" or os.environ.get("VPN")
-
-    return local
+    return check_if_local()
 
 
 @bp.route("/login", methods=["POST"])
@@ -70,9 +68,9 @@ def login():
     password = r.get("password", None)
     recaptcha_token = r.get("recaptchaToken", None)
 
-    if not password or not email or not recaptcha_token:
+    if not password or not email:
         raise InvalidUsageError(
-            message="Email, password and recaptcha must be included in the request body."
+            message="Email and password must be included in the request body."
         )
 
     user = db.session.query(Users).filter_by(user_email=email).one_or_none()
@@ -80,16 +78,23 @@ def login():
     if not user or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
-    # Verify captcha with Google
-    secret_key = os.environ.get("RECAPTCHA_SECRET_KEY")
-    data = {"secret": secret_key, "response": recaptcha_token}
-    resp = requests.post(
-        "https://www.google.com/recaptcha/api/siteverify", data=data
-    ).json()
+    if not check_if_local():
+        # Verify captcha with Google
+        secret_key = os.environ.get("RECAPTCHA_SECRET_KEY")
 
-    # Google will return True/False in the success field, resp must be json to properly access
-    if not resp["success"]:
-        raise UnauthorizedError(message="Captcha did not succeed.")
+        if not recaptcha_token:
+            raise InvalidUsageError(
+                message="Recaptcha token must be included in the request body."
+            )
+
+        data = {"secret": secret_key, "response": recaptcha_token}
+        resp = requests.post(
+            "https://www.google.com/recaptcha/api/siteverify", data=data
+        ).json()
+
+        # Google will return True/False in the success field, resp must be json to properly access
+        if not resp["success"]:
+            raise UnauthorizedError(message="Captcha did not succeed.")
 
     access_token = create_access_token(identity=user, fresh=True)
     refresh_token = create_refresh_token(identity=user)
@@ -185,26 +190,14 @@ def register():
                 message=f"{param} must be included in the request body."
             )
 
-    def valid_name(name):
-        return 2 <= len(name) <= 50
+    quiz_uuid = validate_uuid(r["quizId"], uuidType.QUIZ)
+    check_uuid_in_db(quiz_uuid, uuidType.QUIZ)
 
     for param in ("firstName", "lastName"):
-        if not valid_name(r[param]):
+        if not 2 <= len(r[param]) <= 50:
             raise InvalidUsageError(
                 message=f"{param} must be between 2 and 50 characters."
             )
-
-    # TODO: When conversations PR integrated, replace try except with UUID checker
-    try:
-        quiz_uuid = uuid.UUID(r["quizId"])
-
-    except (TypeError, ValueError):
-        raise InvalidUsageError(message="Quiz UUID is improperly formatted.")
-
-    scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).one_or_none()
-
-    if not scores:
-        raise DatabaseError(message="Quiz ID is not in the db.")
 
     if not check_email(r["email"]):
         raise InvalidUsageError(message=f"The email {r['email']} is invalid.")
@@ -214,12 +207,12 @@ def register():
             message="Password does not fit the requirements. Password must be between 8-128 characters, contain at least one number or special character, and cannot contain any spaces."
         )
 
-    user = Users.find_by_username(r["email"])
+    user = Users.find_by_email(r["email"])
     if user:
-        raise UnauthorizedError(message="Email already registered")
+        raise AlreadyExistsError(message="Cannot register email. Email")
     else:
         user = add_user_to_db(
-            r["firstName"], r["lastName"], r["email"], r["password"], quiz_uuid
+            r["firstName"], r["lastName"], r["email"], r["password"], r["quizId"]
         )
 
     access_token = create_access_token(identity=user, fresh=True)

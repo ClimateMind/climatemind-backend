@@ -41,7 +41,7 @@ class Users(db.Model):
         return check_password_hash(self.password_hash, password)
 
     @classmethod
-    def find_by_username(cls, email):
+    def find_by_email(cls, email):
         user = cls.query.filter_by(user_email=email).one_or_none()
         return user
 
@@ -110,6 +110,27 @@ class ClimateFeed(db.Model):
     solution_4_iri = db.Column(db.String(255))
     isPossiblyLocal = db.Column(db.Boolean)
     session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
+
+
+class Conversations(db.Model):
+    __tablename__ = "conversations"
+    conversation_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
+    sender_user_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"), index=True, nullable=False
+    )
+    sender_session_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"), nullable=False
+    )
+    receiver_session_uuid = db.Column(
+        UNIQUEIDENTIFIER,
+        db.ForeignKey("sessions.session_uuid"),
+        index=False,
+        unique=False,
+        nullable=True,
+    )
+    receiver_name = db.Column(db.String(50), index=False, unique=False, nullable=False)
+    conversation_status = db.Column(db.Integer)
+    conversation_created_timestamp = db.Column(db.DateTime)
 
 
 class AnalyticsData(db.Model):
