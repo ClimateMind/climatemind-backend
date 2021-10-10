@@ -35,6 +35,7 @@ class DevelopmentConfig(BaseConfig):
 
     nx_processor = network_x_processor()
     G = nx_processor.get_graph()
+    T = nx_processor.get_test_graph()
 
 
 class TestingConfig(BaseConfig):

@@ -2,6 +2,12 @@ import sys
 
 import networkx as nx
 
+from ..scoring.scoring_utils import (
+    get_test_ontology,
+    get_valid_test_ont,
+    get_non_test_ont,
+)
+
 
 class network_x_processor:
     def __init__(self):
@@ -27,3 +33,13 @@ class network_x_processor:
             return self.G
         except ValueError:
             raise
+
+    def get_test_graph(self):
+        """
+        Returns the test ontology for use in the user feed algorithm.
+        """
+        T = self.G.copy()
+        valid_test_ont = get_valid_test_ont()
+        not_test_ont = get_non_test_ont()
+        get_test_ontology(T, valid_test_ont, not_test_ont)
+        return T
