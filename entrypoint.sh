@@ -25,6 +25,10 @@ else
     # flask db upgrade -d $BASEDIR/migrations_azure #this line used only if production database is being used 
 fi
 	
+echo 'before pytest'
+pytest ./app/
+echo 'after pytest'
+
 flask run --host=0.0.0.0
 
 # NOTE: migrate and upgrade must be run SEPARATELY for cloud migrations. 
