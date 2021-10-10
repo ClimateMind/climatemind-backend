@@ -162,31 +162,38 @@ def shared_values():
         )
 
     conversation_id = r.get("conversationId")
-    conversation = db.session.query(Conversations).filter_by(conversation_id=conversation_id).one_or_none()
+    conversation = (
+        db.session.query(Conversations)
+        .filter_by(conversation_id=conversation_id)
+        .one_or_none()
+    )
 
     if not conversation:
-        raise InvalidUsageError(
-            message="conversationId is Invalid."
-        )
+        raise InvalidUsageError(message="conversationId is Invalid.")
 
-    sender_scores = db.session.query(Scores).join(Sessions).filter(
-        Scores.session_uuid == conversation.sender_session_uuid
-    ).one_or_none()
+    sender_scores = (
+        db.session.query(Scores)
+        .join(Sessions)
+        .filter(Scores.session_uuid == conversation.sender_session_uuid)
+        .one_or_none()
+    )
 
-    receiver_scores = db.session.query(Scores).join(Sessions).filter(
-        Scores.session_uuid == conversation.receiver_session_uuid
-    ).one_or_none()
+    receiver_scores = (
+        db.session.query(Scores)
+        .join(Sessions)
+        .filter(Scores.session_uuid == conversation.receiver_session_uuid)
+        .one_or_none()
+    )
 
     if not sender_scores or not receiver_scores:
-        raise DatabaseError(
-            message="Conversation is missing required data."
-        )
+        raise DatabaseError(message="Conversation is missing required data.")
 
     # User needs to be associated with a conversation to access it
-    if sender_scores.user_uuid != user.user_uuid and receiver_scores.user_uuid != user.user_uuid:
-        raise DatabaseError(
-            message="conversationId is Invalid."
-        )
+    if (
+        sender_scores.user_uuid != user.user_uuid
+        and receiver_scores.user_uuid != user.user_uuid
+    ):
+        raise DatabaseError(message="conversationId is Invalid.")
 
     personal_values_categories = [
         "achievement",
@@ -210,7 +217,3 @@ def shared_values():
     similarity_score = (kendalltau(a, b).correlation + 1) / 2
 
     return jsonify({"similarityScore": similarity_score}), 200
-
-
-
-
