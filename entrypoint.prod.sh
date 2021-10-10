@@ -24,12 +24,8 @@ else
     flask db upgrade -d $BASEDIR/migrations_test_db #this line used only if cloud test db is being used
     # flask db upgrade -d $BASEDIR/migrations_azure #this line used only if production database is being used
 fi
-	
-echo 'before pytest'
-pytest ./app/
-echo 'after pytest'
 
-flask run --host=0.0.0.0
+gunicorn --bind 0.0.0.0:5000 climatemind:app
 
 # NOTE: migrate and upgrade must be run SEPARATELY for cloud migrations.
 # COMMENT OUT the upgrade code and run the migrate command first.
