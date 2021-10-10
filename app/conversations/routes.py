@@ -70,8 +70,10 @@ def create_conversation_invite():
     identity = get_jwt_identity()
     user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
 
-    if not user:
-        raise DatabaseError(message="No user found for the provided JWT token.")
+    # TODO - WE NEED TO DECIDE WHETHER TO DELETE THIS. THE APP WILL NEVER REACH THIS ERROR AS JWT IS
+    # REQUIRED AND THE JWT STANDARD ERRORS WILL KICK IN FIRST.
+    # if not user:
+    #    raise DatabaseError(message="No user found for the provided JWT token.")
 
     conversation_uuid = uuid.uuid4()
 
@@ -116,8 +118,10 @@ def get_conversations():
     check_uuid_in_db(session_uuid, uuidType.SESSION)
     user = get_current_user()
 
-    if not user:
-        raise DatabaseError(message="No user found for the provided JWT token")
+    # TODO - WE NEED TO DECIDE WHETHER TO DELETE THIS. THE APP WILL NEVER REACH THIS ERROR AS JWT IS
+    # REQUIRED AND THE JWT STANDARD ERRORS WILL KICK IN FIRST.
+    # if not user:
+    #    raise DatabaseError(message="No user found for the provided JWT token")
 
     conversations = (
         db.session.query(Conversations)

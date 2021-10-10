@@ -150,15 +150,14 @@ Cypress.Commands.add('mythsEndpoint', () => {
         .then(cy.wrap);
 });
 
-Cypress.Commands.add('conversationEndpoint', (invited_username, accessToken, session_Id) => {
+Cypress.Commands.add('conversationEndpoint', (requestBody, accessToken, session_Id) => {
     return cy
         .request(
             {
                 method: 'POST',
                 url: "http://localhost:5000/conversation",
-                body: {
-                    "invitedUserName": invited_username
-                },
+                body: requestBody
+                ,
                 failOnStatusCode: false,
                 headers: {
                     'Authorization': `Bearer ${accessToken}`,
