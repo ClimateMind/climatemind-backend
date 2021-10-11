@@ -111,7 +111,7 @@ class GetFeed:
 
         self.climate_effects = climate_effects
 
-    def get_best_nodes(self, num_feed_cards=21):
+    def get_best_nodes(self, num_feed_cards):
         """
         Sorts nodes by their relevance to a user.
         Nodes with no score are assigned -inf as it could be risky to show

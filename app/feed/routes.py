@@ -28,6 +28,7 @@ def get_feed():
 
     :returns: Feed data as JSON & 200 on success
     """
+    num_feed_cards = 21                     # Planned for more use, do not move
     quiz_uuid = request.args.get("quizId")
     quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
     check_uuid_in_db(quiz_uuid, uuidType.QUIZ)
@@ -40,13 +41,13 @@ def get_feed():
     session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
     check_uuid_in_db(session_uuid, uuidType.SESSION)
 
-    feed_entries = get_feed_results(quiz_uuid, session_uuid)
+    feed_entries = get_feed_results(quiz_uuid, session_uuid, num_feed_cards)
 
     return jsonify(feed_entries), 200
 
 
 @cache.memoize(timeout=1200)  # 20 minutes
-def get_feed_results(quiz_uuid, session_uuid):
+def get_feed_results(quiz_uuid, session_uuid, num_feed_cards):
     """
     Mitigation solutions are served randomly based on a user's highest scoring climate
     impacts. The order of these should not change when a page is refreshed. This method
@@ -55,6 +56,7 @@ def get_feed_results(quiz_uuid, session_uuid):
 
     :param quiz_uuid: uuid4 as string
     :param session_uuid: uuid4 as string
+    :param num_feed_cards: int
 
     :returns feed_entries: dictionary of feed data
     """
@@ -86,7 +88,7 @@ def get_feed_results(quiz_uuid, session_uuid):
     solution_processor = process_solutions()
     node_scoring.score_nodes(session_uuid, nx_utils, myth_processor, solution_processor)
 
-    recommended_nodes = node_scoring.get_best_nodes()
+    recommended_nodes = node_scoring.get_best_nodes(num_feed_cards)
 
     try:
         store_climate_feed_data(session_uuid, recommended_nodes)
