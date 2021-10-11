@@ -10,7 +10,7 @@ import numpy as np
 from ..scoring.build_localised_acyclic_graph import build_localised_acyclic_graph
 
 
-class GetFeed:
+class Feed:
 
     """
     After users have completed their survey, they want to receive personalized suggestions

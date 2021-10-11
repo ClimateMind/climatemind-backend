@@ -6,7 +6,7 @@ from sqlalchemy.exc import SQLAlchemyError
 
 from app import auto, cache, db
 from . import bp
-from .get_feed import GetFeed
+from .get_feed import Feed
 from .store_climate_feed_data import store_climate_feed_data
 from ..auth.utils import check_uuid_in_db, uuidType, validate_uuid
 from ..errors.errors import CustomError, DatabaseError, InvalidUsageError
@@ -81,7 +81,7 @@ def get_feed_results(quiz_uuid, session_uuid, num_feed_cards):
     scores = scores.__dict__
     scores = {key: scores[key] for key in personal_values_categories}
 
-    node_scoring = GetFeed(scores)
+    node_scoring = Feed(scores)
 
     nx_utils = network_x_utils()
     myth_processor = process_myths()
