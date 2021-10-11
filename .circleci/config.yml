@@ -35,7 +35,7 @@ jobs:
           command: npm i
       - run:
           name: Docker Compose Build
-          command: docker-compose build
+          command: docker-compose build --file docker-compose.prod.yml
       - run:
           name: Docker Compose Up
           command: docker-compose up -d
