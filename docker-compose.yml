@@ -3,7 +3,7 @@ services:
   web:
     build:
       context: ./
-      dockerfile: Dockerfile.prod
+      dockerfile: Dockerfile
     ports:
       - "8050:8050"
       - "5000:5000"
@@ -16,7 +16,7 @@ services:
       #DATABASE_PARAMS: ${TEST_DB_PARAMS}
       RECAPTCHA_SECRET_KEY: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
       FLASK_APP: "climatemind.py"
-    command: ["./wait-for-it", "db:1433", "--", "python3", "climatemind.py"]
+    command: ["./wait-for-it", "db:1433"]
     stdin_open: true
     tty: true
     links:
