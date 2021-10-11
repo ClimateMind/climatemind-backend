@@ -10,7 +10,7 @@ let set_two_quizId;
 let user;
 const successMessage = "Successfully created user";
 const badReqMessage = "email must be included in the request body.";
-const alreadyRegisteredMessage = "Email already registered";
+const alreadyRegisteredMessage = "Cannot register email. Email already exists in the database.";
 const missingPasswordMessage = "password must be included in the request body.";
 const missingName = "Name is missing.";
 const invalidQuizIdMessage = "Quiz ID is not a valid UUID4 format.";
@@ -146,8 +146,8 @@ describe("'/register' endpoint", () => {
 
         cy.registerEndpoint(user).then(() => {
             cy.registerEndpoint(user).should((response) => {
-                if (response.status == 401) {
-                    expect(response.status).to.equal(401);
+                if (response.status == 409) {
+                    expect(response.status).to.equal(409);
                     expect(response.headers["content-type"]).to.equal("application/json");
                     expect(response.body).to.be.a("object");
                     expect(response.body).to.have.property("error");
