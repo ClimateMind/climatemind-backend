@@ -54,5 +54,5 @@ EXPOSE 5000 8050
 
 RUN ["chmod", "+x", "db-init.sh"]
 
-RUN chmod +x ./entrypoint.sh
+RUN chmod u+x ./entrypoint.sh
 ENTRYPOINT ["./entrypoint.sh"]
