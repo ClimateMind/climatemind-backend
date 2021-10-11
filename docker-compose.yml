@@ -10,7 +10,6 @@ services:
     volumes:
       - .:/app
     environment:
-      FLASK_ENV: production
       DATABASE_PARAMS: Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;
       #DATABASE_PARAMS: ${CLOUD_DB_PARAMS}
       #DATABASE_PARAMS: ${TEST_DB_PARAMS}
