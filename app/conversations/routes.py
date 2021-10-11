@@ -1,19 +1,19 @@
-from app.conversations import bp
-from app import db
-from app.auth.utils import uuidType, validate_uuid, check_uuid_in_db
-from app.models import Users, Conversations, Sessions, Scores
-from app.errors.errors import DatabaseError, InvalidUsageError, UnauthorizedError
-from flask_jwt_extended import get_jwt_identity, get_current_user
-from flask_jwt_extended import jwt_required
-from flask import request, jsonify, make_response
-from flask_cors import cross_origin
 import datetime
 from datetime import timezone
-from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy import desc
 from enum import IntEnum
-from scipy.stats import kendalltau
 import uuid
+
+from flask import jsonify, make_response, request
+from flask_cors import cross_origin
+from flask_jwt_extended import get_current_user, get_jwt_identity, jwt_required
+from sqlalchemy import desc
+from sqlalchemy.exc import SQLAlchemyError
+
+from app import db
+from .conversations import bp
+from ..auth.utils import uuidType, validate_uuid, check_uuid_in_db
+from ..errors.errors import DatabaseError, InvalidUsageError, UnauthorizedError
+from ..models import Conversations, Scores, Sessions, Users
 
 
 class ConversationStatus(IntEnum):
