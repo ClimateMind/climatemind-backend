@@ -28,7 +28,7 @@ def get_feed():
 
     :returns: Feed data as JSON & 200 on success
     """
-    num_feed_cards = 21                     # Planned for more use, do not move
+    num_feed_cards = 21  # Planned for more use, do not move
     quiz_uuid = request.args.get("quizId")
     quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
     check_uuid_in_db(quiz_uuid, uuidType.QUIZ)
