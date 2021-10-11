@@ -10,7 +10,7 @@ from sqlalchemy import desc
 from sqlalchemy.exc import SQLAlchemyError
 
 from app import db
-from .conversations import bp
+from . import bp
 from ..auth.utils import uuidType, validate_uuid, check_uuid_in_db
 from ..errors.errors import DatabaseError, InvalidUsageError, UnauthorizedError
 from ..models import Conversations, Scores, Sessions, Users
@@ -39,13 +39,9 @@ def create_conversation_invite():
     UUID which is used to create a URL invite for their friend. This endpoint creates
     a new conversation in the database.
 
-    Parameters
-    ==========
-    invitedUserName - (str) Requires a name for the invited user
+    :param invitedUserName: (str) Requires a name for the invited user
 
-    Returns
-    ==========
-    The unique conversation UUID and a datetime stamp
+    :returns response: JSON with uuid4 as str
     """
     session_uuid = request.headers.get("X-Session-Id")
     session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
@@ -67,13 +63,7 @@ def create_conversation_invite():
             message="Must provide a name for the invited user that is between 2-50 characters long."
         )
 
-    identity = get_jwt_identity()
-    user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
-
-    # TODO - WE NEED TO DECIDE WHETHER TO DELETE THIS. THE APP WILL NEVER REACH THIS ERROR AS JWT IS
-    # REQUIRED AND THE JWT STANDARD ERRORS WILL KICK IN FIRST.
-    # if not user:
-    #    raise DatabaseError(message="No user found for the provided JWT token.")
+    user = get_current_user()
 
     conversation_uuid = uuid.uuid4()
 
@@ -105,23 +95,12 @@ def get_conversations():
     Users would like to be able to see a list of all of their pending/current conversations
     as well as the status. This endpoints returns this data for their feed.
 
-    Parameters
-    ===========
-    No Parameters. Only the JWT Token is required.
-
-    Returns
-    ===========
-    A list of the user's conversations with the relevant names, UUIDs and creation dates.
+    :returns response: JSON conversations with the relevant names, UUIDs and creation dates.
     """
     session_uuid = request.headers.get("X-Session-Id")
     validate_uuid(session_uuid, uuidType.SESSION)
     check_uuid_in_db(session_uuid, uuidType.SESSION)
     user = get_current_user()
-
-    # TODO - WE NEED TO DECIDE WHETHER TO DELETE THIS. THE APP WILL NEVER REACH THIS ERROR AS JWT IS
-    # REQUIRED AND THE JWT STANDARD ERRORS WILL KICK IN FIRST.
-    # if not user:
-    #    raise DatabaseError(message="No user found for the provided JWT token")
 
     conversations = (
         db.session.query(Conversations)
@@ -151,13 +130,17 @@ def get_conversations():
 @cross_origin()
 @jwt_required()
 def shared_values():
+    """
+    Users would like to see their shared values with other users & their similarity score.
+
+    This endpoint returns this data.
+
+    TODO: Integrate shared values
+    """
     session_uuid = request.headers.get("X-Session-Id")
     validate_uuid(session_uuid, uuidType.SESSION)
     check_uuid_in_db(session_uuid, uuidType.SESSION)
     user = get_current_user()
-
-    if not user:
-        raise DatabaseError(message="No user found for the provided JWT token")
 
     r = request.get_json(force=True, silent=True)
     if not r:
@@ -175,48 +158,19 @@ def shared_values():
     if not conversation:
         raise InvalidUsageError(message="conversationId is Invalid.")
 
-    sender_scores = (
-        db.session.query(Scores)
-        .join(Sessions)
-        .filter(Scores.session_uuid == conversation.sender_session_uuid)
-        .one_or_none()
+    sender_uuid, sender_scores = Scores.get_scores_list(
+        conversation.sender_session_uuid
+    )
+    receiver_uuid, receiver_scores = Scores.get_scores_list(
+        conversation.receiver_session_uuid
     )
 
-    receiver_scores = (
-        db.session.query(Scores)
-        .join(Sessions)
-        .filter(Scores.session_uuid == conversation.receiver_session_uuid)
-        .one_or_none()
-    )
+    # User needs to be associated with a conversation to access it
+    if sender_uuid != user.user_uuid and receiver_uuid != user.user_uuid:
+        raise DatabaseError(message="conversationId is Invalid.")
 
     if not sender_scores or not receiver_scores:
         raise DatabaseError(message="Conversation is missing required data.")
-
-    # User needs to be associated with a conversation to access it
-    if (
-        sender_scores.user_uuid != user.user_uuid
-        and receiver_scores.user_uuid != user.user_uuid
-    ):
-        raise DatabaseError(message="conversationId is Invalid.")
-
-    personal_values_categories = [
-        "achievement",
-        "benevolence",
-        "conformity",
-        "hedonism",
-        "power",
-        "security",
-        "self_direction",
-        "stimulation",
-        "tradition",
-        "universalism",
-    ]
-
-    sender_scores = sender_scores.__dict__
-    sender_scores = [sender_scores[key] for key in personal_values_categories]
-
-    receiver_scores = receiver_scores.__dict__
-    receiver_scores = [receiver_scores[key] for key in personal_values_categories]
 
     similarity_score = (kendalltau(a, b).correlation + 1) / 2
 

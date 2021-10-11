@@ -88,6 +88,45 @@ class Scores(db.Model):
     session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
     postal_code = db.Column(db.String(5))
 
+    @classmethod
+    def get_scores_list(cls, session_uuid):
+        """
+        Alphabetically organized lists of scores are needed when performing
+        vector operations.
+
+        :params session_uuid: uuid4 as str
+        :returns user_uuid: uuid4 as str
+        :returns scores_list: alphabetically ordered
+        """
+        personal_values_categories = [
+            "achievement",
+            "benevolence",
+            "conformity",
+            "hedonism",
+            "power",
+            "security",
+            "self_direction",
+            "stimulation",
+            "tradition",
+            "universalism",
+        ]
+
+        scores = (
+            db.session.query(Scores)
+            .join(Sessions)
+            .filter(Scores.session_uuid == session_uuid)
+            .one_or_none()
+        )
+
+        if not scores:
+            return None, None
+
+        user_uuid = scores.user_uuid
+
+        scores_dict = scores.__dict__
+        scores_list = [scores_dict[key] for key in personal_values_categories]
+        return user_uuid, scores_list
+
 
 class Signup(db.Model):
     __tablename__ = "signup"
