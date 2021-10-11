@@ -26,11 +26,10 @@ else
 fi
 
 if [ "$FLASK_ENV" = "production"]
-then 
+then
 	gunicorn --bind 0.0.0.0:5000 climatemind:app
 else
-	flask run --host=0.0.0.0
-fi
+flask run --host=0.0.0.0
 
 # NOTE: migrate and upgrade must be run SEPARATELY for cloud migrations.
 # COMMENT OUT the upgrade code and run the migrate command first.
