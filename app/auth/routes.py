@@ -16,6 +16,7 @@ from flask_cors import cross_origin
 from app.subscribe.store_subscription_data import check_email
 from sqlalchemy.exc import SQLAlchemyError
 
+from app.email.sendgrid_utils import send_welcome
 from app.errors.errors import (
     AlreadyExistsError,
     InvalidUsageError,
@@ -233,6 +234,7 @@ def register():
         ),
         201,
     )
+    send_welcome(user.user_email)
     response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
