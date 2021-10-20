@@ -35,7 +35,7 @@ jobs:
           command: npm i
       - run:
           name: Docker Compose Build
-          command: docker-compose build
+          command: docker-compose --file docker-compose.prod.yml build
       - run:
           name: Docker Compose Up
           command: docker-compose up -d
@@ -55,15 +55,19 @@ workflows:
       - build:
           requires:
             - lint
+          context:
+            - flaskenv
       - cypress:
           requires:
             - lint
+          context:
+            - flaskenv
 
   build-deploy:
     jobs:
       - azure-acr/build-and-push-image:
           context: azure
-          dockerfile: Dockerfile
+          dockerfile: Dockerfile.prod
           login-server-name: acrwebprod001.azurecr.io
           registry-name: acrwebprod001
           repo: backend
@@ -72,7 +76,7 @@ workflows:
               only: master
       - azure-acr/build-and-push-image:
           context: azure
-          dockerfile: Dockerfile
+          dockerfile: Dockerfile.prod
           login-server-name: acrwebtest001.azurecr.io
           registry-name: acrwebtest001
           repo: backend

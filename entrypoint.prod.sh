@@ -33,3 +33,4 @@ gunicorn --bind 0.0.0.0:5000 climatemind:app
 # THEN comment out the migrate command and run upgrade.
 # IF the CSV file changes and the lrf table needs to be updated in the cloud, add:
 # python add_lrf_table.py   underneath   flask db upgrade -d $BASEDIR/migrations_azure
+# test
