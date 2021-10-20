@@ -28,8 +28,8 @@ class DevelopmentConfig(BaseConfig):
     JWT_REFRESH_COOKIE_PATH = "/refresh"
     CACHE_TYPE = "simple"
 
-    SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
-    SENDGRID_DEFAULT_FROM = os.environ.get('MAIL_DEFAULT_SENDER')
+    SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
+    SENDGRID_DEFAULT_FROM = os.environ.get("MAIL_DEFAULT_SENDER")
 
     DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
     SQLALCHEMY_DATABASE_URI = (
