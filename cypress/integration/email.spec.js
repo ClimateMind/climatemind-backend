@@ -28,7 +28,7 @@ const badLoginMessage = "Wrong email or password. Try again.";
 const successfulLoginMessage = "successfully logged in user";
 const MissingJWTMessage = 'Missing JWT in headers or cookies (Missing Authorization Header; Missing cookie "access_token")'
 const expiredAccessToken = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJmcmVzaCI6dHJ1ZSwiaWF0IjoxNjMwNDcyOTUzLCJqdGkiOiIyZTMzZThjNy1iNTQyLTQ5MmQtYjVkMS0xNmU4NWFlZjlhYzIiLCJuYmYiOjE2MzA0NzI5NTMsInR5cGUiOiJhY2Nlc3MiLCJzdWIiOiI1RDZFNjM0MS1CRjJBLTRGM0ItOTBCOS04NzA5NTUwN0YxOEYiLCJleHAiOjE2MzA0NzM4NTN9.osRQqeVJJaHitPtBmjB2mjwY3PIhgnEzX5Z4-fLzlBc";
-const expiredAccessTokenMessage = "Token has expired";
+const expiredAccessTokenMessage = "Signature verification failed";
 const rateLimitPerSecond = "ratelimit exceeded 5 per 1 second";
 const rateLimitPerMinute = "ratelimit exceeded 10 per 1 minute";
 const rateLimitPerHour = "ratelimit exceeded 50 per 1 hour";
@@ -471,7 +471,7 @@ describe("'/email' endpoint", () => {
         it("should handle trying to get current email with an Expired Token", () => {
             cy.emailEndpoint(expiredAccessToken)
                 .should((response) => {
-                    expect(response.status).to.equal(401);
+                    expect(response.status).to.equal(422);
                     expect(response.headers["content-type"]).to.equal("application/json");
                     expect(response.body).to.be.an("object");
                     expect(response.body).to.have.property("msg");
@@ -485,7 +485,7 @@ describe("'/email' endpoint", () => {
         it("should handle updating email with an Expired Token", () => {
             cy.updateEmailEndpoint(expiredAccessToken)
                 .should((response) => {
-                    expect(response.status).to.equal(401);
+                    expect(response.status).to.equal(422);
                     expect(response.headers["content-type"]).to.equal("application/json");
                     expect(response.body).to.be.an("object");
                     expect(response.body).to.have.property("msg");
