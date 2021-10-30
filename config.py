@@ -26,6 +26,7 @@ class DevelopmentConfig(BaseConfig):
     JWT_REFRESH_COOKIE_NAME = "refresh_token"
     JWT_COOKIE_CSRF_PROTECT = False
     JWT_REFRESH_COOKIE_PATH = "/refresh"
+    JWT_COOKIE_SECURE = True
     CACHE_TYPE = "simple"
 
     DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
