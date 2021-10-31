@@ -17,7 +17,6 @@ class DevelopmentConfig(BaseConfig):
     SQLALCHEMY_COMMIT_ON_TEARDOWN = True
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
-    JWT_COOKIE_SECURE = False
     JWT_TOKEN_LOCATION = ["headers", "cookies"]
     JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "DEFAULT_KEY")
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=15)
@@ -27,6 +26,7 @@ class DevelopmentConfig(BaseConfig):
     JWT_COOKIE_CSRF_PROTECT = False
     JWT_REFRESH_COOKIE_PATH = "/refresh"
     JWT_COOKIE_SECURE = True
+    JWT_COOKIE_SAMESITE = None
     CACHE_TYPE = "simple"
 
     DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
