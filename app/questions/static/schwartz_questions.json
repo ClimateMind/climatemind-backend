@@ -2,53 +2,53 @@
   "SetOne": [
     {
       "id": 1,
-      "value": "conformity",
-      "question": "You believe you should always show respect to your parents and to older people.\n\n It is important to you to be obedient."
+      "value": "self-direction",
+      "question": "You like being curious and are interested in understanding different things, people, and aspects of life."
     },
     {
       "id": 2,
-      "value": "tradition",
-      "question": "Religious belief is important to you.\n\n You want your faith or family traditions to guide your decisions and be a core part of your life."
+      "value": "power",
+      "question": "In groups, you prefer if you were in charge and making decisions."
     },
     {
       "id": 3,
-      "value": "benevolence",
-      "question": "It’s very important to you to help the people around you.\n\n You want to care for their well-being."
+      "value": "universalism",
+      "question": "You believe everyone should be treated fairly and have equitable opportunities in life."
     },
     {
       "id": 4,
-      "value": "universalism",
-      "question": "You think it is important that every person in the world be treated equally.\n\n You believe everyone should have equal opportunities in life."
+      "value": "achievement",
+      "question": "You value being above average and strive to reach your life goals."
     },
     {
       "id": 5,
-      "value": "self-direction",
-      "question": "You think it’s important to be interested in things.\n\n You like to be curious and to try to understand all sorts of things."
+      "value": "security",
+      "question": "You care about social order being protected and value a stable and predictable society."
     },
     {
       "id": 6,
       "value": "stimulation",
-      "question": "You like to take risks. \n\n You are always looking for adventures."
+      "question": "You seek out adventure and like taking risks."
     },
     {
       "id": 7,
-      "value": "hedonism",
-      "question": "You seek every chance you can to have fun. \n\n It is important to you to do things that give you pleasure."
+      "value": "conformity",
+      "question": "You care about showing respect to those in charge and you want to follow their exact instructions."
     },
     {
       "id": 8,
-      "value": "achievement",
-      "question": "Getting ahead in life is important to you.\n\n You strive to do better than others."
+      "value": "benevolence",
+      "question": "You care about helping those close to you who are in need and you want what's best for them."
     },
     {
       "id": 9,
-      "value": "power",
-      "question": "You always want to be the one who makes the decisions.\n\n You like to be the leader."
+      "value": "tradition",
+      "question": "You value your religious or family traditions and you want to live by those traditions."
     },
     {
       "id": 10,
-      "value": "security",
-      "question": "Having a stable government is important to you.\n\n You are concerned that the social order is protected."
+      "value": "hedonism",
+      "question": "You want to have fun and feel good as much as possible."
     }
   ],
   "SetTwo": [
