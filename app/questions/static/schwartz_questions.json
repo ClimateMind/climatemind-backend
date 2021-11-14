@@ -2,53 +2,54 @@
   "SetOne": [
     {
       "id": 1,
-      "value": "self-direction",
-      "question": "You like being curious and are interested in understanding different things, people, and aspects of life."
+      "value": "hedonism",
+      "question": "You want to have fun and feel good as much as possible."
     },
     {
-      "id": 2,
-      "value": "power",
-      "question": "In groups, you prefer if you were in charge and making decisions."
+	"id": 2,
+      "value": "tradition",
+      "question": "You value your religious or family traditions and you want to live by those traditions."                                                                                                  
     },
     {
-      "id": 3,
-      "value": "universalism",
-      "question": "You believe everyone should be treated fairly and have equitable opportunities in life."
-    },
-    {
-      "id": 4,
-      "value": "achievement",
-      "question": "You value being above average and strive to reach your life goals."
-    },
-    {
-      "id": 5,
-      "value": "security",
-      "question": "You care about social order being protected and value a stable and predictable society."
-    },
-    {
-      "id": 6,
-      "value": "stimulation",
-      "question": "You seek out adventure and like taking risks."
-    },
-    {
-      "id": 7,
-      "value": "conformity",
-      "question": "You care about showing respect to those in charge and you want to follow their exact instructions."
-    },
-    {
-      "id": 8,
+	    "id": 3,
       "value": "benevolence",
       "question": "You care about helping those close to you who are in need and you want what's best for them."
     },
     {
-      "id": 9,
-      "value": "tradition",
-      "question": "You value your religious or family traditions and you want to live by those traditions."
+	    "id": 4,
+      "value": "conformity",
+      "question": "You care about showing respect to those in charge and you want to follow their exact instructions."
+      
     },
     {
-      "id": 10,
-      "value": "hedonism",
-      "question": "You want to have fun and feel good as much as possible."
+      "id": 5,
+      "value": "stimulation",
+      "question": "You seek out adventure and like taking risks."
+    },
+    {
+      "id": 6,
+      "value": "security",
+      "question": "You care about social order being protected and value a stable and predictable society."
+    },
+    {
+      "id": 7,
+      "value": "achievement",
+      "question": "You value being above average and strive to reach your life goals."
+    },
+    {
+      "id": 8,
+      "value": "universalism",
+      "question": "You believe everyone should be treated fairly and have equitable opportunities in life."
+    },
+    {
+      "id": 9,
+      "value": "power",
+      "question": "In groups, you prefer if you were in charge and making decisions."
+    },
+    {
+	    "id": 10,
+      "value": "self-direction",
+      "question": "You like being curious and are interested in understanding different things, people, and aspects of life."
     }
   ],
   "SetTwo": [
