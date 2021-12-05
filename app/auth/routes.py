@@ -194,9 +194,9 @@ def register():
     check_uuid_in_db(quiz_uuid, uuidType.QUIZ)
 
     for param in ("firstName", "lastName"):
-        if not 2 <= len(r[param]) <= 50:
+        if not len(r[param]) <= 20:
             raise InvalidUsageError(
-                message=f"{param} must be between 2 and 50 characters."
+                message=f"{param} cannot be longer than 20 characters."
             )
 
     if not check_email(r["email"]):
