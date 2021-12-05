@@ -194,7 +194,7 @@ def register():
     check_uuid_in_db(quiz_uuid, uuidType.QUIZ)
 
     for param in ("firstName", "lastName"):
-        if not len(r[param]) <= 20:
+        if not 0 < len(r[param]) <= 20:
             raise InvalidUsageError(
                 message=f"{param} cannot be longer than 20 characters."
             )
