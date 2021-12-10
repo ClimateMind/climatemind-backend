@@ -104,10 +104,10 @@ describe("'/conversation' endpoint", () => {
              });
     });
 
-    it("should not allow creating a conversation with an invited_username of less than 2 characters", () => {
+    it("should not allow creating a conversation with an invited_username of less than 1 characters", () => {
         //Generate a username to be invited
         requestBody = {
-        "invitedUserName": "S"
+        "invitedUserName": ""
         }
         expect(requestBody.invitedUserName).to.be.a("string");
 
@@ -126,10 +126,10 @@ describe("'/conversation' endpoint", () => {
         });
     });
 
-    it("should not allow creating a conversation with an invited_username of 2 characters", () => {
+    it("should not allow creating a conversation with an invited_username of 0 characters", () => {
         //Generate a username to be invited
         requestBody = {
-        "invitedUserName": "Sa"
+        "invitedUserName": ""
         }
         expect(requestBody.invitedUserName).to.be.a("string");
 
@@ -148,10 +148,10 @@ describe("'/conversation' endpoint", () => {
         });
     });
 
-    it("should not allow creating a conversation with an invited_username of 50 characters", () => {
+    it("should not allow creating a conversation with an invited_username of 21 characters", () => {
         //Generate a username to be invited
         requestBody = {
-            "invitedUserName": "managementmanagementmanagementmanagementmanagement"
+            "invitedUserName": "managementmanagementm"
         }
         expect(requestBody.invitedUserName).to.be.a("string");
 
@@ -170,7 +170,7 @@ describe("'/conversation' endpoint", () => {
         });
     });
 
-    it("should not allow creating a conversation with an invited_username greater than 50 characters", () => {
+    it("should not allow creating a conversation with an invited_username greater than 20 characters", () => {
         //Generate a username to be invited
         requestBody = {
         "invitedUserName": "managementmanagementmanagementmanagementmanagementm"
