@@ -7,7 +7,7 @@ let session_Id;
 let set_one_quizId;
 let user;
 let accessToken;
-const invalidInvitedUsername = "Must provide a name for the invited user that is between 2-50 characters long.";
+const invalidInvitedUsername = "Must provide a name for the invited user that is between 0-21 characters long.";
 const missingJSONBodyMessage = "Must provide a JSON body with the name of the invited user.";
 const SESSION_UUIDNotInDBMessage = "SESSION_UUID is not in the db.";
 const uuidFormatChecker_LowerCase = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/;
