@@ -7,7 +7,7 @@ let session_Id;
 let set_one_quizId;
 let user;
 let accessToken;
-const invalidInvitedUsername = "Must provide a name for the invited user that is between 2-50 characters long.";
+const invalidInvitedUsername = "Must provide a name that is up to 20 characters long.";
 const missingJSONBodyMessage = "Must provide a JSON body with the name of the invited user.";
 const SESSION_UUIDNotInDBMessage = "SESSION_UUID is not in the db.";
 const uuidFormatChecker_LowerCase = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/;
@@ -104,10 +104,10 @@ describe("'/conversation' endpoint", () => {
              });
     });
 
-    it("should not allow creating a conversation with an invited_username of less than 2 characters", () => {
+    it("should not allow creating a conversation with an invited_username of less than 1 characters", () => {
         //Generate a username to be invited
         requestBody = {
-        "invitedUserName": "S"
+        "invitedUserName": ""
         }
         expect(requestBody.invitedUserName).to.be.a("string");
 
@@ -126,10 +126,10 @@ describe("'/conversation' endpoint", () => {
         });
     });
 
-    it("should not allow creating a conversation with an invited_username of 2 characters", () => {
+    it("should not allow creating a conversation with an invited_username of 0 characters", () => {
         //Generate a username to be invited
         requestBody = {
-        "invitedUserName": "Sa"
+        "invitedUserName": ""
         }
         expect(requestBody.invitedUserName).to.be.a("string");
 
@@ -148,10 +148,10 @@ describe("'/conversation' endpoint", () => {
         });
     });
 
-    it("should not allow creating a conversation with an invited_username of 50 characters", () => {
+    it("should not allow creating a conversation with an invited_username of 21 characters", () => {
         //Generate a username to be invited
         requestBody = {
-            "invitedUserName": "managementmanagementmanagementmanagementmanagement"
+            "invitedUserName": "managementmanagementm"
         }
         expect(requestBody.invitedUserName).to.be.a("string");
 
@@ -170,7 +170,7 @@ describe("'/conversation' endpoint", () => {
         });
     });
 
-    it("should not allow creating a conversation with an invited_username greater than 50 characters", () => {
+    it("should not allow creating a conversation with an invited_username greater than 20 characters", () => {
         //Generate a username to be invited
         requestBody = {
         "invitedUserName": "managementmanagementmanagementmanagementmanagementm"
