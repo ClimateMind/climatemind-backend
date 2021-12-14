@@ -59,11 +59,11 @@ def create_conversation_invite():
     invited_name = r.get("invitedUserName")
 
     def valid_name(name):
-        return 2 < len(name) < 50
+        return 0 < len(name) <= 20
 
     if not invited_name or not valid_name(invited_name):
         raise InvalidUsageError(
-            message="Must provide a name for the invited user that is between 2-50 characters long."
+            message="Must provide a name that is up to 20 characters long."
         )
 
     identity = get_jwt_identity()
