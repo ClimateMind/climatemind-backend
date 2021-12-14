@@ -13,8 +13,8 @@ BASEDIR="$(dirname "${BASH_SOURCE[0]}")"
 # flask db init -d $BASEDIR/migrations_test_db
 
 # flask db migrate -m "add all current tables" -d $BASEDIR/migrations_local
-# flask db migrate -m "CM-791 session id updates" -d $BASEDIR/migrations_azure
-# flask db migrate -m "CM-768 remove all relationships from tables" -d $BASEDIR/migrations_test_db
+# flask db migrate -m "CM-793 V2 DB changes" -d $BASEDIR/migrations_azure
+# flask db migrate -m "CM-793 V2 DB changes" -d $BASEDIR/migrations_test_db
 
 if [ "$DATABASE_PARAMS" = "Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;" ]
 then
