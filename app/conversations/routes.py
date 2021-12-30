@@ -1,6 +1,7 @@
 from app.conversations import bp
 from app import db
-from app.auth.utils import uuidType, validate_uuid, check_uuid_in_db
+import app.auth.utils
+from app.auth.utils import validate_uuid, check_uuid_in_db, uuidType
 from app.models import Users, Conversations, Sessions
 from app.errors.errors import DatabaseError, InvalidUsageError
 from flask_jwt_extended import get_jwt_identity
@@ -83,6 +84,7 @@ def create_conversation_invite():
         receiver_name=invited_name,
         conversation_status=ConversationStatus.Invited,
         conversation_created_timestamp=datetime.datetime.now(timezone.utc),
+        user_b_share_consent=False,
     )
 
     try:
@@ -118,11 +120,6 @@ def get_conversations():
     identity = get_jwt_identity()
     user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
 
-    # TODO - WE NEED TO DECIDE WHETHER TO DELETE THIS. THE APP WILL NEVER REACH THIS ERROR AS JWT IS
-    # REQUIRED AND THE JWT STANDARD ERRORS WILL KICK IN FIRST.
-    # if not user:
-    #    raise DatabaseError(message="No user found for the provided JWT token")
-
     conversations = (
         db.session.query(Conversations)
         .filter_by(sender_user_uuid=user.user_uuid)
@@ -143,5 +140,40 @@ def get_conversations():
         )
 
     response = {"conversations": results}
+
+    return jsonify(response), 200
+
+
+@bp.route("/conversation", methods=["GET"])
+@cross_origin()
+def get_conversation():
+    """
+    Get a single conversation.
+    """
+    conversation_uuid = request.args.get("conversationId")
+    validate_uuid(conversation_uuid, uuidType.CONVERSATION)
+    check_uuid_in_db(conversation_uuid, uuidType.CONVERSATION)
+
+    conversation = (
+        db.session.query(Conversations)
+        .filter_by(conversation_uuid=conversation_uuid)
+        .one_or_none()
+    )
+    user_A_name = (
+        db.session.query(Users)
+        .filter_by(user_uuid=conversation.sender_user_uuid)
+        .one_or_none()
+    ).first_name
+
+    response = {
+        "conversationId": conversation.conversation_uuid,
+        "userAId": conversation.sender_user_uuid,
+        "userASessionId": conversation.sender_session_uuid,
+        "userAName": user_A_name,
+        "userBName": conversation.receiver_name,
+        "conversationStatus": conversation.conversation_status,
+        "consent": conversation.user_b_share_consent,
+        "conversationTimestamp": conversation.conversation_created_timestamp,
+    }
 
     return jsonify(response), 200
