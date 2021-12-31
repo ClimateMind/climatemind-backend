@@ -1,5 +1,5 @@
 from app.models import Conversations, Sessions, Scores, Users
-from app.errors.errors import DatabaseError, InvalidUsageError
+from app.errors.errors import NotInDatabaseError, InvalidUsageError
 from enum import Enum
 from flask import request
 import uuid, os
@@ -58,7 +58,7 @@ def check_uuid_in_db(uuid_to_validate, uuid_type):
         ).first()
 
     if not uuid_in_db:
-        raise DatabaseError(message=f"{uuid_type.name}_UUID is not in the db.")
+        raise NotInDatabaseError(message=f"{uuid_type.name}_UUID is not in the db.")
 
     return uuid_in_db
 

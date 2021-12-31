@@ -2,7 +2,12 @@ from app import db
 from flask import jsonify
 from flask import make_response
 from app.errors import bp
-from app.errors.errors import DatabaseError, AlreadyExistsError, CustomError
+from app.errors.errors import (
+    DatabaseError,
+    AlreadyExistsError,
+    CustomError,
+    NotInDatabaseError,
+)
 from flask_cors import cross_origin
 
 
@@ -17,6 +22,13 @@ def handle_custom_error(error):
 @cross_origin()
 def handle_database_error(error):
     db.session.rollback()
+    response = jsonify({"error": error.message}), error.status_code
+    return response
+
+
+@bp.app_errorhandler(NotInDatabaseError)
+@cross_origin()
+def handle_not_in_db_error(error):
     response = jsonify({"error": error.message}), error.status_code
     return response
 
