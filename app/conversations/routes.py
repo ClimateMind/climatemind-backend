@@ -1,9 +1,11 @@
 from app.conversations import bp
 from app import db
-import app.auth.utils
+from app.conversations.utils import build_single_conversation_response
 from app.auth.utils import validate_uuid, check_uuid_in_db, uuidType
 from app.models import Users, Conversations, Sessions
 from app.errors.errors import DatabaseError, InvalidUsageError
+from user_b.analytics_logging import log_user_b_event, eventType
+from user_b.journey_updates import start_user_b_journey
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask import request, jsonify, make_response
@@ -144,36 +146,21 @@ def get_conversations():
     return jsonify(response), 200
 
 
-@bp.route("/conversation", methods=["GET"])
+@bp.route("/conversation/<conversation_uuid>", methods=["GET"])
 @cross_origin()
-def get_conversation():
+def get_conversation(conversation_uuid):
     """
     Get a single conversation.
     """
-    conversation_uuid = request.args.get("conversationId")
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
     validate_uuid(conversation_uuid, uuidType.CONVERSATION)
     check_uuid_in_db(conversation_uuid, uuidType.CONVERSATION)
+    response = build_single_conversation_response(conversation_uuid)
 
-    conversation = (
-        db.session.query(Conversations)
-        .filter_by(conversation_uuid=conversation_uuid)
-        .one_or_none()
-    )
-    user_A_name = (
-        db.session.query(Users)
-        .filter_by(user_uuid=conversation.sender_user_uuid)
-        .one_or_none()
-    ).first_name
-
-    response = {
-        "conversationId": conversation.conversation_uuid,
-        "userAId": conversation.sender_user_uuid,
-        "userASessionId": conversation.sender_session_uuid,
-        "userAName": user_A_name,
-        "userBName": conversation.receiver_name,
-        "conversationStatus": conversation.conversation_status,
-        "consent": conversation.user_b_share_consent,
-        "conversationTimestamp": conversation.conversation_created_timestamp,
-    }
+    start_user_b_journey(conversation_uuid)
+    log_user_b_event(conversation_uuid, session_uuid, eventType.LINK, 1)
 
     return jsonify(response), 200
