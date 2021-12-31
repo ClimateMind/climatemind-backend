@@ -20,7 +20,7 @@ def validate_uuid(uuid_to_validate, uuid_type):
     """
     UUIDs are required throughout the app for various purposes. SessionID for example
     is required for a user to access any page. We need to make sure UUIDs are provided,
-    are converted into proper UUID format when provided as strings, and are
+    are converted into proper UUID format when provided as strings, and are valid.
 
     Parameters
     ==========
