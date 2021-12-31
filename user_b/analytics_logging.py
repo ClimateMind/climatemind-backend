@@ -23,7 +23,6 @@ def log_user_b_event(conversation_uuid, session_uuid, event_type, event_value):
     Log an event in the user b analytics data table.
     """
     try:
-        breakpoint()
         event_to_add = UserBAnalyticsData()
         event_to_add.event_log_uuid = uuid.uuid4()
         event_to_add.conversation_uuid = conversation_uuid
