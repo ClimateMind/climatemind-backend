@@ -10,6 +10,11 @@ from enum import Enum
 class eventType(Enum):
     """
     Event types to be used for analytics logging.
+
+    LINK - the unique link for user b has been used
+    SOLUTION - user b has made a choice for a shared solution to discuss with user a
+    EFFECT - user b has made a choice for a shared effect to discuss with user a
+    CONSENT - user b has updated whether they consent to share information on their choices with user a
     """
 
     LINK = 1
@@ -38,10 +43,10 @@ def log_user_b_event(conversation_uuid, session_uuid, event_type, event_value):
             event_to_add.event_value_type = "boolean"
         elif event_type.name == "EFFECT":
             event_to_add.event_type = "effect choice"
-            event_to_add.event_value_type = "iri"
+            event_to_add.event_value_type = "UUID"
         elif event_type.name == "SOLUTION":
             event_to_add.event_type = "solution choice"
-            event_to_add.event_value_type = "iri"
+            event_to_add.event_value_type = "UUID"
 
         db.session.add(event_to_add)
         db.session.commit()
