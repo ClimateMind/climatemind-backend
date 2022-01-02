@@ -5,6 +5,20 @@ from app import db
 def build_single_conversation_response(conversation_uuid):
     """
     Deal with database interactions to provide response for get single conversation request.
+
+    Parameters
+    ==========
+    conversation_uuid - (UUID) the unique id for the conversation
+
+    Returns
+    ==========
+    JSON:
+    - conversation uuid
+    - user a's first name, user uuid, and the session uuid when they started the conversation
+    - user b's name
+    - conversation status
+    - consent - if user b has consented to share info with user a
+    - timestamp for when the conversation was created
     """
     conversation = (
         db.session.query(Conversations)

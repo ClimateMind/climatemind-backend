@@ -151,6 +151,23 @@ def get_conversations():
 def get_conversation(conversation_uuid):
     """
     Get a single conversation.
+
+    Includes validation of the session uuid and conversation uuid that they are formatted
+    correctly and exist in the DB, and logging of analytics.
+
+    Parameters
+    ==========
+    conversation_uuid - (UUID) the unique id for the conversation
+
+    Returns
+    ==========
+    JSON:
+    - conversation uuid
+    - user a's first name, user uuid, and the session uuid when they started the conversation
+    - user b's name
+    - conversation status
+    - consent - if user b has consented to share info with user a
+    - timestamp for when the conversation was created
     """
     session_uuid = request.headers.get("X-Session-Id")
     session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
