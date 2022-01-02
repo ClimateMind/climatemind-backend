@@ -18,5 +18,9 @@ class DatabaseError(CustomError):
     status_code = 500
 
 
+class NotInDatabaseError(CustomError):
+    status_code = 404
+
+
 class AlreadyExistsError(CustomError):
     status_code = 409

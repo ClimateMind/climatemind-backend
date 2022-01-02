@@ -225,7 +225,7 @@ describe("'/conversation' endpoint", () => {
 
         //Create a conversation and test the response body
         cy.conversationEndpoint(requestBody, accessToken, session_Id).should((response) => {
-            expect(response.status).to.equal(500);
+            expect(response.status).to.equal(404);
             expect(response.headers["content-type"]).to.equal(
                 "application/json"
             );
