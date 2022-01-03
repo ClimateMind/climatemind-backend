@@ -1,5 +1,6 @@
 import os
 from flask import current_app
+from sqlalchemy.orm.session import close_all_sessions
 from app.extensions import db, jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 
@@ -16,7 +17,6 @@ from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 
 
 class Sessions(db.Model):
-    # postal code variable type for SQL will need to change when scaling up allow longer postal codes
     __tablename__ = "sessions"
     ip_address = db.Column(db.String(255), primary_key=False)
     user_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"))
@@ -121,16 +121,10 @@ class Conversations(db.Model):
     sender_session_uuid = db.Column(
         UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"), nullable=False
     )
-    receiver_session_uuid = db.Column(
-        UNIQUEIDENTIFIER,
-        db.ForeignKey("sessions.session_uuid"),
-        index=False,
-        unique=False,
-        nullable=True,
-    )
     receiver_name = db.Column(db.String(50), index=False, unique=False, nullable=False)
     conversation_status = db.Column(db.Integer)
     conversation_created_timestamp = db.Column(db.DateTime)
+    user_b_share_consent = db.Column(db.Boolean)
 
 
 class AnalyticsData(db.Model):
@@ -143,3 +137,85 @@ class AnalyticsData(db.Model):
     event_timestamp = db.Column(db.DateTime)
     value = db.Column(db.String(255))
     page_url = db.Column(db.String(255))
+
+
+class UserBAnalyticsData(db.Model):
+    __tablename__ = "user_b_analytics_data"
+    event_log_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
+    conversation_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("conversations.conversation_uuid")
+    )
+    event_type = db.Column(db.String(255))
+    event_value = db.Column(db.String(255))
+    event_timestamp = db.Column(db.DateTime)
+    event_value_type = db.Column(db.String(255))
+    session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
+
+
+class AlignmentScores(db.Model):
+    __tablename__ = "alignment_scores"
+    alignment_scores_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
+    overall_similarity_score = db.Column(db.Float)
+    top_match_percent = db.Column(db.Float)
+    top_match_value = db.Column(db.String(255))
+    security_alignment = db.Column(db.Float)
+    conformity_alignment = db.Column(db.Float)
+    benevolence_alignment = db.Column(db.Float)
+    tradition_alignment = db.Column(db.Float)
+    universalism_alignment = db.Column(db.Float)
+    self_direction_alignment = db.Column(db.Float)
+    stimulation_alignment = db.Column(db.Float)
+    hedonism_alignment = db.Column(db.Float)
+    achievement_alignment = db.Column(db.Float)
+    power_alignment = db.Column(db.Float)
+
+
+class AlignmentFeed(db.Model):
+    __tablename__ = "alignment_feed"
+    alignment_feed_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
+    aligned_effect_1_iri = db.Column(db.String(255))
+    aligned_effect_2_iri = db.Column(db.String(255))
+    aligned_effect_3_iri = db.Column(db.String(255))
+    aligned_solution_1_iri = db.Column(db.String(255))
+    aligned_solution_2_iri = db.Column(db.String(255))
+    aligned_solution_3_iri = db.Column(db.String(255))
+    aligned_solution_4_iri = db.Column(db.String(255))
+    aligned_solution_5_iri = db.Column(db.String(255))
+    aligned_solution_6_iri = db.Column(db.String(255))
+    aligned_solution_7_iri = db.Column(db.String(255))
+
+
+class EffectChoice(db.Model):
+    _tablename__ = "effect_choice"
+    effect_choice_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
+    effect_choice_1_iri = db.Column(db.String(255))
+
+
+class SolutionChoice(db.Model):
+    __tablename__ = "solution_choice"
+    solution_choice_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
+    solution_choice_1_iri = db.Column(db.String(255))
+    solution_choice_2_iri = db.Column(db.String(255))
+
+
+class UserBJourney(db.Model):
+    __tablename__ = "user_b_journey"
+    conversation_uuid = db.Column(
+        UNIQUEIDENTIFIER,
+        db.ForeignKey("conversations.conversation_uuid"),
+        primary_key=True,
+    )
+    quiz_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("scores.quiz_uuid"))
+    alignment_scores_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("alignment_scores.alignment_scores_uuid")
+    )
+    alignment_feed_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("alignment_feed.alignment_feed_uuid")
+    )
+    effect_choice_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("effect_choice.effect_choice_uuid")
+    )
+    solution_choice_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("solution_choice.solution_choice_uuid")
+    )
+    consent = db.Column(db.Boolean)
