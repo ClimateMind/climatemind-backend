@@ -1,8 +1,11 @@
 from app.conversations import bp
 from app import db
-from app.auth.utils import uuidType, validate_uuid, check_uuid_in_db
+from app.conversations.utils import build_single_conversation_response
+from app.auth.utils import validate_uuid, check_uuid_in_db, uuidType
 from app.models import Users, Conversations, Sessions
 from app.errors.errors import DatabaseError, InvalidUsageError
+from user_b.analytics_logging import log_user_b_event, eventType
+from user_b.journey_updates import start_user_b_journey
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
 from flask import request, jsonify, make_response
@@ -59,11 +62,11 @@ def create_conversation_invite():
     invited_name = r.get("invitedUserName")
 
     def valid_name(name):
-        return 2 < len(name) < 50
+        return 0 < len(name) <= 20
 
     if not invited_name or not valid_name(invited_name):
         raise InvalidUsageError(
-            message="Must provide a name for the invited user that is between 2-50 characters long."
+            message="Must provide a name that is up to 20 characters long."
         )
 
     identity = get_jwt_identity()
@@ -83,6 +86,7 @@ def create_conversation_invite():
         receiver_name=invited_name,
         conversation_status=ConversationStatus.Invited,
         conversation_created_timestamp=datetime.datetime.now(timezone.utc),
+        user_b_share_consent=False,
     )
 
     try:
@@ -118,11 +122,6 @@ def get_conversations():
     identity = get_jwt_identity()
     user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
 
-    # TODO - WE NEED TO DECIDE WHETHER TO DELETE THIS. THE APP WILL NEVER REACH THIS ERROR AS JWT IS
-    # REQUIRED AND THE JWT STANDARD ERRORS WILL KICK IN FIRST.
-    # if not user:
-    #    raise DatabaseError(message="No user found for the provided JWT token")
-
     conversations = (
         db.session.query(Conversations)
         .filter_by(sender_user_uuid=user.user_uuid)
@@ -143,5 +142,42 @@ def get_conversations():
         )
 
     response = {"conversations": results}
+
+    return jsonify(response), 200
+
+
+@bp.route("/conversation/<conversation_uuid>", methods=["GET"])
+@cross_origin()
+def get_conversation(conversation_uuid):
+    """
+    Get a single conversation.
+
+    Includes validation of the session uuid and conversation uuid that they are formatted
+    correctly and exist in the DB, and logging of analytics.
+
+    Parameters
+    ==========
+    conversation_uuid - (UUID) the unique id for the conversation
+
+    Returns
+    ==========
+    JSON:
+    - conversation uuid
+    - user a's first name, user uuid, and the session uuid when they started the conversation
+    - user b's name
+    - conversation status
+    - consent - if user b has consented to share info with user a
+    - timestamp for when the conversation was created
+    """
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    validate_uuid(conversation_uuid, uuidType.CONVERSATION)
+    check_uuid_in_db(conversation_uuid, uuidType.CONVERSATION)
+    response = build_single_conversation_response(conversation_uuid)
+
+    start_user_b_journey(conversation_uuid)
+    log_user_b_event(conversation_uuid, session_uuid, eventType.LINK, 1)
 
     return jsonify(response), 200

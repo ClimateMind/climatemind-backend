@@ -1,5 +1,5 @@
-from app.models import Sessions, Scores, Users
-from app.errors.errors import DatabaseError, InvalidUsageError
+from app.models import Conversations, Sessions, Scores, Users
+from app.errors.errors import NotInDatabaseError, InvalidUsageError
 from enum import Enum
 from flask import request
 import uuid, os
@@ -13,13 +13,14 @@ class uuidType(Enum):
     SESSION = 1
     QUIZ = 2
     USER = 3
+    CONVERSATION = 4
 
 
 def validate_uuid(uuid_to_validate, uuid_type):
     """
     UUIDs are required throughout the app for various purposes. SessionID for example
     is required for a user to access any page. We need to make sure UUIDs are provided,
-    are converted into proper UUID format when provided as strings, and are
+    are converted into proper UUID format when provided as strings, and are valid.
 
     Parameters
     ==========
@@ -51,9 +52,13 @@ def check_uuid_in_db(uuid_to_validate, uuid_type):
         uuid_in_db = Scores.query.filter_by(quiz_uuid=uuid_to_validate).first()
     elif uuid_type.name == "USER":
         uuid_in_db = Users.query.filter_by(user_uuid=uuid_to_validate).first()
+    elif uuid_type.name == "CONVERSATION":
+        uuid_in_db = Conversations.query.filter_by(
+            conversation_uuid=uuid_to_validate
+        ).first()
 
     if not uuid_in_db:
-        raise DatabaseError(message=f"{uuid_type.name}_UUID is not in the db.")
+        raise NotInDatabaseError(message=f"{uuid_type.name}_UUID is not in the db.")
 
     return uuid_in_db
 
