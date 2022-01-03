@@ -45,6 +45,7 @@ def create_app(config_class=DevelopmentConfig):
             r"/logout": origins,
             r"/captcha": origins,
             r"/email": origins,
+            r"/alignment": origins,
         },
         supports_credentials=True,
     )
@@ -106,5 +107,9 @@ def create_app(config_class=DevelopmentConfig):
         from app.conversations import bp as conversations_bp
 
         app.register_blueprint(conversations_bp)
+
+        from app.alignment import bp as alignment_bp
+
+        app.register_blueprint(alignment_bp)
 
     return app
