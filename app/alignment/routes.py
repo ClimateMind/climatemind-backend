@@ -8,8 +8,8 @@ from app.alignment import bp
 from app.models import Sessions
 from app.errors.errors import InvalidUsageError
 from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
-from user_b.analytics_logging import log_user_b_event, eventType
-from user_b.journey_updates import update_user_b_journey, userBInfo
+from app.user_b.analytics_logging import log_user_b_event, eventType
+from app.user_b.journey_updates import update_user_b_journey, start_user_b_journey
 from app.scoring.process_alignment_scores import create_alignment_scores
 from app.feed.process_alignment_feed import create_alignment_feed
 

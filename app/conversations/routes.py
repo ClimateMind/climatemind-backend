@@ -4,9 +4,8 @@ from app.conversations.utils import build_single_conversation_response
 from app.auth.utils import validate_uuid, check_uuid_in_db, uuidType
 from app.models import Users, Conversations
 from app.errors.errors import DatabaseError, InvalidUsageError
-from user_b.analytics_logging import log_user_b_event, eventType
-from user_b.journey_updates import start_user_b_journey
-from flask_jwt_extended import get_jwt_identity
+from app.user_b.analytics_logging import log_user_b_event, eventType
+from app.user_b.journey_updates import start_user_b_journey
 from flask_jwt_extended import jwt_required
 from flask import request, jsonify
 from flask_cors import cross_origin
