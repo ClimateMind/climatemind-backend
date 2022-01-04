@@ -2,13 +2,13 @@ from app.conversations import bp
 from app import db
 from app.conversations.utils import build_single_conversation_response
 from app.auth.utils import validate_uuid, check_uuid_in_db, uuidType
-from app.models import Users, Conversations, Sessions
+from app.models import Users, Conversations
 from app.errors.errors import DatabaseError, InvalidUsageError
 from user_b.analytics_logging import log_user_b_event, eventType
 from user_b.journey_updates import start_user_b_journey
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
-from flask import request, jsonify, make_response
+from flask import request, jsonify
 from flask_cors import cross_origin
 import datetime
 from datetime import timezone
@@ -173,7 +173,7 @@ def get_conversation(conversation_uuid):
     session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
     check_uuid_in_db(session_uuid, uuidType.SESSION)
 
-    validate_uuid(conversation_uuid, uuidType.CONVERSATION)
+    conversation_uuid = validate_uuid(conversation_uuid, uuidType.CONVERSATION)
     check_uuid_in_db(conversation_uuid, uuidType.CONVERSATION)
     response = build_single_conversation_response(conversation_uuid)
 

@@ -21,6 +21,7 @@ class eventType(Enum):
     SOLUTION = 2
     EFFECT = 3
     CONSENT = 4
+    QUIZ = 5
 
 
 def log_user_b_event(conversation_uuid, session_uuid, event_type, event_value):
@@ -46,6 +47,9 @@ def log_user_b_event(conversation_uuid, session_uuid, event_type, event_value):
             event_to_add.event_value_type = "UUID"
         elif event_type.name == "SOLUTION":
             event_to_add.event_type = "solution choice"
+            event_to_add.event_value_type = "UUID"
+        elif event_type.name == "QUIZ":
+            event_to_add.event_type = "quiz completed"
             event_to_add.event_value_type = "UUID"
 
         db.session.add(event_to_add)
