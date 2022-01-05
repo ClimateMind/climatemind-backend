@@ -14,6 +14,7 @@ class uuidType(Enum):
     QUIZ = 2
     USER = 3
     CONVERSATION = 4
+    ALIGNMENT_SCORES = 5
 
 
 def validate_uuid(uuid_to_validate, uuid_type):
@@ -56,6 +57,8 @@ def check_uuid_in_db(uuid_to_validate, uuid_type):
         uuid_in_db = Conversations.query.filter_by(
             conversation_uuid=uuid_to_validate
         ).first()
+    elif uuid_type.name == "ALIGNMENT_SCORES":
+        uuid_in_db = AlignmentScores.query.filter_by(alignment_scores_uuid=uuid_to_validate).first()
 
     if not uuid_in_db:
         raise NotInDatabaseError(message=f"{uuid_type.name}_UUID is not in the db.")
