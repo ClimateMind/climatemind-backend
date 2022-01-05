@@ -6,7 +6,7 @@ from app.models import Users, Conversations
 from app.errors.errors import DatabaseError, InvalidUsageError
 from app.user_b.analytics_logging import log_user_b_event, eventType
 from app.user_b.journey_updates import start_user_b_journey
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask import request, jsonify
 from flask_cors import cross_origin
 import datetime

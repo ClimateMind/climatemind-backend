@@ -20,19 +20,19 @@ def create_alignment_scores(conversation_uuid, quiz_uuid, alignment_scores_uuid)
     try:
         alignment_scores = AlignmentScores()
         alignment_scores.alignment_scores_uuid = alignment_scores_uuid
-        alignment_scores.overall_similarity_score = 80
+        alignment_scores.overall_similarity_score = 0.7
         alignment_scores.top_match_percent = 90
         alignment_scores.top_match_value = "benevolence"
-        alignment_scores.benevolence_alignment = 90
-        alignment_scores.security_alignment = 85
-        alignment_scores.self_direction_alignment = 80
-        alignment_scores.power_alignment = 75
-        alignment_scores.universalism_alignment = 70
-        alignment_scores.achievement_alignment = 65
-        alignment_scores.conformity_alignment = 60
-        alignment_scores.tradition_alignment = 55
-        alignment_scores.hedonism_alignment = 50
-        alignment_scores.stimulation_alignment = 45
+        alignment_scores.benevolence_alignment = 0.9
+        alignment_scores.security_alignment = 0.85
+        alignment_scores.self_direction_alignment = 0.8
+        alignment_scores.power_alignment = 0.75
+        alignment_scores.universalism_alignment = 0.7
+        alignment_scores.achievement_alignment = 0.65
+        alignment_scores.conformity_alignment = 0.6
+        alignment_scores.tradition_alignment = 0.55
+        alignment_scores.hedonism_alignment = 0.5
+        alignment_scores.stimulation_alignment = 0.45
 
         db.session.add(alignment_scores)
         db.session.commit()
