@@ -8,22 +8,59 @@ from app.alignment import bp
 from app.models import Sessions
 from app.errors.errors import InvalidUsageError
 from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
+from app.user_b.analytics_logging import log_user_b_event, eventType
+from app.user_b.journey_updates import update_user_b_journey
+from app.scoring.process_alignment_scores import create_alignment_scores
+from app.feed.process_alignment_feed import create_alignment_feed
 
 
 @bp.route("/alignment", methods=["POST"])
 @cross_origin()
 @auto.doc()
 def post_alignment_uuid():
-    session_uuid = request.headers.get("X-Session-Id")
+    """
+    Post alignment. After user b has taken the quiz, their results are compared to user a and their
+    aligned scores and aligned feeds are calculated. User b analytics events are saved in the db and
+    the user b journey table is updated to record the user b quiz, aligned scores and aligned feed uuids.
 
-    if not session_uuid:
-        raise InvalidUsageError(
-            message="Cannot post alignment ID without a session ID."
-        )
+    Parameters
+    =====================
+    conversationId (UUID)
+    quizId (UUID) - the user b quiz uuid
+
+    Returns
+    =====================
+    alignmentScoresId (UUID) - the uuid for the entry in the alignment scores table
+
+    """
+    session_uuid = request.headers.get("X-Session-Id")
 
     session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
     check_uuid_in_db(session_uuid, uuidType.SESSION)
 
-    alignment_uuid = uuid.uuid4()
-    response = {"alignmentId": alignment_uuid}
+    r = request.get_json(force=True, silent=True)
+
+    conversation_uuid = r.get("conversationId")
+    quiz_uuid = r.get("quizId")
+
+    conversation_uuid = validate_uuid(conversation_uuid, uuidType.CONVERSATION)
+    check_uuid_in_db(conversation_uuid, uuidType.CONVERSATION)
+    quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
+    check_uuid_in_db(quiz_uuid, uuidType.QUIZ)
+
+    alignment_scores_uuid = uuid.uuid4()
+    alignment_feed_uuid = uuid.uuid4()
+
+    create_alignment_scores(conversation_uuid, quiz_uuid, alignment_scores_uuid)
+    create_alignment_feed(conversation_uuid, quiz_uuid, alignment_feed_uuid)
+
+    log_user_b_event(conversation_uuid, session_uuid, eventType.QUIZ, quiz_uuid)
+    update_user_b_journey(
+        conversation_uuid,
+        quiz_uuid=quiz_uuid,
+        alignment_scores_uuid=alignment_scores_uuid,
+        alignment_feed_uuid=alignment_feed_uuid,
+    )
+
+    response = {"alignmentScoresId": alignment_scores_uuid}
     return jsonify(response), 201
