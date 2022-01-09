@@ -1,4 +1,4 @@
-from app.models import Conversations, Sessions, Scores, Users
+from app.models import Conversations, Sessions, Scores, Users, AlignmentScores
 from app.errors.errors import NotInDatabaseError, InvalidUsageError
 from enum import Enum
 from flask import request

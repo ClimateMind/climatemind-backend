@@ -12,7 +12,7 @@ from app.user_b.analytics_logging import log_user_b_event, eventType
 from app.user_b.journey_updates import update_user_b_journey
 from app.scoring.process_alignment_scores import create_alignment_scores
 from app.feed.process_alignment_feed import create_alignment_feed
-
+from app.alignment.utils import build_alignment_scores_response
 
 @bp.route("/alignment", methods=["POST"])
 @cross_origin()
@@ -85,5 +85,5 @@ def get_alignment(alignment_scores_uuid):
             .format(','.join(allowed_perspectives))
         )
 
-    response = None # TODO: implement
+    response = build_alignment_scores_response(alignment_scores_uuid)
     return jsonify(response), 200
