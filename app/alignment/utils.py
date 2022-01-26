@@ -40,8 +40,8 @@ def build_alignment_scores_response(alignment_scores_uuid):
         "topMatchPercent": top_score["score"],
         "topMatchValue": top_score["valueName"],
         "valueAlignment": alignment_scores,
-        "userA": userA_name,
-        "userB": userB_name,
+        "userAName": userA_name,
+        "userBName": userB_name,
     }
 
     return response
