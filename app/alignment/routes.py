@@ -77,13 +77,5 @@ def get_alignment(alignment_scores_uuid):
     validate_uuid(alignment_scores_uuid, uuidType.ALIGNMENT_SCORES)
     check_uuid_in_db(alignment_scores_uuid, uuidType.ALIGNMENT_SCORES)
 
-    allowed_perspectives = {"userA", "userB"}
-    perspective = request.args.get("perspective")
-    if (perspective not in allowed_perspectives):
-        raise InvalidUsageError(
-            message="The perspective parameter must be one of ({})"\
-            .format(','.join(allowed_perspectives))
-        )
-
     response = build_alignment_scores_response(alignment_scores_uuid)
     return jsonify(response), 200
