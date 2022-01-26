@@ -70,6 +70,25 @@ def post_alignment_uuid():
 @bp.route("/alignment/<alignment_scores_uuid>", methods=["GET"])
 @cross_origin()
 def get_alignment(alignment_scores_uuid):
+    """
+    Get alignment scores.
+
+    Includes validation of the session uuid and aligment scores uuid that they are formatted
+    correctly and exist in the DB. All scores are given as integer percentages.
+
+    Parameters
+    ==========
+    alignment_scores_uuid - (UUID) the unique id for the alignment scores
+
+    Returns
+    ==========
+    JSON:
+    - overall similarity score
+    - alignment scores for all values, along with their descriptions
+    - top value and score from the alignment scores
+    - user a's first name
+    - user b's name
+    """
 
     session_uuid = request.headers.get("X-Session-Id")
     session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
