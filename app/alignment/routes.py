@@ -14,6 +14,7 @@ from app.scoring.process_alignment_scores import create_alignment_scores
 from app.feed.process_alignment_feed import create_alignment_feed
 from app.alignment.utils import build_alignment_scores_response
 
+
 @bp.route("/alignment", methods=["POST"])
 @cross_origin()
 @auto.doc()

@@ -58,7 +58,9 @@ def check_uuid_in_db(uuid_to_validate, uuid_type):
             conversation_uuid=uuid_to_validate
         ).first()
     elif uuid_type.name == "ALIGNMENT_SCORES":
-        uuid_in_db = AlignmentScores.query.filter_by(alignment_scores_uuid=uuid_to_validate).first()
+        uuid_in_db = AlignmentScores.query.filter_by(
+            alignment_scores_uuid=uuid_to_validate
+        ).first()
 
     if not uuid_in_db:
         raise NotInDatabaseError(message=f"{uuid_type.name}_UUID is not in the db.")
