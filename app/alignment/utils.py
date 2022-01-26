@@ -6,6 +6,22 @@ from app import db
 
 
 def build_alignment_scores_response(alignment_scores_uuid):
+    """
+    Deal with database interactions to provide response for GET alignment scores request.
+
+    Parameters
+    ==========
+    alignment_scores_uuid - (UUID) the unique id for the alignment scores
+
+    Returns
+    ==========
+    JSON:
+    - overall similarity score
+    - alignment scores for all values, along with their descriptions
+    - top value and score from the alignment scores
+    - user a's first name
+    - user b's name
+    """
 
     (alignment, userB_name, userA_name) = (
         db.session.query(AlignmentScores, Conversations.receiver_name, Users.first_name)
@@ -48,14 +64,17 @@ def build_alignment_scores_response(alignment_scores_uuid):
 
 
 def get_alignment_value(alignment, value_name):
+    """Get the alignment score for the value, as a percentage."""
     return as_percent(getattr(alignment, value_name + "_alignment"))
 
 
 def as_percent(number):
+    """Turn number between 0 and 1 to a percentage."""
     return int(100.0 * number)
 
 
 def get_value_map():
+    """Get a name->description dict for all values."""
     try:
         file = os.path.join(
             os.getcwd(), "app/personal_values/static", "value_descriptions.json"
