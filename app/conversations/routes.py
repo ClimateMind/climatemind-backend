@@ -149,9 +149,6 @@ def get_conversation(conversation_uuid):
     """
     Get a single conversation.
 
-    Includes validation of the session uuid and conversation uuid that they are formatted
-    correctly and exist in the DB, and logging of analytics.
-
     Parameters
     ==========
     conversation_uuid - (UUID) the unique id for the conversation
