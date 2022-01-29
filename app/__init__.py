@@ -112,4 +112,8 @@ def create_app(config_class=DevelopmentConfig):
 
         app.register_blueprint(alignment_bp)
 
+        from app.user_b import bp as user_b_bp
+
+        app.register_blueprint(user_b_bp)
+
     return app
