@@ -147,10 +147,7 @@ def get_conversations():
 @cross_origin()
 def get_conversation(conversation_uuid):
     """
-    Get a single conversation.
-
-    Includes validation of the session uuid and conversation uuid that they are formatted
-    correctly and exist in the DB, and logging of analytics.
+    Validates and returns a single conversation.
 
     Parameters
     ==========
