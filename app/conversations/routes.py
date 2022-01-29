@@ -4,8 +4,6 @@ from app.conversations.utils import build_single_conversation_response
 from app.auth.utils import validate_uuid, check_uuid_in_db, uuidType
 from app.models import Users, Conversations
 from app.errors.errors import DatabaseError, InvalidUsageError
-from app.user_b.analytics_logging import log_user_b_event, eventType
-from app.user_b.journey_updates import start_user_b_journey
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask import request, jsonify
 from flask_cors import cross_origin
@@ -168,15 +166,9 @@ def get_conversation(conversation_uuid):
     - consent - if user b has consented to share info with user a
     - timestamp for when the conversation was created
     """
-    session_uuid = request.headers.get("X-Session-Id")
-    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
-    check_uuid_in_db(session_uuid, uuidType.SESSION)
 
     conversation_uuid = validate_uuid(conversation_uuid, uuidType.CONVERSATION)
     check_uuid_in_db(conversation_uuid, uuidType.CONVERSATION)
     response = build_single_conversation_response(conversation_uuid)
-
-    start_user_b_journey(conversation_uuid)
-    log_user_b_event(conversation_uuid, session_uuid, eventType.LINK, 1)
 
     return jsonify(response), 200
