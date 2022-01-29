@@ -147,7 +147,7 @@ def get_conversations():
 @cross_origin()
 def get_conversation(conversation_uuid):
     """
-    Get a single conversation.
+    Validates and returns a single conversation.
 
     Parameters
     ==========
