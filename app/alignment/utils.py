@@ -1,5 +1,6 @@
 import os
 from json import load
+from flask import jsonify
 
 from app.models import AlignmentScores, UserBJourney, Conversations, Users
 from app import db
@@ -49,12 +50,11 @@ def build_alignment_scores_response(alignment_scores_uuid):
         for name in value_map.keys()
     ]
     alignment_scores.sort(key=lambda x: -x["score"])
-    top_score = alignment_scores[0]
 
     response = {
         "overallSimilarityScore": as_percent(alignment.overall_similarity_score),
-        "topMatchPercent": top_score["score"],
-        "topMatchValue": top_score["valueName"],
+        "topMatchPercent": alignment.top_match_percent,
+        "topMatchValue": alignment.top_match_value,
         "valueAlignment": alignment_scores,
         "userAName": userA_name,
         "userBName": userB_name,
