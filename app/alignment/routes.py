@@ -1,3 +1,4 @@
+from crypt import methods
 import uuid
 
 from flask import jsonify, request
@@ -64,3 +65,21 @@ def post_alignment_uuid():
 
     response = {"alignmentScoresId": alignment_scores_uuid}
     return jsonify(response), 201
+
+
+@bp.route("alignment/<alignment_scores_uuid>/shared-impacts", methods["GET"])
+@cross_origin()
+@auto.doc()
+def get_shared_impacts(alignment_scores_uuid):
+    """
+    """
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    validate_uuid(alignment_scores_uuid, uuidType.ALIGNMENT_SCORES)
+    check_uuid_in_db(alignment_scores_uuid, uuidType.ALIGNMENT_SCORES)
+
+    response = build_shared_impacts_response(alignment_scores_uuid)
+
+    return None
