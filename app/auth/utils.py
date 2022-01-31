@@ -1,4 +1,4 @@
-from app.models import Conversations, Sessions, Scores, Users
+from app.models import Conversations, Sessions, Scores, Users, AlignmentScores
 from app.errors.errors import NotInDatabaseError, InvalidUsageError
 from enum import Enum
 from flask import request
@@ -14,6 +14,7 @@ class uuidType(Enum):
     QUIZ = 2
     USER = 3
     CONVERSATION = 4
+    ALIGNMENT_SCORES = 5
 
 
 def validate_uuid(uuid_to_validate, uuid_type):
@@ -55,6 +56,10 @@ def check_uuid_in_db(uuid_to_validate, uuid_type):
     elif uuid_type.name == "CONVERSATION":
         uuid_in_db = Conversations.query.filter_by(
             conversation_uuid=uuid_to_validate
+        ).first()
+    elif uuid_type.name == "ALIGNMENT_SCORES":
+        uuid_in_db = AlignmentScores.query.filter_by(
+            alignment_scores_uuid=uuid_to_validate
         ).first()
 
     if not uuid_in_db:
