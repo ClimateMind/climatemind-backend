@@ -12,6 +12,7 @@ from app.user_b.analytics_logging import log_user_b_event, eventType
 from app.user_b.journey_updates import update_user_b_journey
 from app.scoring.process_alignment_scores import create_alignment_scores
 from app.feed.process_alignment_feed import create_alignment_feed
+from app.alignment.utils import build_alignment_scores_response
 
 
 @bp.route("/alignment", methods=["POST"])
@@ -64,3 +65,37 @@ def post_alignment_uuid():
 
     response = {"alignmentScoresId": alignment_scores_uuid}
     return jsonify(response), 201
+
+
+@bp.route("/alignment/<alignment_scores_uuid>", methods=["GET"])
+@cross_origin()
+def get_alignment(alignment_scores_uuid):
+    """
+    Get alignment scores.
+
+    Includes validation of the session uuid and aligment scores uuid that they are formatted
+    correctly and exist in the DB. All scores are given as integer percentages.
+
+    Parameters
+    ==========
+    alignment_scores_uuid - (UUID) the unique id for the alignment scores
+
+    Returns
+    ==========
+    JSON:
+    - overall similarity score
+    - alignment scores for all values, along with their descriptions
+    - top value and score from the alignment scores
+    - user a's first name
+    - user b's name
+    """
+
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    validate_uuid(alignment_scores_uuid, uuidType.ALIGNMENT_SCORES)
+    check_uuid_in_db(alignment_scores_uuid, uuidType.ALIGNMENT_SCORES)
+
+    response = build_alignment_scores_response(alignment_scores_uuid)
+    return jsonify(response), 200
