@@ -88,7 +88,6 @@ def get_value_map():
         )
         with open(file) as f:
             value_datas = load(f)
-            breakpoint()
         return {key: value_datas[key]["description"] for key in value_datas.keys()}
     except FileNotFoundError:
         return jsonify({"error": "Value descriptions file not found"}), 404
