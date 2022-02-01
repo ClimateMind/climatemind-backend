@@ -1,0 +1,885 @@
+openapi: 3.1.0
+info:
+  title: Climate Mind
+  version: '1.0'
+  summary: Climate Mind app API
+  description: Endpoints for the Climate Mind App API
+  contact:
+    name: Kameron
+    email: hello@climatemind.org
+servers:
+  - url: 'https://app-backend-test-001.azurewebsites.net'
+    description: test site
+paths:
+  /conversations:
+    get:
+      summary: All Conversations - GET
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  conversations:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - conversationId
+                        - conversationStatus
+                        - createdByUserId
+                        - createdDateTime
+                        - invitedUserName
+                      properties:
+                        conversationId:
+                          type: string
+                          minLength: 1
+                        conversationStatus:
+                          type: number
+                        createdByUserId:
+                          type: string
+                          minLength: 1
+                        createdDateTime:
+                          type: string
+                          minLength: 1
+                        invitedUserName:
+                          type: string
+                          minLength: 1
+                required:
+                  - conversations
+                x-examples:
+                  example-1:
+                    conversations:
+                      - conversationId: 5565C2B1-FC21-4A13-9854-3356EF46A7F5
+                        conversationStatus: 0
+                        createdByUserId: 39229453-E000-4801-91CA-D1F85E750508
+                        createdDateTime: 'Fri, 31 Dec 2021 09:07:48 GMT'
+                        invitedUserName: Jim 4
+                      - conversationId: 599E7CE8-DBCD-4FD3-97DA-41B6F6BABDEE
+                        conversationStatus: 0
+                        createdByUserId: 39229453-E000-4801-91CA-D1F85E750508
+                        createdDateTime: 'Tue, 04 Jan 2022 17:16:36 GMT'
+                        invitedUserName: Jim 4
+                      - conversationId: 7F910A47-9AED-4A27-8F33-3AE95230A776
+                        conversationStatus: 0
+                        createdByUserId: 39229453-E000-4801-91CA-D1F85E750508
+                        createdDateTime: 'Tue, 04 Jan 2022 17:27:39 GMT'
+                        invitedUserName: Jim 4
+                      - conversationId: 71B315C3-895F-4A7D-A752-080B123802ED
+                        conversationStatus: 0
+                        createdByUserId: 39229453-E000-4801-91CA-D1F85E750508
+                        createdDateTime: 'Wed, 05 Jan 2022 06:44:33 GMT'
+                        invitedUserName: Jim 4
+              examples:
+                Successful GET Conversations Response Body:
+                  value:
+                    conversations:
+                      - conversationId: 4EBCE8D2-D0A3-436B-8944-9914D866B83B
+                        conversationStatus: 0
+                        createdByUserId: C34EAF2F-9E88-474E-9A03-EED62B5F5A5D
+                        createdDateTime: 'Sun, 10 Oct 2021 17:45:19 GMT'
+                        invitedUserName: Kameron
+                      - conversationId: 2D253AF7-DAD9-4B5A-9479-AD1FEC08EDC8
+                        conversationStatus: 0
+                        createdByUserId: C34EAF2F-9E88-474E-9A03-EED62B5F5A5D
+                        createdDateTime: 'Sun, 10 Oct 2021 18:35:02 GMT'
+                        invitedUserName: Andrew
+                      - conversationId: 22F4E691-A896-4A56-BB2A-6E7E7E4B7214
+                        conversationStatus: 0
+                        createdByUserId: C34EAF2F-9E88-474E-9A03-EED62B5F5A5D
+                        createdDateTime: 'Tue, 12 Oct 2021 22:41:26 GMT'
+                        invitedUserName: dda
+                example-2:
+                  value:
+                    conversations:
+                      - null
+      operationId: get-conversations
+      description: 'Registered users can see a list of their conversations. Returns a list of the user''s conversations with the relevant names, UUIDs, conversation status and creation date. A JWT token is required.'
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+    parameters: []
+  '/conversation/:conversationId':
+    put:
+      summary: Single Conversation - PUT
+      tags: []
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                  conversationId:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+                  - conversationId
+                x-examples:
+                  example-1:
+                    message: conversation status updated
+                    conversationId: '{conversation_uuid}'
+      operationId: put-conversation
+      description: Change the status of the conversation in the conversations table for User A according to the actions taken by User B.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                conversationStatus:
+                  type: number
+            examples:
+              Update conversation status to 1 - Visited.:
+                value:
+                  conversationStatusId: 1
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+    parameters: []
+    get:
+      summary: Single Conversation - GET
+      operationId: 'get-conversation-:conversationId'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  conversationId:
+                    type: string
+                    minLength: 1
+                  userA:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        minLength: 1
+                      id:
+                        type: string
+                        minLength: 1
+                      sessionId:
+                        type: string
+                        minLength: 1
+                    required:
+                      - name
+                      - id
+                      - sessionId
+                  userB:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                        minLength: 1
+                    required:
+                      - name
+                  conversationStatus:
+                    type: number
+                  consent:
+                    type: boolean
+                  conversationTimestamp:
+                    type: string
+                    minLength: 1
+                required:
+                  - conversationId
+                  - userA
+                  - userB
+                  - conversationStatus
+                  - consent
+                  - conversationTimestamp
+                x-examples:
+                  example-1:
+                    conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
+                    userA:
+                      name: Bill
+                      id: ba5df442-7261-4fc1-bff0-5dfd84035d56
+                      sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
+                    userB:
+                      name: Bob
+                    conversationStatus: 2
+                    consent: true
+                    conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
+              examples:
+                Successful GET Conversation Response Body:
+                  value:
+                    conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
+                    userA:
+                      name: Bill
+                      id: ba5df442-7261-4fc1-bff0-5dfd84035d56
+                      sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
+                    userB:
+                      name: Bob
+                    conversationStatus: 2
+                    consent: true
+                    conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                GET Conversation Not Found Response Body:
+                  value:
+                    error: CONVERSATION_UUID is not in the db.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session UUID
+      description: 'Get the details of a single conversation. '
+  /alignment:
+    post:
+      summary: Alignment Scores - POST
+      tags: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  alignmentScoresId:
+                    type: string
+                required:
+                  - alignmentScoresId
+              examples:
+                Successful POST Alignment Scores Response Body:
+                  value:
+                    alignmentScoresId: d86fcf26-7834-4bce-bfb7-f88170da9ace
+      operationId: post-alignment
+      description: To create aligned scores between user A and user B after user B has completed their quiz.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          description: Session uuid
+          name: X-Session-Id
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              x-examples:
+                example-1:
+                  conversationId: string
+              properties:
+                conversationId:
+                  type: string
+                  minLength: 1
+                quizId:
+                  type: string
+              required:
+                - conversationId
+                - quizId
+            examples:
+              POST Alignment Scores Body:
+                value:
+                  conversationId: 7f910a47-9aed-4a27-8f33-3ae95230a776
+                  quizId: d86fcf26-7834-4bce-bfb7-f88170da9ace
+              example-2:
+                value:
+                  conversationId: string
+                  quizId: string
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+        description: Conversation ID and quiz ID are required.
+    parameters: []
+  '/alignment/:alignmentScoresId':
+    get:
+      summary: Alignment Scores - GET
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  overallSimilarityScore:
+                    type: number
+                  topMatchPercent:
+                    type: number
+                  topMatchValue:
+                    type: string
+                    minLength: 1
+                  valueAlignment:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        valueName:
+                          type: string
+                          minLength: 1
+                        score:
+                          type: number
+                        description:
+                          type: string
+                          minLength: 1
+                      required:
+                        - valueName
+                        - score
+                        - description
+                  userAName:
+                    type: string
+                    minLength: 1
+                  userBName:
+                    type: string
+                    minLength: 1
+                required:
+                  - overallSimilarityScore
+                  - topMatchPercent
+                  - topMatchValue
+                  - valueAlignment
+                  - userAName
+                  - userBName
+                x-examples:
+                  example-1:
+                    overallSimilarityScore: 70
+                    topMatchPercent: 90
+                    topMatchValue: benevolence
+                    valueAlignment:
+                      - valueName: benevolence
+                        score: 90
+                        description: lots of text
+                      - valueName: power
+                        score: 80
+                        description: lots of text
+                      - valueName: achievement
+                        score: 70
+                        description: lots of text
+                      - valueName: self-direction
+                        score: 60
+                        description: lots of text
+                      - valueName: hedonism
+                        score: 50
+                        description: lots of text
+                      - valueName: tradition
+                        score: 40
+                        description: lots of text
+                      - valueName: conformity
+                        score: 30
+                        description: lots of text
+                      - valueName: universalism
+                        score: 30
+                        description: lots of text
+                      - valueName: stimulation
+                        score: 20
+                        description: lots of text
+                      - valueName: security
+                        score: 10
+                        description: lots of text
+                    userAName: Bill
+                    userBName: Bob
+              examples:
+                Successful GET Alignment Scores Response Body:
+                  value:
+                    overallSimilarityScore: 70
+                    topMatchPercent: 90
+                    topMatchValue: benevolence
+                    valueAlignment:
+                      - valueName: benevolence
+                        score: 90
+                        description: lots of text
+                      - valueName: power
+                        score: 80
+                        description: lots of text
+                      - valueName: achievement
+                        score: 70
+                        description: lots of text
+                      - valueName: self-direction
+                        score: 60
+                        description: lots of text
+                      - valueName: hedonism
+                        score: 50
+                        description: lots of text
+                      - valueName: tradition
+                        score: 40
+                        description: lots of text
+                      - valueName: conformity
+                        score: 30
+                        description: lots of text
+                      - valueName: universalism
+                        score: 30
+                        description: lots of text
+                      - valueName: stimulation
+                        score: 20
+                        description: lots of text
+                      - valueName: security
+                        score: 10
+                        description: lots of text
+                    userAName: Bill
+                    userBName: Bob
+      operationId: get-alignment
+      description: For a user to get a comparison of personal values with another user.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+          required: true
+    parameters: []
+  '/alignment/:alignmentScoresId/shared-impacts':
+    get:
+      summary: Shared Impacts - GET
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  climateEffects:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - effectId
+                        - sharedScore
+                        - effectShortDescription
+                        - effectTitle
+                        - imageUrl
+                      properties:
+                        effectId:
+                          type: string
+                          minLength: 1
+                        sharedScore:
+                          type: number
+                        effectShortDescription:
+                          type: string
+                          minLength: 1
+                        effectTitle:
+                          type: string
+                          minLength: 1
+                        imageUrl:
+                          type: string
+                          minLength: 1
+                        relatedPersonalValues:
+                          type: array
+                          items:
+                            required: []
+                            properties: {}
+                  userAName:
+                    type: string
+                    minLength: 1
+                  userBName:
+                    type: string
+                    minLength: 1
+                required:
+                  - climateEffects
+                  - userAName
+                  - userBName
+                x-examples:
+                  example-1:
+                    climateEffects:
+                      - effectId: RBvy0CVizhdMfXbtJIc2En
+                        sharedScore: 27.9
+                        effectShortDescription: 'The total value of goods produced and services provided each year are increasingly     being constrained. Global warming is decreasing GDP by increasing in the frequency of heat waves and shrinking the tourism industry, among other impacts.'
+                        effectTitle: decrease in GDP
+                        imageUrl: 'https://i.imgur.com/NNK9Na4.jpg'
+                        relatedPersonalValues:
+                          - achievement
+                          - benevolence
+                      - effectId: R8Fa34SNdEwdj93hXO0oMS
+                        sharedScore: 25.429
+                        effectShortDescription: 'The frequency of warm days and night are increasing every year, causing increased indoor air temperatures which negatively affects learning. People''s ability to use attention and memory to acquire and retain new information is impaired.'
+                        effectTitle: decrease in learning (without air conditioner)
+                        imageUrl: 'https://i.imgur.com/Zzh5mT8.jpg'
+                        relatedPersonalValues:
+                          - benevolence
+                          - universalism
+                          - achievement
+                      - effectId: R8epBa4UvcieLTynfK3E84u
+                        sharedScore: 23.44
+                        effectShortDescription: 'The frequency (and severity) of heatwaves are increasing, causing declines in moose populations. Moose are suited to colder climates and have thick fur and when stressed by overheating they stop grazing and lose body fat that''s essential for them to survive come winter. The number of moose alive to pursue and kill for sport are declining.'
+                        effectTitle: decrease in population of moose available to hunt
+                        imageUrl: 'https://i.imgur.com/mBvpx7w.jpg'
+                        relatedPersonalValues:
+                          - benevolence
+                          - power
+                          - stimulation
+                    userAName: Bill
+                    userBName: Bob
+              examples:
+                Successful GET Shared Impacts Response Body:
+                  value:
+                    climateEffects:
+                      - effectId: RBvy0CVizhdMfXbtJIc2En
+                        sharedScore: 27.9
+                        effectShortDescription: 'The total value of goods produced and services provided each year are increasingly     being constrained. Global warming is decreasing GDP by increasing in the frequency of heat waves and shrinking the tourism industry, among other impacts.'
+                        effectTitle: decrease in GDP
+                        imageUrl: 'https://i.imgur.com/NNK9Na4.jpg'
+                        relatedPersonalValues:
+                          - achievement
+                          - benevolence
+                      - effectId: R8Fa34SNdEwdj93hXO0oMS
+                        sharedScore: 25.429
+                        effectShortDescription: 'The frequency of warm days and night are increasing every year, causing increased indoor air temperatures which negatively affects learning. People''s ability to use attention and memory to acquire and retain new information is impaired.'
+                        effectTitle: decrease in learning (without air conditioner)
+                        imageUrl: 'https://i.imgur.com/Zzh5mT8.jpg'
+                        relatedPersonalValues:
+                          - benevolence
+                          - universalism
+                          - achievement
+                      - effectId: R8epBa4UvcieLTynfK3E84u
+                        sharedScore: 23.44
+                        effectShortDescription: 'The frequency (and severity) of heatwaves are increasing, causing declines in moose populations. Moose are suited to colder climates and have thick fur and when stressed by overheating they stop grazing and lose body fat that''s essential for them to survive come winter. The number of moose alive to pursue and kill for sport are declining.'
+                        effectTitle: decrease in population of moose available to hunt
+                        imageUrl: 'https://i.imgur.com/mBvpx7w.jpg'
+                        relatedPersonalValues:
+                          - benevolence
+                          - power
+                          - stimulation
+                    userAName: Bill
+                    userBName: Bob
+      operationId: get-shared-impacts
+      description: Show the full list of shared impacts from the shared feed calculated by comparing user a and user b's quiz scores.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+          required: true
+    parameters: []
+    post:
+      summary: Choose Shared Impacts - POST
+      operationId: shared-impacts
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+                x-examples:
+                  example-1:
+                    message: Shared impacts posted successfully
+              examples:
+                Successful Choose Shared Impact POST Response Body:
+                  value:
+                    message: Shared impact saved to the db.
+      description: Confirm user b's selection of shared impacts that they wish to discuss with user a.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                sharedImpacts:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - effectId
+                    properties:
+                      effectId:
+                        type: string
+                        minLength: 1
+              required:
+                - sharedImpacts
+              x-examples:
+                example-1:
+                  sharedImpacts:
+                    - effectId: something
+                    - effectId: something
+            examples:
+              Choose Shared Impact POST Request Body:
+                value:
+                  sharedImpacts:
+                    - effectId: R8Fa34SNdEwdj93hXO0oMS
+  '/alignment/:alignmentScoresId/shared-solutions':
+    get:
+      summary: Shared Solutions - GET
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  climateSolutions:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - solutionId
+                        - sharedScore
+                        - solutionShortDescription
+                        - solutionTitle
+                        - imageUrl
+                      properties:
+                        solutionId:
+                          type: string
+                          minLength: 1
+                        sharedScore:
+                          type: number
+                        solutionShortDescription:
+                          type: string
+                          minLength: 1
+                        solutionTitle:
+                          type: string
+                          minLength: 1
+                        imageUrl:
+                          type: string
+                          minLength: 1
+                  userAName:
+                    type: string
+                    minLength: 1
+                  userBName:
+                    type: string
+                    minLength: 1
+                required:
+                  - climateSolutions
+                  - userAName
+                  - userBName
+                x-examples:
+                  example-1:
+                    climateSolutions:
+                      - solutionId: RDSZw453Ge76hYTvYEsaAwU
+                        sharedScore: 29.1
+                        solutionShortDescription: Testers are awesome.
+                        solutionTitle: becoming a tester
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      - solutionId: string
+                        sharedScore: 21.9999
+                        solutionShortDescription: Communication framing is awesome.
+                        solutionTitle: effective communication framing
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      - solutionId: string
+                        sharedScore: 21.33
+                        solutionShortDescription: Electric cars are awesome.
+                        solutionTitle: using electric cars
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      - solutionId: string
+                        sharedScore: 19.777
+                        solutionShortDescription: Generic solutions are awesome.
+                        solutionTitle: solution 4
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      - solutionId: string
+                        sharedScore: 14.342
+                        solutionShortDescription: Solution 5 is awesome.
+                        solutionTitle: solution 5
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      - solutionId: string
+                        sharedScore: 13.1
+                        solutionShortDescription: Solution 6 is awesome.
+                        solutionTitle: solution 6
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      - solutionId: string
+                        sharedScore: 9.888
+                        solutionShortDescription: Solution 7 is the best.
+                        solutionTitle: solution 7
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                    userAName: Bill
+                    userBName: Bob
+              examples:
+                Successful Shared Solutions GET Response Body:
+                  value:
+                    climateSolutions:
+                      - solutionId: RDSZw453Ge76hYTvYEsaAwU
+                        sharedScore: 29.1
+                        solutionShortDescription: Testers are awesome.
+                        solutionTitle: becoming a tester
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      - solutionId: string
+                        sharedScore: 21.9999
+                        solutionShortDescription: Communication framing is awesome.
+                        solutionTitle: effective communication framing
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      - solutionId: string
+                        sharedScore: 21.33
+                        solutionShortDescription: Electric cars are awesome.
+                        solutionTitle: using electric cars
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      - solutionId: string
+                        sharedScore: 19.777
+                        solutionShortDescription: Generic solutions are awesome.
+                        solutionTitle: solution 4
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      - solutionId: string
+                        sharedScore: 14.342
+                        solutionShortDescription: Solution 5 is awesome.
+                        solutionTitle: solution 5
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      - solutionId: string
+                        sharedScore: 13.1
+                        solutionShortDescription: Solution 6 is awesome.
+                        solutionTitle: solution 6
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      - solutionId: string
+                        sharedScore: 9.888
+                        solutionShortDescription: Solution 7 is the best.
+                        solutionTitle: solution 7
+                        imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                    userAName: Bill
+                    userBName: Bob
+      operationId: get-shared-solutions
+      description: Show the full list of shared solutions from the shared feed calculated by comparing user a and user b's quiz scores.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+          required: true
+    parameters: []
+    post:
+      summary: Choose Shared Solutions - POST
+      operationId: 'post-alignment-:alignmentId-shared-solutions'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+                x-examples:
+                  example-1:
+                    message: Shared solutions posted successfully.
+              examples:
+                Successful Choose Shared Solutions POST Response Body:
+                  value:
+                    message: Shared solutions saved to the db.
+      description: Confirm user b's selection of shared solutions that they wish to discuss with user a.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                sharedSolutions:
+                  type: array
+                  uniqueItems: true
+                  minItems: 1
+                  items:
+                    required:
+                      - solutionId
+                    properties:
+                      solutionId:
+                        type: string
+                        minLength: 1
+              required:
+                - sharedSolutions
+              x-examples:
+                example-1:
+                  sharedSolutions:
+                    - solutionId: something
+                    - solutionId: something
+            examples:
+              Choose Shared Solutions POST Request Body:
+                value:
+                  sharedSolutions:
+                    - solutionId: R8WxponQcYpGf2zDnbsuVxG
+                    - solutionId: RCg7BxIR9BolygeacF635tH
+  '/user-b/:conversationId':
+    post:
+      summary: User B Event - POST
+      operationId: post-user-b
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+                x-examples:
+                  example-1:
+                    message: User B clicked the link.
+              examples:
+                Successful POST User B Event Response Body (link clicked):
+                  value:
+                    message: User B clicked the link.
+      description: Log an event for user B (analytics tracking).
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+    parameters: []
+components:
+  schemas: {}
