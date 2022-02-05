@@ -88,7 +88,7 @@ def get_alignment(alignment_scores_uuid):
     ==========
     JSON:
     - overall similarity score
-    - alignment scores for all values, along with their descriptions
+    - alignment scores for all values, along with their properties
     - top value and score from the alignment scores
     - user a's first name
     - user b's name

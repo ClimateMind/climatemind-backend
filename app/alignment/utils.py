@@ -25,7 +25,7 @@ def build_alignment_scores_response(alignment_scores_uuid):
     ==========
     JSON:
     - overall similarity score
-    - alignment scores for all values, along with their descriptions
+    - alignment scores for all values, along with their properties
     - top value and score from the alignment scores
     - user a's first name
     - user b's name
@@ -46,15 +46,19 @@ def build_alignment_scores_response(alignment_scores_uuid):
         .one_or_none()
     )
 
-    value_map = get_value_map()
-
+    raw_values_map = get_values_map()
+    values_map = {
+        raw_value_map["id"]: raw_value_map for raw_value_map in raw_values_map.values()
+    }
     alignment_scores = [
         {
-            "valueName": name,
-            "score": get_alignment_value(alignment, name),
-            "description": value_map[name],
+            "description": value_map["description"],
+            "id": value_id,
+            "name": value_map["name"],
+            "shortDescription": value_map["shortDescription"],
+            "score": get_alignment_value(alignment, value_id),
         }
-        for name in value_map.keys()
+        for (value_id, value_map) in values_map.items()
     ]
     alignment_scores.sort(key=lambda x: -x["score"])
 
@@ -80,17 +84,17 @@ def as_percent(number):
     return int(100.0 * number)
 
 
-def get_value_map():
+def get_values_map():
     """Get a name->description dict for all values."""
     try:
         file = os.path.join(
             os.getcwd(), "app/personal_values/static", "value_descriptions.json"
         )
         with open(file) as f:
-            value_datas = load(f)
-        return {key: value_datas[key]["description"] for key in value_datas.keys()}
+            data = load(f)
     except FileNotFoundError:
         return jsonify({"error": "Value descriptions file not found"}), 404
+    return data
 
 
 def build_shared_impacts_response(alignment_scores_uuid):
