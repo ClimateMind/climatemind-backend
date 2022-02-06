@@ -1,5 +1,6 @@
 import os
 from json import load
+from urllib import response
 from flask import jsonify, current_app
 
 from app.models import (
@@ -163,8 +164,12 @@ def build_shared_impacts_response(alignment_scores_uuid):
 
 
 def effect_details(G, climate_effects_iris, nx):
-    """Get the full details for each shared climate impact, including id, shared score, description, title, image (if available), and
-    associated personal values."""
+    """
+    Get the full details for each shared climate impact, including id, shared score, description, title, image (if available), and
+    associated personal values.
+
+    Note - shared scores are currently hard-coded as a placeholder until implementation is decided.
+    """
 
     climate_effects = []
 
@@ -204,7 +209,8 @@ def get_personal_values_map():
 
 
 def map_associated_personal_values(personal_values_boolean_list):
-    """Take the associated personal values for a shared impact and map them to the value names from the schwartz questions JSON file.
+    """
+    Take the associated personal values for a shared impact and map them to the value names from the schwartz questions JSON file.
 
     Parameters
     ==========
@@ -219,6 +225,7 @@ def map_associated_personal_values(personal_values_boolean_list):
 
     personal_values_map = get_personal_values_map()
 
+    # IDs are hard-coded as temporary solution until known whether we will implement 19 values list and/or change value names displayed to the user.
     json_value_ids = [8, 3, 1, 7, 9, 10, 5, 6, 2, 4]
 
     value_dict = dict(zip(json_value_ids, personal_values_boolean_list))
@@ -232,3 +239,96 @@ def map_associated_personal_values(personal_values_boolean_list):
                     personal_values.append(value["value"])
 
     return personal_values
+
+
+def build_shared_solutions_response(alignment_scores_uuid):
+    """
+    Deal with database interactions to provide response for GET shared solutions request.
+
+    Parameters
+    ==========
+    alignment_scores_uuid - (UUID) the unique id for the alignment scores
+
+    Returns
+    ==========
+    JSON:
+    - the id, shared score, short description, title, and image url (if available) for each shared solution
+    - user a's first name
+    - user b's name
+    """
+
+    G = current_app.config["G"].copy()
+    nx = network_x_utils()
+
+    (alignment_scores, alignment_feed, userB_name, userA_name) = (
+        db.session.query(
+            AlignmentScores,
+            AlignmentFeed,
+            Conversations.receiver_name,
+            Users.first_name,
+        )
+        .join(
+            UserBJourney,
+            UserBJourney.alignment_scores_uuid == AlignmentScores.alignment_scores_uuid,
+        )
+        .join(
+            AlignmentFeed,
+            AlignmentFeed.alignment_feed_uuid == UserBJourney.alignment_feed_uuid,
+        )
+        .join(
+            Conversations,
+            Conversations.conversation_uuid == UserBJourney.conversation_uuid,
+        )
+        .join(Users, Users.user_uuid == Conversations.sender_user_uuid)
+        .filter(AlignmentScores.alignment_scores_uuid == alignment_scores_uuid)
+        .one_or_none()
+    )
+
+    climate_solutions_iris = [
+        alignment_feed.aligned_solution_1_iri,
+        alignment_feed.aligned_solution_2_iri,
+        alignment_feed.aligned_solution_3_iri,
+        alignment_feed.aligned_solution_4_iri,
+        alignment_feed.aligned_solution_5_iri,
+        alignment_feed.aligned_solution_6_iri,
+        alignment_feed.aligned_solution_7_iri,
+    ]
+
+    climate_solutions_iris = [
+        "webprotege.stanford.edu." + iri for iri in climate_solutions_iris
+    ]
+
+    climate_solutions = solution_details(G, climate_solutions_iris, nx)
+
+    response = {
+        "climateSolutions": climate_solutions,
+        "userAName": userA_name,
+        "userBName": userB_name,
+    }
+
+    return response
+
+
+def solution_details(G, climate_solutions_iris, nx):
+    """
+    Get the full details for each shared climate solution, including id, shared score, description, title, and image (if available).
+
+    Note - shared scores are currently hard-coded as a placeholder until implementation is decided.
+    """
+    climate_solutions = []
+
+    for iri in climate_solutions_iris:
+        for node in G.nodes:
+            if G.nodes[node]["iri"] == iri:
+                nx.set_current_node(G.nodes[node])
+                solution = {
+                    "solutionId": nx.get_node_id(),
+                    "sharedScore": 42.00,
+                    "solutionShortDescription": nx.get_short_description(),
+                    "solutionTitle": G.nodes[node]["label"],
+                    "imageUrl": nx.get_image_url_or_none(),
+                }
+
+                climate_solutions.append(solution)
+
+    return climate_solutions
