@@ -1,4 +1,4 @@
-version: "3.9"
+version: "3"
 services:
   web:
     platform: linux/amd64
@@ -25,13 +25,14 @@ services:
       - "db"
   db:
     platform: linux/amd64
-    image: "mcr.microsoft.com/azure-sql-edge:1.0.5"
+    build:
+      context: ./
+      dockerfile: Dockerfile.db
     ports:
         - "1433:1433"
-    command: bash -c " /db-init.sh & /opt/mssql/bin/sqlservr"
     environment:
       SA_PASSWORD: "Cl1mat3m1nd!"
       ACCEPT_EULA: "Y"
     volumes:
-      - ./entrypoint_db.sh:/entrypoint_db.sh
-      - ./db-init.sh:/db-init.sh
+      - ./entrypoint.db.sh:/entrypoint.db.sh
+      - ./db-init.py:/db-init.py
