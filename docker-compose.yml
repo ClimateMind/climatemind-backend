@@ -1,6 +1,7 @@
-version: "3"
+version: "3.9"
 services:
   web:
+    platform: linux/amd64
     build:
       context: ./
       dockerfile: Dockerfile
@@ -23,7 +24,8 @@ services:
     depends_on:
       - "db"
   db:
-    image: "mcr.microsoft.com/mssql/server:2017-latest"
+    platform: linux/amd64
+    image: "mcr.microsoft.com/azure-sql-edge:1.0.5"
     ports:
         - "1433:1433"
     command: bash -c " /db-init.sh & /opt/mssql/bin/sqlservr"
