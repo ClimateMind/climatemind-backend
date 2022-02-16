@@ -1,0 +1,11 @@
+FROM mcr.microsoft.com/azure-sql-edge:1.0.5
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3.5 \
+    python3-pip \
+    && \
+    apt-get clean
+RUN pip3 install pymssql
+
+USER mssql
+ENTRYPOINT /bin/bash ./entrypoint.db.sh
