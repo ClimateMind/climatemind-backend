@@ -10,7 +10,6 @@ SQLALCHEMY_DATABASE_URI = "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quot
 )
 
 with create_engine(
-    SQLALCHEMY_DATABASE_URI,
-    isolation_level='AUTOCOMMIT', echo=True).connect() as connection:
-    connection.execute('CREATE DATABASE [sqldb-web-prod-001]')
-
+    SQLALCHEMY_DATABASE_URI, isolation_level="AUTOCOMMIT", echo=True
+).connect() as connection:
+    connection.execute("CREATE DATABASE [sqldb-web-prod-001]")
