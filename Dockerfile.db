@@ -4,29 +4,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3.8 \
     python3-pip \
     python3-dev \
-    && \
-    apt-get clean
+    && apt-get -y install gcc \
+    && apt-get -y install g++ \
+    && apt-get -y install unixodbc unixodbc-dev \
+    && apt-get clean
 
-RUN apt-get install --reinstall build-essential -y
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    unixodbc-dev \
-    unixodbc \
-    libpq-dev 
-
-RUN apt-get update \
-  && apt-get -y install gcc \
-  && apt-get -y install g++ \
-  && apt-get -y install unixodbc unixodbc-dev \
-  && apt-get clean
-
-RUN python3 -m pip install --upgrade pip
 RUN pip3 install --upgrade setuptools
-RUN pip3 install ez_setup
-
-RUN apt-get install unixodbc-dev
-RUN pip3 install pyodbc
-RUN pip3 install sqlalchemy 
+RUN pip3 install ez_setup pyodbc sqlalchemy
 
 USER mssql
 ENTRYPOINT /bin/bash ./entrypoint.db.sh
