@@ -1,7 +1,6 @@
 version: "3"
 services:
   web:
-    platform: linux/amd64
     build:
       context: ./
       dockerfile: Dockerfile
@@ -24,15 +23,16 @@ services:
     depends_on:
       - "db"
   db:
-    platform: linux/amd64
     build:
       context: ./
       dockerfile: Dockerfile.db
     ports:
         - "1433:1433"
     environment:
-      SA_PASSWORD: "Cl1mat3m1nd!"
+      DATABASE_PARAMS: Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=tempdb;Uid=SA;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;
+      MSSQL_SA_PASSWORD: "Cl1mat3m1nd!"
       ACCEPT_EULA: "Y"
     volumes:
       - ./entrypoint.db.sh:/entrypoint.db.sh
       - ./db-init.py:/db-init.py
+      - ./db-init.sh:/db-init.sh

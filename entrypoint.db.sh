@@ -1,1 +1,1 @@
-python3 ./db-init.py & /opt/mssql/bin/sqlservr
+bash ./db-init.sh & /opt/mssql/bin/sqlservr
