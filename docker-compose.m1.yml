@@ -4,7 +4,7 @@ services:
     platform: linux/amd64
     build:
       context: ./
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.m1
     ports:
       - "8050:8050"
       - "5000:5000"
@@ -24,7 +24,6 @@ services:
     depends_on:
       - "db"
   db:
-    platform: linux/amd64
     build:
       context: ./
       dockerfile: Dockerfile.db
@@ -37,4 +36,4 @@ services:
     volumes:
       - ./entrypoint.db.sh:/entrypoint.db.sh
       - ./db-init.py:/db-init.py
-      - ./db-init.sh:/db-init.sh
+      - ./db-init.m1.sh:/db-init.m1.sh

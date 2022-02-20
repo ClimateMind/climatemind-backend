@@ -1,1 +1,1 @@
-bash ./db-init.sh & /opt/mssql/bin/sqlservr
+bash ./db-init.m1.sh & /opt/mssql/bin/sqlservr

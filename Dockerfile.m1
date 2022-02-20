@@ -26,10 +26,10 @@ RUN apt-get update
 RUN apt install -y git
 
 RUN ACCEPT_EULA=Y apt-get install msodbcsql17
-RUN ACCEPT_EULA=Y apt-get install mssql-tools
+# RUN ACCEPT_EULA=Y apt-get install mssql-tools
 
-RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
-RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
+# RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
+# RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 
 RUN chmod +rwx /etc/ssl/openssl.cnf
 RUN sed -i 's/TLSv1.2/TLSv1/g' /etc/ssl/openssl.cnf
