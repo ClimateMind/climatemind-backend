@@ -23,16 +23,13 @@ services:
     depends_on:
       - "db"
   db:
-    build:
-      context: ./
-      dockerfile: Dockerfile.db
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
     ports:
         - "1433:1433"
+    command: bash -c " /db-init.sh & /opt/mssql/bin/sqlservr"
     environment:
-      DATABASE_PARAMS: Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=tempdb;Uid=SA;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;
-      MSSQL_SA_PASSWORD: "Cl1mat3m1nd!"
+      SA_PASSWORD: "Cl1mat3m1nd!"
       ACCEPT_EULA: "Y"
     volumes:
-      - ./entrypoint.db.sh:/entrypoint.db.sh
-      - ./db-init.py:/db-init.py
+      - ./entrypoint_db.sh:/entrypoint_db.sh
       - ./db-init.sh:/db-init.sh
