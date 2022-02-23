@@ -1,5 +1,3 @@
-import sys
-
 import networkx as nx
 
 
@@ -13,17 +11,8 @@ class network_x_processor:
         try:
             G = nx.read_gpickle(self.graph_file)
             return G
-
         except (FileNotFoundError, IsADirectoryError, ValueError):
             raise
 
     def get_graph(self):
-        """
-        Returns the NetworkX representation of the Ontology if found.
-        """
-        try:
-            if self.G is None:
-                raise ValueError
-            return self.G
-        except ValueError:
-            raise
+        return self.G

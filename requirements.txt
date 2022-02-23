@@ -66,7 +66,6 @@ pygraphviz==1.6
 pyodbc==4.0.30
 pyparsing==2.4.7
 pyrsistent==0.16.0
-pytest==6.0.2
 python-dateutil==2.8.1
 python-dotenv==0.14.0
 python-editor==1.0.4
