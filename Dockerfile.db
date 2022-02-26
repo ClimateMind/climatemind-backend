@@ -1,0 +1,16 @@
+FROM mcr.microsoft.com/azure-sql-edge:1.0.5
+USER root
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3.8 \
+    python3-pip \
+    python3-dev \
+    && apt-get -y install gcc \
+    && apt-get -y install g++ \
+    && apt-get -y install unixodbc unixodbc-dev \
+    && apt-get clean
+
+RUN pip3 install --upgrade setuptools
+RUN pip3 install ez_setup pyodbc sqlalchemy
+
+USER mssql
+ENTRYPOINT /bin/bash ./entrypoint.db.sh
