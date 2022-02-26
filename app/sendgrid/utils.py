@@ -37,6 +37,10 @@ def send_welcome_email(user_email, user_first_name):
 
 
 def set_up_sendgrid():
+    """
+    Initial setup to use the SendGrid API. Creates the client, and sets the default email address to send emails from.
+    """
+
     sg = SendGridAPIClient(current_app.config["SENDGRID_API_KEY"])
     from_email = Email(current_app.config["SENDGRID_DEFAULT_FROM"])
 
