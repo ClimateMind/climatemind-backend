@@ -9,6 +9,7 @@ from app.conversations.utils import (
 from app.auth.utils import validate_uuid, check_uuid_in_db, uuidType
 from app.models import Users, Conversations
 from app.errors.errors import DatabaseError, InvalidUsageError
+from app.sendgrid.utils import send_user_b_shared_email
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from flask import request, jsonify
 from flask_cors import cross_origin
@@ -180,7 +181,8 @@ def get_conversation(conversation_uuid):
 @cross_origin()
 def post_consent(conversation_uuid):
     """
-    Update user b's choice to share information with user a in the database.
+    Updates user b's choice to share information with user a in the database.
+    Sends a confirmation email to user a that user b has shared.
 
     Parameters
     ==========
@@ -202,5 +204,7 @@ def post_consent(conversation_uuid):
     consent_choice = r.get("consent")
 
     response = update_consent_choice(conversation_uuid, consent_choice, session_uuid)
+
+    send_user_b_shared_email(conversation_uuid)
 
     return jsonify(response), 201

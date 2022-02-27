@@ -1,10 +1,12 @@
 from email import message
 import os
-
+from app import db
+from app.models import Conversations, Users
+from app.sendgrid.templates.user_b_shared_email import USER_B_SHARED_EMAIL
+from app.sendgrid.templates.welcome_email import WELCOME_EMAIL
 from flask import current_app
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Email, To, Content
-from app.sendgrid.templates.welcome_email import WELCOME_EMAIL
 
 
 def send_welcome_email(user_email, user_first_name):
@@ -28,6 +30,52 @@ def send_welcome_email(user_email, user_first_name):
     )
     subject = "Welcome to Climate Mind!"
     content = Content("text/html", WELCOME_EMAIL)
+    mail = Mail(from_email, to_email, subject, content)
+
+    try:
+        sg.send(mail)
+    except Exception as e:
+        print(e)
+
+
+def send_user_b_shared_email(conversation_uuid):
+    """
+    Gets user a's first name, user b's name and user a's email from the database.
+    Sends a confirmation email to user a when user b has consented to share to let them know that they can start their conversation.
+
+    Parameters
+    =====================
+    conversation_uuid - (UUID) the unique id for the conversation
+
+    """
+
+    # currently allowing the db interaction to fail silently to not block the consent endpoint from returning its response if something goes wrong with the email building
+    try:
+        user_a_first_name, user_b_name, user_a_email = (
+            db.session.query(
+                Users.first_name, Conversations.receiver_name, Users.user_email
+            )
+            .join(
+                Users,
+                Users.user_uuid == Conversations.sender_user_uuid,
+            )
+            .filter(Conversations.conversation_uuid == conversation_uuid)
+            .one_or_none()
+        )
+    except:
+        print("Something went wrong while retrieving information from the db.")
+
+    sg, from_email = set_up_sendgrid()
+
+    to_email = To(
+        email=user_a_email,
+        substitutions={
+            "-user_a_first_name-": user_a_first_name,
+            "-user_b_name-": user_b_name,
+        },
+    )
+    subject = f"Ready for a climate conversation with {user_b_name}?"
+    content = Content("text/html", USER_B_SHARED_EMAIL)
     mail = Mail(from_email, to_email, subject, content)
 
     try:
