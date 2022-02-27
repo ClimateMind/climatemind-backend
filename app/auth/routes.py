@@ -24,6 +24,7 @@ from app.errors.errors import (
 )
 
 from app.models import Users, Scores
+from app.sendgrid.utils import send_welcome_email
 
 from app import db, auto
 from app import limiter
@@ -233,6 +234,9 @@ def register():
         ),
         201,
     )
+
+    send_welcome_email(user.user_email, user.first_name)
+
     response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
