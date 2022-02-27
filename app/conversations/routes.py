@@ -1,6 +1,11 @@
+from crypt import methods
+from random import choice
 from app.conversations import bp
 from app import db
-from app.conversations.utils import build_single_conversation_response
+from app.conversations.utils import (
+    build_single_conversation_response,
+    update_consent_choice,
+)
 from app.auth.utils import validate_uuid, check_uuid_in_db, uuidType
 from app.models import Users, Conversations
 from app.errors.errors import DatabaseError, InvalidUsageError
@@ -169,3 +174,33 @@ def get_conversation(conversation_uuid):
     response = build_single_conversation_response(conversation_uuid)
 
     return jsonify(response), 200
+
+
+@bp.route("/conversation/<conversation_uuid>/consent", methods=["POST"])
+@cross_origin()
+def post_consent(conversation_uuid):
+    """
+    Update user b's choice to share information with user a in the database.
+
+    Parameters
+    ==========
+    conversation_uuid - (UUID) the unique id for the conversation
+
+    Returns
+    ==========
+    JSON - success message or error
+    """
+
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    conversation_uuid = validate_uuid(conversation_uuid, uuidType.CONVERSATION)
+    check_uuid_in_db(conversation_uuid, uuidType.CONVERSATION)
+
+    r = request.get_json(force=True, silent=True)
+    consent_choice = r.get("consent")
+
+    response = update_consent_choice(conversation_uuid, consent_choice, session_uuid)
+
+    return jsonify(response), 201
