@@ -1,4 +1,4 @@
-WELCOME_EMAIL = """
+USER_B_SHARED_EMAIL = """
 <!doctype html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:v="urn:schemas-microsoft-com:vml" xmlns:o="urn:schemas-microsoft-com:office:office">
     <head>
@@ -14,7 +14,7 @@ WELCOME_EMAIL = """
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Welcome!</title>
+        <title>Quiz taken!</title>
         
     </head>
     <body style="height: 100%;margin: 0;padding: 0;width: 100%;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;background-color: #ffffff;">
@@ -64,6 +64,7 @@ WELCOME_EMAIL = """
                     <tbody><tr>
                         
                         <td valign="top" class="mcnTextContent" style="padding: 0px 18px 9px;text-align: center;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;color: #07373b;font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;font-size: 12px;line-height: 150%;">
+                        
                         </td>
                     </tr>
                 </tbody></table>
@@ -119,7 +120,7 @@ WELCOME_EMAIL = """
                         
                         <td valign="top" class="mcnTextContent" style="padding: 0px 18px 9px;color: #07373B;font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, Verdana, sans-serif;font-size: 18px;line-height: 150%;text-align: left;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;">
                         
-                            <h1 class="null" style="text-align: center;display: block;margin: 0;padding: 0;color: #07373b;font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;"><span style="font-size:18px">Welcome aboard,&nbsp;</span>-user_first_name-!</h1>
+                            <h1 class="null" style="text-align: center;display: block;margin: 0;padding: 0;color: #07373b;font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;"><span style="font-size:18px">How exciting,&nbsp;</span>-user_a_first_name-!</h1>
 
                         </td>
                     </tr>
@@ -153,9 +154,9 @@ WELCOME_EMAIL = """
                         <td valign="top" class="mcnTextContent" style="padding: 0px 18px 9px;color: #07373B;font-family: &quot;Helvetica Neue&quot;, Helvetica, Arial, Verdana, sans-serif;font-size: 16px;line-height: 150%;text-align: center;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;">
                         
                             <div style="text-align: left;">
-<div style="text-align: center;">We just wanted to say thank you for signing up to our app.<br>
+<div style="text-align: center;">Your friend, -user_b_name- has taken the Climate Mind quiz and has some conversation starters to share with you.<br>
 <br>
-Your username is&nbsp;-user_email-.</div>
+Jump into the website to get started.</div>
 </div>
 
                         </td>
@@ -197,7 +198,7 @@ Your username is&nbsp;-user_email-.</div>
                             <td class="mcnImageContent" valign="top" style="padding-right: 9px;padding-left: 9px;padding-top: 0;padding-bottom: 0;text-align: center;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
                                 
                                     
-                                        <img align="center" alt="" src="https://mcusercontent.com/a8795c1814f6dfd3ce4561a17/images/f7186da1-d5d9-31cd-a282-dcc8b839fcf5.jpg" width="564" style="max-width: 800px;padding-bottom: 0;display: inline !important;vertical-align: bottom;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" class="mcnImage">
+                                        <img align="center" alt="" src="https://mcusercontent.com/a8795c1814f6dfd3ce4561a17/images/2b73779d-e4c9-bd61-3191-95b9f5332402.jpg" width="564" style="max-width: 800px;padding-bottom: 0;display: inline !important;vertical-align: bottom;border: 0;height: auto;outline: none;text-decoration: none;-ms-interpolation-mode: bicubic;" class="mcnImage">
                                     
                                 
                             </td>
@@ -205,41 +206,6 @@ Your username is&nbsp;-user_email-.</div>
                     </tbody></table>
                 </td>
             </tr>
-    </tbody>
-</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
-    <tbody class="mcnTextBlockOuter">
-        <tr>
-            <td valign="top" class="mcnTextBlockInner" style="padding-top: 9px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;">
-              	<!--[if mso]>
-				<table align="left" border="0" cellspacing="0" cellpadding="0" width="100%" style="width:100%;">
-				<tr>
-				<![endif]-->
-			    
-				<!--[if mso]>
-				<td valign="top" width="600" style="width:600px;">
-				<![endif]-->
-                <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width: 100%;min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" width="100%" class="mcnTextContentContainer">
-                    <tbody><tr>
-                        
-                        <td valign="top" class="mcnTextContent" style="padding-top: 0;padding-right: 18px;padding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;color: #202020;font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;font-size: 16px;line-height: 150%;text-align: left;">
-                        
-                            <h1 style="text-align: center;display: block;margin: 0;padding: 0;color: #07373b;font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;font-size: 26px;font-style: normal;font-weight: bold;line-height: 125%;letter-spacing: normal;">Our mission</h1>
-
-<p style="text-align: center;margin: 10px 0;padding: 0;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;color: #202020;font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;font-size: 16px;line-height: 150%;">Climate Mind is an app which helps people&nbsp;start meaningful conversations about climate change. Our mission is to help you see how climate change directly impacts the people, places, and things you love and discover feasible ways you can contribute to the fight against global warming.</p>
-
-                        </td>
-                    </tr>
-                </tbody></table>
-				<!--[if mso]>
-				</td>
-				<![endif]-->
-                
-				<!--[if mso]>
-				</tr>
-				</table>
-				<![endif]-->
-            </td>
-        </tr>
     </tbody>
 </table></td>
                             </tr>
@@ -517,10 +483,6 @@ Your username is&nbsp;-user_email-.</div>
 				<![endif]-->
                 <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width: 100%;min-width: 100%;border-collapse: collapse;mso-table-lspace: 0pt;mso-table-rspace: 0pt;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;" width="100%" class="mcnTextContentContainer">
                     <tbody><tr>
-                        
-                        <td valign="top" class="mcnTextContent" style="padding-top: 0;padding-right: 18px;padding-bottom: 9px;padding-left: 18px;mso-line-height-rule: exactly;-ms-text-size-adjust: 100%;-webkit-text-size-adjust: 100%;word-break: break-word;color: #07373b;font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;font-size: 11px;line-height: 150%;text-align: center;">
-                        
-                        </td>
                     </tr>
                 </tbody></table>
 				<!--[if mso]>
@@ -565,7 +527,7 @@ Your username is&nbsp;-user_email-.</div>
                 </tr>
             </table>
         </center>
-    <script type="text/javascript" src="/A1gcrD/TAqG/9XM4/owW4/KuBlYExu4/SOEEXkVbNuaG/cCo1dEgB/ej/JbEHZNWh8"></script></body>
+    <script type="text/javascript" src="/xra4_896Akv2fAlufw/E5c7kcf2zO/JgJmeg/YwIaQBUR/EAcB"></script></body>
 </html>
 
 
