@@ -1,5 +1,9 @@
-from app.models import Conversations, Users
+from email import message
+from app.errors.errors import DatabaseError
+from app.models import Conversations, UserBJourney, Users
+import app.conversations.routes as con
 from app import db
+from app.user_b.analytics_logging import eventType, log_user_b_event
 
 
 def build_single_conversation_response(conversation_uuid):
@@ -47,3 +51,45 @@ def build_single_conversation_response(conversation_uuid):
     }
 
     return response
+
+
+def update_consent_choice(conversation_uuid, consent_choice, session_uuid):
+    """
+    Update user b's choice to share information with user a in the database.
+
+    Parameters
+    ==========
+    conversation_uuid - (UUID) the unique id for the conversation
+    consent_choice - (boolean) user b's consent choice
+    session_uuid - (UUID) the unique id for user b's session
+
+    Returns
+    ==========
+    JSON - success message or error
+    """
+
+    try:
+        conversation, user_b_journey = (
+            db.session.query(Conversations, UserBJourney)
+            .join(
+                UserBJourney,
+                UserBJourney.conversation_uuid == Conversations.conversation_uuid,
+            )
+            .filter_by(conversation_uuid=conversation_uuid)
+            .one_or_none()
+        )
+        conversation.user_b_share_consent = user_b_journey.consent = consent_choice
+
+        if consent_choice:
+            conversation.conversation_status = con.ConversationStatus.QuizCompleted
+        else:
+            conversation.conversation_status = con.ConversationStatus.Visited
+
+    except:
+        raise DatabaseError(
+            message="Something went wrong while updating the consent choice in the conversations or user b journey tables."
+        )
+
+    log_user_b_event(conversation_uuid, session_uuid, eventType.CONSENT, consent_choice)
+
+    return {"message": "Consent successfully updated."}
