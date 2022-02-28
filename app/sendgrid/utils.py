@@ -24,7 +24,7 @@ def send_welcome_email(user_email, user_first_name):
     to_email = To(
         email=user_email,
         substitutions={
-            "-preview_text-": f"Welcome aboard, {user_first_name}! We just wanted to say thank you for signing up to use our app. Climate mind is an app which helps people start meaningful conversations about climate change",
+            "-preview_text-": f"Welcome aboard, {user_first_name}! We just wanted to say thank you for signing up to use our app. Climate Mind is an app which helps people start meaningful conversations about climate change.",
             "-user_first_name-": user_first_name,
             "-user_email-": user_email,
         },
