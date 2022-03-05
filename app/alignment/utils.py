@@ -368,7 +368,7 @@ def log_effect_choice(effect_choice_uuid, effect_iri):
     ==========
     effect_choice_uuid - (UUID) the unique id for the effect choice
     effect_iri - the IRI for the chosen shared impact
-
+    
     Returns
     ==========
     An error if unsuccessful.
