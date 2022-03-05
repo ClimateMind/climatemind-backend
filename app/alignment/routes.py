@@ -1,4 +1,5 @@
 from crypt import methods
+from time import perf_counter
 import uuid
 
 from flask import jsonify, request
@@ -17,6 +18,8 @@ from app.alignment.utils import (
     build_alignment_scores_response,
     build_shared_impacts_response,
     build_shared_solutions_response,
+    get_conversation_uuid_using_alignment_scores_uuid,
+    log_effect_choice,
 )
 
 
@@ -177,3 +180,53 @@ def get_shared_solutions(alignment_scores_uuid):
     response = build_shared_solutions_response(alignment_scores_uuid)
 
     return jsonify(response), 200
+
+
+@bp.route("/alignment/<alignment_scores_uuid>/shared-impacts", methods=["POST"])
+@cross_origin()
+@auto.doc()
+def post_shared_impact_selection(alignment_scores_uuid):
+    """
+    Records the shared impact that user b has selected to discuss with user a.
+
+    Includes validation of the session uuid and alignment scores uuid that they are formatted
+    correctly and exist in the db.
+
+    Parameters
+    ==========
+    alignment_scores_uuid - (UUID) the unique id for the alignment scores
+
+    Returns
+    ==========
+    JSON - success message or error
+
+    """
+
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    alignment_scores_uuid = validate_uuid(
+        alignment_scores_uuid, uuidType.ALIGNMENT_SCORES
+    )
+    check_uuid_in_db(alignment_scores_uuid, uuidType.ALIGNMENT_SCORES)
+
+    conversation_uuid = get_conversation_uuid_using_alignment_scores_uuid(
+        alignment_scores_uuid
+    )
+
+    shared_impacts = request.get_json(force=True, silent=True)
+
+    # TODO Logic will need to be rewritten if the user is later allowed to select more than one impact.
+    effect_iri = shared_impacts["sharedImpacts"][0]["effectId"]
+
+    effect_choice_uuid = uuid.uuid4()
+    log_effect_choice(effect_choice_uuid, effect_iri)
+    log_user_b_event(
+        conversation_uuid, session_uuid, eventType.EFFECT, effect_choice_uuid
+    )
+    update_user_b_journey(conversation_uuid, effect_choice_uuid=effect_choice_uuid)
+
+    response = {"message": "Shared impact saved to the db."}
+
+    return jsonify(response), 201
