@@ -1,0 +1,9 @@
+pytest==7.0.1
+pytest-cov==3.0.0
+pytest-flakes==4.0.5
+pytest-freezegun==0.4.2
+pytest-lazy-fixture==0.6.3
+pytest-randomly==3.11.0
+pytest-rerunfailures==10.2
+pytest-xdist==2.5.0
+mock==4.0.3
