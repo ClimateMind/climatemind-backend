@@ -1,0 +1,14 @@
+[run]
+branch = True
+omit =
+    *test_*
+    conftest.py
+source =
+    app
+    app/network_x_tools
+[report]
+skip_empty = true
+exclude_lines =
+    pragma: no cover
+    def __repr__
+    if self.debug:
