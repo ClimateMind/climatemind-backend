@@ -7,6 +7,7 @@ from flask import jsonify, current_app
 from app.models import (
     AlignmentScores,
     EffectChoice,
+    SolutionChoice,
     UserBJourney,
     Conversations,
     Users,
@@ -361,11 +362,12 @@ def get_conversation_uuid_using_alignment_scores_uuid(alignment_scores_uuid):
 
 def log_effect_choice(effect_choice_uuid, effect_iri):
     """
-    Add user b's shared impact selection to the db.
+    Adds user b's shared impact selection to the db.
 
     Parameters
     ==========
     effect_choice_uuid - (UUID) the unique id for the effect choice
+    effect_iri - the IRI for the chosen shared impact
 
     Returns
     ==========
@@ -382,4 +384,32 @@ def log_effect_choice(effect_choice_uuid, effect_iri):
     except:
         raise DatabaseError(
             message="An error occurred while saving user b's effect choice to the db."
+        )
+
+
+def log_solution_choice(solution_choice_uuid, shared_solutions):
+    """
+    Adds user b's shared solutions selection to the db.
+
+    Parameters
+    ==========
+    solution_choice_uuid - (UUID) the unique id for the solution choice
+    shared_solutions - a list of dictionaries containing the selected solutions' IRIs, e.g. {"solutionId": "R8WxponQcYpGf2zDnbsuVxG"}
+
+    Returns
+    ==========
+    An error if unsuccessful.
+    """
+
+    try:
+        solution_choice = SolutionChoice()
+        solution_choice.solution_choice_uuid = solution_choice_uuid
+        solution_choice.solution_choice_1_iri = shared_solutions[0]["solutionId"]
+        solution_choice.solution_choice_2_iri = shared_solutions[1]["solutionId"]
+
+        db.session.add(solution_choice)
+        db.session.commit()
+    except:
+        raise DatabaseError(
+            message="An error occurred while saving user b's solution choice to the db."
         )
