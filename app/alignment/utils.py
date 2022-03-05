@@ -1,10 +1,12 @@
 import os
 from json import load
 from urllib import response
+from app.errors.errors import DatabaseError
 from flask import jsonify, current_app
 
 from app.models import (
     AlignmentScores,
+    EffectChoice,
     UserBJourney,
     Conversations,
     Users,
@@ -332,3 +334,52 @@ def solution_details(G, climate_solutions_iris, nx):
                 climate_solutions.append(solution)
 
     return climate_solutions
+
+
+def get_conversation_uuid_using_alignment_scores_uuid(alignment_scores_uuid):
+    """
+    Fetch the associated conversation uuid from the db using the alignment scores uuid.
+
+    Parameters
+    ==========
+    alignment_scores_uuid - (UUID) the unique id for the alignment scores
+
+    Returns
+    ==========
+    conversation_uuid - (UUID) the unique id for the conversation associated with the alignment scores
+    """
+
+    alignment_scores, conversation_uuid = (
+        db.session.query(AlignmentScores, UserBJourney.conversation_uuid)
+        .join(UserBJourney, UserBJourney.alignment_scores_uuid == alignment_scores_uuid)
+        .filter(AlignmentScores.alignment_scores_uuid == alignment_scores_uuid)
+        .one_or_none()
+    )
+
+    return conversation_uuid
+
+
+def log_effect_choice(effect_choice_uuid, effect_iri):
+    """
+    Add user b's shared impact selection to the db.
+
+    Parameters
+    ==========
+    effect_choice_uuid - (UUID) the unique id for the effect choice
+
+    Returns
+    ==========
+    An error if unsuccessful.
+    """
+
+    try:
+        effect_choice = EffectChoice()
+        effect_choice.effect_choice_uuid = effect_choice_uuid
+        effect_choice.effect_choice_1_iri = effect_iri
+
+        db.session.add(effect_choice)
+        db.session.commit()
+    except:
+        raise DatabaseError(
+            message="An error occurred while saving user b's effect choice to the db."
+        )
