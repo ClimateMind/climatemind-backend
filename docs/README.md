@@ -125,7 +125,7 @@ Build the image container to download and install code dependencies needed for r
 
     docker-compose build
 
-**_SPECIAL NOTE_**: _Whenever the backend repo has added new dependancies in the requirements.txt file the docker image will need to be re-built by re-running the build command._
+**_SPECIAL NOTE_**: _Whenever the backend repo has added new dependancies in the requirements.txt or requirements_test.txt file the docker image will need to be re-built by re-running the build command._
 
 Start in foreground (good for debugging flask and see the logs). You can stop it with [CTRL + C] on OSX, Windows, and Linux.
 
