@@ -20,6 +20,7 @@ from app.alignment.utils import (
     build_shared_solutions_response,
     get_conversation_uuid_using_alignment_scores_uuid,
     log_effect_choice,
+    log_solution_choice,
 )
 
 
@@ -228,5 +229,54 @@ def post_shared_impact_selection(alignment_scores_uuid):
     update_user_b_journey(conversation_uuid, effect_choice_uuid=effect_choice_uuid)
 
     response = {"message": "Shared impact saved to the db."}
+
+    return jsonify(response), 201
+
+
+@bp.route("/alignment/<alignment_scores_uuid>/shared-solutions", methods=["POST"])
+@cross_origin()
+@auto.doc()
+def post_shared_solution_selection(alignment_scores_uuid):
+    """
+    Records the shared solutions that user b has selected to discuss with user a.
+
+    Includes validation of the session uuid and alignment scores uuid that they are formatted
+    correctly and exist in the db.
+
+    Parameters
+    ==========
+    alignment_scores_uuid - (UUID) the unique id for the alignment scores
+
+    Returns
+    ==========
+    JSON - success message or error
+
+    """
+
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    alignment_scores_uuid = validate_uuid(
+        alignment_scores_uuid, uuidType.ALIGNMENT_SCORES
+    )
+    check_uuid_in_db(alignment_scores_uuid, uuidType.ALIGNMENT_SCORES)
+
+    conversation_uuid = get_conversation_uuid_using_alignment_scores_uuid(
+        alignment_scores_uuid
+    )
+
+    shared_solutions = request.get_json(force=True, silent=True)
+    shared_solutions = shared_solutions["sharedSolutions"]
+
+    solution_choice_uuid = uuid.uuid4()
+
+    log_solution_choice(solution_choice_uuid, shared_solutions)
+    log_user_b_event(
+        conversation_uuid, session_uuid, eventType.SOLUTION, solution_choice_uuid
+    )
+    update_user_b_journey(conversation_uuid, solution_choice_uuid=solution_choice_uuid)
+
+    response = {"message": "Shared solutions saved to the db."}
 
     return jsonify(response), 201
