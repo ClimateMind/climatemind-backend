@@ -60,7 +60,7 @@ class ProcessScores:
 
             self.overall_sum += score
 
-    def center_scores(self, positivity_constant=3.5):
+    def center_scores(self, positivity_constant=6):
         """
         User scores need to be non-negative and balanced based on their overall average score.
 
