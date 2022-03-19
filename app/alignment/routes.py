@@ -1,4 +1,5 @@
 from crypt import methods
+import json
 from time import perf_counter
 import uuid
 
@@ -281,11 +282,9 @@ def post_shared_solution_selection(alignment_scores_uuid):
 def get_shared_impact_details(impact_iri):
     """
     Gets the details for a shared impact when the user clicks Learn More on the card in their feed.
-
     Parameters
     ==========
     impact_iri - the IRI for the shared impact
-
     Returns
     ==========
     JSON:
@@ -307,11 +306,9 @@ def get_shared_impact_details(impact_iri):
 def get_shared_solution_details(solution_iri):
     """
     Gets the details for a shared solution when the user clicks Learn More on the card in their feed.
-
     Parameters
     ==========
     solution_iri - the IRI for the shared solution
-
     Returns
     ==========
     JSON:
@@ -323,5 +320,36 @@ def get_shared_solution_details(solution_iri):
     """
 
     response = build_shared_solution_details_response(solution_iri)
+
+    return jsonify(response), 200
+
+
+@bp.route("/alignment/<alignment_scores_uuid>/summary", methods=["GET"])
+@cross_origin()
+@auto.doc()
+def get_alignment_summary(alignment_scores_uuid):
+    """
+    Gets the alignment summary for user B to see before confirming their consent to share with user A.
+
+    Parameters
+    ==========
+    alignment_scores_uuid - (UUID) the unique id for the alignment scores
+
+    Returns
+    ==========
+    JSON:
+    - user A's name
+    - the top match value
+    - the alignment percentage for the top match value
+    - the chosen shared impact(s) title
+    - the chosen shared solutions' titles
+    """
+
+    alignment_scores_uuid = validate_uuid(
+        alignment_scores_uuid, uuidType.ALIGNMENT_SCORES
+    )
+    check_uuid_in_db(alignment_scores_uuid, uuidType.ALIGNMENT_SCORES)
+
+    response = build_alignment_summary_response(alignment_scores_uuid)
 
     return jsonify(response), 200
