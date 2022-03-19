@@ -418,13 +418,10 @@ def log_solution_choice(solution_choice_uuid, shared_solutions):
 def build_shared_impact_details_response(impact_iri):
     """
     Get the detals for a shared impact.
-
     Includes checks that the IRI is found and of the correct type, e.g. not a solution IRI.
-
     Parameters
     ==========
     impact_iri - the IRI for the shared impact
-
     Returns
     ==========
     JSON:
@@ -467,13 +464,10 @@ def build_shared_impact_details_response(impact_iri):
 def build_shared_solution_details_response(solution_iri):
     """
     Gets the details for a shared solution.
-
     Includes checks that the IRI is found and of the correct type, e.g. not an impact IRI.
-
     Parameters
     ==========
     solution_iri - the IRI for the shared solution
-
     Returns
     ==========
     JSON:
@@ -510,3 +504,93 @@ def build_shared_solution_details_response(solution_iri):
         raise NotInDatabaseError(message="The shared solution IRI cannot be found.")
 
     return solution
+
+
+def build_alignment_summary_response(alignment_scores_uuid):
+    """
+    Deal with db interaction to get the alignment summary for user b.
+
+    Parameters
+    ==========
+    alignment_scores_uuid - (UUID) the unique id for the alignment scores
+
+    Returns
+    ==========
+    JSON:
+    - user A's name
+    - the top match value
+    - the alignment percentage for the top match value
+    - the chosen shared impact(s) title
+    - the chosen shared solutions' titles
+    """
+
+    response = None
+    G = current_app.config["G"].copy()
+    nx = network_x_utils()
+
+    try:
+        (
+            top_match_value,
+            top_match_percent,
+            userA_name,
+            user_b_journey,
+            conversation,
+            effect_choice,
+            solution_choice,
+        ) = (
+            db.session.query(
+                AlignmentScores.top_match_value,
+                AlignmentScores.top_match_percent,
+                Users.first_name,
+                UserBJourney,
+                Conversations,
+                EffectChoice,
+                SolutionChoice,
+            )
+            .join(
+                UserBJourney,
+                UserBJourney.alignment_scores_uuid
+                == AlignmentScores.alignment_scores_uuid,
+            )
+            .join(
+                EffectChoice,
+                EffectChoice.effect_choice_uuid == UserBJourney.effect_choice_uuid,
+            )
+            .join(
+                SolutionChoice,
+                SolutionChoice.solution_choice_uuid
+                == UserBJourney.solution_choice_uuid,
+            )
+            .join(
+                Conversations,
+                Conversations.conversation_uuid == UserBJourney.conversation_uuid,
+            )
+            .join(Users, Users.user_uuid == Conversations.sender_user_uuid)
+            .filter(AlignmentScores.alignment_scores_uuid == alignment_scores_uuid)
+            .one_or_none()
+        )
+
+        chosen_impact_iris = [effect_choice.effect_choice_1_iri]
+        chosen_solution_iris = [
+            solution_choice.solution_choice_1_iri,
+            solution_choice.solution_choice_2_iri,
+        ]
+
+        response = {
+            "userAName": userA_name,
+            "topMatchValue": top_match_value,
+            "topMatchPercent": round(top_match_percent),
+            "sharedImpacts": [
+                nx.get_title_by_iri(iri, G) for iri in chosen_impact_iris
+            ],
+            "sharedSolutions": [
+                nx.get_title_by_iri(iri, G) for iri in chosen_solution_iris
+            ],
+        }
+
+    except:
+        raise DatabaseError(
+            message="Something went wrong while retrieving the alignment summary data from the db."
+        )
+
+    return response
