@@ -444,21 +444,22 @@ def build_shared_impact_details_response(impact_iri):
     for node in G.nodes:
         if G.nodes[node]["iri"][24:] == impact_iri:
             nx.set_current_node(G.nodes[node])
-            impact = {
-                "effectTitle": G.nodes[node]["label"],
-                "imageUrl": nx.get_image_url_or_none(),
-                "longDescription": nx.get_description(),
-                "effectSources": nx.get_causal_sources(),
-                "relatedPersonalValues": map_associated_personal_values(
-                    G.nodes[node]["personal_values_10"]
-                ),
-            }
-            break
+            if "effect" in G.nodes[node]["all classes"]:
+                impact = {
+                    "effectTitle": G.nodes[node]["label"],
+                    "imageUrl": nx.get_image_url_or_none(),
+                    "longDescription": nx.get_description(),
+                    "effectSources": nx.get_causal_sources(),
+                    "relatedPersonalValues": map_associated_personal_values(
+                        G.nodes[node]["personal_values_10"]
+                    ),
+                }
+                break
+            else:
+                raise InvalidUsageError(message="IRI does not refer to an impact.")
 
     if not impact:
         raise NotInDatabaseError(message="The shared impact IRI cannot be found.")
-    elif len(impact["effectSources"]) == 0:
-        raise InvalidUsageError(message="IRI does not refer to an impact.")
 
     return impact
 
@@ -490,18 +491,29 @@ def build_shared_solution_details_response(solution_iri):
     for node in G.nodes:
         if G.nodes[node]["iri"][24:] == solution_iri:
             nx.set_current_node(G.nodes[node])
-            solution = {
-                "solutionTitle": G.nodes[node]["label"],
-                "imageUrl": nx.get_image_url_or_none(),
-                "longDescription": nx.get_description(),
-                "solutionSources": nx.get_solution_sources(),
-                "solutionType": "mitigation",
-            }
-            break
+            if "risk solution" in G.nodes[node]["all classes"]:
+
+                # currently using assumption that all solutions are either mitigation or adaptation, not both
+                if (
+                    G.nodes[node]["label"]
+                    in G.nodes["increase in greenhouse effect"]["mitigation solutions"]
+                ):
+                    solution_type = "mitigation"
+                else:
+                    solution_type = "adaptation"
+
+                solution = {
+                    "solutionTitle": G.nodes[node]["label"],
+                    "imageUrl": nx.get_image_url_or_none(),
+                    "longDescription": nx.get_description(),
+                    "solutionSources": nx.get_solution_sources(),
+                    "solutionType": solution_type,
+                }
+                break
+            else:
+                raise InvalidUsageError(message="IRI does not refer to a solution.")
 
     if not solution:
         raise NotInDatabaseError(message="The shared solution IRI cannot be found.")
-    elif len(solution["solutionSources"]) == 0:
-        raise InvalidUsageError(message="IRI does not refer to a solution.")
 
     return solution
