@@ -9,9 +9,9 @@ from app.models import Scores, Users
 class ProcessScores:
     def __init__(self, questions):
         self.responses_to_add = 10
-        self.num_of_responses = 10
-        self.num_of_sets = 2
         self.questions = questions
+        self.num_of_sets = len(questions)
+        self.num_of_responses = 10 * self.num_of_sets
         self.overall_sum = 0
         self.value_scores = {}
         self.value_id_map = {
