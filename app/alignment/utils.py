@@ -505,7 +505,7 @@ def build_shared_solution_details_response(solution_iri):
 
     return solution
 
-  
+
 def build_alignment_summary_response(alignment_scores_uuid):
     """
     Deal with db interaction to get the alignment summary for user b.

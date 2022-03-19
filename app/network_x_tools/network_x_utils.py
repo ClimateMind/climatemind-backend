@@ -119,7 +119,7 @@ class network_x_utils:
             return self.node["data_properties"]["CO2_eq_reduced"]
         else:
             return 0
-          
+
     def get_title_by_iri(self, iri, G):
         """
         Get the title for an impact/solution using its IRI.
@@ -159,4 +159,3 @@ class network_x_utils:
                 return ["adaptation"]
         else:
             return []
-          
