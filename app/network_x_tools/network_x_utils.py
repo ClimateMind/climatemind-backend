@@ -119,3 +119,21 @@ class network_x_utils:
             return self.node["data_properties"]["CO2_eq_reduced"]
         else:
             return 0
+
+    def get_title_by_iri(self, iri, G):
+        """
+        Get the title for an impact/solution using its IRI.
+
+        Parameters
+        ==========
+        iri - the IRI for the title to look up
+        G - a copy of the networkx graph that represents the ontology
+
+        Returns
+        =========
+        The title associated with the IRI.
+        """
+        for node in G.nodes:
+            self.set_current_node(G.nodes[node])
+            if self.get_node_id() == iri:
+                return self.node["label"]
