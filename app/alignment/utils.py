@@ -413,3 +413,117 @@ def log_solution_choice(solution_choice_uuid, shared_solutions):
         raise DatabaseError(
             message="An error occurred while saving user b's solution choice to the db."
         )
+
+
+def build_alignment_summary_response(alignment_scores_uuid):
+    """
+    Deal with db interaction to get the alignment summary for user b.
+
+    Parameters
+    ==========
+    alignment_scores_uuid - (UUID) the unique id for the alignment scores
+
+    Returns
+    ==========
+    JSON:
+    - user A's name
+    - the top match value
+    - the alignment percentage for the top match value
+    - the chosen shared impact(s) title
+    - the chosen shared solutions' titles
+    """
+
+    response = None
+    G = current_app.config["G"].copy()
+    nx = network_x_utils()
+
+    try:
+        (
+            top_match_value,
+            top_match_percent,
+            userA_name,
+            user_b_journey,
+            conversation,
+            effect_choice,
+            solution_choice,
+        ) = (
+            db.session.query(
+                AlignmentScores.top_match_value,
+                AlignmentScores.top_match_percent,
+                Users.first_name,
+                UserBJourney,
+                Conversations,
+                EffectChoice,
+                SolutionChoice,
+            )
+            .join(
+                UserBJourney,
+                UserBJourney.alignment_scores_uuid
+                == AlignmentScores.alignment_scores_uuid,
+            )
+            .join(
+                EffectChoice,
+                EffectChoice.effect_choice_uuid == UserBJourney.effect_choice_uuid,
+            )
+            .join(
+                SolutionChoice,
+                SolutionChoice.solution_choice_uuid
+                == UserBJourney.solution_choice_uuid,
+            )
+            .join(
+                Conversations,
+                Conversations.conversation_uuid == UserBJourney.conversation_uuid,
+            )
+            .join(Users, Users.user_uuid == Conversations.sender_user_uuid)
+            .filter(AlignmentScores.alignment_scores_uuid == alignment_scores_uuid)
+            .one_or_none()
+        )
+
+        chosen_impact_iris = [effect_choice.effect_choice_1_iri]
+        chosen_solution_iris = [
+            solution_choice.solution_choice_1_iri,
+            solution_choice.solution_choice_2_iri,
+        ]
+
+        response = {
+            "userAName": userA_name,
+            "topMatchValue": top_match_value,
+            "topMatchPercent": round(top_match_percent),
+            "sharedImpacts": get_title_by_iri(chosen_impact_iris, G, nx),
+            "sharedSolutions": get_title_by_iri(chosen_solution_iris, G, nx),
+        }
+
+    except:
+        raise DatabaseError(
+            message="Something went wrong while retrieving the alignment summary data from the db."
+        )
+
+    return response
+
+
+def get_title_by_iri(iri_list, G, nx):
+    """
+    Get the titles for a list of impacts/solutions using their IRIs.
+
+    Parameters
+    ==========
+    iri_list - the list of IRIs for titles to look up
+    G - a copy of the networkx graph that represents the ontology
+    nx - a networkx object to use functions stored elsewhere in the app
+
+    Returns
+    =========
+    A list of strings.
+    """
+
+    iri_titles = []
+
+    for iri in iri_list:
+        for node in G.nodes:
+            if G.nodes[node]["iri"][24:] == iri:
+                nx.set_current_node(G.nodes[node])
+                iri_title = G.nodes[node]["label"]
+
+                iri_titles.append(iri_title)
+
+    return iri_titles
