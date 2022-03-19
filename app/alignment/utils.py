@@ -299,10 +299,6 @@ def build_shared_solutions_response(alignment_scores_uuid):
         alignment_feed.aligned_solution_7_iri,
     ]
 
-    climate_solutions_iris = [
-        "webprotege.stanford.edu." + iri for iri in climate_solutions_iris
-    ]
-
     climate_solutions = solution_details(G, climate_solutions_iris, nx)
 
     response = {
@@ -324,8 +320,10 @@ def solution_details(G, climate_solutions_iris, nx):
 
     for iri in climate_solutions_iris:
         for node in G.nodes:
-            if G.nodes[node]["iri"] == iri:
-                nx.set_current_node(G.nodes[node])
+            nx.set_current_node(G.nodes[node])
+
+            if nx.get_node_id() == iri:
+
                 solution = {
                     "solutionId": nx.get_node_id(),
                     "sharedScore": 42.00,
@@ -442,8 +440,10 @@ def build_shared_impact_details_response(impact_iri):
     impact = None
 
     for node in G.nodes:
-        if G.nodes[node]["iri"][24:] == impact_iri:
-            nx.set_current_node(G.nodes[node])
+        nx.set_current_node(G.nodes[node])
+
+        if nx.get_node_id() == impact_iri:
+
             if "effect" in G.nodes[node]["all classes"]:
                 impact = {
                     "effectTitle": G.nodes[node]["label"],
@@ -489,25 +489,18 @@ def build_shared_solution_details_response(solution_iri):
     solution = None
 
     for node in G.nodes:
-        if G.nodes[node]["iri"][24:] == solution_iri:
-            nx.set_current_node(G.nodes[node])
-            if "risk solution" in G.nodes[node]["all classes"]:
+        nx.set_current_node(G.nodes[node])
 
-                # currently using assumption that all solutions are either mitigation or adaptation, not both
-                if (
-                    G.nodes[node]["label"]
-                    in G.nodes["increase in greenhouse effect"]["mitigation solutions"]
-                ):
-                    solution_type = "mitigation"
-                else:
-                    solution_type = "adaptation"
+        if nx.get_node_id() == solution_iri:
+
+            if "risk solution" in G.nodes[node]["all classes"]:
 
                 solution = {
                     "solutionTitle": G.nodes[node]["label"],
                     "imageUrl": nx.get_image_url_or_none(),
                     "longDescription": nx.get_description(),
                     "solutionSources": nx.get_solution_sources(),
-                    "solutionType": solution_type,
+                    "solutionType": nx.check_mitigation_or_adaptation_solution(G),
                 }
                 break
             else:

@@ -119,3 +119,25 @@ class network_x_utils:
             return self.node["data_properties"]["CO2_eq_reduced"]
         else:
             return 0
+
+    def check_mitigation_or_adaptation_solution(self, G):
+        """
+        Returns whether the solutions is a mitigation or adaptation solution or both.
+        """
+        if (
+            self.node["label"]
+            in G.nodes["increase in greenhouse effect"]["mitigation solutions"]
+            and "adaptation solutions" in self.node
+        ):
+            if self.node["label"] in self.node["adaptation solutions"]:
+                return ["mitigation", "adaptation"]
+        elif (
+            self.node["label"]
+            in G.nodes["increase in greenhouse effect"]["mitigation solutions"]
+        ):
+            return ["mitigation"]
+        elif "adaptation solutions" in self.node:
+            if self.node["label"] in self.node["adaptation solutions"]:
+                return ["adaptation"]
+        else:
+            return []
