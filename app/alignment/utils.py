@@ -1,7 +1,9 @@
 import os
 from json import load
 from urllib import response
-from app.errors.errors import DatabaseError
+
+from click import UsageError
+from app.errors.errors import DatabaseError, InvalidUsageError, NotInDatabaseError
 from flask import jsonify, current_app
 
 from app.models import (
@@ -297,10 +299,6 @@ def build_shared_solutions_response(alignment_scores_uuid):
         alignment_feed.aligned_solution_7_iri,
     ]
 
-    climate_solutions_iris = [
-        "webprotege.stanford.edu." + iri for iri in climate_solutions_iris
-    ]
-
     climate_solutions = solution_details(G, climate_solutions_iris, nx)
 
     response = {
@@ -322,8 +320,10 @@ def solution_details(G, climate_solutions_iris, nx):
 
     for iri in climate_solutions_iris:
         for node in G.nodes:
-            if G.nodes[node]["iri"] == iri:
-                nx.set_current_node(G.nodes[node])
+            nx.set_current_node(G.nodes[node])
+
+            if nx.get_node_id() == iri:
+
                 solution = {
                     "solutionId": nx.get_node_id(),
                     "sharedScore": 42.00,
@@ -413,3 +413,100 @@ def log_solution_choice(solution_choice_uuid, shared_solutions):
         raise DatabaseError(
             message="An error occurred while saving user b's solution choice to the db."
         )
+
+
+def build_shared_impact_details_response(impact_iri):
+    """
+    Get the detals for a shared impact.
+
+    Includes checks that the IRI is found and of the correct type, e.g. not a solution IRI.
+
+    Parameters
+    ==========
+    impact_iri - the IRI for the shared impact
+
+    Returns
+    ==========
+    JSON:
+    - the effect title
+    - the image url (if available)
+    - the long description for the effect
+    - the sources for the effect
+    - a list of personal values that are related to the effect
+    """
+
+    G = current_app.config["G"].copy()
+    nx = network_x_utils()
+    impact = None
+
+    for node in G.nodes:
+        nx.set_current_node(G.nodes[node])
+
+        if nx.get_node_id() == impact_iri:
+
+            if "effect" in G.nodes[node]["all classes"]:
+                impact = {
+                    "effectTitle": G.nodes[node]["label"],
+                    "imageUrl": nx.get_image_url_or_none(),
+                    "longDescription": nx.get_description(),
+                    "effectSources": nx.get_causal_sources(),
+                    "relatedPersonalValues": map_associated_personal_values(
+                        G.nodes[node]["personal_values_10"]
+                    ),
+                }
+                break
+            else:
+                raise InvalidUsageError(message="IRI does not refer to an impact.")
+
+    if not impact:
+        raise NotInDatabaseError(message="The shared impact IRI cannot be found.")
+
+    return impact
+
+
+def build_shared_solution_details_response(solution_iri):
+    """
+    Gets the details for a shared solution.
+
+    Includes checks that the IRI is found and of the correct type, e.g. not an impact IRI.
+
+    Parameters
+    ==========
+    solution_iri - the IRI for the shared solution
+
+    Returns
+    ==========
+    JSON:
+    - the solution title
+    - the image url (if available)
+    - the long description for the solution
+    - the sources for the solution
+    - the solution type
+    """
+
+    G = current_app.config["G"].copy()
+    nx = network_x_utils()
+    solution = None
+
+    for node in G.nodes:
+        nx.set_current_node(G.nodes[node])
+
+        if nx.get_node_id() == solution_iri:
+
+            if "risk solution" in G.nodes[node]["all classes"]:
+
+                solution = {
+                    "solutionTitle": G.nodes[node]["label"],
+                    "imageUrl": nx.get_image_url_or_none(),
+                    "longDescription": nx.get_description(),
+                    "solutionSources": nx.get_solution_sources(),
+                    "solutionType": nx.check_mitigation_or_adaptation_solution(G),
+                }
+                break
+            else:
+                raise InvalidUsageError(message="IRI does not refer to a solution.")
+
+    if not solution:
+        raise NotInDatabaseError(message="The shared solution IRI cannot be found.")
+
+    return solution
