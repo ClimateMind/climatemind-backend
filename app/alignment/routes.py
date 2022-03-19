@@ -274,7 +274,8 @@ def post_shared_solution_selection(alignment_scores_uuid):
     response = {"message": "Shared solutions saved to the db."}
 
     return jsonify(response), 201
-  
+
+
 @bp.route("/alignment/shared-impact/<impact_iri>", methods=["GET"])
 @cross_origin()
 @auto.doc()
@@ -323,7 +324,6 @@ def get_shared_solution_details(solution_iri):
     return jsonify(response), 200
 
 
-
 @bp.route("/alignment/<alignment_scores_uuid>/summary", methods=["GET"])
 @cross_origin()
 @auto.doc()
@@ -351,6 +351,5 @@ def get_alignment_summary(alignment_scores_uuid):
     check_uuid_in_db(alignment_scores_uuid, uuidType.ALIGNMENT_SCORES)
 
     response = build_alignment_summary_response(alignment_scores_uuid)
-    
+
     return jsonify(response), 200
-   
