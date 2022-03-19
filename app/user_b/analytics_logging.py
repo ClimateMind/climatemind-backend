@@ -15,6 +15,9 @@ class eventType(Enum):
     SOLUTION - user b has made a choice for a shared solution to discuss with user a
     EFFECT - user b has made a choice for a shared effect to discuss with user a
     CONSENT - user b has updated whether they consent to share information on their choices with user a
+    QUIZ - user b has completed the quiz
+    LMEFFECT - user b has clicked on a shared impact card to learn more
+    LMSOLUTION - user b has clicked on a shared solution card to learn more
     """
 
     LINK = 1
@@ -22,6 +25,8 @@ class eventType(Enum):
     EFFECT = 3
     CONSENT = 4
     QUIZ = 5
+    LMEFFECT = 6
+    LMSOLUTION = 7
 
 
 def log_user_b_event(conversation_uuid, session_uuid, event_type, event_value):
@@ -51,6 +56,12 @@ def log_user_b_event(conversation_uuid, session_uuid, event_type, event_value):
         elif event_type.name == "QUIZ":
             event_to_add.event_type = "quiz completed"
             event_to_add.event_value_type = "UUID"
+        elif event_type.name == "LMEFFECT":
+            event_to_add.event_type = "learn more - impact"
+            event_to_add.event_value_type = "IRI"
+        elif event_type.name == "LMSOLUTION":
+            event_to_add.event_type = "learn more - solution"
+            event_to_add.event_value_type = "IRI"
 
         db.session.add(event_to_add)
         db.session.commit()

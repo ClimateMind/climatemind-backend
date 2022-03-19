@@ -1,7 +1,9 @@
 import os
 from json import load
 from urllib import response
-from app.errors.errors import DatabaseError
+
+from click import UsageError
+from app.errors.errors import DatabaseError, InvalidUsageError, NotInDatabaseError
 from flask import jsonify, current_app
 
 from app.models import (
@@ -413,3 +415,93 @@ def log_solution_choice(solution_choice_uuid, shared_solutions):
         raise DatabaseError(
             message="An error occurred while saving user b's solution choice to the db."
         )
+
+
+def build_shared_impact_details_response(impact_iri):
+    """
+    Get the detals for a shared impact.
+
+    Includes checks that the IRI is found and of the correct type, e.g. not a solution IRI.
+
+    Parameters
+    ==========
+    impact_iri - the IRI for the shared impact
+
+    Returns
+    ==========
+    JSON:
+    - the effect title
+    - the image url (if available)
+    - the long description for the effect
+    - the sources for the effect
+    - a list of personal values that are related to the effect
+    """
+
+    G = current_app.config["G"].copy()
+    nx = network_x_utils()
+    impact = None
+
+    for node in G.nodes:
+        if G.nodes[node]["iri"][24:] == impact_iri:
+            nx.set_current_node(G.nodes[node])
+            impact = {
+                "effectTitle": G.nodes[node]["label"],
+                "imageUrl": nx.get_image_url_or_none(),
+                "longDescription": nx.get_description(),
+                "effectSources": nx.get_causal_sources(),
+                "relatedPersonalValues": map_associated_personal_values(
+                    G.nodes[node]["personal_values_10"]
+                ),
+            }
+            break
+
+    if not impact:
+        raise NotInDatabaseError(message="The shared impact IRI cannot be found.")
+    elif len(impact["effectSources"]) == 0:
+        raise InvalidUsageError(message="IRI does not refer to an impact.")
+
+    return impact
+
+
+def build_shared_solution_details_response(solution_iri):
+    """
+    Gets the details for a shared solution.
+
+    Includes checks that the IRI is found and of the correct type, e.g. not an impact IRI.
+
+    Parameters
+    ==========
+    solution_iri - the IRI for the shared solution
+
+    Returns
+    ==========
+    JSON:
+    - the solution title
+    - the image url (if available)
+    - the long description for the solution
+    - the sources for the solution
+    - the solution type
+    """
+
+    G = current_app.config["G"].copy()
+    nx = network_x_utils()
+    solution = None
+
+    for node in G.nodes:
+        if G.nodes[node]["iri"][24:] == solution_iri:
+            nx.set_current_node(G.nodes[node])
+            solution = {
+                "solutionTitle": G.nodes[node]["label"],
+                "imageUrl": nx.get_image_url_or_none(),
+                "longDescription": nx.get_description(),
+                "solutionSources": nx.get_solution_sources(),
+                "solutionType": "mitigation",
+            }
+            break
+
+    if not solution:
+        raise NotInDatabaseError(message="The shared solution IRI cannot be found.")
+    elif len(solution["solutionSources"]) == 0:
+        raise InvalidUsageError(message="IRI does not refer to a solution.")
+
+    return solution
