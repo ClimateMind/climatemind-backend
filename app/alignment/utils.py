@@ -489,8 +489,12 @@ def build_alignment_summary_response(alignment_scores_uuid):
             "userAName": userA_name,
             "topMatchValue": top_match_value,
             "topMatchPercent": round(top_match_percent),
-            "sharedImpacts": get_title_by_iri(chosen_impact_iris, G, nx),
-            "sharedSolutions": get_title_by_iri(chosen_solution_iris, G, nx),
+            "sharedImpacts": [
+                nx.get_title_by_iri(iri, G) for iri in chosen_impact_iris
+            ],
+            "sharedSolutions": [
+                nx.get_title_by_iri(iri, G) for iri in chosen_solution_iris
+            ],
         }
 
     except:
@@ -499,31 +503,3 @@ def build_alignment_summary_response(alignment_scores_uuid):
         )
 
     return response
-
-
-def get_title_by_iri(iri_list, G, nx):
-    """
-    Get the titles for a list of impacts/solutions using their IRIs.
-
-    Parameters
-    ==========
-    iri_list - the list of IRIs for titles to look up
-    G - a copy of the networkx graph that represents the ontology
-    nx - a networkx object to use functions stored elsewhere in the app
-
-    Returns
-    =========
-    A list of strings.
-    """
-
-    iri_titles = []
-
-    for iri in iri_list:
-        for node in G.nodes:
-            if G.nodes[node]["iri"][24:] == iri:
-                nx.set_current_node(G.nodes[node])
-                iri_title = G.nodes[node]["label"]
-
-                iri_titles.append(iri_title)
-
-    return iri_titles
