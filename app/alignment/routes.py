@@ -1,4 +1,5 @@
 from crypt import methods
+import json
 from time import perf_counter
 import uuid
 
@@ -14,14 +15,7 @@ from app.user_b.analytics_logging import log_user_b_event, eventType
 from app.user_b.journey_updates import update_user_b_journey
 from app.scoring.process_alignment_scores import create_alignment_scores
 from app.feed.process_alignment_feed import create_alignment_feed
-from app.alignment.utils import (
-    build_alignment_scores_response,
-    build_shared_impacts_response,
-    build_shared_solutions_response,
-    get_conversation_uuid_using_alignment_scores_uuid,
-    log_effect_choice,
-    log_solution_choice,
-)
+from app.alignment.utils import *
 
 
 @bp.route("/alignment", methods=["POST"])
@@ -280,3 +274,82 @@ def post_shared_solution_selection(alignment_scores_uuid):
     response = {"message": "Shared solutions saved to the db."}
 
     return jsonify(response), 201
+
+
+@bp.route("/alignment/shared-impact/<impact_iri>", methods=["GET"])
+@cross_origin()
+@auto.doc()
+def get_shared_impact_details(impact_iri):
+    """
+    Gets the details for a shared impact when the user clicks Learn More on the card in their feed.
+    Parameters
+    ==========
+    impact_iri - the IRI for the shared impact
+    Returns
+    ==========
+    JSON:
+    - the effect title
+    - the image url (if available)
+    - the long description for the effect
+    - the sources for the effect
+    - a list of personal values that are related to the effect
+    """
+
+    response = build_shared_impact_details_response(impact_iri)
+
+    return jsonify(response), 200
+
+
+@bp.route("/alignment/shared-solution/<solution_iri>", methods=["GET"])
+@cross_origin()
+@auto.doc()
+def get_shared_solution_details(solution_iri):
+    """
+    Gets the details for a shared solution when the user clicks Learn More on the card in their feed.
+    Parameters
+    ==========
+    solution_iri - the IRI for the shared solution
+    Returns
+    ==========
+    JSON:
+    - the solution title
+    - the image url (if available)
+    - the long description for the solution
+    - the sources for the solution
+    - the solution type
+    """
+
+    response = build_shared_solution_details_response(solution_iri)
+
+    return jsonify(response), 200
+
+
+@bp.route("/alignment/<alignment_scores_uuid>/summary", methods=["GET"])
+@cross_origin()
+@auto.doc()
+def get_alignment_summary(alignment_scores_uuid):
+    """
+    Gets the alignment summary for user B to see before confirming their consent to share with user A.
+
+    Parameters
+    ==========
+    alignment_scores_uuid - (UUID) the unique id for the alignment scores
+
+    Returns
+    ==========
+    JSON:
+    - user A's name
+    - the top match value
+    - the alignment percentage for the top match value
+    - the chosen shared impact(s) title
+    - the chosen shared solutions' titles
+    """
+
+    alignment_scores_uuid = validate_uuid(
+        alignment_scores_uuid, uuidType.ALIGNMENT_SCORES
+    )
+    check_uuid_in_db(alignment_scores_uuid, uuidType.ALIGNMENT_SCORES)
+
+    response = build_alignment_summary_response(alignment_scores_uuid)
+
+    return jsonify(response), 200
