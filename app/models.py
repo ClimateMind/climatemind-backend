@@ -4,10 +4,6 @@ from sqlalchemy.orm.session import close_all_sessions
 from app.extensions import db, jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 
-# Azure
-from sqlalchemy import create_engine
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 
 
