@@ -1,7 +1,7 @@
 from flask import request
 
 from app.post_code import bp
-from app.post_code.store_post_code import store_post_code, check_post_code
+from app.post_code.store_post_code import store_post_code, is_post_code_valid
 from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
 from app.errors.errors import InvalidUsageError
 from flask_cors import cross_origin
@@ -37,7 +37,7 @@ def post_code():
             message="Unable to post postcode. Check the request parameters."
         )
 
-    if check_post_code(post_code):
+    if is_post_code_valid(post_code):
         return store_post_code(post_code, quiz_uuid)
     else:
         raise InvalidUsageError(message="The postcode provided is not valid.")
