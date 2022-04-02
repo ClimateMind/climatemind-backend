@@ -27,7 +27,7 @@ def store_post_code(post_code, quiz_uuid):
         )
 
 
-def check_post_code(post_code):
+def is_post_code_valid(post_code):
     regex = re.compile(r"(\b\d{5})\b")
     post_code_valid = regex.search(post_code)
-    return post_code_valid
+    return bool(post_code_valid)
