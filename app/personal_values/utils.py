@@ -2,6 +2,7 @@ import os
 from json import load
 from flask import jsonify
 
+
 def get_value_descriptions_map():
     """Get a name->description dict for all values."""
     try:

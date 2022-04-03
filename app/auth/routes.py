@@ -241,6 +241,40 @@ def register():
     return response
 
 
+@bp.route("/change-password", methods=["POST"])
+@jwt_required()
+def change_password():
+
+    r = request.get_json(force=True, silent=True)
+
+    identity = get_jwt_identity()
+    user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
+    if user is None:
+        raise Error("hmm")
+    if "password" not in r:
+        raise InvalidUsageError(
+            message=f"password must be included in the request body."
+        )
+    if not password_valid(r["password"]):
+        raise InvalidUsageError(
+            message="Password does not fit the requirements. Password must be between 8-128 characters, contain at least one number or special character, and cannot contain any spaces."
+        )
+    user.set_password(r["password"])
+    access_token = create_access_token(identity=user)
+    refresh_token = create_refresh_token(identity=user)
+    response = make_response(
+        jsonify(
+            {
+                "message": "successfully logged in user",
+                "access_token": access_token,
+            }
+        ),
+        200,
+    )
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    return response
+
+
 def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
     """
     Adds user to database or throws an error if unable to do so.
