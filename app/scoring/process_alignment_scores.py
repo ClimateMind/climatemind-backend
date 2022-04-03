@@ -78,8 +78,8 @@ def get_max(alignment_map):
 
 
 def as_percent(number):
-    """Turn number between 0 and 1 to a percentage."""
-    return round(100.0 * number)
+    """Turn number between 0 and 1 to a percentage, rounded to one decimal point."""
+    return round(100.0 * number, 1)
 
 
 def calculate_match(rank1, rank2):
