@@ -28,17 +28,19 @@ def create_alignment_scores(conversation_uuid, quiz_uuid, alignment_scores_uuid)
             .one()
         )
         value_names = get_value_descriptions_map().keys()
-        userA_rank_map = get_rank_map(userA_scores, value_names)
-        userB_rank_map = get_rank_map(userB_scores, value_names)
-        alignment_map = {name: calculate_match(userA_rank_map[name], userB_rank_map[name]) for name in value_names}
-        (max_name, max_value) = sorted(alignment_map.items(), key=lambda pair:-pair[1])[0]
+        userA_score_map = get_scores_map(userA_scores, value_names)
+        userB_score_map = get_scores_map(userB_scores, value_names)
+        userA_rank_map = get_rank_map(userA_score_map)
+        userB_rank_map = get_rank_map(userB_score_map)
+        alignment_map = get_alignment_map(userA_rank_map, userB_rank_map)
+        (max_name, max_value) = get_max(alignment_map)
 
         alignment_scores = AlignmentScores()
         alignment_scores.alignment_scores_uuid = alignment_scores_uuid
         for name in value_names:
             setattr(alignment_scores, name + '_alignment', alignment_map[name])
         alignment_scores.top_match_value = max_name
-        alignment_scores.top_match_percent = max_value  # TODO: convert to percentage?
+        alignment_scores.top_match_percent = as_percent(max_value)
         alignment_scores.overall_similarity_score = calculate_overall_similarity_score(
             conversation_uuid, quiz_uuid
         )
@@ -50,12 +52,30 @@ def create_alignment_scores(conversation_uuid, quiz_uuid, alignment_scores_uuid)
             message="An error occurred while adding scores to the alignment scores table."
         )
 
-def get_rank_map(scores, value_names):
-    score_map = {name: getattr(scores, name) for name in value_names}
+def get_scores_map(scores, value_names):
+    """Convert a Scores object into a map from personal value names to numerical scores."""
+    score_map = scores.__dict__
+    return {name:value for (name, value) in score_map.items() if name in value_names}
+
+def get_rank_map(score_map):
+    """Derive a rank map from a score map for a user's scores."""
     sorted_values = sorted(score_map.values(), reverse=True)
     return {name: sorted_values.index(score) + 1 for (name, score) in score_map.items()}
 
+def get_alignment_map(rank_map1, rank_map2):
+    """Derive an alignment map from two users' rank maps."""
+    return {name: calculate_match(rank_map1[name], rank_map2[name]) for name in rank_map1.keys()}
+
+def get_max(alignment_map):
+    """Find the max alignment score with its personal value name."""
+    return sorted(alignment_map.items(), key=lambda pair:-pair[1])[0]
+
+def as_percent(number):
+    """Turn number between 0 and 1 to a percentage."""
+    return round(100.0 * number)
+
 def calculate_match(rank1, rank2):
+    """Calculate the similarity score between two score ranks for a particular value."""
     (r1, r2) = (float(rank1), float(rank2))
     return (
         1.0
