@@ -95,6 +95,7 @@ def calculate_match(rank1, rank2):
     )
 
 
+
 def calculate_overall_similarity_score(conversation_uuid, user_b_quiz_uuid):
     """
     Calculate the overall similarity score based on user b and user a's quiz results.
