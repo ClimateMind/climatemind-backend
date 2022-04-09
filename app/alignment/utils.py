@@ -5,6 +5,7 @@ from urllib import response
 from click import UsageError
 from app.errors.errors import DatabaseError, InvalidUsageError, NotInDatabaseError
 from flask import jsonify, current_app
+from app.personal_values.utils import get_value_descriptions_map
 
 from app.models import (
     AlignmentScores,
@@ -52,7 +53,7 @@ def build_alignment_scores_response(alignment_scores_uuid):
         .one_or_none()
     )
 
-    raw_values_map = get_values_map()
+    raw_values_map = get_value_descriptions_map()
     values_map = {
         raw_value_map["id"]: raw_value_map for raw_value_map in raw_values_map.values()
     }
@@ -87,20 +88,7 @@ def get_alignment_value(alignment, value_name):
 
 def as_percent(number):
     """Turn number between 0 and 1 to a percentage."""
-    return int(100.0 * number)
-
-
-def get_values_map():
-    """Get a name->description dict for all values."""
-    try:
-        file = os.path.join(
-            os.getcwd(), "app/personal_values/static", "value_descriptions.json"
-        )
-        with open(file) as f:
-            data = load(f)
-    except FileNotFoundError:
-        return jsonify({"error": "Value descriptions file not found"}), 404
-    return data
+    return round(100.0 * number)
 
 
 def build_shared_impacts_response(alignment_scores_uuid):
