@@ -83,7 +83,22 @@ def as_percent(number):
 
 
 def calculate_match(rank1, rank2):
-    """Calculate the similarity score between two score ranks for a particular value."""
+    """Calculate the similarity score between two users' score ranks for a particular personal value.
+
+    The formula features the following mathematical behaviors:
+    - a penalty for how different a personal value ranks for user a compared to user b
+    - a penalty for how unimportant a personal value is for both user a and user b
+
+    For more detail, see
+    https://docs.google.com/document/d/1cqmBvNd8sWV1d6EvmTLgp6DlR3h1RVgW7pNDGgmV_k4.
+
+    Parameters:
+    rank1(int): the rank of user A's score for a particular personal value within her quiz scores
+    rank2(int): the rank of user B's score for a particular personal value within her quiz scores
+
+    Return:
+    float: the calculated similarity score
+    """
     (r1, r2) = (float(rank1), float(rank2))
     return (
         1.0
