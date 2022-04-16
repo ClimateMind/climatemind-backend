@@ -1,16 +1,15 @@
-from app.session import bp
-from app.models import Sessions
-from app.session.session_helpers import process_ip_address, store_session
-from flask import jsonify, request
-from flask_cors import cross_origin
-from flask_jwt_extended import jwt_required
-from flask_jwt_extended import current_user
 import datetime
+import uuid
 from datetime import timezone
 
-from app import auto
+from flask import jsonify, request
+from flask_cors import cross_origin
+from flask_jwt_extended import current_user
+from flask_jwt_extended import jwt_required
 
-import uuid
+from app import auto
+from app.session import bp
+from app.session.session_helpers import get_ip_address, store_session
 
 
 @bp.route("/session", methods=["POST"])
@@ -24,8 +23,8 @@ def post_session():
     if current_user:
         user_uuid = current_user.user_uuid
 
-    store_session(session_uuid, session_created_timestamp, user_uuid)
-    process_ip_address(request, session_uuid)
+    ip_address = get_ip_address(request)
+    store_session(session_uuid, session_created_timestamp, user_uuid, ip_address)
 
     response = {"sessionId": session_uuid}
 
