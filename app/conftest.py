@@ -1,27 +1,18 @@
 import factory
 import pytest
 from flask_sqlalchemy import SQLAlchemy
-from pytest_factoryboy import register
 from sqlalchemy import create_engine
 from sqlalchemy.exc import ProgrammingError
 
 from app import create_app
 from app.extensions import db
-from app.factories import UsersFactory
 from config import DevelopmentConfig, TestingConfig
-
-TEST_PASSWORD = "reduce_dairy_and_meat_consumption_666"
-register(UsersFactory, "test_users", password=TEST_PASSWORD)
-
-
-for cls in factory.alchemy.SQLAlchemyModelFactory.__subclasses__():
-    register(cls)
 
 
 def pytest_configure():
     """Make the following constants available across all pytest unit tests."""
     pytest.config = {
-        "TEST_PASSWORD": TEST_PASSWORD,
+        "TEST_PASSWORD": "reduce_dairy_and_meat_consumption_666",
     }
 
 
