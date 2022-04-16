@@ -1,6 +1,6 @@
 pytest==7.0.1
 pytest-cov==3.0.0
-pytest-factoryboy==2.1.0
+factory-boy==3.2.1
 pytest-flakes==4.0.5
 pytest-flask==1.2.0
 pytest-flask-sqlalchemy==1.0.2

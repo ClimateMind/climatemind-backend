@@ -1,4 +1,3 @@
-
 from app.factories import UsersFactory
 from app.models import Users
 
