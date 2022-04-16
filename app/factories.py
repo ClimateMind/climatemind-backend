@@ -2,7 +2,7 @@ import factory
 from faker import Factory as FakerFactory
 from werkzeug.security import generate_password_hash
 
-from app.models import Users
+from app.models import Users, Sessions
 
 faker = FakerFactory.create()
 
@@ -18,3 +18,13 @@ class UsersFactory(factory.alchemy.SQLAlchemyModelFactory):
     class Meta:
         model = Users
         exclude = ("password",)
+
+
+class SessionsFactory(factory.alchemy.SQLAlchemyModelFactory):
+    ip_address = factory.LazyAttribute(lambda x: faker.ipv4())
+    user = factory.SubFactory(UsersFactory)
+    session_uuid = factory.LazyAttribute(lambda x: faker.uuid4().upper())
+    session_created_timestamp = factory.LazyAttribute(lambda x: faker.date_time())
+
+    class Meta:
+        model = Sessions

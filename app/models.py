@@ -1,5 +1,6 @@
 import os
 from flask import current_app
+from sqlalchemy.orm import relationship
 from sqlalchemy.orm.session import close_all_sessions
 from app.extensions import db, jwt
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -16,6 +17,7 @@ class Sessions(db.Model):
     __tablename__ = "sessions"
     ip_address = db.Column(db.String(255), primary_key=False)
     user_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"))
+    user = relationship("Users", foreign_keys=[user_uuid])
     session_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
     session_created_timestamp = db.Column(db.DateTime)
 
