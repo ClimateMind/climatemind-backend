@@ -1,23 +1,21 @@
 import os
+import typing
 import uuid
-from uuid import uuid4
+from datetime import datetime
+
 from app import db
-from app.models import Sessions
 from app.errors.errors import DatabaseError
+from app.models import Sessions
 
 
-def store_session(session_uuid, session_created_timestamp, user_uuid):
+def store_session(
+    session_uuid: uuid.UUID,
+    session_created_timestamp: datetime,
+    user_uuid: typing.Optional[uuid.UUID],
+) -> None:  # raises DatabaseError
     """
     Stores the current session's id and timestamp in the sessions table.
     Checks if the user is logged in, and stores the user_uuid in the sessions table if they are.
-
-    Args:
-        session_uuid: UUID4
-        session_created_timestamp: datetime
-        user_uuid: UUID4
-
-    Returns:
-        None or DatabaseError
     """
     try:
         current_user_session = Sessions()
