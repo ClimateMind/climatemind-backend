@@ -1,4 +1,3 @@
-from flask import abort
 import os
 import urllib
 from datetime import timedelta
@@ -53,5 +52,5 @@ class TestingConfig(DevelopmentConfig):
         "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(DB_CREDENTIALS)
     )
     SQLALCHEMY_ENGINE_OPTIONS = {
-        'poolclass': NullPool,
+        "poolclass": NullPool,
     }
