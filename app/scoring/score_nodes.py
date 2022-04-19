@@ -3,6 +3,8 @@ import networkx as nx
 import sys
 from collections import Counter
 from flask import current_app
+
+from app.personal_values.enums import PersonalValue
 from app.scoring.scoring_utils import (
     get_test_ontology,
     get_valid_test_ont,
@@ -54,16 +56,16 @@ class score_nodes:
         Used in simple_scoring to compute a dot product.
         """
         return [
-            self.USER_SCORES["achievement"],
-            self.USER_SCORES["benevolence"],
-            self.USER_SCORES["conformity"],
-            self.USER_SCORES["hedonism"],
-            self.USER_SCORES["power"],
-            self.USER_SCORES["security"],
-            self.USER_SCORES["self_direction"],
-            self.USER_SCORES["stimulation"],
-            self.USER_SCORES["tradition"],
-            self.USER_SCORES["universalism"],
+            self.USER_SCORES[PersonalValue.ACHIEVEMENT.key],
+            self.USER_SCORES[PersonalValue.BENEVOLENCE.key],
+            self.USER_SCORES[PersonalValue.CONFORMITY.key],
+            self.USER_SCORES[PersonalValue.HEDONISM.key],
+            self.USER_SCORES[PersonalValue.POWER.key],
+            self.USER_SCORES[PersonalValue.SECURITY.key],
+            self.USER_SCORES[PersonalValue.SELF_DIRECTION.key],
+            self.USER_SCORES[PersonalValue.STIMULATION.key],
+            self.USER_SCORES[PersonalValue.TRADITION.key],
+            self.USER_SCORES[PersonalValue.UNIVERSALISM.key],
         ]
 
     def simple_scoring(self):

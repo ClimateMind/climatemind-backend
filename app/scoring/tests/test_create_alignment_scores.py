@@ -3,20 +3,21 @@ import pytest
 import app.scoring.process_alignment_scores as pas
 
 ### Example data was taken from https://docs.google.com/document/d/1cqmBvNd8sWV1d6EvmTLgp6DlR3h1RVgW7pNDGgmV_k4/edit
+from app.personal_values.enums import PersonalValue
 
 
 def test_get_rank_map():
     data_map = {
-        "achievement": (0.9, 1),
-        "self_direction": (0.8, 2),
-        "security": (0.8, 2),
-        "benevolence": (0.6, 4),
-        "universalism": (0.5, 5),
-        "stimulation": (0.4, 6),
-        "conformity": (0.3, 7),
-        "power": (0.2, 8),
-        "tradition": (0.2, 8),
-        "hedonism": (0.0, 10),
+        PersonalValue.ACHIEVEMENT.key: (0.9, 1),
+        PersonalValue.SELF_DIRECTION.key: (0.8, 2),
+        PersonalValue.SECURITY.key: (0.8, 2),
+        PersonalValue.BENEVOLENCE.key: (0.6, 4),
+        PersonalValue.UNIVERSALISM.key: (0.5, 5),
+        PersonalValue.STIMULATION.key: (0.4, 6),
+        PersonalValue.CONFORMITY.key: (0.3, 7),
+        PersonalValue.POWER.key: (0.2, 8),
+        PersonalValue.TRADITION.key: (0.2, 8),
+        PersonalValue.HEDONISM.key: (0.0, 10),
     }
     score_map = {name: data[0] for (name, data) in data_map.items()}
     expected_rank_map = {name: data[1] for (name, data) in data_map.items()}
@@ -28,16 +29,16 @@ def test_get_rank_map():
 
 def test_get_alignment_map():
     data_map = {
-        "achievement": (1, 5, 0.728),
-        "self_direction": (2, 7, 0.563),
-        "security": (2, 8, 0.434),
-        "benevolence": (4, 3, 0.853),
-        "universalism": (5, 2, 0.769),
-        "stimulation": (6, 5, 0.743),
-        "conformity": (7, 3, 0.620),
-        "power": (8, 10, 0.509),
-        "tradition": (8, 9, 0.572),
-        "hedonism": (10, 1, 0.000),
+        PersonalValue.ACHIEVEMENT.key: (1, 5, 0.728),
+        PersonalValue.SELF_DIRECTION.key: (2, 7, 0.563),
+        PersonalValue.SECURITY.key: (2, 8, 0.434),
+        PersonalValue.BENEVOLENCE.key: (4, 3, 0.853),
+        PersonalValue.UNIVERSALISM.key: (5, 2, 0.769),
+        PersonalValue.STIMULATION.key: (6, 5, 0.743),
+        PersonalValue.CONFORMITY.key: (7, 3, 0.620),
+        PersonalValue.POWER.key: (8, 10, 0.509),
+        PersonalValue.TRADITION.key: (8, 9, 0.572),
+        PersonalValue.HEDONISM.key: (10, 1, 0.000),
     }
     userA_rank_map = {name: data[0] for (name, data) in data_map.items()}
     userB_rank_map = {name: data[1] for (name, data) in data_map.items()}
@@ -53,16 +54,16 @@ def test_get_alignment_map():
 
 def test_get_max():
     data_map = {
-        "achievement": 0.728,
-        "self_direction": 0.563,
-        "security": 0.434,
-        "benevolence": 0.853,
-        "universalism": 0.769,
-        "stimulation": 0.743,
-        "conformity": 0.620,
-        "power": 0.509,
-        "tradition": 0.572,
-        "hedonism": 0.000,
+        PersonalValue.ACHIEVEMENT.key: 0.728,
+        PersonalValue.SELF_DIRECTION.key: 0.563,
+        PersonalValue.SECURITY.key: 0.434,
+        PersonalValue.BENEVOLENCE.key: 0.853,
+        PersonalValue.UNIVERSALISM.key: 0.769,
+        PersonalValue.STIMULATION.key: 0.743,
+        PersonalValue.CONFORMITY.key: 0.620,
+        PersonalValue.POWER.key: 0.509,
+        PersonalValue.TRADITION.key: 0.572,
+        PersonalValue.HEDONISM.key: 0.000,
     }
 
     expected_max = ("benevolence", 0.853)
