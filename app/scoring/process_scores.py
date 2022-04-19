@@ -2,6 +2,8 @@ import datetime
 from datetime import timezone
 from app import db
 from flask import abort, make_response, jsonify
+
+from app.personal_values.enums import PersonalValue
 from app.errors.errors import DatabaseError
 from app.models import Scores, Users
 
@@ -14,18 +16,6 @@ class ProcessScores:
         self.num_of_responses = 10 * self.num_of_sets
         self.overall_sum = 0
         self.value_scores = {}
-        self.value_id_map = {
-            1: "conformity",
-            2: "tradition",
-            3: "benevolence",
-            4: "universalism",
-            5: "self-direction",
-            6: "stimulation",
-            7: "hedonism",
-            8: "achievement",
-            9: "power",
-            10: "security",
-        }
 
     def get_value_scores(self):
         return self.value_scores
@@ -48,15 +38,15 @@ class ProcessScores:
             elif set_name == "SetTwo":
                 question_id = value["questionId"] - 10
 
-            name = self.value_id_map[question_id]
+            value_type = PersonalValue(question_id)
             score = value["answerId"]
 
             if set_name == "SetOne":
-                self.value_scores[name] = score
+                self.value_scores[value_type] = score
 
             elif set_name == "SetTwo":
-                avg_score = (self.value_scores[name] + score) / self.num_of_sets
-                self.value_scores[name] = avg_score
+                avg_score = (self.value_scores[value_type] + score) / self.num_of_sets
+                self.value_scores[value_type] = avg_score
 
             self.overall_sum += score
 
@@ -71,10 +61,10 @@ class ProcessScores:
 
         """
         overall_avg = self.overall_sum / self.num_of_responses
-        for value, score in self.value_scores.items():
+        for value_type, score in self.value_scores.items():
             centered_score = score - overall_avg + positivity_constant
 
-            self.value_scores[value] = centered_score
+            self.value_scores[value_type] = centered_score
 
     def persist_scores(self, user_uuid, session_uuid):
         """
@@ -88,17 +78,19 @@ class ProcessScores:
         """
         try:
             user_scores = Scores()
+            # FIXME: value_scores["quiz_uuid"] set outside the class
+            #  quiz_uuid shouldn't be in this dict at all
             user_scores.quiz_uuid = self.value_scores["quiz_uuid"]
-            user_scores.security = self.value_scores["security"]
-            user_scores.conformity = self.value_scores["conformity"]
-            user_scores.benevolence = self.value_scores["benevolence"]
-            user_scores.tradition = self.value_scores["tradition"]
-            user_scores.universalism = self.value_scores["universalism"]
-            user_scores.self_direction = self.value_scores["self-direction"]
-            user_scores.stimulation = self.value_scores["stimulation"]
-            user_scores.hedonism = self.value_scores["hedonism"]
-            user_scores.achievement = self.value_scores["achievement"]
-            user_scores.power = self.value_scores["power"]
+            user_scores.security = self.value_scores[PersonalValue.SECURITY]
+            user_scores.conformity = self.value_scores[PersonalValue.CONFORMITY]
+            user_scores.benevolence = self.value_scores[PersonalValue.BENEVOLENCE]
+            user_scores.tradition = self.value_scores[PersonalValue.TRADITION]
+            user_scores.universalism = self.value_scores[PersonalValue.UNIVERSALISM]
+            user_scores.self_direction = self.value_scores[PersonalValue.SELF_DIRECTION]
+            user_scores.stimulation = self.value_scores[PersonalValue.STIMULATION]
+            user_scores.hedonism = self.value_scores[PersonalValue.HEDONISM]
+            user_scores.achievement = self.value_scores[PersonalValue.ACHIEVEMENT]
+            user_scores.power = self.value_scores[PersonalValue.POWER]
             user_scores.scores_created_timestamp = datetime.datetime.now(timezone.utc)
             user_scores.session_uuid = session_uuid
 
