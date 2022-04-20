@@ -4,12 +4,25 @@ from app.models import AlignmentFeed
 from flask import current_app
 from random import sample, shuffle
 
+TALK_SOLUTION_NAME = "effective communication framing"
+POPULAR_SOLUTION_NAMES = {"enact carbon tax policy (revenue neutral)",
+                          "reducing food waste",
+                          "composting",
+                          "eating lower down the food-chain (plant-rich diets)",
+                          "producing electricity via onshore wind turbines",
+                          "using high-efficiency heat pumps",
+                          "using improved clean cookstoves",
+                          "producing electricity via distributed solar photovoltaics",
+                          "making aviation more efficient"}
+POPULAR_SOLUTION_COUNT = 4
+UNPOPULAR_SOLUTION_COUNT = 2
+
 
 def create_alignment_feed(conversation_uuid, quiz_uuid, alignment_feed_uuid):
     """
     Calculate aligned feed based on user a and b quiz results and add to the alignment feed table.
 
-    This is currently a dummy function.
+    The effects are not yet assigned appropriately.
 
     Parameters
     ==============
@@ -17,15 +30,22 @@ def create_alignment_feed(conversation_uuid, quiz_uuid, alignment_feed_uuid):
     quiz_uuid (UUID) - user b quiz uuid to compare scores with user a scores
     alignment_feed_uuid (UUID) - uuid created when post alignment endpoint is used
     """
-    # TODO: Add logic to create aligned feed. Currently working with hard-coded dummy values.
 
     try:
         alignment_feed = AlignmentFeed()
         alignment_feed.alignment_feed_uuid = alignment_feed_uuid
-        alignment_feed.aligned_effect_1_iri = "R9JAWzfiZ9haeNhHiCpTWkr"
-        alignment_feed.aligned_effect_2_iri = "R8JoXNnKTYqERwU7fblKTWB"
-        alignment_feed.aligned_effect_3_iri = "RB7k7p2iQQgKdQrkRP2MZWM"
-        assign_alignment_solution_iris(alignment_feed, find_alignment_solution_iris())
+        assign_alignment_iris(alignment_feed, "effect", find_alignment_effect_iris())
+        # alignment_feed.aligned_effect_1_iri = 'R9JAWzfiZ9haeNhHiCpTWkr'
+        # alignment_feed.aligned_effect_2_iri = 'R9JAWzfiZ9haeNhHiCpTWkr'
+        # alignment_feed.aligned_effect_3_iri = 'R9JAWzfiZ9haeNhHiCpTWkr'
+        # alignment_feed.aligned_effect_1_iri = 'R9JAWzfiZ9haeNhHiCpTWkr'
+        # alignment_feed.aligned_effect_2_iri = 'R9JAWzfiZ9haeNhHiCpTWkr'
+        # alignment_feed.aligned_effect_3_iri = 'R9JAWzfiZ9haeNhHiCpTWkr'
+        # alignment_feed.aligned_effect_4_iri = 'R9JAWzfiZ9haeNhHiCpTWkr'
+        # alignment_feed.aligned_effect_5_iri = 'R9JAWzfiZ9haeNhHiCpTWkr'
+        # alignment_feed.aligned_effect_6_iri = 'R9JAWzfiZ9haeNhHiCpTWkr'
+        # alignment_feed.aligned_effect_7_iri = 'R9JAWzfiZ9haeNhHiCpTWkr'
+        assign_alignment_iris(alignment_feed, "solution", find_alignment_solution_iris())
         db.session.add(alignment_feed)
         db.session.commit
     except:
@@ -33,33 +53,49 @@ def create_alignment_feed(conversation_uuid, quiz_uuid, alignment_feed_uuid):
             message="An error occurred while adding the alignment feed to the database."
         )
 
-def assign_alignment_solution_iris(alignment_feed, solution_iris):
-    """Set the solution iri fields of the alignment feed."""
-    solution_iris = find_alignment_solution_iris()
-    for (index, iri) in enumerate(solution_iris, start=1):
-        setattr(alignment_feed, 'aligned_solution_{}_iri'.format(index), iri)
+
+def assign_alignment_iris(alignment_feed, field_type, iris):
+    """Set the solution iri fields in the alignment feed."""
+    for (index, iri) in enumerate(iris, start=1):
+        setattr(alignment_feed, 'aligned_{}_{}_iri'.format(field_type, index), iri)
+        #setattr(alignment_feed, 'aligned_{}_{}_iri'.format(field_type, index), 'R9JAWzfiZ9haeNhHiCpTWkr')
+
+
+def find_alignment_effect_iris():
+    # TODO: Add logic. Currently working with hard-coded dummy values.
+    return ["R9JAWzfiZ9haeNhHiCpTWkr", "R8JoXNnKTYqERwU7fblKTWB", "RB7k7p2iQQgKdQrkRP2MZWM"]
+
 
 def find_alignment_solution_iris():
-    """Choose solutions for the alignment."""  # TODO: expand docstring
-    talk_solution_iri = ''  # TODO: hardcode this?
-    popular_solution_iris = {}  # TODO: will hardcode this?
-    popular_count = 4
-    unpopular_count = 2
+    """Choose and order solutions for the alignment.
+
+    Using the (mitigation) solutions from the ontology, put the conversation solution first,
+    followed by a random ordering of POPULAR_SOLUTION_COUNT solutions from POPULAR_SOLUTION_NAMES
+    and UNPOPULAR_SOLUTION_COUNT other solutions. This function takes no arguments, since solutions
+    are (currently) independent of users' personal values etc.
+
+    Returns
+    ==========
+    List of strings: an ordered list of solution iris for an alignment feed
+    """
     solution_map = {'talk':None, 'popular':set(), 'unpopular':set()}
     solution_nodes = get_solution_nodes()
     for node in solution_nodes:
-        iri = node['iri']
-        if (iri == talk_solution_iri):
+        name = node['label']
+        iri = node['iri'][len('webprotege.stanford.edu.'):]
+        if (name == TALK_SOLUTION_NAME):
             solution_map['talk'] = iri
-        elif (iri in popular_solution_iris):
-            solution_map['popular'].append(iri)
+        elif (name in POPULAR_SOLUTION_NAMES):
+            solution_map['popular'].add(iri)
         else:
-            solution_map['unpopular'].append(iri)
-    sample_solutions = sample(solution_map['popular'], popular_count) + sample(solution_map['unpopular'], unpopular_count)
+            solution_map['unpopular'].add(iri)
+    sample_solutions = sample(solution_map['popular'], POPULAR_SOLUTION_COUNT) + sample(solution_map['unpopular'], UNPOPULAR_SOLUTION_COUNT)
     shuffle(sample_solutions)
     return [solution_map['talk']] + sample_solutions
 
+
 def get_solution_nodes():
-    """Find the solution nodes in the ontoloy."""
+    """Find the solution nodes in the ontology."""
     G = current_app.config["G"].copy()
-    return [node for node in G.nodes if 'risk solution' in node.keys()]  # TODO: is this the right condition?
+    solution_names = G.nodes["increase in greenhouse effect"]["mitigation solutions"]
+    return [node for node in G.nodes.values() if node['label'] in solution_names]
