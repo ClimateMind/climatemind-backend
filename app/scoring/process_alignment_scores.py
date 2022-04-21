@@ -154,7 +154,7 @@ def get_scores_list(quiz_uuid):
     ==========
     scores_list - a list of floats
     """
-    personal_values_categories = [v.key for v in PersonalValue]
+    personal_values_categories = sorted([v.key for v in PersonalValue])
 
     user_scores = (
         db.session.query(Scores).filter(Scores.quiz_uuid == quiz_uuid).one_or_none()
