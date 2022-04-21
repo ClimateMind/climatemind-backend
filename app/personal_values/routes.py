@@ -28,7 +28,18 @@ def get_personal_values():
 
     scores = Scores.query.filter_by(quiz_uuid=quiz_uuid).first()
 
-    personal_values_categories = [v.key for v in PersonalValue]
+    personal_values_categories = [
+        PersonalValue.SECURITY.key,
+        PersonalValue.CONFORMITY.key,
+        PersonalValue.BENEVOLENCE.key,
+        PersonalValue.TRADITION.key,
+        PersonalValue.UNIVERSALISM.key,
+        PersonalValue.SELF_DIRECTION.key,
+        PersonalValue.STIMULATION.key,
+        PersonalValue.HEDONISM.key,
+        PersonalValue.ACHIEVEMENT.key,
+        PersonalValue.POWER.key,
+    ]
 
     scores = scores.__dict__
 
