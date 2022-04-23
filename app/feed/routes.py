@@ -1,4 +1,6 @@
 from flask import jsonify, request
+
+from app.personal_values.enums import PersonalValue
 from app.scoring import bp
 from app.scoring.score_nodes import score_nodes
 from app.errors.errors import InvalidUsageError, DatabaseError, CustomError
@@ -51,19 +53,7 @@ def get_feed_results(quiz_uuid, N_FEED_CARDS, session_uuid):
 
     if scores:
 
-        personal_values_categories = [
-            "security",
-            "conformity",
-            "benevolence",
-            "tradition",
-            "universalism",
-            "self_direction",
-            "stimulation",
-            "hedonism",
-            "achievement",
-            "power",
-        ]
-
+        personal_values_categories = [v.key for v in PersonalValue]
         scores = scores.__dict__
         scores = {key: scores[key] for key in personal_values_categories}
 
