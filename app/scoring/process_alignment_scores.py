@@ -1,5 +1,6 @@
 from app import db
 from app.errors.errors import DatabaseError
+from app.personal_values.enums import PersonalValue
 from app.personal_values.utils import get_value_descriptions_map
 from app.models import AlignmentScores, Conversations, Scores, Users
 from scipy.stats import kendalltau
@@ -153,18 +154,7 @@ def get_scores_list(quiz_uuid):
     ==========
     scores_list - a list of floats
     """
-    personal_values_categories = [
-        "achievement",
-        "benevolence",
-        "conformity",
-        "hedonism",
-        "power",
-        "security",
-        "self_direction",
-        "stimulation",
-        "tradition",
-        "universalism",
-    ]
+    personal_values_categories = [v.key for v in PersonalValue]
 
     user_scores = (
         db.session.query(Scores).filter(Scores.quiz_uuid == quiz_uuid).one_or_none()
