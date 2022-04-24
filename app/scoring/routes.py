@@ -16,19 +16,6 @@ from flask_jwt_extended import current_user
 
 from app import auto
 
-value_id_map = {
-    1: "conformity",
-    2: "tradition",
-    3: "benevolence",
-    4: "universalism",
-    5: "self-direction",
-    6: "stimulation",
-    7: "hedonism",
-    8: "achievement",
-    9: "power",
-    10: "security",
-}
-
 
 @bp.route("/scores", methods=["POST"])
 @cross_origin()
