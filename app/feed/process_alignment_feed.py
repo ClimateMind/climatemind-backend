@@ -77,9 +77,9 @@ def find_alignment_solution_iris(
     """Choose and order solutions for the alignment.
 
     Using the (mitigation) solutions from the ontology, put the conversation solution first,
-    followed by a random ordering of POPULAR_SOLUTION_COUNT solutions from POPULAR_SOLUTION_NAMES
-    and UNPOPULAR_SOLUTION_COUNT other solutions. This function takes no arguments, since solutions
-    are (currently) independent of users' personal values etc.
+    followed by a random ordering of popular and unpopular solutions. This function takes no
+    user-specific arguments, since solutions are (currently) independent of users' personal values
+    etc.
 
     Parameters
     ==============
@@ -91,6 +91,7 @@ def find_alignment_solution_iris(
     Returns
     ==========
     List of strings: an ordered list of solution iris for an alignment feed
+
     """
     solution_map = {"conversation": None, "popular": set(), "unpopular": set()}
     solution_nodes = get_solution_nodes()
@@ -99,14 +100,14 @@ def find_alignment_solution_iris(
         name = node["label"]
         nx.set_current_node(node)
         iri = nx.get_node_id()
-        if name == CONVERSATION_SOLUTION_NAME:
+        if name == conversation_name:
             solution_map["conversation"] = iri
-        elif name in POPULAR_SOLUTION_NAMES:
+        elif name in popular_names:
             solution_map["popular"].add(iri)
         else:
             solution_map["unpopular"].add(iri)
-    sample_solutions = sample(solution_map["popular"], POPULAR_SOLUTION_COUNT) + sample(
-        solution_map["unpopular"], UNPOPULAR_SOLUTION_COUNT
+    sample_solutions = sample(solution_map["popular"], popular_count) + sample(
+        solution_map["unpopular"], unpopular_count
     )
     shuffle(sample_solutions)
     return [solution_map["conversation"]] + sample_solutions
