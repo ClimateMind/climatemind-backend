@@ -1,6 +1,7 @@
 from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
 from app.models import Sessions
 from flask import jsonify, request, make_response
+from app.scoring.score_aligned_nodes import filter_effects_by_top_aligned_personal_value
 
 import uuid
 import os
@@ -98,3 +99,9 @@ def user_scores():
 
     response = {"quizId": quiz_uuid}
     return jsonify(response), 201
+
+
+@bp.route("/scores/test", methods=["GET"])
+@cross_origin()
+def dummy():
+    return filter_effects_by_top_aligned_personal_value("hedonism")
