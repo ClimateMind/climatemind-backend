@@ -3,8 +3,9 @@ from app.errors.errors import DatabaseError
 from app.models import AlignmentFeed
 from flask import current_app
 from random import sample, shuffle
+from app.network_x_tools.network_x_utils import network_x_utils
 
-TALK_SOLUTION_NAME = "effective communication framing"
+CONVERSATION_SOLUTION_NAME = "effective communication framing"
 POPULAR_SOLUTION_NAMES = {
     "enact carbon tax policy (revenue neutral)",
     "reducing food waste",
@@ -38,7 +39,14 @@ def create_alignment_feed(conversation_uuid, quiz_uuid, alignment_feed_uuid):
         alignment_feed.alignment_feed_uuid = alignment_feed_uuid
         assign_alignment_iris(alignment_feed, "effect", find_alignment_effect_iris())
         assign_alignment_iris(
-            alignment_feed, "solution", find_alignment_solution_iris()
+            alignment_feed,
+            "solution",
+            find_alignment_solution_iris(
+                CONVERSATION_SOLUTION_NAME,
+                POPULAR_SOLUTION_NAMES,
+                POPULAR_SOLUTION_COUNT,
+                UNPOPULAR_SOLUTION_COUNT,
+            ),
         )
         db.session.add(alignment_feed)
         db.session.commit
@@ -63,7 +71,9 @@ def find_alignment_effect_iris():
     ]
 
 
-def find_alignment_solution_iris():
+def find_alignment_solution_iris(
+    conversation_name, popular_names, popular_count, unpopular_count
+):
     """Choose and order solutions for the alignment.
 
     Using the (mitigation) solutions from the ontology, put the conversation solution first,
@@ -71,17 +81,26 @@ def find_alignment_solution_iris():
     and UNPOPULAR_SOLUTION_COUNT other solutions. This function takes no arguments, since solutions
     are (currently) independent of users' personal values etc.
 
+    Parameters
+    ==============
+    conversation_name (str) - label of the conversation solution
+    popular_names (set of str) - labels of the popular solutions
+    popular_count (int) - the number of popular solutions to include
+    unpopular_count (int) - the number of unpopular solutions to include
+
     Returns
     ==========
     List of strings: an ordered list of solution iris for an alignment feed
     """
-    solution_map = {"talk": None, "popular": set(), "unpopular": set()}
+    solution_map = {"conversation": None, "popular": set(), "unpopular": set()}
     solution_nodes = get_solution_nodes()
+    nx = network_x_utils()
     for node in solution_nodes:
         name = node["label"]
-        iri = node["iri"][len("webprotege.stanford.edu.") :]
-        if name == TALK_SOLUTION_NAME:
-            solution_map["talk"] = iri
+        nx.set_current_node(node)
+        iri = nx.get_node_id()
+        if name == CONVERSATION_SOLUTION_NAME:
+            solution_map["conversation"] = iri
         elif name in POPULAR_SOLUTION_NAMES:
             solution_map["popular"].add(iri)
         else:
@@ -90,7 +109,7 @@ def find_alignment_solution_iris():
         solution_map["unpopular"], UNPOPULAR_SOLUTION_COUNT
     )
     shuffle(sample_solutions)
-    return [solution_map["talk"]] + sample_solutions
+    return [solution_map["conversation"]] + sample_solutions
 
 
 def get_solution_nodes():
