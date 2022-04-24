@@ -1,6 +1,8 @@
 import os
 from flask import jsonify, request
 from json import load
+
+from app.personal_values.enums import PersonalValue
 from app.personal_values import bp
 from app.models import Scores
 from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
@@ -26,18 +28,7 @@ def get_personal_values():
 
     scores = Scores.query.filter_by(quiz_uuid=quiz_uuid).first()
 
-    personal_values_categories = [
-        "security",
-        "conformity",
-        "benevolence",
-        "tradition",
-        "universalism",
-        "self_direction",
-        "stimulation",
-        "hedonism",
-        "achievement",
-        "power",
-    ]
+    personal_values_categories = [v.key for v in PersonalValue]
 
     scores = scores.__dict__
 
