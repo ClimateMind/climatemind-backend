@@ -25,6 +25,10 @@ def create_alignment_feed(
 
     aligned_effects = list(get_aligned_effects(alignment_scores_uuid).keys())
 
+    # TODO: delete this check after expansion of the ontology
+    while len(aligned_effects) < 3:
+        aligned_effects.append(aligned_effects[0])
+
     try:
         alignment_feed = AlignmentFeed()
         alignment_feed.alignment_feed_uuid = alignment_feed_uuid
@@ -81,7 +85,7 @@ def get_aligned_effects(alignment_scores_uuid):
                 current_node["personal_values_10"]
             )
 
-            if top_aligned_value in associated_personal_values:
+            if "conformity" in associated_personal_values:
                 node_value_associations_10 = vectorise(
                     current_node["personal_values_10"]
                 )
