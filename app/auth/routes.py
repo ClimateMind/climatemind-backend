@@ -13,7 +13,7 @@ from flask_jwt_extended import create_refresh_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import unset_jwt_cookies
 from flask_cors import cross_origin
-from app.subscribe.store_subscription_data import check_email
+from app.email.utils import is_email_valid
 from sqlalchemy.exc import SQLAlchemyError
 
 from app.errors.errors import (
@@ -200,7 +200,7 @@ def register():
                 message=f"{param} cannot be longer than 20 characters."
             )
 
-    if not check_email(r["email"]):
+    if not is_email_valid(r["email"]):
         raise InvalidUsageError(message=f"The email {r['email']} is invalid.")
 
     if not password_valid(r["password"]):
