@@ -1,6 +1,8 @@
 import os
+import numpy as np
 from json import load
 from urllib import response
+from sklearn import preprocessing
 
 from click import UsageError
 from app.errors.errors import DatabaseError, InvalidUsageError, NotInDatabaseError
@@ -582,3 +584,47 @@ def build_alignment_summary_response(alignment_scores_uuid):
         )
 
     return response
+
+
+def get_aligned_scores(alignment_scores):
+    """Fetch user a and b's aligned scores for each personal value from the db."""
+
+    aligned_scores = [
+        alignment_scores.achievement_alignment,
+        alignment_scores.benevolence_alignment,
+        alignment_scores.conformity_alignment,
+        alignment_scores.hedonism_alignment,
+        alignment_scores.power_alignment,
+        alignment_scores.security_alignment,
+        alignment_scores.self_direction_alignment,
+        alignment_scores.stimulation_alignment,
+        alignment_scores.tradition_alignment,
+        alignment_scores.universalism_alignment,
+    ]
+
+    return aligned_scores
+
+
+def vectorise(scores_list):
+    """Create a vector from a numpy array."""
+
+    return np.array(scores_list).reshape(-1, 1)
+
+
+def transform_aligned_scores(scores_vector):
+    """Transform the aligned scores for user a and b for all personal values by normalising the data to be within a range of 1-6 and squaring the scores to magnify their mathematical power."""
+
+    scaler = preprocessing.MinMaxScaler(feature_range=(1, 6))
+    scaled_aligned_scores = scaler.fit_transform(scores_vector)
+    transformed_aligned_scores = np.square(scaled_aligned_scores)
+
+    return transformed_aligned_scores
+
+
+def calculate_dot_product(vector1, vector2):
+    """Transform vectors into numpy arrays and calculate their dot product."""
+
+    array1 = np.squeeze(np.asarray(vector1))
+    array2 = np.squeeze(np.asarray(vector2))
+
+    return np.dot(array1, array2)
