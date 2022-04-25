@@ -1,12 +1,27 @@
+import factory
 import pytest
+from flask_sqlalchemy import SQLAlchemy
 
-from app import create_app
+
+@pytest.fixture(autouse=True)
+def set_session_for_factories(db_session):
+    session = db_session()
+    for cls in factory.alchemy.SQLAlchemyModelFactory.__subclasses__():
+        cls._meta.sqlalchemy_session = session
+
+    yield
 
 
-@pytest.fixture
-def client():
-    app = create_app()
-    app.config.update({"TESTING": True})
+@pytest.fixture(scope="session")
+def app(worker_id):
+    yield pytest.config["APP"]
 
-    with app.test_client() as client:
-        yield client
+
+@pytest.fixture(scope="session")
+def _db(app):
+    """
+    Provide the transactional fixtures with access to the database via
+    a Flask-SQLAlchemy database connection.
+    """
+    db = SQLAlchemy(app=app)
+    yield db
