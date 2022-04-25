@@ -2,7 +2,8 @@ from flask import request
 
 from app.subscribe import bp
 
-from app.subscribe.store_subscription_data import store_subscription_data, check_email
+from app.subscribe.store_subscription_data import store_subscription_data
+from app.email.utils import is_email_valid
 from app.errors.errors import InvalidUsageError
 from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
 from flask_cors import cross_origin
@@ -33,7 +34,7 @@ def subscribe():
     validate_uuid(session_uuid, uuidType.SESSION)
     check_uuid_in_db(session_uuid, uuidType.SESSION)
 
-    if check_email(email):
+    if is_email_valid(email):
         return store_subscription_data(session_uuid, email)
     else:
         raise InvalidUsageError(
