@@ -1,5 +1,5 @@
 from sqlalchemy.exc import SQLAlchemyError
-from app.subscribe.store_subscription_data import check_email
+from app.email.utils import is_email_valid
 from flask import request, jsonify
 
 from app.email import bp
@@ -59,7 +59,7 @@ def update_email():
     confirm_email = request_body["confirmEmail"]
     password = request_body["password"]
 
-    if not check_email(new_email):
+    if not is_email_valid(new_email):
         raise InvalidUsageError(
             message="Cannot update email. Email is not formatted correctly."
         )
@@ -81,7 +81,7 @@ def update_email():
     try:
         current_user.user_email = new_email
         db.session.commit()
-    except SQLAlchemyError:
+    except SQLAlchemyError:  # pragma: no cover
         raise DatabaseError(
             message="Something went wrong while trying to update the email in the db."
         )
