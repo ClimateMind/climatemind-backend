@@ -76,7 +76,7 @@ def get_aligned_effects(alignment_scores_uuid):
     for node in G.nodes:
         current_node = G.nodes[node]
 
-        if "effect" in current_node["all classes"]:
+        if "risk" in current_node["all classes"] and "test ontology" in current_node["all classes"] and not all([value == None for value in current_node["personal_values_10"]]):
             associated_personal_values = map_associated_personal_values(
                 current_node["personal_values_10"]
             )
