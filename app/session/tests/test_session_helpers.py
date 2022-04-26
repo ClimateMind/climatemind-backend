@@ -36,14 +36,14 @@ def test_store_session_creation(
     assert created_session.ip_address == ip_address
 
 
-@mock.patch("os.environ.get", side_effect=lambda key: key == "IS_LOCAL")
-def test_get_ip_address_local(mocked_env_get):
+@mock.patch("app.session.session_helpers.check_if_local", return_value=True)
+def test_get_ip_address_local(mocked_check_if_local):
     assert get_ip_address(Mock()) is None, "Local IP should be None"
-    mocked_env_get.assert_called_once_with("IS_LOCAL")
+    mocked_check_if_local.assert_called_once()
 
 
-@mock.patch("os.environ.get", return_value=False)
-def test_get_ip_address_prod(mocked_env_get):
+@mock.patch("app.session.session_helpers.check_if_local", return_value=False)
+def test_get_ip_address_prod(mocked_check_if_local):
     first_ip = faked_ip
     second_ip = faker.ipv4()
     request = MagicMock()
@@ -54,7 +54,7 @@ def test_get_ip_address_prod(mocked_env_get):
     ]
 
     assert get_ip_address(request) is None
-    mocked_env_get.assert_called_once_with("IS_LOCAL")
+    mocked_check_if_local.assert_called_once()
     request.headers.getlist.assert_called_once_with("X-Forwarded-For")
 
     assert get_ip_address(request) == first_ip

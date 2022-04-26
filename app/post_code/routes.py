@@ -2,12 +2,11 @@ from flask import request
 
 from app.post_code import bp
 from app.post_code.store_post_code import store_post_code, is_post_code_valid
-from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
+from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from app.errors.errors import InvalidUsageError
 from flask_cors import cross_origin
 
 from app import auto
-import uuid
 
 
 @bp.route("/post-code", methods=["POST"])

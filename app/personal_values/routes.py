@@ -5,10 +5,8 @@ from json import load
 from app.personal_values.enums import PersonalValue
 from app.personal_values import bp
 from app.models import Scores
-from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
+from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from app import auto
-from app.errors.errors import InvalidUsageError, DatabaseError
-import uuid
 
 from app.personal_values.normalize import normalize_scores
 from flask_cors import cross_origin
