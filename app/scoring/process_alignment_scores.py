@@ -73,6 +73,11 @@ def get_alignment_map(rank_map1, rank_map2):
     }
 
 
+def get_sorted_alignment_map(alignment_map):
+    """Sort the alignment scores map for two users from highest to lowest"""
+    return sorted(alignment_map.items(), key=lambda x: -x[1])
+
+
 def get_max(alignment_map):
     """Find the max alignment score with its personal value name."""
     return sorted(alignment_map.items(), key=lambda pair: -pair[1])[0]
