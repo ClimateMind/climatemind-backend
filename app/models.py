@@ -84,6 +84,7 @@ class Scores(db.Model):
     power = db.Column(db.Float, index=False, unique=False)
     scores_created_timestamp = db.Column(db.DateTime)
     session_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"))
+    session = relationship("Sessions", foreign_keys=[session_uuid])
     postal_code = db.Column(db.String(5))
 
 
@@ -116,9 +117,11 @@ class Conversations(db.Model):
     sender_user_uuid = db.Column(
         UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"), index=True, nullable=False
     )
+    sender_user = relationship("Users", foreign_keys=[sender_user_uuid])
     sender_session_uuid = db.Column(
         UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"), nullable=False
     )
+    sender_session = relationship("Sessions", foreign_keys=[sender_session_uuid])
     receiver_name = db.Column(db.String(50), index=False, unique=False, nullable=False)
     conversation_status = db.Column(db.Integer)
     conversation_created_timestamp = db.Column(db.DateTime)

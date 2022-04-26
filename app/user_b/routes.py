@@ -1,8 +1,7 @@
-from urllib import response
 from app.user_b import bp
 from app.user_b.analytics_logging import log_user_b_event, eventType
 from app.user_b.journey_updates import start_user_b_journey
-from app.auth.utils import validate_uuid, check_uuid_in_db, uuidType
+from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from flask_cors import cross_origin
 from flask import request, jsonify
 
