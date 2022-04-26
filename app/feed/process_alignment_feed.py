@@ -23,6 +23,7 @@ POPULAR_SOLUTION_NAMES = {
 POPULAR_SOLUTION_COUNT = 4
 UNPOPULAR_SOLUTION_COUNT = 2
 
+
 def create_alignment_feed(
     conversation_uuid, quiz_uuid, alignment_feed_uuid, alignment_scores_uuid
 ):
@@ -128,13 +129,13 @@ def get_aligned_effects(alignment_scores_uuid):
 
     return aligned_effects
 
-  
+
 def assign_alignment_iris(alignment_feed, field_type, iris):
     """Set the solution iri fields in the alignment feed."""
     for (index, iri) in enumerate(iris, start=1):
         setattr(alignment_feed, "aligned_{}_{}_iri".format(field_type, index), iri)
 
-        
+
 def find_alignment_solution_iris(
     conversation_name, popular_names, popular_count, unpopular_count
 ):
