@@ -13,7 +13,7 @@ def create_alignment_feed(
     """
     Calculate aligned feed based on user a and b quiz results and add to the alignment feed table.
 
-    This is currently a dummy function.
+    This currently contains some dummy values.
 
     Parameters
     ==============
@@ -21,20 +21,22 @@ def create_alignment_feed(
     quiz_uuid (UUID) - user b quiz uuid to compare scores with user a scores
     alignment_feed_uuid (UUID) - uuid created when post alignment endpoint is used
     """
-    # TODO: Add logic to create aligned feed. Currently working with hard-coded dummy values.
-
     aligned_effects = list(get_aligned_effects(alignment_scores_uuid).keys())
 
+    sorted_aligned_effects = list(
+        sort_aligned_effects_by_user_b_values(aligned_effects, conversation_uuid).keys()
+    )
+
     # TODO: delete this check after expansion of the ontology
-    while len(aligned_effects) < 3:
-        aligned_effects.append(aligned_effects[0])
+    while len(sorted_aligned_effects) < 3:
+        aligned_effects.append(sorted_aligned_effects[0])
 
     try:
         alignment_feed = AlignmentFeed()
         alignment_feed.alignment_feed_uuid = alignment_feed_uuid
-        alignment_feed.aligned_effect_1_iri = aligned_effects[0]
-        alignment_feed.aligned_effect_2_iri = aligned_effects[1]
-        alignment_feed.aligned_effect_3_iri = aligned_effects[2]
+        alignment_feed.aligned_effect_1_iri = sorted_aligned_effects[0]
+        alignment_feed.aligned_effect_2_iri = sorted_aligned_effects[1]
+        alignment_feed.aligned_effect_3_iri = sorted_aligned_effects[2]
         alignment_feed.aligned_solution_1_iri = "RBeBCvukdLNSe5AtnlJpQ1k"
         alignment_feed.aligned_solution_2_iri = "R9SuseoJG7H6QeUEvZwLciQ"
         alignment_feed.aligned_solution_3_iri = "R9R6552i4fn3XHKpoV8QTOx"
@@ -52,7 +54,7 @@ def create_alignment_feed(
 
 def get_aligned_effects(alignment_scores_uuid):
     """
-    Creates a sorted dictionary of IRIs and dot products for impacts/effects from the ontology that are positively associated with the top aligned personal
+    Create a sorted dictionary of IRIs and dot products for impacts/effects from the ontology that are positively associated with the top aligned personal
     value for users A and B (calculated based on comparison of their quiz results).
 
     Params
@@ -73,29 +75,32 @@ def get_aligned_effects(alignment_scores_uuid):
         .one_or_none()
     )
     top_aligned_value = aligned_scores.top_match_value
-    aligned_scores = get_aligned_scores(aligned_scores)
-    aligned_scores_vector = vectorise(aligned_scores)
-    transformed_aligned_scores = transform_aligned_scores(aligned_scores_vector)
+    aligned_scores_array = np.array(get_aligned_scores(aligned_scores))
+    transformed_aligned_scores = transform_aligned_scores(aligned_scores_array)
 
     for node in G.nodes:
         current_node = G.nodes[node]
 
-        if "risk" in current_node["all classes"] and "test ontology" in current_node["all classes"] and not all([value == None for value in current_node["personal_values_10"]]):
+        if (
+            "risk" in current_node["all classes"]
+            and "test ontology" in current_node["all classes"]
+            and not all([value == None for value in current_node["personal_values_10"]])
+        ):
             associated_personal_values = map_associated_personal_values(
                 current_node["personal_values_10"]
             )
 
-            if "conformity" in associated_personal_values:
-                node_value_associations_10 = vectorise(
+            if top_aligned_value in associated_personal_values:
+                node_value_associations_10 = np.array(
                     current_node["personal_values_10"]
                 )
-                node_value_associations_10 = np.where(
+                adjusted_node_value_associations_10 = np.where(
                     node_value_associations_10 < 0,
                     0 * node_value_associations_10,
                     node_value_associations_10,
                 )
-                dot_product = calculate_dot_product(
-                    transformed_aligned_scores, node_value_associations_10
+                dot_product = np.dot(
+                    transformed_aligned_scores, adjusted_node_value_associations_10
                 )
                 aligned_effects[get_node_id(current_node)] = dot_product
 
