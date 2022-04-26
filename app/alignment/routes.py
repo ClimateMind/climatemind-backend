@@ -56,7 +56,9 @@ def post_alignment_uuid():
     alignment_feed_uuid = uuid.uuid4()
 
     create_alignment_scores(conversation_uuid, quiz_uuid, alignment_scores_uuid)
-    create_alignment_feed(conversation_uuid, quiz_uuid, alignment_feed_uuid)
+    create_alignment_feed(
+        conversation_uuid, quiz_uuid, alignment_feed_uuid, alignment_scores_uuid
+    )
 
     log_user_b_event(conversation_uuid, session_uuid, eventType.QUIZ, quiz_uuid)
     update_user_b_journey(
