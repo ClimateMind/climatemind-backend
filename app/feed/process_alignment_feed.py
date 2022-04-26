@@ -1,6 +1,9 @@
 from app import db
 from app.errors.errors import DatabaseError
-from app.models import AlignmentFeed
+from app.models import AlignmentFeed, Scores, Users, Conversations
+from app.alignment.utils import *
+from app.scoring.build_localised_acyclic_graph import get_node_id
+from app.scoring.process_alignment_scores import *
 from flask import current_app
 from random import sample, shuffle
 from app.network_x_tools.network_x_utils import network_x_utils
@@ -21,11 +24,11 @@ POPULAR_SOLUTION_COUNT = 4
 UNPOPULAR_SOLUTION_COUNT = 2
 
 
-def create_alignment_feed(conversation_uuid, quiz_uuid, alignment_feed_uuid):
+def create_alignment_feed(
+    conversation_uuid, quiz_uuid, alignment_feed_uuid, alignment_scores_uuid
+):
     """
     Calculate aligned feed based on user a and b quiz results and add to the alignment feed table.
-
-    The effects are not yet assigned appropriately.
 
     Parameters
     ==============
@@ -34,10 +37,22 @@ def create_alignment_feed(conversation_uuid, quiz_uuid, alignment_feed_uuid):
     alignment_feed_uuid (UUID) - uuid created when post alignment endpoint is used
     """
 
+    aligned_effects = list(get_aligned_effects(alignment_scores_uuid).keys())
+
+    sorted_aligned_effects = list(
+        sort_aligned_effects_by_user_b_values(aligned_effects, conversation_uuid).keys()
+    )
+
+    # TODO: delete this check after expansion of the ontology
+    while len(sorted_aligned_effects) < 3:
+        aligned_effects.append(sorted_aligned_effects[0])
+
     try:
         alignment_feed = AlignmentFeed()
         alignment_feed.alignment_feed_uuid = alignment_feed_uuid
-        assign_alignment_iris(alignment_feed, "effect", find_alignment_effect_iris())
+        alignment_feed.aligned_effect_1_iri = sorted_aligned_effects[0]
+        alignment_feed.aligned_effect_2_iri = sorted_aligned_effects[1]
+        alignment_feed.aligned_effect_3_iri = sorted_aligned_effects[2]
         assign_alignment_iris(
             alignment_feed,
             "solution",
@@ -56,19 +71,69 @@ def create_alignment_feed(conversation_uuid, quiz_uuid, alignment_feed_uuid):
         )
 
 
+def get_aligned_effects(alignment_scores_uuid):
+    """
+    Create a sorted dictionary of IRIs and dot products for impacts/effects from the ontology that are positively associated with the top aligned personal
+    value for users A and B (calculated based on comparison of their quiz results).
+
+    Parameters
+    ==========
+    alignment_scores_uuid (UUID) - the uuid for the aligned scores for users a and b
+
+    Returns
+    ==========
+    aligned_effects - a sorted dictionary of effects positively associated with user a and b's top shared value
+    """
+    aligned_effects = dict()
+
+    G = current_app.config["G"].copy()
+
+    aligned_scores = (
+        db.session.query(AlignmentScores)
+        .filter(AlignmentScores.alignment_scores_uuid == alignment_scores_uuid)
+        .one_or_none()
+    )
+    top_aligned_value = aligned_scores.top_match_value
+    aligned_scores_array = np.array(get_aligned_scores(aligned_scores))
+    transformed_aligned_scores = transform_aligned_scores(aligned_scores_array)
+
+    for node in G.nodes:
+        current_node = G.nodes[node]
+
+        if (
+            "risk" in current_node["all classes"]
+            and "test ontology" in current_node["all classes"]
+            and not all([value == None for value in current_node["personal_values_10"]])
+        ):
+            associated_personal_values = map_associated_personal_values(
+                current_node["personal_values_10"]
+            )
+
+            if top_aligned_value in associated_personal_values:
+                node_value_associations_10 = np.array(
+                    current_node["personal_values_10"]
+                )
+                adjusted_node_value_associations_10 = np.where(
+                    node_value_associations_10 < 0,
+                    0 * node_value_associations_10,
+                    node_value_associations_10,
+                )
+                dot_product = np.dot(
+                    transformed_aligned_scores, adjusted_node_value_associations_10
+                )
+                aligned_effects[get_node_id(current_node)] = dot_product
+
+    aligned_effects = dict(
+        sorted(aligned_effects.items(), key=lambda x: x[1], reverse=True)
+    )
+
+    return aligned_effects
+
+
 def assign_alignment_iris(alignment_feed, field_type, iris):
     """Set the solution iri fields in the alignment feed."""
     for (index, iri) in enumerate(iris, start=1):
         setattr(alignment_feed, "aligned_{}_{}_iri".format(field_type, index), iri)
-
-
-def find_alignment_effect_iris():
-    # TODO: Add logic. Currently working with hard-coded dummy values.
-    return [
-        "R9JAWzfiZ9haeNhHiCpTWkr",
-        "R8JoXNnKTYqERwU7fblKTWB",
-        "RB7k7p2iQQgKdQrkRP2MZWM",
-    ]
 
 
 def find_alignment_solution_iris(
