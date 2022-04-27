@@ -47,7 +47,7 @@ class TestingConfig(DevelopmentConfig):
     TESTING = True
 
     DB_NAME = "sqldb-web-pytest-001"
-    DB_CREDENTIALS = os.environ.get("TEST_DATABASE_PARAMS") + f"Database={DB_NAME};"
+    DB_CREDENTIALS = os.environ.get("TEST_DATABASE_PARAMS", "") + f"Database={DB_NAME};"
     SQLALCHEMY_DATABASE_URI = (
         "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(DB_CREDENTIALS)
     )

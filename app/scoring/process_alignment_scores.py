@@ -73,6 +73,11 @@ def get_alignment_map(rank_map1, rank_map2):
     }
 
 
+def get_sorted_alignment_map(alignment_map):
+    """Sort the alignment scores map for two users from highest to lowest"""
+    return sorted(alignment_map.items(), key=lambda x: -x[1])
+
+
 def get_max(alignment_map):
     """Find the max alignment score with its personal value name."""
     return sorted(alignment_map.items(), key=lambda pair: -pair[1])[0]
@@ -154,7 +159,7 @@ def get_scores_list(quiz_uuid):
     ==========
     scores_list - a list of floats
     """
-    personal_values_categories = [v.key for v in PersonalValue]
+    personal_values_categories = sorted([v.key for v in PersonalValue])
 
     user_scores = (
         db.session.query(Scores).filter(Scores.quiz_uuid == quiz_uuid).one_or_none()
