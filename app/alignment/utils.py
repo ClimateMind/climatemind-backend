@@ -1,14 +1,19 @@
 import os
+from app.scoring.build_localised_acyclic_graph import get_node_id
+import numpy as np
 from json import load
 from urllib import response
+from sklearn import preprocessing
 
 from click import UsageError
 from app.errors.errors import DatabaseError, InvalidUsageError, NotInDatabaseError
 from flask import jsonify, current_app
+from app.personal_values.utils import get_value_descriptions_map
 
 from app.models import (
     AlignmentScores,
     EffectChoice,
+    Scores,
     SolutionChoice,
     UserBJourney,
     Conversations,
@@ -52,7 +57,7 @@ def build_alignment_scores_response(alignment_scores_uuid):
         .one_or_none()
     )
 
-    raw_values_map = get_values_map()
+    raw_values_map = get_value_descriptions_map()
     values_map = {
         raw_value_map["id"]: raw_value_map for raw_value_map in raw_values_map.values()
     }
@@ -87,20 +92,7 @@ def get_alignment_value(alignment, value_name):
 
 def as_percent(number):
     """Turn number between 0 and 1 to a percentage."""
-    return int(100.0 * number)
-
-
-def get_values_map():
-    """Get a name->description dict for all values."""
-    try:
-        file = os.path.join(
-            os.getcwd(), "app/personal_values/static", "value_descriptions.json"
-        )
-        with open(file) as f:
-            data = load(f)
-    except FileNotFoundError:
-        return jsonify({"error": "Value descriptions file not found"}), 404
-    return data
+    return round(100.0 * number)
 
 
 def build_shared_impacts_response(alignment_scores_uuid):
@@ -594,3 +586,101 @@ def build_alignment_summary_response(alignment_scores_uuid):
         )
 
     return response
+
+
+def get_aligned_scores(alignment_scores):
+    """Fetch user a and b's aligned scores for each personal value from the db."""
+
+    aligned_scores = [
+        alignment_scores.achievement_alignment,
+        alignment_scores.benevolence_alignment,
+        alignment_scores.conformity_alignment,
+        alignment_scores.hedonism_alignment,
+        alignment_scores.power_alignment,
+        alignment_scores.security_alignment,
+        alignment_scores.self_direction_alignment,
+        alignment_scores.stimulation_alignment,
+        alignment_scores.tradition_alignment,
+        alignment_scores.universalism_alignment,
+    ]
+
+    return aligned_scores
+
+
+def transform_aligned_scores(scores_array):
+    """Transform the aligned scores for user a and b for all personal values by normalising the data to be within a range of 1-6 and squaring the scores to magnify their mathematical power."""
+
+    scores_array = scores_array.reshape(-1, 1)
+    scaler = preprocessing.MinMaxScaler(feature_range=(1, 6))
+    scaled_aligned_scores = scaler.fit_transform(scores_array)
+    squared_aligned_scores = np.square(scaled_aligned_scores)
+    transformed_aligned_scores = np.squeeze(np.asarray(squared_aligned_scores))
+
+    return transformed_aligned_scores
+
+
+def sort_aligned_effects_by_user_b_values(aligned_effects, conversation_uuid):
+    """Reorder the aligned effects for users a and b according to user b's personal value scores.
+
+    Parameters
+    ==========
+    aligned_effects - a list of IRIs for aligned effects ordered using the dot product of the users' aligned scores and the effects personal value associations
+    conversation_uuid (UUID) - the uuid for the conversation between user a and b
+
+    Returns
+    ==========
+    sorted_aligned_effects - a dictionary of IRIs and dot products for the aligned effects and user b's personal value scores
+
+    """
+
+    G = current_app.config["G"].copy()
+
+    user_b_journey, user_b_scores = (
+        db.session.query(UserBJourney, Scores)
+        .join(Scores, Scores.quiz_uuid == UserBJourney.quiz_uuid)
+        .filter(UserBJourney.conversation_uuid == conversation_uuid)
+        .one_or_none()
+    )
+
+    sorted_aligned_effects = dict()
+
+    user_b_scores = np.array(
+        [
+            user_b_scores.achievement,
+            user_b_scores.benevolence,
+            user_b_scores.conformity,
+            user_b_scores.hedonism,
+            user_b_scores.power,
+            user_b_scores.security,
+            user_b_scores.self_direction,
+            user_b_scores.stimulation,
+            user_b_scores.tradition,
+            user_b_scores.universalism,
+        ]
+    )
+
+    modified_user_b_scores = np.square(user_b_scores)
+
+    for aligned_effect in aligned_effects:
+        for node in G.nodes:
+            current_node = G.nodes[node]
+
+            if get_node_id(current_node) == aligned_effect:
+                node_values_associations_10 = np.array(
+                    current_node["personal_values_10"]
+                )
+                node_values_associations_10 = np.where(
+                    node_values_associations_10 < 0,
+                    2 * node_values_associations_10,
+                    node_values_associations_10,
+                )
+                dot_product = np.dot(
+                    node_values_associations_10, modified_user_b_scores
+                )
+                sorted_aligned_effects[get_node_id(current_node)] = dot_product
+
+    sorted_aligned_effects = dict(
+        sorted(sorted_aligned_effects.items(), key=lambda x: x[1], reverse=True)
+    )
+
+    return sorted_aligned_effects

@@ -10,9 +10,9 @@ services:
     volumes:
       - .:/app
     environment:
+      IS_LOCAL: "True"
       DATABASE_PARAMS: Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;
-      #DATABASE_PARAMS: ${CLOUD_DB_PARAMS}
-      #DATABASE_PARAMS: ${TEST_DB_PARAMS}
+      TEST_DATABASE_PARAMS: Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;
       RECAPTCHA_SECRET_KEY: 6LeIxAcTAAAAAGG-vFI1TnRWxMZNFuojJ4WifJWe
       FLASK_APP: "climatemind.py"
     command: ["./wait-for-it", "db:1433"]

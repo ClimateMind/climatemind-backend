@@ -1,7 +1,8 @@
-from flask import abort
 import os
 import urllib
 from datetime import timedelta
+
+from sqlalchemy.pool import NullPool
 
 from app.network_x_tools.network_x_processor import network_x_processor
 
@@ -41,7 +42,15 @@ class DevelopmentConfig(BaseConfig):
     G = nx_processor.get_graph()
 
 
-class TestingConfig(BaseConfig):
+class TestingConfig(DevelopmentConfig):
     DEBUG = False
     TESTING = True
-    # todo: add mock mind here
+
+    DB_NAME = "sqldb-web-pytest-001"
+    DB_CREDENTIALS = os.environ.get("TEST_DATABASE_PARAMS", "") + f"Database={DB_NAME};"
+    SQLALCHEMY_DATABASE_URI = (
+        "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(DB_CREDENTIALS)
+    )
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        "poolclass": NullPool,
+    }
