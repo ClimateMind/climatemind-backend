@@ -629,7 +629,7 @@ def sort_aligned_effects_by_user_b_values(aligned_effects, user_b_quiz_uuid):
 
     Returns
     ==========
-    sorted_aligned_effects - a dictionary of IRIs and dot products for the aligned effects and user b's personal value scores
+    sorted_aligned_effects - a list of topic IRIs (n_nodes long) that are top scoring effects based on dot products for the aligned effects and user b's personal value scores. Ordered from highest scoring first, to lower scoring. Scoring procedure used copies that used to create User A's personal climate feed.
 
     """
     G = current_app.config["G"].copy()
