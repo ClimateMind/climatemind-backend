@@ -82,7 +82,7 @@ def get_aligned_effects(alignment_scores_uuid, n_nodes):
 
     Returns
     ==========
-    aligned_effects - a sorted dictionary of effects positively associated with user a and b's top shared value
+    aligned_effects - a list of topic IRIs (n_nodes long) that are top scoring effects positively associated with user a and b's top shared value. Ordered from highest scoring first, to lower scoring.
     """
     aligned_effects = dict()
 
