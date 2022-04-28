@@ -634,8 +634,11 @@ def sort_aligned_effects_by_user_b_values(aligned_effects, user_b_quiz_uuid):
     """
     G = current_app.config["G"].copy()
 
-
-    user_b_scores = db.session.query(Scores).filter(Scores.quiz_uuid == user_b_quiz_uuid).one_or_none()
+    user_b_scores = (
+        db.session.query(Scores)
+        .filter(Scores.quiz_uuid == user_b_quiz_uuid)
+        .one_or_none()
+    )
 
     sorted_aligned_effects = dict()
 
@@ -654,11 +657,10 @@ def sort_aligned_effects_by_user_b_values(aligned_effects, user_b_quiz_uuid):
         ]
     )
 
-    #TO DO: there should be some map mapping node names to iri so that the scoring can go straight to the right node and not have to check the other nodes. 
+    # TO DO: there should be some map mapping node names to iri so that the scoring can go straight to the right node and not have to check the other nodes.
 
-    #TO DO: this scoring procedure should not be copied pasted from the user a personal climate feed scoring code, rather it should call those scoring functions so there aren't redundances in the code!
+    # TO DO: this scoring procedure should not be copied pasted from the user a personal climate feed scoring code, rather it should call those scoring functions so there aren't redundances in the code!
     modified_user_b_scores = np.square(user_b_scores)
-
 
     for aligned_effect in aligned_effects:
         for node in G.nodes:

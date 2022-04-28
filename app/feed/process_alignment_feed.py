@@ -36,12 +36,15 @@ def create_alignment_feed(
     quiz_uuid (UUID) - user b quiz uuid to compare scores with user a scores
     alignment_feed_uuid (UUID) - uuid created when post alignment endpoint is used
     """
-    
 
-    #TO DO make a contant variable so 3 isn't hard coded as the number of effects to show to user B.
-    aligned_effects_sorted_by_shared_values = get_aligned_effects(alignment_scores_uuid, 3)
+    # TO DO make a contant variable so 3 isn't hard coded as the number of effects to show to user B.
+    aligned_effects_sorted_by_shared_values = get_aligned_effects(
+        alignment_scores_uuid, 3
+    )
 
-    sorted_aligned_effects = sort_aligned_effects_by_user_b_values(aligned_effects_sorted_by_shared_values, quiz_uuid)
+    sorted_aligned_effects = sort_aligned_effects_by_user_b_values(
+        aligned_effects_sorted_by_shared_values, quiz_uuid
+    )
 
     try:
         alignment_feed = AlignmentFeed()
@@ -125,7 +128,7 @@ def get_aligned_effects(alignment_scores_uuid, n_nodes):
     )
 
     aligned_effects_keys = list(aligned_effects.keys())
-    
+
     aligned_effects_top_keys = []
     if len(aligned_effects_keys) > n_nodes:
         aligned_effects_top_keys = aligned_effects_keys[0:n_nodes]
