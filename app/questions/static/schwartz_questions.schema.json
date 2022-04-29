@@ -1,0 +1,93 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "title": "Root",
+    "type": "object",
+    "required": [
+        "SetOne",
+        "SetTwo",
+        "Answers",
+        "Directions"
+    ],
+    "$defs": {
+        "questionsSet": {
+            "title": "Set of questions",
+            "type": "array",
+            "minItems": 10,
+            "maxItems": 10,
+            "items": {
+                "$ref": "#/$defs/question"
+            }
+        },
+        "question": {
+            "title": "Questions items",
+            "type": "object",
+            "required": [
+                "id",
+                "value",
+                "question"
+            ],
+            "properties": {
+                "id": {
+                    "title": "Id",
+                    "type": "integer"
+                },
+                "value": {
+                    "title": "Personal Value",
+                    "type": "string",
+                    "enum": [
+                        "hedonism",
+                        "tradition",
+                        "benevolence",
+                        "conformity",
+                        "stimulation",
+                        "security",
+                        "achievement",
+                        "universalism",
+                        "power",
+                        "self-direction"
+                    ]
+                },
+                "question": {
+                    "title": "Question",
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "properties": {
+        "SetOne": {
+            "$ref": "#/$defs/questionsSet"
+        },
+        "SetTwo": {
+            "$ref": "#/$defs/questionsSet"
+        },
+        "Answers": {
+            "title": "Answers",
+            "type": "array",
+            "minItems": 6,
+            "maxItems": 6,
+            "items": {
+                "title": "Answer",
+                "type": "object",
+                "required": [
+                    "id",
+                    "text"
+                ],
+                "properties": {
+                    "id": {
+                        "title": "Id",
+                        "type": "integer"
+                    },
+                    "text": {
+                        "title": "Text",
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "Directions": {
+            "title": "Directions",
+            "type": "string"
+        }
+    }
+}

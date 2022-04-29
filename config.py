@@ -38,6 +38,12 @@ class DevelopmentConfig(BaseConfig):
         "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(DB_CREDENTIALS)
     )
 
+    SCHWARTZ_QUESTIONS_PATH = os.path.join(os.getcwd(), "app/questions/static")
+    SCHWARTZ_QUESTIONS_SCHEMA = (
+        f"{SCHWARTZ_QUESTIONS_PATH}/schwartz_questions.schema.json"
+    )
+    SCHWARTZ_QUESTIONS_FILE = f"{SCHWARTZ_QUESTIONS_PATH}/schwartz_questions.json"
+
     nx_processor = network_x_processor()
     G = nx_processor.get_graph()
 
