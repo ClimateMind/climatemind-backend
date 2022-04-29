@@ -1,18 +1,15 @@
 import os
 from datetime import datetime, timezone
 from flask import request, jsonify, make_response
-from sqlalchemy import desc
 from app.auth import bp
-from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid, check_if_local
-import regex as re
+from app.common.local import check_if_local
+from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 import requests
 from flask_jwt_extended import create_access_token
-from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import create_refresh_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import unset_jwt_cookies
-from flask_cors import cross_origin
 from app.email.utils import is_email_valid
 from sqlalchemy.exc import SQLAlchemyError
 
@@ -23,7 +20,7 @@ from app.errors.errors import (
     UnauthorizedError,
 )
 
-from app.models import Users, Scores
+from app.models import Users
 from app.sendgrid.utils import send_welcome_email
 
 from app import db, auto

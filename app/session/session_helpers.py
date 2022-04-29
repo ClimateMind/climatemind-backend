@@ -6,6 +6,7 @@ from datetime import datetime
 from werkzeug.local import LocalProxy
 
 from app import db
+from app.common.local import check_if_local
 from app.errors.errors import DatabaseError
 from app.models import Sessions
 
@@ -56,7 +57,7 @@ def get_ip_address(request: LocalProxy) -> typing.Optional[str]:
 
     Returns: Error and Status Code if they exist, otherwise None
     """
-    if os.environ.get("IS_LOCAL"):
+    if check_if_local():
         ip_address = None
     else:
         unprocessed_ip_address = request.headers.getlist("X-Forwarded-For")

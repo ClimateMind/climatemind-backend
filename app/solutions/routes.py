@@ -3,12 +3,11 @@ from app import db
 from app.models import Scores
 from app.solutions import bp
 from app.solutions.process_solutions import process_solutions
-from app.errors.errors import InvalidUsageError, CustomError, DatabaseError
-from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
+from app.errors.errors import CustomError
+from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from flask_cors import cross_origin
 import numpy as np
 import pickle
-import uuid
 
 from app import auto
 

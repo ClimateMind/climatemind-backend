@@ -1,12 +1,10 @@
-from crypt import methods
-from random import choice
 from app.conversations import bp
 from app import db
 from app.conversations.utils import (
     build_single_conversation_response,
     update_consent_choice,
 )
-from app.auth.utils import validate_uuid, check_uuid_in_db, uuidType
+from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from app.models import Users, Conversations
 from app.errors.errors import DatabaseError, InvalidUsageError
 from app.sendgrid.utils import send_user_b_shared_email
@@ -16,7 +14,6 @@ from flask_cors import cross_origin
 import datetime
 from datetime import timezone
 from sqlalchemy.exc import SQLAlchemyError
-from sqlalchemy import desc
 from enum import IntEnum
 import uuid
 

@@ -1,14 +1,12 @@
-from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
-from app.models import Sessions
-from flask import jsonify, request, make_response
+from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
+from flask import jsonify, request
 
 import uuid
-import os
 
 from app.scoring import bp
 from app.scoring.process_scores import ProcessScores
 
-from app.errors.errors import InvalidUsageError, DatabaseError
+from app.errors.errors import InvalidUsageError
 from flask_cors import cross_origin
 
 from flask_jwt_extended import jwt_required

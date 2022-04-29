@@ -1,16 +1,11 @@
-from crypt import methods
-import json
-from time import perf_counter
 import uuid
 
-from flask import jsonify, request
+from flask import request
 from flask_cors import cross_origin
 
-from app import auto, db
+from app import auto
 from app.alignment import bp
-from app.models import Sessions
-from app.errors.errors import InvalidUsageError
-from app.auth.utils import check_uuid_in_db, uuidType, validate_uuid
+from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from app.user_b.analytics_logging import log_user_b_event, eventType
 from app.user_b.journey_updates import update_user_b_journey
 from app.scoring.process_alignment_scores import create_alignment_scores
