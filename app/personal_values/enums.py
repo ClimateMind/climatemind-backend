@@ -16,3 +16,7 @@ class PersonalValue(IntEnum):
     @property
     def key(self):
         return self.name.lower()
+
+    @property
+    def dashed_key(self):
+        return self.key.replace("_", "-")

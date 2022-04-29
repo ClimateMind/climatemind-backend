@@ -1,116 +1,133 @@
 {
-  "SetOne": [
-    {
-      "id": 7,
-        "value": "hedonism",
-        "question": "You want to have fun and feel good as much as possible."
-      },
-    {
-        "id": 2,
-      "value": "tradition",
-        "question": "You value your religious or family traditions and you want to live by those traditions." 
-      },
-    {
-        "id": 3,
-      "value": "benevolence",
-        "question": "You care about helping those close to you who are in need and you want what's best for them."
-      },
-    {
-        "id": 1,
-      "value": "conformity",
-        "question": "You care about showing respect to those in charge and you want to follow their exact instructions."
-      },
-    {
-        "id": 6,
-      "value": "stimulation",
-        "question": "You seek out adventure and like taking risks."
-      },
-    {
-        "id": 10,
-        "value": "security",
-        "question": "You care about social order being protected and value a stable and predictable society."
-      },
-       {
-      "id": 8,
-        "value": "achievement",
-        "question": "You value being above average and strive to reach your life goals."
-      },
-    {
-      "id": 4,
-        "value": "universalism",
-        "question": "You believe everyone should be treated fairly and have equitable opportunities in life."
-      },
-      {
-      "id": 9,
-        "value": "power",
-        "question": "In groups, you prefer if you were in charge and making decisions."                                                                                                 
-      },
-    {
-        "id": 5,
-        "value": "self-direction",
-        "question": "You like being curious and are interested in understanding different things, people, and aspects of life."
-      }
+    "SetOne": [
+        {
+            "id": 7,
+            "value": "hedonism",
+            "question": "You want to have fun and feel good as much as possible."
+        },
+        {
+            "id": 2,
+            "value": "tradition",
+            "question": "You value your religious or family traditions and you want to live by those traditions."
+        },
+        {
+            "id": 3,
+            "value": "benevolence",
+            "question": "You care about helping those close to you who are in need and you want what's best for them."
+        },
+        {
+            "id": 1,
+            "value": "conformity",
+            "question": "You care about showing respect to those in charge and you want to follow their exact instructions."
+        },
+        {
+            "id": 6,
+            "value": "stimulation",
+            "question": "You seek out adventure and like taking risks."
+        },
+        {
+            "id": 10,
+            "value": "security",
+            "question": "You care about social order being protected and value a stable and predictable society."
+        },
+        {
+            "id": 8,
+            "value": "achievement",
+            "question": "You value being above average and strive to reach your life goals."
+        },
+        {
+            "id": 4,
+            "value": "universalism",
+            "question": "You believe everyone should be treated fairly and have equitable opportunities in life."
+        },
+        {
+            "id": 9,
+            "value": "power",
+            "question": "In groups, you prefer if you were in charge and making decisions."
+        },
+        {
+            "id": 5,
+            "value": "self-direction",
+            "question": "You like being curious and are interested in understanding different things, people, and aspects of life."
+        }
     ],
     "SetTwo": [
-    {
-        "id": 17,
-        "value": "hedonism",
-        "question": "You really want to enjoy life.\n\n Having a good time is very important to you."
-      },
-      {
-        "id": 12,
-        "value": "tradition",
-        "question": "You think it is best to do things in traditional ways.\n\n It is important to you to do things the way you were taught to do them."
-      },
-    {
-        "id": 13,
-        "value": "benevolence",
-        "question": "It is important to you to respond to the needs of others.\n\n You try to support those you know."
-      },
-    {
-        "id": 11,
-        "value": "conformity",
-        "question": "It is important to you to always behave properly.\n\n You want to avoid doing anything people would say is wrong."
-      },
-      {
-        "id": 16,
-        "value": "stimulation",
-        "question": "You think it is important to do lots of different things in life.\n\n You always looks for new things to try."
-      },
-    {
-        "id": 20,
-        "value": "security",
-        "question": "It is important to you that things be organized and clean.\n\n You really do not like things to be a mess."
-      },
-    {
-        "id": 18,
-        "value": "achievement",
-        "question": "Being very successful is important to you.\n\n You like to impress other people."
-      },
-      {
-        "id": 14,
-        "value": "universalism",
-        "question": "You believe all the worlds’ people should live in harmony.\n\n Promoting peace among all groups in the world is important to you."
-      },
-    {
-        "id": 19,
-        "value": "power",
-        "question": "It is important to you to be in charge and tell others what to do.\n\n You want people to do what you say."
-      },
-      {
-        "id": 15,
-        "value": "self-direction",
-        "question": "Thinking up new ideas and being creative is important to you.\n\n You like to do things in your own original way."
-      }
-  ],
-
-  "Answers": [
-    { "id": 1, "text": "Not Like Me At All" },
-    { "id": 2, "text": "Not Like Me" },
-    { "id": 3, "text": "Little Like Me" },
-    { "id": 4, "text": "Somewhat Like Me" },
-    { "id": 5, "text": "Like Me" },
-    { "id": 6, "text": "Very Much Like Me" }
-  ],
-  "Directions": "Here we briefly describe statements about you. Please read each description and think about how much that statement is or is not like you."
+        {
+            "id": 17,
+            "value": "hedonism",
+            "question": "You really want to enjoy life.\n\n Having a good time is very important to you."
+        },
+        {
+            "id": 12,
+            "value": "tradition",
+            "question": "You think it is best to do things in traditional ways.\n\n It is important to you to do things the way you were taught to do them."
+        },
+        {
+            "id": 13,
+            "value": "benevolence",
+            "question": "It is important to you to respond to the needs of others.\n\n You try to support those you know."
+        },
+        {
+            "id": 11,
+            "value": "conformity",
+            "question": "It is important to you to always behave properly.\n\n You want to avoid doing anything people would say is wrong."
+        },
+        {
+            "id": 16,
+            "value": "stimulation",
+            "question": "You think it is important to do lots of different things in life.\n\n You always looks for new things to try."
+        },
+        {
+            "id": 20,
+            "value": "security",
+            "question": "It is important to you that things be organized and clean.\n\n You really do not like things to be a mess."
+        },
+        {
+            "id": 18,
+            "value": "achievement",
+            "question": "Being very successful is important to you.\n\n You like to impress other people."
+        },
+        {
+            "id": 14,
+            "value": "universalism",
+            "question": "You believe all the worlds’ people should live in harmony.\n\n Promoting peace among all groups in the world is important to you."
+        },
+        {
+            "id": 19,
+            "value": "power",
+            "question": "It is important to you to be in charge and tell others what to do.\n\n You want people to do what you say."
+        },
+        {
+            "id": 15,
+            "value": "self-direction",
+            "question": "Thinking up new ideas and being creative is important to you.\n\n You like to do things in your own original way."
+        }
+    ],
+    "Answers": [
+        {
+            "id": 1,
+            "text": "Not Like Me At All"
+        },
+        {
+            "id": 2,
+            "text": "Not Like Me"
+        },
+        {
+            "id": 3,
+            "text": "Little Like Me"
+        },
+        {
+            "id": 4,
+            "text": "Somewhat Like Me"
+        },
+        {
+            "id": 5,
+            "text": "Like Me"
+        },
+        {
+            "id": 6,
+            "text": "Very Much Like Me"
+        }
+    ],
+    "Directions": "Here we briefly describe statements about you. Please read each description and think about how much that statement is or is not like you."
 }
