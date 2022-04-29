@@ -1,15 +1,9 @@
-import os
-from app.scoring.build_localised_acyclic_graph import get_node_id
 import numpy as np
-from json import load
-from urllib import response
+from flask import current_app
 from sklearn import preprocessing
 
-from click import UsageError
+from app import db
 from app.errors.errors import DatabaseError, InvalidUsageError, NotInDatabaseError
-from flask import jsonify, current_app
-from app.personal_values.utils import get_value_descriptions_map
-
 from app.models import (
     AlignmentScores,
     EffectChoice,
@@ -21,7 +15,9 @@ from app.models import (
     AlignmentFeed,
 )
 from app.network_x_tools.network_x_utils import network_x_utils
-from app import db
+from app.personal_values.utils import get_value_descriptions_map
+from app.questions.utils import get_schwartz_questions_file_data
+from app.scoring.build_localised_acyclic_graph import get_node_id
 
 
 def build_alignment_scores_response(alignment_scores_uuid):
@@ -191,20 +187,6 @@ def effect_details(G, climate_effects_iris, nx):
     return climate_effects
 
 
-def get_personal_values_map():
-    """Load the data from the schwartz questions JSON file."""
-
-    try:
-        file = os.path.join(
-            os.getcwd(), "app/questions/static", "schwartz_questions.json"
-        )
-        with open(file) as json_file:
-            data = load(json_file)
-    except FileNotFoundError:
-        return jsonify({"error": "Schwartz questions not found"}), 404
-    return data
-
-
 def map_associated_personal_values(personal_values_boolean_list):
     """
     Take the associated personal values for a shared impact and map them to the value names from the schwartz questions JSON file.
@@ -220,7 +202,7 @@ def map_associated_personal_values(personal_values_boolean_list):
 
     """
 
-    personal_values_map = get_personal_values_map()
+    personal_values_map = get_schwartz_questions_file_data()
 
     # IDs are hard-coded as temporary solution until known whether we will implement 19 values list and/or change value names displayed to the user.
     json_value_ids = [8, 3, 1, 7, 9, 10, 5, 6, 2, 4]
