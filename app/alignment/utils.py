@@ -601,26 +601,24 @@ def transform_aligned_scores(scores_array):
     return transformed_aligned_scores
 
 
-def sort_aligned_effects_by_user_b_values(aligned_effects, conversation_uuid):
-    """Reorder the aligned effects for users a and b according to user b's personal value scores.
+def sort_aligned_effects_by_user_b_values(aligned_effects, user_b_quiz_uuid):
+    """Reorder the top n=3 aligned effects for users a and b according to user b's personal value scores.
 
     Parameters
     ==========
-    aligned_effects - a list of IRIs for aligned effects ordered using the dot product of the users' aligned scores and the effects personal value associations
-    conversation_uuid (UUID) - the uuid for the conversation between user a and b
+    aligned_effects - a list of IRIs for aligned effects ordered using the dot product of the users' aligned scores and the effects personal value associations. These are just the n=3 top scoring effects.
+    user_b_quiz_uuid (UUID) - the uuid for the quiz scores for user b
 
     Returns
     ==========
-    sorted_aligned_effects - a dictionary of IRIs and dot products for the aligned effects and user b's personal value scores
+    sorted_aligned_effects - a list of topic IRIs (n_nodes long) that are top scoring effects based on dot products for the aligned effects and user b's personal value scores. Ordered from highest scoring first, to lower scoring. Scoring procedure used copies that used to create User A's personal climate feed.
 
     """
-
     G = current_app.config["G"].copy()
 
-    user_b_journey, user_b_scores = (
-        db.session.query(UserBJourney, Scores)
-        .join(Scores, Scores.quiz_uuid == UserBJourney.quiz_uuid)
-        .filter(UserBJourney.conversation_uuid == conversation_uuid)
+    user_b_scores = (
+        db.session.query(Scores)
+        .filter(Scores.quiz_uuid == user_b_quiz_uuid)
         .one_or_none()
     )
 
@@ -641,6 +639,9 @@ def sort_aligned_effects_by_user_b_values(aligned_effects, conversation_uuid):
         ]
     )
 
+    # TO DO: there should be some map mapping node names to iri so that the scoring can go straight to the right node and not have to check the other nodes.
+
+    # TO DO: this scoring procedure should not be copied pasted from the user a personal climate feed scoring code, rather it should call those scoring functions so there aren't redundances in the code!
     modified_user_b_scores = np.square(user_b_scores)
 
     for aligned_effect in aligned_effects:
@@ -665,4 +666,6 @@ def sort_aligned_effects_by_user_b_values(aligned_effects, conversation_uuid):
         sorted(sorted_aligned_effects.items(), key=lambda x: x[1], reverse=True)
     )
 
-    return sorted_aligned_effects
+    sorted_aligned_effects_keys = list(sorted_aligned_effects.keys())
+
+    return sorted_aligned_effects_keys
