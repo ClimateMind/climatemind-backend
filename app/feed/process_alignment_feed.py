@@ -37,15 +37,14 @@ def create_alignment_feed(
     alignment_feed_uuid (UUID) - uuid created when post alignment endpoint is used
     """
 
-    aligned_effects = list(get_aligned_effects(alignment_scores_uuid).keys())
-
-    sorted_aligned_effects = list(
-        sort_aligned_effects_by_user_b_values(aligned_effects, conversation_uuid).keys()
+    # TO DO make a contant variable so 3 isn't hard coded as the number of effects to show to user B.
+    aligned_effects_sorted_by_shared_values = get_aligned_effects(
+        alignment_scores_uuid, 3
     )
 
-    # TODO: delete this check after expansion of the ontology
-    while len(sorted_aligned_effects) < 3:
-        aligned_effects.append(sorted_aligned_effects[0])
+    sorted_aligned_effects = sort_aligned_effects_by_user_b_values(
+        aligned_effects_sorted_by_shared_values, quiz_uuid
+    )
 
     try:
         alignment_feed = AlignmentFeed()
@@ -71,7 +70,7 @@ def create_alignment_feed(
         )
 
 
-def get_aligned_effects(alignment_scores_uuid):
+def get_aligned_effects(alignment_scores_uuid, n_nodes):
     """
     Create a sorted dictionary of IRIs and dot products for impacts/effects from the ontology that are positively associated with the top aligned personal
     value for users A and B (calculated based on comparison of their quiz results).
@@ -79,10 +78,11 @@ def get_aligned_effects(alignment_scores_uuid):
     Parameters
     ==========
     alignment_scores_uuid (UUID) - the uuid for the aligned scores for users a and b
+    n_nodes (int) - the number of effect nodes to output that score the highest. Default is 3 impacts.
 
     Returns
     ==========
-    aligned_effects - a sorted dictionary of effects positively associated with user a and b's top shared value
+    aligned_effects - a list of topic IRIs (n_nodes long) that are top scoring effects positively associated with user a and b's top shared value. Ordered from highest scoring first, to lower scoring.
     """
     aligned_effects = dict()
 
@@ -127,7 +127,20 @@ def get_aligned_effects(alignment_scores_uuid):
         sorted(aligned_effects.items(), key=lambda x: x[1], reverse=True)
     )
 
-    return aligned_effects
+    aligned_effects_keys = list(aligned_effects.keys())
+
+    aligned_effects_top_keys = []
+    if len(aligned_effects_keys) > n_nodes:
+        aligned_effects_top_keys = aligned_effects_keys[0:n_nodes]
+    else:
+        aligned_effects_top_keys = aligned_effects_keys
+
+    # TODO: delete this check after expansion of the ontology. This repeats the topics until the list is n long as needed.
+    aligned_effects_key_extra = list(aligned_effects.keys())[1]
+    while len(aligned_effects_keys) < n_nodes:
+        aligned_effects_top_keys.append(aligned_effects_key_extra)
+
+    return aligned_effects_top_keys
 
 
 def assign_alignment_iris(alignment_feed, field_type, iris):

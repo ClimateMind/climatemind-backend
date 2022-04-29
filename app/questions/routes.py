@@ -1,10 +1,11 @@
-import os
-from json import dumps, load
-from app.questions import bp
-from flask import Response, jsonify
+from json import dumps
+
+from flask import Response
 from flask_cors import cross_origin
 
 from app import auto
+from app.questions import bp
+from app.questions.utils import get_schwartz_questions_file_data
 
 
 @bp.route("/questions", methods=["GET"])
@@ -15,15 +16,7 @@ def get_questions():
     Returns the list of available schwartz personal value questions that can be
     presented to the user.
     """
-    try:
-        file = os.path.join(
-            os.getcwd(), "app/questions/static", "schwartz_questions.json"
-        )
-        with open(file) as json_file:
-            data = load(json_file)
-    except FileNotFoundError:
-        return jsonify({"error": "Schwartz questions not found"}), 404
-
+    data = get_schwartz_questions_file_data()
     response = Response(dumps(data))
     response.headers["Content-Type"] = "application/json"
 
