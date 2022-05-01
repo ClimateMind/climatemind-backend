@@ -2,6 +2,7 @@ import uuid
 
 from flask import request
 from flask_cors import cross_origin
+from flask import jsonify
 
 from app import auto
 from app.alignment import bp
