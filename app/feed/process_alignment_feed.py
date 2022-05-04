@@ -52,15 +52,11 @@ def create_alignment_feed(
         alignment_feed.aligned_effect_1_iri = sorted_aligned_effects[0]
         alignment_feed.aligned_effect_2_iri = sorted_aligned_effects[1]
         alignment_feed.aligned_effect_3_iri = sorted_aligned_effects[2]
+        temporary_solutions_iris = get_default_solutions_iris()
         assign_alignment_iris(
             alignment_feed,
             "solution",
-            find_alignment_solution_iris(
-                CONVERSATION_SOLUTION_NAME,
-                POPULAR_SOLUTION_NAMES,
-                POPULAR_SOLUTION_COUNT,
-                UNPOPULAR_SOLUTION_COUNT,
-            ),
+            temporary_solutions_iris,
         )
         db.session.add(alignment_feed)
         db.session.commit
@@ -149,22 +145,13 @@ def assign_alignment_iris(alignment_feed, field_type, iris):
         setattr(alignment_feed, "aligned_{}_{}_iri".format(field_type, index), iri)
 
 
-def find_alignment_solution_iris(
-    conversation_name, popular_names, popular_count, unpopular_count
-):
+def get_default_solutions_iris() -> list:
     """Choose and order solutions for the alignment.
 
     Using the (mitigation) solutions from the ontology, put the conversation solution first,
     followed by a random ordering of popular and unpopular solutions. This function takes no
     user-specific arguments, since solutions are (currently) independent of users' personal values
     etc.
-
-    Parameters
-    ==============
-    conversation_name (str) - label of the conversation solution
-    popular_names (set of str) - labels of the popular solutions
-    popular_count (int) - the number of popular solutions to include
-    unpopular_count (int) - the number of unpopular solutions to include
 
     Returns
     ==========
@@ -174,20 +161,23 @@ def find_alignment_solution_iris(
     solution_map = {"conversation": None, "popular": set(), "unpopular": set()}
     solution_nodes = get_solution_nodes()
     nx = network_x_utils()
+
     for node in solution_nodes:
         name = node["label"]
         nx.set_current_node(node)
         iri = nx.get_node_id()
-        if name == conversation_name:
+        if name == CONVERSATION_SOLUTION_NAME:
             solution_map["conversation"] = iri
-        elif name in popular_names:
+        elif name in POPULAR_SOLUTION_NAMES:
             solution_map["popular"].add(iri)
         else:
             solution_map["unpopular"].add(iri)
-    sample_solutions = sample(solution_map["popular"], popular_count) + sample(
-        solution_map["unpopular"], unpopular_count
+
+    sample_solutions = sample(solution_map["popular"], POPULAR_SOLUTION_COUNT) + sample(
+        solution_map["unpopular"], UNPOPULAR_SOLUTION_COUNT
     )
     shuffle(sample_solutions)
+
     return [solution_map["conversation"]] + sample_solutions
 
 
