@@ -99,7 +99,10 @@ paths:
                     conversations:
                       - null
       operationId: get-conversations
-      description: 'Registered users can see a list of their conversations. Returns a list of the user''s conversations with the relevant names, UUIDs, conversation status and creation date. A JWT token is required.'
+      description: >-
+        Registered users can see a list of their conversations. Returns a list
+        of the user's conversations with the relevant names, UUIDs, conversation
+        status and creation date. A JWT token is required.
       parameters:
         - schema:
             type: string
@@ -134,7 +137,9 @@ paths:
                     message: conversation status updated
                     conversationId: '{conversation_uuid}'
       operationId: put-conversation
-      description: Change the status of the conversation in the conversations table for User A according to the actions taken by User B.
+      description: >-
+        Change the status of the conversation in the conversations table for
+        User A according to the actions taken by User B.
       parameters:
         - schema:
             type: string
@@ -278,7 +283,9 @@ paths:
                   value:
                     alignmentScoresId: d86fcf26-7834-4bce-bfb7-f88170da9ace
       operationId: post-alignment
-      description: To create aligned scores between user A and user B after user B has completed their quiz.
+      description: >-
+        To create aligned scores between user A and user B after user B has
+        completed their quiz.
       parameters:
         - schema:
             type: string
@@ -309,10 +316,6 @@ paths:
                 value:
                   conversationId: 7f910a47-9aed-4a27-8f33-3ae95230a776
                   quizId: d86fcf26-7834-4bce-bfb7-f88170da9ace
-              example-2:
-                value:
-                  conversationId: string
-                  quizId: string
           application/xml:
             schema:
               type: object
@@ -331,46 +334,6 @@ paths:
               schema:
                 description: ''
                 type: object
-                properties:
-                  overallSimilarityScore:
-                    type: number
-                  topMatchPercent:
-                    type: number
-                  topMatchValue:
-                    type: string
-                    minLength: 1
-                  valueAlignment:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      type: object
-                      properties:
-                        valueName:
-                          type: string
-                          minLength: 1
-                        score:
-                          type: number
-                        description:
-                          type: string
-                          minLength: 1
-                      required:
-                        - valueName
-                        - score
-                        - description
-                  userAName:
-                    type: string
-                    minLength: 1
-                  userBName:
-                    type: string
-                    minLength: 1
-                required:
-                  - overallSimilarityScore
-                  - topMatchPercent
-                  - topMatchValue
-                  - valueAlignment
-                  - userAName
-                  - userBName
                 x-examples:
                   example-1:
                     overallSimilarityScore: 70
@@ -409,6 +372,50 @@ paths:
                         description: lots of text
                     userAName: Bill
                     userBName: Bob
+                properties:
+                  overallSimilarityScore:
+                    type: number
+                  topMatchPercent:
+                    type: number
+                  topMatchValue:
+                    type: string
+                    minLength: 1
+                  valueAlignment:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        description:
+                          type: string
+                          minLength: 1
+                        id:
+                          type: string
+                        name:
+                          type: string
+                          minLength: 1
+                        shortDescription:
+                          type: string
+                        score:
+                          type: number
+                      required:
+                        - description
+                        - name
+                        - score
+                  userAName:
+                    type: string
+                    minLength: 1
+                  userBName:
+                    type: string
+                    minLength: 1
+                required:
+                  - overallSimilarityScore
+                  - topMatchPercent
+                  - topMatchValue
+                  - valueAlignment
+                  - userAName
+                  - userBName
               examples:
                 Successful GET Alignment Scores Response Body:
                   value:
@@ -416,36 +423,56 @@ paths:
                     topMatchPercent: 90
                     topMatchValue: benevolence
                     valueAlignment:
-                      - valueName: benevolence
+                      - description: lots of text
+                        id: benevolence
+                        name: benevolence
+                        shortDescription: some text
                         score: 90
-                        description: lots of text
-                      - valueName: power
+                      - description: lots of text
+                        id: power
+                        name: power
+                        shortDescription: some text
                         score: 80
-                        description: lots of text
-                      - valueName: achievement
+                      - description: lots of text
+                        id: achievement
+                        name: achievement
+                        shortDescription: some text
                         score: 70
-                        description: lots of text
-                      - valueName: self-direction
+                      - description: lots of text
+                        id: self_direction
+                        name: self direction
+                        shortDescription: some text
                         score: 60
-                        description: lots of text
-                      - valueName: hedonism
+                      - description: lots of text
+                        id: hedonism
+                        name: hedonism
+                        shortDescription: some text
                         score: 50
-                        description: lots of text
-                      - valueName: tradition
+                      - description: lots of text
+                        id: tradition
+                        name: tradition
+                        shortDescription: some text
                         score: 40
-                        description: lots of text
-                      - valueName: conformity
+                      - description: lots of text
+                        id: conformity
+                        name: conformity
+                        shortDescription: some text
                         score: 30
-                        description: lots of text
-                      - valueName: universalism
+                      - description: lots of text
+                        id: universalism
+                        name: universalism
+                        shortDescription: some text
                         score: 30
-                        description: lots of text
-                      - valueName: stimulation
+                      - description: lots of text
+                        id: stimulation
+                        name: stimulation
+                        shortDescription: some text
                         score: 20
-                        description: lots of text
-                      - valueName: security
+                      - description: lots of text
+                        id: security
+                        name: security
+                        shortDescription: some text
                         score: 10
-                        description: lots of text
                     userAName: Bill
                     userBName: Bob
       operationId: get-alignment
@@ -457,6 +484,12 @@ paths:
           name: X-Session-Id
           description: Session uuid
           required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties: {}
     parameters: []
   '/alignment/:alignmentScoresId/shared-impacts':
     get:
@@ -517,7 +550,12 @@ paths:
                     climateEffects:
                       - effectId: RBvy0CVizhdMfXbtJIc2En
                         sharedScore: 27.9
-                        effectShortDescription: 'The total value of goods produced and services provided each year are increasingly     being constrained. Global warming is decreasing GDP by increasing in the frequency of heat waves and shrinking the tourism industry, among other impacts.'
+                        effectShortDescription: >-
+                          The total value of goods produced and services
+                          provided each year are increasingly     being
+                          constrained. Global warming is decreasing GDP by
+                          increasing in the frequency of heat waves and
+                          shrinking the tourism industry, among other impacts.
                         effectTitle: decrease in GDP
                         imageUrl: 'https://i.imgur.com/NNK9Na4.jpg'
                         relatedPersonalValues:
@@ -525,7 +563,12 @@ paths:
                           - benevolence
                       - effectId: R8Fa34SNdEwdj93hXO0oMS
                         sharedScore: 25.429
-                        effectShortDescription: 'The frequency of warm days and night are increasing every year, causing increased indoor air temperatures which negatively affects learning. People''s ability to use attention and memory to acquire and retain new information is impaired.'
+                        effectShortDescription: >-
+                          The frequency of warm days and night are increasing
+                          every year, causing increased indoor air temperatures
+                          which negatively affects learning. People's ability to
+                          use attention and memory to acquire and retain new
+                          information is impaired.
                         effectTitle: decrease in learning (without air conditioner)
                         imageUrl: 'https://i.imgur.com/Zzh5mT8.jpg'
                         relatedPersonalValues:
@@ -534,7 +577,14 @@ paths:
                           - achievement
                       - effectId: R8epBa4UvcieLTynfK3E84u
                         sharedScore: 23.44
-                        effectShortDescription: 'The frequency (and severity) of heatwaves are increasing, causing declines in moose populations. Moose are suited to colder climates and have thick fur and when stressed by overheating they stop grazing and lose body fat that''s essential for them to survive come winter. The number of moose alive to pursue and kill for sport are declining.'
+                        effectShortDescription: >-
+                          The frequency (and severity) of heatwaves are
+                          increasing, causing declines in moose populations.
+                          Moose are suited to colder climates and have thick fur
+                          and when stressed by overheating they stop grazing and
+                          lose body fat that's essential for them to survive
+                          come winter. The number of moose alive to pursue and
+                          kill for sport are declining.
                         effectTitle: decrease in population of moose available to hunt
                         imageUrl: 'https://i.imgur.com/mBvpx7w.jpg'
                         relatedPersonalValues:
@@ -549,7 +599,12 @@ paths:
                     climateEffects:
                       - effectId: RBvy0CVizhdMfXbtJIc2En
                         sharedScore: 27.9
-                        effectShortDescription: 'The total value of goods produced and services provided each year are increasingly     being constrained. Global warming is decreasing GDP by increasing in the frequency of heat waves and shrinking the tourism industry, among other impacts.'
+                        effectShortDescription: >-
+                          The total value of goods produced and services
+                          provided each year are increasingly     being
+                          constrained. Global warming is decreasing GDP by
+                          increasing in the frequency of heat waves and
+                          shrinking the tourism industry, among other impacts.
                         effectTitle: decrease in GDP
                         imageUrl: 'https://i.imgur.com/NNK9Na4.jpg'
                         relatedPersonalValues:
@@ -557,7 +612,12 @@ paths:
                           - benevolence
                       - effectId: R8Fa34SNdEwdj93hXO0oMS
                         sharedScore: 25.429
-                        effectShortDescription: 'The frequency of warm days and night are increasing every year, causing increased indoor air temperatures which negatively affects learning. People''s ability to use attention and memory to acquire and retain new information is impaired.'
+                        effectShortDescription: >-
+                          The frequency of warm days and night are increasing
+                          every year, causing increased indoor air temperatures
+                          which negatively affects learning. People's ability to
+                          use attention and memory to acquire and retain new
+                          information is impaired.
                         effectTitle: decrease in learning (without air conditioner)
                         imageUrl: 'https://i.imgur.com/Zzh5mT8.jpg'
                         relatedPersonalValues:
@@ -566,7 +626,14 @@ paths:
                           - achievement
                       - effectId: R8epBa4UvcieLTynfK3E84u
                         sharedScore: 23.44
-                        effectShortDescription: 'The frequency (and severity) of heatwaves are increasing, causing declines in moose populations. Moose are suited to colder climates and have thick fur and when stressed by overheating they stop grazing and lose body fat that''s essential for them to survive come winter. The number of moose alive to pursue and kill for sport are declining.'
+                        effectShortDescription: >-
+                          The frequency (and severity) of heatwaves are
+                          increasing, causing declines in moose populations.
+                          Moose are suited to colder climates and have thick fur
+                          and when stressed by overheating they stop grazing and
+                          lose body fat that's essential for them to survive
+                          come winter. The number of moose alive to pursue and
+                          kill for sport are declining.
                         effectTitle: decrease in population of moose available to hunt
                         imageUrl: 'https://i.imgur.com/mBvpx7w.jpg'
                         relatedPersonalValues:
@@ -576,7 +643,9 @@ paths:
                     userAName: Bill
                     userBName: Bob
       operationId: get-shared-impacts
-      description: Show the full list of shared impacts from the shared feed calculated by comparing user a and user b's quiz scores.
+      description: >-
+        Show the full list of shared impacts from the shared feed calculated by
+        comparing user a and user b's quiz scores.
       parameters:
         - schema:
             type: string
@@ -609,7 +678,9 @@ paths:
                 Successful Choose Shared Impact POST Response Body:
                   value:
                     message: Shared impact saved to the db.
-      description: Confirm user b's selection of shared impacts that they wish to discuss with user a.
+      description: >-
+        Confirm user b's selection of shared impacts that they wish to discuss
+        with user a.
       parameters:
         - schema:
             type: string
@@ -777,7 +848,9 @@ paths:
                     userAName: Bill
                     userBName: Bob
       operationId: get-shared-solutions
-      description: Show the full list of shared solutions from the shared feed calculated by comparing user a and user b's quiz scores.
+      description: >-
+        Show the full list of shared solutions from the shared feed calculated
+        by comparing user a and user b's quiz scores.
       parameters:
         - schema:
             type: string
@@ -810,7 +883,9 @@ paths:
                 Successful Choose Shared Solutions POST Response Body:
                   value:
                     message: Shared solutions saved to the db.
-      description: Confirm user b's selection of shared solutions that they wish to discuss with user a.
+      description: >-
+        Confirm user b's selection of shared solutions that they wish to discuss
+        with user a.
       parameters:
         - schema:
             type: string
@@ -870,16 +945,438 @@ paths:
                   example-1:
                     message: User B clicked the link.
               examples:
-                Successful POST User B Event Response Body (link clicked):
+                Successful POST User B Event Response Body:
                   value:
-                    message: User B clicked the link.
-      description: Log an event for user B (analytics tracking).
+                    message: User B event logged.
+      description: >-
+        Log an event for user B (analytics tracking). The type of user event and
+        its value is specified in the request body. If none is given, it is
+        assumed that the event is clicking of the unique link.
       parameters:
         - schema:
             type: string
           in: header
           name: X-Session-Id
           description: Session uuid
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                eventType:
+                  type: string
+                  minLength: 1
+                eventValue:
+                  type: string
+                  minLength: 1
+              required:
+                - eventType
+                - eventValue
+              x-examples:
+                example-1:
+                  eventType: learn more - solution
+                  eventValue: RBeBCvukdLNSe5AtnlJpQ1k
+            examples:
+              POST Shared Solution Learn More:
+                value:
+                  eventType: learn more - solution
+                  eventValue: RBeBCvukdLNSe5AtnlJpQ1k
+              POST Shared Impact Learn More:
+                value:
+                  eventType: learn more - impact
+                  eventValue: R9JAWzfiZ9haeNhHiCpTWkr
+        description: Specify the type of user event as per the examples.
     parameters: []
+  '/conversation/:conversationId/consent':
+    post:
+      summary: User B Update Consent - POST
+      operationId: 'post-conversation-:conversationId-consent'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  message:
+                    type: string
+                    minLength: 1
+                required:
+                  - message
+                x-examples:
+                  example-1:
+                    message: Consent successfully updated.
+              examples:
+                Successful POST Consent Response Body:
+                  value:
+                    message: Consent successfully updated.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              description: ''
+              type: object
+              properties:
+                consent:
+                  type: boolean
+              required:
+                - consent
+              x-examples:
+                example-1:
+                  consent: true
+            examples:
+              POST Consent Body:
+                value:
+                  consent: true
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+      description: >-
+        Creates or updates user B's consent choice for sharing information with
+        user A. Posts an event for analytics logging.
+  '/alignment/shared-solution/:solutionIri':
+    get:
+      summary: Shared Solution Details - GET
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  solutionTitle:
+                    type: string
+                    minLength: 1
+                  imageUrl:
+                    type: string
+                    minLength: 1
+                  longDescription:
+                    type: string
+                    minLength: 1
+                  solutionSources:
+                    type: array
+                    items:
+                      required: []
+                      properties: {}
+                  solutionType:
+                    type: array
+                    items:
+                      required: []
+                      properties: {}
+                required:
+                  - solutionTitle
+                  - imageUrl
+                  - longDescription
+                  - solutionSources
+                  - solutionType
+                x-examples:
+                  example-1:
+                    solutionTitle: making aviation more efficient
+                    imageUrl: 'https://i.imgur.com/JJV5iw2.jpg'
+                    longDescription: >-
+                      Various technologies and operational practices can lower
+                      airplane emissions to some degree. They     include better
+                      engines, wingtips, and light weighting to improve fuel
+                      efficiency. Project Drawdown's analysis focuses on
+                      adoption of the latest and most fuel-efficient aircraft;
+                      retrofitting existing aircraft with winglets, newer
+                      engines, and lighter interiors; and retiring older
+                      aircraft early. Over thirty years, and for a net cost of
+                      $830-850 billion, 6.3-9.2 gigatons of carbon dioxide
+                      emissions can be avoided, saving $2.5-3.6 trillion on
+                      lifetime jet-fuel and operating costs. Other efficiency
+                      measures could provide additional emissions reductions and
+                      savings as over 80 percent of aircraft are converted.
+                    solutionSources:
+                      - 'https://drawdown.org/solutions/efficient-aviation'
+                    solutionType:
+                      - mitigation
+              examples:
+                Successful GET Shared Solution Details Response Body:
+                  value:
+                    solutionTitle: making aviation more efficient
+                    imageUrl: 'https://i.imgur.com/JJV5iw2.jpg'
+                    longDescription: >-
+                      Various technologies and operational practices can lower
+                      airplane emissions to some degree. They     include better
+                      engines, wingtips, and light weighting to improve fuel
+                      efficiency. Project Drawdown's analysis focuses on
+                      adoption of the latest and most fuel-efficient aircraft;
+                      retrofitting existing aircraft with winglets, newer
+                      engines, and lighter interiors; and retiring older
+                      aircraft early. Over thirty years, and for a net cost of
+                      $830-850 billion, 6.3-9.2 gigatons of carbon dioxide
+                      emissions can be avoided, saving $2.5-3.6 trillion on
+                      lifetime jet-fuel and operating costs. Other efficiency
+                      measures could provide additional emissions reductions and
+                      savings as over 80 percent of aircraft are converted.
+                    solutionSources:
+                      - 'https://drawdown.org/solutions/efficient-aviation'
+                    solutionType:
+                      - mitigation
+      operationId: 'get-alignment-shared-solution-:solutionIri'
+      description: Get the details for a shared solution when user b clicks 'Learn More'.
+  '/alignment/shared-impact/:impactIri':
+    get:
+      summary: Shared Impact Details - GET
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  effectTitle:
+                    type: string
+                  imageUrl:
+                    type: string
+                  longDescription:
+                    type: string
+                    minLength: 1
+                  effectSources:
+                    type: array
+                    items:
+                      required: []
+                      properties: {}
+                  relatedPersonalValues:
+                    type: array
+                    items:
+                      required: []
+                      properties: {}
+                required:
+                  - effectTitle
+                  - imageUrl
+                  - longDescription
+                  - effectSources
+                  - relatedPersonalValues
+                x-examples:
+                  example-1:
+                    effectTitle: ''
+                    imageUrl: ''
+                    longDescription: >-
+                      Tourism supports the livelihoods of an estimated one in
+                      ten people worldwide andaround 80% occurs around coastal
+                      destinations. Coral reefs are popular and exciting places
+                      for sightseeing, swimming, snorkelling, diving and
+                      boating. For example, Australia's Great Barrier Reef
+                      annually attracts 1.9 million visits, generates AUD$5.4
+                      billion from tourism and supports 54,000 jobs. Florida's
+                      Coral Reef has an annual estimated tourism value of $1.1
+                      billion and supports 71,000 jobs.
+
+
+                      Warming oceans due to climate change are causing increases
+                      in heatwaves occurring in the ocean (marine heatwaves).
+                      The frequency of these marine heatwaves has doubled since
+                      1982, increasing coral bleaching and destruction. Already
+                      over 50% of coral reefs have been lost. If yearly CO2
+                      emissions aren't reduced, in the future these heatwaves
+                      will occur 50 times more often than they do today, causing
+                      over 97% of all coral reefs to die off along with much of
+                      the coastal marine life they support. The loss of coral
+                      reefs makes coastal destinations less attractive to
+                      tourists and negatively affects local economies.
+                    effectSources:
+                      - >-
+                        https://www.bloomberg.com/graphics/2019-coral-reefs-at-risk
+                    relatedPersonalValues:
+                      - achievement
+                      - benevolence
+              examples:
+                Successful GET Shared Impact Details Response Body:
+                  value:
+                    effectTitle: ''
+                    imageUrl: ''
+                    longDescription: >-
+                      Tourism supports the livelihoods of an estimated one in
+                      ten people worldwide andaround 80% occurs around coastal
+                      destinations. Coral reefs are popular and exciting places
+                      for sightseeing, swimming, snorkelling, diving and
+                      boating. For example, Australia's Great Barrier Reef
+                      annually attracts 1.9 million visits, generates AUD$5.4
+                      billion from tourism and supports 54,000 jobs. Florida's
+                      Coral Reef has an annual estimated tourism value of $1.1
+                      billion and supports 71,000 jobs.
+
+
+                      Warming oceans due to climate change are causing increases
+                      in heatwaves occurring in the ocean (marine heatwaves).
+                      The frequency of these marine heatwaves has doubled since
+                      1982, increasing coral bleaching and destruction. Already
+                      over 50% of coral reefs have been lost. If yearly CO2
+                      emissions aren't reduced, in the future these heatwaves
+                      will occur 50 times more often than they do today, causing
+                      over 97% of all coral reefs to die off along with much of
+                      the coastal marine life they support. The loss of coral
+                      reefs makes coastal destinations less attractive to
+                      tourists and negatively affects local economies.
+                    effectSources:
+                      - >-
+                        https://www.bloomberg.com/graphics/2019-coral-reefs-at-risk
+                    relatedPersonalValues:
+                      - achievement
+                      - benevolence
+      operationId: 'get-alignment-shared-solution-:solutionIri'
+      description: Get the details for a shared impact when user b clicks 'Learn More'.
+    parameters: []
+  /user-account:
+    parameters: []
+    put:
+      summary: Update User Account - PUT
+      operationId: put-update-user
+      responses:
+        '201':
+          description: Created
+          headers: {}
+        '':
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    message: string
+          headers: {}
+      description: >-
+        Update basic user account data. Requires current email and password and
+        allows for updating any subset of basic user account data (email,
+        password, first name, last name).
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: 'credentials in format "Bearer {jwt_token}"'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                oldEmail:
+                  type: string
+                oldPassword:
+                  type: string
+                newEmail:
+                  type: string
+                newPassword:
+                  type: string
+                newFirstName:
+                  type: string
+                newLastName:
+                  type: string
+              required:
+                - oldEmail
+                - oldPassword
+            examples:
+              example-1:
+                value:
+                  oldEmail: email1@cm.com
+                  newEmail: email2@cm.com
+                  oldPassword: p4ssw0rd1
+                  newPassword: p4ssw0rd2
+                  newFirstName: First2
+                  newLastName: Last2
+          application/xml:
+            schema:
+              type: object
+              properties: {}
+          multipart/form-data:
+            schema:
+              type: object
+              properties: {}
+        description: ''
+  '/alignment/:alignmentScoresId/summary':
+    get:
+      summary: Alignment Summary - GET
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  userAName:
+                    type: string
+                    minLength: 1
+                  topMatchValue:
+                    type: string
+                    minLength: 1
+                  topMatchPercent:
+                    type: string
+                    minLength: 1
+                  sharedImpacts:
+                    type: array
+                    items:
+                      required: []
+                      properties: {}
+                  sharedSolutions:
+                    type: array
+                    items:
+                      required: []
+                      properties: {}
+                required:
+                  - userAName
+                  - topMatchValue
+                  - topMatchPercent
+                  - sharedImpacts
+                  - sharedSolutions
+                x-examples:
+                  example-1:
+                    userAName: Stevie
+                    topMatchValue: benevolence
+                    topMatchPercent: '90'
+                    sharedImpacts:
+                      - decrease in GDP
+                    sharedSolutions:
+                      - using electric cars
+                      - becoming a tester
+              examples:
+                Successful GET Alignment Summary Response Body:
+                  value:
+                    userAName: Stevie
+                    topMatchValue: benevolence
+                    topMatchPercent: '90'
+                    sharedImpacts:
+                      - decrease in GDP
+                    sharedSolutions:
+                      - using electric cars
+                      - becoming a tester
+      operationId: 'get-alignment-:alignmentScoresId-summary'
+      description: >-
+        For the user to see a summary of their alignment information and chosen
+        climate impact and solution topics to share with the user that invited
+        them to have a conversation.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
 components:
   schemas: {}
