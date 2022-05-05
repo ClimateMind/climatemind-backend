@@ -1,13 +1,21 @@
-from app.network_x_tools.network_x_utils import network_x_utils
+import pytest
+from flask import current_app
 
+from app.factories import AlignmentScoresFactory
 from app.feed.process_alignment_feed import (
+    get_aligned_effects,
     get_default_solutions_iris,
     get_solution_nodes,
+)
+from app.feed.constants import (
     CONVERSATION_SOLUTION_NAME,
     POPULAR_SOLUTION_NAMES,
     POPULAR_SOLUTION_COUNT,
     UNPOPULAR_SOLUTION_COUNT,
+    ALIGNMENT_EFFECTS_COUNT,
 )
+from app.network_x_tools.network_x_utils import network_x_utils
+from app.personal_values.enums import PersonalValue
 
 
 def test_get_default_solutions_iris():
@@ -51,3 +59,16 @@ def test_get_default_solutions_iris():
     assert (
         len(unpopular_iris) == UNPOPULAR_SOLUTION_COUNT
     ), "Result contain proper unpopular solution count"
+
+
+@pytest.mark.ontology
+@pytest.mark.parametrize("personal_value", [v.key for v in PersonalValue])
+def test_get_aligned_effects(personal_value):
+    alignment_score_arguments = {f"{personal_value}_alignment": 0.99}
+    alignment_score = AlignmentScoresFactory(**alignment_score_arguments)
+
+    aligned_effects = get_aligned_effects(
+        alignment_score.alignment_scores_uuid,
+        ALIGNMENT_EFFECTS_COUNT,
+    )
+    assert len(aligned_effects) == ALIGNMENT_EFFECTS_COUNT

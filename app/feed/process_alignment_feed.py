@@ -1,27 +1,18 @@
-from app import db
-from app.errors.errors import DatabaseError
-from app.models import AlignmentFeed, Scores, Users, Conversations
+import uuid
+from random import sample, shuffle
+
 from app.alignment.utils import *
+from app.errors.errors import OntologyError
+from app.feed.constants import (
+    CONVERSATION_SOLUTION_NAME,
+    POPULAR_SOLUTION_NAMES,
+    POPULAR_SOLUTION_COUNT,
+    UNPOPULAR_SOLUTION_COUNT,
+    ALIGNMENT_EFFECTS_COUNT,
+)
+from app.network_x_tools.network_x_utils import network_x_utils
 from app.scoring.build_localised_acyclic_graph import get_node_id
 from app.scoring.process_alignment_scores import *
-from flask import current_app
-from random import sample, shuffle
-from app.network_x_tools.network_x_utils import network_x_utils
-
-CONVERSATION_SOLUTION_NAME = "effective communication framing"
-POPULAR_SOLUTION_NAMES = {
-    "enact carbon tax policy (revenue neutral)",
-    "reducing food waste",
-    "composting",
-    "eating lower down the food-chain (plant-rich diets)",
-    "producing electricity via onshore wind turbines",
-    "using high-efficiency heat pumps",
-    "using improved clean cookstoves",
-    "producing electricity via distributed solar photovoltaics",
-    "making aviation more efficient",
-}
-POPULAR_SOLUTION_COUNT = 4
-UNPOPULAR_SOLUTION_COUNT = 2
 
 
 def create_alignment_feed(
@@ -39,7 +30,7 @@ def create_alignment_feed(
 
     # TO DO make a contant variable so 3 isn't hard coded as the number of effects to show to user B.
     aligned_effects_sorted_by_shared_values = get_aligned_effects(
-        alignment_scores_uuid, 3
+        alignment_scores_uuid, ALIGNMENT_EFFECTS_COUNT
     )
 
     sorted_aligned_effects = sort_aligned_effects_by_user_b_values(
@@ -66,7 +57,7 @@ def create_alignment_feed(
         )
 
 
-def get_aligned_effects(alignment_scores_uuid, n_nodes):
+def get_aligned_effects(alignment_scores_uuid: uuid.UUID, n_nodes: int) -> list:
     """
     Create a sorted dictionary of IRIs and dot products for impacts/effects from the ontology that are positively associated with the top aligned personal
     value for users A and B (calculated based on comparison of their quiz results).
@@ -96,11 +87,12 @@ def get_aligned_effects(alignment_scores_uuid, n_nodes):
     for node in G.nodes:
         current_node = G.nodes[node]
 
-        if (
-            "risk" in current_node["all classes"]
-            and "test ontology" in current_node["all classes"]
-            and not all([value == None for value in current_node["personal_values_10"]])
-        ):
+        is_risky = "risk" in current_node["all classes"]
+        is_test_ontology = "test ontology" in current_node["all classes"]
+        node_without_personal_values = all(
+            [value == None for value in current_node["personal_values_10"]]
+        )
+        if is_risky and is_test_ontology and not node_without_personal_values:
             associated_personal_values = map_associated_personal_values(
                 current_node["personal_values_10"]
             )
@@ -119,24 +111,28 @@ def get_aligned_effects(alignment_scores_uuid, n_nodes):
                 )
                 aligned_effects[get_node_id(current_node)] = dot_product
 
-    aligned_effects = dict(
-        sorted(aligned_effects.items(), key=lambda x: x[1], reverse=True)
-    )
+    if aligned_effects:
+        aligned_effects = dict(
+            sorted(aligned_effects.items(), key=lambda x: x[1], reverse=True)
+        )
 
-    aligned_effects_keys = list(aligned_effects.keys())
+        aligned_effects_keys = list(aligned_effects.keys())
 
-    aligned_effects_top_keys = []
-    if len(aligned_effects_keys) > n_nodes:
-        aligned_effects_top_keys = aligned_effects_keys[0:n_nodes]
+        if len(aligned_effects_keys) > n_nodes:
+            aligned_effects_top_keys = aligned_effects_keys[0:n_nodes]
+        else:
+            aligned_effects_top_keys = aligned_effects_keys
+
+        # TODO: delete this check after expansion of the ontology. This repeats the topics until the list is n long as needed.
+        aligned_effects_key_extra = list(aligned_effects.keys())[1]
+        while len(aligned_effects_keys) < n_nodes:
+            aligned_effects_top_keys.append(aligned_effects_key_extra)
+
+        return aligned_effects_top_keys
     else:
-        aligned_effects_top_keys = aligned_effects_keys
-
-    # TODO: delete this check after expansion of the ontology. This repeats the topics until the list is n long as needed.
-    aligned_effects_key_extra = list(aligned_effects.keys())[1]
-    while len(aligned_effects_keys) < n_nodes:
-        aligned_effects_top_keys.append(aligned_effects_key_extra)
-
-    return aligned_effects_top_keys
+        raise OntologyError(
+            message=f"{top_aligned_value} not found in any node associated personal values."
+        )
 
 
 def assign_alignment_iris(alignment_feed, field_type, iris):

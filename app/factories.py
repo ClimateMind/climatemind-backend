@@ -1,4 +1,5 @@
 import random
+import typing
 
 import factory
 from faker import Factory as FakerFactory
@@ -7,6 +8,7 @@ from werkzeug.security import generate_password_hash
 from app.conversations.routes import ConversationStatus
 from app.models import Users, Sessions, Scores, Conversations, AlignmentScores
 from app.personal_values.enums import PersonalValue
+from app.scoring.process_alignment_scores import get_max, as_percent
 
 faker = FakerFactory.create()
 
@@ -14,8 +16,8 @@ faker = FakerFactory.create()
 class UsersFactory(factory.alchemy.SQLAlchemyModelFactory):
     first_name = factory.LazyAttribute(lambda x: faker.first_name())
     last_name = factory.LazyAttribute(lambda x: faker.last_name())
-    user_uuid = factory.LazyAttribute(lambda x: faker.uuid4().upper())
-    user_email = factory.LazyAttribute(lambda x: faker.email())
+    user_uuid = factory.Sequence(lambda x: faker.uuid4().upper())
+    user_email = factory.Sequence(lambda x: faker.email())
     password = factory.LazyAttribute(lambda x: faker.password())
     password_hash = factory.LazyAttribute(lambda o: generate_password_hash(o.password))
 
@@ -27,7 +29,7 @@ class UsersFactory(factory.alchemy.SQLAlchemyModelFactory):
 class SessionsFactory(factory.alchemy.SQLAlchemyModelFactory):
     ip_address = factory.LazyAttribute(lambda x: faker.ipv4())
     user = factory.SubFactory(UsersFactory)
-    session_uuid = factory.LazyAttribute(lambda x: faker.uuid4().upper())
+    session_uuid = factory.Sequence(lambda x: faker.uuid4().upper())
     session_created_timestamp = factory.LazyAttribute(lambda x: faker.date_time())
 
     class Meta:
@@ -35,7 +37,7 @@ class SessionsFactory(factory.alchemy.SQLAlchemyModelFactory):
 
 
 class ScoresFactory(factory.alchemy.SQLAlchemyModelFactory):
-    quiz_uuid = factory.LazyAttribute(lambda x: faker.uuid4().upper())
+    quiz_uuid = factory.Sequence(lambda x: faker.uuid4().upper())
     scores_created_timestamp = factory.LazyAttribute(lambda x: faker.date_time())
     session = factory.SubFactory(SessionsFactory)
     postal_code = factory.LazyAttribute(lambda x: faker.postcode())
@@ -56,7 +58,7 @@ class ScoresFactory(factory.alchemy.SQLAlchemyModelFactory):
 
 
 class ConversationsFactory(factory.alchemy.SQLAlchemyModelFactory):
-    conversation_uuid = factory.LazyAttribute(lambda x: faker.uuid4().upper())
+    conversation_uuid = factory.Sequence(lambda x: faker.uuid4().upper())
     sender_user = factory.SubFactory(UsersFactory)
     sender_session = factory.SubFactory(SessionsFactory)
     receiver_name = factory.LazyAttribute(lambda x: faker.name())
@@ -71,12 +73,9 @@ class ConversationsFactory(factory.alchemy.SQLAlchemyModelFactory):
 
 
 class AlignmentScoresFactory(factory.alchemy.SQLAlchemyModelFactory):
-    alignment_scores_uuid = factory.LazyAttribute(lambda x: faker.uuid4().upper())
+    alignment_scores_uuid = factory.Sequence(lambda x: faker.uuid4().upper())
+    # FIXME: should be based on conversation
     overall_similarity_score = factory.LazyAttribute(lambda x: faker.pyfloat())
-    top_match_percent = factory.LazyAttribute(lambda x: faker.pyfloat(0, 2, True))
-    top_match_value = factory.LazyAttribute(
-        lambda x: random.choice([v.key for v in PersonalValue])
-    )
 
     security_alignment = factory.LazyAttribute(lambda x: faker.pyfloat(0, 1, True))
     conformity_alignment = factory.LazyAttribute(lambda x: faker.pyfloat(0, 1, True))
@@ -91,5 +90,23 @@ class AlignmentScoresFactory(factory.alchemy.SQLAlchemyModelFactory):
     achievement_alignment = factory.LazyAttribute(lambda x: faker.pyfloat(0, 1, True))
     power_alignment = factory.LazyAttribute(lambda x: faker.pyfloat(0, 1, True))
 
+    top_match_percent = factory.LazyAttribute(
+        lambda o: as_percent(calculate_alignment_score_top_match(o)[1])
+    )
+    top_match_value = factory.LazyAttribute(
+        lambda o: calculate_alignment_score_top_match(o)[0]
+    )
+
     class Meta:
         model = AlignmentScores
+
+
+def calculate_alignment_score_top_match(
+    alignment_score: AlignmentScores,
+) -> typing.Tuple[str, float]:
+    alignment_map = dict()
+    for personal_value in PersonalValue:
+        alignment_map[personal_value.key] = getattr(
+            alignment_score, f"{personal_value.key}_alignment"
+        )
+    return get_max(alignment_map)
