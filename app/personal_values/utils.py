@@ -3,6 +3,7 @@ from json import load
 from flask import jsonify
 
 
+# TODO: replace with PersonalValue enum if possible
 def get_value_descriptions_map():
     """Get a name->description dict for all values."""
     try:
