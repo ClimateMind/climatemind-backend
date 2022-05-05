@@ -37,6 +37,8 @@ def create_alignment_scores(conversation_uuid, quiz_uuid, alignment_scores_uuid)
 
         alignment_scores = AlignmentScores()
         alignment_scores.alignment_scores_uuid = alignment_scores_uuid
+        # FIXME: could be a problem if you will change personal values names
+        #  create mapping in PersonalValue
         for name in value_names:
             setattr(alignment_scores, name + "_alignment", alignment_map[name])
         alignment_scores.top_match_value = max_name

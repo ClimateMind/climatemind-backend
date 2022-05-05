@@ -15,7 +15,11 @@ class InvalidUsageError(CustomError):
 
 
 class DatabaseError(CustomError):
-    status_code = 500
+    pass
+
+
+class OntologyError(CustomError):
+    pass
 
 
 class NotInDatabaseError(CustomError):
