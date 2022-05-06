@@ -80,7 +80,7 @@ def get_aligned_effects(alignment_scores_uuid: uuid.UUID, n_nodes: int) -> list:
         .filter(AlignmentScores.alignment_scores_uuid == alignment_scores_uuid)
         .one_or_none()
     )
-    top_aligned_value = aligned_scores.top_match_value
+    top_aligned_value = aligned_scores.top_match_value.replace('_', '-')
     aligned_scores_array = np.array(get_aligned_scores(aligned_scores))
     transformed_aligned_scores = transform_aligned_scores(aligned_scores_array)
 
