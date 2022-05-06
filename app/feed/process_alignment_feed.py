@@ -87,12 +87,12 @@ def get_aligned_effects(alignment_scores_uuid: uuid.UUID, n_nodes: int) -> list:
     for node in G.nodes:
         current_node = G.nodes[node]
 
-        is_risky = "risk" in current_node["all classes"]
+        is_risk_class = "risk" in current_node["all classes"]
         is_test_ontology = "test ontology" in current_node["all classes"]
         node_without_personal_values = all(
             [value == None for value in current_node["personal_values_10"]]
         )
-        if is_risky and is_test_ontology and not node_without_personal_values:
+        if is_risk_class and is_test_ontology and not node_without_personal_values:
             associated_personal_values = map_associated_personal_values(
                 current_node["personal_values_10"]
             )
@@ -110,7 +110,6 @@ def get_aligned_effects(alignment_scores_uuid: uuid.UUID, n_nodes: int) -> list:
                     transformed_aligned_scores, adjusted_node_value_associations_10
                 )
                 aligned_effects[get_node_id(current_node)] = dot_product
-
     if aligned_effects:
         aligned_effects = dict(
             sorted(aligned_effects.items(), key=lambda x: x[1], reverse=True)
