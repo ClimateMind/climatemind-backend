@@ -11,6 +11,8 @@ from app import auto
 from app.personal_values.normalize import normalize_scores
 from flask_cors import cross_origin
 
+from app.personal_values.utils import get_value_descriptions_map
+
 
 @bp.route("/personal_values", methods=["GET"])
 @cross_origin()
@@ -25,26 +27,11 @@ def get_personal_values():
     check_uuid_in_db(quiz_uuid, uuidType.QUIZ)
 
     scores = Scores.query.filter_by(quiz_uuid=quiz_uuid).first()
-
-    personal_values_categories = [
-        PersonalValue.SECURITY.key,
-        PersonalValue.CONFORMITY.key,
-        PersonalValue.BENEVOLENCE.key,
-        PersonalValue.TRADITION.key,
-        PersonalValue.UNIVERSALISM.key,
-        PersonalValue.SELF_DIRECTION.key,
-        PersonalValue.STIMULATION.key,
-        PersonalValue.HEDONISM.key,
-        PersonalValue.ACHIEVEMENT.key,
-        PersonalValue.POWER.key,
-    ]
-
     scores = scores.__dict__
 
     # All scores and associated values for response
     all_scores = [
-        {"personalValue": key, "score": scores[key]}
-        for key in personal_values_categories
+        {"personalValue": v.key, "score": scores[v.key]} for v in PersonalValue
     ]
 
     normalized_scores = normalize_scores(all_scores)
@@ -53,14 +40,7 @@ def get_personal_values():
     top_scores = sorted(all_scores, key=lambda value: value["score"], reverse=True)[:3]
 
     # Fetch descriptions
-    try:
-        file = os.path.join(
-            os.getcwd(), "app/personal_values/static", "value_descriptions.json"
-        )
-        with open(file) as f:
-            value_descriptions = load(f)
-    except FileNotFoundError:
-        return jsonify({"error": "Value descriptions file not found"}), 404
+    value_descriptions = get_value_descriptions_map()
 
     # Add descriptions for top 3 values to return
     values_and_descriptions = [
