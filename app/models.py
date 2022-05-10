@@ -157,8 +157,6 @@ class AlignmentScores(db.Model):
     __tablename__ = "alignment_scores"
     alignment_scores_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
     overall_similarity_score = db.Column(db.Float)
-    top_match_percent = db.Column(db.Float)
-    top_match_value = db.Column(db.String(255))
     security_alignment = db.Column(db.Float)
     conformity_alignment = db.Column(db.Float)
     benevolence_alignment = db.Column(db.Float)
@@ -169,6 +167,13 @@ class AlignmentScores(db.Model):
     hedonism_alignment = db.Column(db.Float)
     achievement_alignment = db.Column(db.Float)
     power_alignment = db.Column(db.Float)
+
+    top_match_percent = db.Column(db.Float)
+    top_match_value = db.Column(db.String(255))
+
+    @property
+    def dashed_top_match_value(self):
+        return self.top_match_value.replace("_", "-")
 
 
 class AlignmentFeed(db.Model):

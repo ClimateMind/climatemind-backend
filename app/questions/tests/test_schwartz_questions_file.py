@@ -20,9 +20,17 @@ def test_schwartz_questions_files_exist():
 
 
 def test_check_schwartz_questions_personal_values_enum():
-    personal_values = [v.dashed_key for v in PersonalValue]
+    personal_values = PersonalValue.get_all_keys(dashed=True)
     enum_from_file = JSON_SCHEMA["$defs"]["question"]["properties"]["value"]["enum"]
     assert set(personal_values) == set(enum_from_file)
+
+
+def test_schwartz_questions_set_one_ids_equal_to_personal_value_ids():
+    set_one = JSON_FILE["SetOne"]
+    for json_personal_value in set_one:
+        raw_name = json_personal_value["value"]
+        enum_name = raw_name.upper().replace("-", "_")
+        assert PersonalValue[enum_name] == json_personal_value["id"]
 
 
 def test_validate_schwartz_question_file_and_schema():

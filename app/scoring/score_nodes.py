@@ -55,18 +55,7 @@ class score_nodes:
 
         Used in simple_scoring to compute a dot product.
         """
-        return [
-            self.USER_SCORES[PersonalValue.ACHIEVEMENT.key],
-            self.USER_SCORES[PersonalValue.BENEVOLENCE.key],
-            self.USER_SCORES[PersonalValue.CONFORMITY.key],
-            self.USER_SCORES[PersonalValue.HEDONISM.key],
-            self.USER_SCORES[PersonalValue.POWER.key],
-            self.USER_SCORES[PersonalValue.SECURITY.key],
-            self.USER_SCORES[PersonalValue.SELF_DIRECTION.key],
-            self.USER_SCORES[PersonalValue.STIMULATION.key],
-            self.USER_SCORES[PersonalValue.TRADITION.key],
-            self.USER_SCORES[PersonalValue.UNIVERSALISM.key],
-        ]
+        return [self.USER_SCORES[v.key] for v in PersonalValue]
 
     def simple_scoring(self):
         """Each climate effects node will have personal values associated with it. These
