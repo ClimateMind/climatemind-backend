@@ -44,6 +44,12 @@ class DevelopmentConfig(BaseConfig):
     )
     SCHWARTZ_QUESTIONS_FILE = f"{SCHWARTZ_QUESTIONS_PATH}/schwartz_questions.json"
 
+    VALUE_DESCRIPTIONS_PATH = os.path.join(os.getcwd(), "app/personal_values/static")
+    VALUE_DESCRIPTIONS_SCHEMA = (
+        f"{VALUE_DESCRIPTIONS_PATH}/value_descriptions.schema.json"
+    )
+    VALUE_DESCRIPTIONS_FILE = f"{VALUE_DESCRIPTIONS_PATH}/value_descriptions.json"
+
     nx_processor = network_x_processor()
     G = nx_processor.get_graph()
 

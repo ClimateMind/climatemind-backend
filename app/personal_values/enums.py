@@ -1,6 +1,8 @@
 import typing
 from enum import IntEnum
 
+DEFAULT_SEPARATOR = "_"
+
 
 class PersonalValue(IntEnum):
     """The order is equal is ontology vector order,
@@ -23,11 +25,11 @@ class PersonalValue(IntEnum):
 
     @property
     def dashed_key(self) -> str:
-        return self.key.replace("_", "-")
+        return self.separated_key(sep="-")
+
+    def separated_key(self, sep: str = DEFAULT_SEPARATOR) -> str:
+        return self.key.replace(DEFAULT_SEPARATOR, sep)
 
     @classmethod
-    def get_all_keys(cls, dashed=False) -> typing.List[str]:
-        if dashed:
-            return [v.dashed_key for v in PersonalValue]
-        else:
-            return [v.key for v in PersonalValue]
+    def get_all_keys(cls, sep: str = DEFAULT_SEPARATOR) -> typing.List[str]:
+        return [v.separated_key(sep) for v in PersonalValue]

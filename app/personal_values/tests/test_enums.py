@@ -1,4 +1,4 @@
-from app.personal_values.enums import PersonalValue
+from app.personal_values.enums import PersonalValue, DEFAULT_SEPARATOR
 
 
 def test_personal_values_sorting():
@@ -11,3 +11,28 @@ def test_personal_values_sorting():
     assert keys_order == sorted_keys_order, "Enum should by sorted by key"
 
     assert sorted_keys_order == PersonalValue.get_all_keys(), "Helper method order"
+
+
+def test_personal_value_separation():
+    pv_with_separator = PersonalValue.SELF_DIRECTION
+    assert pv_with_separator.key == pv_with_separator.separated_key(
+        DEFAULT_SEPARATOR
+    ), "Default separation is underscore"
+
+    dashed_key = pv_with_separator.key.replace("_", "-")
+    assert dashed_key == pv_with_separator.separated_key(
+        "-"
+    ), "Default separation should be replaced with dash by method"
+    assert (
+        dashed_key == pv_with_separator.dashed_key
+    ), "Default separation should be replaced with dash by property"
+
+    spaced_key = pv_with_separator.key.replace("_", " ")
+    assert spaced_key == pv_with_separator.separated_key(
+        sep=" "
+    ), "Default separation should be replaced with dash"
+
+    pv_without_separator = PersonalValue.ACHIEVEMENT
+    assert pv_without_separator.key == pv_without_separator.separated_key(
+        "*&^%"
+    ), "Should not affect PersonalValue without separator"
