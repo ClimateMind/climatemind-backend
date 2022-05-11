@@ -11,7 +11,7 @@ from app import auto
 from app.personal_values.normalize import normalize_scores
 from flask_cors import cross_origin
 
-from app.personal_values.utils import get_value_descriptions_map
+from app.personal_values.utils import get_value_descriptions_file_data
 
 
 @bp.route("/personal_values", methods=["GET"])
@@ -40,7 +40,7 @@ def get_personal_values():
     top_scores = sorted(all_scores, key=lambda value: value["score"], reverse=True)[:3]
 
     # Fetch descriptions
-    value_descriptions = get_value_descriptions_map()
+    value_descriptions = get_value_descriptions_file_data()
 
     # Add descriptions for top 3 values to return
     values_and_descriptions = [
