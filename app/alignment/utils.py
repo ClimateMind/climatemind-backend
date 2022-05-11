@@ -16,7 +16,7 @@ from app.models import (
 )
 from app.network_x_tools.network_x_utils import network_x_utils
 from app.personal_values.enums import PersonalValue
-from app.personal_values.utils import get_value_descriptions_map
+from app.personal_values.utils import get_value_descriptions_file_data
 from app.scoring.build_localised_acyclic_graph import get_node_id
 from app.scoring.process_scores import get_scores_list
 
@@ -54,7 +54,7 @@ def build_alignment_scores_response(alignment_scores_uuid):
         .one_or_none()
     )
 
-    values_map = get_value_descriptions_map()
+    values_map = get_value_descriptions_file_data()
     alignment_scores = [
         {
             "description": value_map["description"],
