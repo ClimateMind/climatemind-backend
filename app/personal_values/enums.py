@@ -5,7 +5,7 @@ DEFAULT_SEPARATOR = "_"
 
 
 class PersonalValue(IntEnum):
-    """The order is equal is ontology vector order,
+    """The order is equal to the ontology vector order,
     so it's safe to use list(PersonalValue)"""
 
     ACHIEVEMENT = 8
