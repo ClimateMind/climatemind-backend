@@ -1,3 +1,5 @@
+import uuid
+
 import numpy as np
 from flask import current_app
 from sklearn import preprocessing
@@ -21,7 +23,7 @@ from app.scoring.build_localised_acyclic_graph import get_node_id
 from app.scoring.process_scores import get_scores_list
 
 
-def build_alignment_scores_response(alignment_scores_uuid):
+def build_alignment_scores_response(alignment_scores_uuid: uuid.UUID) -> dict:
     """
     Deal with database interactions to provide response for GET alignment scores request.
 
@@ -39,7 +41,7 @@ def build_alignment_scores_response(alignment_scores_uuid):
     - user b's name
     """
 
-    (alignment, userB_name, userA_name) = (
+    (alignment_score, userB_name, userA_name) = (
         db.session.query(AlignmentScores, Conversations.receiver_name, Users.first_name)
         .join(
             UserBJourney,
@@ -54,24 +56,27 @@ def build_alignment_scores_response(alignment_scores_uuid):
         .one_or_none()
     )
 
-    values_map = get_value_descriptions_file_data()
-    alignment_scores = [
+    personal_value_descriptions = get_value_descriptions_file_data()
+    personal_values_data_with_scores = [
         {
-            "description": value_map["description"],
-            "id": value_id,
-            "name": value_map["name"],
-            "shortDescription": value_map["shortDescription"],
-            "score": get_alignment_value(alignment, value_id),
+            "description": personal_value_data["description"],
+            "id": personal_value_key,
+            "name": personal_value_data["name"],
+            "shortDescription": personal_value_data["shortDescription"],
+            "score": get_alignment_value(alignment_score, personal_value_key),
         }
-        for (value_id, value_map) in values_map.items()
+        for (
+            personal_value_key,
+            personal_value_data,
+        ) in personal_value_descriptions.items()
     ]
-    alignment_scores.sort(key=lambda x: -x["score"])
+    personal_values_data_with_scores.sort(key=lambda x: -x["score"])
 
     response = {
-        "overallSimilarityScore": as_percent(alignment.overall_similarity_score),
-        "topMatchPercent": alignment.top_match_percent,
-        "topMatchValue": alignment.top_match_value,
-        "valueAlignment": alignment_scores,
+        "overallSimilarityScore": as_percent(alignment_score.overall_similarity_score),
+        "topMatchPercent": alignment_score.top_match_percent,
+        "topMatchValue": alignment_score.top_match_value,
+        "valueAlignment": personal_values_data_with_scores,
         "userAName": userA_name,
         "userBName": userB_name,
     }
@@ -79,12 +84,12 @@ def build_alignment_scores_response(alignment_scores_uuid):
     return response
 
 
-def get_alignment_value(alignment, value_name):
+def get_alignment_value(alignment: AlignmentScores, value_name: str) -> int:
     """Get the alignment score for the value, as a percentage."""
     return as_percent(getattr(alignment, value_name + "_alignment"))
 
 
-def as_percent(number):
+def as_percent(number: float) -> int:
     """Turn number between 0 and 1 to a percentage."""
     return round(100.0 * number)
 
