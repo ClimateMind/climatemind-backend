@@ -6,7 +6,17 @@ from faker import Factory as FakerFactory
 from werkzeug.security import generate_password_hash
 
 from app.conversations.routes import ConversationStatus
-from app.models import Users, Sessions, Scores, Conversations, AlignmentScores
+from app.models import (
+    Users,
+    Sessions,
+    Scores,
+    Conversations,
+    AlignmentScores,
+    UserBJourney,
+    AlignmentFeed,
+    EffectChoice,
+    SolutionChoice,
+)
 from app.personal_values.enums import PersonalValue
 from app.scoring.process_alignment_scores import get_max, as_percent
 
@@ -110,3 +120,52 @@ def calculate_alignment_score_top_match(
             alignment_score, f"{personal_value.key}_alignment"
         )
     return get_max(alignment_map)
+
+
+class EffectChoiceFactory(factory.alchemy.SQLAlchemyModelFactory):
+    effect_choice_uuid = factory.Sequence(lambda x: faker.uuid4().upper())
+    effect_choice_1_iri = factory.LazyAttribute(lambda x: faker.pystr(20, 50))
+
+    class Meta:
+        model = EffectChoice
+
+
+class SolutionChoiceFactory(factory.alchemy.SQLAlchemyModelFactory):
+    solution_choice_uuid = factory.Sequence(lambda x: faker.uuid4().upper())
+    solution_choice_1_iri = factory.LazyAttribute(lambda x: faker.pystr(20, 50))
+    solution_choice_2_iri = factory.LazyAttribute(lambda x: faker.pystr(20, 50))
+
+    class Meta:
+        model = SolutionChoice
+
+
+class AlignmentFeedFactory(factory.alchemy.SQLAlchemyModelFactory):
+    alignment_feed_uuid = factory.Sequence(lambda x: faker.uuid4().upper())
+
+    aligned_effect_1_iri = factory.LazyAttribute(lambda x: faker.pystr(20, 50))
+    aligned_effect_2_iri = factory.LazyAttribute(lambda x: faker.pystr(20, 50))
+    aligned_effect_3_iri = factory.LazyAttribute(lambda x: faker.pystr(20, 50))
+
+    aligned_solution_1_iri = factory.LazyAttribute(lambda x: faker.pystr(20, 50))
+    aligned_solution_2_iri = factory.LazyAttribute(lambda x: faker.pystr(20, 50))
+    aligned_solution_3_iri = factory.LazyAttribute(lambda x: faker.pystr(20, 50))
+    aligned_solution_4_iri = factory.LazyAttribute(lambda x: faker.pystr(20, 50))
+    aligned_solution_5_iri = factory.LazyAttribute(lambda x: faker.pystr(20, 50))
+    aligned_solution_6_iri = factory.LazyAttribute(lambda x: faker.pystr(20, 50))
+    aligned_solution_7_iri = factory.LazyAttribute(lambda x: faker.pystr(20, 50))
+
+    class Meta:
+        model = AlignmentFeed
+
+
+class UserBJourneyFactory(factory.alchemy.SQLAlchemyModelFactory):
+    conversation = factory.SubFactory(ConversationsFactory)
+    quiz = factory.SubFactory(ScoresFactory)
+    alignment_scores = factory.SubFactory(AlignmentScoresFactory)
+    alignment_feed = factory.SubFactory(AlignmentFeedFactory)
+    effect_choice = factory.SubFactory(EffectChoiceFactory)
+    solution_choice = factory.SubFactory(SolutionChoiceFactory)
+    consent = factory.LazyAttribute(lambda obj: obj.conversation.user_b_share_consent)
+
+    class Meta:
+        model = UserBJourney
