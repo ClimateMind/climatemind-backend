@@ -1,4 +1,5 @@
 from app import db
+from app.common.math_utils import as_percent
 from app.errors.errors import DatabaseError
 from app.personal_values.enums import PersonalValue
 from app.models import AlignmentScores, Conversations, Scores, Users
@@ -79,11 +80,6 @@ def get_sorted_alignment_map(alignment_map):
 def get_max(alignment_map):
     """Find the max alignment score with its personal value name."""
     return sorted(alignment_map.items(), key=lambda pair: -pair[1])[0]
-
-
-def as_percent(number):
-    """Turn number between 0 and 1 to a percentage, rounded to one decimal point."""
-    return round(100.0 * number, 1)
 
 
 def calculate_match(rank1, rank2):
