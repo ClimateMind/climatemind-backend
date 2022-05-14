@@ -18,7 +18,8 @@ from app.models import (
     SolutionChoice,
 )
 from app.personal_values.enums import PersonalValue
-from app.scoring.process_alignment_scores import get_max, as_percent
+from app.scoring.process_alignment_scores import get_max
+from app.common.math_utils import as_percent
 
 faker = FakerFactory.create()
 
