@@ -5,11 +5,11 @@ from flask import current_app
 from sklearn import preprocessing
 
 from app import db
+from app.common.math_utils import as_percent
 from app.errors.errors import DatabaseError, InvalidUsageError, NotInDatabaseError
 from app.models import (
     AlignmentScores,
     EffectChoice,
-    Scores,
     SolutionChoice,
     UserBJourney,
     Conversations,
@@ -87,11 +87,6 @@ def build_alignment_scores_response(alignment_scores_uuid: uuid.UUID) -> dict:
 def get_alignment_value(alignment: AlignmentScores, value_name: str) -> int:
     """Get the alignment score for the value, as a percentage."""
     return as_percent(getattr(alignment, value_name + "_alignment"))
-
-
-def as_percent(number: float) -> int:
-    """Turn number between 0 and 1 to a percentage."""
-    return round(100.0 * number)
 
 
 def build_shared_impacts_response(alignment_scores_uuid):
