@@ -560,7 +560,7 @@ def build_alignment_summary_response(alignment_scores_uuid):
     return response
 
 
-def get_aligned_scores(alignment_scores):
+def get_aligned_scores_alignments(alignment_scores: AlignmentScores) -> list:
     """Fetch user a and b's aligned scores for each personal value from the db."""
 
     aligned_scores = []
