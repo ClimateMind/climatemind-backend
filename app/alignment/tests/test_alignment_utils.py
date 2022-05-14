@@ -3,10 +3,10 @@ import pytest
 from app.alignment.utils import (
     get_dashed_personal_values_names_from_vector,
     build_alignment_scores_response,
+    get_aligned_scores_alignments,
 )
 from app.common.math_utils import as_percent
-from app.errors.errors import NotInDatabaseError
-from app.factories import UserBJourneyFactory, faker
+from app.factories import UserBJourneyFactory, AlignmentScoresFactory
 from app.personal_values.enums import PersonalValue
 
 
@@ -79,3 +79,20 @@ def test_build_alignment_scores_response():
 )
 def test_as_percent(number, expected_percent):
     assert as_percent(number) == expected_percent
+
+
+def test_get_aligned_scores_alignments():
+    aligned_score = AlignmentScoresFactory()
+    aligned_scores_map = {
+        field.replace("_alignment", ""): score
+        for field, score in aligned_score.__dict__.items()
+        if field.endswith("_alignment")
+    }
+    expected_aligned_scores_alignments = []
+    for key in sorted(aligned_scores_map):
+        expected_aligned_scores_alignments.append(aligned_scores_map[key])
+
+    aligned_scores_alignments = get_aligned_scores_alignments(aligned_score)
+    assert (
+        aligned_scores_alignments == expected_aligned_scores_alignments
+    ), "All alignments should be returned in alphabetical order"
