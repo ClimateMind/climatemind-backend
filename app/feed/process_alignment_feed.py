@@ -28,7 +28,6 @@ def create_alignment_feed(
     alignment_feed_uuid (UUID) - uuid created when post alignment endpoint is used
     """
 
-    # TO DO make a contant variable so 3 isn't hard coded as the number of effects to show to user B.
     aligned_effects_sorted_by_shared_values = get_aligned_effects(
         alignment_scores_uuid, ALIGNMENT_EFFECTS_COUNT
     )
@@ -43,6 +42,7 @@ def create_alignment_feed(
         alignment_feed.aligned_effect_1_iri = sorted_aligned_effects[0]
         alignment_feed.aligned_effect_2_iri = sorted_aligned_effects[1]
         alignment_feed.aligned_effect_3_iri = sorted_aligned_effects[2]
+
         temporary_solutions_iris = get_default_solutions_iris()
         assign_alignment_iris(
             alignment_feed,
@@ -81,7 +81,7 @@ def get_aligned_effects(alignment_scores_uuid: uuid.UUID, n_nodes: int) -> list:
         .one_or_none()
     )
     dashed_top_aligned_value = aligned_scores.dashed_top_match_value
-    aligned_scores_array = np.array(get_aligned_scores(aligned_scores))
+    aligned_scores_array = np.array(get_aligned_scores_alignments(aligned_scores))
     transformed_aligned_scores = transform_aligned_scores(aligned_scores_array)
 
     for node in G.nodes:
