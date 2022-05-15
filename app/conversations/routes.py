@@ -3,6 +3,7 @@ from app import db
 from app.conversations.utils import (
     build_single_conversation_response,
     update_consent_choice,
+    build_selected_topics_response,
 )
 from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from app.models import Users, Conversations
@@ -205,3 +206,31 @@ def post_consent(conversation_uuid):
     send_user_b_shared_email(conversation_uuid)
 
     return jsonify(response), 201
+
+
+@bp.route("/conversation/<conversation_uuid>/topics", methods=["GET"])
+@cross_origin()
+def get_topics(conversation_uuid):
+    """Get the topics selected by user B from their alignment with user A.
+
+    Includes both effects and solutions in the response body. Based on the current design, there is
+    always one effect and two solutions.
+
+    Also includes session uuid validation and format checking.
+
+    Parameters
+    ===========
+    conversation_uuid - (UUID) the unique id for the conversation
+
+    Returns
+    ===========
+    A dict of user B's selected effects and solutions.
+
+    """
+    session_uuid = request.headers.get("X-Session-Id")
+    validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    response = build_selected_topics_response(conversation_uuid)
+
+    return jsonify(response), 200
