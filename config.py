@@ -52,6 +52,7 @@ class DevelopmentConfig(BaseConfig):
 
     nx_processor = network_x_processor()
     G = nx_processor.get_graph()
+    IRI_PREFIX = "webprotege.stanford.edu."
 
 
 class TestingConfig(DevelopmentConfig):
