@@ -99,10 +99,7 @@ paths:
                     conversations:
                       - null
       operationId: get-conversations
-      description: >-
-        Registered users can see a list of their conversations. Returns a list
-        of the user's conversations with the relevant names, UUIDs, conversation
-        status and creation date. A JWT token is required.
+      description: 'Registered users can see a list of their conversations. Returns a list of the user''s conversations with the relevant names, UUIDs, conversation status and creation date. A JWT token is required.'
       parameters:
         - schema:
             type: string
@@ -137,9 +134,7 @@ paths:
                     message: conversation status updated
                     conversationId: '{conversation_uuid}'
       operationId: put-conversation
-      description: >-
-        Change the status of the conversation in the conversations table for
-        User A according to the actions taken by User B.
+      description: Change the status of the conversation in the conversations table for User A according to the actions taken by User B.
       parameters:
         - schema:
             type: string
@@ -283,9 +278,7 @@ paths:
                   value:
                     alignmentScoresId: d86fcf26-7834-4bce-bfb7-f88170da9ace
       operationId: post-alignment
-      description: >-
-        To create aligned scores between user A and user B after user B has
-        completed their quiz.
+      description: To create aligned scores between user A and user B after user B has completed their quiz.
       parameters:
         - schema:
             type: string
@@ -421,7 +414,7 @@ paths:
                   value:
                     overallSimilarityScore: 70
                     topMatchPercent: 90
-                    topMatchValue: benevolence
+                    topMatchValue: Benevolence
                     valueAlignment:
                       - description: lots of text
                         id: benevolence
@@ -550,12 +543,7 @@ paths:
                     climateEffects:
                       - effectId: RBvy0CVizhdMfXbtJIc2En
                         sharedScore: 27.9
-                        effectShortDescription: >-
-                          The total value of goods produced and services
-                          provided each year are increasingly     being
-                          constrained. Global warming is decreasing GDP by
-                          increasing in the frequency of heat waves and
-                          shrinking the tourism industry, among other impacts.
+                        effectShortDescription: 'The total value of goods produced and services provided each year are increasingly     being constrained. Global warming is decreasing GDP by increasing in the frequency of heat waves and shrinking the tourism industry, among other impacts.'
                         effectTitle: decrease in GDP
                         imageUrl: 'https://i.imgur.com/NNK9Na4.jpg'
                         relatedPersonalValues:
@@ -563,12 +551,7 @@ paths:
                           - benevolence
                       - effectId: R8Fa34SNdEwdj93hXO0oMS
                         sharedScore: 25.429
-                        effectShortDescription: >-
-                          The frequency of warm days and night are increasing
-                          every year, causing increased indoor air temperatures
-                          which negatively affects learning. People's ability to
-                          use attention and memory to acquire and retain new
-                          information is impaired.
+                        effectShortDescription: 'The frequency of warm days and night are increasing every year, causing increased indoor air temperatures which negatively affects learning. People''s ability to use attention and memory to acquire and retain new information is impaired.'
                         effectTitle: decrease in learning (without air conditioner)
                         imageUrl: 'https://i.imgur.com/Zzh5mT8.jpg'
                         relatedPersonalValues:
@@ -577,14 +560,7 @@ paths:
                           - achievement
                       - effectId: R8epBa4UvcieLTynfK3E84u
                         sharedScore: 23.44
-                        effectShortDescription: >-
-                          The frequency (and severity) of heatwaves are
-                          increasing, causing declines in moose populations.
-                          Moose are suited to colder climates and have thick fur
-                          and when stressed by overheating they stop grazing and
-                          lose body fat that's essential for them to survive
-                          come winter. The number of moose alive to pursue and
-                          kill for sport are declining.
+                        effectShortDescription: 'The frequency (and severity) of heatwaves are increasing, causing declines in moose populations. Moose are suited to colder climates and have thick fur and when stressed by overheating they stop grazing and lose body fat that''s essential for them to survive come winter. The number of moose alive to pursue and kill for sport are declining.'
                         effectTitle: decrease in population of moose available to hunt
                         imageUrl: 'https://i.imgur.com/mBvpx7w.jpg'
                         relatedPersonalValues:
@@ -599,12 +575,7 @@ paths:
                     climateEffects:
                       - effectId: RBvy0CVizhdMfXbtJIc2En
                         sharedScore: 27.9
-                        effectShortDescription: >-
-                          The total value of goods produced and services
-                          provided each year are increasingly     being
-                          constrained. Global warming is decreasing GDP by
-                          increasing in the frequency of heat waves and
-                          shrinking the tourism industry, among other impacts.
+                        effectShortDescription: 'The total value of goods produced and services provided each year are increasingly     being constrained. Global warming is decreasing GDP by increasing in the frequency of heat waves and shrinking the tourism industry, among other impacts.'
                         effectTitle: decrease in GDP
                         imageUrl: 'https://i.imgur.com/NNK9Na4.jpg'
                         relatedPersonalValues:
@@ -612,12 +583,7 @@ paths:
                           - benevolence
                       - effectId: R8Fa34SNdEwdj93hXO0oMS
                         sharedScore: 25.429
-                        effectShortDescription: >-
-                          The frequency of warm days and night are increasing
-                          every year, causing increased indoor air temperatures
-                          which negatively affects learning. People's ability to
-                          use attention and memory to acquire and retain new
-                          information is impaired.
+                        effectShortDescription: 'The frequency of warm days and night are increasing every year, causing increased indoor air temperatures which negatively affects learning. People''s ability to use attention and memory to acquire and retain new information is impaired.'
                         effectTitle: decrease in learning (without air conditioner)
                         imageUrl: 'https://i.imgur.com/Zzh5mT8.jpg'
                         relatedPersonalValues:
@@ -626,14 +592,7 @@ paths:
                           - achievement
                       - effectId: R8epBa4UvcieLTynfK3E84u
                         sharedScore: 23.44
-                        effectShortDescription: >-
-                          The frequency (and severity) of heatwaves are
-                          increasing, causing declines in moose populations.
-                          Moose are suited to colder climates and have thick fur
-                          and when stressed by overheating they stop grazing and
-                          lose body fat that's essential for them to survive
-                          come winter. The number of moose alive to pursue and
-                          kill for sport are declining.
+                        effectShortDescription: 'The frequency (and severity) of heatwaves are increasing, causing declines in moose populations. Moose are suited to colder climates and have thick fur and when stressed by overheating they stop grazing and lose body fat that''s essential for them to survive come winter. The number of moose alive to pursue and kill for sport are declining.'
                         effectTitle: decrease in population of moose available to hunt
                         imageUrl: 'https://i.imgur.com/mBvpx7w.jpg'
                         relatedPersonalValues:
@@ -643,9 +602,7 @@ paths:
                     userAName: Bill
                     userBName: Bob
       operationId: get-shared-impacts
-      description: >-
-        Show the full list of shared impacts from the shared feed calculated by
-        comparing user a and user b's quiz scores.
+      description: Show the full list of shared impacts from the shared feed calculated by comparing user a and user b's quiz scores.
       parameters:
         - schema:
             type: string
@@ -678,9 +635,7 @@ paths:
                 Successful Choose Shared Impact POST Response Body:
                   value:
                     message: Shared impact saved to the db.
-      description: >-
-        Confirm user b's selection of shared impacts that they wish to discuss
-        with user a.
+      description: Confirm user b's selection of shared impacts that they wish to discuss with user a.
       parameters:
         - schema:
             type: string
@@ -848,9 +803,7 @@ paths:
                     userAName: Bill
                     userBName: Bob
       operationId: get-shared-solutions
-      description: >-
-        Show the full list of shared solutions from the shared feed calculated
-        by comparing user a and user b's quiz scores.
+      description: Show the full list of shared solutions from the shared feed calculated by comparing user a and user b's quiz scores.
       parameters:
         - schema:
             type: string
@@ -883,9 +836,7 @@ paths:
                 Successful Choose Shared Solutions POST Response Body:
                   value:
                     message: Shared solutions saved to the db.
-      description: >-
-        Confirm user b's selection of shared solutions that they wish to discuss
-        with user a.
+      description: Confirm user b's selection of shared solutions that they wish to discuss with user a.
       parameters:
         - schema:
             type: string
@@ -948,10 +899,7 @@ paths:
                 Successful POST User B Event Response Body:
                   value:
                     message: User B event logged.
-      description: >-
-        Log an event for user B (analytics tracking). The type of user event and
-        its value is specified in the request body. If none is given, it is
-        assumed that the event is clicking of the unique link.
+      description: 'Log an event for user B (analytics tracking). The type of user event and its value is specified in the request body. If none is given, it is assumed that the event is clicking of the unique link.'
       parameters:
         - schema:
             type: string
@@ -1038,9 +986,7 @@ paths:
           in: header
           name: X-Session-Id
           description: Session uuid
-      description: >-
-        Creates or updates user B's consent choice for sharing information with
-        user A. Posts an event for analytics logging.
+      description: Creates or updates user B's consent choice for sharing information with user A. Posts an event for analytics logging.
   '/alignment/shared-solution/:solutionIri':
     get:
       summary: Shared Solution Details - GET
@@ -1083,20 +1029,7 @@ paths:
                   example-1:
                     solutionTitle: making aviation more efficient
                     imageUrl: 'https://i.imgur.com/JJV5iw2.jpg'
-                    longDescription: >-
-                      Various technologies and operational practices can lower
-                      airplane emissions to some degree. They     include better
-                      engines, wingtips, and light weighting to improve fuel
-                      efficiency. Project Drawdown's analysis focuses on
-                      adoption of the latest and most fuel-efficient aircraft;
-                      retrofitting existing aircraft with winglets, newer
-                      engines, and lighter interiors; and retiring older
-                      aircraft early. Over thirty years, and for a net cost of
-                      $830-850 billion, 6.3-9.2 gigatons of carbon dioxide
-                      emissions can be avoided, saving $2.5-3.6 trillion on
-                      lifetime jet-fuel and operating costs. Other efficiency
-                      measures could provide additional emissions reductions and
-                      savings as over 80 percent of aircraft are converted.
+                    longDescription: 'Various technologies and operational practices can lower airplane emissions to some degree. They     include better engines, wingtips, and light weighting to improve fuel efficiency. Project Drawdown''s analysis focuses on adoption of the latest and most fuel-efficient aircraft; retrofitting existing aircraft with winglets, newer engines, and lighter interiors; and retiring older aircraft early. Over thirty years, and for a net cost of $830-850 billion, 6.3-9.2 gigatons of carbon dioxide emissions can be avoided, saving $2.5-3.6 trillion on lifetime jet-fuel and operating costs. Other efficiency measures could provide additional emissions reductions and savings as over 80 percent of aircraft are converted.'
                     solutionSources:
                       - 'https://drawdown.org/solutions/efficient-aviation'
                     solutionType:
@@ -1106,20 +1039,7 @@ paths:
                   value:
                     solutionTitle: making aviation more efficient
                     imageUrl: 'https://i.imgur.com/JJV5iw2.jpg'
-                    longDescription: >-
-                      Various technologies and operational practices can lower
-                      airplane emissions to some degree. They     include better
-                      engines, wingtips, and light weighting to improve fuel
-                      efficiency. Project Drawdown's analysis focuses on
-                      adoption of the latest and most fuel-efficient aircraft;
-                      retrofitting existing aircraft with winglets, newer
-                      engines, and lighter interiors; and retiring older
-                      aircraft early. Over thirty years, and for a net cost of
-                      $830-850 billion, 6.3-9.2 gigatons of carbon dioxide
-                      emissions can be avoided, saving $2.5-3.6 trillion on
-                      lifetime jet-fuel and operating costs. Other efficiency
-                      measures could provide additional emissions reductions and
-                      savings as over 80 percent of aircraft are converted.
+                    longDescription: 'Various technologies and operational practices can lower airplane emissions to some degree. They     include better engines, wingtips, and light weighting to improve fuel efficiency. Project Drawdown''s analysis focuses on adoption of the latest and most fuel-efficient aircraft; retrofitting existing aircraft with winglets, newer engines, and lighter interiors; and retiring older aircraft early. Over thirty years, and for a net cost of $830-850 billion, 6.3-9.2 gigatons of carbon dioxide emissions can be avoided, saving $2.5-3.6 trillion on lifetime jet-fuel and operating costs. Other efficiency measures could provide additional emissions reductions and savings as over 80 percent of aircraft are converted.'
                     solutionSources:
                       - 'https://drawdown.org/solutions/efficient-aviation'
                     solutionType:
@@ -1166,32 +1086,12 @@ paths:
                   example-1:
                     effectTitle: ''
                     imageUrl: ''
-                    longDescription: >-
-                      Tourism supports the livelihoods of an estimated one in
-                      ten people worldwide andaround 80% occurs around coastal
-                      destinations. Coral reefs are popular and exciting places
-                      for sightseeing, swimming, snorkelling, diving and
-                      boating. For example, Australia's Great Barrier Reef
-                      annually attracts 1.9 million visits, generates AUD$5.4
-                      billion from tourism and supports 54,000 jobs. Florida's
-                      Coral Reef has an annual estimated tourism value of $1.1
-                      billion and supports 71,000 jobs.
+                    longDescription: |-
+                      Tourism supports the livelihoods of an estimated one in ten people worldwide andaround 80% occurs around coastal destinations. Coral reefs are popular and exciting places for sightseeing, swimming, snorkelling, diving and boating. For example, Australia's Great Barrier Reef annually attracts 1.9 million visits, generates AUD$5.4 billion from tourism and supports 54,000 jobs. Florida's Coral Reef has an annual estimated tourism value of $1.1 billion and supports 71,000 jobs.
 
-
-                      Warming oceans due to climate change are causing increases
-                      in heatwaves occurring in the ocean (marine heatwaves).
-                      The frequency of these marine heatwaves has doubled since
-                      1982, increasing coral bleaching and destruction. Already
-                      over 50% of coral reefs have been lost. If yearly CO2
-                      emissions aren't reduced, in the future these heatwaves
-                      will occur 50 times more often than they do today, causing
-                      over 97% of all coral reefs to die off along with much of
-                      the coastal marine life they support. The loss of coral
-                      reefs makes coastal destinations less attractive to
-                      tourists and negatively affects local economies.
+                      Warming oceans due to climate change are causing increases in heatwaves occurring in the ocean (marine heatwaves). The frequency of these marine heatwaves has doubled since 1982, increasing coral bleaching and destruction. Already over 50% of coral reefs have been lost. If yearly CO2 emissions aren't reduced, in the future these heatwaves will occur 50 times more often than they do today, causing over 97% of all coral reefs to die off along with much of the coastal marine life they support. The loss of coral reefs makes coastal destinations less attractive to tourists and negatively affects local economies.
                     effectSources:
-                      - >-
-                        https://www.bloomberg.com/graphics/2019-coral-reefs-at-risk
+                      - 'https://www.bloomberg.com/graphics/2019-coral-reefs-at-risk'
                     relatedPersonalValues:
                       - achievement
                       - benevolence
@@ -1200,32 +1100,12 @@ paths:
                   value:
                     effectTitle: ''
                     imageUrl: ''
-                    longDescription: >-
-                      Tourism supports the livelihoods of an estimated one in
-                      ten people worldwide andaround 80% occurs around coastal
-                      destinations. Coral reefs are popular and exciting places
-                      for sightseeing, swimming, snorkelling, diving and
-                      boating. For example, Australia's Great Barrier Reef
-                      annually attracts 1.9 million visits, generates AUD$5.4
-                      billion from tourism and supports 54,000 jobs. Florida's
-                      Coral Reef has an annual estimated tourism value of $1.1
-                      billion and supports 71,000 jobs.
+                    longDescription: |-
+                      Tourism supports the livelihoods of an estimated one in ten people worldwide andaround 80% occurs around coastal destinations. Coral reefs are popular and exciting places for sightseeing, swimming, snorkelling, diving and boating. For example, Australia's Great Barrier Reef annually attracts 1.9 million visits, generates AUD$5.4 billion from tourism and supports 54,000 jobs. Florida's Coral Reef has an annual estimated tourism value of $1.1 billion and supports 71,000 jobs.
 
-
-                      Warming oceans due to climate change are causing increases
-                      in heatwaves occurring in the ocean (marine heatwaves).
-                      The frequency of these marine heatwaves has doubled since
-                      1982, increasing coral bleaching and destruction. Already
-                      over 50% of coral reefs have been lost. If yearly CO2
-                      emissions aren't reduced, in the future these heatwaves
-                      will occur 50 times more often than they do today, causing
-                      over 97% of all coral reefs to die off along with much of
-                      the coastal marine life they support. The loss of coral
-                      reefs makes coastal destinations less attractive to
-                      tourists and negatively affects local economies.
+                      Warming oceans due to climate change are causing increases in heatwaves occurring in the ocean (marine heatwaves). The frequency of these marine heatwaves has doubled since 1982, increasing coral bleaching and destruction. Already over 50% of coral reefs have been lost. If yearly CO2 emissions aren't reduced, in the future these heatwaves will occur 50 times more often than they do today, causing over 97% of all coral reefs to die off along with much of the coastal marine life they support. The loss of coral reefs makes coastal destinations less attractive to tourists and negatively affects local economies.
                     effectSources:
-                      - >-
-                        https://www.bloomberg.com/graphics/2019-coral-reefs-at-risk
+                      - 'https://www.bloomberg.com/graphics/2019-coral-reefs-at-risk'
                     relatedPersonalValues:
                       - achievement
                       - benevolence
@@ -1254,10 +1134,7 @@ paths:
                   value:
                     message: string
           headers: {}
-      description: >-
-        Update basic user account data. Requires current email and password and
-        allows for updating any subset of basic user account data (email,
-        password, first name, last name).
+      description: 'Update basic user account data. Requires current email and password and allows for updating any subset of basic user account data (email, password, first name, last name).'
       parameters:
         - schema:
             type: string
@@ -1360,7 +1237,7 @@ paths:
                 Successful GET Alignment Summary Response Body:
                   value:
                     userAName: Stevie
-                    topMatchValue: benevolence
+                    topMatchValue: Self Direction
                     topMatchPercent: '90'
                     sharedImpacts:
                       - decrease in GDP
@@ -1368,10 +1245,7 @@ paths:
                       - using electric cars
                       - becoming a tester
       operationId: 'get-alignment-:alignmentScoresId-summary'
-      description: >-
-        For the user to see a summary of their alignment information and chosen
-        climate impact and solution topics to share with the user that invited
-        them to have a conversation.
+      description: For the user to see a summary of their alignment information and chosen climate impact and solution topics to share with the user that invited them to have a conversation.
       parameters:
         - schema:
             type: string
