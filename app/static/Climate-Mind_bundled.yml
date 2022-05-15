@@ -1324,5 +1324,11 @@ paths:
       description: |-
         Get the list of effects and solutions selected by user b from the set of alignment effects and solutions respectively.
         Under the current model, there will always be 1 selected effect and 2 selected solutions.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
 components:
   schemas: {}
