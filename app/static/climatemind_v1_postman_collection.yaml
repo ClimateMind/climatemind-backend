@@ -1,6 +1,6 @@
 openapi: 3.1.0
 info:
-  title: Climate Mind Copy 3
+  title: Climate Mind (from Postman collection)
   contact: {}
   version: '1.0'
 jsonSchemaDialect: https://json-schema.org/draft/2020-12/schema
