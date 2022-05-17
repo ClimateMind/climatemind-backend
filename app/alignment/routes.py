@@ -91,7 +91,6 @@ def get_alignment(alignment_scores_uuid):
     - user b's name
     """
 
-    # FIXME: Now any user could access any alignment_scores
     session_uuid = request.headers.get("X-Session-Id")
     session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
     check_uuid_in_db(session_uuid, uuidType.SESSION)
