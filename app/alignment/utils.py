@@ -1,13 +1,15 @@
+import uuid
+
 import numpy as np
 from flask import current_app
 from sklearn import preprocessing
 
 from app import db
+from app.common.math_utils import as_percent
 from app.errors.errors import DatabaseError, InvalidUsageError, NotInDatabaseError
 from app.models import (
     AlignmentScores,
     EffectChoice,
-    Scores,
     SolutionChoice,
     UserBJourney,
     Conversations,
@@ -15,12 +17,13 @@ from app.models import (
     AlignmentFeed,
 )
 from app.network_x_tools.network_x_utils import network_x_utils
-from app.personal_values.utils import get_value_descriptions_map
-from app.questions.utils import get_schwartz_questions_file_data
+from app.personal_values.enums import PersonalValue
+from app.personal_values.utils import get_value_descriptions_file_data
 from app.scoring.build_localised_acyclic_graph import get_node_id
+from app.scoring.process_scores import get_scores_list
 
 
-def build_alignment_scores_response(alignment_scores_uuid):
+def build_alignment_scores_response(alignment_scores_uuid: uuid.UUID) -> dict:
     """
     Deal with database interactions to provide response for GET alignment scores request.
 
@@ -38,7 +41,7 @@ def build_alignment_scores_response(alignment_scores_uuid):
     - user b's name
     """
 
-    (alignment, userB_name, userA_name) = (
+    (alignment_score, userB_name, userA_name) = (
         db.session.query(AlignmentScores, Conversations.receiver_name, Users.first_name)
         .join(
             UserBJourney,
@@ -53,27 +56,29 @@ def build_alignment_scores_response(alignment_scores_uuid):
         .one_or_none()
     )
 
-    raw_values_map = get_value_descriptions_map()
-    values_map = {
-        raw_value_map["id"]: raw_value_map for raw_value_map in raw_values_map.values()
-    }
-    alignment_scores = [
+    personal_value_descriptions = get_value_descriptions_file_data()
+    personal_values_data_with_scores = [
         {
-            "description": value_map["description"],
-            "id": value_id,
-            "name": value_map["name"],
-            "shortDescription": value_map["shortDescription"],
-            "score": get_alignment_value(alignment, value_id),
+            "description": personal_value_data["description"],
+            "id": personal_value_key,
+            "name": personal_value_data["name"],
+            "shortDescription": personal_value_data["shortDescription"],
+            "score": get_alignment_value(alignment_score, personal_value_key),
         }
-        for (value_id, value_map) in values_map.items()
+        for (
+            personal_value_key,
+            personal_value_data,
+        ) in personal_value_descriptions.items()
     ]
-    alignment_scores.sort(key=lambda x: -x["score"])
+    personal_values_data_with_scores.sort(key=lambda x: -x["score"])
+    top_match_value_key = alignment_score.top_match_value
+    top_match_value_representation = PersonalValue[top_match_value_key].representation
 
     response = {
-        "overallSimilarityScore": as_percent(alignment.overall_similarity_score),
-        "topMatchPercent": alignment.top_match_percent,
-        "topMatchValue": alignment.top_match_value,
-        "valueAlignment": alignment_scores,
+        "overallSimilarityScore": as_percent(alignment_score.overall_similarity_score),
+        "topMatchPercent": alignment_score.top_match_percent,
+        "topMatchValue": top_match_value_representation,
+        "valueAlignment": personal_values_data_with_scores,
         "userAName": userA_name,
         "userBName": userB_name,
     }
@@ -81,14 +86,9 @@ def build_alignment_scores_response(alignment_scores_uuid):
     return response
 
 
-def get_alignment_value(alignment, value_name):
+def get_alignment_value(alignment: AlignmentScores, value_name: str) -> int:
     """Get the alignment score for the value, as a percentage."""
     return as_percent(getattr(alignment, value_name + "_alignment"))
-
-
-def as_percent(number):
-    """Turn number between 0 and 1 to a percentage."""
-    return round(100.0 * number)
 
 
 def build_shared_impacts_response(alignment_scores_uuid):
@@ -177,7 +177,7 @@ def effect_details(G, climate_effects_iris, nx):
                     "effectShortDescription": nx.get_short_description(),
                     "effectTitle": G.nodes[node]["label"],
                     "imageUrl": nx.get_image_url_or_none(),
-                    "relatedPersonalValues": map_associated_personal_values(
+                    "relatedPersonalValues": get_dashed_personal_values_names_from_vector(
                         G.nodes[node]["personal_values_10"]
                     ),
                 }
@@ -187,7 +187,7 @@ def effect_details(G, climate_effects_iris, nx):
     return climate_effects
 
 
-def map_associated_personal_values(personal_values_boolean_list):
+def get_dashed_personal_values_names_from_vector(personal_values_ontology_vector):
     """
     Take the associated personal values for a shared impact and map them to the value names from the schwartz questions JSON file.
 
@@ -202,22 +202,14 @@ def map_associated_personal_values(personal_values_boolean_list):
 
     """
 
-    personal_values_map = get_schwartz_questions_file_data()
+    dashed_personal_value_names = []
+    for personal_value, vector_component in zip(
+        PersonalValue, personal_values_ontology_vector
+    ):
+        if vector_component:
+            dashed_personal_value_names.append(personal_value.dashed_key)
 
-    # IDs are hard-coded as temporary solution until known whether we will implement 19 values list and/or change value names displayed to the user.
-    json_value_ids = [8, 3, 1, 7, 9, 10, 5, 6, 2, 4]
-
-    value_dict = dict(zip(json_value_ids, personal_values_boolean_list))
-
-    personal_values = []
-
-    for key, val in value_dict.items():
-        if val:
-            for value in personal_values_map["SetOne"]:
-                if key == value["id"]:
-                    personal_values.append(value["value"])
-
-    return personal_values
+    return dashed_personal_value_names
 
 
 def build_shared_solutions_response(alignment_scores_uuid):
@@ -421,7 +413,7 @@ def build_shared_impact_details_response(impact_iri):
                     "imageUrl": nx.get_image_url_or_none(),
                     "longDescription": nx.get_description(),
                     "effectSources": nx.get_causal_sources(),
-                    "relatedPersonalValues": map_associated_personal_values(
+                    "relatedPersonalValues": get_dashed_personal_values_names_from_vector(
                         G.nodes[node]["personal_values_10"]
                     ),
                 }
@@ -492,7 +484,7 @@ def build_alignment_summary_response(alignment_scores_uuid):
     ==========
     JSON:
     - user A's name
-    - the top match value
+    - the top match value representation
     - the alignment percentage for the top match value
     - the chosen shared impact(s) title
     - the chosen shared solutions' titles
@@ -504,7 +496,7 @@ def build_alignment_summary_response(alignment_scores_uuid):
 
     try:
         (
-            top_match_value,
+            top_match_value_key,
             top_match_percent,
             userA_name,
             user_b_journey,
@@ -543,48 +535,37 @@ def build_alignment_summary_response(alignment_scores_uuid):
             .filter(AlignmentScores.alignment_scores_uuid == alignment_scores_uuid)
             .one_or_none()
         )
-
-        chosen_impact_iris = [effect_choice.effect_choice_1_iri]
-        chosen_solution_iris = [
-            solution_choice.solution_choice_1_iri,
-            solution_choice.solution_choice_2_iri,
-        ]
-
-        response = {
-            "userAName": userA_name,
-            "topMatchValue": top_match_value,
-            "topMatchPercent": round(top_match_percent),
-            "sharedImpacts": [
-                nx.get_title_by_iri(iri, G) for iri in chosen_impact_iris
-            ],
-            "sharedSolutions": [
-                nx.get_title_by_iri(iri, G) for iri in chosen_solution_iris
-            ],
-        }
-
     except:
         raise DatabaseError(
             message="Something went wrong while retrieving the alignment summary data from the db."
         )
 
+    chosen_impact_iris = [effect_choice.effect_choice_1_iri]
+    chosen_solution_iris = [
+        solution_choice.solution_choice_1_iri,
+        solution_choice.solution_choice_2_iri,
+    ]
+
+    top_match_value_representation = PersonalValue[top_match_value_key].representation
+    response = {
+        "userAName": userA_name,
+        "topMatchValue": top_match_value_representation,
+        "topMatchPercent": round(top_match_percent),
+        "sharedImpacts": [nx.get_title_by_iri(iri, G) for iri in chosen_impact_iris],
+        "sharedSolutions": [
+            nx.get_title_by_iri(iri, G) for iri in chosen_solution_iris
+        ],
+    }
+
     return response
 
 
-def get_aligned_scores(alignment_scores):
+def get_aligned_scores_alignments(alignment_scores: AlignmentScores) -> list:
     """Fetch user a and b's aligned scores for each personal value from the db."""
 
-    aligned_scores = [
-        alignment_scores.achievement_alignment,
-        alignment_scores.benevolence_alignment,
-        alignment_scores.conformity_alignment,
-        alignment_scores.hedonism_alignment,
-        alignment_scores.power_alignment,
-        alignment_scores.security_alignment,
-        alignment_scores.self_direction_alignment,
-        alignment_scores.stimulation_alignment,
-        alignment_scores.tradition_alignment,
-        alignment_scores.universalism_alignment,
-    ]
+    aligned_scores = []
+    for key in PersonalValue.get_all_keys():
+        aligned_scores.append(getattr(alignment_scores, f"{key}_alignment"))
 
     return aligned_scores
 
@@ -616,34 +597,14 @@ def sort_aligned_effects_by_user_b_values(aligned_effects, user_b_quiz_uuid):
     """
     G = current_app.config["G"].copy()
 
-    user_b_scores = (
-        db.session.query(Scores)
-        .filter(Scores.quiz_uuid == user_b_quiz_uuid)
-        .one_or_none()
-    )
-
-    sorted_aligned_effects = dict()
-
-    user_b_scores = np.array(
-        [
-            user_b_scores.achievement,
-            user_b_scores.benevolence,
-            user_b_scores.conformity,
-            user_b_scores.hedonism,
-            user_b_scores.power,
-            user_b_scores.security,
-            user_b_scores.self_direction,
-            user_b_scores.stimulation,
-            user_b_scores.tradition,
-            user_b_scores.universalism,
-        ]
-    )
+    user_b_scores = np.array(get_scores_list(user_b_quiz_uuid))
 
     # TO DO: there should be some map mapping node names to iri so that the scoring can go straight to the right node and not have to check the other nodes.
 
     # TO DO: this scoring procedure should not be copied pasted from the user a personal climate feed scoring code, rather it should call those scoring functions so there aren't redundances in the code!
     modified_user_b_scores = np.square(user_b_scores)
 
+    sorted_aligned_effects = dict()
     for aligned_effect in aligned_effects:
         for node in G.nodes:
             current_node = G.nodes[node]

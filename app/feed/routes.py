@@ -2,6 +2,7 @@ from flask import jsonify, request
 
 from app.personal_values.enums import PersonalValue
 from app.scoring import bp
+from app.scoring.process_scores import get_scores_map
 from app.scoring.score_nodes import score_nodes
 from app.errors.errors import InvalidUsageError, DatabaseError, CustomError
 from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
@@ -52,12 +53,9 @@ def get_feed_results(quiz_uuid, N_FEED_CARDS, session_uuid):
 
     if scores:
 
-        personal_values_categories = [v.key for v in PersonalValue]
-        scores = scores.__dict__
-        scores = {key: scores[key] for key in personal_values_categories}
-
+        scores_map = get_scores_map(scores)
         try:
-            SCORE_NODES = score_nodes(scores, N_FEED_CARDS, quiz_uuid, session_uuid)
+            SCORE_NODES = score_nodes(scores_map, N_FEED_CARDS, quiz_uuid, session_uuid)
             recommended_nodes = SCORE_NODES.get_user_nodes()
             feed_entries = {"climateEffects": recommended_nodes}
             return jsonify(feed_entries), 200

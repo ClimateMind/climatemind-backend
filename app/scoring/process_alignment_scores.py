@@ -1,9 +1,11 @@
 from app import db
+from app.common.math_utils import as_percent
 from app.errors.errors import DatabaseError
 from app.personal_values.enums import PersonalValue
-from app.personal_values.utils import get_value_descriptions_map
 from app.models import AlignmentScores, Conversations, Scores, Users
 from scipy.stats import kendalltau
+
+from app.scoring.process_scores import get_scores_list, get_scores_map
 
 
 def create_alignment_scores(conversation_uuid, quiz_uuid, alignment_scores_uuid):
@@ -27,9 +29,8 @@ def create_alignment_scores(conversation_uuid, quiz_uuid, alignment_scores_uuid)
         userB_scores = (
             db.session.query(Scores).filter(Scores.quiz_uuid == quiz_uuid).one()
         )
-        value_names = get_value_descriptions_map().keys()
-        userA_score_map = get_scores_map(userA_scores, value_names)
-        userB_score_map = get_scores_map(userB_scores, value_names)
+        userA_score_map = get_scores_map(userA_scores)
+        userB_score_map = get_scores_map(userB_scores)
         userA_rank_map = get_rank_map(userA_score_map)
         userB_rank_map = get_rank_map(userB_score_map)
         alignment_map = get_alignment_map(userA_rank_map, userB_rank_map)
@@ -37,10 +38,12 @@ def create_alignment_scores(conversation_uuid, quiz_uuid, alignment_scores_uuid)
 
         alignment_scores = AlignmentScores()
         alignment_scores.alignment_scores_uuid = alignment_scores_uuid
-        # FIXME: could be a problem if you will change personal values names
-        #  create mapping in PersonalValue
-        for name in value_names:
-            setattr(alignment_scores, name + "_alignment", alignment_map[name])
+        for personal_value_key in PersonalValue.get_all_keys():
+            setattr(
+                alignment_scores,
+                personal_value_key + "_alignment",
+                alignment_map[personal_value_key],
+            )
         alignment_scores.top_match_value = max_name
         alignment_scores.top_match_percent = as_percent(max_value)
         alignment_scores.overall_similarity_score = calculate_overall_similarity_score(
@@ -53,12 +56,6 @@ def create_alignment_scores(conversation_uuid, quiz_uuid, alignment_scores_uuid)
         raise DatabaseError(
             message="An error occurred while adding scores to the alignment scores table."
         )
-
-
-def get_scores_map(scores, value_names):
-    """Convert a Scores object into a map from personal value names to numerical scores."""
-    score_map = scores.__dict__
-    return {name: value for (name, value) in score_map.items() if name in value_names}
 
 
 def get_rank_map(score_map):
@@ -83,11 +80,6 @@ def get_sorted_alignment_map(alignment_map):
 def get_max(alignment_map):
     """Find the max alignment score with its personal value name."""
     return sorted(alignment_map.items(), key=lambda pair: -pair[1])[0]
-
-
-def as_percent(number):
-    """Turn number between 0 and 1 to a percentage, rounded to one decimal point."""
-    return round(100.0 * number, 1)
 
 
 def calculate_match(rank1, rank2):
@@ -147,28 +139,3 @@ def calculate_overall_similarity_score(conversation_uuid, user_b_quiz_uuid):
     ) / 2
 
     return overall_similarity_score
-
-
-def get_scores_list(quiz_uuid):
-    """
-    Get a list of a user's quiz scores, ordered alphabetically by personal values.
-
-    Parameters
-    ==========
-    quiz_uuid (UUID)
-
-    Returns
-    ==========
-    scores_list - a list of floats
-    """
-    personal_values_categories = sorted([v.key for v in PersonalValue])
-
-    user_scores = (
-        db.session.query(Scores).filter(Scores.quiz_uuid == quiz_uuid).one_or_none()
-    )
-
-    user_scores = user_scores.__dict__
-
-    scores_list = [user_scores[value] for value in personal_values_categories]
-
-    return scores_list
