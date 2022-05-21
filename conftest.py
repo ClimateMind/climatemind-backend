@@ -17,32 +17,36 @@ def pytest_configure():
     }
 
 
+def pytest_addoption(parser):
+    parser.addoption(
+        "--reuse-db",
+        action="store_true",
+        help="Use this argument to reuse existing db.",
+    )
+
+
 def pytest_sessionstart(session):
     workerinput = getattr(session.config, "workerinput", None)
     if workerinput is None:
-        print(f"Creating new {TestingConfig.DB_NAME} database...")
         with create_engine(
             DevelopmentConfig.SQLALCHEMY_DATABASE_URI,
             isolation_level="AUTOCOMMIT",
         ).connect() as connection:
-
             try:
+                print(f"Trying to create {TestingConfig.DB_NAME} database...")
                 connection.execute(f"CREATE DATABASE [{TestingConfig.DB_NAME}]")
+                db.create_all()
+                print(f"{TestingConfig.DB_NAME} created!")
+
             except ProgrammingError:
-                connection.execute(f"DROP DATABASE [{TestingConfig.DB_NAME}]")
-                connection.execute(f"CREATE DATABASE [{TestingConfig.DB_NAME}]")
-
-            db.create_all()
-        print(f"{TestingConfig.DB_NAME} created!")
-
-
-def pytest_sessionfinish(session):
-    workerinput = getattr(session.config, "workerinput", None)
-    if workerinput is None:
-        print(f"\nCleanup {TestingConfig.DB_NAME} database...")
-        with create_engine(
-            DevelopmentConfig.SQLALCHEMY_DATABASE_URI,
-            isolation_level="AUTOCOMMIT",
-        ).connect() as connection:
-            connection.execute(f"DROP DATABASE [{TestingConfig.DB_NAME}]")
-        print(f"DB {TestingConfig.DB_NAME} removed!")
+                print(f"Database {TestingConfig.DB_NAME} already exists.")
+                reuse_db = session.config.getoption("--reuse-db")
+                if not reuse_db:
+                    print(f"Removing {TestingConfig.DB_NAME} database...")
+                    connection.execute(f"DROP DATABASE [{TestingConfig.DB_NAME}]")
+                    print(f"Trying to create new {TestingConfig.DB_NAME} database...")
+                    connection.execute(f"CREATE DATABASE [{TestingConfig.DB_NAME}]")
+                    db.create_all()
+                    print(f"{TestingConfig.DB_NAME} created!")
+                else:
+                    print(f"Reusing existing database.")

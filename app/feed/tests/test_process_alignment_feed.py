@@ -62,7 +62,7 @@ def test_get_default_solutions_iris():
 
 
 @pytest.mark.ontology
-@pytest.mark.parametrize("personal_value", [v.key for v in PersonalValue])
+@pytest.mark.parametrize("personal_value", PersonalValue.get_all_keys())
 def test_get_aligned_effects(personal_value):
     alignment_score_arguments = {f"{personal_value}_alignment": 0.99}
     alignment_score = AlignmentScoresFactory(**alignment_score_arguments)

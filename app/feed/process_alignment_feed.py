@@ -28,7 +28,6 @@ def create_alignment_feed(
     alignment_feed_uuid (UUID) - uuid created when post alignment endpoint is used
     """
 
-    # TO DO make a contant variable so 3 isn't hard coded as the number of effects to show to user B.
     aligned_effects_sorted_by_shared_values = get_aligned_effects(
         alignment_scores_uuid, ALIGNMENT_EFFECTS_COUNT
     )
@@ -43,6 +42,7 @@ def create_alignment_feed(
         alignment_feed.aligned_effect_1_iri = sorted_aligned_effects[0]
         alignment_feed.aligned_effect_2_iri = sorted_aligned_effects[1]
         alignment_feed.aligned_effect_3_iri = sorted_aligned_effects[2]
+
         temporary_solutions_iris = get_default_solutions_iris()
         assign_alignment_iris(
             alignment_feed,
@@ -80,27 +80,24 @@ def get_aligned_effects(alignment_scores_uuid: uuid.UUID, n_nodes: int) -> list:
         .filter(AlignmentScores.alignment_scores_uuid == alignment_scores_uuid)
         .one_or_none()
     )
-    top_aligned_value = aligned_scores.top_match_value.replace("_", "-")
-    aligned_scores_array = np.array(get_aligned_scores(aligned_scores))
+    dashed_top_aligned_value = aligned_scores.dashed_top_match_value
+    aligned_scores_array = np.array(get_aligned_scores_alignments(aligned_scores))
     transformed_aligned_scores = transform_aligned_scores(aligned_scores_array)
 
     for node in G.nodes:
         current_node = G.nodes[node]
+        personal_values_vector = current_node["personal_values_10"]
 
         is_risk_class = "risk" in current_node["all classes"]
         is_test_ontology = "test ontology" in current_node["all classes"]
-        node_without_personal_values = all(
-            [value == None for value in current_node["personal_values_10"]]
-        )
+        node_without_personal_values = all(v is None for v in personal_values_vector)
         if is_risk_class and is_test_ontology and not node_without_personal_values:
-            associated_personal_values = map_associated_personal_values(
-                current_node["personal_values_10"]
+            node_dashed_personal_values = get_dashed_personal_values_names_from_vector(
+                personal_values_vector
             )
 
-            if top_aligned_value in associated_personal_values:
-                node_value_associations_10 = np.array(
-                    current_node["personal_values_10"]
-                )
+            if dashed_top_aligned_value in node_dashed_personal_values:
+                node_value_associations_10 = np.array(personal_values_vector)
                 adjusted_node_value_associations_10 = np.where(
                     node_value_associations_10 < 0,
                     0 * node_value_associations_10,
@@ -110,6 +107,7 @@ def get_aligned_effects(alignment_scores_uuid: uuid.UUID, n_nodes: int) -> list:
                     transformed_aligned_scores, adjusted_node_value_associations_10
                 )
                 aligned_effects[get_node_id(current_node)] = dot_product
+
     if aligned_effects:
         aligned_effects = dict(
             sorted(aligned_effects.items(), key=lambda x: x[1], reverse=True)
@@ -130,7 +128,7 @@ def get_aligned_effects(alignment_scores_uuid: uuid.UUID, n_nodes: int) -> list:
         return aligned_effects_top_keys
     else:
         raise OntologyError(
-            message=f"{top_aligned_value} not found in any node associated personal values."
+            message=f"{dashed_top_aligned_value} not found in any node associated personal values."
         )
 
 

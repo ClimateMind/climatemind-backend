@@ -1,4 +1,6 @@
 import datetime
+import typing
+import uuid
 from datetime import timezone
 from app import db
 from flask import abort, make_response, jsonify
@@ -81,16 +83,8 @@ class ProcessScores:
             # FIXME: value_scores["quiz_uuid"] set outside the class
             #  quiz_uuid shouldn't be in this dict at all
             user_scores.quiz_uuid = self.value_scores["quiz_uuid"]
-            user_scores.security = self.value_scores[PersonalValue.SECURITY]
-            user_scores.conformity = self.value_scores[PersonalValue.CONFORMITY]
-            user_scores.benevolence = self.value_scores[PersonalValue.BENEVOLENCE]
-            user_scores.tradition = self.value_scores[PersonalValue.TRADITION]
-            user_scores.universalism = self.value_scores[PersonalValue.UNIVERSALISM]
-            user_scores.self_direction = self.value_scores[PersonalValue.SELF_DIRECTION]
-            user_scores.stimulation = self.value_scores[PersonalValue.STIMULATION]
-            user_scores.hedonism = self.value_scores[PersonalValue.HEDONISM]
-            user_scores.achievement = self.value_scores[PersonalValue.ACHIEVEMENT]
-            user_scores.power = self.value_scores[PersonalValue.POWER]
+            for v in PersonalValue:
+                setattr(user_scores, v.key, self.value_scores[v])
             user_scores.scores_created_timestamp = datetime.datetime.now(timezone.utc)
             user_scores.session_uuid = session_uuid
 
@@ -106,3 +100,29 @@ class ProcessScores:
             raise DatabaseError(
                 message="An error occurred while trying to save the user's scores to the database."
             )
+
+
+def get_scores_list(quiz_uuid: uuid.UUID) -> typing.List[float]:
+    """
+    Get a list of a user's quiz scores, ordered alphabetically by personal values.
+
+    Parameters
+    ==========
+    quiz_uuid (UUID)
+
+    Returns
+    ==========
+    scores_list - a list of floats
+    """
+    user_scores = (
+        db.session.query(Scores).filter(Scores.quiz_uuid == quiz_uuid).one_or_none()
+    )
+
+    scores_list = [getattr(user_scores, v.key) for v in PersonalValue]
+
+    return scores_list
+
+
+def get_scores_map(scores: Scores) -> dict:
+    """Convert a Scores object into a map from personal value names to numerical scores."""
+    return {v.key: getattr(scores, v.key) for v in PersonalValue}

@@ -157,8 +157,6 @@ class AlignmentScores(db.Model):
     __tablename__ = "alignment_scores"
     alignment_scores_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
     overall_similarity_score = db.Column(db.Float)
-    top_match_percent = db.Column(db.Float)
-    top_match_value = db.Column(db.String(255))
     security_alignment = db.Column(db.Float)
     conformity_alignment = db.Column(db.Float)
     benevolence_alignment = db.Column(db.Float)
@@ -169,6 +167,13 @@ class AlignmentScores(db.Model):
     hedonism_alignment = db.Column(db.Float)
     achievement_alignment = db.Column(db.Float)
     power_alignment = db.Column(db.Float)
+
+    top_match_percent = db.Column(db.Float)
+    top_match_value = db.Column(db.String(255))
+
+    @property
+    def dashed_top_match_value(self):
+        return self.top_match_value.replace("_", "-")
 
 
 class AlignmentFeed(db.Model):
@@ -206,17 +211,27 @@ class UserBJourney(db.Model):
         db.ForeignKey("conversations.conversation_uuid"),
         primary_key=True,
     )
+    conversation = relationship("Conversations", foreign_keys=[conversation_uuid])
     quiz_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("scores.quiz_uuid"))
+    quiz = relationship("Scores", foreign_keys=[quiz_uuid])
     alignment_scores_uuid = db.Column(
         UNIQUEIDENTIFIER, db.ForeignKey("alignment_scores.alignment_scores_uuid")
+    )
+    alignment_scores = relationship(
+        "AlignmentScores", foreign_keys=[alignment_scores_uuid]
     )
     alignment_feed_uuid = db.Column(
         UNIQUEIDENTIFIER, db.ForeignKey("alignment_feed.alignment_feed_uuid")
     )
+    alignment_feed = relationship("AlignmentFeed", foreign_keys=[alignment_feed_uuid])
     effect_choice_uuid = db.Column(
         UNIQUEIDENTIFIER, db.ForeignKey("effect_choice.effect_choice_uuid")
     )
+    effect_choice = relationship("EffectChoice", foreign_keys=[effect_choice_uuid])
     solution_choice_uuid = db.Column(
         UNIQUEIDENTIFIER, db.ForeignKey("solution_choice.solution_choice_uuid")
+    )
+    solution_choice = relationship(
+        "SolutionChoice", foreign_keys=[solution_choice_uuid]
     )
     consent = db.Column(db.Boolean)

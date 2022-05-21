@@ -431,7 +431,7 @@ paths:
                   value:
                     overallSimilarityScore: 70
                     topMatchPercent: 90
-                    topMatchValue: benevolence
+                    topMatchValue: Benevolence
                     valueAlignment:
                       - description: lots of text
                         id: benevolence
@@ -1254,7 +1254,7 @@ paths:
                 Successful GET Alignment Summary Response Body:
                   value:
                     userAName: Stevie
-                    topMatchValue: benevolence
+                    topMatchValue: Self Direction
                     topMatchPercent: '90'
                     sharedImpacts:
                       - decrease in GDP
