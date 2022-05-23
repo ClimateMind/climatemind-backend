@@ -252,6 +252,7 @@ paths:
                     conversationStatus: 2
                     consent: false
                     conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
+                    alignmentScoresId: null
         '404':
           description: Not Found
           content:
@@ -273,7 +274,7 @@ paths:
           description: Session UUID
       description: |-
         Get the details of a single conversation. 
-        Included alignmentScoresId if and only if consent=true.
+        If consent=false, alignmentScoresId is not exposed, but set to null instead.
   /alignment:
     post:
       summary: Alignment Scores - POST
