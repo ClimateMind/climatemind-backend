@@ -58,7 +58,7 @@ def build_single_conversation_response(conversation_uuid):
         "conversationStatus": conversation.conversation_status,
         "consent": conversation.user_b_share_consent,
         "conversationTimestamp": conversation.conversation_created_timestamp,
-        "alignmentScoresId": alignment_scores_uuid
+        "alignmentScoresId": alignment_scores_uuid,
     }
 
     return response
