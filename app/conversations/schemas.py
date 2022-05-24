@@ -12,6 +12,6 @@ class ConversationEditSchema(CamelCaseSchema, ma.SQLAlchemySchema):
 
     conversation_id = ma.auto_field("conversation_uuid")
     receiver_name = ma.auto_field()
-    conversation_status = fields.Integer(validate=validate.OneOf(
-        [s.value for s in ConversationStatus]
-    ))
+    conversation_status = fields.Integer(
+        validate=validate.OneOf([s.value for s in ConversationStatus])
+    )
