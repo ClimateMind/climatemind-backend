@@ -142,7 +142,7 @@ def build_shared_impacts_response(alignment_scores_uuid):
     ]
 
     climate_effects_iris = [
-        "webprotege.stanford.edu." + iri for iri in climate_effects_iris
+        current_app.config.get("IRI_PREFIX") + iri for iri in climate_effects_iris
     ]
 
     climate_effects = effect_details(G, climate_effects_iris, nx)
