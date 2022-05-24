@@ -1,8 +1,10 @@
 import pytest
 
-import app.scoring.process_alignment_scores as pas
-
-### Example data was taken from https://docs.google.com/document/d/1cqmBvNd8sWV1d6EvmTLgp6DlR3h1RVgW7pNDGgmV_k4/edit
+from app.scoring.process_alignment_scores import (
+    get_rank_map,
+    get_alignment_map,
+    get_max,
+)
 from app.personal_values.enums import PersonalValue
 
 
@@ -21,7 +23,7 @@ def test_get_rank_map():
     }
     score_map = {name: data[0] for (name, data) in data_map.items()}
     expected_rank_map = {name: data[1] for (name, data) in data_map.items()}
-    actual_rank_map = pas.get_rank_map(score_map)
+    actual_rank_map = get_rank_map(score_map)
     assert (
         actual_rank_map == expected_rank_map
     ), "Rank map does not have expected values."
@@ -43,7 +45,7 @@ def test_get_alignment_map():
     userA_rank_map = {name: data[0] for (name, data) in data_map.items()}
     userB_rank_map = {name: data[1] for (name, data) in data_map.items()}
     expected_alignment_map = {name: data[2] for (name, data) in data_map.items()}
-    actual_raw_alignment_map = pas.get_alignment_map(userA_rank_map, userB_rank_map)
+    actual_raw_alignment_map = get_alignment_map(userA_rank_map, userB_rank_map)
     actual_alignment_map = {
         name: round(value, 3) for (name, value) in actual_raw_alignment_map.items()
     }
@@ -65,7 +67,7 @@ def test_get_max():
         PersonalValue.TRADITION.key: 0.572,
         PersonalValue.HEDONISM.key: 0.000,
     }
+    expected_max = (PersonalValue.BENEVOLENCE.key, 0.853)
 
-    expected_max = ("benevolence", 0.853)
-    actual_max = pas.get_max(data_map)
+    actual_max = get_max(data_map)
     assert actual_max == expected_max, "The correct max value was not chosen."

@@ -77,7 +77,7 @@ def get_sorted_alignment_map(alignment_map):
     return sorted(alignment_map.items(), key=lambda x: -x[1])
 
 
-def get_max(alignment_map):
+def get_max(alignment_map: dict) -> tuple:
     """Find the max alignment score with its personal value name."""
     return sorted(alignment_map.items(), key=lambda pair: -pair[1])[0]
 

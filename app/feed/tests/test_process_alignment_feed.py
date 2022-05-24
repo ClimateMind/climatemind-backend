@@ -34,7 +34,7 @@ def test_get_default_solutions_iris():
     )
     assert (
         len(result_solution_iris) == total_solutions_count
-    ), f"Total solutions cound should be {total_solutions_count}"
+    ), f"Total solutions count should be {total_solutions_count}"
 
     first_iri_in_result = result_solution_iris[0]
     assert (
