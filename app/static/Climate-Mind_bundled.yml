@@ -1270,5 +1270,83 @@ paths:
           in: header
           name: X-Session-Id
           description: Session uuid
+  '/conversation/:conversationId/topics':
+    get:
+      summary: Selected topics - GET
+      tags: []
+      responses: {}
+      operationId: 'get-conversation-:conversationId-topics'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                climateEffects:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      effectId:
+                        type: string
+                      sharedScore:
+                        type: number
+                      effectShortDescription:
+                        type: string
+                      effectTitle:
+                        type: string
+                      imageUrl:
+                        type: string
+                      relatedPersonalValues:
+                        type: array
+                        items:
+                          type: object
+                climateSolutions:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      solutionId:
+                        type: string
+                      sharedScore:
+                        type: number
+                      solutionShortDescription:
+                        type: string
+                      solutionTitle:
+                        type: string
+                      imageUrl:
+                        type: string
+            examples:
+              Successful Selected Topics GET Response Body:
+                value:
+                  climateEffects:
+                    - effectId: RBvy0CVizhdMfXbtJIc2En
+                      sharedScore: 27.9
+                      effectShortDescription: 'The total value of goods produced and services provided each year are increasingly     being constrained. Global warming is decreasing GDP by increasing in the frequency of heat waves and shrinking the tourism industry, among other impacts.'
+                      effectTitle: decrease in GDP
+                      imageUrl: 'https://i.imgur.com/NNK9Na4.jpg'
+                      relatedPersonalValues:
+                        - achievement
+                        - benevolence
+                  climateSolutions:
+                    - solutionId: RDSZw453Ge76hYTvYEsaAwU
+                      sharedScore: 29.1
+                      solutionShortDescription: Testers are awesome.
+                      solutionTitle: becoming a tester
+                      imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                    - solutionId: ADSZw453Ge76hYTvYEsaAwU
+                      sharedScore: 21.9999
+                      solutionShortDescription: Communication framing is awesome.
+                      solutionTitle: effective communication framing
+                      imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+      description: |-
+        Get the list of effects and solutions selected by user b from the set of alignment effects and solutions respectively.
+        Under the current model, there will always be 1 selected effect and 2 selected solutions.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
 components:
   schemas: {}

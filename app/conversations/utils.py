@@ -1,9 +1,14 @@
+from flask import current_app
+
 from email import message
+
 from app.errors.errors import DatabaseError
-from app.models import Conversations, UserBJourney, Users
+from app.models import Conversations, UserBJourney, Users, EffectChoice, SolutionChoice
 import app.conversations.routes as con
 from app import db
 from app.user_b.analytics_logging import eventType, log_user_b_event
+from app.network_x_tools.network_x_utils import network_x_utils
+from app.alignment.utils import effect_details, solution_details
 
 
 def build_single_conversation_response(conversation_uuid):
@@ -104,3 +109,58 @@ def update_consent_choice(conversation_uuid, consent_choice, session_uuid):
     log_user_b_event(conversation_uuid, session_uuid, eventType.CONSENT, consent_choice)
 
     return {"message": "Consent successfully updated."}
+
+
+def build_selected_topics_response(conversation_uuid):
+    """Deal with database interactions to provide response for GET selected topics request.
+
+    This includes effects and solutions. For the current model, there is always 1 selected effect
+    and 2 selected solutions.
+
+    Parameters
+    ==========
+    conversation_uuid - (UUID) the unique id for the conversation
+
+    Returns
+    ==========
+    JSON:
+    - the selected effects (always 1)
+    - the selected solutions (always 2)
+
+    """
+
+    G = current_app.config["G"].copy()
+    nx = network_x_utils()
+
+    (user_b_journey, effect_choice, solution_choice) = (
+        db.session.query(UserBJourney, EffectChoice, SolutionChoice)
+        .join(
+            EffectChoice,
+            EffectChoice.effect_choice_uuid == UserBJourney.effect_choice_uuid,
+        )
+        .join(
+            SolutionChoice,
+            SolutionChoice.solution_choice_uuid == UserBJourney.solution_choice_uuid,
+        )
+        .filter(UserBJourney.conversation_uuid == conversation_uuid)
+        .one_or_none()
+    )
+
+    climate_effect_iris = [effect_choice.effect_choice_1_iri]
+    climate_effect_iris = [
+        current_app.config.get("IRI_PREFIX") + iri for iri in climate_effect_iris
+    ]
+    climate_effects = effect_details(G, climate_effect_iris, nx)
+
+    climate_solution_iris = [
+        solution_choice.solution_choice_1_iri,
+        solution_choice.solution_choice_2_iri,
+    ]
+    climate_solutions = solution_details(G, climate_solution_iris, nx)
+
+    response = {
+        "climateEffects": climate_effects,
+        "climateSolutions": climate_solutions,
+    }
+
+    return response
