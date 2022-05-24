@@ -22,6 +22,10 @@ class OntologyError(CustomError):
     pass
 
 
+class ForbiddenError(CustomError):
+    status_code = 403
+
+
 class NotInDatabaseError(CustomError):
     status_code = 404
 
