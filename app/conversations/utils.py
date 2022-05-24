@@ -23,6 +23,7 @@ def build_single_conversation_response(conversation_uuid):
     - conversation status
     - consent - if user b has consented to share info with user a
     - timestamp for when the conversation was created
+    - alignment scores uuid (if consent=true)
     """
     conversation = (
         db.session.query(Conversations)
@@ -34,6 +35,15 @@ def build_single_conversation_response(conversation_uuid):
         .filter_by(user_uuid=conversation.sender_user_uuid)
         .one_or_none()
     ).first_name
+
+    if conversation.user_b_share_consent:
+        alignment_scores_uuid = (
+            db.session.query(UserBJourney)
+            .filter_by(conversation_uuid=conversation_uuid)
+            .one()
+        ).alignment_scores_uuid
+    else:
+        alignment_scores_uuid = None
 
     response = {
         "conversationId": conversation.conversation_uuid,
@@ -48,6 +58,7 @@ def build_single_conversation_response(conversation_uuid):
         "conversationStatus": conversation.conversation_status,
         "consent": conversation.user_b_share_consent,
         "conversationTimestamp": conversation.conversation_created_timestamp,
+        "alignmentScoresId": alignment_scores_uuid,
     }
 
     return response
