@@ -41,10 +41,12 @@ def test_build_alignment_scores_response():
     conversation = user_b_journey.conversation
     user_a = conversation.sender_user
 
+    top_match_value = alignment_scores.top_match_value
+    top_match_value_representation = PersonalValue[top_match_value].representation
     expected_response = {
         "overallSimilarityScore": as_percent(alignment_scores.overall_similarity_score),
         "topMatchPercent": alignment_scores.top_match_percent,
-        "topMatchValue": alignment_scores.top_match_value,
+        "topMatchValue": top_match_value_representation,
         "userAName": user_a.first_name,
         "userBName": conversation.receiver_name,
     }
@@ -64,21 +66,6 @@ def test_build_alignment_scores_response():
     assert set(keys_in_response) == set(
         PersonalValue.get_all_keys()
     ), "Keys from response are unique"
-
-
-@pytest.mark.parametrize(
-    "number, expected_percent",
-    [
-        (0.5, 50),
-        (0.99, 99),
-        (1, 100),
-        # unexpected values don't raise an error
-        (-0.5, -50),
-        (10, 1000),
-    ],
-)
-def test_as_percent(number, expected_percent):
-    assert as_percent(number) == expected_percent
 
 
 def test_get_aligned_scores_alignments():

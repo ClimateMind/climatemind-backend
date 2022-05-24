@@ -170,48 +170,6 @@ paths:
               schema:
                 description: ''
                 type: object
-                properties:
-                  conversationId:
-                    type: string
-                    minLength: 1
-                  userA:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        minLength: 1
-                      id:
-                        type: string
-                        minLength: 1
-                      sessionId:
-                        type: string
-                        minLength: 1
-                    required:
-                      - name
-                      - id
-                      - sessionId
-                  userB:
-                    type: object
-                    properties:
-                      name:
-                        type: string
-                        minLength: 1
-                    required:
-                      - name
-                  conversationStatus:
-                    type: number
-                  consent:
-                    type: boolean
-                  conversationTimestamp:
-                    type: string
-                    minLength: 1
-                required:
-                  - conversationId
-                  - userA
-                  - userB
-                  - conversationStatus
-                  - consent
-                  - conversationTimestamp
                 x-examples:
                   example-1:
                     conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
@@ -224,8 +182,52 @@ paths:
                     conversationStatus: 2
                     consent: true
                     conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
+                properties:
+                  conversationId:
+                    type: string
+                    minLength: 1
+                  userA:
+                    type: object
+                    required:
+                      - name
+                      - id
+                      - sessionId
+                    properties:
+                      name:
+                        type: string
+                        minLength: 1
+                      id:
+                        type: string
+                        minLength: 1
+                      sessionId:
+                        type: string
+                        minLength: 1
+                  userB:
+                    type: object
+                    required:
+                      - name
+                    properties:
+                      name:
+                        type: string
+                        minLength: 1
+                  conversationStatus:
+                    type: number
+                  consent:
+                    type: boolean
+                  conversationTimestamp:
+                    type: string
+                    minLength: 1
+                  alignmentScoresId:
+                    type: string
+                required:
+                  - conversationId
+                  - userA
+                  - userB
+                  - conversationStatus
+                  - consent
+                  - conversationTimestamp
               examples:
-                Successful GET Conversation Response Body:
+                Successful GET Conversation Response Body with consent=true:
                   value:
                     conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
                     userA:
@@ -237,6 +239,20 @@ paths:
                     conversationStatus: 2
                     consent: true
                     conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
+                    alignmentScoresId: 842a4949-a3e4-4914-c9d2-cd843f48f357
+                Successful GET Conversation Response Body with consent=false:
+                  value:
+                    conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
+                    userA:
+                      name: Bill
+                      id: ba5df442-7261-4fc1-bff0-5dfd84035d56
+                      sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
+                    userB:
+                      name: Bob
+                    conversationStatus: 2
+                    consent: false
+                    conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
+                    alignmentScoresId: null
         '404':
           description: Not Found
           content:
@@ -256,7 +272,9 @@ paths:
           in: header
           name: X-Session-Id
           description: Session UUID
-      description: 'Get the details of a single conversation. '
+      description: |-
+        Get the details of a single conversation. 
+        If consent=false, alignmentScoresId is not exposed, but set to null instead.
   /alignment:
     post:
       summary: Alignment Scores - POST
@@ -414,7 +432,7 @@ paths:
                   value:
                     overallSimilarityScore: 70
                     topMatchPercent: 90
-                    topMatchValue: benevolence
+                    topMatchValue: Benevolence
                     valueAlignment:
                       - description: lots of text
                         id: benevolence
@@ -1237,7 +1255,7 @@ paths:
                 Successful GET Alignment Summary Response Body:
                   value:
                     userAName: Stevie
-                    topMatchValue: benevolence
+                    topMatchValue: Self Direction
                     topMatchPercent: '90'
                     sharedImpacts:
                       - decrease in GDP
