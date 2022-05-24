@@ -5,7 +5,7 @@ import factory
 from faker import Factory as FakerFactory
 from werkzeug.security import generate_password_hash
 
-from app.conversations.routes import ConversationStatus
+from app.conversations.enums import ConversationStatus
 from app.models import (
     Users,
     Sessions,
