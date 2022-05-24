@@ -38,13 +38,13 @@ def post_alignment_uuid():
     session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
     check_uuid_in_db(session_uuid, uuidType.SESSION)
 
-    r = request.get_json(force=True, silent=True)
+    request_data = request.get_json(force=True, silent=True)
 
-    conversation_uuid = r.get("conversationId")
-    quiz_uuid = r.get("quizId")
-
+    conversation_uuid = request_data.get("conversationId")
     conversation_uuid = validate_uuid(conversation_uuid, uuidType.CONVERSATION)
     check_uuid_in_db(conversation_uuid, uuidType.CONVERSATION)
+
+    quiz_uuid = request_data.get("quizId")
     quiz_uuid = validate_uuid(quiz_uuid, uuidType.QUIZ)
     check_uuid_in_db(quiz_uuid, uuidType.QUIZ)
 

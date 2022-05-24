@@ -50,7 +50,7 @@ def create_alignment_feed(
             temporary_solutions_iris,
         )
         db.session.add(alignment_feed)
-        db.session.commit
+        db.session.commit()
     except:
         raise DatabaseError(
             message="An error occurred while adding the alignment feed to the database."
