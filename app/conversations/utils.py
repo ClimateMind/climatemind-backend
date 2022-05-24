@@ -1,7 +1,7 @@
 from flask import current_app
 
-from email import message
-
+from app.conversations.enums import ConversationStatus
+from app import db
 from app.errors.errors import DatabaseError
 from app.models import Conversations, UserBJourney, Users, EffectChoice, SolutionChoice
 import app.conversations.routes as con
@@ -97,9 +97,9 @@ def update_consent_choice(conversation_uuid, consent_choice, session_uuid):
         conversation.user_b_share_consent = user_b_journey.consent = consent_choice
 
         if consent_choice:
-            conversation.conversation_status = con.ConversationStatus.QuizCompleted
+            conversation.conversation_status = ConversationStatus.QuizCompleted
         else:
-            conversation.conversation_status = con.ConversationStatus.Visited
+            conversation.conversation_status = ConversationStatus.Visited
 
     except:
         raise DatabaseError(

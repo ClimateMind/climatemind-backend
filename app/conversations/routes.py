@@ -1,36 +1,32 @@
-from app.conversations import bp
+import datetime
+import uuid
+from datetime import timezone
+
+from flask import request, jsonify
+from flask_cors import cross_origin
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from marshmallow import ValidationError
+from sqlalchemy.exc import SQLAlchemyError
+
 from app import db
+from app.common.schemas import validate_schema_field
+from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
+from app.conversations import bp
+from app.conversations.enums import ConversationStatus
+from app.conversations.schemas import ConversationEditSchema
 from app.conversations.utils import (
     build_single_conversation_response,
     update_consent_choice,
     build_selected_topics_response,
 )
-from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
+from app.errors.errors import (
+    DatabaseError,
+    InvalidUsageError,
+    NotInDatabaseError,
+    ForbiddenError,
+)
 from app.models import Users, Conversations
-from app.errors.errors import DatabaseError, InvalidUsageError
 from app.sendgrid.utils import send_user_b_shared_email
-from flask_jwt_extended import jwt_required, get_jwt_identity
-from flask import request, jsonify
-from flask_cors import cross_origin
-import datetime
-from datetime import timezone
-from sqlalchemy.exc import SQLAlchemyError
-from enum import IntEnum
-import uuid
-
-
-class ConversationStatus(IntEnum):
-    """
-    Conversation status is used to identify where a user is
-    in their journey to communicate with other users they invite.
-
-    This enum should not be modified unless the frontend is involved in the change.
-    """
-
-    Invited = 0
-    Visited = 1
-    QuizCompleted = 2
-    ConversationCompleted = 3
 
 
 @bp.route("/conversation", methods=["POST"])
@@ -206,6 +202,39 @@ def post_consent(conversation_uuid):
     send_user_b_shared_email(conversation_uuid)
 
     return jsonify(response), 201
+
+
+@bp.route("/conversation/<conversation_uuid>", methods=["PUT"])
+@cross_origin()
+@jwt_required()
+def edit_conversation(conversation_uuid):
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    schema = ConversationEditSchema()
+    uuid_field_name = "conversationId"
+    validate_schema_field(schema, uuid_field_name, conversation_uuid)
+
+    conversation = Conversations.query.filter_by(
+        conversation_uuid=conversation_uuid
+    ).first()
+    identity = get_jwt_identity()
+
+    if not conversation:
+        raise NotInDatabaseError(message="Conversation not found")
+    elif conversation.sender_user_uuid != identity:
+        raise ForbiddenError(message="User don't have an access to the conversation")
+    else:
+        json_data = request.get_json(force=True, silent=True)
+        json_data[uuid_field_name] = conversation_uuid
+
+        try:
+            conversation = schema.load(json_data, instance=conversation, partial=True)
+            db.session.commit()
+            return schema.jsonify(conversation)
+        except ValidationError as err:
+            return jsonify(err.messages), 422
 
 
 @bp.route("/conversation/<conversation_uuid>/topics", methods=["GET"])
