@@ -1,3 +1,5 @@
+import pytest
+
 from app.personal_values.enums import PersonalValue, DEFAULT_SEPARATOR
 
 
@@ -36,3 +38,14 @@ def test_personal_value_separation():
     assert pv_without_separator.key == pv_without_separator.separated_key(
         "*&^%"
     ), "Should not affect PersonalValue without separator"
+
+
+@pytest.mark.parametrize(
+    "key, expected_representation",
+    [
+        ("self_direction", "Self Direction"),
+        ("achievement", "Achievement"),
+    ],
+)
+def test_personal_value_key_to_representation(key, expected_representation):
+    assert PersonalValue[key].representation == expected_representation

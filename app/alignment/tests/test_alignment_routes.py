@@ -8,11 +8,6 @@ from app.factories import UserBJourneyFactory, SessionsFactory, faker
 def test_get_alignment(client):
     user_b_journey = UserBJourneyFactory()
     alignment_scores = user_b_journey.alignment_scores
-
-    # FIXME: Now any user could access any alignment_scores
-    # conversation = user_b_journey.conversation
-    # user_a = conversation.sender_user
-    # session = SessionsFactory(user=user_a)
     session = SessionsFactory()
 
     faked_uuid = faker.uuid4()

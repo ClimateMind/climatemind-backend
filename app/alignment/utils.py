@@ -71,11 +71,13 @@ def build_alignment_scores_response(alignment_scores_uuid: uuid.UUID) -> dict:
         ) in personal_value_descriptions.items()
     ]
     personal_values_data_with_scores.sort(key=lambda x: -x["score"])
+    top_match_value_key = alignment_score.top_match_value
+    top_match_value_representation = PersonalValue[top_match_value_key].representation
 
     response = {
         "overallSimilarityScore": as_percent(alignment_score.overall_similarity_score),
         "topMatchPercent": alignment_score.top_match_percent,
-        "topMatchValue": alignment_score.top_match_value,
+        "topMatchValue": top_match_value_representation,
         "valueAlignment": personal_values_data_with_scores,
         "userAName": userA_name,
         "userBName": userB_name,
@@ -482,7 +484,7 @@ def build_alignment_summary_response(alignment_scores_uuid):
     ==========
     JSON:
     - user A's name
-    - the top match value
+    - the top match value representation
     - the alignment percentage for the top match value
     - the chosen shared impact(s) title
     - the chosen shared solutions' titles
@@ -494,7 +496,7 @@ def build_alignment_summary_response(alignment_scores_uuid):
 
     try:
         (
-            top_match_value,
+            top_match_value_key,
             top_match_percent,
             userA_name,
             user_b_journey,
@@ -533,29 +535,27 @@ def build_alignment_summary_response(alignment_scores_uuid):
             .filter(AlignmentScores.alignment_scores_uuid == alignment_scores_uuid)
             .one_or_none()
         )
-
-        chosen_impact_iris = [effect_choice.effect_choice_1_iri]
-        chosen_solution_iris = [
-            solution_choice.solution_choice_1_iri,
-            solution_choice.solution_choice_2_iri,
-        ]
-
-        response = {
-            "userAName": userA_name,
-            "topMatchValue": top_match_value,
-            "topMatchPercent": round(top_match_percent),
-            "sharedImpacts": [
-                nx.get_title_by_iri(iri, G) for iri in chosen_impact_iris
-            ],
-            "sharedSolutions": [
-                nx.get_title_by_iri(iri, G) for iri in chosen_solution_iris
-            ],
-        }
-
     except:
         raise DatabaseError(
             message="Something went wrong while retrieving the alignment summary data from the db."
         )
+
+    chosen_impact_iris = [effect_choice.effect_choice_1_iri]
+    chosen_solution_iris = [
+        solution_choice.solution_choice_1_iri,
+        solution_choice.solution_choice_2_iri,
+    ]
+
+    top_match_value_representation = PersonalValue[top_match_value_key].representation
+    response = {
+        "userAName": userA_name,
+        "topMatchValue": top_match_value_representation,
+        "topMatchPercent": round(top_match_percent),
+        "sharedImpacts": [nx.get_title_by_iri(iri, G) for iri in chosen_impact_iris],
+        "sharedSolutions": [
+            nx.get_title_by_iri(iri, G) for iri in chosen_solution_iris
+        ],
+    }
 
     return response
 
