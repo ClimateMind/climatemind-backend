@@ -12,7 +12,7 @@ BASEDIR="$(dirname "${BASH_SOURCE[0]}")"
 # flask db init -d $BASEDIR/migrations_azure
 # flask db init -d $BASEDIR/migrations_test_db
 
-# flask db migrate -m "add all current tables" -d $BASEDIR/migrations_local
+flask db migrate -m "add all current tables" -d $BASEDIR/migrations_local
 # flask db migrate -m "CM-793 V2 DB changes" -d $BASEDIR/migrations_azure
 # flask db migrate -m "CM-793 V2 DB changes" -d $BASEDIR/migrations_test_db
 
