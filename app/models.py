@@ -126,6 +126,8 @@ class Conversations(db.Model):
     conversation_status = db.Column(db.Integer)
     conversation_created_timestamp = db.Column(db.DateTime)
     user_b_share_consent = db.Column(db.Boolean)
+    state = db.Column(db.Integer)
+    user_a_rating = db.Column(db.Integer)
 
 
 class AnalyticsData(db.Model):

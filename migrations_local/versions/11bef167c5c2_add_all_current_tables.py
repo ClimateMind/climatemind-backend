@@ -1,8 +1,8 @@
 """add all current tables
 
-Revision ID: 4e5d1dc56f20
+Revision ID: 11bef167c5c2
 Revises: 
-Create Date: 2021-12-14 12:06:42.786861
+Create Date: 2022-05-27 17:14:28.071799
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mssql
 
 # revision identifiers, used by Alembic.
-revision = "4e5d1dc56f20"
+revision = "11bef167c5c2"
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -37,8 +37,6 @@ def upgrade():
         "alignment_scores",
         sa.Column("alignment_scores_uuid", mssql.UNIQUEIDENTIFIER(), nullable=False),
         sa.Column("overall_similarity_score", sa.Float(), nullable=True),
-        sa.Column("top_match_percent", sa.Float(), nullable=True),
-        sa.Column("top_match_value", sa.String(length=255), nullable=True),
         sa.Column("security_alignment", sa.Float(), nullable=True),
         sa.Column("conformity_alignment", sa.Float(), nullable=True),
         sa.Column("benevolence_alignment", sa.Float(), nullable=True),
@@ -49,6 +47,8 @@ def upgrade():
         sa.Column("hedonism_alignment", sa.Float(), nullable=True),
         sa.Column("achievement_alignment", sa.Float(), nullable=True),
         sa.Column("power_alignment", sa.Float(), nullable=True),
+        sa.Column("top_match_percent", sa.Float(), nullable=True),
+        sa.Column("top_match_value", sa.String(length=255), nullable=True),
         sa.PrimaryKeyConstraint("alignment_scores_uuid"),
     )
     op.create_table(
@@ -85,6 +85,10 @@ def upgrade():
         sa.Column("scores_created_timestamp", sa.DateTime(), nullable=True),
         sa.Column("session_uuid", mssql.UNIQUEIDENTIFIER(), nullable=True),
         sa.Column("postal_code", sa.String(length=5), nullable=True),
+        # sa.ForeignKeyConstraint(
+        #     ["session_uuid"],
+        #     ["sessions.session_uuid"],
+        # ),
         sa.PrimaryKeyConstraint("quiz_uuid"),
     )
     op.create_table(
@@ -93,6 +97,10 @@ def upgrade():
         sa.Column("user_uuid", mssql.UNIQUEIDENTIFIER(), nullable=True),
         sa.Column("session_uuid", mssql.UNIQUEIDENTIFIER(), nullable=False),
         sa.Column("session_created_timestamp", sa.DateTime(), nullable=True),
+        # sa.ForeignKeyConstraint(
+        #     ["user_uuid"],
+        #     ["users.user_uuid"],
+        # ),
         sa.PrimaryKeyConstraint("session_uuid"),
     )
     op.create_table(
@@ -111,6 +119,10 @@ def upgrade():
         sa.Column("first_name", sa.String(length=50), nullable=False),
         sa.Column("last_name", sa.String(length=50), nullable=False),
         sa.Column("quiz_uuid", mssql.UNIQUEIDENTIFIER(), nullable=True),
+        # sa.ForeignKeyConstraint(
+        #     ["quiz_uuid"],
+        #     ["scores.quiz_uuid"],
+        # ),
         sa.PrimaryKeyConstraint("user_uuid"),
     )
     op.create_index(op.f("ix_users_user_email"), "users", ["user_email"], unique=True)
@@ -127,6 +139,10 @@ def upgrade():
         sa.Column("solution_4_iri", sa.String(length=255), nullable=True),
         sa.Column("isPossiblyLocal", sa.Boolean(), nullable=True),
         sa.Column("session_uuid", mssql.UNIQUEIDENTIFIER(), nullable=True),
+        # sa.ForeignKeyConstraint(
+        #     ["session_uuid"],
+        #     ["sessions.session_uuid"],
+        # ),
         sa.PrimaryKeyConstraint("climate_feed_id"),
     )
     op.create_table(
@@ -138,6 +154,16 @@ def upgrade():
         sa.Column("conversation_status", sa.Integer(), nullable=True),
         sa.Column("conversation_created_timestamp", sa.DateTime(), nullable=True),
         sa.Column("user_b_share_consent", sa.Boolean(), nullable=True),
+        sa.Column("state", sa.Integer(), nullable=True),
+        sa.Column("user_a_rating", sa.Integer(), nullable=True),
+        # sa.ForeignKeyConstraint(
+        #     ["sender_session_uuid"],
+        #     ["sessions.session_uuid"],
+        # ),
+        # sa.ForeignKeyConstraint(
+        #     ["sender_user_uuid"],
+        #     ["users.user_uuid"],
+        # ),
         sa.PrimaryKeyConstraint("conversation_uuid"),
     )
     op.create_index(
@@ -152,6 +178,10 @@ def upgrade():
         sa.Column("signup_timestamp", sa.DateTime(), nullable=True),
         sa.Column("session_uuid", mssql.UNIQUEIDENTIFIER(), nullable=True),
         sa.Column("signup_id", sa.Integer(), autoincrement=True, nullable=False),
+        # sa.ForeignKeyConstraint(
+        #     ["session_uuid"],
+        #     ["sessions.session_uuid"],
+        # ),
         sa.PrimaryKeyConstraint("signup_id"),
     )
     op.create_table(
@@ -163,6 +193,14 @@ def upgrade():
         sa.Column("event_timestamp", sa.DateTime(), nullable=True),
         sa.Column("event_value_type", sa.String(length=255), nullable=True),
         sa.Column("session_uuid", mssql.UNIQUEIDENTIFIER(), nullable=True),
+        # sa.ForeignKeyConstraint(
+        #     ["conversation_uuid"],
+        #     ["conversations.conversation_uuid"],
+        # ),
+        # sa.ForeignKeyConstraint(
+        #     ["session_uuid"],
+        #     ["sessions.session_uuid"],
+        # ),
         sa.PrimaryKeyConstraint("event_log_uuid"),
     )
     op.create_table(
@@ -174,29 +212,33 @@ def upgrade():
         sa.Column("effect_choice_uuid", mssql.UNIQUEIDENTIFIER(), nullable=True),
         sa.Column("solution_choice_uuid", mssql.UNIQUEIDENTIFIER(), nullable=True),
         sa.Column("consent", sa.Boolean(), nullable=True),
+        # sa.ForeignKeyConstraint(
+        #     ["alignment_feed_uuid"],
+        #     ["alignment_feed.alignment_feed_uuid"],
+        # ),
+        # sa.ForeignKeyConstraint(
+        #     ["alignment_scores_uuid"],
+        #     ["alignment_scores.alignment_scores_uuid"],
+        # ),
+        # sa.ForeignKeyConstraint(
+        #     ["conversation_uuid"],
+        #     ["conversations.conversation_uuid"],
+        # ),
+        # sa.ForeignKeyConstraint(
+        #     ["effect_choice_uuid"],
+        #     ["effect_choice.effect_choice_uuid"],
+        # ),
+        # sa.ForeignKeyConstraint(
+        #     ["quiz_uuid"],
+        #     ["scores.quiz_uuid"],
+        # ),
+        # sa.ForeignKeyConstraint(
+        #     ["solution_choice_uuid"],
+        #     ["solution_choice.solution_choice_uuid"],
+        # ),
         sa.PrimaryKeyConstraint("conversation_uuid"),
     )
-    op.create_foreign_key(
-        "fk_sessions_user_uuid",
-        "sessions",
-        "users",
-        ["user_uuid"],
-        ["user_uuid"],
-    )
-    op.create_foreign_key(
-        "fk_users_quiz_uuid",
-        "users",
-        "scores",
-        ["quiz_uuid"],
-        ["quiz_uuid"],
-    )
-    op.create_foreign_key(
-        "fk_climate_feed_session_uuid",
-        "climate_feed",
-        "sessions",
-        ["session_uuid"],
-        ["session_uuid"],
-    )
+
     op.create_foreign_key(
         "fk_scores_session_uuid",
         "scores",
@@ -204,6 +246,50 @@ def upgrade():
         ["session_uuid"],
         ["session_uuid"],
     )
+
+    # sa.ForeignKeyConstraint(
+    #     ["session_uuid"],
+    #     ["sessions.session_uuid"],
+    # ),
+
+    op.create_foreign_key(
+        "fk_sessions_user_uuid",
+        "sessions",
+        "users",
+        ["user_uuid"],
+        ["user_uuid"],
+    )
+
+    # sa.ForeignKeyConstraint(
+    #     ["user_uuid"],
+    #     ["users.user_uuid"],
+    # ),
+
+    op.create_foreign_key(
+        "fk_users_quiz_uuid",
+        "users",
+        "scores",
+        ["quiz_uuid"],
+        ["quiz_uuid"],
+    )
+
+    # sa.ForeignKeyConstraint(
+    #     ["quiz_uuid"],
+    #     ["scores.quiz_uuid"],
+    # ),
+
+    op.create_foreign_key(
+        "fk_climate_feed_session_uuid",
+        "climate_feed",
+        "sessions",
+        ["session_uuid"],
+        ["session_uuid"],
+    )
+    # sa.ForeignKeyConstraint(
+    #     ["session_uuid"],
+    #     ["sessions.session_uuid"],
+    # ),
+
     op.create_foreign_key(
         "fk_conversations_session_uuid",
         "conversations",
@@ -211,6 +297,7 @@ def upgrade():
         ["sender_session_uuid"],
         ["session_uuid"],
     )
+
     op.create_foreign_key(
         "fk_conversations_user_uuid",
         "conversations",
@@ -218,6 +305,16 @@ def upgrade():
         ["sender_user_uuid"],
         ["user_uuid"],
     )
+
+    # sa.ForeignKeyConstraint(
+    #     ["sender_session_uuid"],
+    #     ["sessions.session_uuid"],
+    # ),
+    # sa.ForeignKeyConstraint(
+    #     ["sender_user_uuid"],
+    #     ["users.user_uuid"],
+    # ),
+
     op.create_foreign_key(
         "fk_signup_session_uuid",
         "signup",
@@ -225,6 +322,12 @@ def upgrade():
         ["session_uuid"],
         ["session_uuid"],
     )
+
+    # sa.ForeignKeyConstraint(
+    #     ["session_uuid"],
+    #     ["sessions.session_uuid"],
+    # ),
+
     op.create_foreign_key(
         "fk_user_b_analytics_data_conversation_uuid",
         "user_b_analytics_data",
@@ -232,6 +335,7 @@ def upgrade():
         ["conversation_uuid"],
         ["conversation_uuid"],
     )
+
     op.create_foreign_key(
         "fk_user_b_analytics_data_session_uuid",
         "user_b_analytics_data",
@@ -239,6 +343,16 @@ def upgrade():
         ["session_uuid"],
         ["session_uuid"],
     )
+
+    # sa.ForeignKeyConstraint(
+    #     ["conversation_uuid"],
+    #     ["conversations.conversation_uuid"],
+    # ),
+    # sa.ForeignKeyConstraint(
+    #     ["session_uuid"],
+    #     ["sessions.session_uuid"],
+    # ),
+
     op.create_foreign_key(
         "fk_user_b_journey_alignment_feed_uuid",
         "user_b_journey",
@@ -246,6 +360,7 @@ def upgrade():
         ["alignment_feed_uuid"],
         ["alignment_feed_uuid"],
     )
+
     op.create_foreign_key(
         "fk_user_b_journey_alignment_scores_uuid",
         "user_b_journey",
@@ -253,6 +368,7 @@ def upgrade():
         ["alignment_scores_uuid"],
         ["alignment_scores_uuid"],
     )
+
     op.create_foreign_key(
         "fk_user_b_journey_conversation_uuid",
         "user_b_journey",
@@ -260,6 +376,7 @@ def upgrade():
         ["conversation_uuid"],
         ["conversation_uuid"],
     )
+
     op.create_foreign_key(
         "fk_user_b_journey_effect_choice_uuid",
         "user_b_journey",
@@ -267,6 +384,7 @@ def upgrade():
         ["effect_choice_uuid"],
         ["effect_choice_uuid"],
     )
+
     op.create_foreign_key(
         "fk_user_b_journey_quiz_uuid",
         "user_b_journey",
@@ -274,6 +392,7 @@ def upgrade():
         ["quiz_uuid"],
         ["quiz_uuid"],
     )
+
     op.create_foreign_key(
         "fk_user_b_journey_solution_choice_uuid",
         "user_b_journey",
@@ -281,6 +400,32 @@ def upgrade():
         ["solution_choice_uuid"],
         ["solution_choice_uuid"],
     )
+
+    # sa.ForeignKeyConstraint(
+    #     ["alignment_feed_uuid"],
+    #     ["alignment_feed.alignment_feed_uuid"],
+    # ),
+    # sa.ForeignKeyConstraint(
+    #     ["alignment_scores_uuid"],
+    #     ["alignment_scores.alignment_scores_uuid"],
+    # ),
+    # sa.ForeignKeyConstraint(
+    #     ["conversation_uuid"],
+    #     ["conversations.conversation_uuid"],
+    # ),
+    # sa.ForeignKeyConstraint(
+    #     ["effect_choice_uuid"],
+    #     ["effect_choice.effect_choice_uuid"],
+    # ),
+    # sa.ForeignKeyConstraint(
+    #     ["quiz_uuid"],
+    #     ["scores.quiz_uuid"],
+    # ),
+    # sa.ForeignKeyConstraint(
+    #     ["solution_choice_uuid"],
+    #     ["solution_choice.solution_choice_uuid"],
+    # ),
+
     # ### end Alembic commands ###
 
 
