@@ -76,5 +76,4 @@ climate_mind_ontology
 /node_modules
 /cypress/videos
 
-.vscode
-migrations_local/versions/e159649963b1_add_all_current_tables.py
+
