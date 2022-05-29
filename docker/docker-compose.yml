@@ -1,15 +1,14 @@
 version: "3"
 services:
   web:
-    platform: linux/amd64
     build:
-      context: ./
-      dockerfile: Dockerfile.m1
+      context: ..
+      dockerfile: ./docker/services/web/Dockerfile
     ports:
       - "8050:8050"
       - "5000:5000"
     volumes:
-      - .:/app
+      - ..:/app
     environment:
       IS_LOCAL: "True"
       DATABASE_PARAMS: Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=sqldb-web-prod-001;Uid=sa;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;
@@ -24,16 +23,12 @@ services:
     depends_on:
       - "db"
   db:
-    build:
-      context: ./
-      dockerfile: Dockerfile.db
+    image: "mcr.microsoft.com/mssql/server:2017-latest"
     ports:
         - "1433:1433"
+    command: bash -c " /db-init.sh & /opt/mssql/bin/sqlservr"
     environment:
-      DATABASE_PARAMS: Driver={ODBC Driver 17 for SQL Server};Server=tcp:db,1433;Database=tempdb;Uid=SA;Pwd=Cl1mat3m1nd!;Encrypt=no;TrustServerCertificate=no;Connection Timeout=30;
-      MSSQL_SA_PASSWORD: "Cl1mat3m1nd!"
+      SA_PASSWORD: "Cl1mat3m1nd!"
       ACCEPT_EULA: "Y"
     volumes:
-      - ./entrypoint.db.sh:/entrypoint.db.sh
-      - ./db-init.py:/db-init.py
-      - ./db-init.m1.sh:/db-init.m1.sh
+      - ./services/db/db-init.sh:/db-init.sh

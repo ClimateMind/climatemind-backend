@@ -13,4 +13,4 @@ RUN pip3 install --upgrade setuptools
 RUN pip3 install ez_setup pyodbc sqlalchemy
 
 USER mssql
-ENTRYPOINT /bin/bash ./entrypoint.db.sh
+ENTRYPOINT ["/bin/bash", "./entrypoint.db.sh"]
