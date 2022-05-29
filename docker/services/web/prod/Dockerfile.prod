@@ -44,16 +44,14 @@ RUN sed -i 's/SECLEVEL=2/SECLEVEL=1/g' /etc/ssl/openssl.cnf
 
 WORKDIR /app
 
-COPY . .
-
+ADD requirements/requirements.txt requirements/requirements.txt
 RUN pip install cython && \
     pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir -r requirements_test.txt
+    pip install --no-cache-dir -r requirements/requirements.txt
+
+COPY . .
 
 EXPOSE 5000 8050
 
-RUN ["chmod", "+x", "db-init.sh"]
-
-RUN chmod u+x ./entrypoint.prod.sh
-ENTRYPOINT ["./entrypoint.prod.sh"]
+RUN chmod u+x /app/docker/services/web/prod/entrypoint.prod.sh
+ENTRYPOINT ["/app/docker/services/web/prod/entrypoint.prod.sh"]
