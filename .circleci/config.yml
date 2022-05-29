@@ -16,6 +16,14 @@ jobs:
       - run:
           name: Linter
           command: python3 -m black --check ./
+  pytest:
+    machine: true
+    steps:
+      - checkout
+      - run:
+          name: "Build and Run all containers"
+          command: |
+            docker-compose --file docker/docker-compose.pytest.yml up --build --abort-on-container-exit
   build:
     machine: true
     steps:
@@ -23,7 +31,7 @@ jobs:
       # build the application image
       - run:
           name: Docker Build
-          command: docker build -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
+          command: docker build -f docker/services/web/Dockerfile -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
   cypress:
     # Set up test environment and run cypress tests
     machine:
@@ -35,10 +43,10 @@ jobs:
           command: npm i
       - run:
           name: Docker Compose Build
-          command: docker-compose --file docker-compose.prod.yml build
+          command: docker-compose -f docker/docker-compose.prod.yml build
       - run:
           name: Docker Compose Up
-          command: docker-compose up -d
+          command: docker-compose -f docker/docker-compose.prod.yml up -d
       - run:
           name: Wait on Server
           command: npx wait-on http://localhost:5000/questions
@@ -50,16 +58,16 @@ jobs:
     steps:
       - azure-acr/build-and-push-image:
 #          context: azure
-          dockerfile: Dockerfile.prod
+          dockerfile: docker/services/web/prod/Dockerfile.prod
           login-server-name: acrwebprod001.azurecr.io
           registry-name: acrwebprod001
           repo: backend
   build_and_deploy_test:
-    machine: true  
-    steps:    
+    machine: true
+    steps:
       - azure-acr/build-and-push-image:
 #          context: azure
-          dockerfile: Dockerfile.prod
+          dockerfile: docker/services/web/prod/Dockerfile.prod
           login-server-name: acrwebtest001.azurecr.io
           registry-name: acrwebtest001
           repo: backend
@@ -70,6 +78,11 @@ workflows:
   build_and_test:
     jobs:
       - lint
+      - pytest:
+          requires:
+            - lint
+          context:
+            - flaskenv
       - build:
           requires:
             - lint

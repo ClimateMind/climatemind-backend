@@ -11,7 +11,7 @@ RUN apt-get install --reinstall build-essential -y
 RUN apt-get update && apt-get install -y --no-install-recommends \
     unixodbc-dev \
     unixodbc \
-    libpq-dev 
+    libpq-dev
 
 
 #RUN apt-get install mssql-server-polybase
@@ -44,20 +44,16 @@ RUN sed -i 's/SECLEVEL=2/SECLEVEL=1/g' /etc/ssl/openssl.cnf
 
 WORKDIR /app
 
-COPY . .
-
+ADD requirements/ requirements/
 RUN pip install cython && \
     pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt && \
-    pip install --no-cache-dir -r requirements_test.txt
+    pip install --no-cache-dir -r requirements/requirements.txt && \
+    pip install --no-cache-dir -r requirements/requirements_dev.txt && \
+    pip install --no-cache-dir -r requirements/requirements_test.txt
 
 EXPOSE 5000 8050
 
-RUN ["chmod", "+x", "db-init.sh"]
+COPY . .
 
-ENTRYPOINT [ "python" ]
-
-RUN chmod u+x ./entrypoint.sh
-ENTRYPOINT ["./entrypoint.sh"]
-
-#CMD [ "climatemind.py" ] #old entrypoint script.
+RUN chmod u+x /app/docker/services/web/entrypoint.sh
+ENTRYPOINT ["/app/docker/services/web/entrypoint.sh"]
