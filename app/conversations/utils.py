@@ -1,6 +1,6 @@
 from flask import current_app
 
-from app.conversations.enums import ConversationStatus
+from app.conversations.enums import ConversationStatus, ConversationState
 from app import db
 from app.errors.errors import DatabaseError
 from app.models import Conversations, UserBJourney, Users, EffectChoice, SolutionChoice
@@ -27,6 +27,8 @@ def build_single_conversation_response(conversation_uuid):
     - user b's name
     - conversation status
     - consent - if user b has consented to share info with user a
+    - userAProgress - how far user A is in processing the conversation results 
+    - userARating - user A's rating of the conversation
     - timestamp for when the conversation was created
     - alignment scores uuid (if consent=true)
     """
@@ -61,12 +63,33 @@ def build_single_conversation_response(conversation_uuid):
             "name": conversation.receiver_name,
         },
         "conversationStatus": conversation.conversation_status,
+        "userAProgress": state_enum_to_button_states(conversation.state),
+        "userARating": conversation.user_a_rating,
         "consent": conversation.user_b_share_consent,
         "conversationTimestamp": conversation.conversation_created_timestamp,
         "alignmentScoresId": alignment_scores_uuid,
     }
 
     return response
+
+
+def state_enum_to_button_states(state):
+    """Convert the state enum to explicit state for the components of user A's conversation card."""
+    if (state is None):
+        return None
+    elif (state == ConversationState.InvitedUserB):
+        state_map = {"heading":"Invited to talk", "align_clicked":False, "talk_clicked":False, "done_clicked":False, "rated":False}
+    elif (state == ConversationState.UserBDone):
+        state_map = {"heading":"Prepared to talk with", "align_clicked":False, "talk_clicked":False, "done_clicked":False, "rated":False}
+    elif (state == ConversationState.AlignButtonClicked):
+        state_map = {"heading":"Prepared to talk with", "align_clicked":True, "talk_clicked":False, "done_clicked":False, "rated":False}
+    elif (state == ConversationState.TalkButtonClicked):
+        state_map = {"heading":"Ready to talk", "align_clicked":True, "talk_clicked":True, "done_clicked":False, "rated":False}
+    elif (state == ConversationState.DoneButtonClicked):
+        state_map = {"heading":"Talked with", "align_clicked":True, "talk_clicked":True, "done_clicked":True, "rated":False}
+    elif (state == ConversationState.ConversationRated):
+        state_map = {"heading":"Talked with", "align_clicked":True, "talk_clicked":True, "done_clicked":True, "rated":True}
+    return state_map
 
 
 def update_consent_choice(conversation_uuid, consent_choice, session_uuid):

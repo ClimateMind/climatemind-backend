@@ -160,6 +160,8 @@ def get_conversation(conversation_uuid):
     - user b's name
     - conversation status
     - consent - if user b has consented to share info with user a
+    - userAProgress - how far user A is in processing the conversation results
+    - userARating - user A's rating of the conversation
     - timestamp for when the conversation was created
     """
 
@@ -229,7 +231,7 @@ def edit_conversation(conversation_uuid):
         json_data[uuid_field_name] = conversation_uuid
 
         try:
-            conversation = schema.load(json_data, instance=conversation, partial=True)
+            conversation = schema.load(json_data, instance=conversation, partial=True)  # TODO: Hmm, how to only update converstation.state if it's higher than before?
             db.session.commit()
             return schema.jsonify(conversation)
         except SQLAlchemyError:

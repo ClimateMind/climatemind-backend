@@ -13,3 +13,16 @@ class ConversationStatus(IntEnum):
     Visited = 1
     QuizCompleted = 2
     ConversationCompleted = 3
+
+
+class ConversationState(IntEnum):
+    """
+    State which identifies how far along user A is in seeing the conversation results with user B.
+    """
+
+    InvitedUserB = 0
+    UserBDone = 1
+    AlignButtonClicked = 2
+    TalkButtonClicked = 3
+    DoneButtonClicked = 4
+    ConversationRated = 5
