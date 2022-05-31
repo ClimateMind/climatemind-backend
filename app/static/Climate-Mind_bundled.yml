@@ -112,29 +112,84 @@ paths:
       summary: Single Conversation - PUT
       tags: []
       responses:
-        '202':
-          description: Accepted
+        '200':
+          description: Updated object
           content:
             application/json:
               schema:
                 description: ''
                 type: object
-                properties:
-                  message:
-                    type: string
-                    minLength: 1
-                  conversationId:
-                    type: string
-                    minLength: 1
-                required:
-                  - message
-                  - conversationId
                 x-examples:
                   example-1:
                     message: conversation status updated
                     conversationId: '{conversation_uuid}'
+                properties:
+                  conversationStatus:
+                    type: number
+                    example: '1'
+                    enum:
+                      - 0
+                      - 1
+                      - 2
+                      - 3
+                  conversationId:
+                    type: string
+                    minLength: 1
+                    format: uuid
+                    example: 9f531903-13fa-4da2-bae4-62e522b8a7e0
+                  receiverName:
+                    type: string
+                    example: Peter Parker
+        '400':
+          description: |-
+            Bad request, possible reasons:
+            - missing session header
+            - not valid conversation UUID
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '401':
+          description: Unauthorized
+        '403':
+          description: Forbidden. Auth user don't have access to this conversation.
+        '404':
+          description: 'Not Found, session or conversation not found by UUID provided'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  key:
+                    type: object
+                    properties:
+                      error1:
+                        type: string
+                      error2:
+                        type: string
+              examples:
+                Unknown field provided:
+                  value:
+                    key:
+                      - Unknown field.
+                'conversationStatus beyond enumeration ':
+                  value:
+                    conversationStatus:
+                      - 'Must be one of: 0, 1, 2, 3.'
       operationId: put-conversation
-      description: Change the status of the conversation in the conversations table for User A according to the actions taken by User B.
+      description: Change the receiver name or status of the conversation in the conversations table for User A.
       parameters:
         - schema:
             type: string
@@ -149,6 +204,13 @@ paths:
               properties:
                 conversationStatus:
                   type: number
+                  enum:
+                    - 0
+                    - 1
+                    - 2
+                    - 3
+                receiverName:
+                  type: string
             examples:
               Update conversation status to 1 - Visited.:
                 value:
