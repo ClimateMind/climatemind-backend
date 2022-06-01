@@ -10,5 +10,8 @@
   "license": "MIT",
   "dependencies": {
     "faker": "^5.5.3"
+  },
+  "devDependencies": {
+    "cypress": "^10.0.0"
   }
 }
