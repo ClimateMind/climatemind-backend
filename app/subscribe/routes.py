@@ -1,7 +1,7 @@
 from app.subscribe import bp
 
 from app.subscribe.store_subscription_data import store_subscription_data
-from app.email.utils import is_email_valid
+from app.account.utils import is_email_valid
 from app.errors.errors import InvalidUsageError
 from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from flask_cors import cross_origin

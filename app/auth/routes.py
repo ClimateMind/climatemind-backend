@@ -2,6 +2,7 @@ import os
 from datetime import datetime, timezone
 from flask import request, jsonify, make_response
 from app.auth import bp
+from app.auth.validators import password_valid
 from app.common.local import check_if_local
 from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 import requests
@@ -10,7 +11,7 @@ from flask_jwt_extended import jwt_required
 from flask_jwt_extended import create_refresh_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import unset_jwt_cookies
-from app.email.utils import is_email_valid
+from app.account.utils import is_email_valid
 from sqlalchemy.exc import SQLAlchemyError
 
 from app.errors.errors import (
@@ -273,19 +274,3 @@ def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
         )
 
     return user
-
-
-def password_valid(password):
-    """
-    Passwords must contain at least one digit or special character.
-    Passwords must be between 8 and 128 characters.
-    Passwords cannot contain spaces.
-
-    Returns: True if password meets conditions, False otherwise
-    """
-    conds = [
-        lambda s: any(x.isdigit() or not x.isalnum() for x in s),
-        lambda s: all(not x.isspace() for x in s),
-        lambda s: 8 <= len(s) <= 128,
-    ]
-    return all(cond(password) for cond in conds)

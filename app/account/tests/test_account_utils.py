@@ -1,6 +1,6 @@
 import pytest
 
-from app.email.utils import is_email_valid
+from app.account.utils import is_email_valid
 from app.errors.errors import InvalidUsageError, UnauthorizedError
 from app.factories import faker
 

@@ -6,6 +6,7 @@ from flask.testing import FlaskClient
 from flask_jwt_extended import create_access_token
 from flask_sqlalchemy import SQLAlchemy
 
+from app.factories import faker
 from app.models import Users
 
 
@@ -36,13 +37,14 @@ def _db(app):
 @pytest.fixture()
 def client_with_user_and_header(
     client: FlaskClient,
-) -> typing.Tuple[FlaskClient, Users, list]:
+) -> typing.Tuple[FlaskClient, Users, list, str]:
     from app.factories import UsersFactory, SessionsFactory
 
-    user = UsersFactory()
+    password = faker.password()
+    user = UsersFactory(password=password)
     session = SessionsFactory(user=user)
     access_token = create_access_token(identity=user, fresh=True)
     client.set_cookie("localhost", "access_token", access_token)
 
     session_header = [("X-Session-Id", session.session_uuid)]
-    return client, user, session_header
+    return client, user, session_header, password
