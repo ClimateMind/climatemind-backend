@@ -50,7 +50,7 @@ jobs:
     steps:
       - azure-acr/build-and-push-image:
 #          context: azure
-#          dockerfile: Dockerfile.prod
+          dockerfile: Dockerfile.prod
           login-server-name: acrwebprod001.azurecr.io
           registry-name: acrwebprod001
           repo: backend
@@ -59,7 +59,7 @@ jobs:
     steps:    
       - azure-acr/build-and-push-image:
 #          context: azure
-#          dockerfile: Dockerfile.prod
+          dockerfile: Dockerfile.prod
           login-server-name: acrwebtest001.azurecr.io
           registry-name: acrwebtest001
           repo: backend
@@ -86,8 +86,6 @@ workflows:
       - build_and_deploy_prod:
           context:
             - azure
-          dockerfile:
-            - Dockerfile.prod
           filters:
             branches:
               only: master
