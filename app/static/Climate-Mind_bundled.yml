@@ -1136,9 +1136,64 @@ paths:
       summary: Update User Account - PUT
       operationId: put-update-user
       responses:
-        '201':
-          description: Created
+        '200':
+          description: OK
           headers: {}
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                success:
+                  value:
+                    message: User password successfully updated.
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                example-1:
+                  value:
+                    message: Invalid password
+        '404':
+          description: Session or User not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  anyFieldName1:
+                    type: array
+                    items:
+                      type: string
+                  anyFieldName:
+                    type: array
+                    items:
+                      type: string
+              examples:
+                validation errors for given fields:
+                  value:
+                    anyFieldName1:
+                      - error
+                    anyFieldName:
+                      - error
         '':
           content:
             application/json:
@@ -1152,7 +1207,7 @@ paths:
                   value:
                     message: string
           headers: {}
-      description: 'Update basic user account data. Requires current email and password and allows for updating any subset of basic user account data (email, password, first name, last name).'
+      description: Update basic user account data (only password at the moment). Requires current password.
       parameters:
         - schema:
             type: string
@@ -1170,30 +1225,34 @@ paths:
             schema:
               type: object
               properties:
-                oldEmail:
+                currentPassword:
                   type: string
-                oldPassword:
-                  type: string
-                newEmail:
-                  type: string
+                  minLength: 8
+                  maxLength: 128
+                  format: password
+                  writeOnly: true
                 newPassword:
                   type: string
-                newFirstName:
+                  minLength: 8
+                  maxLength: 128
+                  format: password
+                  writeOnly: true
+                confirmPassword:
                   type: string
-                newLastName:
-                  type: string
+                  minLength: 8
+                  maxLength: 128
+                  format: password
+                  writeOnly: true
               required:
-                - oldEmail
-                - oldPassword
+                - currentPassword
+                - newPassword
+                - confirmPassword
             examples:
-              example-1:
+              update password:
                 value:
-                  oldEmail: email1@cm.com
-                  newEmail: email2@cm.com
-                  oldPassword: p4ssw0rd1
+                  currentPassword: p4ssw0rd1
                   newPassword: p4ssw0rd2
-                  newFirstName: First2
-                  newLastName: Last2
+                  confirmPassword: p4ssw0rd2
           application/xml:
             schema:
               type: object
