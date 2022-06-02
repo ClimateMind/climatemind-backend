@@ -6,6 +6,8 @@ from app.errors.errors import InvalidUsageError, UnauthorizedError
 def is_email_valid(email: str) -> bool:
     """
     Checks an email format against the RFC 5322 specification.
+    FIXME: could be replaced with marshmallow validator
+     https://marshmallow.readthedocs.io/en/2.x-line/api_reference.html?highlight=Email#marshmallow.validate.Email
     """
     if not email:
         raise InvalidUsageError(

@@ -36,7 +36,7 @@ RANDOM_CONVERSATION_STATUS = random.choice(list([s.value for s in ConversationSt
 def test_edit_conversation_request_data(
     request_data, status_code, client_with_user_and_header, accept_json
 ):
-    client, user, session_header = client_with_user_and_header
+    client, user, session_header, _ = client_with_user_and_header
 
     expected_response_keys = {
         "conversationId",
@@ -96,7 +96,7 @@ def emulate_test_edit_conversation_request_with_error(
 def test_edit_conversation_request_without_session(
     client_with_user_and_header, accept_json
 ):
-    client, user, _ = client_with_user_and_header
+    client, user, _, _ = client_with_user_and_header
     conversation = ConversationsFactory(sender_user=user)
 
     response = emulate_test_edit_conversation_request_with_error(
@@ -110,7 +110,7 @@ def test_edit_conversation_request_without_session(
 def test_edit_conversation_request_invalid_uuid(
     client_with_user_and_header, accept_json
 ):
-    client, user, session_header = client_with_user_and_header
+    client, user, session_header, _ = client_with_user_and_header
 
     headers = session_header + accept_json
     response = emulate_test_edit_conversation_request_with_error(
@@ -122,7 +122,7 @@ def test_edit_conversation_request_invalid_uuid(
 
 @pytest.mark.integration
 def test_edit_conversation_request_not_found(client_with_user_and_header, accept_json):
-    client, user, session_header = client_with_user_and_header
+    client, user, session_header, _ = client_with_user_and_header
     conversation = ConversationsFactory(sender_user=user)
     wrong_convo_uuid = faker.uuid4()
     assert conversation.conversation_uuid != wrong_convo_uuid
@@ -137,7 +137,7 @@ def test_edit_conversation_request_not_found(client_with_user_and_header, accept
 
 @pytest.mark.integration
 def test_edit_conversation_request_forbidden(client_with_user_and_header, accept_json):
-    client, user, session_header = client_with_user_and_header
+    client, user, session_header, _ = client_with_user_and_header
     conversation = ConversationsFactory()
     assert user.user_uuid != conversation.sender_user_uuid, "Users should be different"
 
@@ -153,7 +153,7 @@ def test_edit_conversation_request_forbidden(client_with_user_and_header, accept
 def test_edit_conversation_request_unauthorized(
     client_with_user_and_header, accept_json
 ):
-    client, user, session_header = client_with_user_and_header
+    client, user, session_header, _ = client_with_user_and_header
     client.delete_cookie("localhost", "access_token")
 
     conversation = ConversationsFactory(sender_user=user)
