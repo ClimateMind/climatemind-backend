@@ -86,6 +86,8 @@ workflows:
       - build_and_deploy_prod:
           context:
             - azure
+          dockerfile:
+            - Dockerfile.prod
           filters:
             branches:
               only: master
