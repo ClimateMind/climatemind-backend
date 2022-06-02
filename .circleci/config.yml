@@ -45,6 +45,24 @@ jobs:
       - run:
           name: Cypress Run
           command: npx cypress run
+  build_and_deploy_prod:
+    machine: true
+    steps:
+      - azure-acr/build-and-push-image:
+#          context: azure
+          dockerfile: Dockerfile.prod
+          login-server-name: acrwebprod001.azurecr.io
+          registry-name: acrwebprod001
+          repo: backend
+  build_and_deploy_test:
+    machine: true  
+    steps:    
+      - azure-acr/build-and-push-image:
+#          context: azure
+          dockerfile: Dockerfile.prod
+          login-server-name: acrwebtest001.azurecr.io
+          registry-name: acrwebtest001
+          repo: backend
 
 workflows:
   version: 2
@@ -65,21 +83,15 @@ workflows:
 
   build-deploy:
     jobs:
-      - azure-acr/build-and-push-image:
-          context: azure
-          dockerfile: Dockerfile.prod
-          login-server-name: acrwebprod001.azurecr.io
-          registry-name: acrwebprod001
-          repo: backend
+      - build_and_deploy_prod:
+          context:
+            - azure
           filters:
             branches:
               only: master
-      - azure-acr/build-and-push-image:
-          context: azure
-          dockerfile: Dockerfile.prod
-          login-server-name: acrwebtest001.azurecr.io
-          registry-name: acrwebtest001
-          repo: backend
+      - build_and_deploy_test:
+          context:
+            - azure
           filters:
             branches:
               only: develop
