@@ -67,7 +67,7 @@ workflows:
    jobs:
     build:
      machine: true
-      steps:
+     steps:
       - azure-acr/build-and-push-image:
           context: azure
           dockerfile: Dockerfile.prod
