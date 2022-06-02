@@ -64,7 +64,10 @@ workflows:
             - flaskenv
 
   build-deploy:
-    jobs:
+   jobs:
+    build:
+     machine: true
+      steps:
       - azure-acr/build-and-push-image:
           context: azure
           dockerfile: Dockerfile.prod
