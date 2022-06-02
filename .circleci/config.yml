@@ -64,11 +64,11 @@ workflows:
             - flaskenv
 
   build-deploy:
-   jobs:
-    build:
-     machine: true
-     steps:
-      - azure-acr/build-and-push-image:
+    jobs:
+     build:
+      machine: true
+      steps:
+       - azure-acr/build-and-push-image:
           context: azure
           dockerfile: Dockerfile.prod
           login-server-name: acrwebprod001.azurecr.io
@@ -77,7 +77,7 @@ workflows:
           filters:
             branches:
               only: master
-      - azure-acr/build-and-push-image:
+       - azure-acr/build-and-push-image:
           context: azure
           dockerfile: Dockerfile.prod
           login-server-name: acrwebtest001.azurecr.io
