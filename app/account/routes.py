@@ -40,6 +40,7 @@ def current_email():
 @auto.doc()
 def update_email():
     """
+    # FIXME: move to /user-account PUT
     Updates the user's email address.
 
     Returns an error if:
@@ -94,10 +95,10 @@ def update_email():
     return jsonify(response), 200
 
 
-@bp.route("/update-password", methods=["PUT"])
+@bp.route("/user-account", methods=["PUT"])
 @cross_origin()
 @jwt_required()
-def update_password():
+def update_user_account():
     session_uuid = request.headers.get("X-Session-Id")
     session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
     check_uuid_in_db(session_uuid, uuidType.SESSION)
