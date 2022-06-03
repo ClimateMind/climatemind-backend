@@ -47,7 +47,7 @@ def get_node_id(node):
 def check_if_valid_postal_code(session_uuid):
     # Find the user's postal code and cast to an integer for lookup in the lrf_data table.
     # This will need to change if postal codes with letters are added later and the data type in the lrf_data table changes.
-    
+
     score = Scores.query.filter_by(quiz_uuid=session_uuid).first()
     if score:
         try:
