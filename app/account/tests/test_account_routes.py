@@ -140,7 +140,7 @@ def test_update_user_account(client_with_user_and_header, accept_json):
     client, user, session_header, current_password = client_with_user_and_header
     new_password = faker.password()
 
-    url = url_for("account.update_password")
+    url = url_for("account.update_user_account")
     headers = session_header + accept_json
 
     invalid_password = "wrong_password"
