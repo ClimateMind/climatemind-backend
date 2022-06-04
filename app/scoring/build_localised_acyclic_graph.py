@@ -44,11 +44,11 @@ def get_node_id(node):
     return full_iri[pos:]
 
 
-def check_if_valid_postal_code(session_uuid):
+def check_if_valid_postal_code(quiz_uuid):
     # Find the user's postal code and cast to an integer for lookup in the lrf_data table.
     # This will need to change if postal codes with letters are added later and the data type in the lrf_data table changes.
 
-    score = Scores.query.filter_by(quiz_uuid=session_uuid).first()
+    score = Scores.query.filter_by(quiz_uuid=quiz_uuid).first()
     if score:
         try:
             postal_code = int(score.postal_code)
@@ -137,17 +137,17 @@ def get_starting_nodes(acyclic_graph):
     return starting_nodes
 
 
-def build_localised_acyclic_graph(G, session_uuid):
+def build_localised_acyclic_graph(G, quiz_uuid):
     """
     Builds acyclic graph with all the nodes in it above the terminal nodes to have isPossiblyLocal field populated with 0 or 1,
     (0 for certainly not local, and 1 for maybe local or certainly local).
 
     Parameters
     G - networkx graph of the climate mind ontology
-    session_uuid - session id from the SQL database
+    quiz_uuid - session id from the SQL database
     """
     localised_acyclic_graph = make_acyclic(G)
-    lrf_single_postcode_dict = check_if_valid_postal_code(session_uuid)
+    lrf_single_postcode_dict = check_if_valid_postal_code(quiz_uuid)
     if not lrf_single_postcode_dict:
         return G
     else:
