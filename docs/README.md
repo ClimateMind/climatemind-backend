@@ -117,32 +117,47 @@ python3 process.py
 
 **_Before doing what's below, be sure the Docker application is running and the command line working directory is changed to the climatemind-backend path._**
 
+### Special cases:
+
+#### Windows preparation
+
 Windows users - you may experience problems with building or starting the containers if your system automatically converts Unix line endings ('\n') to DOS line endings ('\r\n'). You can prevent this from happening by running the command below. 
 
     git config --global core.autocrlf false
 
-Build the image container to download and install code dependencies needed for running the app:
+#### MacOS with M1 chip
 
-    docker-compose build
+M1 chip requires special `yml` file. Use `docker/docker-compose.m1.yml` file in the commands below. 
 
-**_SPECIAL NOTE_**: _Whenever the backend repo has added new dependancies in the requirements.txt or requirements_test.txt file the docker image will need to be re-built by re-running the build command._
+### Up containers
 
-Start in foreground (good for debugging flask and see the logs). You can stop it with [CTRL + C] on OSX, Windows, and Linux.
+Start in foreground (good for debugging flask and see the logs). You can stop it with [CTRL + C] on OSX, Windows, and Linux:
 
-    docker-compose up
+    docker-compose -p climatemind-backend -f docker/docker-compose.yml up
 
-Start in background (best for when trying to attach the docker instance to the front-end application)
-
-    docker-compose up -d
-    
-    
 The application should now be running on localhost. You can access it at http://127.0.0.1:5000
 
 **_SPECIAL NOTE_**: _Sometimes the terminal says 'Running on http://0.0.0.0:5000' and that url does not work in the browser. If this happens, try going to "http://127.0.0.1:5000" instead._
 
-When you're done working, stop the container. Stopping containers will remove containers, networks, volumes, and images created by docker-compose up.
+### Additional arguments
 
-    docker-compose down
+#### Rebuild images
+
+Whenever the backend repo has added new dependencies in the `requirements.*` files the docker image will need to be re-built. You can do this by adding `--build` argument to the `up` command:
+
+    docker-compose -p climatemind-backend -f docker/docker-compose.yml up --build
+
+#### Start in background
+
+Best for when trying to attach the docker instance to the front-end application. Add `-d` argument to the `up` command:
+
+    docker-compose -p climatemind-backend -f docker/docker-compose.yml up -d
+
+### Stopping containers
+
+When you're done working, stop the container. Stopping containers will remove containers, networks, volumes, and images created by `docker-compose -p climatemind-backend -f docker/docker-compose.yml up`.
+
+    docker-compose -p climatemind-backend -f docker/docker-compose.yml down
     
 ## Local API
 
@@ -174,7 +189,7 @@ npm -i
 5. Start the Docker Instance and attach to it
 
 ```
-docker-compose up -d
+docker-compose -p climatemind-backend -f docker/docker-compose.yml up -d
 docker attach climate-backend_web_1
 ```
 
@@ -192,10 +207,11 @@ and have access to the fully functioning application locally!
 
 ## Backend Debugging
 
-The app can be debugged using pdb. You can do this two ways.
+The app can be debugged using pdb. You can do this several ways.
 
 1. Use Postman to test the API without a front-end instance
 2. Use the front-end instance to interact with the API
+3. Run specific `pytest` unit test inside the backend container `docker exec -it climatemind-backend_web_1 pytest -xs --pdb YOURTEST`
 
 For either test, you need to add a breakpoint() into the code where you want the application
 to pause for debugging.
@@ -207,7 +223,7 @@ For more information about PDB review their [documentation](https://docs.python.
 Navigate to the climatemind-backend directory and run:
 
 ```
-docker-compose up -d
+docker-compose -p climatemind-backend -f docker/docker-compose.yml up -d
 docker attach climatemind-backend
 ```
 
