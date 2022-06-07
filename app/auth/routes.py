@@ -15,7 +15,7 @@ from app.account.utils import is_email_valid
 from sqlalchemy.exc import SQLAlchemyError
 
 from app.errors.errors import (
-    AlreadyExistsError,
+    ConflictError,
     InvalidUsageError,
     DatabaseError,
     UnauthorizedError,
@@ -208,7 +208,9 @@ def register():
 
     user = Users.find_by_email(r["email"])
     if user:
-        raise AlreadyExistsError(message="Cannot register email. Email")
+        raise ConflictError(
+            message="Cannot register email. Email already exists in the database."
+        )
     else:
         user = add_user_to_db(
             r["firstName"], r["lastName"], r["email"], r["password"], r["quizId"]

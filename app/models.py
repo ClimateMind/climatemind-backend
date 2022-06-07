@@ -1,12 +1,11 @@
-import os
-from flask import current_app
+from datetime import datetime
+
+from flask import url_for
+from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from sqlalchemy.orm import relationship
-from sqlalchemy.orm.session import close_all_sessions
-from app.extensions import db, jwt
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
-
+from app.extensions import db, jwt
 
 """ Contains all of the table structures for the database.
     Migrations need to be run when changes are made.
@@ -67,6 +66,41 @@ def user_lookup_callback(_jwt_header, jwt_data):
     """
     identity = jwt_data["sub"]
     return Users.query.filter_by(user_uuid=identity).one_or_none()
+
+
+class PasswordResetLink(db.Model):
+    __tablename__ = "password_reset_links"
+
+    EXPIRE_HOURS_COUNT = 3
+
+    uuid = db.Column("password_reset_link_uuid", UNIQUEIDENTIFIER, primary_key=True)
+    user_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"), index=True, nullable=False
+    )
+    user = relationship("Users", foreign_keys=[user_uuid])
+    session_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"), nullable=False
+    )
+    session = relationship("Sessions", foreign_keys=[session_uuid])
+    created = db.Column(
+        "password_reset_link_created_timestamp", db.DateTime, nullable=False
+    )
+    used = db.Column(db.Boolean, default=False)
+
+    @property
+    def reset_url(self):
+        return url_for(
+            "account.check_if_password_reset_link_is_expired_or_used",
+            password_reset_link_uuid=self.uuid,
+            _external=True,
+        ).lower()
+
+    @property
+    def expired(self):
+        diff = datetime.now() - self.created
+        seconds_in_hour = 3600
+        hours_pass = diff.total_seconds() / seconds_in_hour
+        return bool(hours_pass > self.EXPIRE_HOURS_COUNT)
 
 
 class Scores(db.Model):

@@ -1,12 +1,13 @@
-from email import message
-import os
-from app import db
-from app.models import Conversations, Users
-from app.sendgrid.templates.user_b_shared_email import USER_B_SHARED_EMAIL
-from app.sendgrid.templates.welcome_email import WELCOME_EMAIL
 from flask import current_app
+from python_http_client import HTTPError
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail, Email, To, Content
+
+from app import db
+from app.models import Conversations, Users
+from app.sendgrid.templates.reset_password import RESET_PASSWORD_EMAIL
+from app.sendgrid.templates.user_b_shared_email import USER_B_SHARED_EMAIL
+from app.sendgrid.templates.welcome_email import WELCOME_EMAIL
 
 
 def send_welcome_email(user_email, user_first_name):
@@ -84,6 +85,49 @@ def send_user_b_shared_email(conversation_uuid):
         sg.send(mail)
     except Exception as e:
         print(e)
+
+
+def send_reset_password_email(
+    user_email: str, reset_url: str, expire_hours: int
+) -> None:
+    """
+    Sends a reset password URL to the user via the SendGrid API.
+
+    Parameters
+    =====================
+    user_email - The email used to register an account.
+
+    """
+    sg, from_email = set_up_sendgrid()
+
+    to_email = To(
+        email=user_email,
+        substitutions={
+            "-preview_text-": "Here is a link to reset your password for Climate Mind",
+            "-reset_link-": reset_url,
+            "-reset_password_expire_hours-": str(expire_hours),
+        },
+    )
+    subject = "Reset your Climate Mind password!"
+    text_version = (
+        "Here is a link to reset your password for Climate Mind "
+        f"{reset_url} Please be advised, that the provided link will "
+        f"expire in 3 hours. If you didn't request this please email "
+        f"us to let us know hello@climatemind.org"
+    )
+
+    text_content = Content("text/plain", text_version)
+    html_content = Content("text/html", RESET_PASSWORD_EMAIL)
+    mail = Mail(from_email, to_email, subject, text_content, html_content=html_content)
+
+    try:
+        sg.send(mail)
+    except HTTPError as e:
+        current_app.logger.exception(
+            "Unable to send reset password email", extra={"error": e.body}
+        )
+    except:
+        current_app.logger.exception("Unable to send reset password email")
 
 
 def set_up_sendgrid():

@@ -5,7 +5,6 @@ from datetime import timezone
 from flask import request, jsonify
 from flask_cors import cross_origin
 from flask_jwt_extended import jwt_required, get_jwt_identity
-from marshmallow import ValidationError
 from sqlalchemy.exc import SQLAlchemyError
 
 from app import db
@@ -233,8 +232,8 @@ def edit_conversation(conversation_uuid):
             conversation = schema.load(json_data, instance=conversation, partial=True)
             db.session.commit()
             return schema.jsonify(conversation)
-        except ValidationError as err:
-            return jsonify(err.messages), 422
+        except SQLAlchemyError:
+            return DatabaseError(message="Couldn't edit conversation")
 
 
 @bp.route("/conversation/<conversation_uuid>/topics", methods=["GET"])

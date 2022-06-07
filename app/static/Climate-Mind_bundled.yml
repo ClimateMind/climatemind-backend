@@ -1391,7 +1391,10 @@ paths:
           in: header
           name: X-Session-Id
           description: Session uuid
-  '/conversation/:conversationId/topics':
+        - schema:
+            type: string
+          in: query
+  '/conversation/{conversationId}/topics/':
     get:
       summary: Selected topics - GET
       tags: []
@@ -1469,5 +1472,301 @@ paths:
           in: header
           name: X-Session-Id
           description: Session uuid
+    parameters:
+      - schema:
+          type: string
+        name: conversationId
+        in: path
+        required: true
+  '/password-reset/{password_reset_link_uuid}':
+    put:
+      summary: Reset password by the reset password link
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                OK:
+                  value:
+                    message: OK
+        '400':
+          description: Invalid password reset link or session uuid format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                invalid session format:
+                  value:
+                    message: Session uuid is invalid
+        '404':
+          description: Session or password reset link is not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                Not found:
+                  value:
+                    message: Not in DB
+        '410':
+          description: Reset password link is expired
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                Expired:
+                  value:
+                    message: Reset link is expired.
+        '422':
+          description: Input validation errors
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    error:
+                      field:
+                        - sdf
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      field:
+                        type: array
+                        items:
+                          type: string
+              examples:
+                example-1:
+                  value:
+                    error:
+                      confirmPassword:
+                        - Missing data for required field.
+                      newPassword:
+                        - Missing data for required field.
+                      nkewPassword:
+                        - Unknown field.
+      operationId: put-password-reset
+      description: Reset password by the reset password link
+      parameters:
+        - schema:
+            type: string
+          in: header
+          description: Session uuid
+          name: X-Session-Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              x-examples:
+                example-1:
+                  newPassword: str
+                  confirmPassword: str
+              properties:
+                newPassword:
+                  type: string
+                confirmPassword:
+                  type: string
+              required:
+                - newPassword
+                - confirmPassword
+            examples:
+              example-1:
+                value:
+                  newPassword: string
+                  confirmPassword: string
+        description: 'New password should be provided with confirmation. '
+    parameters:
+      - schema:
+          type: string
+        name: password_reset_link_uuid
+        in: path
+        description: Identificator
+        required: true
+    get:
+      summary: ''
+      operationId: get-password-reset-password_reset_link_uuid
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                OK:
+                  value:
+                    message: OK
+        '400':
+          description: Invalid session UUID format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                invalid session format:
+                  value:
+                    message: Session uuid is invalid
+        '404':
+          description: 'Session not found '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                Not found:
+                  value:
+                    message: Not in DB
+        '410':
+          description: Reset password link is expired
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                Expired:
+                  value:
+                    message: Reset link is expired.
+      description: Check if password reset link is expired
+  /password-reset:
+    post:
+      summary: Create password reset link and send the email
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                OK:
+                  value:
+                    message: OK
+        '400':
+          description: Invalid session UUID format
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                invalid session format:
+                  value:
+                    message: Session uuid is invalid
+        '404':
+          description: 'Session not found '
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                Not found:
+                  value:
+                    message: Not in DB
+        '410':
+          description: Reset password link is expired
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+              examples:
+                Expired:
+                  value:
+                    message: Reset link is expired.
+        '422':
+          description: Validation error
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    error:
+                      email:
+                        - Missing data for required field.
+                properties:
+                  error:
+                    type: object
+                    properties:
+                      email:
+                        type: array
+                        items:
+                          type: string
+              examples:
+                example-1:
+                  value:
+                    error:
+                      email:
+                        - string
+      operationId: post-password-reset
+      description: Create password reset link. If an email address matched to any user then sends the email.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          description: Session uuid
+          name: X-Session-Id
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  description: 'Provide an email address to send password reset link to. '
+              required:
+                - email
+        description: Data required to send password reset link
 components:
   schemas: {}

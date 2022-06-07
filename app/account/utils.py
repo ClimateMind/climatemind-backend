@@ -1,6 +1,12 @@
 import re
 
-from app.errors.errors import InvalidUsageError, UnauthorizedError
+from app.common.uuid import check_uuid_in_db, uuidType, validate_uuid
+from app.errors.errors import (
+    InvalidUsageError,
+    UnauthorizedError,
+    ExpiredError,
+    ConflictError,
+)
 
 
 def is_email_valid(email: str) -> bool:
@@ -27,3 +33,17 @@ def is_email_valid(email: str) -> bool:
 
     match = re.search(regex, email)
     return bool(match)
+
+
+def check_password_reset_link_is_valid(password_reset_link_uuid):
+    password_reset_link_uuid = validate_uuid(
+        password_reset_link_uuid, uuidType.RESET_PASSWORD_LINK
+    )
+    reset_password = check_uuid_in_db(
+        password_reset_link_uuid, uuidType.RESET_PASSWORD_LINK
+    )
+    if reset_password.expired:
+        raise ExpiredError(message="Reset link is expired.")
+    if reset_password.used:
+        raise ConflictError(message="Reset link is used already.")
+    return reset_password

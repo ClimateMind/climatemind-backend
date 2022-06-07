@@ -1,23 +1,30 @@
+import uuid
+from datetime import datetime
+
 from flask import request, jsonify
 from flask_cors import cross_origin
 from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
-from marshmallow import ValidationError
 from sqlalchemy.exc import SQLAlchemyError
 
 from app import auto, db
 from app.account import bp
-from app.account.schemas import UserChangePasswordSchema
-from app.account.utils import is_email_valid
+from app.account.schemas import (
+    UserChangePasswordSchema,
+    LoggedUserChangePasswordSchema,
+    SendPasswordResetLinkSchema,
+)
+from app.account.utils import is_email_valid, check_password_reset_link_is_valid
 from app.common.uuid import uuidType, validate_uuid, check_uuid_in_db
 from app.errors.errors import (
-    AlreadyExistsError,
+    ConflictError,
     DatabaseError,
     InvalidUsageError,
     UnauthorizedError,
     ForbiddenError,
 )
-from app.models import Users
+from app.models import Users, PasswordResetLink
+from app.sendgrid.utils import send_reset_password_email
 
 
 @bp.route("/email", methods=["GET"])
@@ -78,9 +85,10 @@ def update_email():
 
     user = Users.find_by_email(new_email)
 
-    # TODO The already exists error format makes this unclear to read in the code, despite the response being clear. Backend to discuss new strategy.
     if user:
-        raise AlreadyExistsError(message="Cannot update email. Email")
+        raise ConflictError(
+            message="Cannot update email. Email already exists in the database."
+        )
 
     try:
         current_user.user_email = new_email
@@ -104,12 +112,9 @@ def update_user_account():
     check_uuid_in_db(session_uuid, uuidType.SESSION)
 
     json_data = request.get_json(force=True, silent=True)
-    schema = UserChangePasswordSchema()
+    schema = LoggedUserChangePasswordSchema()
 
-    try:
-        result_data = schema.load(json_data)
-    except ValidationError as err:
-        return jsonify(err.messages), 422
+    result_data = schema.load(json_data)
 
     if current_user.check_password(result_data["current_password"]):
         current_user.set_password(result_data["new_password"])
@@ -118,4 +123,102 @@ def update_user_account():
         raise ForbiddenError("Invalid password")
 
     response = {"message": "User password successfully updated."}
+    return jsonify(response), 200
+
+
+@bp.route("/password-reset", methods=["POST"])
+@cross_origin()
+def create_and_send_password_reset_link_email():
+    """
+    Returns HTTP codes
+    -------
+    200 - whenever email is found or not we send OK in security reason
+    422 - email is invalid
+    404 - session is not found
+    400 - invalid or session uuid format
+    """
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    json_data = request.get_json(force=True, silent=True)
+    data = SendPasswordResetLinkSchema().load(json_data)
+
+    user = Users.find_by_email(data["email"])
+    if user:
+        try:
+            password_reset = PasswordResetLink(
+                uuid=uuid.uuid4(),
+                created=datetime.now(),
+                user=user,
+                session_uuid=session_uuid,
+            )
+            db.session.add(password_reset)
+            db.session.commit()
+        except SQLAlchemyError:  # pragma: no cover
+            raise DatabaseError(message="Unable to reset password due to DB error")
+
+        send_reset_password_email(
+            data["email"],
+            password_reset.reset_url,
+            PasswordResetLink.EXPIRE_HOURS_COUNT,
+        )
+
+    response = {"message": "OK"}
+    return jsonify(response), 200
+
+
+@bp.route("/password-reset/<password_reset_link_uuid>", methods=["GET"])
+@cross_origin()
+def check_if_password_reset_link_is_expired_or_used(password_reset_link_uuid):
+    """
+    Returns HTTP codes
+    -------
+    200 - is OK
+    410 - expired
+    422 - input email validation issue
+    404 - session or password reset link is not found
+    400 - invalid password reset link or session uuid format
+    """
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    check_password_reset_link_is_valid(password_reset_link_uuid)
+
+    response = {"message": "Reset password is ready to be used."}
+    return jsonify(response), 200
+
+
+@bp.route("/password-reset/<password_reset_link_uuid>", methods=["PUT"])
+@cross_origin()
+def do_password_reset(password_reset_link_uuid):
+    """
+    Returns HTTP codes
+    -------
+    200 - done
+    410 - password reset link is expired
+    422 - validation issue
+    404 - session or password reset link is not found
+    400 - invalid password reset link or session uuid format
+    """
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    password_reset = check_password_reset_link_is_valid(password_reset_link_uuid)
+
+    json_data = request.get_json(force=True, silent=True)
+    schema = UserChangePasswordSchema()
+
+    result_data = schema.load(json_data)
+
+    try:
+        password_reset.user.set_password(result_data["new_password"])
+        password_reset.used = True
+        db.session.commit()
+    except SQLAlchemyError:
+        raise DatabaseError(message="Unable to reset password")
+
+    response = {"message": "User password updated successfully."}
     return jsonify(response), 200

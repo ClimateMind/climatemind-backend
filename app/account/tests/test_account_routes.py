@@ -1,9 +1,15 @@
+from datetime import datetime, timedelta
+
 import pytest
+import typing
 from flask import url_for
+from flask.testing import FlaskClient
 from flask_jwt_extended import create_access_token
+from freezegun import freeze_time
 from mock import mock
 
-from app.factories import UsersFactory, faker
+from app.factories import UsersFactory, faker, SessionsFactory, PasswordResetLinkFactory
+from app.models import PasswordResetLink, Users
 
 
 @pytest.mark.integration
@@ -65,17 +71,6 @@ def test_update_email(client, accept_json):
         },
     )
     assert response.status_code == 400, "Confirm email is required"
-
-    response = client.put(
-        url_for("account.update_email"),
-        headers=accept_json,
-        json={
-            "password": password,
-            "confirmEmail": new_email,
-            # "newEmail": new_email,
-        },
-    )
-    assert response.status_code == 400, "New email is required"
 
     response = client.put(
         url_for("account.update_email"),
@@ -156,39 +151,178 @@ def test_update_user_account(client_with_user_and_header, accept_json):
     assert response.status_code == 403, "Wrong password provided"
     assert not user.check_password(new_password)
 
+    default_data = {"currentPassword": current_password}
+    update_password_checks(client, headers, new_password, url, user, default_data)
+
+
+def update_password_checks(
+    client: FlaskClient,
+    headers: list,
+    new_password: str,
+    url: str,
+    user: Users,
+    default_data: typing.Optional[dict] = None,
+):
+
     weak_password = "password"
-    response = client.put(
-        url,
-        headers=headers,
-        json={
-            "currentPassword": current_password,
+    data = default_data if default_data else {}
+    data.update(
+        {
             "newPassword": weak_password,
             "confirmPassword": weak_password,
-        },
+        }
     )
+    response = client.put(url, headers=headers, json=data)
     assert response.status_code == 422, "Weak password provided"
-    assert not user.check_password(weak_password)
+    assert not user.check_password(weak_password), "Password wasn't updated"
 
-    response = client.put(
-        url,
-        headers=headers,
-        json={
-            "currentPassword": current_password,
+    data = default_data if default_data else {}
+    data.update(
+        {
             "newPassword": new_password,
             "confirmPassword": new_password + "312",
+        }
+    )
+    response = client.put(url, headers=headers, json=data)
+    assert response.status_code == 422, "Password mismatch"
+    assert not user.check_password(new_password), "Password wasn't updated"
+
+    data = default_data if default_data else {}
+    data.update(
+        {
+            "newPassword": new_password,
+        }
+    )
+    response = client.put(url, headers=headers, json=data)
+    assert response.status_code == 422, "Field missing"
+    assert not user.check_password(new_password), "Password wasn't updated"
+
+    data = default_data if default_data else {}
+    data.update(
+        {
+            "newPassword": new_password,
+            "confirmPassword": new_password,
+        }
+    )
+    response = client.put(url, headers=headers, json=data)
+    assert response.status_code == 200, "Password changed successfully"
+    assert user.check_password(new_password), "Password was finally updated"
+
+
+@pytest.mark.integration
+@mock.patch("app.account.routes.send_reset_password_email")
+def test_create_and_send_password_reset_link_email(
+    m_send_reset_password_email, client, accept_json
+):
+    session = SessionsFactory()
+    session_header = [("X-Session-Id", session.session_uuid)]
+
+    url = url_for("account.create_and_send_password_reset_link_email")
+    not_registered_email = faker.email()
+
+    response = client.post(
+        url,
+        headers=session_header,
+        json={
+            "email": not_registered_email,
         },
     )
-    assert response.status_code == 422, "Password mismatch"
-    assert not user.check_password(new_password)
+    assert response.status_code == 200, "Status should be 200 in security reasons"
+    assert PasswordResetLink.query.count() == 0
+    assert not m_send_reset_password_email.called
 
-    response = client.put(
+    user = UsersFactory()
+    registered_email = user.user_email
+
+    response = client.post(
         url,
-        headers=headers,
+        headers=session_header,
         json={
-            "currentPassword": current_password,
+            "email": registered_email,
+        },
+    )
+    assert response.status_code == 200, "Success"
+    assert PasswordResetLink.query.count() == 1, "Single object should be created"
+
+    password_reset = PasswordResetLink.query.first()
+    assert password_reset.user == user, "User is correct"
+    assert m_send_reset_password_email.called_once_with(
+        registered_email, password_reset.reset_url, password_reset.EXPIRE_HOURS_COUNT
+    ), "Email was sent with the correct parameters."
+
+
+@pytest.mark.integration
+def test_do_password_reset(client, accept_json):
+    session = SessionsFactory()
+    session_header = [("X-Session-Id", session.session_uuid)]
+    new_password = faker.password()
+    password_reset = PasswordResetLinkFactory()
+
+    url = url_for(
+        "account.do_password_reset", password_reset_link_uuid=password_reset.uuid
+    )
+
+    update_password_checks(
+        client, session_header, new_password, url, password_reset.user
+    )
+
+
+faked_now = faker.date_time()
+
+
+@freeze_time(faked_now)
+@pytest.mark.integration
+def test_check_if_password_reset_link_is_expired(client, accept_json):
+    session = SessionsFactory()
+    session_header = [("X-Session-Id", session.session_uuid)]
+
+    big_value_to_make_sure_the_password_reset_object_is_expired_already = 999
+    password_reset_expired = PasswordResetLinkFactory(
+        created=datetime.now()
+        - timedelta(
+            hours=big_value_to_make_sure_the_password_reset_object_is_expired_already
+        )
+    )
+
+    url = url_for(
+        "account.check_if_password_reset_link_is_expired_or_used",
+        password_reset_link_uuid=password_reset_expired.uuid,
+    )
+    response = client.get(url, headers=session_header)
+    assert response.status_code == 410, "Expired"
+
+
+@pytest.mark.integration
+def test_check_if_password_reset_link_is_used(client, accept_json):
+    session = SessionsFactory()
+    session_header = [("X-Session-Id", session.session_uuid)]
+
+    password_reset = PasswordResetLinkFactory()
+
+    check_if_link_is_valid_url = url_for(
+        "account.check_if_password_reset_link_is_expired_or_used",
+        password_reset_link_uuid=password_reset.uuid,
+    )
+    response = client.get(check_if_link_is_valid_url, headers=session_header)
+    assert response.status_code == 200, "Fresh link is ready to use"
+
+    new_password = faker.password()
+    response = client.put(
+        url_for(
+            "account.do_password_reset", password_reset_link_uuid=password_reset.uuid
+        ),
+        headers=session_header,
+        json={
             "newPassword": new_password,
             "confirmPassword": new_password,
         },
     )
     assert response.status_code == 200, "Password changed successfully"
-    assert user.check_password(new_password)
+    assert password_reset.user.check_password(new_password), "Password was updated"
+
+    check_if_link_is_valid_url = url_for(
+        "account.check_if_password_reset_link_is_expired_or_used",
+        password_reset_link_uuid=password_reset.uuid,
+    )
+    response = client.get(check_if_link_is_valid_url, headers=session_header)
+    assert response.status_code == 409, "Is used already"
