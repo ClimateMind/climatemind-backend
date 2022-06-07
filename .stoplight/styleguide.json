@@ -1,5 +1,6 @@
 {
   "description": "",
+  "spectralExtends": [],
   "formats": [
     "oas2",
     "oas3",

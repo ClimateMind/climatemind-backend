@@ -30,5 +30,9 @@ class NotInDatabaseError(CustomError):
     status_code = 404
 
 
-class AlreadyExistsError(CustomError):
+class ConflictError(CustomError):
     status_code = 409
+
+
+class ExpiredError(CustomError):
+    status_code = 410

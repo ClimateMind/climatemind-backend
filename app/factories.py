@@ -1,5 +1,6 @@
 import random
 import typing
+from datetime import datetime
 
 import factory
 from faker import Factory as FakerFactory
@@ -16,6 +17,7 @@ from app.models import (
     AlignmentFeed,
     EffectChoice,
     SolutionChoice,
+    PasswordResetLink,
 )
 from app.personal_values.enums import PersonalValue
 from app.scoring.process_alignment_scores import get_max
@@ -70,8 +72,8 @@ class ScoresFactory(factory.alchemy.SQLAlchemyModelFactory):
 
 class ConversationsFactory(factory.alchemy.SQLAlchemyModelFactory):
     conversation_uuid = factory.Sequence(lambda x: faker.uuid4().upper())
-    sender_user = factory.SubFactory(UsersFactory)
     sender_session = factory.SubFactory(SessionsFactory)
+    sender_user = factory.LazyAttribute(lambda obj: obj.sender_session.user)
     receiver_name = factory.LazyAttribute(lambda x: faker.name())
     conversation_status = factory.LazyAttribute(
         lambda x: faker.pyint(min(ConversationStatus), max(ConversationStatus))
@@ -170,3 +172,13 @@ class UserBJourneyFactory(factory.alchemy.SQLAlchemyModelFactory):
 
     class Meta:
         model = UserBJourney
+
+
+class PasswordResetLinkFactory(factory.alchemy.SQLAlchemyModelFactory):
+    uuid = factory.Sequence(lambda x: faker.uuid4().upper())
+    user = factory.SubFactory(UsersFactory)
+    session = factory.SubFactory(SessionsFactory)
+    created = factory.LazyAttribute(lambda x: datetime.now())
+
+    class Meta:
+        model = PasswordResetLink
