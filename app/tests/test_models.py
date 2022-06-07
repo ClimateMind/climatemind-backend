@@ -1,4 +1,9 @@
-from app.models import AlignmentScores, Scores
+from datetime import datetime, timedelta
+
+from freezegun import freeze_time
+
+from app.factories import faker, PasswordResetLinkFactory
+from app.models import AlignmentScores, Scores, PasswordResetLink
 from app.personal_values.enums import PersonalValue
 
 
@@ -17,3 +22,21 @@ def test_alignment_score_fields_equals_to_personal_values():
 def test_personal_values_in_scores_fields():
     for v in PersonalValue:
         assert hasattr(Scores, v.key), f"{v.key} field is missing in Scores class"
+
+
+faked_now = faker.date_time()
+
+
+@freeze_time(faked_now)
+def test_password_reset_expired_property():
+    more_that_expire = datetime.now() - timedelta(
+        hours=PasswordResetLink.EXPIRE_HOURS_COUNT + 1
+    )
+    password_reset = PasswordResetLinkFactory(created=more_that_expire)
+    assert password_reset.expired, "PasswordResetLink should be expired"
+
+    less_that_expire = datetime.now() - timedelta(
+        hours=PasswordResetLink.EXPIRE_HOURS_COUNT - 1
+    )
+    password_reset = PasswordResetLinkFactory(created=less_that_expire)
+    assert not password_reset.expired, "PasswordResetLink should not be expired"

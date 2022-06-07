@@ -11,6 +11,7 @@ from app.factories import (
     UsersFactory,
     ConversationsFactory,
     AlignmentScoresFactory,
+    PasswordResetLinkFactory,
 )
 
 faked_uuid = faker.uuid4()
@@ -36,31 +37,32 @@ def test_validate_uuid(uuid_to_validate, exception):
 
 
 @pytest.mark.parametrize(
-    "uuid_to_validate, uuid_type, factory_cls, uuid_field_name",
+    "uuid_type, factory_cls, uuid_field_name",
     (
-        (faked_uuid, uuidType.SESSION, SessionsFactory, "session_uuid"),
-        (faked_uuid, uuidType.QUIZ, ScoresFactory, "quiz_uuid"),
-        (faked_uuid, uuidType.USER, UsersFactory, "user_uuid"),
+        (uuidType.SESSION, SessionsFactory, "session_uuid"),
+        (uuidType.QUIZ, ScoresFactory, "quiz_uuid"),
+        (uuidType.USER, UsersFactory, "user_uuid"),
         (
-            faked_uuid,
             uuidType.CONVERSATION,
             ConversationsFactory,
             "conversation_uuid",
         ),
         (
-            faked_uuid,
             uuidType.ALIGNMENT_SCORES,
             AlignmentScoresFactory,
             "alignment_scores_uuid",
         ),
+        (
+            uuidType.RESET_PASSWORD_LINK,
+            PasswordResetLinkFactory,
+            "uuid",
+        ),
     ),
 )
-def test_check_uuid_in_db(
-    uuid_to_validate: uuid.UUID, uuid_type, factory_cls, uuid_field_name
-):
-    kwargs = {uuid_field_name: uuid_to_validate}
-    factory_cls(**kwargs)
-    check_uuid_in_db(uuid_to_validate, uuid_type)
+def test_check_uuid_in_db(uuid_type, factory_cls, uuid_field_name):
+    kwargs = {uuid_field_name: faked_uuid.upper()}
+    obj = factory_cls(**kwargs)
+    assert obj == check_uuid_in_db(faked_uuid, uuid_type)
 
 
 def test_check_uuid_not_found_in_db():

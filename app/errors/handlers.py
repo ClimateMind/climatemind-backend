@@ -1,48 +1,54 @@
-from app import db
 from flask import jsonify
 from flask import make_response
+from flask_cors import cross_origin
+from marshmallow import ValidationError
+
+from app import db
 from app.errors import bp
 from app.errors.errors import (
     DatabaseError,
-    AlreadyExistsError,
+    ConflictError,
     CustomError,
     NotInDatabaseError,
 )
-from flask_cors import cross_origin
+
+
+def default_error_response(error):
+    response = jsonify({"error": error.message}), error.status_code
+    return response
 
 
 @bp.app_errorhandler(CustomError)
 @cross_origin()
 def handle_custom_error(error):
-    response = jsonify({"error": error.message}), error.status_code
-    return response
+    return default_error_response(error)
 
 
 @bp.app_errorhandler(DatabaseError)
 @cross_origin()
 def handle_database_error(error):
     db.session.rollback()
-    response = jsonify({"error": error.message}), error.status_code
-    return response
+    return default_error_response(error)
 
 
 @bp.app_errorhandler(NotInDatabaseError)
 @cross_origin()
 def handle_not_in_db_error(error):
-    response = jsonify({"error": error.message}), error.status_code
-    return response
+    return default_error_response(error)
 
 
-@bp.app_errorhandler(AlreadyExistsError)
+@bp.app_errorhandler(ConflictError)
 @cross_origin()
-def handle_existing_resource_error(error):
-    response = (
-        jsonify({"error": error.message + " already exists in the database."}),
-        error.status_code,
-    )
-    return response
+def handle_conflict_error(error):
+    return default_error_response(error)
 
 
 @bp.app_errorhandler(429)
 def ratelimit_handler(e):
     return make_response(jsonify(error="ratelimit exceeded %s" % e.description), 429)
+
+
+@bp.app_errorhandler(ValidationError)
+@cross_origin()
+def handle_custom_error(error):
+    return make_response(jsonify({"error": error.messages}), 422)

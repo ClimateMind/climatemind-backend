@@ -2,8 +2,16 @@ import typing
 import uuid
 from enum import Enum
 
+from app import db
 from app.errors.errors import InvalidUsageError, NotInDatabaseError
-from app.models import Sessions, Scores, Users, Conversations, AlignmentScores
+from app.models import (
+    Sessions,
+    Scores,
+    Users,
+    Conversations,
+    AlignmentScores,
+    PasswordResetLink,
+)
 
 
 class uuidType(Enum):
@@ -16,12 +24,15 @@ class uuidType(Enum):
     USER = 3
     CONVERSATION = 4
     ALIGNMENT_SCORES = 5
+    RESET_PASSWORD_LINK = 6
 
 
 def validate_uuid(
     uuid_to_validate: typing.Union[uuid.UUID, str], uuid_type: uuidType
 ) -> uuid.UUID:
     """
+    # FIXME: replace with marshmallow validation
+    # FIXME: it always used with check_uuid_in_db so merge it
     UUIDs are required throughout the app for various purposes. SessionID for example
     is required for a user to access any page. We need to make sure UUIDs are provided,
     are converted into proper UUID format when provided as strings, and are valid.
@@ -46,28 +57,34 @@ def validate_uuid(
 
 def check_uuid_in_db(
     uuid_to_validate: typing.Union[uuid.UUID, str], uuid_type: uuidType
-) -> None:  # raises NotInDatabaseError
+) -> db.Model:  # raises NotInDatabaseError
     """
+    FIXME: controversial solution with enum and conditions could be omitted
+     if all primary keys have the same name like `uuid`
     A helper function to validate whether a UUID exists within our db.
     """
-    uuid_exists_in_db = None
+    object_from_db = None
 
     if uuid_type == uuidType.SESSION:
-        uuid_exists_in_db = Sessions.query.filter_by(
-            session_uuid=uuid_to_validate
-        ).first()
+        object_from_db = Sessions.query.filter_by(session_uuid=uuid_to_validate).first()
     elif uuid_type == uuidType.QUIZ:
-        uuid_exists_in_db = Scores.query.filter_by(quiz_uuid=uuid_to_validate).first()
+        object_from_db = Scores.query.filter_by(quiz_uuid=uuid_to_validate).first()
     elif uuid_type == uuidType.USER:
-        uuid_exists_in_db = Users.query.filter_by(user_uuid=uuid_to_validate).first()
+        object_from_db = Users.query.filter_by(user_uuid=uuid_to_validate).first()
     elif uuid_type == uuidType.CONVERSATION:
-        uuid_exists_in_db = Conversations.query.filter_by(
+        object_from_db = Conversations.query.filter_by(
             conversation_uuid=uuid_to_validate
         ).first()
     elif uuid_type == uuidType.ALIGNMENT_SCORES:
-        uuid_exists_in_db = AlignmentScores.query.filter_by(
+        object_from_db = AlignmentScores.query.filter_by(
             alignment_scores_uuid=uuid_to_validate
         ).first()
+    elif uuid_type == uuidType.RESET_PASSWORD_LINK:
+        object_from_db = PasswordResetLink.query.filter_by(
+            uuid=uuid_to_validate
+        ).first()
 
-    if not uuid_exists_in_db:
+    if object_from_db:
+        return object_from_db
+    else:
         raise NotInDatabaseError(message=f"{uuid_type.name}_UUID is not in the db.")

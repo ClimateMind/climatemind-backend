@@ -1,1 +1,2 @@
 flask-shell-ipython==0.4.1
+ipdb==0.13.9

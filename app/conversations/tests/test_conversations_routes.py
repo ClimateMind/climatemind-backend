@@ -67,8 +67,16 @@ def test_edit_conversation_request_data(
             for request_key, request_value in request_data.items():
                 assert response.json[request_key] == request_value, "All values updated"
         else:
-            assert set(response_json_keys) != expected_response_keys
-            assert set(response_json_keys) == set(request_data.keys()), "Errors only"
+            expected_keys_while_error = ["error"]
+            assert (
+                list(response_json_keys) == expected_keys_while_error
+            ), "Should return a validation errors"
+
+            actual_errors_in_parent_object = set(response.json["error"].keys())
+            expected_errors_in_parent_object = set(request_data.keys())
+            assert (
+                actual_errors_in_parent_object == expected_errors_in_parent_object
+            ), "Errors only"
 
     assert Conversations.query.count() == 1, "Conversations count kept the same."
 
