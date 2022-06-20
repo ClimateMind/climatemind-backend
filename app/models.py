@@ -147,6 +147,7 @@ class ClimateFeed(db.Model):
 
 class Conversations(db.Model):
     __tablename__ = "conversations"
+
     conversation_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
     sender_user_uuid = db.Column(
         UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"), index=True, nullable=False
@@ -157,7 +158,7 @@ class Conversations(db.Model):
     )
     sender_session = relationship("Sessions", foreign_keys=[sender_session_uuid])
     receiver_name = db.Column(db.String(50), index=False, unique=False, nullable=False)
-    conversation_status = db.Column(db.Integer)
+    conversation_status = db.Column(db.Integer)  # FIXME: deprecated
     conversation_created_timestamp = db.Column(db.DateTime)
     user_b_share_consent = db.Column(db.Boolean)
     state = db.Column(db.Integer)

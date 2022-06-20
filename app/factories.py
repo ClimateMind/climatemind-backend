@@ -6,7 +6,11 @@ import factory
 from faker import Factory as FakerFactory
 from werkzeug.security import generate_password_hash
 
-from app.conversations.enums import ConversationStatus
+from app.conversations.enums import (
+    ConversationStatus,
+    ConversationState,
+    ConversationUserARating,
+)
 from app.models import (
     Users,
     Sessions,
@@ -80,6 +84,12 @@ class ConversationsFactory(factory.alchemy.SQLAlchemyModelFactory):
     )
     conversation_created_timestamp = factory.LazyAttribute(lambda x: faker.date_time())
     user_b_share_consent = factory.LazyAttribute(lambda x: faker.pybool())
+    state = factory.LazyAttribute(
+        lambda x: random.choice([s for s in ConversationState])
+    )
+    user_a_rating = factory.LazyAttribute(
+        lambda x: random.choice([r for r in ConversationUserARating])
+    )
 
     class Meta:
         model = Conversations

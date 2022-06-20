@@ -11,7 +11,10 @@ from app import db
 from app.common.schemas import validate_schema_field
 from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from app.conversations import bp
-from app.conversations.enums import ConversationStatus
+from app.conversations.enums import (
+    ConversationStatus,
+    ConversationState,
+)
 from app.conversations.schemas import ConversationEditSchema
 from app.conversations.utils import (
     build_single_conversation_response,
@@ -81,6 +84,7 @@ def create_conversation_invite():
         sender_session_uuid=session_uuid,
         receiver_name=invited_name,
         conversation_status=ConversationStatus.Invited,
+        state=ConversationState.UserBInvited,
         conversation_created_timestamp=datetime.datetime.now(timezone.utc),
         user_b_share_consent=False,
     )
@@ -133,7 +137,7 @@ def get_conversations():
                 "createdByUserId": user.user_uuid,
                 "createdDateTime": conversation.conversation_created_timestamp,
                 "conversationId": conversation.conversation_uuid,
-                "conversationStatus": conversation.conversation_status,
+                "conversationStatus": conversation.conversation_status,  # FIXME: deprecated
             }
         )
 
@@ -231,7 +235,7 @@ def edit_conversation(conversation_uuid):
         json_data[uuid_field_name] = conversation_uuid
 
         try:
-            conversation = schema.load(json_data, instance=conversation, partial=True)  # TODO: Hmm, how to only update converstation.state if it's higher than before?
+            conversation = schema.load(json_data, instance=conversation, partial=True)
             db.session.commit()
             return schema.jsonify(conversation)
         except SQLAlchemyError:

@@ -27,7 +27,7 @@ def build_single_conversation_response(conversation_uuid):
     - user b's name
     - conversation status
     - consent - if user b has consented to share info with user a
-    - userAProgress - how far user A is in processing the conversation results 
+    - userAProgress - how far user A is in processing the conversation results
     - userARating - user A's rating of the conversation
     - timestamp for when the conversation was created
     - alignment scores uuid (if consent=true)
@@ -75,20 +75,56 @@ def build_single_conversation_response(conversation_uuid):
 
 def state_enum_to_button_states(state):
     """Convert the state enum to explicit state for the components of user A's conversation card."""
-    if (state is None):
-        return None
-    elif (state == ConversationState.InvitedUserB):
-        state_map = {"heading":"Invited to talk", "align_clicked":False, "talk_clicked":False, "done_clicked":False, "rated":False}
-    elif (state == ConversationState.UserBDone):
-        state_map = {"heading":"Prepared to talk with", "align_clicked":False, "talk_clicked":False, "done_clicked":False, "rated":False}
-    elif (state == ConversationState.AlignButtonClicked):
-        state_map = {"heading":"Prepared to talk with", "align_clicked":True, "talk_clicked":False, "done_clicked":False, "rated":False}
-    elif (state == ConversationState.TalkButtonClicked):
-        state_map = {"heading":"Ready to talk", "align_clicked":True, "talk_clicked":True, "done_clicked":False, "rated":False}
-    elif (state == ConversationState.DoneButtonClicked):
-        state_map = {"heading":"Talked with", "align_clicked":True, "talk_clicked":True, "done_clicked":True, "rated":False}
-    elif (state == ConversationState.ConversationRated):
-        state_map = {"heading":"Talked with", "align_clicked":True, "talk_clicked":True, "done_clicked":True, "rated":True}
+    if state is None:
+        state_map = None
+    elif state == ConversationState.UserBInvited:
+        state_map = {
+            "heading": "Invited to talk",
+            "alignClicked": False,
+            "topicsClicked": False,
+            "talkedClicked": False,
+            "rated": False,
+        }
+    elif state == ConversationState.UserBConsented:
+        state_map = {
+            "heading": "Prepared to talk with",
+            "alignClicked": False,
+            "topicsClicked": False,
+            "talkedClicked": False,
+            "rated": False,
+        }
+    elif state == ConversationState.AlignButtonClicked:
+        state_map = {
+            "heading": "Prepared to talk with",
+            "alignClicked": True,
+            "topicsClicked": False,
+            "talkedClicked": False,
+            "rated": False,
+        }
+    elif state == ConversationState.TopicsButtonClicked:
+        state_map = {
+            "heading": "Ready to talk",
+            "alignClicked": True,
+            "topicsClicked": True,
+            "talkedClicked": False,
+            "rated": False,
+        }
+    elif state == ConversationState.TalkedButtonClicked:
+        state_map = {
+            "heading": "Talked with",
+            "alignClicked": True,
+            "topicsClicked": True,
+            "talkedClicked": True,
+            "rated": False,
+        }
+    elif state == ConversationState.RatingDone:
+        state_map = {
+            "heading": "Talked with",
+            "alignClicked": True,
+            "topicsClicked": True,
+            "talkedClicked": True,
+            "rated": True,
+        }
     return state_map
 
 
@@ -121,6 +157,7 @@ def update_consent_choice(conversation_uuid, consent_choice, session_uuid):
 
         if consent_choice:
             conversation.conversation_status = ConversationStatus.QuizCompleted
+            conversation.state = ConversationState.UserBConsented
         else:
             conversation.conversation_status = ConversationStatus.Visited
 
