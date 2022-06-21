@@ -3,4 +3,4 @@
 echo "sleeping entrypoint"
 sleep 120
 
-pytest -n auto
+pytest -n auto --cipdb
