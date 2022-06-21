@@ -1,4 +1,4 @@
-from flask import jsonify
+from flask import jsonify, current_app
 from flask import make_response
 from flask_cors import cross_origin
 from marshmallow import ValidationError
@@ -13,8 +13,9 @@ from app.errors.errors import (
 )
 
 
-def default_error_response(error):
+def default_error_response(error: CustomError):
     response = jsonify({"error": error.message}), error.status_code
+    current_app.logger.exception(error)
     return response
 
 
