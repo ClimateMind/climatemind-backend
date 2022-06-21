@@ -93,18 +93,23 @@ workflows:
             - lint
           context:
             - flaskenv
-
-  build-deploy:
-    jobs:
       - build_and_deploy_prod:
           context:
             - azure
           filters:
             branches:
               only: master
+          requires:
+            - pytest
+            - build
+            - cypress
       - build_and_deploy_test:
           context:
             - azure
           filters:
             branches:
               only: develop
+          requires:
+            - pytest
+            - build
+            - cypress
