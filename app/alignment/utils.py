@@ -171,10 +171,12 @@ def effect_details(G, climate_effects_iris, nx):
         for node in G.nodes:
             if G.nodes[node]["iri"] == iri:
                 nx.set_current_node(G.nodes[node])
+                # FIXME: remove code duplication, grep by keys
                 effect = {
                     "effectId": nx.get_node_id(),
                     "sharedScore": 42.00,
                     "effectShortDescription": nx.get_short_description(),
+                    "isPossiblyLocal": nx.get_is_possibly_local(G.nodes[node]),
                     "effectTitle": G.nodes[node]["label"],
                     "imageUrl": nx.get_image_url_or_none(),
                     "relatedPersonalValues": get_dashed_personal_values_names_from_vector(
@@ -290,12 +292,14 @@ def solution_details(G, climate_solutions_iris, nx):
 
             if nx.get_node_id() == iri:
 
+                # FIXME: code duplication build_shared_solution_details_response
                 solution = {
                     "solutionId": nx.get_node_id(),
-                    "sharedScore": 42.00,
+                    "sharedScore": 42.00,  # FIXME:
                     "solutionShortDescription": nx.get_short_description(),
                     "solutionTitle": G.nodes[node]["label"],
                     "imageUrl": nx.get_image_url_or_none(),
+                    "solutionType": nx.check_mitigation_or_adaptation_solution(G),
                 }
 
                 climate_solutions.append(solution)
