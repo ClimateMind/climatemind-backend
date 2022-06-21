@@ -1,21 +1,17 @@
-from app import models
+import sentry_sdk
 from flask import Flask
-from datetime import datetime
-from datetime import timezone
-from datetime import timedelta
 from flask_cors import CORS
-from app.extensions import db, migrate, login, cache, auto, jwt, limiter
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import set_access_cookies
+from sentry_sdk.integrations.flask import FlaskIntegration
 
+from app import models
+from app.extensions import db, migrate, login, cache, auto, jwt, limiter
 from config import DevelopmentConfig
 
 
 def create_app(config_class=DevelopmentConfig):
     app = Flask(__name__)
     app.config.from_object(config_class)
+    init_sentry(app)
 
     db.init_app(app)
     migrate.init_app(app, db)
@@ -117,3 +113,21 @@ def create_app(config_class=DevelopmentConfig):
         app.register_blueprint(user_b_bp)
 
     return app
+
+
+def init_sentry(app):
+    dsn = app.config.get("SENTRY_DSN")
+    environment = app.config.get("SENTRY_ENVIRONMENT")
+
+    if dsn and environment:
+        traces_sample_rate = app.config.get("SENTRY_TRACES_SAMPLE_RATE")
+
+        sentry_sdk.init(
+            dsn=dsn,
+            integrations=[
+                FlaskIntegration(),
+            ],
+            traces_sample_rate=traces_sample_rate,
+            environment=environment,
+            send_default_pii=True,
+        )

@@ -33,6 +33,10 @@ class DevelopmentConfig(BaseConfig):
     SENDGRID_API_KEY = os.environ.get("SENDGRID_API_KEY")
     SENDGRID_DEFAULT_FROM = os.environ.get("MAIL_DEFAULT_SENDER")
 
+    SENTRY_DSN = os.environ.get("SENTRY_DSN")
+    SENTRY_ENVIRONMENT = os.environ.get("SENTRY_ENVIRONMENT")
+    SENTRY_TRACES_SAMPLE_RATE = os.environ.get("SENTRY_TRACES_SAMPLE_RATE", 0.1)
+
     DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
     SQLALCHEMY_DATABASE_URI = (
         "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(DB_CREDENTIALS)
