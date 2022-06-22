@@ -120,7 +120,10 @@ def init_sentry(app):
     environment = app.config.get("SENTRY_ENVIRONMENT")
 
     if dsn and environment:
-        traces_sample_rate = app.config.get("SENTRY_TRACES_SAMPLE_RATE")
+        try:
+            traces_sample_rate = float(app.config.get("SENTRY_TRACES_SAMPLE_RATE"))
+        except (ValueError, TypeError):
+            traces_sample_rate = 0.1
 
         sentry_sdk.init(
             dsn=dsn,
@@ -130,4 +133,5 @@ def init_sentry(app):
             traces_sample_rate=traces_sample_rate,
             environment=environment,
             send_default_pii=True,
+            attach_stacktrace=True,
         )
