@@ -32,9 +32,9 @@ jobs:
           command: sleep 120
       - run:
           name: "Run Pytest"
-          command: docker exec -it web pytest --cipdb
+          command: docker exec -it docker-web-1 pytest --cipdb
           # or to NOT check for breakpoints accidentally left in the code
-          # docker-compose exec -it web pytest -n auto
+          # docker-compose exec -it docker-web-1 pytest -n auto
   cypress:
     # Set up test environment and run cypress tests
     machine:
