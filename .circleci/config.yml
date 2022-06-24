@@ -24,14 +24,6 @@ jobs:
           name: "Build and Run all containers"
           command: |
             env DOCKER_BUILDKIT=0 docker-compose --file docker/docker-compose.pytest.yml up --build --abort-on-container-exit
-  build:
-    machine: true
-    steps:
-      - checkout
-      # build the application image
-      - run:
-          name: Docker Build
-          command: docker build -f docker/services/web/Dockerfile -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
   cypress:
     # Set up test environment and run cypress tests
     machine:
