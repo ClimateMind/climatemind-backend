@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo "sleeping entrypoint"
-sleep 120
+sleep 60
 
 # python
 flask run --host=0.0.0.0
