@@ -20,6 +20,8 @@ jobs:
     machine: true
     steps:
       - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: "Docker Compose Build"
           command: |
@@ -41,6 +43,8 @@ jobs:
       image: ubuntu-2004:202201-02
     steps:
       - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
       - run:
           name: Install Node Dependencies
           command: npm i
