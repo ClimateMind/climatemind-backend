@@ -25,8 +25,11 @@ jobs:
           command: |
             docker-compose --file docker/docker-compose.pytest.yml build
       - run:
-          name: "Pytest Run"
+          name: "Docker Compose Up"
           command: docker-compose --file docker/docker-compose.pytest.yml up
+      - run:
+          name: "Run Pytest"
+          command: docker exec -it web_1 pytest --cipdb
   cypress:
     # Set up test environment and run cypress tests
     machine:
