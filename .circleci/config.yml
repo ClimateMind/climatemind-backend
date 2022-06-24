@@ -26,10 +26,15 @@ jobs:
             docker-compose --file docker/docker-compose.pytest.yml build
       - run:
           name: "Docker Compose Up"
-          command: docker-compose --file docker/docker-compose.pytest.yml up
+          command: docker-compose --file docker/docker-compose.pytest.yml up -d
+      - run:
+          name: "Wait for database to spin up"
+          command: sleep 120
       - run:
           name: "Run Pytest"
-          command: docker exec -it web_1 pytest --cipdb
+          command: docker exec -it web pytest --cipdb
+          # or to NOT check for breakpoints accidentally left in the code
+          # docker-compose exec -it web pytest -n auto
   cypress:
     # Set up test environment and run cypress tests
     machine:
