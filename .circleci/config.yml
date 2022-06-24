@@ -23,7 +23,7 @@ jobs:
       - run:
           name: "Build and Run all containers"
           command: |
-            docker-compose --file docker/docker-compose.pytest.yml up --build --abort-on-container-exit
+            env DOCKER_BUILDKIT=0 docker-compose --file docker/docker-compose.pytest.yml up --build --abort-on-container-exit
   build:
     machine: true
     steps:
