@@ -29,7 +29,7 @@ jobs:
           command: docker-compose --file docker/docker-compose.pytest.yml up -d
       - run:
           name: "Wait for database to spin up"
-          command: sleep 15
+          command: sleep 30
       - run:
           name: "Run Pytest"
           command: docker exec -it docker-web-1 pytest --cipdb
