@@ -21,9 +21,12 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Build and Run all containers"
+          name: "Build"
           command: |
-            env DOCKER_BUILDKIT=0 docker-compose --file docker/docker-compose.pytest.yml up --build --abort-on-container-exit
+            docker-compose --file docker/docker-compose.pytest.yml build
+      - run:
+          name: "Pytest Run"
+          command: docker-compose --file docker/docker-compose.pytest.yml up
   cypress:
     # Set up test environment and run cypress tests
     machine:
