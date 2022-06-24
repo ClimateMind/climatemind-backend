@@ -78,11 +78,6 @@ workflows:
             - lint
           context:
             - flaskenv
-      - build:
-          requires:
-            - lint
-          context:
-            - flaskenv
       - cypress:
           requires:
             - lint
