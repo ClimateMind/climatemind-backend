@@ -21,7 +21,7 @@ jobs:
     steps:
       - checkout
       - run:
-          name: "Build"
+          name: "Docker Compose Build"
           command: |
             docker-compose --file docker/docker-compose.pytest.yml build
       - run:
@@ -96,7 +96,6 @@ workflows:
               only: master
           requires:
             - pytest
-            - build
             - cypress
       - build_and_deploy_test:
           context:
@@ -106,5 +105,4 @@ workflows:
               only: develop
           requires:
             - pytest
-            - build
             - cypress
