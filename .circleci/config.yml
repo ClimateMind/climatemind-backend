@@ -35,7 +35,7 @@ jobs:
       - run:
           name: "Run Pytest"
           #run pytest with flag checking no breakpoints in code
-          command: docker exec -it docker-web-1 pytest --cipdb
+          command: docker exec -it docker-web-1 pytest --cipdb --color=yes
   cypress:
     # Set up test environment and run cypress tests
     machine:
