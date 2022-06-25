@@ -17,9 +17,7 @@ jobs:
           name: Linter
           command: python3 -m black --check ./
   pytest:
-    machine:
-      image: ubuntu-2004:202201-02
-      docker_layer_caching: true
+    machine: true
     steps:
       - checkout
       - run:
@@ -40,7 +38,6 @@ jobs:
     # Set up test environment and run cypress tests
     machine:
       image: ubuntu-2004:202201-02
-      docker_layer_caching: true
     steps:
       - checkout
       - run:
