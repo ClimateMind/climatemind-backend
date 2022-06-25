@@ -39,6 +39,6 @@ class ConversationButtonMapState(IntEnum):
 class ConversationUserARating(IntEnum):
     AWFUL = 1
     BAD = 2
-    AVERAGE = 3
+    MEDIOCRE = 3
     GOOD = 4
     EXCELLENT = 5
