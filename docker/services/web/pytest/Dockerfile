@@ -31,7 +31,3 @@ RUN pip install cython && \
     pip install --no-cache-dir -r requirements/requirements_test.txt
 
 COPY . .
-
-RUN chmod u+x /app/docker/services/web/pytest/entrypoint.pytest.sh
-ENTRYPOINT ["/app/docker/services/web/pytest/entrypoint.pytest.sh"]
-
