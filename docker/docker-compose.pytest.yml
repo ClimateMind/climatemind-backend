@@ -4,6 +4,7 @@ services:
     build:
       context: ..
       dockerfile: ./docker/services/web/pytest/Dockerfile
+    command: sleep infinity
     volumes:
       - ..:/app
     environment:

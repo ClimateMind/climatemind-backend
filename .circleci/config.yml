@@ -18,6 +18,7 @@ jobs:
           command: python3 -m black --check ./
   pytest:
     machine: true
+    docker_layer_caching: true
     steps:
       - checkout
       - run:
