@@ -17,21 +17,25 @@ jobs:
           name: Linter
           command: python3 -m black --check ./
   pytest:
-    machine: true
+    machine:
+      image: ubuntu-2004:current
+      docker_layer_caching: true
     steps:
       - checkout
       - run:
-          name: "Build and Run all containers"
+          name: "Docker Compose Build"
           command: |
-            env DOCKER_BUILDKIT=0 docker-compose --file docker/docker-compose.pytest.yml up --build --abort-on-container-exit
-  build:
-    machine: true
-    steps:
-      - checkout
-      # build the application image
+            docker-compose --file docker/docker-compose.pytest.yml build
       - run:
-          name: Docker Build
-          command: docker build -f docker/services/web/Dockerfile -t $DOCKER_REGISTRY_NAME/climatemindbackend:$CIRCLE_BUILD_NUM .
+          name: "Docker Compose Up"
+          command: docker-compose --file docker/docker-compose.pytest.yml up -d
+      - run:
+          name: "Wait for database to spin up"
+          command: sleep 30
+      - run:
+          name: "Run Pytest"
+          #run pytest with flag checking no breakpoints in code
+          command: docker exec -it docker-web-1 pytest --cipdb --color=yes
   cypress:
     # Set up test environment and run cypress tests
     machine:
@@ -57,7 +61,6 @@ jobs:
     machine: true
     steps:
       - azure-acr/build-and-push-image:
-#          context: azure
           dockerfile: docker/services/web/prod/Dockerfile.prod
           login-server-name: acrwebprod001.azurecr.io
           registry-name: acrwebprod001
@@ -66,7 +69,6 @@ jobs:
     machine: true
     steps:
       - azure-acr/build-and-push-image:
-#          context: azure
           dockerfile: docker/services/web/prod/Dockerfile.prod
           login-server-name: acrwebtest001.azurecr.io
           registry-name: acrwebtest001
@@ -79,11 +81,6 @@ workflows:
     jobs:
       - lint
       - pytest:
-          requires:
-            - lint
-          context:
-            - flaskenv
-      - build:
           requires:
             - lint
           context:
@@ -101,7 +98,6 @@ workflows:
               only: master
           requires:
             - pytest
-            - build
             - cypress
       - build_and_deploy_test:
           context:
@@ -111,5 +107,4 @@ workflows:
               only: develop
           requires:
             - pytest
-            - build
             - cypress
