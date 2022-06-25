@@ -34,9 +34,8 @@ jobs:
           command: sleep 30
       - run:
           name: "Run Pytest"
+          #run pytest with flag checking no breakpoints in code
           command: docker exec -it docker-web-1 pytest --cipdb
-          # or to NOT check for breakpoints accidentally left in the code
-          # docker-compose exec -it docker-web-1 pytest -n auto
   cypress:
     # Set up test environment and run cypress tests
     machine:
@@ -63,7 +62,6 @@ jobs:
     machine: true
     steps:
       - azure-acr/build-and-push-image:
-#          context: azure
           dockerfile: docker/services/web/prod/Dockerfile.prod
           login-server-name: acrwebprod001.azurecr.io
           registry-name: acrwebprod001
@@ -72,7 +70,6 @@ jobs:
     machine: true
     steps:
       - azure-acr/build-and-push-image:
-#          context: azure
           dockerfile: docker/services/web/prod/Dockerfile.prod
           login-server-name: acrwebtest001.azurecr.io
           registry-name: acrwebtest001
