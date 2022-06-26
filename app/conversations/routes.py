@@ -132,13 +132,8 @@ def get_conversations():
     results = []
     for conversation in conversations:
         results.append(
-            {
-                "invitedUserName": conversation.receiver_name,
-                "createdByUserId": user.user_uuid,
-                "createdDateTime": conversation.conversation_created_timestamp,
-                "conversationId": conversation.conversation_uuid,
-                "conversationStatus": conversation.conversation_status,  # FIXME: deprecated
-            }
+            # FIXME: just a hotfix, refactor
+            build_single_conversation_response(conversation.conversation_uuid)
         )
 
     response = {"conversations": results}
