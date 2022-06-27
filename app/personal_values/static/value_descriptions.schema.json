@@ -1,104 +1,105 @@
 {
-    "definitions": {},
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Value descriptions root",
-    "type": "object",
-    "$defs": {
-        "value_description": {
-            "title": "Single value description",
-            "type": "object",
-            "required": [
-                "id",
-                "name",
-                "description",
-                "shortDescription"
-            ],
-            "properties": {
-                "id": {
-                    "title": "Personal Value Key",
-                    "type": "string",
-                    "enum": [
-                        "hedonism",
-                        "tradition",
-                        "benevolence",
-                        "conformity",
-                        "stimulation",
-                        "security",
-                        "achievement",
-                        "universalism",
-                        "power",
-                        "self_direction"
-                    ]
-                },
-                "name": {
-                    "title": "Personal Value Name",
-                    "type": "string",
-                    "enum": [
-                        "hedonism",
-                        "tradition",
-                        "benevolence",
-                        "conformity",
-                        "stimulation",
-                        "security",
-                        "achievement",
-                        "universalism",
-                        "power",
-                        "self direction"
-                    ]
-                },
-                "description": {
-                    "title": "Description",
-                    "type": "string"
-                },
-                "shortDescription": {
-                    "title": "Short Description",
-                    "type": "string"
-                }
-            }
+  "definitions": {},
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Values description",
+  "type": "object",
+  "$defs": {
+    "value_description": {
+      "title": "Single value description",
+      "type": "object",
+      "required": [
+        "id",
+        "name",
+        "description",
+        "shortDescription"
+      ],
+      "properties": {
+        "id": {
+          "title": "Personal Value Key",
+          "type": "string",
+          "enum": [
+            "hedonism",
+            "tradition",
+            "benevolence",
+            "conformity",
+            "stimulation",
+            "security",
+            "achievement",
+            "universalism",
+            "power",
+            "self_direction"
+          ]
+        },
+        "name": {
+          "title": "Personal Value Name",
+          "type": "string",
+          "enum": [
+            "hedonism",
+            "tradition",
+            "benevolence",
+            "conformity",
+            "stimulation",
+            "security",
+            "achievement",
+            "universalism",
+            "power",
+            "self direction"
+          ]
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "shortDescription": {
+          "title": "Short Description",
+          "type": "string"
         }
-    },
-    "required": [
-        "conformity",
-        "tradition",
-        "universalism",
-        "benevolence",
-        "self_direction",
-        "stimulation",
-        "hedonism",
-        "achievement",
-        "power",
-        "security"
-    ],
-    "properties": {
-        "conformity": {
-            "$ref": "#/$defs/value_description"
-        },
-        "tradition": {
-            "$ref": "#/$defs/value_description"
-        },
-        "security": {
-            "$ref": "#/$defs/value_description"
-        },
-        "power": {
-            "$ref": "#/$defs/value_description"
-        },
-        "achievement": {
-            "$ref": "#/$defs/value_description"
-        },
-        "hedonism": {
-            "$ref": "#/$defs/value_description"
-        },
-        "stimulation": {
-            "$ref": "#/$defs/value_description"
-        },
-        "self_direction": {
-            "$ref": "#/$defs/value_description"
-        },
-        "benevolence": {
-            "$ref": "#/$defs/value_description"
-        },
-        "universalism": {
-            "$ref": "#/$defs/value_description"
-        }
+      }
     }
+  },
+  "required": [
+    "conformity",
+    "tradition",
+    "universalism",
+    "benevolence",
+    "self_direction",
+    "stimulation",
+    "hedonism",
+    "achievement",
+    "power",
+    "security"
+  ],
+  "properties": {
+    "conformity": {
+      "$ref": "#/$defs/value_description"
+    },
+    "tradition": {
+      "$ref": "#/$defs/value_description"
+    },
+    "security": {
+      "$ref": "#/$defs/value_description"
+    },
+    "power": {
+      "$ref": "#/$defs/value_description"
+    },
+    "achievement": {
+      "$ref": "#/$defs/value_description"
+    },
+    "hedonism": {
+      "$ref": "#/$defs/value_description"
+    },
+    "stimulation": {
+      "$ref": "#/$defs/value_description"
+    },
+    "self_direction": {
+      "$ref": "#/$defs/value_description"
+    },
+    "benevolence": {
+      "$ref": "#/$defs/value_description"
+    },
+    "universalism": {
+      "$ref": "#/$defs/value_description"
+    }
+  },
+  "x-internal": true
 }
