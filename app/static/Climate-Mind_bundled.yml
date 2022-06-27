@@ -1425,6 +1425,8 @@ paths:
                         type: array
                         items:
                           type: object
+                      isPossiblyLocal:
+                        type: boolean
                 climateSolutions:
                   type: array
                   items:
@@ -1440,6 +1442,11 @@ paths:
                         type: string
                       imageUrl:
                         type: string
+                      solutionType:
+                        type: string
+                        enum:
+                          - mitigation
+                          - adaptation
             examples:
               Successful Selected Topics GET Response Body:
                 value:
@@ -1452,17 +1459,20 @@ paths:
                       relatedPersonalValues:
                         - achievement
                         - benevolence
+                      isPossiblyLocal: true
                   climateSolutions:
                     - solutionId: RDSZw453Ge76hYTvYEsaAwU
                       sharedScore: 29.1
                       solutionShortDescription: Testers are awesome.
                       solutionTitle: becoming a tester
                       imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      solutionType: adaptation
                     - solutionId: ADSZw453Ge76hYTvYEsaAwU
                       sharedScore: 21.9999
                       solutionShortDescription: Communication framing is awesome.
                       solutionTitle: effective communication framing
                       imageUrl: 'https://i.imgur.com/HSZMKzP.jpg'
+                      solutionType: mitigation
       description: |-
         Get the list of effects and solutions selected by user b from the set of alignment effects and solutions respectively.
         Under the current model, there will always be 1 selected effect and 2 selected solutions.
