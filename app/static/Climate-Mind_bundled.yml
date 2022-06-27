@@ -1490,7 +1490,7 @@ paths:
         required: true
   '/password-reset/{password_reset_link_uuid}':
     put:
-      summary: Reset password by the reset password link
+      summary: Use reset password link
       tags: []
       responses:
         '200':
@@ -1613,7 +1613,7 @@ paths:
         description: Identificator
         required: true
     get:
-      summary: ''
+      summary: Check reset password link
       operationId: get-password-reset-password_reset_link_uuid
       parameters:
         - schema:
@@ -1677,7 +1677,7 @@ paths:
       description: Check if password reset link is expired
   /password-reset:
     post:
-      summary: Create password reset link and send the email
+      summary: Create password reset link
       tags: []
       responses:
         '200':
