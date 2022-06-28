@@ -32,3 +32,8 @@ services:
       ACCEPT_EULA: "Y"
     volumes:
       - ./services/db/db-init.sh:/db-init.sh
+      - mssql_data:/var/opt/mssql
+
+volumes:
+  mssql_data:
+    driver: local
