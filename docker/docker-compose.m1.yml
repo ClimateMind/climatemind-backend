@@ -37,3 +37,8 @@ services:
       - ./services/db/m1/entrypoint.db.sh:/entrypoint.db.sh
       - ./services/db/m1/db-init.py:/db-init.py
       - ./services/db/m1/db-init.m1.sh:/db-init.m1.sh
+      - mssql_data:/var/opt/mssql
+
+volumes:
+  mssql_data:
+    driver: local
