@@ -148,13 +148,20 @@ paths:
                   state:
                     type: integer
               examples:
-                example-1:
+                Response body on topics button click:
                   value:
-                    conversationStatus: 0
+                    conversationStatus: 2
                     conversationId: 9f531903-13fa-4da2-bae4-62e522b8a7e0
                     receiverName: Peter Parker
                     userARating: null
-                    state: 0
+                    state: 4
+                Response body on rating to 3:
+                  value:
+                    conversationStatus: 2
+                    conversationId: 9f531903-13fa-4da2-bae4-62e522b8a7e0
+                    receiverName: Peter Parker
+                    userARating: 3
+                    state: 5
         '400':
           description: |-
             Bad request, possible reasons:
@@ -275,6 +282,7 @@ paths:
         name: conversationId
         in: path
         required: true
+        description: id of the conversation
     get:
       summary: Single Conversation - GET
       operationId: 'get-conversation-:conversationId'
@@ -398,7 +406,7 @@ paths:
                       sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
                     userB:
                       name: Bob
-                    conversationStatus: 2
+                    conversationStatus: 0
                     consent: false
                     conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
                     userAProgress:
