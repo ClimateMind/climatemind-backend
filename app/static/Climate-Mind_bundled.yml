@@ -21,84 +21,64 @@ paths:
           content:
             application/json:
               schema:
-                description: ''
-                type: object
+                type: array
                 x-examples:
                   example-1:
-                    conversations:
-                      - conversationId: 5565C2B1-FC21-4A13-9854-3356EF46A7F5
-                        conversationStatus: 0
-                        createdByUserId: 39229453-E000-4801-91CA-D1F85E750508
-                        createdDateTime: 'Fri, 31 Dec 2021 09:07:48 GMT'
-                        invitedUserName: Jim 4
-                      - conversationId: 599E7CE8-DBCD-4FD3-97DA-41B6F6BABDEE
-                        conversationStatus: 0
-                        createdByUserId: 39229453-E000-4801-91CA-D1F85E750508
-                        createdDateTime: 'Tue, 04 Jan 2022 17:16:36 GMT'
-                        invitedUserName: Jim 4
-                      - conversationId: 7F910A47-9AED-4A27-8F33-3AE95230A776
-                        conversationStatus: 0
-                        createdByUserId: 39229453-E000-4801-91CA-D1F85E750508
-                        createdDateTime: 'Tue, 04 Jan 2022 17:27:39 GMT'
-                        invitedUserName: Jim 4
-                      - conversationId: 71B315C3-895F-4A7D-A752-080B123802ED
-                        conversationStatus: 0
-                        createdByUserId: 39229453-E000-4801-91CA-D1F85E750508
-                        createdDateTime: 'Wed, 05 Jan 2022 06:44:33 GMT'
-                        invitedUserName: Jim 4
-                properties:
-                  conversations:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
+                    - conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
+                      userA:
+                        name: Bill
+                        id: ba5df442-7261-4fc1-bff0-5dfd84035d56
+                        sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
+                      userB:
+                        name: Bob
+                      conversationStatus: 2
+                      consent: true
+                      conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
+                      alignmentScoresId: 842a4949-a3e4-4914-c9d2-cd843f48f357
+                items:
+                  type: object
+                  properties:
+                    conversationId:
+                      type: string
+                      format: uuid
+                    userA:
                       type: object
                       properties:
-                        conversationId:
+                        name:
                           type: string
-                          minLength: 1
-                        conversationStatus:
-                          type: number
-                          deprecated: true
-                        createdByUserId:
+                        id:
                           type: string
-                          minLength: 1
-                        createdDateTime:
+                        sessionId:
                           type: string
-                          minLength: 1
-                        invitedUserName:
+                          format: uuid
+                    userB:
+                      type: object
+                      properties:
+                        name:
                           type: string
-                          minLength: 1
-                      required:
-                        - conversationId
-                        - createdByUserId
-                        - createdDateTime
-                        - invitedUserName
-                required:
-                  - conversations
+                    conversationStatus:
+                      type: integer
+                    consent:
+                      type: boolean
+                    conversationTimestamp:
+                      type: string
+                    alignmentScoresId:
+                      type: string
+                      format: uuid
               examples:
-                Successful GET Conversations Response Body:
+                Successful response:
                   value:
-                    conversations:
-                      - conversationId: 4EBCE8D2-D0A3-436B-8944-9914D866B83B
-                        conversationStatus: 0
-                        createdByUserId: C34EAF2F-9E88-474E-9A03-EED62B5F5A5D
-                        createdDateTime: 'Sun, 10 Oct 2021 17:45:19 GMT'
-                        invitedUserName: Kameron
-                      - conversationId: 2D253AF7-DAD9-4B5A-9479-AD1FEC08EDC8
-                        conversationStatus: 0
-                        createdByUserId: C34EAF2F-9E88-474E-9A03-EED62B5F5A5D
-                        createdDateTime: 'Sun, 10 Oct 2021 18:35:02 GMT'
-                        invitedUserName: Andrew
-                      - conversationId: 22F4E691-A896-4A56-BB2A-6E7E7E4B7214
-                        conversationStatus: 0
-                        createdByUserId: C34EAF2F-9E88-474E-9A03-EED62B5F5A5D
-                        createdDateTime: 'Tue, 12 Oct 2021 22:41:26 GMT'
-                        invitedUserName: dda
-                example-2:
-                  value:
-                    conversations:
-                      - null
+                    - conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
+                      userA:
+                        name: Bill
+                        id: ba5df442-7261-4fc1-bff0-5dfd84035d56
+                        sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
+                      userB:
+                        name: Bob
+                      conversationStatus: 2
+                      consent: true
+                      conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
+                      alignmentScoresId: 842a4949-a3e4-4914-c9d2-cd843f48f357
       operationId: get-conversations
       description: 'Registered users can see a list of their conversations. Returns a list of the user''s conversations with the relevant names, UUIDs, conversation status and creation date. A JWT token is required.'
       parameters:
@@ -108,7 +88,7 @@ paths:
           name: X-Session-Id
           description: Session uuid
     parameters: []
-  '/conversation/{conversationId}':
+  '/conversation/:conversationId':
     put:
       summary: Single Conversation - PUT
       tags: []
@@ -141,27 +121,6 @@ paths:
                   receiverName:
                     type: string
                     example: Peter Parker
-                  userARating:
-                    type:
-                      - integer
-                      - 'null'
-                  state:
-                    type: integer
-              examples:
-                Response body on topics button click:
-                  value:
-                    conversationStatus: 2
-                    conversationId: 9f531903-13fa-4da2-bae4-62e522b8a7e0
-                    receiverName: Peter Parker
-                    userARating: null
-                    state: 4
-                Response body on rating to 3:
-                  value:
-                    conversationStatus: 2
-                    conversationId: 9f531903-13fa-4da2-bae4-62e522b8a7e0
-                    receiverName: Peter Parker
-                    userARating: 3
-                    state: 5
         '400':
           description: |-
             Bad request, possible reasons:
@@ -193,39 +152,25 @@ paths:
             application/json:
               schema:
                 type: object
-                x-examples:
-                  example-1:
-                    error:
-                      confirmPassword:
-                        - Missing data for required field.
-                      newPassword:
-                        - Missing data for required field.
-                      nkewPassword:
-                        - Unknown field.
                 properties:
-                  error:
+                  key:
                     type: object
                     properties:
-                      key1:
-                        type: array
-                        items:
-                          type: string
-                      key2:
-                        type: array
-                        items:
-                          type: string
+                      error1:
+                        type: string
+                      error2:
+                        type: string
               examples:
+                Unknown field provided:
+                  value:
+                    key:
+                      - Unknown field.
                 'conversationStatus beyond enumeration ':
                   value:
-                    error:
-                      conversationStatus:
-                        - 'Must be one of: 0, 1, 2, 3.'
-        '500':
-          description: Internal Server Error
+                    conversationStatus:
+                      - 'Must be one of: 0, 1, 2, 3.'
       operationId: put-conversation
-      description: |-
-        Change the receiver name, state and/or rating of the conversation in the conversations table for User A. 
-        All body request fields are optional
+      description: Change the receiver name or status of the conversation in the conversations table for User A.
       parameters:
         - schema:
             type: string
@@ -245,44 +190,18 @@ paths:
                     - 1
                     - 2
                     - 3
-                  deprecated: true
                 receiverName:
                   type: string
-                buttonClicked:
-                  type: string
-                  description: 'The state is changed indirectly based on the buttonClicked field, which corresponding to the 3 buttons in user A''s conversation cards. Note that the state is only changed if it has not been reached before (e.g., if user A has already previous clicked the topics button, then clicking the alignment button should not change the state).'
-                  enum:
-                    - aligned
-                    - topics
-                    - talked
-                userARating:
-                  type: integer
-                  enum:
-                    - 1
-                    - 2
-                    - 3
-                    - 4
-                    - 5
             examples:
-              Update conversation based on topics button click:
+              Update conversation status to 1 - Visited.:
                 value:
-                  buttonClicked: topics
-              Update conversation rating to 3:
-                value:
-                  userARating: 3
+                  conversationStatusId: 1
           application/xml:
             schema:
               type: object
               properties: {}
         description: ''
-    parameters:
-      - schema:
-          type: string
-          format: uuid
-        name: conversationId
-        in: path
-        required: true
-        description: id of the conversation
+    parameters: []
     get:
       summary: Single Conversation - GET
       operationId: 'get-conversation-:conversationId'
@@ -310,6 +229,7 @@ paths:
                   conversationId:
                     type: string
                     minLength: 1
+                    format: uuid
                   userA:
                     type: object
                     required:
@@ -326,6 +246,7 @@ paths:
                       sessionId:
                         type: string
                         minLength: 1
+                        format: uuid
                   userB:
                     type: object
                     required:
@@ -336,48 +257,23 @@ paths:
                         minLength: 1
                   conversationStatus:
                     type: number
-                    deprecated: true
                   consent:
                     type: boolean
                   conversationTimestamp:
                     type: string
                     minLength: 1
-                  userARating:
-                    type:
-                      - 'null'
-                      - integer
-                    enum:
-                      - 1
-                      - 2
-                      - 3
-                      - 4
-                      - 5
                   alignmentScoresId:
-                    type:
-                      - string
-                      - 'null'
-                  userAProgress:
-                    type: object
-                    properties:
-                      heading:
-                        type: string
-                      align_clicked:
-                        type: boolean
-                      topics_clicked:
-                        type: boolean
-                      talked_clicked:
-                        type: boolean
-                      rated:
-                        type: boolean
+                    type: string
+                    format: uuid
                 required:
                   - conversationId
                   - userA
                   - userB
+                  - conversationStatus
                   - consent
                   - conversationTimestamp
-                  - userARating
               examples:
-                Successful GET after user B gave consent:
+                Successful GET Conversation Response Body with consent=true:
                   value:
                     conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
                     userA:
@@ -389,15 +285,8 @@ paths:
                     conversationStatus: 2
                     consent: true
                     conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
-                    userAProgress:
-                      heading: Prepared to talk with
-                      align_clicked: false
-                      topics_clicked: false
-                      talked_clicked: false
-                      rated: false
-                    userARating: null
                     alignmentScoresId: 842a4949-a3e4-4914-c9d2-cd843f48f357
-                Successful GET before user B gave consent:
+                Successful GET Conversation Response Body with consent=false:
                   value:
                     conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
                     userA:
@@ -406,37 +295,10 @@ paths:
                       sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
                     userB:
                       name: Bob
-                    conversationStatus: 0
+                    conversationStatus: 2
                     consent: false
                     conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
-                    userAProgress:
-                      heading: Invited to talk
-                      align_clicked: false
-                      topics_clicked: false
-                      talked_clicked: false
-                      rated: false
-                    userARating: null
                     alignmentScoresId: null
-                Successful GET after user A's rating:
-                  value:
-                    conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
-                    userA:
-                      name: Bill
-                      id: ba5df442-7261-4fc1-bff0-5dfd84035d56
-                      sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
-                    userB:
-                      name: Bob
-                    conversationStatus: 2
-                    consent: true
-                    userAProgress:
-                      heading: Talked with
-                      align_clicked: true
-                      topics_clicked: true
-                      talked_clicked: true
-                      rated: true
-                    userARating: 3
-                    conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
-                    alignmentScoresId: 842a4949-a3e4-4914-c9d2-cd843f48f35
         '404':
           description: Not Found
           content:
@@ -458,12 +320,7 @@ paths:
           description: Session UUID
       description: |-
         Get the details of a single conversation. 
-
         If consent=false, alignmentScoresId is not exposed, but set to null instead.
-
-        User A's progress through the conversation card is represented in the userAProgress object (which maps onto the "state" integer field in the backend).
-
-        User A's conversation rating is a value from 1 to 5, or null if they haven't rated yet.
   /alignment:
     post:
       summary: Alignment Scores - POST
