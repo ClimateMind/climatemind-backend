@@ -157,7 +157,6 @@ class Conversations(db.Model):
     )
     sender_session = relationship("Sessions", foreign_keys=[sender_session_uuid])
     receiver_name = db.Column(db.String(50), index=False, unique=False, nullable=False)
-    conversation_status = db.Column(db.Integer)
     conversation_created_timestamp = db.Column(db.DateTime)
     user_b_share_consent = db.Column(db.Boolean)
     state = db.Column(db.Integer)
