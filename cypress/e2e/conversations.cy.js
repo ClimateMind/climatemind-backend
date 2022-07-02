@@ -87,19 +87,32 @@ describe("'/conversation' endpoint", () => {
                 expect(response.body.conversations).to.be.an("array");
                 for (var conversationIndex in response.body.conversations) {
                     expect(response.body.conversations[conversationIndex]).to.be.an("object");
-                    expect(response.body.conversations[conversationIndex]).to.have.property("conversationId");
-                    expect(response.body.conversations[conversationIndex]).to.have.property("conversationStatus");
-                    expect(response.body.conversations[conversationIndex]).to.have.property("createdByUserId");
-                    expect(response.body.conversations[conversationIndex]).to.have.property("createdDateTime");
-                    expect(response.body.conversations[conversationIndex]).to.have.property("invitedUserName");
 
+                    expect(response.body.conversations[conversationIndex]).to.have.property("conversationId");
                     expect(response.body.conversations[conversationIndex].conversationId).to.be.a("string");
                     expect(response.body.conversations[conversationIndex].conversationId).to.match(uuidFormatChecker_UpperCase);
-                    expect(response.body.conversations[conversationIndex].conversationStatus).to.be.a("number");
-                    expect(response.body.conversations[conversationIndex].createdByUserId).to.be.a("string");
-                    expect(response.body.conversations[conversationIndex].createdByUserId).to.match(uuidFormatChecker_UpperCase);
-                    expect(response.body.conversations[conversationIndex].createdDateTime).to.be.a("string");
-                    expect(response.body.conversations[conversationIndex].invitedUserName).to.be.a("string");
+
+                    expect(response.body.conversations[conversationIndex]).to.have.property("state");
+                    expect(response.body.conversations[conversationIndex].state).to.be.a("number");
+
+                    expect(response.body.conversations[conversationIndex]).to.have.property("userA");
+                    expect(response.body.conversations[conversationIndex].userA).to.be.an("object");
+                    expect(response.body.conversations[conversationIndex].userA).to.have.property("sessionId");
+                    expect(response.body.conversations[conversationIndex].userA.sessionId).to.match(uuidFormatChecker_UpperCase);
+                    expect(response.body.conversations[conversationIndex].userA).to.have.property("id");
+                    expect(response.body.conversations[conversationIndex].userA.id).to.match(uuidFormatChecker_UpperCase);
+                    expect(response.body.conversations[conversationIndex].userA).to.have.property("name");
+                    expect(response.body.conversations[conversationIndex].userA.name).to.be.a("string");
+
+                    expect(response.body.conversations[conversationIndex]).to.have.property("userB");
+                    expect(response.body.conversations[conversationIndex].userB).to.be.an("object");
+                    expect(response.body.conversations[conversationIndex].userB).to.have.property("name");
+                    expect(response.body.conversations[conversationIndex].userB.name).to.be.a("string");
+
+                    expect(response.body.conversations[conversationIndex]).to.have.property("userARating");
+                    expect(response.body.conversations[conversationIndex]).to.have.property("consent");
+                    expect(response.body.conversations[conversationIndex]).to.have.property("conversationTimestamp");
+                    expect(response.body.conversations[conversationIndex]).to.have.property("alignmentScoresId");
                 }
              });
     });

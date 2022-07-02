@@ -11,7 +11,7 @@ from app import db
 from app.common.schemas import validate_schema_field
 from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from app.conversations import bp
-from app.conversations.enums import ConversationStatus
+from app.conversations.enums import ConversationState
 from app.conversations.schemas import ConversationEditSchema
 from app.conversations.utils import (
     build_single_conversation_response,
@@ -80,7 +80,7 @@ def create_conversation_invite():
         sender_user_uuid=user.user_uuid,
         sender_session_uuid=session_uuid,
         receiver_name=invited_name,
-        conversation_status=ConversationStatus.Invited,
+        state=ConversationState.UserBInvited,
         conversation_created_timestamp=datetime.datetime.now(timezone.utc),
         user_b_share_consent=False,
     )
@@ -128,13 +128,8 @@ def get_conversations():
     results = []
     for conversation in conversations:
         results.append(
-            {
-                "invitedUserName": conversation.receiver_name,
-                "createdByUserId": user.user_uuid,
-                "createdDateTime": conversation.conversation_created_timestamp,
-                "conversationId": conversation.conversation_uuid,
-                "conversationStatus": conversation.conversation_status,
-            }
+            # FIXME: just a hotfix, refactor
+            build_single_conversation_response(conversation.conversation_uuid)
         )
 
     response = {"conversations": results}
@@ -158,7 +153,7 @@ def get_conversation(conversation_uuid):
     - conversation uuid
     - user a's first name, user uuid, and the session uuid when they started the conversation
     - user b's name
-    - conversation status
+    - conversation state
     - consent - if user b has consented to share info with user a
     - timestamp for when the conversation was created
     """
@@ -223,7 +218,7 @@ def edit_conversation(conversation_uuid):
     if not conversation:
         raise NotInDatabaseError(message="Conversation not found")
     elif conversation.sender_user_uuid != identity:
-        raise ForbiddenError(message="User don't have an access to the conversation")
+        raise ForbiddenError(message="User doesn't have access to the conversation")
     else:
         json_data = request.get_json(force=True, silent=True)
         json_data[uuid_field_name] = conversation_uuid

@@ -39,6 +39,14 @@ flask db upgrade
 
 The second option to apply the migration is to rebuild the `climatemind-backend_web` image.
 
+#### Remove local database
+
+To remove local database and start from scratch you could use `docker-compse down` with `-v` argument to remove volumes
+
+```bash
+docker-compose -p climatemind-backend -f docker/docker-compose.yml down -v
+```
+
 ### On test and prod databases
 
 The migration will be applied automatically after deployment. 
