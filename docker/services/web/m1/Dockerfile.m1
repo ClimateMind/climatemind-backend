@@ -1,4 +1,5 @@
 FROM python:3.8.5-slim-buster
+# FROM --platform=linux/amd64 python:3.8.5-slim-buster
 
 ENV FLASK_ENV=development
 

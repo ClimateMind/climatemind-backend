@@ -1,6 +1,6 @@
 from flask import current_app
 
-from app.conversations.enums import ConversationStatus
+from app.conversations.enums import ConversationState
 from app import db
 from app.errors.errors import DatabaseError
 from app.models import Conversations, UserBJourney, Users, EffectChoice, SolutionChoice
@@ -25,7 +25,7 @@ def build_single_conversation_response(conversation_uuid):
     - conversation uuid
     - user a's first name, user uuid, and the session uuid when they started the conversation
     - user b's name
-    - conversation status
+    - conversation state
     - consent - if user b has consented to share info with user a
     - timestamp for when the conversation was created
     - alignment scores uuid (if consent=true)
@@ -60,7 +60,8 @@ def build_single_conversation_response(conversation_uuid):
         "userB": {
             "name": conversation.receiver_name,
         },
-        "conversationStatus": conversation.conversation_status,
+        "state": conversation.state,
+        "userARating": conversation.user_a_rating,
         "consent": conversation.user_b_share_consent,
         "conversationTimestamp": conversation.conversation_created_timestamp,
         "alignmentScoresId": alignment_scores_uuid,
@@ -97,9 +98,7 @@ def update_consent_choice(conversation_uuid, consent_choice, session_uuid):
         conversation.user_b_share_consent = user_b_journey.consent = consent_choice
 
         if consent_choice:
-            conversation.conversation_status = ConversationStatus.QuizCompleted
-        else:
-            conversation.conversation_status = ConversationStatus.Visited
+            conversation.state = ConversationState.UserBConsented
 
     except:
         raise DatabaseError(

@@ -21,85 +21,68 @@ paths:
           content:
             application/json:
               schema:
-                description: ''
-                type: object
-                properties:
-                  conversations:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - conversationId
-                        - conversationStatus
-                        - createdByUserId
-                        - createdDateTime
-                        - invitedUserName
-                      properties:
-                        conversationId:
-                          type: string
-                          minLength: 1
-                        conversationStatus:
-                          type: number
-                        createdByUserId:
-                          type: string
-                          minLength: 1
-                        createdDateTime:
-                          type: string
-                          minLength: 1
-                        invitedUserName:
-                          type: string
-                          minLength: 1
-                required:
-                  - conversations
+                type: array
                 x-examples:
                   example-1:
-                    conversations:
-                      - conversationId: 5565C2B1-FC21-4A13-9854-3356EF46A7F5
-                        conversationStatus: 0
-                        createdByUserId: 39229453-E000-4801-91CA-D1F85E750508
-                        createdDateTime: 'Fri, 31 Dec 2021 09:07:48 GMT'
-                        invitedUserName: Jim 4
-                      - conversationId: 599E7CE8-DBCD-4FD3-97DA-41B6F6BABDEE
-                        conversationStatus: 0
-                        createdByUserId: 39229453-E000-4801-91CA-D1F85E750508
-                        createdDateTime: 'Tue, 04 Jan 2022 17:16:36 GMT'
-                        invitedUserName: Jim 4
-                      - conversationId: 7F910A47-9AED-4A27-8F33-3AE95230A776
-                        conversationStatus: 0
-                        createdByUserId: 39229453-E000-4801-91CA-D1F85E750508
-                        createdDateTime: 'Tue, 04 Jan 2022 17:27:39 GMT'
-                        invitedUserName: Jim 4
-                      - conversationId: 71B315C3-895F-4A7D-A752-080B123802ED
-                        conversationStatus: 0
-                        createdByUserId: 39229453-E000-4801-91CA-D1F85E750508
-                        createdDateTime: 'Wed, 05 Jan 2022 06:44:33 GMT'
-                        invitedUserName: Jim 4
+                    - conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
+                      userA:
+                        name: Bill
+                        id: ba5df442-7261-4fc1-bff0-5dfd84035d56
+                        sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
+                      userB:
+                        name: Bob
+                      state: 2
+                      consent: true
+                      conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
+                      alignmentScoresId: 842a4949-a3e4-4914-c9d2-cd843f48f357
+                items:
+                  type: object
+                  properties:
+                    conversationId:
+                      type: string
+                      format: uuid
+                    userA:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        id:
+                          type: string
+                        sessionId:
+                          type: string
+                          format: uuid
+                    userB:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                    state:
+                      type: integer
+                    userARating:
+                      type: integer
+                    consent:
+                      type: boolean
+                    conversationTimestamp:
+                      type: string
+                    alignmentScoresId:
+                      type: string
+                      format: uuid
               examples:
-                Successful GET Conversations Response Body:
+                Successful response:
                   value:
-                    conversations:
-                      - conversationId: 4EBCE8D2-D0A3-436B-8944-9914D866B83B
-                        conversationStatus: 0
-                        createdByUserId: C34EAF2F-9E88-474E-9A03-EED62B5F5A5D
-                        createdDateTime: 'Sun, 10 Oct 2021 17:45:19 GMT'
-                        invitedUserName: Kameron
-                      - conversationId: 2D253AF7-DAD9-4B5A-9479-AD1FEC08EDC8
-                        conversationStatus: 0
-                        createdByUserId: C34EAF2F-9E88-474E-9A03-EED62B5F5A5D
-                        createdDateTime: 'Sun, 10 Oct 2021 18:35:02 GMT'
-                        invitedUserName: Andrew
-                      - conversationId: 22F4E691-A896-4A56-BB2A-6E7E7E4B7214
-                        conversationStatus: 0
-                        createdByUserId: C34EAF2F-9E88-474E-9A03-EED62B5F5A5D
-                        createdDateTime: 'Tue, 12 Oct 2021 22:41:26 GMT'
-                        invitedUserName: dda
-                example-2:
-                  value:
-                    conversations:
-                      - null
+                    - conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
+                      userA:
+                        name: Bill
+                        id: ba5df442-7261-4fc1-bff0-5dfd84035d56
+                        sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
+                      userB:
+                        name: Bob
+                      state: 2
+                      consent: true
+                      conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
+                      alignmentScoresId: 842a4949-a3e4-4914-c9d2-cd843f48f357
       operationId: get-conversations
-      description: 'Registered users can see a list of their conversations. Returns a list of the user''s conversations with the relevant names, UUIDs, conversation status and creation date. A JWT token is required.'
+      description: 'Registered users can see a list of their conversations. Returns a list of the user''s conversations with the relevant names, UUIDs, conversation state and creation date. A JWT token is required.'
       parameters:
         - schema:
             type: string
@@ -121,10 +104,19 @@ paths:
                 type: object
                 x-examples:
                   example-1:
-                    message: conversation status updated
+                    message: conversation state updated
                     conversationId: '{conversation_uuid}'
                 properties:
-                  conversationStatus:
+                  userARating:
+                    type: number
+                    example: '1'
+                    enum:
+                      - 1
+                      - 2
+                      - 3
+                      - 4
+                      - 5
+                  state:
                     type: number
                     example: '1'
                     enum:
@@ -132,6 +124,8 @@ paths:
                       - 1
                       - 2
                       - 3
+                      - 4
+                      - 5
                   conversationId:
                     type: string
                     minLength: 1
@@ -184,10 +178,10 @@ paths:
                   value:
                     key:
                       - Unknown field.
-                'conversationStatus beyond enumeration ':
+                'state beyond enumeration ':
                   value:
-                    conversationStatus:
-                      - 'Must be one of: 0, 1, 2, 3.'
+                    state:
+                      - 'Must be one of: 0, 1, 2, 3, 4, 5.'
       operationId: put-conversation
       description: Change the receiver name or status of the conversation in the conversations table for User A.
       parameters:
@@ -202,19 +196,29 @@ paths:
             schema:
               type: object
               properties:
-                conversationStatus:
+                userARating:
+                  type: number
+                  enum:
+                    - 1
+                    - 2
+                    - 3
+                    - 4
+                    - 5
+                state:
                   type: number
                   enum:
                     - 0
                     - 1
                     - 2
                     - 3
+                    - 4
+                    - 5
                 receiverName:
                   type: string
             examples:
-              Update conversation status to 1 - Visited.:
+              Update conversation state to 1 - UserBConsented.:
                 value:
-                  conversationStatusId: 1
+                  state: 1
           application/xml:
             schema:
               type: object
@@ -241,13 +245,14 @@ paths:
                       sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
                     userB:
                       name: Bob
-                    conversationStatus: 2
+                    state: 2
                     consent: true
                     conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
                 properties:
                   conversationId:
                     type: string
                     minLength: 1
+                    format: uuid
                   userA:
                     type: object
                     required:
@@ -264,6 +269,7 @@ paths:
                       sessionId:
                         type: string
                         minLength: 1
+                        format: uuid
                   userB:
                     type: object
                     required:
@@ -272,7 +278,9 @@ paths:
                       name:
                         type: string
                         minLength: 1
-                  conversationStatus:
+                  state:
+                    type: number
+                  userARating:
                     type: number
                   consent:
                     type: boolean
@@ -281,11 +289,12 @@ paths:
                     minLength: 1
                   alignmentScoresId:
                     type: string
+                    format: uuid
                 required:
                   - conversationId
                   - userA
                   - userB
-                  - conversationStatus
+                  - state
                   - consent
                   - conversationTimestamp
               examples:
@@ -298,7 +307,7 @@ paths:
                       sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
                     userB:
                       name: Bob
-                    conversationStatus: 2
+                    state: 2
                     consent: true
                     conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
                     alignmentScoresId: 842a4949-a3e4-4914-c9d2-cd843f48f357
@@ -311,7 +320,7 @@ paths:
                       sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
                     userB:
                       name: Bob
-                    conversationStatus: 2
+                    state: 2
                     consent: false
                     conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
                     alignmentScoresId: null
