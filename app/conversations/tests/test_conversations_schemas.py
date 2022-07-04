@@ -33,8 +33,12 @@ def test_conversation_edit_schema_state_could_only_increase():
             conversation.conversation_uuid, state
         )
         if data:
-            with pytest.raises(ValidationError):
+            if not data.get("userARating"):
+                with pytest.raises(ValidationError):
+                    conversation = schema.load(data, partial=True)
+            else:
                 conversation = schema.load(data, partial=True)
+                assert True, "It's fine to update edit rating"
 
 
 def get_conversation_edit_schema_data_to_load(
