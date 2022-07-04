@@ -46,7 +46,7 @@ class ConversationEditSchema(CamelCaseSchema, ma.SQLAlchemySchema):
                     raise ValidationError(
                         "Unable to change conversation state backward"
                     )
-                elif instance.state == input_state:
+                elif instance.state == input_state and not data.get("user_a_rating"):
                     raise ValidationError("Conversation is already in this state")
 
         return data
