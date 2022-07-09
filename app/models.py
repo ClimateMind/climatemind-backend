@@ -159,7 +159,7 @@ class Conversations(db.Model):
     receiver_name = db.Column(db.String(50), index=False, unique=False, nullable=False)
     conversation_created_timestamp = db.Column(db.DateTime)
     user_b_share_consent = db.Column(db.Boolean)
-    state = db.Column(db.Integer)
+    state = db.Column(db.Integer, default=0, nullable=False)
     user_a_rating = db.Column(db.Integer)
 
 
