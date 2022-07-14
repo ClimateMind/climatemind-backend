@@ -68,48 +68,18 @@ You will now have access to our backend code.
 
 Install [Docker](https://www.docker.com/products/docker-desktop) through their website.
 
-## Install the Ontology Processing Repo
-
-**_Be sure git is installed on your computer before installing the repo_**
-
-Open up your command prompt/terminal (it doesn't matter which directory you're in) and install the package as follows:
-
-Be sure you have installed all requirements first by running:
-
-```
-python3 -m pip install -r https://raw.githubusercontent.com/ClimateMind/climatemind-ontology-processing/main/requirements.txt
-```
-
-Then, install the package via pip install:
-
-```
-python3 -m pip install git+https://github.com/ClimateMind/climatemind-ontology-processing.git
-```
-
 ## Process the Ontology
 
 **_Follow these steps every time you are made aware of an update to the Ontology._**
 
 
 1. Download a fresh copy of the ontology from web protege. Make sure it's the RDF/XML format (check the downloaded item has .owl at the end of it!).
-2. Put the .owl file into the /PUT\_NEW\_OWL\_FILE\_IN\_HERE folder
-3. Using the terminal/command-line, navigate to the climatemind-backend/process\_ontology folder.
-4. Make sure you are using the latest copy of the Ontology-Processing-Repo by running:
+2. Run the `process_owl` flask command by executing the following (replace `<relative/path/filename.owl>`):
 
 ```
-python3 -m pip install git+https://github.com/ClimateMind/climatemind-ontology-processing.git --upgrade
+flask ontology process_owl <relative/path/filename.owl>
 ```
-
-5. Run the process.py script by executing the following:
-
-```
-python3 process.py
-```
-
-**_Ensure that you are in the /process\_ontology folder when you run this or the command will not find the file._**
-
-6. Check the climatemind-backend/Output folder. If you did this correctly, there should be a .gpickle file.
-7. You can now run the app and it will automatically use this gpickle file to load climate data into the app.
+Use `--no-check` argument to skip comparison with the previous ontology.
 
 ## Running the application
 
