@@ -112,6 +112,10 @@ def create_app(config_class=DevelopmentConfig):
 
         app.register_blueprint(user_b_bp)
 
+        from app.ontology import bp as ontology_bp
+
+        app.register_blueprint(ontology_bp)
+
     return app
 
 
