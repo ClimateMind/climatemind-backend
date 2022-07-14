@@ -8,7 +8,7 @@
   "tradition": {
     "id": "tradition",
     "name": "tradition",
-    "description": "As a person, you care deeply for humility and accepting your place in the world. Most likely you are a religious person and find following your faith to be very important.",
+    "description": "As a person, you care deeply about humility and accepting your place in the world. Most likely you are a religious person and find following your faith to be very important.",
     "shortDescription": "You value protecting the traditions of your family, community, and/or culture. You likely take pride in this commitment."
   },
   "universalism": {
@@ -27,30 +27,30 @@
     "id": "self_direction",
     "name": "self direction",
     "description": "At its essence, Self-Direction is a need for control, mastery, and independence - so it’s no surprise you might relish in choosing your own goals - and honing till they are just right. Likely curious, intelligent and a lover of freedom - you prefer to live by your own rules.",
-    "shortDescription": "You value freedom of thought and action, prefering to come to conclusions or decisions yourself. You also likely draw great satisfaction when creating or exploring the world."
+    "shortDescription": "You value freedom of thought and action, preferring to come to conclusions or decisions yourself. You also likely draw great satisfaction when creating or exploring the world."
   },
   "stimulation": {
     "id": "stimulation",
     "name": "stimulation",
-    "description": "The world is a big place and you see the benefits of craving new experiences. On top of a need for variety and stimulation, you may also be a bit daring compared to most. You are likely a go-getter change-maker at heart.",
+    "description": "The world is a big place and you see the benefits of craving new experiences. On top of a need for variety and stimulation, you may also be a bit daring compared to most. You are likely a go-getter and change-maker at heart.",
     "shortDescription": "You highly value excitement, challenge, and positive change. Life is likely never dull with you around."
   },
   "hedonism": {
     "id": "hedonism",
     "name": "hedonism",
-    "description": "Whether through exploring the world or indulging in your favorite food, you likely love instant gratification and value decisions that reward your senses.",
+    "description": "Whether through exploring the world or indulging in your favourite food, you likely love instant gratification and value decisions that reward your senses.",
     "shortDescription": "Joy, pleasure and satisfaction are a big part of what drives you. From big moments to the little things, you find bliss in enjoying what you do."
   },
   "achievement": {
     "id": "achievement",
     "name": "achievement",
     "description": "Likely a perfectionist at heart, you strive to be the best you can be. And if you get recognition and approval in the process, that really is the cherry on top.",
-    "shortDescription": "Success - that’s a major goal for your life. Meeting your own standards of excellence is very important to you. It propels you forward."
+    "shortDescription": "Success - that’s a major goal in your life. Meeting your own standards of excellence is very important to you. It propels you forward."
   },
   "power": {
     "id": "power",
     "name": "power",
-    "description": "Power is invaluable. After all, it likely enables you to control the people and situations around you. When you're on top making the decision, you feel most yourself.",
+    "description": "Power is invaluable. After all, it likely enables you to control the people and situations around you. When you're on top of making the decision, you feel most yourself.",
     "shortDescription": "Control freak? Maybe. But in your eyes it’s more about embracing power, holding dominance and getting the job done. You value social status and prestige."
   },
   "security": {
