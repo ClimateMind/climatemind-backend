@@ -6,6 +6,7 @@ from flask import request, jsonify
 from flask_cors import cross_origin
 from flask_jwt_extended import jwt_required, get_jwt_identity
 from sqlalchemy.exc import SQLAlchemyError
+from sqlalchemy import desc
 
 from app import db
 from app.common.schemas import validate_schema_field
@@ -121,7 +122,7 @@ def get_conversations():
     conversations = (
         db.session.query(Conversations)
         .filter_by(sender_user_uuid=user.user_uuid)
-        .order_by(Conversations.conversation_created_timestamp)
+        .order_by(desc(Conversations.conversation_created_timestamp))
         .all()
     )
 
