@@ -31,8 +31,9 @@ def validate_uuid(
     uuid_to_validate: typing.Union[uuid.UUID, str], uuid_type: uuidType
 ) -> uuid.UUID:
     """
-    # FIXME: replace with marshmallow validation
-    # FIXME: it always used with check_uuid_in_db so merge it
+    # FIXME: replace usage with marshmallow field
+    #     uuid_field = fields.UUID()
+    #     result = uuid_field.deserialize(value_to_validate)
     UUIDs are required throughout the app for various purposes. SessionID for example
     is required for a user to access any page. We need to make sure UUIDs are provided,
     are converted into proper UUID format when provided as strings, and are valid.
@@ -73,7 +74,8 @@ def check_uuid_in_db(
         object_from_db = Users.query.filter_by(user_uuid=uuid_to_validate).first()
     elif uuid_type == uuidType.CONVERSATION:
         object_from_db = Conversations.query.filter_by(
-            conversation_uuid=uuid_to_validate
+            conversation_uuid=uuid_to_validate,
+            is_hidden=False,
         ).first()
     elif uuid_type == uuidType.ALIGNMENT_SCORES:
         object_from_db = AlignmentScores.query.filter_by(

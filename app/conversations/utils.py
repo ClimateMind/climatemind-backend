@@ -33,6 +33,7 @@ def build_single_conversation_response(conversation_uuid):
     conversation = (
         db.session.query(Conversations)
         .filter_by(conversation_uuid=conversation_uuid)
+        .filter_by(is_hidden=False)
         .one_or_none()
     )
     user_A_name = (
