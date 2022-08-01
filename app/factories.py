@@ -80,6 +80,7 @@ class ConversationsFactory(factory.alchemy.SQLAlchemyModelFactory):
     receiver_name = factory.LazyAttribute(lambda x: faker.name())
     conversation_created_timestamp = factory.LazyAttribute(lambda x: faker.date_time())
     user_b_share_consent = factory.LazyAttribute(lambda x: faker.pybool())
+    is_hidden = False
     state = factory.LazyAttribute(
         lambda x: random.choice([s for s in ConversationState])
     )

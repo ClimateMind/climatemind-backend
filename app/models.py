@@ -3,6 +3,7 @@ from datetime import datetime
 from flask import url_for
 from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from sqlalchemy.orm import relationship
+from sqlalchemy.sql import expression
 from werkzeug.security import generate_password_hash, check_password_hash
 
 from app.extensions import db, jwt
@@ -85,7 +86,7 @@ class PasswordResetLink(db.Model):
     created = db.Column(
         "password_reset_link_created_timestamp", db.DateTime, nullable=False
     )
-    used = db.Column(db.Boolean, default=False)
+    used = db.Column(db.Boolean, server_default=expression.false(), nullable=False)
 
     @property
     def reset_url(self):
@@ -161,6 +162,7 @@ class Conversations(db.Model):
     user_b_share_consent = db.Column(db.Boolean)
     state = db.Column(db.Integer, default=0, nullable=False)
     user_a_rating = db.Column(db.Integer)
+    is_hidden = db.Column(db.Boolean, server_default=expression.false(), nullable=False)
 
 
 class AnalyticsData(db.Model):
