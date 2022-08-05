@@ -58,6 +58,20 @@ paths:
                           type: string
                     state:
                       type: integer
+                      enum:
+                        - 0
+                        - 1
+                        - 2
+                        - 3
+                        - 4
+                        - 5
+                      description: |-
+                        UserB Invited - 0,
+                        UserB Consented - 1,
+                        Align Button Clicked - 2,
+                        Topics Button Clicked - 3,
+                        Talked Button Clicked - 4,
+                        Rating Done - 5
                     userARating:
                       type: integer
                     consent:
@@ -286,6 +300,20 @@ paths:
                         minLength: 1
                   state:
                     type: number
+                    enum:
+                      - 0
+                      - 1
+                      - 2
+                      - 3
+                      - 4
+                      - 5
+                    description: |-
+                      UserB Invited - 0,
+                      UserB Consented - 1,
+                      Align Button Clicked - 2,
+                      Topics Button Clicked - 3,
+                      Talked Button Clicked - 4,
+                      Rating Done - 5
                   userARating:
                     type: number
                   consent:
