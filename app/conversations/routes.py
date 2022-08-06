@@ -126,7 +126,7 @@ def get_conversations():
     conversations = (
         db.session.query(Conversations)
         .filter_by(sender_user_uuid=user.user_uuid)
-        .filter_by(is_hidden=False)
+        .filter_by(is_marked_deleted=False)
         .order_by(desc(Conversations.conversation_created_timestamp))
         .all()
     )
@@ -218,7 +218,7 @@ def edit_conversation(conversation_uuid):
 
     conversation = Conversations.query.filter_by(
         conversation_uuid=conversation_uuid,
-        is_hidden=False,
+        is_marked_deleted=False,
     ).first()
     identity = get_jwt_identity()
 
@@ -250,7 +250,7 @@ def delete_conversation(conversation_uuid):
 
     conversation = Conversations.query.filter_by(
         conversation_uuid=conversation_uuid,
-        is_hidden=False,
+        is_marked_deleted=False,
     ).first()
     identity = get_jwt_identity()
 
@@ -260,7 +260,7 @@ def delete_conversation(conversation_uuid):
         raise ForbiddenError(message="User doesn't have access to the conversation")
     else:
         try:
-            conversation.is_hidden = True
+            conversation.is_marked_deleted = True
             db.session.commit()
             response = {
                 "message": "Conversation has removed successfully.",
