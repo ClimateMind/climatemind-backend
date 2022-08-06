@@ -162,7 +162,9 @@ class Conversations(db.Model):
     user_b_share_consent = db.Column(db.Boolean)
     state = db.Column(db.Integer, default=0, nullable=False)
     user_a_rating = db.Column(db.Integer)
-    is_hidden = db.Column(db.Boolean, server_default=expression.false(), nullable=False)
+    is_marked_deleted = db.Column(
+        db.Boolean, server_default=expression.false(), nullable=False
+    )
 
 
 class AnalyticsData(db.Model):

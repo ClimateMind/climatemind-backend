@@ -75,7 +75,7 @@ def check_uuid_in_db(
     elif uuid_type == uuidType.CONVERSATION:
         object_from_db = Conversations.query.filter_by(
             conversation_uuid=uuid_to_validate,
-            is_hidden=False,
+            is_marked_deleted=False,
         ).first()
     elif uuid_type == uuidType.ALIGNMENT_SCORES:
         object_from_db = AlignmentScores.query.filter_by(

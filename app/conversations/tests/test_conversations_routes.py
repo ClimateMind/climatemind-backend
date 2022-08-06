@@ -67,7 +67,7 @@ def test_delete_conversation(client_with_user_and_header, accept_json):
     client, user, session_header, _ = client_with_user_and_header
 
     conversation = ConversationsFactory(sender_user=user)
-    assert conversation.is_hidden is False, "Conversation should be visible"
+    assert conversation.is_marked_deleted is False, "Conversation should be visible"
     assert Conversations.query.count() == 1, "Make sure we have a single Conversation"
 
     with mock.patch("flask_jwt_extended.utils.get_current_user", return_value=user):
@@ -83,7 +83,7 @@ def test_delete_conversation(client_with_user_and_header, accept_json):
 
         assert response.status_code == 204, str(response.json)
 
-    assert conversation.is_hidden, "Conversation should not be visible"
+    assert conversation.is_marked_deleted, "Conversation should not be visible"
     assert Conversations.query.count() == 1, "Conversations count kept the same."
 
 

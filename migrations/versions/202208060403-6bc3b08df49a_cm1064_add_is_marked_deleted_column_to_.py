@@ -1,8 +1,8 @@
-"""CM-1064 delete conversation
+"""CM1064 - add is_marked_deleted column to conversations tbl
 
-Revision ID: 36e30a9ce844
+Revision ID: 6bc3b08df49a
 Revises: 290fde6228aa
-Create Date: 2022-07-31 19:06:27.897162
+Create Date: 2022-08-06 04:03:27.497463
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 from sqlalchemy.dialects import mssql
 
 # revision identifiers, used by Alembic.
-revision = "36e30a9ce844"
+revision = "6bc3b08df49a"
 down_revision = "290fde6228aa"
 branch_labels = None
 depends_on = None
@@ -21,7 +21,10 @@ def upgrade():
     op.add_column(
         "conversations",
         sa.Column(
-            "is_hidden", sa.Boolean(), server_default=sa.text("0"), nullable=False
+            "is_marked_deleted",
+            sa.Boolean(),
+            server_default=sa.text("0"),
+            nullable=False,
         ),
     )
     op.alter_column(
@@ -35,5 +38,5 @@ def downgrade():
     op.alter_column(
         "password_reset_links", "used", existing_type=mssql.BIT(), nullable=True
     )
-    op.drop_column("conversations", "is_hidden")
+    op.drop_column("conversations", "is_marked_deleted")
     # ### end Alembic commands ###
