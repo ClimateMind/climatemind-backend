@@ -38,19 +38,19 @@
   "hedonism": {
     "id": "hedonism",
     "name": "hedonism",
-    "description": "Whether through exploring the world or indulging in your favourite food, you likely love instant gratification and value decisions that reward your senses.",
+    "description": "Whether through exploring the world or indulging in your favorite food, you likely love instant gratification and value decisions that reward your senses.",
     "shortDescription": "Joy, pleasure and satisfaction are a big part of what drives you. From big moments to the little things, you find bliss in enjoying what you do."
   },
   "achievement": {
     "id": "achievement",
     "name": "achievement",
     "description": "Likely a perfectionist at heart, you strive to be the best you can be. And if you get recognition and approval in the process, that really is the cherry on top.",
-    "shortDescription": "Success - that’s a major goal in your life. Meeting your own standards of excellence is very important to you. It propels you forward."
+    "shortDescription": "Success - that’s a major goal for your life. Meeting your own standards of excellence is very important to you. It propels you forward."
   },
   "power": {
     "id": "power",
     "name": "power",
-    "description": "Power is invaluable. After all, it likely enables you to control the people and situations around you. When you're on top of making the decision, you feel most yourself.",
+    "description": "Power is invaluable. After all, it likely enables you to control the people and situations around you. When you're on top making the decision, you feel most yourself.",
     "shortDescription": "Control freak? Maybe. But in your eyes it’s more about embracing power, holding dominance and getting the job done. You value social status and prestige."
   },
   "security": {
