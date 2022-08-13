@@ -10,7 +10,7 @@ Build docker images and up containers:
 docker-compose -p climatemind-backend -f docker/docker-compose.yml up --build -d
 ```
 
-Run bash in the docker container:
+Wait for app and database startup to complete, then run bash in the docker container:
 
 ```bash
 docker exec -it `docker ps -aqf "name=climatemind-backend_web"` bash

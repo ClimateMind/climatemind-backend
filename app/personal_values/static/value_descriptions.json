@@ -8,7 +8,7 @@
   "tradition": {
     "id": "tradition",
     "name": "tradition",
-    "description": "As a person, you care deeply for humility and accepting your place in the world. Most likely you are a religious person and find following your faith to be very important.",
+    "description": "As a person, you care deeply about humility and accepting your place in the world. Most likely you are a religious person and find following your faith to be very important.",
     "shortDescription": "You value protecting the traditions of your family, community, and/or culture. You likely take pride in this commitment."
   },
   "universalism": {
@@ -27,12 +27,12 @@
     "id": "self_direction",
     "name": "self direction",
     "description": "At its essence, Self-Direction is a need for control, mastery, and independence - so it’s no surprise you might relish in choosing your own goals - and honing till they are just right. Likely curious, intelligent and a lover of freedom - you prefer to live by your own rules.",
-    "shortDescription": "You value freedom of thought and action, prefering to come to conclusions or decisions yourself. You also likely draw great satisfaction when creating or exploring the world."
+    "shortDescription": "You value freedom of thought and action, preferring to come to conclusions or decisions yourself. You also likely draw great satisfaction when creating or exploring the world."
   },
   "stimulation": {
     "id": "stimulation",
     "name": "stimulation",
-    "description": "The world is a big place and you see the benefits of craving new experiences. On top of a need for variety and stimulation, you may also be a bit daring compared to most. You are likely a go-getter change-maker at heart.",
+    "description": "The world is a big place and you see the benefits of craving new experiences. On top of a need for variety and stimulation, you may also be a bit daring compared to most. You are likely a go-getter and change-maker at heart.",
     "shortDescription": "You highly value excitement, challenge, and positive change. Life is likely never dull with you around."
   },
   "hedonism": {
