@@ -7,7 +7,7 @@ from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
 from sqlalchemy.exc import SQLAlchemyError
 
-from app import auto, db
+from app import auto, db, limiter
 from app.account import bp
 from app.account.schemas import (
     UserChangePasswordSchema,
@@ -127,7 +127,7 @@ def update_user_account():
 
 
 @bp.route("/password-reset", methods=["POST"])
-@cross_origin()
+@limiter.limit("100/day;50/hour;10/minute;5/second")
 def create_and_send_password_reset_link_email():
     """
     Returns HTTP codes
