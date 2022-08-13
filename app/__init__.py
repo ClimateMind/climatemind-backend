@@ -37,6 +37,7 @@ def create_app(config_class=DevelopmentConfig):
         resources={
             r"/refresh": origins,
             r"/login": origins,
+            r"/password-reset": origins,
             r"/register": origins,
             r"/logout": origins,
             r"/captcha": origins,
