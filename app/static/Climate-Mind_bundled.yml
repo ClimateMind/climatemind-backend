@@ -58,6 +58,20 @@ paths:
                           type: string
                     state:
                       type: integer
+                      enum:
+                        - 0
+                        - 1
+                        - 2
+                        - 3
+                        - 4
+                        - 5
+                      description: |-
+                        UserB Invited - 0,
+                        UserB Consented - 1,
+                        Align Button Clicked - 2,
+                        Topics Button Clicked - 3,
+                        Talked Button Clicked - 4,
+                        Rating Done - 5
                     userARating:
                       type: integer
                     consent:
@@ -90,7 +104,7 @@ paths:
           name: X-Session-Id
           description: Session uuid
     parameters: []
-  '/conversation/:conversationId':
+  '/conversation/{conversationId}':
     put:
       summary: Single Conversation - PUT
       tags: []
@@ -224,7 +238,13 @@ paths:
               type: object
               properties: {}
         description: ''
-    parameters: []
+    parameters:
+      - schema:
+          type: string
+          format: uuid
+        name: conversationId
+        in: path
+        required: true
     get:
       summary: Single Conversation - GET
       operationId: 'get-conversation-:conversationId'
@@ -280,6 +300,20 @@ paths:
                         minLength: 1
                   state:
                     type: number
+                    enum:
+                      - 0
+                      - 1
+                      - 2
+                      - 3
+                      - 4
+                      - 5
+                    description: |-
+                      UserB Invited - 0,
+                      UserB Consented - 1,
+                      Align Button Clicked - 2,
+                      Topics Button Clicked - 3,
+                      Talked Button Clicked - 4,
+                      Rating Done - 5
                   userARating:
                     type: number
                   consent:
@@ -346,6 +380,64 @@ paths:
       description: |-
         Get the details of a single conversation. 
         If consent=false, alignmentScoresId is not exposed, but set to null instead.
+    delete:
+      summary: Single Conversation - DELETE
+      operationId: 'delete-conversation-:conversationId'
+      responses:
+        '204':
+          description: Hiden
+          content:
+            application/json:
+              schema:
+                type: object
+                x-examples:
+                  example-1:
+                    message: Conversation has removed successfully.
+                    conversationId: uuid
+                properties:
+                  message:
+                    type: string
+                  conversationId:
+                    type: string
+                    format: uuid
+              examples:
+                Success:
+                  value:
+                    message: Conversation has removed successfully.
+                    conversationId: uuid
+        '403':
+          description: Conversation user id not match
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  example-1:
+                    message: Conversation has removed successfully.
+        '404':
+          description: Not Found or already hidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                x-examples:
+                  example-1:
+                    message: Conversation has removed successfully.
+      description: Hide conversation
+      parameters:
+        - schema:
+            type: string
+            format: uuid
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+          required: true
   /alignment:
     post:
       summary: Alignment Scores - POST

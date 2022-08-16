@@ -10,7 +10,11 @@ from sqlalchemy import desc
 
 from app import db
 from app.common.schemas import validate_schema_field
-from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
+from app.common.uuid import (
+    validate_uuid,
+    uuidType,
+    check_uuid_in_db,
+)
 from app.conversations import bp
 from app.conversations.enums import ConversationState
 from app.conversations.schemas import ConversationEditSchema
@@ -122,6 +126,7 @@ def get_conversations():
     conversations = (
         db.session.query(Conversations)
         .filter_by(sender_user_uuid=user.user_uuid)
+        .filter_by(is_marked_deleted=False)
         .order_by(desc(Conversations.conversation_created_timestamp))
         .all()
     )
@@ -212,7 +217,8 @@ def edit_conversation(conversation_uuid):
     validate_schema_field(schema, uuid_field_name, conversation_uuid)
 
     conversation = Conversations.query.filter_by(
-        conversation_uuid=conversation_uuid
+        conversation_uuid=conversation_uuid,
+        is_marked_deleted=False,
     ).first()
     identity = get_jwt_identity()
 
@@ -228,6 +234,39 @@ def edit_conversation(conversation_uuid):
             conversation = schema.load(json_data, instance=conversation, partial=True)
             db.session.commit()
             return schema.jsonify(conversation)
+        except SQLAlchemyError:
+            return DatabaseError(message="Couldn't edit conversation")
+
+
+@bp.route("/conversation/<conversation_uuid>", methods=["DELETE"])
+@cross_origin()
+@jwt_required()
+def delete_conversation(conversation_uuid):
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    conversation_uuid = validate_uuid(conversation_uuid, uuidType.CONVERSATION)
+
+    conversation = Conversations.query.filter_by(
+        conversation_uuid=conversation_uuid,
+        is_marked_deleted=False,
+    ).first()
+    identity = get_jwt_identity()
+
+    if not conversation:
+        raise NotInDatabaseError(message="Conversation not found")
+    elif conversation.sender_user_uuid != identity:
+        raise ForbiddenError(message="User doesn't have access to the conversation")
+    else:
+        try:
+            conversation.is_marked_deleted = True
+            db.session.commit()
+            response = {
+                "message": "Conversation has removed successfully.",
+                "conversationId": conversation_uuid,
+            }
+            return jsonify(response), 204
         except SQLAlchemyError:
             return DatabaseError(message="Couldn't edit conversation")
 

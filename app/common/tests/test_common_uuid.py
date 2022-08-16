@@ -1,5 +1,3 @@
-import uuid
-
 import pytest
 
 from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
