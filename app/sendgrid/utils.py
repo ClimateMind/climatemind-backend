@@ -75,7 +75,7 @@ def send_user_b_shared_email(conversation_uuid):
             "-preview_text-": f"How exciting, {user_a_first_name}! Your friend, {user_b_name} has taken the Climate Mind quiz and has some conversation starters to share with you.",
             "-user_a_first_name-": user_a_first_name,
             "-user_b_name-": user_b_name,
-            "-conversation_uuid-": conversation_uuid,
+            "-conversation_uuid-": str(conversation_uuid),
         },
     )
     subject = f"Ready for a climate conversation with {user_b_name}?"
