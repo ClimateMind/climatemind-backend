@@ -250,6 +250,16 @@ def test_create_and_send_password_reset_link_email(
         registered_email, password_reset.reset_url, password_reset.EXPIRE_HOURS_COUNT
     ), "Email was sent with the correct parameters."
 
+    response = client.post(
+        url,
+        headers=session_header,
+        json={
+            "email": registered_email,
+        },
+    )
+    assert response.status_code == 200, "Success"
+    assert PasswordResetLink.query.count() == 2, "Second object should be created"
+
 
 @pytest.mark.integration
 def test_do_password_reset(client, accept_json):
