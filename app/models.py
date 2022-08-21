@@ -86,7 +86,7 @@ class PasswordResetLink(db.Model):
     created = db.Column(
         "password_reset_link_created_timestamp", db.DateTime, nullable=False
     )
-    used = db.Column(db.Boolean, server_default=expression.false(), nullable=False)
+    used = db.Column(db.Boolean)
 
     @property
     def reset_url(self):
@@ -162,6 +162,8 @@ class Conversations(db.Model):
     user_b_share_consent = db.Column(db.Boolean)
     state = db.Column(db.Integer, default=0, nullable=False)
     user_a_rating = db.Column(db.Integer)
+    # NOTE: using server_default here to make able select by is_market_deleted=False
+    # CAUTION: alembic do not autogenerate this statement automatically
     is_marked_deleted = db.Column(
         db.Boolean, server_default=expression.false(), nullable=False
     )
