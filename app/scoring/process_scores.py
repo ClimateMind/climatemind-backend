@@ -88,13 +88,13 @@ class ProcessScores:
             user_scores.scores_created_timestamp = datetime.datetime.now(timezone.utc)
             user_scores.session_uuid = session_uuid
 
-            if user_uuid:
-                user_scores.user_uuid = user_uuid
-                user = Users.query.filter_by(user_uuid=user_uuid).first()
-                user.quiz_uuid = self.value_scores["quiz_uuid"]
-
             db.session.add(user_scores)
             db.session.commit()
+
+            if user_uuid:
+                user = Users.query.filter_by(user_uuid=user_uuid).first()
+                user.quiz_uuid = user_scores.quiz_uuid
+                db.session.commit()
 
         except:
             raise DatabaseError(

@@ -1,4 +1,3 @@
-import os
 import typing
 import uuid
 from datetime import datetime
@@ -7,8 +6,11 @@ from werkzeug.local import LocalProxy
 
 from app import db
 from app.common.local import check_if_local
+from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from app.errors.errors import DatabaseError
 from app.models import Sessions
+
+from flask_jwt_extended import get_jwt_identity, verify_jwt_in_request
 
 
 def store_session(
@@ -67,3 +69,32 @@ def get_ip_address(request: LocalProxy) -> typing.Optional[str]:
             ip_address = None
 
     return ip_address
+
+
+def maybe_assign_session(request):
+    """
+    Assign a session to a user if not yet assigned.
+
+    Args:
+        request: the flask request
+
+    Returns:
+        None or DatabaseError
+    """
+
+    if "Authorization" in request.headers and "X-Session-Id" in request.headers:
+
+        verify_jwt_in_request()
+        user_uuid = get_jwt_identity()
+
+        session_uuid = request.headers.get("X-Session-Id")
+        session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+        check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+        session = Sessions.query.filter_by(session_uuid=session_uuid).first()
+        if session.user_uuid != user_uuid:
+            session.user_uuid = user_uuid
+            try:
+                db.session.commit()
+            except:
+                raise DatabaseError(message="Could not assign the session to the user.")
