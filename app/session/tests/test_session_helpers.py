@@ -2,7 +2,10 @@ import mock
 import pytest
 from mock.mock import Mock, MagicMock
 
-from app.factories import UsersFactory, faker
+from flask_jwt_extended import create_access_token
+from flask import url_for
+
+from app.factories import UsersFactory, SessionsFactory, faker
 from app.models import Sessions
 from app.session.session_helpers import store_session, get_ip_address
 
@@ -59,3 +62,52 @@ def test_get_ip_address_prod(mocked_check_if_local):
 
     assert get_ip_address(request) == first_ip
     assert get_ip_address(request) == first_ip
+
+
+@pytest.mark.parametrize(
+    "target,http_method",
+    [
+        ("myths.get_general_myths", "GET"),
+        ("conversations.create_conversation_invite", "POST"),
+        ("auth.login", "GET"),
+        ("auth.logout", "POST"),
+        ("auth.register", "POST"),
+        ("alignment.post_alignment_uuid", "POST"),
+        ("account.update_user_account", "PUT"),
+        ("scoring.user_scores", "POST"),
+    ],
+)
+def test_maybe_assign_session(target, http_method, client, accept_json):
+
+    session = SessionsFactory(user=None)
+    session_header = [("X-Session-Id", session.session_uuid)]
+
+    client.open(
+        url_for(target),
+        method=http_method,
+        headers=accept_json + session_header,
+        json={},
+    )
+
+    assert (
+        session.user_uuid is None
+    ), "No user should be assigned to session yet (session={}, user={}).".format(
+        session.session_uuid, session.user_uuid
+    )
+
+    user = UsersFactory()
+    access_token = create_access_token(identity=user, fresh=True)
+    auth_header = [("Authorization", "Bearer " + access_token)]
+
+    client.open(
+        url_for(target),
+        method=http_method,
+        headers=accept_json + session_header + auth_header,
+        json={},
+    )
+
+    assert (
+        session.user_uuid == user.user_uuid
+    ), "Session user should now be set: ({},{}).".format(
+        session.user_uuid, user.user_uuid
+    )

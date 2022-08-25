@@ -67,10 +67,6 @@ def user_scores():
     quiz_uuid = uuid.uuid4()
     value_scores["quiz_uuid"] = quiz_uuid
 
-    user_uuid = None
-    if current_user:
-        user_uuid = current_user.user_uuid
-
     session_uuid = request.headers.get("X-Session-Id")
 
     if not session_uuid:
@@ -78,6 +74,10 @@ def user_scores():
 
     validate_uuid(session_uuid, uuidType.SESSION)
     check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    user_uuid = None
+    if current_user:
+        user_uuid = current_user.user_uuid
 
     process_scores.persist_scores(user_uuid, session_uuid)
 

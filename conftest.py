@@ -6,8 +6,17 @@ from app import create_app
 from app.extensions import db
 from config import TestingConfig, DevelopmentConfig
 
+from flask import request
+from app.session.session_helpers import maybe_assign_session
+
+
 app = create_app(TestingConfig)
 app.app_context().push()
+
+
+@app.before_request
+def before_request_hook():
+    maybe_assign_session(request)
 
 
 def pytest_configure():
