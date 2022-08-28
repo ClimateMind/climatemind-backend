@@ -82,7 +82,11 @@ def maybe_assign_session(request):
         None or DatabaseError
     """
 
-    if "Authorization" in request.headers and "X-Session-Id" in request.headers:
+    if (
+        "Authorization" in request.headers
+        and "X-Session-Id" in request.headers
+        and request.headers["Authorization"] != ""
+    ):
 
         verify_jwt_in_request()
         user_uuid = get_jwt_identity()
