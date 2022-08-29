@@ -43,13 +43,17 @@ def build_single_conversation_response(conversation_uuid):
     ).first_name
 
     if conversation.user_b_share_consent:
-        alignment_scores_uuid = (
+        user_b_journey = (
             db.session.query(UserBJourney)
             .filter_by(conversation_uuid=conversation_uuid)
             .one()
-        ).alignment_scores_uuid
+        )
+        alignment_scores_uuid = user_b_journey.alignment_scores_uuid
+        user_b_quiz_uuid = user_b_journey.quiz_uuid
+
     else:
         alignment_scores_uuid = None
+        user_b_quiz_uuid = None
 
     response = {
         "conversationId": conversation.conversation_uuid,
@@ -60,6 +64,7 @@ def build_single_conversation_response(conversation_uuid):
         },
         "userB": {
             "name": conversation.receiver_name,
+            "quizId": user_b_quiz_uuid,
         },
         "state": conversation.state,
         "userARating": conversation.user_a_rating,
