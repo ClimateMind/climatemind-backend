@@ -196,6 +196,8 @@ def post_consent(conversation_uuid):
 
     r = request.get_json(force=True, silent=True)
     consent_choice = r.get("consent")
+    if not isinstance(consent_choice, bool):
+        raise InvalidUsageError(message="Consent must be a boolean.")
 
     response = update_consent_choice(conversation_uuid, consent_choice, session_uuid)
 
