@@ -201,7 +201,8 @@ def post_consent(conversation_uuid):
 
     response = update_consent_choice(conversation_uuid, consent_choice, session_uuid)
 
-    send_user_b_shared_email(conversation_uuid)
+    if consent_choice:
+        send_user_b_shared_email(conversation_uuid)
 
     return jsonify(response), 201
 
