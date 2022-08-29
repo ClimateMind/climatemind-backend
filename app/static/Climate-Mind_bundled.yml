@@ -298,6 +298,8 @@ paths:
                       name:
                         type: string
                         minLength: 1
+                      quizId:
+                        type: string
                   state:
                     type: number
                     enum:
@@ -341,6 +343,7 @@ paths:
                       sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
                     userB:
                       name: Bob
+                      quizId: 842a4949-a3e4-4914-c9d2-cd843f48f357
                     state: 2
                     consent: true
                     conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
@@ -354,6 +357,7 @@ paths:
                       sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
                     userB:
                       name: Bob
+                      quizId: null
                     state: 2
                     consent: false
                     conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
