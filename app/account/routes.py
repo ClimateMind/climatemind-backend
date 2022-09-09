@@ -27,6 +27,20 @@ from app.models import Users, PasswordResetLink
 from app.sendgrid.utils import send_reset_password_email
 
 
+@bp.route("/quizId", methods=["GET"])
+@cross_origin()
+@jwt_required()
+@auto.doc()
+def current_quizId():
+    """
+    Returns the current quizId of a logged in user or standard JWT errors if token not available or expired.
+    """
+
+    response = {"quizId": current_user.quiz_uuid}
+
+    return jsonify(response), 200
+
+
 @bp.route("/email", methods=["GET"])
 @cross_origin()
 @jwt_required()
