@@ -104,6 +104,96 @@ paths:
           name: X-Session-Id
           description: Session uuid
     parameters: []
+  /email:
+    get:
+      summary: All Conversations - GET
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                x-examples:
+                  example-1:
+                    - conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
+                      userA:
+                        name: Bill
+                        id: ba5df442-7261-4fc1-bff0-5dfd84035d56
+                        sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
+                      userB:
+                        name: Bob
+                      state: 2
+                      consent: true
+                      conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
+                      alignmentScoresId: 842a4949-a3e4-4914-c9d2-cd843f48f357
+                type: object
+                properties:
+                  currentEmail:
+                    type: string
+              examples:
+                Successful response:
+                  value:
+                    - currentEmail: test@test.com
+      operationId: get-email
+      description: Logged in users can retreive the email used for their account. Returns the email associated with the user's account. A JWT token is required.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+        - schema:
+            type: string
+          in: header
+          description: 'credentials in format "Bearer {jwt_token}"'
+          name: Authorization
+    parameters: []
+  /quizId:
+    get:
+      summary: All Conversations - GET
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                x-examples:
+                  example-1:
+                    - conversationId: cc63e48f-d066-44e7-851c-c28af17ab3fb
+                      userA:
+                        name: Bill
+                        id: ba5df442-7261-4fc1-bff0-5dfd84035d56
+                        sessionId: 671e4949-a3e4-4844-b9d2-cd843f48f357
+                      userB:
+                        name: Bob
+                      state: 2
+                      consent: true
+                      conversationTimestamp: 'Sun, 10 Oct 2021 18:35:02 GMT'
+                      alignmentScoresId: 842a4949-a3e4-4914-c9d2-cd843f48f357
+                type: object
+                properties:
+                  currentEmail:
+                    type: string
+              examples:
+                Successful response:
+                  value:
+                    - currentEmail: test@test.com
+      operationId: get-quizId
+      description: Logged in users can retreive their quizId used for their account. Returns the quizId associated with the user's account. A JWT token is required.
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+        - schema:
+            type: string
+          in: header
+          description: 'credentials in format "Bearer {jwt_token}"'
+          name: Authorization
+    parameters: []
   '/conversation/{conversationId}':
     put:
       summary: Single Conversation - PUT
