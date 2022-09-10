@@ -20,7 +20,7 @@ class DevelopmentConfig(BaseConfig):
 
     JWT_TOKEN_LOCATION = ["headers", "cookies"]
     JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY", "DEFAULT_KEY")
-    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=15)
+    JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=120)
     JWT_REFRESH_TOKEN_EXPIRES = timedelta(days=14)
     JWT_ACCESS_COOKIE_NAME = "access_token"
     JWT_REFRESH_COOKIE_NAME = "refresh_token"
