@@ -90,11 +90,16 @@ class PasswordResetLink(db.Model):
 
     @property
     def reset_url(self):
-        return url_for(
+        old_broken_url = url_for(
             "account.check_if_password_reset_link_is_expired_or_used",
             password_reset_link_uuid=self.uuid,
             _external=True,
         ).lower()
+
+        frontend_base_url = "https://app-frontend-test-001.azurewebsites.net"
+        route_component = "/password-reset/"
+        hard_coded_url = frontend_base_url + route_component + str(self.uuid).lower()
+        return hard_coded_url
 
     @property
     def expired(self):
