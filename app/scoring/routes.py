@@ -37,6 +37,8 @@ def user_scores():
 
     A quiz ID is saved with the scores in the database.
 
+    If authentication is provided and isUserB is not true, then the new calculated score is used to update the user's account's personal values.
+
     Returns: SessionID (UUID4)
     """
 
@@ -77,7 +79,8 @@ def user_scores():
 
     user_uuid = None
     if current_user:
-        user_uuid = current_user.user_uuid
+        if not "isUserB" in parameter:
+            user_uuid = current_user.user_uuid
 
     process_scores.persist_scores(user_uuid, session_uuid)
 
