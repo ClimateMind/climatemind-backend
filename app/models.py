@@ -96,7 +96,7 @@ class PasswordResetLink(db.Model):
             _external=True,
         ).lower()
 
-        frontend_base_url = "https://app-frontend-test-001.azurewebsites.net"
+        frontend_base_url = "https://app.climatemind.org"
         route_component = "/password-reset/"
         hard_coded_url = frontend_base_url + route_component + str(self.uuid).lower()
         return hard_coded_url
