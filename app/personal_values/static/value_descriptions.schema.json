@@ -11,7 +11,8 @@
         "id",
         "name",
         "description",
-        "shortDescription"
+        "shortDescription",
+        "shortDescriptionShared"
       ],
       "properties": {
         "id": {
@@ -52,6 +53,10 @@
         },
         "shortDescription": {
           "title": "Short Description",
+          "type": "string"
+        },
+        "shortDescriptionShared": {
+          "title": "Short Description Shared",
           "type": "string"
         }
       }
