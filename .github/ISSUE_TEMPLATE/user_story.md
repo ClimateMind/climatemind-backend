@@ -1,6 +1,7 @@
 ---
 name: User story template
 about: This template provides a basic structure for user story issues.
+labels: testing
 
 ---
 

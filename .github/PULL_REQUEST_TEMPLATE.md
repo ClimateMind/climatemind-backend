@@ -1,16 +1,16 @@
 <!-- IMPORTANT: Please do not create a Pull Request without creating an issue first. -->
-<!-- You can skip this if you're fixing a typo or do any similar minor modifications -->
+<!-- You can skip this if you're fixing a typo or doing any similar minor modifications -->
 
 ### Detailed information:
 
-Explain the **details** for making this change. 
+Explain the **details** of making this change. 
 Please provide enough information so that others can review your pull request
 
 <!-- Example: When "Adding a function to do X", explain why it is necessary to have a way to do X. -->
 
 ### Closing issues: 
 
-List all issues does the pull request solve: 
+List all issues the pull request solve: 
 
 - *#XX1*
 - *#XX2*
