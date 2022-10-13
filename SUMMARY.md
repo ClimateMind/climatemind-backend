@@ -7,5 +7,6 @@
   * [Docker](readme/docker.md)
   * [Installation](readme/installation.md)
   * [Contributor Covenant Code of Conduct](readme/code\_of\_conduct.md)
-  * [Contributing to Climate Mind](readme/contributing.md)
+  * [Contributing to Climate Mind](readme/contributing/README.md)
+    * [Documentation](readme/contributing/documentation.md)
   * [DB Migrations](readme/db\_migrations.md)

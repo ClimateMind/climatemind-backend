@@ -2,14 +2,14 @@
 
 ## Contents
 
-1. [Intro](contributing.md#intro)
-2. [Communication Channels](contributing.md#communication-channels)
-3. [How to Contribute](contributing.md#how-to-contribute)
-4. [Making a PR](contributing.md#making-a-pr)
-5. [Reviewing a PR](contributing.md#reviewing-a-pr)
-6. [Merging](contributing.md#merging)
-7. [Code Style](contributing.md#code-style)
-8. [Additional Resources](contributing.md#additional-resources)
+1. [Intro](./#intro)
+2. [Communication Channels](./#communication-channels)
+3. [How to Contribute](./#how-to-contribute)
+4. [Making a PR](./#making-a-pr)
+5. [Reviewing a PR](./#reviewing-a-pr)
+6. [Merging](./#merging)
+7. [Code Style](./#code-style)
+8. [Additional Resources](./#additional-resources)
 
 ## Intro
 
@@ -23,7 +23,7 @@ This project would not exist if it wasn't for driven and curious individuals who
 
 At the moment, we do not accept anonymous PRs, but we'd love to recruit some more volunteers to be consistent members of our team. If you are interested in joining us, please [reach out to us.](https://climatemind.us18.list-manage.com/subscribe?u=a8795c1814f6dfd3ce4561a17\&id=b451cfd1ed)
 
-Or email us at [hello@climatemind.org](../docs/hello@climatemind.org) with your Resume and Github.
+Or email us at [hello@climatemind.org](../../docs/hello@climatemind.org) with your Resume and Github.
 
 ## Communication Channels
 
