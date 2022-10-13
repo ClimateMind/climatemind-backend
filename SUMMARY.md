@@ -1,6 +1,11 @@
 # Table of contents
 
 * [Climatemind Backend](README.md)
-  * [Contributor Covenant Code of Conduct](docs/CODE\_OF\_CONDUCT.md)
-  * [Contributing to Climate Mind](docs/CONTRIBUTING.md)
-  * [DB Migrations](docs/DB\_MIGRATIONS.md)
+  * [Debugging](readme/debugging.md)
+  * [Ontology](readme/ontology.md)
+  * [Manual Testing](readme/manual-testing.md)
+  * [Docker](readme/docker.md)
+  * [Installation](readme/installation.md)
+  * [Contributor Covenant Code of Conduct](readme/code\_of\_conduct.md)
+  * [Contributing to Climate Mind](readme/contributing.md)
+  * [DB Migrations](readme/db\_migrations.md)
