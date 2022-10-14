@@ -11,6 +11,7 @@
         "id",
         "name",
         "description",
+        "descriptionShared",
         "shortDescription",
         "shortDescriptionShared"
       ],
@@ -49,6 +50,10 @@
         },
         "description": {
           "title": "Description",
+          "type": "string"
+        },
+        "descriptionShared": {
+          "title": "Description Shared",
           "type": "string"
         },
         "shortDescription": {
