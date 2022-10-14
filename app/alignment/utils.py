@@ -59,7 +59,7 @@ def build_alignment_scores_response(alignment_scores_uuid: uuid.UUID) -> dict:
     personal_value_descriptions = get_value_descriptions_file_data()
     personal_values_data_with_scores = [
         {
-            "description": personal_value_data["description"],
+            "description": personal_value_data["descriptionShared"],
             "id": personal_value_key,
             "name": personal_value_data["name"],
             "shortDescription": personal_value_data["shortDescriptionShared"],
