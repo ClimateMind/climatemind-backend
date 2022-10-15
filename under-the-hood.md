@@ -1,5 +1,12 @@
 # Under the hood
 
+## Our stack
+
+* Python v3.8.5
+* Flask v1.1.2
+* MSSQL
+* Azure
+
 ## How this Works
 
 In order to serve users with relevant climate information, our data team has organized climate data into an Ontology. Don't let the fancy term overwhelm you, as it is (at the end of the day) just a data structure. It contains information about the relationships between climate issues, solutions, myths, and other data.

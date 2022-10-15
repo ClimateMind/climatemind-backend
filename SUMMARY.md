@@ -20,4 +20,5 @@
   * [💡 Suggest feature](contribute-as-a-python-dev/suggest-feature.md)
   * [🐛 Report bug](contribute-as-a-python-dev/report-bug.md)
   * [Benefits](contribute-as-a-python-dev/benefits.md)
+  * [Communication](contribute-as-a-python-dev/communication.md)
 * [Contributor Covenant Code of Conduct](code\_of\_conduct.md)
