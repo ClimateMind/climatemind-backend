@@ -22,7 +22,7 @@ The full API documentation to use on a front end including methods and request e
 
 If you are interested in participating as a Python developer see our [contributor guide](docs/contribute-as-a-python-dev/).
 
-Other ways to contribute to the project are listed [here](https://app.gitbook.com/o/5XFn5ZR3pCC6X1TsNYnf/s/Oaex4Nslfr1DFIAdTNKd/).
+Other ways to contribute to the project are listed [here](https://contribute.climatemind.org/v/how-to-contribute).
 
 ## How to report bugs or suggest features?
 
