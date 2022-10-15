@@ -20,10 +20,10 @@ The full API documentation to use on a front end including methods and request e
 
 ## How to contribute?
 
-If you are interested in participating as a Python developer see our [contributor guide.](docs/contribute-as-a-python-dev/)
+If you are interested in participating as a Python developer see our [contributor guide](docs/contribute-as-a-python-dev/).
 
 Other ways to contribute to the project are listed [here](https://app.gitbook.com/o/5XFn5ZR3pCC6X1TsNYnf/s/Oaex4Nslfr1DFIAdTNKd/).
 
 ## How to report bugs or suggest features?
 
-See our [report bug](contribute-as-a-python-dev/report-bug.md) and [suggest feature](contribute-as-a-python-dev/suggest-feature.md) pages for more information.
+See our [report bug](docs/contribute-as-a-python-dev/report-bug.md) and [suggest feature](docs/contribute-as-a-python-dev/suggest-feature.md) pages for more information.

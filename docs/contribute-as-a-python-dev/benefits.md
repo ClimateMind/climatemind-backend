@@ -12,4 +12,4 @@ description: Benefits our contributes eligible for.
 
 As an open-source project, our team is eligible for a free license which will give you a [personal vault](https://1password.com/sign-up/) alongside with project vaults.&#x20;
 
-<figure><img src="../.gitbook/assets/browser_touch_id_unlock.gif" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/browser_touch_id_unlock.gif" alt=""><figcaption></figcaption></figure>

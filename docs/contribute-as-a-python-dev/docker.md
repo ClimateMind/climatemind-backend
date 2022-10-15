@@ -91,10 +91,10 @@ docker-compose -p climatemind-backend -f docker/docker-compose.yml down -v
 
 Go into the docker dashboard and check you have two running containers. You can also do this from the command line with `docker ps`
 
-<figure><img src="../.gitbook/assets/Screenshot 2020-11-16 at 21.52.03.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2020-11-16 at 21.52.03.png" alt=""><figcaption></figcaption></figure>
 
 ### Front end
 
 Navigate to [http://localhost:3000/](http://localhost:3000/) to view the locally running version of the app
 
-<figure><img src="../.gitbook/assets/Screenshot 2020-11-16 at 22.05.54.png" alt=""><figcaption></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2020-11-16 at 22.05.54.png" alt=""><figcaption></figcaption></figure>

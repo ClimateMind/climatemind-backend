@@ -1,6 +1,6 @@
 # Table of contents
 
-* [ClimateMind REST API](docs/README.md)
+* [ClimateMind REST API](README.md)
 * [Under the hood](docs/under-the-hood.md)
 * [🐍 Contribute as a Python dev](docs/contribute-as-a-python-dev/README.md)
   * [Installation](docs/contribute-as-a-python-dev/installation.md)
@@ -21,4 +21,4 @@
   * [🐛 Report bug](docs/contribute-as-a-python-dev/report-bug.md)
   * [Benefits](docs/contribute-as-a-python-dev/benefits.md)
   * [Communication](docs/contribute-as-a-python-dev/communication.md)
-* [Contributor Covenant Code of Conduct](docs/code-of-conduct)
+* [Contributor Covenant Code of Conduct](contributor-covenant-code-of-conduct.md)
