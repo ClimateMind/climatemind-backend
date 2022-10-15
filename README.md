@@ -44,11 +44,7 @@ Other ways to contribute to the project are listed below
 [suggest-feature.md](contribute-as-a-python-dev/suggest-feature.md)
 {% endcontent-ref %}
 
-![Twitter Follow](https://img.shields.io/twitter/follow/Climate\_Mind?style=social)
-
-![GitHub contributors](https://img.shields.io/github/contributors/ClimateMind/climatemind-backend?style=social)
-
-![GitHub Repo stars](https://img.shields.io/github/stars/ClimateMind/climatemind-backend?style=social)
+[![Twitter Follow](https://img.shields.io/twitter/follow/Climate\_Mind?style=social)](https://twitter.com/intent/user?screen_name=Climate_Mind) ![GitHub contributors](https://img.shields.io/github/contributors/ClimateMind/climatemind-backend?style=social) ![GitHub Repo stars](https://img.shields.io/github/stars/ClimateMind/climatemind-backend?style=social)
 
 {% hint style="info" %}
 See our stack below :arrow\_down:
