@@ -1,6 +1,7 @@
 # ClimateMind REST API
 
-[![CircleCI](https://circleci.com/gh/ClimateMind/climatemind-backend/tree/develop.svg?style=shield)](https://app.circleci.com/pipelines/github/ClimateMind/climatemind-backend?branch=develop) [![codecov](https://codecov.io/gh/ClimateMind/climatemind-backend/branch/develop/graph/badge.svg?token=6OBPBQ6OBP)](https://codecov.io/gh/ClimateMind/climatemind-backend) ![GitHub](https://img.shields.io/github/license/ClimateMind/climatemind-backend)
+[![CircleCI](https://circleci.com/gh/ClimateMind/climatemind-backend/tree/develop.svg?style=shield)](https://app.circleci.com/pipelines/github/ClimateMind/climatemind-backend?branch=develop) [![codecov](https://codecov.io/gh/ClimateMind/climatemind-backend/branch/develop/graph/badge.svg?token=6OBPBQ6OBP)](https://codecov.io/gh/ClimateMind/climatemind-backend) ![GitHub](https://img.shields.io/github/license/ClimateMind/climatemind-backend) ![GitHub Repo stars](https://img.shields.io/github/stars/ClimateMind/climatemind-backend?style=social) ![GitHub contributors](https://img.shields.io/github/contributors/ClimateMind/climatemind-backend?style=social) [![Twitter Follow](https://img.shields.io/twitter/follow/Climate\_Mind?style=social)](https://twitter.com/intent/user?screen_name=Climate_Mind) 
+
 
 Go to [https://contribute.climatemind.org/v/rest-api/](https://contribute.climatemind.org/v/rest-api/) to see a rendered version of the docs.
 
@@ -43,8 +44,6 @@ Other ways to contribute to the project are listed below
 {% content-ref url="contribute-as-a-python-dev/suggest-feature.md" %}
 [suggest-feature.md](contribute-as-a-python-dev/suggest-feature.md)
 {% endcontent-ref %}
-
-[![Twitter Follow](https://img.shields.io/twitter/follow/Climate\_Mind?style=social)](https://twitter.com/intent/user?screen_name=Climate_Mind) ![GitHub contributors](https://img.shields.io/github/contributors/ClimateMind/climatemind-backend?style=social) ![GitHub Repo stars](https://img.shields.io/github/stars/ClimateMind/climatemind-backend?style=social)
 
 {% hint style="info" %}
 See our stack below :arrow\_down:
