@@ -1,40 +1,29 @@
-# Climatemind Backend
+# ClimateMind REST API
 
-[![CircleCI](https://circleci.com/gh/ClimateMind/climatemind-backend/tree/develop.svg?style=shield)](https://app.circleci.com/pipelines/github/ClimateMind/climatemind-backend?branch=develop) [![codecov](https://codecov.io/gh/ClimateMind/climatemind-backend/branch/develop/graph/badge.svg?token=6OBPBQ6OBP)](https://codecov.io/gh/ClimateMind/climatemind-backend) ![GitHub](https://img.shields.io/github/license/ClimateMind/climatemind-backend)
+[![CircleCI](https://circleci.com/gh/ClimateMind/climatemind-backend/tree/develop.svg?style=shield)](https://app.circleci.com/pipelines/github/ClimateMind/climatemind-backend?branch=develop) [![codecov](https://codecov.io/gh/ClimateMind/climatemind-backend/branch/develop/graph/badge.svg?token=6OBPBQ6OBP)](https://codecov.io/gh/ClimateMind/climatemind-backend) ![GitHub](https://img.shields.io/github/license/ClimateMind/climatemind-backend) ![GitHub Repo stars](https://img.shields.io/github/stars/ClimateMind/climatemind-backend?style=social) ![GitHub contributors](https://img.shields.io/github/contributors/ClimateMind/climatemind-backend?style=social) [![Twitter Follow](https://img.shields.io/twitter/follow/Climate\_Mind?style=social)](https://twitter.com/intent/user?screen\_name=Climate\_Mind)
 
-## Table of Contents
+Go to [https://contribute.climatemind.org/v/rest-api/](https://contribute.climatemind.org/v/rest-api/) to see a full and more detailed version of the docs.
 
-1. [What is this repo?](./#what-is-this-repo)
-2. [How this works](./#how-this-works)
-3. [Overview](./#overview)
+> **New contributors welcome!**
 
-## What is this repo?
+## Who we are?
 
-The [Climate Mind application](https://app.climatemind.org) makes conversations about climate change easier, by letting users explore climate issues that speak to their personal values. We aim to inspire users to take action with a range of attractive solutions consistent with their values that they can get excited about.
+This REST API repository is a part of a [Climate Mind project](https://climatemind.org/). The project motivation, history and target audience could be found on [this page](https://contribute.climatemind.org/v/about-the-project/). Our current team and people who worked on the previous version are [listed on our website](https://climatemind.org/#team).
 
-The application currently presents solutions based on the user's personal values (as determined by a questionnaire) and their location (zip code). In the future, we plan to add the user's occupation as an option to personalize the results.
+## What we are doing?
 
-## How this Works
+Our [web application](https://app-frontend-prod-001.azurewebsites.net/) makes conversations about climate change easier, by letting users explore climate issues that speak to their personal values. In other words, you'll know how to start a good conversation about the most scarifying topic of our time and don't screw up by looking paranoid. See [web app documentation](https://docs.climatemind.org/) for the application's detailed overview.
 
-In order to serve users with relevant climate information, our data team has organized climate data into an Ontology. Don't let the fancy term overwhelm you, as it is (at the end of the day) just a data structure. It contains information about the relationships between climate issues, solutions, myths, and other data.
+## How to use REST API?
 
-However, this data structure, in its native form, is not easy to work with. We have another repo [climatemind-ontology-processing](https://github.com/ClimateMind/climatemind-ontology-processing) which does all of the hard work to convert this data into an easy to work with graph structure (known as NetworkX). This graph is packaged into the .gpickle file found in the /output directory and read by the application.
+The full API documentation to use on a front end including methods and request examples could be found [here](https://climatemind.stoplight.io/docs/climatemind-backend/).
 
-Detailed instructions for processing the ontology can be found [below](./#owl-file-processing) or in the [climatemind-ontology-processing repo](https://github.com/ClimateMind/climatemind-ontology-processing).
+## How to contribute?
 
-## Overview
+If you are interested in participating as a Python developer see our [contributor guide](docs/contribute-as-a-python-dev/).
 
-In order to use this application you need to:
+Other ways to contribute to the project are listed [here](https://contribute.climatemind.org/v/how-to-contribute).
 
-1. Install the project
-2. Install Docker
-3. Install the Ontology Processing repo through Pip
-4. Download the Ontology file and process it to create the .gpickle
-5. Build the application with Docker
-6. Launch the application with Docker
+## How to report bugs or suggest features?
 
-Following are more details about each of these steps
-
-## Special Thanks
-
-Git history loses contributions when a file is moved, so thank you to the following people who worked on the previous version. @NickCallaghan @biotom @rodriguesk @znurgl @y-himanen
+See our [report bug](contribute-as-a-python-dev/report-bug.md) and [suggest feature](contribute-as-a-python-dev/suggest-feature.md) pages for more information.
