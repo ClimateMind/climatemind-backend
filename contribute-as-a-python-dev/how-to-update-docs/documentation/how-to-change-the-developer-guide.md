@@ -27,7 +27,7 @@ When you are adding new files via GitBook on a **top level** of the docs they wi
 * Move new files to the `docs` directory.
 * Update `SUMMARY.md` file to reflect the correct paths to files.&#x20;
 
-The creation of new subpages should work fine without moving to a `docs` folder.
+The creation of new subpages or renaming pages could also lead to this problem. See below the list of all issues to be aware of.&#x20;
 
 ### Possible issues
 
