@@ -1,6 +1,6 @@
 # Table of contents
 
-* [ClimateMind REST API](README.md)
+* [ClimateMind REST API](docs/README.md)
 * [Under the hood](docs/under-the-hood.md)
 * [🐍 Contribute as a Python dev](docs/contribute-as-a-python-dev/README.md)
   * [Installation](docs/contribute-as-a-python-dev/installation.md)
@@ -16,9 +16,9 @@
   * [Making a PR](docs/contribute-as-a-python-dev/making-a-pr.md)
   * [How to update docs](docs/contribute-as-a-python-dev/how-to-update-docs/README.md)
     * [REST API Docs](docs/contribute-as-a-python-dev/how-to-update-docs/rest-api-docs.md)
-    * [Developer guide](contribute-as-a-python-dev/how-to-update-docs/documentation/README.md)
-      * [How to change the Developer Guide](contribute-as-a-python-dev/how-to-update-docs/documentation/how-to-change-the-developer-guide.md)
-      * [How to merge docs changes](contribute-as-a-python-dev/how-to-update-docs/documentation/how-to-merge-docs-changes.md)
+    * [Developer guide](docs/contribute-as-a-python-dev/how-to-update-docs/documentation/README.md)
+      * [How to change the Developer Guide](docs/contribute-as-a-python-dev/how-to-update-docs/documentation/how-to-change-the-developer-guide.md)
+      * [How to merge docs changes](docs/contribute-as-a-python-dev/how-to-update-docs/documentation/how-to-merge-docs-changes.md)
   * [💡 Suggest feature](docs/contribute-as-a-python-dev/suggest-feature.md)
   * [🐛 Report bug](docs/contribute-as-a-python-dev/report-bug.md)
   * [Benefits](docs/contribute-as-a-python-dev/benefits.md)
