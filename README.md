@@ -26,4 +26,4 @@ Other ways to contribute to the project are listed [here](https://contribute.cli
 
 ## How to report bugs or suggest features?
 
-See our [report bug](contribute-as-a-python-dev/report-bug.md) and [suggest feature](contribute-as-a-python-dev/suggest-feature.md) pages for more information.
+See our [report bug](docs/contribute-as-a-python-dev/report-bug.md) and [suggest feature](docs/contribute-as-a-python-dev/suggest-feature.md) pages for more information.

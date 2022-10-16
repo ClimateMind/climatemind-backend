@@ -1,6 +1,6 @@
 # Table of contents
 
-* [ClimateMind REST API](docs/README.md)
+* [ClimateMind REST API](README.md)
 * [Under the hood](docs/under-the-hood.md)
 * [🐍 Contribute as a Python dev](docs/contribute-as-a-python-dev/README.md)
   * [Installation](docs/contribute-as-a-python-dev/installation.md)

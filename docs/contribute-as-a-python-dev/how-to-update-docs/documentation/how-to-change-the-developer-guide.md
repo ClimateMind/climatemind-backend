@@ -37,7 +37,8 @@ Managing the documentation with GitBook could be handy but sometimes lead to som
 * all `.md` files should be located in `docs` folder
 * there are no invalid paths like `docs/docs/docs...` in the `SUMMARY.md` file
 * files are not duplicated
-* change that links are not pointing to `app.gitbook.com`
+* check that links in `.md` files are not pointing to `app.gitbook.com`
+* check that links in `.md` files are pointing to existing pages.
 
 ## Any other way
 
