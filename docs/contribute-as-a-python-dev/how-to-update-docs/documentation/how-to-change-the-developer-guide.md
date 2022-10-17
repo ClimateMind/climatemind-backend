@@ -34,7 +34,7 @@ The creation of new subpages or renaming pages could also lead to this problem. 
 Managing the documentation with GitBook could be handy but sometimes lead to some annoying bugs. Due to a lack of [tests](https://github.com/ClimateMind/climatemind-backend/issues/412), you should double-check the following possible issues before merging `docs` branch into `develop`.&#x20;
 
 * `SUMMARY.md` should contain files only from `docs` folder
-* all `.md` files should be located in `docs` folder
+* all `.md` files should be located in `docs` folder (except `README.md` and `SUMMARY.md`). Subdirectories should be also checked.&#x20;
 * there are no invalid paths like `docs/docs/docs...` in the `SUMMARY.md` file
 * files are not duplicated
 * check that links in `.md` files are not pointing to `app.gitbook.com`
