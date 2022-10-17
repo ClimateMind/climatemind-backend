@@ -31,6 +31,7 @@ from app.errors.errors import (
 )
 from app.models import Users, Conversations
 from app.sendgrid.utils import send_user_b_shared_email
+from app.user_b.analytics_logging import log_user_b_event, eventType
 
 
 @bp.route("/conversation", methods=["POST"])
@@ -234,8 +235,19 @@ def edit_conversation(conversation_uuid):
         json_data[uuid_field_name] = conversation_uuid
 
         try:
+            prev_conversation_state = conversation.state
             conversation = schema.load(json_data, instance=conversation, partial=True)
             db.session.commit()
+
+            if prev_conversation_state != conversation.state:
+                state_enum = ConversationState(conversation.state)
+                log_user_b_event(
+                    conversation_uuid,
+                    session_uuid,
+                    state_enum.get_analytics_event_type(),
+                    True,
+                )
+
             return schema.jsonify(conversation)
         except SQLAlchemyError:
             return DatabaseError(message="Couldn't edit conversation")

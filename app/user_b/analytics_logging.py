@@ -9,6 +9,7 @@ from enum import Enum
 
 class eventType(Enum):
     """
+    TODO: rename
     Event types to be used for analytics logging.
 
     LINK - the unique link for user b has been used
@@ -18,19 +19,52 @@ class eventType(Enum):
     QUIZ - user b has completed the quiz
     LMEFFECT - user b has clicked on a shared impact card to learn more
     LMSOLUTION - user b has clicked on a shared solution card to learn more
+
+    UA_ALIGN_CLICK - user a clicked align button
+    UA_TOPICS_CLICK - user a clicked topics button
+    UA_TALKED_CLICK - user a clicked talked button
+    UA_RATING_DONE = rating done by user a
     """
 
-    LINK = 1
-    SOLUTION = 2
-    EFFECT = 3
-    CONSENT = 4
-    QUIZ = 5
-    LMEFFECT = 6
-    LMSOLUTION = 7
+    LINK = "link clicked"
+    SOLUTION = "solution choice"
+    EFFECT = "effect choice"
+    CONSENT = "consent updated"
+    QUIZ = "quiz completed"
+    LMEFFECT = "learn more - impact"
+    LMSOLUTION = "learn more - solution"
+
+    UA_ALIGN_CLICK = "align button clicked"
+    UA_TOPICS_CLICK = "topics button clicked"
+    UA_TALKED_CLICK = "talked button clicked"
+    UA_RATING_DONE = "rating done"
+
+    def get_event_value_type(self):
+        event_to_event_type_mapping = {
+            self.LINK: EventValueTypeEnum.BOOLEAN,
+            self.CONSENT: EventValueTypeEnum.BOOLEAN,
+            self.EFFECT: EventValueTypeEnum.UUID,
+            self.SOLUTION: EventValueTypeEnum.UUID,
+            self.QUIZ: EventValueTypeEnum.UUID,
+            self.LMEFFECT: EventValueTypeEnum.IRI,
+            self.LMSOLUTION: EventValueTypeEnum.IRI,
+            self.UA_ALIGN_CLICK: EventValueTypeEnum.BOOLEAN,
+            self.UA_TOPICS_CLICK: EventValueTypeEnum.BOOLEAN,
+            self.UA_TALKED_CLICK: EventValueTypeEnum.BOOLEAN,
+            self.UA_RATING_DONE: EventValueTypeEnum.BOOLEAN,
+        }
+        return event_to_event_type_mapping[self]
+
+
+class EventValueTypeEnum(Enum):
+    BOOLEAN = "boolean"
+    UUID = "UUID"
+    IRI = "IRI"
 
 
 def log_user_b_event(conversation_uuid, session_uuid, event_type, event_value):
     """
+    TODO: rename
     Log an event in the user b analytics data table.
     """
     try:
@@ -40,28 +74,8 @@ def log_user_b_event(conversation_uuid, session_uuid, event_type, event_value):
         event_to_add.event_value = event_value
         event_to_add.event_timestamp = datetime.now(timezone.utc)
         event_to_add.session_uuid = session_uuid
-
-        if event_type.name == "LINK":
-            event_to_add.event_type = "link clicked"
-            event_to_add.event_value_type = "boolean"
-        elif event_type.name == "CONSENT":
-            event_to_add.event_type = "consent updated"
-            event_to_add.event_value_type = "boolean"
-        elif event_type.name == "EFFECT":
-            event_to_add.event_type = "effect choice"
-            event_to_add.event_value_type = "UUID"
-        elif event_type.name == "SOLUTION":
-            event_to_add.event_type = "solution choice"
-            event_to_add.event_value_type = "UUID"
-        elif event_type.name == "QUIZ":
-            event_to_add.event_type = "quiz completed"
-            event_to_add.event_value_type = "UUID"
-        elif event_type.name == "LMEFFECT":
-            event_to_add.event_type = "learn more - impact"
-            event_to_add.event_value_type = "IRI"
-        elif event_type.name == "LMSOLUTION":
-            event_to_add.event_type = "learn more - solution"
-            event_to_add.event_value_type = "IRI"
+        event_to_add.event_type = event_type.value
+        event_to_add.event_value_type = event_type.get_event_value_type().value
 
         db.session.add(event_to_add)
         db.session.commit()

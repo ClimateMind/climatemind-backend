@@ -1,4 +1,7 @@
+import typing
 from enum import IntEnum
+
+from app.user_b.analytics_logging import eventType
 
 
 class ConversationState(IntEnum):
@@ -13,6 +16,15 @@ class ConversationState(IntEnum):
     TopicsButtonClicked = 3
     TalkedButtonClicked = 4
     RatingDone = 5
+
+    def get_analytics_event_type(self) -> typing.Optional[eventType]:
+        conversation_state_to_analytics_event_type_mapping = {
+            self.AlignButtonClicked: eventType.UA_ALIGN_CLICK,
+            self.TopicsButtonClicked: eventType.UA_TOPICS_CLICK,
+            self.TalkedButtonClicked: eventType.UA_TALKED_CLICK,
+            self.RatingDone: eventType.UA_RATING_DONE,
+        }
+        return conversation_state_to_analytics_event_type_mapping.get(self)
 
 
 class ConversationUserARating(IntEnum):
