@@ -186,6 +186,7 @@ class AnalyticsData(db.Model):
     page_url = db.Column(db.String(255))
 
 
+# TODO: rename
 class UserBAnalyticsData(db.Model):
     __tablename__ = "user_b_analytics_data"
     event_log_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
