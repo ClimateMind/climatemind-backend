@@ -18,9 +18,9 @@ Our [web application](https://app-frontend-prod-001.azurewebsites.net/) makes co
 
 The full API documentation to use on a front end including methods and request examples could be found [here](https://climatemind.stoplight.io/docs/climatemind-backend/).
 
-## How to contribute?
+## How to run the app locally and/or contribute?
 
-If you are interested in participating as a Python developer see our [contributor guide](docs/contribute-as-a-python-dev/).
+If you are interested in running the app locally or participating as a Python developer see our [contributor guide](docs/contribute-as-a-python-dev/).
 
 Other ways to contribute to the project are listed [here](https://contribute.climatemind.org/v/how-to-contribute).
 
