@@ -39,6 +39,7 @@ Managing the documentation with GitBook could be handy but sometimes lead to som
 * files are not duplicated
 * check that links in `.md` files are not pointing to `app.gitbook.com`
 * check that links in `.md` files are pointing to existing pages.
+* The first H1 title in the file should be equal to the file name. Otherwise, GitBook will create a new empty file.&#x20;
 
 ## Any other way
 
