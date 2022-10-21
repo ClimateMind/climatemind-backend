@@ -1,7 +1,7 @@
 ---
 name: Documentation
 about: Missing or misleading documentation
-title: Documentation ... 
+title: Documentation ...
 labels: documentation
 assignees: ''
 
@@ -14,4 +14,3 @@ assignees: ''
 ### Screenshots
 
 <!-- Put screenshots if necessary -->
-

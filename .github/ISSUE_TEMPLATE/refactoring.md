@@ -1,7 +1,7 @@
 ---
 name: Refactoring
 about: Create a report to help us improve
-title: Refactor ... 
+title: Refactor ...
 labels: refactoring
 assignees: ''
 
