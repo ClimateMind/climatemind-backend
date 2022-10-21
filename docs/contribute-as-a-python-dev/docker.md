@@ -18,7 +18,7 @@ Make sure the command line working directory is changed to the climatemind-backe
 
 Windows users - you may experience problems with building or starting the containers if your system automatically converts Unix line endings ('\n') to DOS line endings ('\r\n'). You can prevent this from happening by running the command below.
 
-```
+```bash
 git config --global core.autocrlf false
 ```
 
@@ -30,7 +30,7 @@ M1 chip requires a special `yml` file. Use `docker/docker-compose.m1.yml` file i
 
 Start in the foreground (good for debugging flask and seeing the logs). You can stop it with `[CTRL + C]` on OSX, Windows, and Linux:
 
-```
+```bash
 docker-compose -p climatemind-backend -f docker/docker-compose.yml up
 ```
 
@@ -44,23 +44,42 @@ Sometimes the terminal says 'Running on http://0.0.0.0:5000' and that URL does n
 
 Whenever the backend repo has added new dependencies in the `requirements.*` files the docker image will need to be re-built. You can do this by adding `--build` argument to the `up` command:
 
-```
+```bash
 docker-compose -p climatemind-backend -f docker/docker-compose.yml up --build
 ```
 
-#### Start in background
+#### Start a container in background
 
-Best for when trying to attach the docker instance to the front-end application. Add `-d` argument to the `up` command:
+{% hint style="success" %}
+Run containers in the background is a recommended method for development which allows you to run not only the dev server but other tools like migrations, tests, etc.
+{% endhint %}
 
-```
+Best when trying to attach the docker instance to the front-end application. Add `-d` argument to the `up` command:
+
+```bash
 docker-compose -p climatemind-backend -f docker/docker-compose.yml up -d
 ```
+
+{% hint style="info" %}
+You could also use a[ Docker Desctop](https://www.docker.com/products/docker-desktop/) to run all containers in the background.
+{% endhint %}
+
+### Execute command in docker container
+
+To execute a command inside the container running in the **background** use the following command:
+
+```bash
+docker exec -it CONTAINER_ID COMMAND
+```
+
+* Where `COMMAND` is a command like `bash,` [pytest](development/unit-tests.md#pytest) or even [flask shell](https://flask.palletsprojects.com/en/2.0.x/shell/)
+* `CONTAINER_ID` is a container id which could be obtained by `docker ps -aqf 'name=climatemind-backend_web'`. Alternatively, you can use container name like `climatemind-backend_web_1`
 
 ### Stopping containers
 
 When you're done working, stop the container. Stopping containers will remove containers, networks, volumes, and images created by `docker-compose -p climatemind-backend -f docker/docker-compose.yml up`.
 
-```
+```bash
 docker-compose -p climatemind-backend -f docker/docker-compose.yml down
 ```
 
@@ -72,7 +91,7 @@ You will lose all the data stored in the DB
 
 To start from scratch and completely remove the local database add `-v` argument to the `down` command.
 
-```
+```bash
 docker-compose -p climatemind-backend -f docker/docker-compose.yml down -v
 ```
 

@@ -13,8 +13,6 @@ We have limited credits with CircleCI. It's fine to make commits or PRs as neede
 5. Ensure that the lint and build tests pass before requesting a review.
 6. Include the Jira ticket number in the PR (ex. "Cm-57 Fixing API Errors")
 
-## CI/CD
-
 ## Reviewing a PR
 
 1. If the code is modified, make sure to pull the branch and test that the endpoints are working.
