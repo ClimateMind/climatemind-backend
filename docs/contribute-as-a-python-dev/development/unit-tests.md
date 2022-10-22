@@ -25,5 +25,6 @@ The best way to learn how to write unit tests is to search in the repo for simil
 
 Each python module in our flask app should contain a `test` subfolder which contains files with names like `test_MODULE_FILE.py`&#x20;
 
+## Code coverage
 
-
+TODO
