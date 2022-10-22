@@ -7,7 +7,6 @@ let session_Id;
 let set_one_quizId;
 let user;
 let accessToken;
-const invalidInvitedUsername = "Must provide a name that is up to 20 characters long.";
 const missingJSONBodyMessage = "Must provide a JSON body with the name of the invited user.";
 const SESSION_UUIDNotInDBMessage = "SESSION_UUID is not in the db.";
 const uuidFormatChecker_LowerCase = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/;
@@ -115,72 +114,6 @@ describe("'/conversation' endpoint", () => {
                     expect(response.body.conversations[conversationIndex]).to.have.property("alignmentScoresId");
                 }
              });
-    });
-
-    it("should not allow creating a conversation with an invited_username of 0 characters", () => {
-        //Generate a username to be invited
-        requestBody = {
-        "invitedUserName": ""
-        }
-        expect(requestBody.invitedUserName).to.be.a("string");
-
-        //Create a conversation and test the response body
-        cy.conversationEndpoint(requestBody, accessToken, session_Id).should((response) => {
-            expect(response.status).to.equal(400);
-            expect(response.headers["content-type"]).to.equal(
-                "application/json"
-            );
-            expect(response.body).to.be.an("object");
-            expect(response.body).to.have.property("error");
-            expect(response.body.error).to.be.a("string");
-            expect(response.body.error).to.satisfy(function (s) {
-                return s === invalidInvitedUsername;
-            });
-        });
-    });
-
-    it("should not allow creating a conversation with an invited_username of 21 characters", () => {
-        //Generate a username to be invited
-        requestBody = {
-            "invitedUserName": "managementmanagementm"
-        }
-        expect(requestBody.invitedUserName).to.be.a("string");
-
-        //Create a conversation and test the response body
-        cy.conversationEndpoint(requestBody, accessToken, session_Id).should((response) => {
-            expect(response.status).to.equal(400);
-            expect(response.headers["content-type"]).to.equal(
-                "application/json"
-            );
-            expect(response.body).to.be.an("object");
-            expect(response.body).to.have.property("error");
-            expect(response.body.error).to.be.a("string");
-            expect(response.body.error).to.satisfy(function (s) {
-                return s === invalidInvitedUsername;
-            });
-        });
-    });
-
-    it("should not allow creating a conversation with an invited_username greater than 20 characters", () => {
-        //Generate a username to be invited
-        requestBody = {
-        "invitedUserName": "managementmanagementmanagementmanagementmanagementm"
-        }
-        expect(requestBody.invitedUserName).to.be.a("string");
-
-        //Create a conversation and test the response body
-        cy.conversationEndpoint(requestBody, accessToken, session_Id).should((response) => {
-            expect(response.status).to.equal(400);
-            expect(response.headers["content-type"]).to.equal(
-                "application/json"
-            );
-            expect(response.body).to.be.an("object");
-            expect(response.body).to.have.property("error");
-            expect(response.body.error).to.be.a("string");
-            expect(response.body.error).to.satisfy(function (s) {
-                return s === invalidInvitedUsername;
-            });
-        });
     });
 
     it("should not allow creating a conversation without providing a JSON Body containing invited_username", () => {

@@ -240,7 +240,7 @@ def test_consent_sends_user_b_shared_email_with_configured_base_frontend_url(
     )
 
 def test_get_conversations_empty(client_with_user_and_header, accept_json):
-    client, user, session_header, _ = client_with_user_and_header
+    client, _, session_header, _ = client_with_user_and_header
     url = url_for("conversations.get_conversations")
     response = client.get(
         url,
@@ -248,3 +248,27 @@ def test_get_conversations_empty(client_with_user_and_header, accept_json):
     )
     assert response.status_code == 200, str(response.json)
     assert response.json == {"conversations": []}
+
+
+@pytest.mark.parametrize(
+    "invited_user_name",
+    [
+        "",
+        "managementmanagementm",
+        "managementmanagementmanagementmanagementmanagementm",
+    ],
+)
+@pytest.mark.integration
+def test_create_conversation_with_invalid_invitee(
+    invited_user_name, client_with_user_and_header, accept_json
+):
+    client, _, session_header, _ = client_with_user_and_header
+    url = url_for("conversations.create_conversation_invite")
+    response = client.post(
+        url,
+        headers=session_header + accept_json,
+        json={"invitedUserName": invited_user_name},
+    )
+    assert (
+        response.status_code == 400
+    ), "Must provide a JSON body with the name of the invited user."
