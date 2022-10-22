@@ -20,8 +20,8 @@ The refactoring is needed because ...
 
 ### Suggested solution
 
-- [] ...
-- [] documentation updated
+- [ ] ...
+- [ ] documentation updated
 
 ### Tests
 
