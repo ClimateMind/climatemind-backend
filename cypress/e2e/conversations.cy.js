@@ -229,17 +229,4 @@ describe("'/conversation' endpoint", () => {
         });
     });
 
-    it("should get an empty conversations array when no converstion has been created yet", () => {
-        //Get conversations and validate the response body
-        cy.conversationsEndpoint(accessToken, session_Id)
-            .should((response) => {
-                expect(response.status).to.equal(200);
-                expect(response.headers["content-type"]).to.equal(
-                    "application/json"
-                );
-                expect(response.body).to.deep.equal({
-                    "conversations": []
-                })
-            });
-    });
 });
