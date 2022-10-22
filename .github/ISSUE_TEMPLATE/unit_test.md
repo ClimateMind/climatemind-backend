@@ -1,6 +1,6 @@
 ---
 name: Unit test
-about: Create a report to help us improve
+about: Create a task to help us improve
 title: Add unit test for ...
 labels: testing
 assignees: ''

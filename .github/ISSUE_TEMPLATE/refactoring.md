@@ -1,6 +1,6 @@
 ---
 name: Refactoring
-about: Create a report to help us improve
+about: Create a task to help us improve
 title: Refactor ...
 labels: refactoring
 assignees: ''
