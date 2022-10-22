@@ -247,4 +247,4 @@ def test_get_conversations_empty(client_with_user_and_header, accept_json):
         headers=session_header + accept_json,
     )
     assert response.status_code == 200, str(response.json)
-    assert response.json == {"conversations":[]}
+    assert response.json == {"conversations": []}
