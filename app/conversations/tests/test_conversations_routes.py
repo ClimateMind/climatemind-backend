@@ -272,3 +272,19 @@ def test_create_conversation_with_invalid_invitee(
     assert (
         response.status_code == 400
     ), "Must provide a JSON body with the name of the invited user."
+
+
+@pytest.mark.integration
+def test_create_conversation_with_invalid_session(
+    client_with_user_and_header, accept_json
+):
+    client, _, session_header, _ = client_with_user_and_header
+    url = url_for("conversations.create_conversation_invite")
+    bad_session_header = [("X-Session-Id", faker.uuid4().upper())]
+    assert bad_session_header != session_header
+    response = client.post(
+        url,
+        headers=bad_session_header + accept_json,
+        json={"invitedUserName": faker.name()},
+    )
+    assert response.status_code == 404, "SESSION_UUID is not in the db."

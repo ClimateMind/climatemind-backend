@@ -137,29 +137,4 @@ describe("'/conversation' endpoint", () => {
         });
     });
 
-    it("should handle creating conversation with a SESSION_UUID that is not in the db.", () => {
-        //Generate a username to be invited
-        requestBody = {
-            "invitedUserName": `${faker.name.firstName()}`
-        };
-        expect(requestBody.invitedUserName).to.be.a("string");
-
-        //Seesion UUID not in the DB
-        session_Id = "82933689-2561-4211-a27a-058e48721fac"
-
-        //Create a conversation and test the response body
-        cy.conversationEndpoint(requestBody, accessToken, session_Id).should((response) => {
-            expect(response.status).to.equal(404);
-            expect(response.headers["content-type"]).to.equal(
-                "application/json"
-            );
-            expect(response.body).to.be.an("object");
-            expect(response.body).to.have.property("error");
-            expect(response.body.error).to.be.a("string");
-            expect(response.body.error).to.satisfy(function (s) {
-                return s === SESSION_UUIDNotInDBMessage;
-            });
-        });
-    });
-
 });
