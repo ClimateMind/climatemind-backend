@@ -117,28 +117,6 @@ describe("'/conversation' endpoint", () => {
              });
     });
 
-    it("should not allow creating a conversation with an invited_username of less than 1 characters", () => {
-        //Generate a username to be invited
-        requestBody = {
-        "invitedUserName": ""
-        }
-        expect(requestBody.invitedUserName).to.be.a("string");
-
-        //Create a conversation and test the response body
-        cy.conversationEndpoint(requestBody, accessToken, session_Id).should((response) => {
-            expect(response.status).to.equal(400);
-            expect(response.headers["content-type"]).to.equal(
-                "application/json"
-            );
-            expect(response.body).to.be.an("object");
-            expect(response.body).to.have.property("error");
-            expect(response.body.error).to.be.a("string");
-            expect(response.body.error).to.satisfy(function (s) {
-                return s === invalidInvitedUsername;
-            });
-        });
-    });
-
     it("should not allow creating a conversation with an invited_username of 0 characters", () => {
         //Generate a username to be invited
         requestBody = {
