@@ -1,7 +1,7 @@
 # Unit tests
 
 {% hint style="info" %}
-Python unit tests are the primary step in our [Continuous Integration ](../../../contribute-as-a-python-dev/development/ci-continuous-integration.md)pipeline.
+Python unit tests are the primary step in our [Continuous Integration ](ci-continuous-integration.md)pipeline.
 {% endhint %}
 
 Unit testing in a nutshell is just providing some inputs to the function (unit) and checking if the result is the same as expected. You need to think out all possible kinds of inputs that could lead to error output. Unit tests reduce defects in the newly developed features or reduce bugs when changing the existing functionality.&#x20;

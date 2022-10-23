@@ -10,8 +10,8 @@ We are using the continuous integration and [continuous delivery](cd-continuous-
 
 CI setup stored in the `.circleci/config.yml` file and consist of the following jobs:
 
-* `lint` - checking that the [coding style](../../docs/contribute-as-a-python-dev/development/code-style.md) is performed
-* `pytest` - checking the [unit tests](../../docs/contribute-as-a-python-dev/development/unit-tests.md)
+* `lint` - checking that the [coding style](code-style.md) is performed
+* `pytest` - checking the [unit tests](unit-tests.md)
 
 {% hint style="warning" %}
 Note that if one of the jobs will fail [PR](making-a-pr.md) with changes is not permitted to merge to the develop branch.

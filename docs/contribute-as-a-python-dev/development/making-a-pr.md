@@ -4,10 +4,10 @@ Create a pull request to propose and collaborate on changes to a repository. The
 
 ## Before making a PR
 
-1. Test your code locally using [Postman](../../docs/contribute-as-a-python-dev/development/debugging.md) to ensure that the endpoints return valid responses.
-2. Format your code using [PEP8 Styling](../../docs/contribute-as-a-python-dev/development/code-style.md)
+1. Test your code locally using [Postman](debugging.md) to ensure that the endpoints return valid responses.
+2. Format your code using [PEP8 Styling](code-style.md)
 3. If your changes affect how the app is run, please [modify the documentation](../../docs/contribute-as-a-python-dev/how-to-update-docs/) accordingly.
-4. If your functionality needs to be tested, please include at least one[ unit test](../../docs/contribute-as-a-python-dev/development/unit-tests.md).
+4. If your functionality needs to be tested, please include at least one[ unit test](unit-tests.md).
 
 {% hint style="info" %}
 See the [GitHub docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) to find out how to create your first Pull Request to merge changes to `develop` <- from `your branch`

@@ -18,6 +18,10 @@ You can join our GitBook space using [this link](https://app.gitbook.com/invite/
 
 ### Summary file
 
+{% hint style="danger" %}
+Always keep an eye on `SUMMARY.md` after commit from GitBook is done. If you see some unexpected changes in it means you have to adjust the file manually and move `.md` files to `docs` folder.
+{% endhint %}
+
 The documentation created with GitBook relies on a table of the content file named [SUMMARY.md](https://github.com/ClimateMind/climatemind-backend/blob/develop/SUMMARY.md) which is not visible in GitBook UI but exists in a repository root.
 
 ### Adding new files
