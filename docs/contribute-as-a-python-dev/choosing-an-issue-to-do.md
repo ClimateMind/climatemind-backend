@@ -48,7 +48,7 @@ Feel free to ask any question directly in the issue comments.
 
 ## How to start action
 
-* assign yourself an issue you like and have time to do :adult:
+* assign yourself an issue or comment on the issue that you would like to take it :adult:
 * change the status to `in progress` :construction\_site:
 * [do stuff](development/) in your feature branch :tools:
 * push changes to your branch and [make a Pull Request](../../contribute-as-a-python-dev/development/making-a-pr.md)

@@ -1,23 +1,27 @@
 # Making a PR
 
+Create a pull request to propose and collaborate on changes to a repository. These changes are proposed in a branch, which ensures that the default branch only contains finished and approved work.
 
+## Before making a PR
 
-FIXME:&#x20;
+1. Test your code locally using [Postman](../../docs/contribute-as-a-python-dev/development/debugging.md) to ensure that the endpoints return valid responses.
+2. Format your code using [PEP8 Styling](../../docs/contribute-as-a-python-dev/development/code-style.md)
+3. If your changes affect how the app is run, please [modify the documentation](../../docs/contribute-as-a-python-dev/how-to-update-docs/) accordingly.
+4. If your functionality needs to be tested, please include at least one[ unit test](../../docs/contribute-as-a-python-dev/development/unit-tests.md).
 
-We have limited credits with CircleCI. It's fine to make commits or PRs as needed, but before making a PR please do the following:
+{% hint style="info" %}
+See the [GitHub docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request) to find out how to create your first Pull Request to merge changes to `develop` <- from `your branch`
+{% endhint %}
 
-1. Test your code locally using Postman to ensure that the endpoints return valid responses.
-2. Format your code using Pep8 Styling (see below)
-3. If your changes affect how the app is run, please modify the documentation accordingly.
-4. If your functionality needs to be tested, please include at least one test.
-5. Ensure that the lint and build tests pass before requesting a review.
-6. Include the Jira ticket number in the PR (ex. "Cm-57 Fixing API Errors")
+## Before requesting a review
 
-## Reviewing a PR
+1. Update your feature branch with rebase from develop branch to apply your changes on top of the most recent commit from develop. It's possible to do this using GitHub UI directly on the Pull Request page&#x20;
+2. Ensure that the lint and [CI checks](ci-continuous-integration.md) pass.
 
-1. If the code is modified, make sure to pull the branch and test that the endpoints are working.
-2. Make sure the code has passed linting and black before approving
+{% hint style="info" %}
+See [GitHub docs](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/requesting-a-pull-request-review) to see how to request a review.
+{% endhint %}
 
-## Merging your PR
+## After PR review
 
-The original contributor should merge their branch after receiving one approval review.
+The reviewer should merge the feature branch after giving an approval review.
