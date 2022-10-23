@@ -48,13 +48,13 @@ Feel free to ask any question directly in the issue comments.
 
 ## How to start action
 
-* assign yourself an issue you like and have time to do :adult:
+* assign yourself an issue or comment on the issue that you would like to take it :adult:
 * change the status to `in progress` :construction\_site:
 * [do stuff](development/) in your feature branch :tools:
-* push changes to your branch and [make a Pull Request](making-a-pr.md)
+* push changes to your branch and [make a Pull Request](development/making-a-pr.md)
 * change the status to `in review` :eyes:
-* make [Circle CI pass](making-a-pr.md#ci-cd) successfully :white\_check\_mark:
+* make [Circle CI pass](development/ci-continuous-integration.md) successfully :white\_check\_mark:
 * get approved :ballot\_box\_with\_check:
-* [merge your pull request ](making-a-pr.md#merging-your-pr)into `develop` branch :on:
+* [merge your pull request ](development/making-a-pr.md#merging-your-pr)into `develop` branch :on:
 * [feel good](https://i.giphy.com/media/BPJmthQ3YRwD6QqcVD/giphy.webp) :tada::earth\_americas:&#x20;
 
