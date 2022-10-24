@@ -11,7 +11,6 @@ const missingJSONBodyMessage = "Must provide a JSON body with the name of the in
 const SESSION_UUIDNotInDBMessage = "SESSION_UUID is not in the db.";
 const uuidFormatChecker_LowerCase = /[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}/;
 const uuidFormatChecker_UpperCase = /[0-9A-F]{8}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{4}-[0-9A-F]{12}/;
-const createdSuccessfulMessage = "conversation created";
 let requestBody;
 let invitedUserName;
 
@@ -37,30 +36,6 @@ describe("'/conversation' endpoint", () => {
                     expect(response.body.access_token).to.be.a('string')
                 });
             });
-        });
-    });
-
-    it("should create a conversation", () => {
-        //Generate a username to be invited
-        requestBody = {
-            "invitedUserName": faker.name.firstName()
-        };
-        expect(requestBody).to.be.an("object");
-        expect(requestBody.invitedUserName).to.be.a("string");
-
-        //Create a conversation and test the response body
-        cy.conversationEndpoint(requestBody, accessToken, session_Id).should((response) => {
-            expect(response.status).to.equal(201);
-            expect(response.headers["content-type"]).to.equal(
-                "application/json"
-            );
-            expect(response.body).to.be.an("object");
-            expect(response.body).to.have.property("message");
-            expect(response.body).to.have.property("conversationId");
-            expect(response.body.message).to.be.a("string");
-            expect(response.body.message).to.deep.equal(createdSuccessfulMessage);
-            expect(response.body.conversationId).to.be.a("string");
-            expect(response.body.conversationId).to.match(uuidFormatChecker_LowerCase);
         });
     });
 

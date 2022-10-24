@@ -18,6 +18,15 @@ from app.models import Conversations, Users
 RANDOM_CONVERSATION_STATE = random.choice(list([s.value for s in ConversationState]))
 
 
+def is_uuid(string):
+    try:
+        uuid.UUID(string)
+        ok = True
+    except ValueError:
+        ok = False
+    return ok
+
+
 @pytest.mark.skip("FIXME")
 @pytest.mark.integration
 @pytest.mark.parametrize(
@@ -288,3 +297,24 @@ def test_create_conversation_with_invalid_session(
         json={"invitedUserName": faker.name()},
     )
     assert response.status_code == 404, "SESSION_UUID is not in the db."
+
+
+@pytest.mark.integration
+def test_create_conversation_successful(client_with_user_and_header, accept_json):
+    client, _, session_header, _ = client_with_user_and_header
+    url = url_for("conversations.create_conversation_invite")
+    response = client.post(
+        url,
+        headers=session_header + accept_json,
+        json={"invitedUserName": faker.name()},
+    )
+    assert response.status_code == 201, str(response.json)
+    assert (
+        response.json["message"] == "conversation created"
+    ), 'Successful creation should give "conversation created" message.'
+    assert (
+        response.json["conversationId"] == response.json["conversationId"].lower()
+    ), "conversationId uuid should be lower case"
+    assert is_uuid(
+        response.json["conversationId"]
+    ), "conversationId is not a valid uuid"
