@@ -328,20 +328,23 @@ def test_create_conversations_successful(client_with_user_and_header, accept_jso
         client.post(
             url_create,
             headers=session_header + accept_json,
-            json={"invitedUserName": faker.name()}
+            json={"invitedUserName": faker.name()},
         )
     url_list = url_for("conversations.get_conversations")
-    response = client.get(
-        url_list,
-        headers=session_header + accept_json
-    )
+    response = client.get(url_list, headers=session_header + accept_json)
     assert isinstance(response.json["conversations"], list), response.json
 
     for conversation in response.json["conversations"]:
 
-        assert "conversationId" in conversation.keys(), "Conversation must include conversationId."
-        assert conversation["conversationId"] == conversation["conversationId"].upper(), "conversationId uuid must be upper case."
-        assert is_uuid(conversation["conversationId"]), "conversationId must be a valid uuid."
+        assert (
+            "conversationId" in conversation.keys()
+        ), "Conversation must include conversationId."
+        assert (
+            conversation["conversationId"] == conversation["conversationId"].upper()
+        ), "conversationId uuid must be upper case."
+        assert is_uuid(
+            conversation["conversationId"]
+        ), "conversationId must be a valid uuid."
 
         assert "state" in conversation.keys(), "Conversation must include state."
         assert isinstance(conversation["state"], int), "state must be an int."
@@ -349,24 +352,45 @@ def test_create_conversations_successful(client_with_user_and_header, accept_jso
         assert "userA" in conversation.keys(), "Conversation must include userA."
         assert isinstance(conversation["userA"], dict), "userA must be a dict."
 
-        assert "sessionId" in conversation["userA"].keys(), "userA must include sessionId."
-        assert conversation["userA"]["sessionId"] == conversation["userA"]["sessionId"].upper(), "userA sessionId uuid must be upper case."
-        assert is_uuid(conversation["userA"]["sessionId"]), "userA sessionId uuid must be a valid uuid."
+        assert (
+            "sessionId" in conversation["userA"].keys()
+        ), "userA must include sessionId."
+        assert (
+            conversation["userA"]["sessionId"]
+            == conversation["userA"]["sessionId"].upper()
+        ), "userA sessionId uuid must be upper case."
+        assert is_uuid(
+            conversation["userA"]["sessionId"]
+        ), "userA sessionId uuid must be a valid uuid."
 
         assert "id" in conversation["userA"].keys(), "userA must include id."
-        assert conversation["userA"]["id"] == conversation["userA"]["id"].upper(), "userA id uuid must be upper case."
-        assert is_uuid(conversation["userA"]["id"]), "userA id uuid must be a valid uuid."
+        assert (
+            conversation["userA"]["id"] == conversation["userA"]["id"].upper()
+        ), "userA id uuid must be upper case."
+        assert is_uuid(
+            conversation["userA"]["id"]
+        ), "userA id uuid must be a valid uuid."
 
         assert "name" in conversation["userA"].keys(), "userA must include name."
-        assert isinstance(conversation["userA"]["name"], str), "userA name must be a str."
+        assert isinstance(
+            conversation["userA"]["name"], str
+        ), "userA name must be a str."
 
         assert "userB" in conversation.keys(), "Conversation must include userB."
         assert isinstance(conversation["userB"], dict), "userB must be a dict."
 
         assert "name" in conversation["userB"].keys(), "userB must include name."
-        assert isinstance(conversation["userB"]["name"], str), "userB name must be a str."
+        assert isinstance(
+            conversation["userB"]["name"], str
+        ), "userB name must be a str."
 
-        assert "userARating" in conversation.keys(), "Conversation must include userARating."
+        assert (
+            "userARating" in conversation.keys()
+        ), "Conversation must include userARating."
         assert "consent" in conversation.keys(), "Conversation must include consent."
-        assert "conversationTimestamp" in conversation.keys(), "Conversation must include conversationTimestamp."
-        assert "alignmentScoresId" in conversation.keys(), "Conversation must include alignmentScoresId."
+        assert (
+            "conversationTimestamp" in conversation.keys()
+        ), "Conversation must include conversationTimestamp."
+        assert (
+            "alignmentScoresId" in conversation.keys()
+        ), "Conversation must include alignmentScoresId."
