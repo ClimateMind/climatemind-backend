@@ -68,8 +68,12 @@ def check_if_valid_postal_code(quiz_uuid):
             result = con.execute(
                 "SELECT * FROM lrf_data WHERE lrf_data.postal_code=?",
                 (postal_code,),
-            )
-            exists_in_lrf_table = list(result.fetchone())
+            ).fetchone()
+
+            if not result:
+                return None
+
+            db_postal_codes = list(result)
             # Get the column names from the lrf_data table and create a list of names
             columns = con.execute(
                 "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='lrf_data'"
@@ -80,12 +84,12 @@ def check_if_valid_postal_code(quiz_uuid):
             for name in column_names:
                 column_names_list.append(name[0])
 
-        if exists_in_lrf_table:
+        if db_postal_codes:
             # Create a dictionary of lrf data for the specific postal code where the lrf_data table column names
             # (the postal code and the IRIs) are the keys matched to the lrf_data table values for that postal code.
             short_IRIs = [get_iri(long_iri) for long_iri in column_names_list[1:]]
 
-            lrf_single_postcode_dict = dict(zip(short_IRIs, exists_in_lrf_table[1:]))
+            lrf_single_postcode_dict = dict(zip(short_IRIs, db_postal_codes[1:]))
             return lrf_single_postcode_dict
 
         else:
