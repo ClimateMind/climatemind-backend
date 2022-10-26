@@ -1,6 +1,6 @@
 # Table of contents
 
-* [ClimateMind REST API](docs/README.md)
+* [ClimateMind REST API](README.md)
 * [Under the hood](docs/under-the-hood.md)
 * [🐍 Contribute as a Python dev](docs/contribute-as-a-python-dev/README.md)
   * [Installation](docs/contribute-as-a-python-dev/installation.md)
@@ -11,9 +11,11 @@
     * [Debugging](docs/contribute-as-a-python-dev/development/debugging.md)
     * [DB Migrations](docs/contribute-as-a-python-dev/development/db\_migrations.md)
     * [Ontology](docs/contribute-as-a-python-dev/development/ontology.md)
-    * [Unit tests](docs/contribute-as-a-python-dev/development/unit-tests.md)
     * [Manual Testing](docs/contribute-as-a-python-dev/development/manual-testing.md)
-  * [Making a PR](docs/contribute-as-a-python-dev/making-a-pr.md)
+    * [Unit tests](docs/contribute-as-a-python-dev/development/unit-tests.md)
+    * [CI - Continuous Integration](docs/contribute-as-a-python-dev/development/ci-continuous-integration.md)
+    * [Making a PR](docs/contribute-as-a-python-dev/development/making-a-pr.md)
+    * [CD - Continuous Delivery](docs/contribute-as-a-python-dev/development/cd-continuous-delivery.md)
   * [How to update docs](docs/contribute-as-a-python-dev/how-to-update-docs/README.md)
     * [REST API Docs](docs/contribute-as-a-python-dev/how-to-update-docs/rest-api-docs.md)
     * [Developer guide](docs/contribute-as-a-python-dev/how-to-update-docs/documentation/README.md)

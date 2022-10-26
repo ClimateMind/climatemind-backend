@@ -1,7 +1,7 @@
 ---
 name: Refactoring
-about: Create a report to help us improve
-title: Refactor ... 
+about: Create a task to help us improve
+title: Refactor ...
 labels: refactoring
 assignees: ''
 
@@ -20,8 +20,8 @@ The refactoring is needed because ...
 
 ### Suggested solution
 
-- [] ...
-- [] documentation updated
+- [ ] ...
+- [ ] documentation updated
 
 ### Tests
 

@@ -2,7 +2,7 @@
 
 ## Backend Debugging
 
-The app can be debugged using pdb. You can do this several ways.
+The app can be debugged using [pdb](https://docs.python.org/3/library/pdb.html). You can do this in several ways.
 
 1. Use Postman to test the API without a front-end instance
 2. Use the front-end instance to interact with the API
@@ -12,7 +12,7 @@ For either test, you need to add a breakpoint() into the code where you want the
 
 For more information about PDB review their [documentation](https://docs.python.org/3/library/pdb.html).
 
-**To test with Postman**
+### **To test with Postman**
 
 Navigate to the climatemind-backend directory and run:
 
@@ -23,7 +23,7 @@ docker attach climatemind-backend
 
 The terminal/command-line can now be used to interact with PDB. Once the code hits a stopping point, you will see (pdb) in this terminal/command-line instance.
 
-**To test with Front-End**
+### **To test with Front-End**
 
 Run the same commands listed above. Then open up a second terminal and run:
 

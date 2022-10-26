@@ -1,6 +1,6 @@
 # ClimateMind REST API
 
-[![CircleCI](https://circleci.com/gh/ClimateMind/climatemind-backend/tree/develop.svg?style=shield)](https://app.circleci.com/pipelines/github/ClimateMind/climatemind-backend?branch=develop) [![codecov](https://codecov.io/gh/ClimateMind/climatemind-backend/branch/develop/graph/badge.svg?token=6OBPBQ6OBP)](https://codecov.io/gh/ClimateMind/climatemind-backend) ![GitHub](https://img.shields.io/github/license/ClimateMind/climatemind-backend) ![GitHub Repo stars](https://img.shields.io/github/stars/ClimateMind/climatemind-backend?style=social) ![GitHub contributors](https://img.shields.io/github/contributors/ClimateMind/climatemind-backend?style=social) [![Twitter Follow](https://img.shields.io/twitter/follow/Climate\_Mind?style=social)](https://twitter.com/intent/user?screen\_name=Climate\_Mind)
+[![CircleCI](https://circleci.com/gh/ClimateMind/climatemind-backend/tree/develop.svg?style=shield)](https://app.circleci.com/pipelines/github/ClimateMind/climatemind-backend?branch=develop) [![codecov](https://codecov.io/gh/ClimateMind/climatemind-backend/branch/develop/graph/badge.svg?token=6OBPBQ6OBP)](https://codecov.io/gh/ClimateMind/climatemind-backend) ![GitHub](https://img.shields.io/github/license/ClimateMind/climatemind-backend) [![Open Source Helpers](https://www.codetriage.com/climatemind/climatemind-backend/badges/users.svg)](https://www.codetriage.com/climatemind/climatemind-backend) ![GitHub Repo stars](https://img.shields.io/github/stars/ClimateMind/climatemind-backend?style=social) ![GitHub contributors](https://img.shields.io/github/contributors/ClimateMind/climatemind-backend?style=social) [![Twitter Follow](https://img.shields.io/twitter/follow/Climate\_Mind?style=social)](https://twitter.com/intent/user?screen\_name=Climate\_Mind)
 
 Go to [https://contribute.climatemind.org/v/rest-api/](https://contribute.climatemind.org/v/rest-api/) to see a full and more detailed version of the docs.
 
@@ -26,4 +26,4 @@ Other ways to contribute to the project are listed [here](https://contribute.cli
 
 ## How to report bugs or suggest features?
 
-See our [report bug](contribute-as-a-python-dev/report-bug.md) and [suggest feature](contribute-as-a-python-dev/suggest-feature.md) pages for more information.
+See our [report bug](docs/contribute-as-a-python-dev/report-bug.md) and [suggest feature](docs/contribute-as-a-python-dev/suggest-feature.md) pages for more information.

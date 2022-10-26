@@ -137,6 +137,5 @@ def init_sentry(app):
             ],
             traces_sample_rate=traces_sample_rate,
             environment=environment,
-            send_default_pii=True,
             attach_stacktrace=True,
         )

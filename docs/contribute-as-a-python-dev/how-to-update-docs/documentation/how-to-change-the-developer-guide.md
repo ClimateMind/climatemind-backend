@@ -18,6 +18,10 @@ You can join our GitBook space using [this link](https://app.gitbook.com/invite/
 
 ### Summary file
 
+{% hint style="danger" %}
+Always keep an eye on `SUMMARY.md` after commit from GitBook is done. If you see some unexpected changes in it means you have to adjust the file manually and move `.md` files to `docs` folder.
+{% endhint %}
+
 The documentation created with GitBook relies on a table of the content file named [SUMMARY.md](https://github.com/ClimateMind/climatemind-backend/blob/develop/SUMMARY.md) which is not visible in GitBook UI but exists in a repository root.
 
 ### Adding new files
@@ -34,10 +38,12 @@ The creation of new subpages or renaming pages could also lead to this problem. 
 Managing the documentation with GitBook could be handy but sometimes lead to some annoying bugs. Due to a lack of [tests](https://github.com/ClimateMind/climatemind-backend/issues/412), you should double-check the following possible issues before merging `docs` branch into `develop`.&#x20;
 
 * `SUMMARY.md` should contain files only from `docs` folder
-* all `.md` files should be located in `docs` folder
+* all `.md` files should be located in `docs` folder (except `README.md` and `SUMMARY.md`). Subdirectories should be also checked.&#x20;
 * there are no invalid paths like `docs/docs/docs...` in the `SUMMARY.md` file
 * files are not duplicated
-* change that links are not pointing to `app.gitbook.com`
+* check that links in `.md` files are not pointing to `app.gitbook.com`
+* check that links in `.md` files are pointing to existing pages.
+* The first H1 title in the file should be equal to the file name. Otherwise, GitBook will create a new empty file.&#x20;
 
 ## Any other way
 
