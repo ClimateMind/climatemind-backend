@@ -90,5 +90,5 @@ Go into the docker dashboard and check you have three running containers under `
 
 Note that you need to wait a bit after the new containers created. By checking logs you can see is it ready or not.&#x20;
 
-* In \`webapp\` container's log you should see \`You can now view climatemind-frontend in the browser.\` after a compiling.&#x20;
-* In \`api\` container's log search for \`Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)\` after \`sleeping entrypoint\`
+* In `webapp` container's log you should see `You can now view climatemind-frontend in the browser.` after a compiling.&#x20;
+* In `api` container's log search for `Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)` after `sleeping entrypoint`
