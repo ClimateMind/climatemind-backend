@@ -75,7 +75,7 @@ jobs:
     machine: true
     steps:
       - azure-acr/build-and-push-image:
-          dockerfile: docker/services/web/prod/Dockerfile.prod
+          dockerfile: docker/services/api/prod/Dockerfile.prod
           login-server-name: acrwebprod001.azurecr.io
           registry-name: acrwebprod001
           repo: backend
@@ -83,7 +83,7 @@ jobs:
     machine: true
     steps:
       - azure-acr/build-and-push-image:
-          dockerfile: docker/services/web/prod/Dockerfile.prod
+          dockerfile: docker/services/api/prod/Dockerfile.prod
           login-server-name: acrwebtest001.azurecr.io
           registry-name: acrwebtest001
           repo: backend
