@@ -1,9 +1,9 @@
 version: "3"
 services:
-  web:
+  api:
     build:
       context: ..
-      dockerfile: ./docker/services/web/Dockerfile
+      dockerfile: services/api/Dockerfile
     ports:
       - "8050:8050"
       - "5000:5000"
@@ -33,6 +33,14 @@ services:
     volumes:
       - ./services/db/db-init.sh:/db-init.sh
       - mssql_data:/var/opt/mssql
+
+  webapp:
+    image: climatemind/webapp:develop-m1
+    depends_on:
+      - db
+      - api
+    profiles:
+      - webapp
 
 volumes:
   mssql_data:

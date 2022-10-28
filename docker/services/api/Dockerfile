@@ -1,5 +1,4 @@
 FROM python:3.8.5-slim-buster
-# FROM --platform=linux/amd64 python:3.8.5-slim-buster
 
 ENV FLASK_ENV=development
 
@@ -27,6 +26,10 @@ RUN apt-get update
 RUN apt install -y git
 
 RUN ACCEPT_EULA=Y apt-get install msodbcsql17
+RUN ACCEPT_EULA=Y apt-get install mssql-tools
+
+RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
+RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
 
 RUN chmod +rwx /etc/ssl/openssl.cnf
 RUN sed -i 's/TLSv1.2/TLSv1/g' /etc/ssl/openssl.cnf
@@ -48,9 +51,9 @@ RUN pip install cython && \
     pip install --no-cache-dir -r requirements/requirements_dev.txt && \
     pip install --no-cache-dir -r requirements/requirements_test.txt
 
-COPY . .
-
 EXPOSE 5000 8050
 
-RUN chmod u+x /app/docker/services/web/entrypoint.sh
-ENTRYPOINT ["/app/docker/services/web/entrypoint.sh"]
+COPY . .
+
+RUN chmod u+x /app/docker/services/api/entrypoint.sh
+ENTRYPOINT ["/app/docker/services/api/entrypoint.sh"]

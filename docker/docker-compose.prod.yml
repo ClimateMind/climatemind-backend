@@ -1,9 +1,10 @@
+# TODO: in use only by cypress, remove after
 version: "3"
 services:
-  web:
+  api:
     build:
       context: ..
-      dockerfile: ./docker/services/web/prod/Dockerfile.prod
+      dockerfile: ./docker/services/api/prod/Dockerfile.prod
     ports:
       - "8050:8050"
       - "5000:5000"

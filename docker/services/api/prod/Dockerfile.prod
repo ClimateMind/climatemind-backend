@@ -1,6 +1,6 @@
 FROM python:3.8.5-slim-buster
 
-ENV FLASK_ENV=development
+ENV FLASK_ENV=production
 
 RUN mkdir -p /usr/share/man/man1
 RUN apt-get update
@@ -44,16 +44,14 @@ RUN sed -i 's/SECLEVEL=2/SECLEVEL=1/g' /etc/ssl/openssl.cnf
 
 WORKDIR /app
 
-ADD requirements/ requirements/
+ADD requirements/requirements.txt requirements/requirements.txt
 RUN pip install cython && \
     pip install --upgrade pip && \
-    pip install --no-cache-dir -r requirements/requirements.txt && \
-    pip install --no-cache-dir -r requirements/requirements_dev.txt && \
-    pip install --no-cache-dir -r requirements/requirements_test.txt
-
-EXPOSE 5000 8050
+    pip install --no-cache-dir -r requirements/requirements.txt
 
 COPY . .
 
-RUN chmod u+x /app/docker/services/web/entrypoint.sh
-ENTRYPOINT ["/app/docker/services/web/entrypoint.sh"]
+EXPOSE 5000 8050
+
+RUN chmod u+x /app/docker/services/api/prod/entrypoint.prod.sh
+ENTRYPOINT ["/app/docker/services/api/prod/entrypoint.prod.sh"]
