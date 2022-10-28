@@ -1,9 +1,9 @@
 version: "3"
 services:
-  web:
+  api:
     build:
       context: ..
-      dockerfile: ./docker/services/web/pytest/Dockerfile
+      dockerfile: ./docker/services/api/pytest/Dockerfile
     command: sleep infinity
     volumes:
       - ..:/app
