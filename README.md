@@ -8,7 +8,7 @@ Go to [https://contribute.climatemind.org/v/rest-api/](https://contribute.climat
 
 ## Who we are?
 
-This REST API repository is a part of a [Climate Mind project](https://climatemind.org/). The project motivation, history and target audience could be found on [this page](https://contribute.climatemind.org/v/about-the-project/). Our current team and people who worked on the previous version are [listed on our website](https://climatemind.org/#team).
+This [REST API repository](https://github.com/ClimateMind/climatemind-backend) is a part of a [Climate Mind project](https://climatemind.org/). The project motivation, history and target audience could be found on [this page](https://contribute.climatemind.org/v/about-the-project/). Our current team and people who worked on the previous version are [listed on our website](https://climatemind.org/#team).
 
 ## What we are doing?
 
