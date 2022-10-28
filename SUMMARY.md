@@ -4,7 +4,6 @@
 * [Under the hood](docs/under-the-hood.md)
 * [🐍 Contribute as a Python dev](docs/contribute-as-a-python-dev/README.md)
   * [Installation](docs/contribute-as-a-python-dev/installation.md)
-  * [Docker](docs/contribute-as-a-python-dev/docker.md)
   * [Choosing an issue to do](docs/contribute-as-a-python-dev/choosing-an-issue-to-do.md)
   * [Development](docs/contribute-as-a-python-dev/development/README.md)
     * [Code style](docs/contribute-as-a-python-dev/development/code-style.md)
