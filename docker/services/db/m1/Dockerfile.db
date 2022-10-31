@@ -4,13 +4,19 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     python3.8 \
     python3-pip \
     python3-dev \
-    && apt-get -y install gcc \
-    && apt-get -y install g++ \
-    && apt-get -y install unixodbc unixodbc-dev \
+    gcc \
+    g++ \
+    unixodbc \
+    unixodbc-dev \
     && apt-get clean
 
-RUN pip3 install --upgrade setuptools
-RUN pip3 install ez_setup pyodbc sqlalchemy
+RUN pip3 install --upgrade setuptools \
+    && pip3 install ez_setup pyodbc sqlalchemy
+
+WORKDIR /app/
+COPY ./docker/services/db/m1/entrypoint.db.sh ./entrypoint.db.sh
+COPY ./docker/services/db/m1/db-init.py ./db-init.py
+COPY ./docker/services/db/m1/db-init.m1.sh ./db-init.m1.sh
 
 USER mssql
 ENTRYPOINT ["/bin/bash", "./entrypoint.db.sh"]
