@@ -34,9 +34,6 @@ services:
       MSSQL_SA_PASSWORD: "Cl1mat3m1nd!"
       ACCEPT_EULA: "Y"
     volumes:
-      - ./services/db/m1/entrypoint.db.sh:/entrypoint.db.sh
-      - ./services/db/m1/db-init.py:/db-init.py
-      - ./services/db/m1/db-init.m1.sh:/db-init.m1.sh
       - mssql_data:/var/opt/mssql
   webapp:
     image: climatemind/webapp:develop-m1

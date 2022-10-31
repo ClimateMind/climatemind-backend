@@ -3,17 +3,24 @@ FROM python:3.8.5-slim-buster
 ENV FLASK_ENV=development
 
 RUN mkdir -p /usr/share/man/man1
-RUN apt-get update \
-    && apt-get -y install gcc default-jre graphviz libgraphviz-dev graphviz-dev pkg-config curl git \
-    && apt-get install --reinstall build-essential -y \
-    && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
-    && curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list
-
-RUN apt-get update && apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get -y install \
+    gcc \
+    default-jre \
+    graphviz \
+    libgraphviz-dev \
+    graphviz-dev \
+    pkg-config \
+    build-essential \
     unixodbc-dev \
     unixodbc \
     libpq-dev \
-    && ACCEPT_EULA=Y apt-get install msodbcsql17 mssql-tools
+    curl \
+    git
+
+RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
+RUN curl https://packages.microsoft.com/config/debian/10/prod.list > /etc/apt/sources.list.d/mssql-release.list
+
+RUN apt-get update && ACCEPT_EULA=Y apt-get install msodbcsql17  mssql-tools
 
 RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bash_profile
 RUN echo 'export PATH="$PATH:/opt/mssql-tools/bin"' >> ~/.bashrc
