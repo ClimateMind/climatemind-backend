@@ -73,7 +73,7 @@ docker exec -it CONTAINER_ID COMMAND
 ```
 
 * Where `COMMAND` is a command like `bash,` [pytest](development/unit-tests.md#pytest) or even [flask shell](https://flask.palletsprojects.com/en/2.0.x/shell/)
-* `CONTAINER_ID` is a container id which could be obtained by `docker ps -aqf 'name=climatemind-backend_web'`. Alternatively, you can use container name which you will find in output of `docker ps` command like `climatemind-backend_web_1`
+* `CONTAINER_ID` is a container id which could be obtained by `docker ps -aqf 'name=climatemind-backend_api'`. Alternatively, you can use container name which you will find in output of `docker ps` command like `climatemind-backend_api_1`
 
 ### Removing containers and data
 
