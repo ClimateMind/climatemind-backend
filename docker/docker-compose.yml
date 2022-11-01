@@ -3,7 +3,7 @@ services:
   api:
     build:
       context: ..
-      dockerfile: services/api/Dockerfile
+      dockerfile: ./docker/services/api/Dockerfile
     ports:
       - "8050:8050"
       - "5000:5000"
