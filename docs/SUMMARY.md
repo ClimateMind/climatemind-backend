@@ -1,7 +1,6 @@
 # Table of contents
 
 * [ClimateMind REST API](README.md)
-* [Code of Conduct](code-of-conduct.md)
 * [Under the hood](under-the-hood.md)
 * [Contribute](contribute/README.md)
   * [Installation](contribute/installation.md)
@@ -25,3 +24,4 @@
   * [Communication](contribute/communication.md)
   * [Report bug](contribute/report-bug.md)
   * [Suggest feature](contribute/suggest-feature.md)
+* [Code of Conduct](code-of-conduct.md)
