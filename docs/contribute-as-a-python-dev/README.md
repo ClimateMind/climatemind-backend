@@ -1,2 +1,2 @@
-# 🐍 Contribute as a Python dev
+# Contribute
 
