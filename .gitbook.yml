@@ -3,3 +3,6 @@ root: ./docs/
 structure:
     readme: README.md
     summary: SUMMARY.md
+
+redirects:
+    contribute-as-a-python-dev: contribute/README.md
