@@ -20,10 +20,10 @@ The full API documentation to use on a front end including methods and request e
 
 ## How to contribute?
 
-If you are interested in participating as a Python developer see our [contributor guide](docs/contribute/).
+If you are interested in participating as a Python developer see our [contributor guide](https://contribute.climatemind.org/v/rest-api/contribute).
 
 Other ways to contribute to the project are listed [here](https://contribute.climatemind.org/v/how-to-contribute).
 
 ## How to report bugs or suggest features?
 
-See our [report bug](docs/contribute/report-bug.md) and [suggest feature](docs/contribute/suggest-feature.md) pages for more information.
+See our [report bug](https://contribute.climatemind.org/v/rest-api/contribute/report-bug) and [suggest feature](https://contribute.climatemind.org/v/rest-api/contribute/suggest-feature) pages for more information.
