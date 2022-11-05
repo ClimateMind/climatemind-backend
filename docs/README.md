@@ -2,9 +2,9 @@
 
 [![CircleCI](https://circleci.com/gh/ClimateMind/climatemind-backend/tree/develop.svg?style=shield)](https://app.circleci.com/pipelines/github/ClimateMind/climatemind-backend?branch=develop) [![codecov](https://codecov.io/gh/ClimateMind/climatemind-backend/branch/develop/graph/badge.svg?token=6OBPBQ6OBP)](https://codecov.io/gh/ClimateMind/climatemind-backend) ![GitHub](https://img.shields.io/github/license/ClimateMind/climatemind-backend) [![Open Source Helpers](https://www.codetriage.com/climatemind/climatemind-backend/badges/users.svg)](https://www.codetriage.com/climatemind/climatemind-backend) ![GitHub Repo stars](https://img.shields.io/github/stars/ClimateMind/climatemind-backend?style=social) ![GitHub contributors](https://img.shields.io/github/contributors/ClimateMind/climatemind-backend?style=social) [![Twitter Follow](https://img.shields.io/twitter/follow/Climate\_Mind?style=social)](https://twitter.com/intent/user?screen\_name=Climate\_Mind)
 
-Go to [https://contribute.climatemind.org/v/rest-api/](https://contribute.climatemind.org/v/rest-api/) to see a full and more detailed version of the docs.
-
-> **New contributors welcome!**
+{% hint style="success" %}
+New contributors welcome!
+{% endhint %}
 
 ## Who we are?
 
@@ -20,10 +20,10 @@ The full API documentation to use on a front end including methods and request e
 
 ## How to contribute?
 
-If you are interested in participating as a Python developer see our [contributor guide](docs/contribute/).
+If you are interested in participating as a Python developer see our [contributor guide](contribute/).
 
 Other ways to contribute to the project are listed [here](https://contribute.climatemind.org/v/how-to-contribute).
 
 ## How to report bugs or suggest features?
 
-See our [report bug](docs/contribute/report-bug.md) and [suggest feature](docs/contribute/suggest-feature.md) pages for more information.
+See our [report bug](contribute/report-bug.md) and [suggest feature](contribute/suggest-feature.md) pages for more information.

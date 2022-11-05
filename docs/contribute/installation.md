@@ -53,7 +53,16 @@ It contains some optional arguments which you can omit if needed:
 
 * `--build` can be used if the docker image will need to be re-built (e.g. adding new dependencies)
 * `-d` run containers in the background is a recommended method for development which allows you to run not only the dev server but other tools like migrations, tests, etc. You could also use a[ Docker Desctop](https://www.docker.com/products/docker-desktop/) to run all containers in the background.
-* `--profile webapp` to pull and run frontend web app which will be accessible by http://localhost:3000/
+* `--profile webapp` to pull and run frontend web app which will be accessible by [http://localhost:3000/](http://localhost:3000/)
+
+### Verify everything worked
+
+Go into the docker dashboard and check you have three running containers under `climatemind-backend` app. You can also do this from the command line with `docker ps`
+
+Note that you need to wait a bit after the new containers created. By checking logs you can see is it ready or not.
+
+* In `webapp` container's log you should see `You can now view climatemind-frontend in the browser.` after a compiling.
+* In `api` container's log search for `Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)` after `sleeping entrypoint`
 
 ### Execute command in docker container
 
@@ -64,7 +73,7 @@ docker exec -it CONTAINER_ID COMMAND
 ```
 
 * Where `COMMAND` is a command like `bash,` [pytest](development/unit-tests.md#pytest) or even [flask shell](https://flask.palletsprojects.com/en/2.0.x/shell/)
-* `CONTAINER_ID` is a container id which could be obtained by `docker ps -aqf 'name=climatemind-backend_web'`. Alternatively, you can use container name like `climatemind-backend_web_1`
+* `CONTAINER_ID` is a container id which could be obtained by `docker ps -aqf 'name=climatemind-backend_api'`. Alternatively, you can use container name which you will find in output of `docker ps` command like `climatemind-backend_api_1`
 
 ### Removing containers and data
 
@@ -81,14 +90,5 @@ To start from scratch and **completely remove the local database** add `-v` argu
 You have to update frontend image from time to time using the following command:
 
 ```bash
-docker-compose -p climatemind-backend --profile webapp -f docker/docker-compose.m1.yml pull
+docker-compose -p climatemind-backend --profile webapp -f docker/docker-compose.yml pull
 ```
-
-### Verify everything worked
-
-Go into the docker dashboard and check you have three running containers under `climatemind-backend` app. You can also do this from the command line with `docker ps`
-
-Note that you need to wait a bit after the new containers created. By checking logs you can see is it ready or not.&#x20;
-
-* In `webapp` container's log you should see `You can now view climatemind-frontend in the browser.` after a compiling.&#x20;
-* In `api` container's log search for `Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)` after `sleeping entrypoint`
