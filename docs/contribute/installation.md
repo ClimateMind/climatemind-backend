@@ -81,6 +81,12 @@ By checking logs you can see if is it ready or not.
 * In `webapp` container's log you should see `You can now view climatemind-frontend in the browser.` after compiling.
 * In `api` container's log search for `Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)` after `sleeping entrypoint`
 
+After this, you are finally able to test the app manually on your local environment. See the following page for more details:
+
+{% content-ref url="development/manual-testing.md" %}
+[manual-testing.md](development/manual-testing.md)
+{% endcontent-ref %}
+
 ## Troubleshooting
 
 ### climatemind-backend\_api&#x20;
