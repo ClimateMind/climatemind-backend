@@ -1,2 +1,2 @@
-# How to update docs
+# 📚 How to update docs
 
