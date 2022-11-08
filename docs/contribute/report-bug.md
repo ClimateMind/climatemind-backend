@@ -1,2 +1,2 @@
-# 🐛 Report bug
+# ⁉ Report bug
 
