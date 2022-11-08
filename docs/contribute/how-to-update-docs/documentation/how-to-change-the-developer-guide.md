@@ -10,7 +10,7 @@ See [GitBook documentation](https://docs.gitbook.com/getting-started/overview) f
 
 ### Invite
 
-Using the link below you could join our GitBook organization as an editor. Editors are able to read and comment, just like a commenter, but they're also able to edit content in a couple of ways. Firstly, for spaces that are **open** for [live edits](../../../contribute-as-a-python-dev/how-to-update-docs/documentation/broken-reference/), editors can edit the content directly. Secondly, for spaces that have live edits **locked**, editors can create and submit [change requests](../../../contribute-as-a-python-dev/how-to-update-docs/documentation/broken-reference/). Editors cannot merge change requests.
+Using the link below you could join our GitBook organization as an editor. Editors are able to read and comment, just like a commenter, but they're also able to edit content in a couple of ways. Firstly, for spaces that are **open** for live edits, editors can edit the content directly. Secondly, for spaces that have live edits **locked**, editors can create and submit change requests. Editors cannot merge change requests.
 
 {% hint style="success" %}
 You can join our GitBook space using [this link](https://app.gitbook.com/invite/5XFn5ZR3pCC6X1TsNYnf/fRBlC4symWdoI5X6tBpz).
