@@ -10,4 +10,4 @@ If you have an idea or question create a new [discussion](https://github.com/Cli
 
 Feel free to email [hello@climatemind.org](mailto:hello@climatemind.org) if any doubts.
 
-There is a weekly “standup” usually occurring on Zoom on Sunday evenings (20:00 GMT+1) that is open for everyone that wants to join. The standup is recorded for those that cannot attend. It is recommended to join or listen to the recording in order to sync up with the other members.
+There is a [weekly “standup”](https://stanford.zoom.us/j/94008746956?pwd=Rno1RzNQMVVMYVh6dnk5Vno1TTY4QT09) usually occurring on Zoom on Sunday evenings (20:00 GMT+1) that is open for everyone that wants to join. The standup is recorded for those that cannot attend. It is recommended to join or listen to the recording in order to sync up with the other members.
