@@ -6,7 +6,7 @@
   * [➡ Installation](contribute/installation.md)
   * [🐋 Work with Docker](contribute/work-with-docker.md)
   * [🔍 Choosing an issue to do](contribute/choosing-an-issue-to-do.md)
-  * [👨💻 Development](contribute/development/README.md)
+  * [👨💻 👨💻 Development](contribute/development/README.md)
     * [Code style](contribute/development/code-style.md)
     * [Debugging](contribute/development/debugging.md)
     * [Unit tests](contribute/development/unit-tests.md)
