@@ -1,0 +1,101 @@
+This container is running as user root.
+Your master database file is owned by root.
+To learn more visit https://go.microsoft.com/fwlink/?linkid=2099216.
+sleeping DB Init script
+running DB init script to start a database in the localhosted mssql server
+Sqlcmd: Error: Microsoft ODBC Driver 17 for SQL Server : Login timeout expired.
+Sqlcmd: Error: Microsoft ODBC Driver 17 for SQL Server : TCP Provider: Error code 0x2749.
+Sqlcmd: Error: Microsoft ODBC Driver 17 for SQL Server : A network-related or instance-specific error has occurred while establishing a connection to SQL Server. Server is not found or not accessible. Check if instance name is correct and if SQL Server is configured to allow remote connections. For more information see SQL Server Books Online..
+2022-11-08 07:32:48.79 Server      Microsoft SQL Server 2017 (RTM-CU31) (KB5016884) - 14.0.3456.2 (X64) 
+	Sep  2 2022 11:01:50 
+	Copyright (C) 2017 Microsoft Corporation
+	Developer Edition (64-bit) on Linux (Ubuntu 18.04.6 LTS)
+2022-11-08 07:32:48.80 Server      UTC adjustment: 0:00
+2022-11-08 07:32:48.80 Server      (c) Microsoft Corporation.
+2022-11-08 07:32:48.80 Server      All rights reserved.
+2022-11-08 07:32:48.80 Server      Server process ID is 404.
+2022-11-08 07:32:48.80 Server      Logging SQL Server messages in file '/var/opt/mssql/log/errorlog'.
+2022-11-08 07:32:48.80 Server      Registry startup parameters: 
+	 -d /var/opt/mssql/data/master.mdf
+	 -l /var/opt/mssql/data/mastlog.ldf
+	 -e /var/opt/mssql/log/errorlog
+2022-11-08 07:32:48.82 Server      SQL Server detected 1 sockets with 2 cores per socket and 4 logical processors per socket, 4 total logical processors; using 4 logical processors based on SQL Server licensing. This is an informational message; no user action is required.
+2022-11-08 07:32:48.83 Server      SQL Server is starting at normal priority base (=7). This is an informational message only. No user action is required.
+2022-11-08 07:32:48.83 Server      Detected 6273 MB of RAM. This is an informational message; no user action is required.
+2022-11-08 07:32:48.84 Server      Using conventional memory in the memory manager.
+2022-11-08 07:32:48.84 Server      Page exclusion bitmap is enabled.
+2022-11-08 07:32:48.97 Server      Buffer pool extension is already disabled. No action is necessary. 
+2022-11-08 07:32:49.62 Server      InitializeExternalUserGroupSid failed. Implied authentication will be disabled.
+2022-11-08 07:32:49.62 Server      Implied authentication manager initialization failed. Implied authentication will be disabled.
+2022-11-08 07:32:49.63 Server      Successfully initialized the TLS configuration. Allowed TLS protocol versions are ['1.0 1.1 1.2']. Allowed TLS ciphers are ['ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-AES128-SHA256:ECDHE-ECDSA-AES256-SHA384:ECDHE-ECDSA-AES256-SHA:ECDHE-ECDSA-AES128-SHA:AES256-GCM-SHA384:AES128-GCM-SHA256:AES256-SHA256:AES128-SHA256:AES256-SHA:AES128-SHA:!DHE-RSA-AES256-GCM-SHA384:!DHE-RSA-AES128-GCM-SHA256:!DHE-RSA-AES256-SHA:!DHE-RSA-AES128-SHA'].
+2022-11-08 07:32:49.66 Server      Query Store settings initialized with enabled = 1, 
+2022-11-08 07:32:49.67 Server      The maximum number of dedicated administrator connections for this instance is '1'
+2022-11-08 07:32:49.68 Server      Node configuration: node 0: CPU mask: 0x000000000000000f:0 Active CPU mask: 0x000000000000000f:0. This message provides a description of the NUMA configuration for this computer. This is an informational message only. No user action is required.
+2022-11-08 07:32:49.72 Server      Using dynamic lock allocation.  Initial allocation of 2500 Lock blocks and 5000 Lock Owner blocks per node.  This is an informational message only.  No user action is required.
+2022-11-08 07:32:49.73 Server      In-Memory OLTP initialized on lowend machine.
+2022-11-08 07:32:49.92 Server      Database Instant File Initialization: enabled. For security and performance considerations see the topic 'Database Instant File Initialization' in SQL Server Books Online. This is an informational message only. No user action is required.
+ForceFlush is enabled for this instance. 
+2022-11-08 07:32:49.96 spid6s      Starting up database 'master'.
+2022-11-08 07:32:49.96 Server      Software Usage Metrics is disabled.
+ForceFlush feature is enabled for log durability.
+2022-11-08 07:32:51.12 spid6s      3 transactions rolled forward in database 'master' (1:0). This is an informational message only. No user action is required.
+2022-11-08 07:32:51.38 spid6s      0 transactions rolled back in database 'master' (1:0). This is an informational message only. No user action is required.
+2022-11-08 07:32:52.17 spid6s      Resource governor reconfiguration succeeded.
+2022-11-08 07:32:52.18 spid6s      SQL Server Audit is starting the audits. This is an informational message. No user action is required.
+2022-11-08 07:32:52.20 spid6s      SQL Server Audit has started the audits. This is an informational message. No user action is required.
+2022-11-08 07:32:52.69 spid6s      SQL Trace ID 1 was started by login "sa".
+2022-11-08 07:32:53.03 spid6s      Server name is '4f3dedd5890c'. This is an informational message only. No user action is required.
+2022-11-08 07:32:53.04 spid21s     Always On: The availability replica manager is starting. This is an informational message only. No user action is required.
+2022-11-08 07:32:53.04 spid6s      Starting up database 'msdb'.
+2022-11-08 07:32:53.05 spid7s      Starting up database 'mssqlsystemresource'.
+2022-11-08 07:32:53.05 spid21s     Always On: The availability replica manager is waiting for the instance of SQL Server to allow client connections. This is an informational message only. No user action is required.
+2022-11-08 07:32:53.05 spid19s     A self-generated certificate was successfully loaded for encryption.
+2022-11-08 07:32:53.06 spid7s      The resource database build version is 14.00.3456. This is an informational message only. No user action is required.
+2022-11-08 07:32:53.07 spid19s     Server is listening on [ 'any' <ipv6> 1433].
+2022-11-08 07:32:53.08 spid19s     Server is listening on [ 'any' <ipv4> 1433].
+2022-11-08 07:32:53.08 Server      Server is listening on [ ::1 <ipv6> 1434].
+2022-11-08 07:32:53.10 Server      Server is listening on [ 127.0.0.1 <ipv4> 1434].
+2022-11-08 07:32:53.10 Server      Dedicated admin connection support was established for listening locally on port 1434.
+2022-11-08 07:32:53.11 spid19s     SQL Server is now ready for client connections. This is an informational message; no user action is required.
+2022-11-08 07:32:53.29 spid7s      Starting up database 'model'.
+2022-11-08 07:32:53.72 spid6s      1 transactions rolled forward in database 'msdb' (4:0). This is an informational message only. No user action is required.
+2022-11-08 07:32:54.04 spid6s      0 transactions rolled back in database 'msdb' (4:0). This is an informational message only. No user action is required.
+2022-11-08 07:32:54.48 spid7s      Polybase feature disabled.
+2022-11-08 07:32:54.48 spid7s      Clearing tempdb database.
+2022-11-08 07:32:55.27 Logon       Error: 18456, Severity: 14, State: 38.
+2022-11-08 07:32:55.27 Logon       Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'sqldb-web-prod-001'. [CLIENT: 172.18.0.3]
+2022-11-08 07:32:55.71 Logon       Error: 18456, Severity: 14, State: 38.
+2022-11-08 07:32:55.71 Logon       Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'sqldb-web-prod-001'. [CLIENT: 172.18.0.3]
+2022-11-08 07:33:03.19 spid7s      Starting up database 'tempdb'.
+2022-11-08 07:33:04.65 spid7s      The tempdb database has 1 data file(s).
+2022-11-08 07:33:05.09 spid21s     The Service Broker endpoint is in disabled or stopped state.
+2022-11-08 07:33:05.09 spid21s     The Database Mirroring endpoint is in disabled or stopped state.
+DBSTARTUP (msdb, 4): PhysicalCompletionTime took 139 ms
+DBSTARTUP (msdb, 4): RecoveryCompletionTime took 1286 ms
+DBSTARTUP (msdb, 4): StartupInDatabaseTime took 9881 ms
+2022-11-08 07:33:05.53 spid21s     Service Broker manager has started.
+2022-11-08 07:33:05.53 spid6s      Recovery is complete. This is an informational message only. No user action is required.
+2022-11-08 07:33:23.71 Logon       Error: 18456, Severity: 14, State: 38.
+2022-11-08 07:33:23.71 Logon       Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'sqldb-web-prod-001'. [CLIENT: 172.18.0.3]
+2022-11-08 07:33:23.73 Logon       Error: 18456, Severity: 14, State: 38.
+2022-11-08 07:33:23.73 Logon       Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'sqldb-web-prod-001'. [CLIENT: 172.18.0.3]
+2022-11-08 07:33:34.94 Logon       Error: 18456, Severity: 14, State: 38.
+2022-11-08 07:33:34.94 Logon       Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'sqldb-web-prod-001'. [CLIENT: 172.18.0.3]
+2022-11-08 07:33:34.95 Logon       Error: 18456, Severity: 14, State: 38.
+2022-11-08 07:33:34.95 Logon       Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'sqldb-web-prod-001'. [CLIENT: 172.18.0.3]
+2022-11-08 07:37:57.66 spid52      Using 'dbghelp.dll' version '4.0.5'
+2022-11-08 07:40:03.12 spid52      Attempting to load library 'xplog70.dll' into memory. This is an informational message only. No user action is required.
+2022-11-08 07:40:03.28 spid52      Using 'xplog70.dll' version '2017.140.3456' to execute extended stored procedure 'xp_msver'. This is an informational message only; no user action is required.
+2022-11-08 07:40:18.44 Logon       Error: 18456, Severity: 14, State: 38.
+2022-11-08 07:40:18.44 Logon       Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'sqldb-web-prod-001'. [CLIENT: 172.18.0.3]
+2022-11-08 07:40:18.46 Logon       Error: 18456, Severity: 14, State: 38.
+2022-11-08 07:40:18.46 Logon       Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'sqldb-web-prod-001'. [CLIENT: 172.18.0.3]
+2022-11-08 07:40:33.93 Logon       Error: 18456, Severity: 14, State: 38.
+2022-11-08 07:40:33.93 Logon       Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'sqldb-web-prod-001'. [CLIENT: 172.18.0.3]
+2022-11-08 07:40:33.94 Logon       Error: 18456, Severity: 14, State: 38.
+2022-11-08 07:40:33.94 Logon       Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'sqldb-web-prod-001'. [CLIENT: 172.18.0.3]
+2022-11-08 09:34:57.94 Logon       Error: 18456, Severity: 14, State: 38.
+2022-11-08 09:34:57.94 Logon       Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'sqldb-web-prod-001'. [CLIENT: 172.18.0.3]
+2022-11-08 09:34:58.00 Logon       Error: 18456, Severity: 14, State: 38.
+2022-11-08 09:34:58.00 Logon       Login failed for user 'sa'. Reason: Failed to open the explicitly specified database 'sqldb-web-prod-001'. [CLIENT: 172.18.0.3]
+
