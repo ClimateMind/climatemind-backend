@@ -60,6 +60,7 @@ docs/_build/
 *.pyc
  /.idea/
  .idea
+ .idea/
 
 #updated ontology files
 Climate_Mind_Digraph_Test_Ont.json

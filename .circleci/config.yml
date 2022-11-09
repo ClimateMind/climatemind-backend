@@ -38,13 +38,13 @@ jobs:
       - run:
           name: "Run Pytest"
           #run pytest with flag checking no breakpoints in code
-          command: docker exec -it docker-web-1 pytest --cipdb --color=yes --junitxml=junit.xml --cov-report xml --cov --cov-config .coveragerc
+          command: docker exec -it docker-api-1 pytest --cipdb --color=yes --junitxml=junit.xml --cov-report xml --cov --cov-config .coveragerc
       - run:
           name: Copy Test Results
           command: |
             mkdir -p /tmp/test-results/unit-tests
-            docker cp docker-web-1:/app/coverage.xml /tmp/test-results/unit-tests/coverage.xml
-            docker cp docker-web-1:/app/junit.xml /tmp/test-results/unit-tests/results.xml
+            docker cp docker-api-1:/app/coverage.xml /tmp/test-results/unit-tests/coverage.xml
+            docker cp docker-api-1:/app/junit.xml /tmp/test-results/unit-tests/results.xml
           when: always
       - codecov/upload:
           file: /tmp/test-results/unit-tests/coverage.xml
@@ -75,7 +75,7 @@ jobs:
     machine: true
     steps:
       - azure-acr/build-and-push-image:
-          dockerfile: docker/services/web/prod/Dockerfile.prod
+          dockerfile: docker/services/api/prod/Dockerfile.prod
           login-server-name: acrwebprod001.azurecr.io
           registry-name: acrwebprod001
           repo: backend
@@ -83,7 +83,7 @@ jobs:
     machine: true
     steps:
       - azure-acr/build-and-push-image:
-          dockerfile: docker/services/web/prod/Dockerfile.prod
+          dockerfile: docker/services/api/prod/Dockerfile.prod
           login-server-name: acrwebtest001.azurecr.io
           registry-name: acrwebtest001
           repo: backend

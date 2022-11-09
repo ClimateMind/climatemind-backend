@@ -1,10 +1,10 @@
 version: "3"
 services:
-  web:
+  api:
     platform: linux/amd64
     build:
       context: ..
-      dockerfile: ./docker/services/web/m1/Dockerfile.m1
+      dockerfile: ./docker/services/api/m1/Dockerfile.m1
     ports:
       - "8050:8050"
       - "5000:5000"
@@ -34,10 +34,16 @@ services:
       MSSQL_SA_PASSWORD: "Cl1mat3m1nd!"
       ACCEPT_EULA: "Y"
     volumes:
-      - ./services/db/m1/entrypoint.db.sh:/entrypoint.db.sh
-      - ./services/db/m1/db-init.py:/db-init.py
-      - ./services/db/m1/db-init.m1.sh:/db-init.m1.sh
       - mssql_data:/var/opt/mssql
+  webapp:
+    image: climatemind/webapp:develop-m1
+    depends_on:
+      - db
+      - api
+    ports:
+      - "3000:3000"
+    profiles:
+      - webapp
 
 volumes:
   mssql_data:

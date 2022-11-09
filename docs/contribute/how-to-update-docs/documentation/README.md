@@ -2,7 +2,7 @@
 
 ## Overview
 
-The developer guide is the current documentation for developers. It should contain detailed instructions for backend developers who are working on REST API.&#x20;
+The developer guide is the current documentation for developers. It should contain detailed instructions for backend developers who are working on REST API.
 
 ## Format
 
@@ -18,5 +18,4 @@ Usage of the `develop` branch is not possible at the moment due to GitBook limit
 
 ## GitBook
 
-We are using [GitBook](https://gitbook.com/) to manage `.md` files but it's acceptable to change `.md` files directly using your IDE or GitHub.&#x20;
-
+We are using [GitBook](https://gitbook.com/) to manage `.md` files but it's acceptable to change `.md` files directly using your IDE or GitHub.
