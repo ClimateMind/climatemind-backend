@@ -22,7 +22,7 @@
       * [How to change the Developer Guide](contribute/how-to-update-docs/documentation/how-to-change-the-developer-guide.md)
       * [How to merge docs changes](contribute/how-to-update-docs/documentation/how-to-merge-docs-changes.md)
   * [🎁 Benefits](contribute/benefits.md)
-  * [🗣 Communication](contribute/communication.md)
+  * [🗣 Get in touch](contribute/communication.md)
   * [⁉ Report bug](contribute/report-bug.md)
   * [💡 Suggest feature](contribute/suggest-feature.md)
 * [Code of Conduct](code-of-conduct.md)
