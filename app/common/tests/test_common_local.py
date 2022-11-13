@@ -18,6 +18,12 @@ def test_check_if_local_on_local(mocked_env_get):
         assert check_if_local(), "Remote address is local"
 
     with mock.patch("app.common.local.request") as m_request:
+        m_request.host = "localhost:5000"
+        assert check_if_local(), "Hostname is localhost"
+
+        m_request.host = "127.0.0.1:5000"
+        assert check_if_local(), "Hostname is loopback ip"
+
         m_request.host = "not localhost"
         assert not check_if_local(), "Host is not localhost"
 
