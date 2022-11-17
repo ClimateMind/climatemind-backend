@@ -141,15 +141,6 @@ Cypress.Commands.add('feedEndpoint', (session_Id, quiz_Id) => {
         .then(cy.wrap);
 });
 
-Cypress.Commands.add('mythsEndpoint', () => {
-    return cy
-        .request({
-            method: 'GET',
-            url: 'http://localhost:5000/myths'
-        })
-        .then(cy.wrap);
-});
-
 Cypress.Commands.add('conversationEndpoint', (requestBody, accessToken, session_Id) => {
     return cy
         .request(
