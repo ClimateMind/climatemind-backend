@@ -107,15 +107,6 @@ Cypress.Commands.add('loginEndpoint', (user) => {
         .then(cy.wrap);
 });
 
-Cypress.Commands.add('solutionsEndpoint', () => {
-    return cy
-        .request({
-            method: 'GET',
-            url: 'http://localhost:5000/solutions',
-        })
-        .then(cy.wrap);
-});
-
 Cypress.Commands.add('getActionsEndpoint', (effectName) => {
     return cy
         .request({
