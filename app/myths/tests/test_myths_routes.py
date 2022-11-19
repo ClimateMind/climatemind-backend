@@ -1,6 +1,8 @@
 from flask import url_for
 import pytest
 
+from app.common.tests.test_utils import is_none_or_type
+
 
 @pytest.mark.integration
 def test_myths(client):
@@ -21,8 +23,10 @@ def test_myths(client):
 def test_myth_properties(client):
     response = client.get(url_for("myths.get_general_myths"))
     json = response.get_json()
+    myths = json["myths"]
 
-    for myth in json["myths"]:
+    assert len(myths) > 0
+    for myth in myths:
         assert "faultyLogicDescription" in myth
         assert "iri" in myth
         assert "mythClaim" in myth
@@ -37,7 +41,3 @@ def test_myth_properties(client):
         assert is_none_or_type(myth["mythSources"], list)
         assert is_none_or_type(myth["mythTitle"], str)
         assert is_none_or_type(myth["mythVideos"], list)
-
-
-def is_none_or_type(value, expected_type):
-    return value is None or type(value) == expected_type
