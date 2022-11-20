@@ -97,9 +97,13 @@ workflows:
       - pytest:
           requires:
             - lint
+          context:
+            - flaskenv
       - cypress:
           requires:
             - lint
+          context:
+            - flaskenv
       - build_and_deploy_prod:
           context:
             - azure
