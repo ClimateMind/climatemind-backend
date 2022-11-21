@@ -6,6 +6,7 @@ from app.common.static import get_dict_from_json_file
 
 JSON_DIRECTORY = "app/common/tests/data"
 
+
 def is_uuid(string):
     try:
         uuid.UUID(string)
