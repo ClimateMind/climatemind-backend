@@ -4,10 +4,7 @@ import pytest
 from flask import url_for
 from app.common.static import get_dict_from_json_file
 
-JSON_DIRECTORY = (
-    "cypress/fixtures"  # TODO: move to suitable python directory and make robust
-)
-
+JSON_DIRECTORY = "app/common/tests/data"
 
 def is_uuid(string):
     try:
