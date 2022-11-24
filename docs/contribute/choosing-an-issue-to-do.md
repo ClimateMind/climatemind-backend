@@ -3,7 +3,9 @@
 ## How to find an issue to work on
 
 {% hint style="success" %}
-You are free to choose any unassigned issue to work on.
+You are free to choose any unassigned issue to work on.&#x20;
+
+If you are interested in an assigned issue which doesn't have any updates for a long time - feel free to follow up in the comments.
 {% endhint %}
 
 ### Issues workflow
@@ -48,12 +50,9 @@ Feel free to ask any question directly in the issue comments.
 
 ## How to start action
 
-* assign yourself an issue or comment on the issue that you would like to take it :adult:
-* change the status to `in progress` :construction\_site:
-* [do stuff](development/) in your feature branch :tools:
-* push changes to your branch and [make a Pull Request](development/making-a-pr.md)
-* change the status to `in review` :eyes:
+* comment on the issue that you would like to take, after this we would be able to assign this issue to you
+* [do stuff](development/) in your local git repository :tools:
+* push changes to your fork and [make a Pull Request](development/making-a-pr.md)
 * make [Circle CI pass](development/ci-continuous-integration.md) successfully :white\_check\_mark:
-* get approved :ballot\_box\_with\_check:
-* [merge your pull request ](development/making-a-pr.md#merging-your-pr)into `develop` branch :on:
+* get approved :ballot\_box\_with\_check:&#x20;
 * [feel good](https://i.giphy.com/media/BPJmthQ3YRwD6QqcVD/giphy.webp) :tada::earth\_americas:
