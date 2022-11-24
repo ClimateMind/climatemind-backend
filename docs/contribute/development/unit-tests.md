@@ -10,7 +10,7 @@ Unit testing in a nutshell is just providing some inputs to the function (unit) 
 
 We are using [PyTest](https://docs.pytest.org/en/6.2.x/getting-started.html) a framework that makes building simple and scalable tests easy. Tests are expressive and readable - no boilerplate code is required.
 
-To run `pytest` unit tests you need to [execute](../../contribute-as-a-python-dev/docker.md#execute-command-in-docker-container) the `pytest` command in the [docker container](../../contribute-as-a-python-dev/docker.md#running-backend). See below the list of useful arguments you could use with it:
+To run `pytest` unit tests you need to [execute](work-with-docker.md#execute-command-in-docker-container) the `pytest` command in the docker container. See below the list of useful arguments you could use with it:
 
 * `-x` exit instantly on the first error or failed test
 * `--pdb` start the interactive Python debugger on errors or `KeyboardInterrupt`

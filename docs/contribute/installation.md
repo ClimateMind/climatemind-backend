@@ -6,51 +6,42 @@
 Please be aware of the special OS-specific cases below
 {% endhint %}
 
-<details>
+{% tabs %}
+{% tab title="Mac with Apple silicon " %}
+M1 chip requires a special `yml` file. Use `docker/docker-compose.m1.yml` file in the commands below.
+{% endtab %}
 
-<summary>Windows preparation</summary>
-
+{% tab title="Windows" %}
 Windows users may experience problems with building or starting the containers if your system automatically converts Unix line endings ('\n') to DOS line endings ('\r\n'). You can prevent this from happening by running the command below.
 
 ```bash
 git config --global core.autocrlf false
 ```
-
-</details>
-
-<details>
-
-<summary>MacOS with M1 chip</summary>
-
-M1 chip requires a special \`yml\` file. Use \`docker/docker-compose.m1.yml\` file in the commands below.
-
-</details>
+{% endtab %}
+{% endtabs %}
 
 ## Installing Docker
 
 Install [Docker](https://www.docker.com/products/docker-desktop) through their website.
 
 {% hint style="info" %}
-Before doing what's below, be sure the Docker application is running.
+Before doing what's below, be sure the Docker daemon is [running](https://docs.docker.com/config/daemon/#check-whether-docker-is-running).
 {% endhint %}
 
 ## Project download
 
-Create a folder to hold the project&#x20;
+To allow everyone to participate in the project development we accept changes from the external [forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks). To start work on a project do the following steps:&#x20;
 
-```bash
-mkdir climatemind && cd climatemind
-```
+1. create a [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) of the [climatemind-backend](https://github.com/ClimateMind/climatemind-backend) repository
+2. [clone your fork ](https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository)to your local machine
 
-And `git clone` [Back End](https://github.com/ClimateMind/climatemind-backend) repository into it
-
-```bash
-git clone https://github.com/ClimateMind/climatemind-backend.git
-```
+{% hint style="success" %}
+[GitHub Desktop](https://desktop.github.com/) allows you to do both [fork & clone](https://docs.github.com/en/desktop/contributing-and-collaborating-using-github-desktop/adding-and-cloning-repositories/cloning-and-forking-repositories-from-github-desktop#forking-a-repository) at the same time.&#x20;
+{% endhint %}
 
 ## Up containers
 
-To build and up containers run the following command:
+To build and up containers open the terminal and go to the folder containing your clonned repository. Then run the following command:
 
 ```
 docker-compose -p climatemind-backend --profile webapp -f docker/docker-compose.yml up -d --build
@@ -93,7 +84,7 @@ After this, you are finally able to test the app manually on your local environm
 
 #### /usr/bin/env: ‘bash\r’: No such file or directory
 
-Happens when you are on **Windows**. `climatemind-backend_db`  and `climatemind-backend_webapp` are up and running, but  `climatemind-backend_api` exits right away after the start. if by [checking docker logs](work-with-docker.md#check-the-docker-container-logs) for the container you see the following error.
+Happens when you are on **Windows**. `climatemind-backend_db`  and `climatemind-backend_webapp` are up and running, but  `climatemind-backend_api` exits right away after the start. if by [checking docker logs](development/work-with-docker.md#check-the-docker-container-logs) for the container you see the following error.
 
 ```
 /usr/bin/env: ‘bash\r’: No such file or directory

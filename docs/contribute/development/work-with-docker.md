@@ -1,10 +1,10 @@
-# 🐋 Work with Docker
+# Work with Docker
 
 ## Get the docker container id and name
 
 Docker container ID or NAME could be obtained by `docker ps -aqf 'name=climatemind-backend_api'`. Alternatively, you can use the container name which you will find in the output of the `docker ps` command
 
-<figure><img src="../.gitbook/assets/Screenshot 2022-11-08 at 11.20.30.png" alt=""><figcaption><p>The first column of docker ps command shows container id. The last one shows container name</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2022-11-08 at 11.20.30.png" alt=""><figcaption><p>The first column of docker ps command shows container id. The last one shows container name</p></figcaption></figure>
 
 ## Check the docker container logs
 
@@ -24,7 +24,7 @@ To execute a command inside the container running in the **background** use the 
 docker exec -it CONTAINER_ID_OR_NAME COMMAND
 ```
 
-* Where `COMMAND` is a command like `bash,` [pytest](development/unit-tests.md#pytest) or even [flask shell](https://flask.palletsprojects.com/en/2.0.x/shell/)
+* Where `COMMAND` is a command like `bash,` [pytest](unit-tests.md#pytest) or even [flask shell](https://flask.palletsprojects.com/en/2.0.x/shell/)
 * `CONTAINER_ID_OR_NAME` is a container name or id which could be obtained by running the [command above](work-with-docker.md#undefined).
 
 ## Free memory
