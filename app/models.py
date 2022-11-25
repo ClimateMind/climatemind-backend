@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from flask import url_for
+from flask import current_app, url_for
 from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import expression
@@ -90,13 +90,7 @@ class PasswordResetLink(db.Model):
 
     @property
     def reset_url(self):
-        old_broken_url = url_for(
-            "account.check_if_password_reset_link_is_expired_or_used",
-            password_reset_link_uuid=self.uuid,
-            _external=True,
-        ).lower()
-
-        frontend_base_url = "https://app.climatemind.org"
+        frontend_base_url = current_app.config.get("BASE_URL")
         route_component = "/password-reset/"
         hard_coded_url = frontend_base_url + route_component + str(self.uuid).lower()
         return hard_coded_url

@@ -7,11 +7,12 @@ from flask import url_for
 from flask.testing import FlaskClient
 from mock import mock
 
+from app.common.tests.test_utils import get_sent_email_details, setup_sendgrid_mock
 from app.conversations.enums import (
     ConversationUserARating,
     ConversationState,
 )
-from app.factories import ConversationsFactory, faker
+from app.factories import ConversationsFactory, faker, UserBJourneyFactory
 from app.models import Conversations, Users
 
 RANDOM_CONVERSATION_STATE = random.choice(list([s.value for s in ConversationState]))
@@ -198,3 +199,52 @@ def test_conversation_request_unauthorized(client_with_user_and_header, accept_j
         )
 
         assert response.status_code == 401, "Unauthorized access forbidden"
+
+
+@pytest.mark.integration
+@mock.patch("app.sendgrid.utils.set_up_sendgrid")
+def test_consent_sends_user_b_shared_email(
+    m_set_up_sendgrid, client_with_user_and_header
+):
+    sendgrid_mock = setup_sendgrid_mock(m_set_up_sendgrid)
+
+    user_b_journey = UserBJourneyFactory()
+    conversation_uuid = user_b_journey.conversation.conversation_uuid
+    url = url_for("conversations.post_consent", conversation_uuid=conversation_uuid)
+    client, _user, session_header, _ = client_with_user_and_header
+
+    client.post(url, headers=session_header, json={"consent": True})
+
+    sendgrid_mock.send.assert_called_once()
+
+    subject, substitutions = get_sent_email_details(sendgrid_mock)
+
+    assert subject.startswith("Ready for a climate conversation")
+    assert substitutions["-base_url-"] == "https://app.climatemind.org"
+
+
+@pytest.mark.integration
+@mock.patch("app.sendgrid.utils.current_app")
+@mock.patch("app.sendgrid.utils.set_up_sendgrid")
+def test_consent_sends_user_b_shared_email_with_configured_base_url(
+    m_set_up_sendgrid, m_current_app, client_with_user_and_header
+):
+    m_current_app.config.get.side_effect = (
+        lambda key: "https://fake-url.local" if key == "BASE_URL" else None
+    )
+
+    sendgrid_mock = setup_sendgrid_mock(m_set_up_sendgrid)
+
+    user_b_journey = UserBJourneyFactory()
+    conversation_uuid = user_b_journey.conversation.conversation_uuid
+    url = url_for("conversations.post_consent", conversation_uuid=conversation_uuid)
+    client, _user, session_header, _ = client_with_user_and_header
+
+    client.post(url, headers=session_header, json={"consent": True})
+
+    sendgrid_mock.send.assert_called_once()
+
+    subject, substitutions = get_sent_email_details(sendgrid_mock)
+
+    assert subject.startswith("Ready for a climate conversation")
+    assert substitutions["-base_url-"] == "https://fake-url.local"

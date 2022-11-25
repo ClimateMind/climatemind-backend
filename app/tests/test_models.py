@@ -1,3 +1,5 @@
+import mock
+
 from datetime import datetime, timedelta
 
 from freezegun import freeze_time
@@ -40,3 +42,18 @@ def test_password_reset_expired_property():
     )
     password_reset = PasswordResetLinkFactory(created=less_that_expire)
     assert not password_reset.expired, "PasswordResetLink should not be expired"
+
+
+def test_password_reset_url_with_default_url():
+    password_reset = PasswordResetLinkFactory()
+    assert password_reset.reset_url.startswith("https://app.climatemind.org")
+
+
+@mock.patch("app.models.current_app")
+def test_password_reset_url_with_configured_base_url(m_current_app):
+    m_current_app.config.get.side_effect = (
+        lambda key: "https://fake-url.local" if key == "BASE_URL" else None
+    )
+
+    password_reset = PasswordResetLinkFactory()
+    assert password_reset.reset_url.startswith("https://fake-url.local")
