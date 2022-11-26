@@ -1,7 +1,7 @@
 from flask import url_for
 import pytest
 
-from app.common.tests.test_utils import is_none_or_type
+from app.common.tests.utils import is_none_or_type
 
 
 @pytest.mark.integration

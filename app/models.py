@@ -90,10 +90,10 @@ class PasswordResetLink(db.Model):
 
     @property
     def reset_url(self):
-        frontend_base_url = current_app.config.get("BASE_URL")
+        base_frontend_url = current_app.config.get("BASE_FRONTEND_URL")
         route_component = "/password-reset/"
-        hard_coded_url = frontend_base_url + route_component + str(self.uuid).lower()
-        return hard_coded_url
+        reset_url = base_frontend_url + route_component + str(self.uuid).lower()
+        return reset_url
 
     @property
     def expired(self):

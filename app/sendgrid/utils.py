@@ -25,7 +25,7 @@ def send_welcome_email(user_email, user_first_name):
     to_email = To(
         email=user_email,
         substitutions={
-            "-base_url-": current_app.config.get("BASE_URL"),
+            "-base_frontend_url-": current_app.config.get("BASE_FRONTEND_URL"),
             "-preview_text-": f"Welcome aboard, {user_first_name}! We just wanted to say thank you for signing up to use our app. Climate Mind is an app which helps people start meaningful conversations about climate change.",
             "-user_first_name-": user_first_name,
             "-user_email-": user_email,
@@ -73,7 +73,7 @@ def send_user_b_shared_email(conversation_uuid):
     to_email = To(
         email=user_a_email,
         substitutions={
-            "-base_url-": current_app.config.get("BASE_URL"),
+            "-base_frontend_url-": current_app.config.get("BASE_FRONTEND_URL"),
             "-preview_text-": f"How exciting, {user_a_first_name}! Your friend, {user_b_name} has taken the Climate Mind quiz and has some conversation starters to share with you.",
             "-user_a_first_name-": user_a_first_name,
             "-user_b_name-": user_b_name,
