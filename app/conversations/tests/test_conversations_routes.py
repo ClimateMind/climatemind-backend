@@ -206,8 +206,8 @@ def test_consent_sends_user_b_shared_email(sendgrid_mock, client_with_user_and_h
     user_b_journey = UserBJourneyFactory()
     conversation_uuid = user_b_journey.conversation.conversation_uuid
     url = url_for("conversations.post_consent", conversation_uuid=conversation_uuid)
-    client, _user, session_header, _ = client_with_user_and_header
 
+    client, _user, session_header, _ = client_with_user_and_header
     client.post(url, headers=session_header, json={"consent": True})
 
     assert_email_sent(
@@ -229,8 +229,8 @@ def test_consent_sends_user_b_shared_email_with_configured_base_frontend_url(
     user_b_journey = UserBJourneyFactory()
     conversation_uuid = user_b_journey.conversation.conversation_uuid
     url = url_for("conversations.post_consent", conversation_uuid=conversation_uuid)
-    client, _user, session_header, _ = client_with_user_and_header
 
+    client, _user, session_header, _ = client_with_user_and_header
     client.post(url, headers=session_header, json={"consent": True})
 
     assert_email_sent(
