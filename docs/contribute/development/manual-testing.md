@@ -27,3 +27,9 @@ Your local `climatemind-backend_webapp` container allows you to test web-applica
 {% hint style="success" %}
 Go to [http://localhost:3000/](http://localhost:3000/) to see your local web app instance.
 {% endhint %}
+
+## Send Sendgrid emails from local 
+
+To be able to send emails from local machine you have to set two environment variables `SENDGRID_API_KEY` and `MAIL_DEFAULT_SENDER`.
+See how to set them [here](work-with-docker.md#use-environment-variables).
+If you see `python_http_client.exceptions.BadRequestsError: HTTP Error 400: Bad Request` error check the `e.to_dict` which contain response from SendGrid. 

@@ -41,7 +41,7 @@ After that you will be able to use these variables in the docker-compose files.
 services:
   api:
     environment:
-        SENDGRID_API_KEY: "${SENDGRID_API_KEY}"
+        SENDGRID_API_KEY: ${SENDGRID_API_KEY}
 ```
 
 ## Free memory

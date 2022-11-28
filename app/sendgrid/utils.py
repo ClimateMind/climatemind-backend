@@ -125,8 +125,9 @@ def send_reset_password_email(
         sg.send(mail)
     except HTTPError as e:
         current_app.logger.exception(
-            "Unable to send reset password email", extra={"error": e.body}
+            "Unable to send reset password email", extra={"error": e.to_dict}
         )
+        current_app.logger.debug(e.to_dict)
     except:
         current_app.logger.exception("Unable to send reset password email")
 
