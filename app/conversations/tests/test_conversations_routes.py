@@ -7,11 +7,12 @@ from flask import url_for
 from flask.testing import FlaskClient
 from mock import mock
 
+from app.common.tests.utils import assert_email_sent
 from app.conversations.enums import (
     ConversationUserARating,
     ConversationState,
 )
-from app.factories import ConversationsFactory, faker
+from app.factories import ConversationsFactory, faker, UserBJourneyFactory
 from app.models import Conversations, Users
 
 RANDOM_CONVERSATION_STATE = random.choice(list([s.value for s in ConversationState]))
@@ -198,3 +199,42 @@ def test_conversation_request_unauthorized(client_with_user_and_header, accept_j
         )
 
         assert response.status_code == 401, "Unauthorized access forbidden"
+
+
+@pytest.mark.integration
+def test_consent_sends_user_b_shared_email(sendgrid_mock, client_with_user_and_header):
+    user_b_journey = UserBJourneyFactory()
+    conversation_uuid = user_b_journey.conversation.conversation_uuid
+    url = url_for("conversations.post_consent", conversation_uuid=conversation_uuid)
+
+    client, _user, session_header, _ = client_with_user_and_header
+    client.post(url, headers=session_header, json={"consent": True})
+
+    assert_email_sent(
+        sendgrid_mock,
+        subject_starts_with="Ready for a climate conversation",
+        base_frontend_url="https://app.climatemind.org",
+    )
+
+
+@pytest.mark.integration
+@mock.patch("app.sendgrid.utils.current_app")
+def test_consent_sends_user_b_shared_email_with_configured_base_frontend_url(
+    m_current_app, sendgrid_mock, client_with_user_and_header
+):
+    m_current_app.config.get.side_effect = (
+        lambda key: "https://fake-url.local" if key == "BASE_FRONTEND_URL" else None
+    )
+
+    user_b_journey = UserBJourneyFactory()
+    conversation_uuid = user_b_journey.conversation.conversation_uuid
+    url = url_for("conversations.post_consent", conversation_uuid=conversation_uuid)
+
+    client, _user, session_header, _ = client_with_user_and_header
+    client.post(url, headers=session_header, json={"consent": True})
+
+    assert_email_sent(
+        sendgrid_mock,
+        subject_starts_with="Ready for a climate conversation",
+        base_frontend_url="https://fake-url.local",
+    )

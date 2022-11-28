@@ -9,6 +9,9 @@ from app.network_x_tools.network_x_processor import network_x_processor
 
 class BaseConfig(object):
     DEBUG = False
+    BASE_FRONTEND_URL = os.environ.get(
+        "BASE_FRONTEND_URL", "https://app.climatemind.org"
+    )
 
 
 class DevelopmentConfig(BaseConfig):
