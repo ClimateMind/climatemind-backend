@@ -46,7 +46,7 @@ def test_password_reset_expired_property():
 
 def test_password_reset_url_with_default_url():
     password_reset = PasswordResetLinkFactory()
-    assert password_reset.reset_url.startswith("https://app.climatemind.org")
+    assert password_reset.reset_url.startswith("http://localhost:3000")
 
 
 @mock.patch("app.models.current_app")

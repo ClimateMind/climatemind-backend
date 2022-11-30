@@ -213,7 +213,7 @@ def test_consent_sends_user_b_shared_email(sendgrid_mock, client_with_user_and_h
     assert_email_sent(
         sendgrid_mock,
         subject_starts_with="Ready for a climate conversation",
-        base_frontend_url="https://app.climatemind.org",
+        base_frontend_url="http://localhost:3000",
     )
 
 
