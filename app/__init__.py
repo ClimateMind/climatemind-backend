@@ -140,5 +140,5 @@ def init_sentry(app):
             attach_stacktrace=True,
             _experiments={
                 "profiles_sample_rate": 1.0,
-            }
+            },
         )
