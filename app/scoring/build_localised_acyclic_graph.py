@@ -1,9 +1,6 @@
-import os
-import urllib
-
 import networkx as nx
-from sqlalchemy import create_engine
 
+from app.common.db_utils import create_sqlalchemy_engine
 from app.models import Scores
 from app.network_x_tools.network_x_local_graph import (
     make_acyclic,
@@ -56,12 +53,7 @@ def check_if_valid_postal_code(quiz_uuid):
             # non integer values are not supported yet
             return None
 
-        DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
-        SQLALCHEMY_DATABASE_URI = (
-            "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(DB_CREDENTIALS)
-        )
-
-        engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
+        engine = create_sqlalchemy_engine(echo=True)
 
         with engine.connect() as con:
             # Check if postal code is in lrf_data table and create a list of values

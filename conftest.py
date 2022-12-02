@@ -5,6 +5,7 @@ from sqlalchemy.exc import ProgrammingError
 from app import create_app
 from app.extensions import db
 from config import TestingConfig, DevelopmentConfig
+from migrations.scripts.lrf.add_lrf_table import add_lrf_data
 
 from flask import request
 from app.session.session_helpers import maybe_assign_session
@@ -37,15 +38,15 @@ def pytest_addoption(parser):
 def pytest_sessionstart(session):
     workerinput = getattr(session.config, "workerinput", None)
     if workerinput is None:
-        with create_engine(
+        engine = create_engine(
             DevelopmentConfig.SQLALCHEMY_DATABASE_URI,
             isolation_level="AUTOCOMMIT",
-        ).connect() as connection:
+            fast_executemany=True,
+        )
+
+        with engine.connect() as connection:
             try:
-                print(f"Trying to create {TestingConfig.DB_NAME} database...")
-                connection.execute(f"CREATE DATABASE [{TestingConfig.DB_NAME}]")
-                db.create_all()
-                print(f"{TestingConfig.DB_NAME} created!")
+                create_new_test_database(engine, connection)
 
             except ProgrammingError:
                 print(f"Database {TestingConfig.DB_NAME} already exists.")
@@ -53,9 +54,14 @@ def pytest_sessionstart(session):
                 if not reuse_db:
                     print(f"Removing {TestingConfig.DB_NAME} database...")
                     connection.execute(f"DROP DATABASE [{TestingConfig.DB_NAME}]")
-                    print(f"Trying to create new {TestingConfig.DB_NAME} database...")
-                    connection.execute(f"CREATE DATABASE [{TestingConfig.DB_NAME}]")
-                    db.create_all()
-                    print(f"{TestingConfig.DB_NAME} created!")
+                    create_new_test_database(engine, connection)
                 else:
-                    print(f"Reusing existing database.")
+                    print("Reusing existing database.")
+
+
+def create_new_test_database(engine, connection):
+    print(f"Trying to create new {TestingConfig.DB_NAME} database...")
+    connection.execute(f"CREATE DATABASE [{TestingConfig.DB_NAME}]")
+    db.create_all()
+    add_lrf_data(engine)
+    print(f"{TestingConfig.DB_NAME} created!")
