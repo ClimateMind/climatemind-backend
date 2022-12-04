@@ -37,7 +37,7 @@ def pytest_addoption(parser):
 
 def pytest_sessionstart(session):
     workerinput = getattr(session.config, "workerinput", None)
-    should_add_lrf_data = 'lrf_data or not lrf_data' in session.config.getoption('-m')
+    should_add_lrf_data = "lrf_data or not lrf_data" in session.config.getoption("-m")
     if workerinput is None:
         engine = create_sqlalchemy_engine(
             isolation_level="AUTOCOMMIT",
