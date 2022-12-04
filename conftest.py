@@ -1,10 +1,10 @@
 import pytest
-from sqlalchemy import create_engine
 from sqlalchemy.exc import ProgrammingError
 
 from app import create_app
+from app.common.db_utils import create_sqlalchemy_engine
 from app.extensions import db
-from config import TestingConfig, DevelopmentConfig
+from config import TestingConfig
 from migrations.scripts.lrf.add_lrf_table import add_lrf_data
 
 from flask import request
@@ -37,16 +37,16 @@ def pytest_addoption(parser):
 
 def pytest_sessionstart(session):
     workerinput = getattr(session.config, "workerinput", None)
+    should_add_lrf_data = 'lrf_data or not lrf_data' in session.config.getoption('-m')
     if workerinput is None:
-        engine = create_engine(
-            DevelopmentConfig.SQLALCHEMY_DATABASE_URI,
+        engine = create_sqlalchemy_engine(
             isolation_level="AUTOCOMMIT",
             fast_executemany=True,
         )
 
         with engine.connect() as connection:
             try:
-                create_new_test_database(engine, connection)
+                create_new_test_database(engine, connection, should_add_lrf_data)
 
             except ProgrammingError:
                 print(f"Database {TestingConfig.DB_NAME} already exists.")
@@ -54,14 +54,15 @@ def pytest_sessionstart(session):
                 if not reuse_db:
                     print(f"Removing {TestingConfig.DB_NAME} database...")
                     connection.execute(f"DROP DATABASE [{TestingConfig.DB_NAME}]")
-                    create_new_test_database(engine, connection)
+                    create_new_test_database(engine, connection, should_add_lrf_data)
                 else:
                     print("Reusing existing database.")
 
 
-def create_new_test_database(engine, connection):
+def create_new_test_database(engine, connection, should_add_lrf_data):
     print(f"Trying to create new {TestingConfig.DB_NAME} database...")
     connection.execute(f"CREATE DATABASE [{TestingConfig.DB_NAME}]")
     db.create_all()
-    add_lrf_data(engine)
+    if should_add_lrf_data:
+        add_lrf_data(engine)
     print(f"{TestingConfig.DB_NAME} created!")

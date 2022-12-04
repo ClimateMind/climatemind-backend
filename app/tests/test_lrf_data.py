@@ -1,13 +1,22 @@
+import pytest
+
 from app.common.db_utils import create_sqlalchemy_engine
 
 
+@pytest.mark.lrf_data
 def test_lrf_data_exists():
     engine = create_sqlalchemy_engine()
     with engine.connect() as con:
-        lrf_data_count = con.execute("SELECT COUNT(*) FROM lrf_data").scalar()
-        assert lrf_data_count == 38362
-
-        column_names = con.execute(
+        column_tuples = con.execute(
             "SELECT COLUMN_NAME FROM INFORMATION_SCHEMA.COLUMNS WHERE TABLE_NAME='lrf_data'"
         ).fetchall()
-        assert len(column_names) == 6
+        column_names = set([column_tuple[0] for column_tuple in column_tuples])
+        expected_column_names = set([
+            "postal_code",
+            "http://webprotege.stanford.edu/R9vkBr0EApzeMGfa0rJGo9G",
+            "http://webprotege.stanford.edu/RDudF9SBo28CKqKpRN9poYL",
+            "http://webprotege.stanford.edu/RJAL6Zu9F3EHB35HCs3cYD",
+            "http://webprotege.stanford.edu/RLc1ySxaRs4HWkW4m5w2Me",
+            "http://webprotege.stanford.edu/RcIHdxpjQwjr8EG8yMhEYV",
+        ])
+        assert column_names == expected_column_names
