@@ -37,7 +37,7 @@ def pytest_addoption(parser):
 
 def pytest_sessionstart(session):
     workerinput = getattr(session.config, "workerinput", None)
-    should_add_lrf_data = "lrf_data or not lrf_data" in session.config.getoption("-m")
+    should_add_lrf_data = session_config_has_lrf_data_enabled(session.config)
     if workerinput is None:
         engine = create_sqlalchemy_engine(
             isolation_level="AUTOCOMMIT",
@@ -57,6 +57,16 @@ def pytest_sessionstart(session):
                     create_new_test_database(engine, connection, should_add_lrf_data)
                 else:
                     print("Reusing existing database.")
+
+
+def session_config_has_lrf_data_enabled(session_config):
+    marker_option = session_config.getoption("-m")
+    print("marker_option", marker_option)
+    return (
+        "lrf_data or not lrf_data" in marker_option
+        or "not lrf_data or lrf_data" in marker_option
+        or ("not lrf_data" not in marker_option and "lrf_data" in marker_option)
+    )
 
 
 def create_new_test_database(engine, connection, should_add_lrf_data):
