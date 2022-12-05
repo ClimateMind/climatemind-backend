@@ -56,7 +56,7 @@ def create_conversation_invite():
     check_uuid_in_db(session_uuid, uuidType.SESSION)
 
     r = request.get_json(force=True, silent=True)
-    if not r:
+    if not isinstance(r, dict):
         raise InvalidUsageError(
             message="Must provide a JSON body with the name of the invited user."
         )

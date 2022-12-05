@@ -284,6 +284,22 @@ def test_create_conversation_with_invalid_invitee(
 
 
 @pytest.mark.integration
+def test_create_conversation_with_invalid_body(
+    client_with_user_and_header, accept_json
+):
+    client, _, session_header, _ = client_with_user_and_header
+    url = url_for("conversations.create_conversation_invite")
+    response = client.post(
+        url,
+        headers=session_header + accept_json,
+        json=faker.name(),
+    )
+    assert (
+        response.status_code == 400
+    ), "Must provide a JSON body with the name of the invited user."
+
+
+@pytest.mark.integration
 def test_create_conversation_with_invalid_session(
     client_with_user_and_header, accept_json
 ):
