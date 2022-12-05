@@ -27,6 +27,14 @@ class uuidType(Enum):
     RESET_PASSWORD_LINK = 6
 
 
+def to_uuid(string):
+    try:
+        u = uuid.UUID(string)
+    except (ValueError, TypeError):
+        u = None
+    return u
+
+
 def validate_uuid(
     uuid_to_validate: typing.Union[uuid.UUID, str], uuid_type: uuidType
 ) -> uuid.UUID:
@@ -46,9 +54,8 @@ def validate_uuid(
     if not uuid_to_validate:
         raise InvalidUsageError(message=f"{uuid_type.name}_UUID is required.")
 
-    try:
-        valid_uuid = uuid.UUID(uuid_to_validate)
-    except (ValueError, TypeError, AttributeError):
+    valid_uuid = to_uuid(uuid_to_validate)
+    if valid_uuid is None:
         raise InvalidUsageError(
             message=f"{uuid_type.name}_UUID is improperly formatted."
         )
