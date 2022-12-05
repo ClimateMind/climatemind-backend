@@ -30,7 +30,7 @@ class uuidType(Enum):
 def to_uuid(string):
     try:
         u = uuid.UUID(string)
-    except (ValueError, TypeError):
+    except (ValueError, TypeError, AttributeError):
         u = None
     return u
 
