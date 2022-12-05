@@ -13,7 +13,7 @@ def test_register_sends_welcome_email(sendgrid_mock, client):
     assert_email_sent(
         sendgrid_mock,
         subject_starts_with="Welcome",
-        base_frontend_url="https://app.climatemind.org",
+        base_frontend_url="http://localhost:3000",
     )
 
 
