@@ -6,6 +6,7 @@ from app.factories import ScoresFactory
 
 
 @pytest.mark.integration
+@pytest.mark.lrf_data
 def test_feed(client_with_user_and_header):
     client, _, session_header, _ = client_with_user_and_header
     score = ScoresFactory()
@@ -26,6 +27,7 @@ def test_feed(client_with_user_and_header):
 
 
 @pytest.mark.integration
+@pytest.mark.lrf_data
 def test_feed_properties(client_with_user_and_header):
     client, _, session_header, _ = client_with_user_and_header
     score = ScoresFactory()
