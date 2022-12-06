@@ -53,20 +53,6 @@ Cypress.Commands.add('personalValuesEndpoint', (quizId) => {
         .then(cy.wrap);
 });
 
-Cypress.Commands.add('postCodeEndpoint', (zip_Code, set_one_quizId) => {
-    return cy
-        .request({
-            method: 'POST',
-            url: "http://localhost:5000/post-code",
-            body: {
-                postCode: zip_Code,
-                quizId: set_one_quizId
-            },
-            failOnStatusCode: false,
-        })
-        .then(cy.wrap);
-});
-
 Cypress.Commands.add('questionsEndpoint', () => {
     return cy
         .request({
