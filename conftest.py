@@ -61,7 +61,6 @@ def pytest_sessionstart(session):
 
 def session_config_has_lrf_data_enabled(session_config):
     marker_option = session_config.getoption("-m")
-    print("marker_option", marker_option)
     return (
         "lrf_data or not lrf_data" in marker_option
         or "not lrf_data or lrf_data" in marker_option

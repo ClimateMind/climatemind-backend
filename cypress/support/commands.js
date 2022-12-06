@@ -116,22 +116,6 @@ Cypress.Commands.add('getActionsEndpoint', (effectName) => {
         .then(cy.wrap);
 });
 
-Cypress.Commands.add('feedEndpoint', (session_Id, quiz_Id) => {
-    return cy
-        .request({
-            method: 'GET',
-            url: 'http://localhost:5000/feed',
-            headers: {
-                'content-type': 'application/json',
-                'X-Session-Id': session_Id
-            },
-            qs: {
-                'quizId': quiz_Id
-            }
-        })
-        .then(cy.wrap);
-});
-
 Cypress.Commands.add('conversationEndpoint', (requestBody, accessToken, session_Id) => {
     return cy
         .request(
