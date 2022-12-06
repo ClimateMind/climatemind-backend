@@ -78,23 +78,6 @@ Cypress.Commands.add('loginEndpoint', (user) => {
         .then(cy.wrap);
 });
 
-Cypress.Commands.add('conversationEndpoint', (requestBody, accessToken, session_Id) => {
-    return cy
-        .request(
-            {
-                method: 'POST',
-                url: "http://localhost:5000/conversation",
-                body: requestBody
-                ,
-                failOnStatusCode: false,
-                headers: {
-                    'Authorization': `Bearer ${accessToken}`,
-                    'X-Session-Id': session_Id
-                },
-            })
-        .then(cy.wrap);
-});
-
 Cypress.Commands.add('emailEndpoint', (accessToken) => {
     return cy
         .request({
