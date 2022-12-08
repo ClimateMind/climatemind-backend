@@ -1,4 +1,5 @@
 import pytest
+import re
 from flask import url_for
 from freezegun import freeze_time
 from mock import mock
@@ -7,6 +8,23 @@ from app.factories import faker, UsersFactory
 from app.models import Sessions
 
 faked_now = faker.date_time()
+uuid_format = r"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
+
+
+@pytest.mark.integration
+def test_session_response(client):
+    response = client.post(url_for("session.post_session"))
+    json = response.get_json()
+
+    assert response.status_code == 201
+    assert response.content_type == "application/json"
+    assert response.access_control_allow_origin == "*"
+
+    assert type(json) == dict
+    assert "sessionId" in json
+    assert type(json["sessionId"]) == str
+    assert re.fullmatch(uuid_format, json["sessionId"]) is not None
+    assert len(json.keys()) == 1
 
 
 @freeze_time(faked_now)
