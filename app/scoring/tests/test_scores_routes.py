@@ -4,7 +4,7 @@ from flask import url_for
 from app.common.static import get_dict_from_json_file
 from app.common.uuid import to_uuid
 
-JSON_DIRECTORY = "app/common/tests/data"
+JSON_DIRECTORY = "app/scoring/tests/data"
 
 
 @pytest.mark.integration
