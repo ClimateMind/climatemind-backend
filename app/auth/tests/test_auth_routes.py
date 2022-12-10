@@ -35,6 +35,24 @@ def test_register_sends_welcome_email_with_configured_base_frontend_url(
     )
 
 
+@pytest.mark.integration
+@mock.patch("app.auth.routes.unset_jwt_cookies")
+def test_logout(m_unset_jwt_cookies, client):
+    response = client.post(url_for("auth.logout"))
+    json = response.get_json()
+
+    assert response.status_code == 200
+    assert response.content_type == "application/json"
+    assert response.access_control_allow_origin == "http://0.0.0.0:3000"
+
+    assert type(json) == dict
+    assert "message" in json
+    assert type(json["message"]) == str
+    assert json["message"] == "User logged out"
+
+    m_unset_jwt_cookies.assert_called_once()
+
+
 def get_fake_registration_json():
     score = ScoresFactory()
     return {

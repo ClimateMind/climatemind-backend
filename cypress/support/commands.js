@@ -66,12 +66,6 @@ Cypress.Commands.add('registerEndpoint', (user) => {
         .then(cy.wrap);
 });
 
-Cypress.Commands.add('logoutEndpoint', () => {
-    return cy
-        .request("POST", "http://localhost:5000/logout")
-        .then(cy.wrap);
-});
-
 Cypress.Commands.add('loginEndpoint', (user) => {
     return cy
         .request(
