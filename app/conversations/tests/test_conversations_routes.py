@@ -7,6 +7,7 @@ from flask import url_for
 from flask.testing import FlaskClient
 from mock import mock
 
+from app.common.uuid import to_uuid
 from app.common.tests.utils import assert_email_sent
 from app.conversations.enums import (
     ConversationUserARating,
@@ -16,15 +17,6 @@ from app.factories import ConversationsFactory, faker, UserBJourneyFactory
 from app.models import Conversations, Users
 
 RANDOM_CONVERSATION_STATE = random.choice(list([s.value for s in ConversationState]))
-
-
-def is_uuid(string):
-    try:
-        uuid.UUID(string)
-        ok = True
-    except ValueError:
-        ok = False
-    return ok
 
 
 @pytest.mark.skip("FIXME")
@@ -332,7 +324,7 @@ def test_create_conversation_successful(client_with_user_and_header, accept_json
     assert (
         response.json["conversationId"] == response.json["conversationId"].lower()
     ), "conversationId uuid should be lower case."
-    assert is_uuid(
+    assert to_uuid(
         response.json["conversationId"]
     ), "conversationId is not a valid uuid."
 
@@ -359,7 +351,7 @@ def test_create_conversations_successful(client_with_user_and_header, accept_jso
         assert (
             conversation["conversationId"] == conversation["conversationId"].upper()
         ), "conversationId uuid must be upper case."
-        assert is_uuid(
+        assert to_uuid(
             conversation["conversationId"]
         ), "conversationId must be a valid uuid."
 
@@ -376,7 +368,7 @@ def test_create_conversations_successful(client_with_user_and_header, accept_jso
             conversation["userA"]["sessionId"]
             == conversation["userA"]["sessionId"].upper()
         ), "userA sessionId uuid must be upper case."
-        assert is_uuid(
+        assert to_uuid(
             conversation["userA"]["sessionId"]
         ), "userA sessionId uuid must be a valid uuid."
 
@@ -384,7 +376,7 @@ def test_create_conversations_successful(client_with_user_and_header, accept_jso
         assert (
             conversation["userA"]["id"] == conversation["userA"]["id"].upper()
         ), "userA id uuid must be upper case."
-        assert is_uuid(
+        assert to_uuid(
             conversation["userA"]["id"]
         ), "userA id uuid must be a valid uuid."
 
