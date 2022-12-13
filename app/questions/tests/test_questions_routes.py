@@ -32,7 +32,7 @@ def test_set_one_properties(client):
         assert "id" in question_obj
         assert "value" in question_obj
         assert "question" in question_obj
-        assert type(question_obj["id"]) == int or type(question_obj["id"]) == float
+        assert type(question_obj["id"]) == int
         assert type(question_obj["value"]) == str
         assert type(question_obj["question"]) == str
 
@@ -49,7 +49,7 @@ def test_set_two_properties(client):
         assert "id" in question_obj
         assert "value" in question_obj
         assert "question" in question_obj
-        assert type(question_obj["id"]) == int or type(question_obj["id"]) == float
+        assert type(question_obj["id"]) == int
         assert type(question_obj["value"]) == str
         assert type(question_obj["question"]) == str
 
@@ -65,7 +65,7 @@ def test_answers_properties(client):
         assert type(answer) == dict
         assert "id" in answer
         assert "text" in answer
-        assert type(answer["id"]) == int or type(answer["id"]) == float
+        assert type(answer["id"]) == int
         assert type(answer["text"]) == str
 
 
