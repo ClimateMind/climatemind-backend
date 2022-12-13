@@ -44,15 +44,6 @@ Cypress.Commands.add('scoresEndpoint', (scores, session_Id) => {
         .then(cy.wrap);
 });
 
-Cypress.Commands.add('questionsEndpoint', () => {
-    return cy
-        .request({
-            method: 'GET',
-            url: 'http://localhost:5000/questions',
-        })
-        .then(cy.wrap);
-});
-
 Cypress.Commands.add('registerEndpoint', (user) => {
     return cy
         .request(
