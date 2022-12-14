@@ -72,10 +72,15 @@ def test_answers_properties(client):
 @pytest.mark.integration
 def test_directions_properties(client):
     response = client.get(url_for("questions.get_questions"))
-    direction = response.get_json()["Directions"]
+    directions = response.get_json()["Directions"]
 
-    assert type(direction) == str
-    """
+    assert type(directions) == str
+
+
+@pytest.mark.integration
+def test_get_questions_matches_json_file(client):
+    response = client.get(url_for("questions.get_questions"))
+
     json_file_name = current_app.config.get("SCHWARTZ_QUESTIONS_FILE")
     with open(json_file_name) as json_file:
-        assert response.json == load(json_file)"""
+        assert response.json == load(json_file)
