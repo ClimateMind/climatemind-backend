@@ -7,6 +7,7 @@ from flask import url_for
 from flask.testing import FlaskClient
 from mock import mock
 
+from app.common.uuid import to_uuid
 from app.common.tests.utils import assert_email_sent
 from app.conversations.enums import (
     ConversationUserARating,
@@ -238,3 +239,167 @@ def test_consent_sends_user_b_shared_email_with_configured_base_frontend_url(
         subject_starts_with="Ready for a climate conversation",
         base_frontend_url="https://fake-url.local",
     )
+
+
+def test_get_conversations_empty(client_with_user_and_header, accept_json):
+    client, _, session_header, _ = client_with_user_and_header
+    url = url_for("conversations.get_conversations")
+    response = client.get(
+        url,
+        headers=session_header + accept_json,
+    )
+    assert response.status_code == 200, str(response.json)
+    assert response.json == {"conversations": []}
+
+
+@pytest.mark.parametrize(
+    "invited_user_name",
+    [
+        "",
+        "managementmanagementm",
+        "managementmanagementmanagementmanagementmanagementm",
+    ],
+)
+@pytest.mark.integration
+def test_create_conversation_with_invalid_invitee(
+    invited_user_name, client_with_user_and_header, accept_json
+):
+    client, _, session_header, _ = client_with_user_and_header
+    url = url_for("conversations.create_conversation_invite")
+    response = client.post(
+        url,
+        headers=session_header + accept_json,
+        json={"invitedUserName": invited_user_name},
+    )
+    assert (
+        response.status_code == 400
+    ), "Must provide a JSON body with the name of the invited user."
+
+
+@pytest.mark.integration
+def test_create_conversation_with_invalid_body(
+    client_with_user_and_header, accept_json
+):
+    client, _, session_header, _ = client_with_user_and_header
+    url = url_for("conversations.create_conversation_invite")
+    response = client.post(
+        url,
+        headers=session_header + accept_json,
+        json=faker.name(),
+    )
+    assert (
+        response.status_code == 400
+    ), "Must provide a JSON body with the name of the invited user."
+
+
+@pytest.mark.integration
+def test_create_conversation_with_invalid_session(
+    client_with_user_and_header, accept_json
+):
+    client, _, session_header, _ = client_with_user_and_header
+    url = url_for("conversations.create_conversation_invite")
+    bad_session_header = [("X-Session-Id", faker.uuid4().upper())]
+    assert bad_session_header != session_header
+    response = client.post(
+        url,
+        headers=bad_session_header + accept_json,
+        json={"invitedUserName": faker.name()},
+    )
+    assert response.status_code == 404, "SESSION_UUID is not in the db."
+
+
+@pytest.mark.integration
+def test_create_conversation_successful(client_with_user_and_header, accept_json):
+    client, _, session_header, _ = client_with_user_and_header
+    url = url_for("conversations.create_conversation_invite")
+    response = client.post(
+        url,
+        headers=session_header + accept_json,
+        json={"invitedUserName": faker.name()},
+    )
+    assert response.status_code == 201, str(response.json)
+    assert (
+        response.json["message"] == "conversation created"
+    ), 'Successful creation should give "conversation created" message.'
+    assert (
+        response.json["conversationId"] == response.json["conversationId"].lower()
+    ), "conversationId uuid should be lower case."
+    assert to_uuid(
+        response.json["conversationId"]
+    ), "conversationId is not a valid uuid."
+
+
+@pytest.mark.integration
+def test_create_conversations_successful(client_with_user_and_header, accept_json):
+    client, _, session_header, _ = client_with_user_and_header
+    url_create = url_for("conversations.create_conversation_invite")
+    for i in range(3):
+        client.post(
+            url_create,
+            headers=session_header + accept_json,
+            json={"invitedUserName": faker.name()},
+        )
+    url_list = url_for("conversations.get_conversations")
+    response = client.get(url_list, headers=session_header + accept_json)
+    assert isinstance(response.json["conversations"], list), response.json
+
+    for conversation in response.json["conversations"]:
+
+        assert (
+            "conversationId" in conversation.keys()
+        ), "Conversation must include conversationId."
+        assert (
+            conversation["conversationId"] == conversation["conversationId"].upper()
+        ), "conversationId uuid must be upper case."
+        assert to_uuid(
+            conversation["conversationId"]
+        ), "conversationId must be a valid uuid."
+
+        assert "state" in conversation.keys(), "Conversation must include state."
+        assert isinstance(conversation["state"], int), "state must be an int."
+
+        assert "userA" in conversation.keys(), "Conversation must include userA."
+        assert isinstance(conversation["userA"], dict), "userA must be a dict."
+
+        assert (
+            "sessionId" in conversation["userA"].keys()
+        ), "userA must include sessionId."
+        assert (
+            conversation["userA"]["sessionId"]
+            == conversation["userA"]["sessionId"].upper()
+        ), "userA sessionId uuid must be upper case."
+        assert to_uuid(
+            conversation["userA"]["sessionId"]
+        ), "userA sessionId uuid must be a valid uuid."
+
+        assert "id" in conversation["userA"].keys(), "userA must include id."
+        assert (
+            conversation["userA"]["id"] == conversation["userA"]["id"].upper()
+        ), "userA id uuid must be upper case."
+        assert to_uuid(
+            conversation["userA"]["id"]
+        ), "userA id uuid must be a valid uuid."
+
+        assert "name" in conversation["userA"].keys(), "userA must include name."
+        assert isinstance(
+            conversation["userA"]["name"], str
+        ), "userA name must be a str."
+
+        assert "userB" in conversation.keys(), "Conversation must include userB."
+        assert isinstance(conversation["userB"], dict), "userB must be a dict."
+
+        assert "name" in conversation["userB"].keys(), "userB must include name."
+        assert isinstance(
+            conversation["userB"]["name"], str
+        ), "userB name must be a str."
+
+        assert (
+            "userARating" in conversation.keys()
+        ), "Conversation must include userARating."
+        assert "consent" in conversation.keys(), "Conversation must include consent."
+        assert (
+            "conversationTimestamp" in conversation.keys()
+        ), "Conversation must include conversationTimestamp."
+        assert (
+            "alignmentScoresId" in conversation.keys()
+        ), "Conversation must include alignmentScoresId."
