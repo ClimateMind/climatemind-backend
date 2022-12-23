@@ -27,6 +27,23 @@ docker exec -it CONTAINER_ID_OR_NAME COMMAND
 * Where `COMMAND` is a command like `bash,` [pytest](unit-tests.md#pytest) or even [flask shell](https://flask.palletsprojects.com/en/2.0.x/shell/)
 * `CONTAINER_ID_OR_NAME` is a container name or id which could be obtained by running the [command above](work-with-docker.md#undefined).
 
+## Use environment variables
+
+To use environment variables in your docker container you have to create `docker/.env` file and add your variables there. 
+
+```
+SENDGRID_API_KEY=*****
+```
+
+After that you will be able to use these variables in the docker-compose files.
+
+```
+services:
+  api:
+    environment:
+        SENDGRID_API_KEY: ${SENDGRID_API_KEY}
+```
+
 ## Free memory
 
 To stop containers without removing them run:
