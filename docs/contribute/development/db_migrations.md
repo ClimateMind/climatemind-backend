@@ -1,16 +1,18 @@
 # DB Migrations
+
 ## Preparation
-After you modified `models.py` and added or modified some models you have to prepare DB migrations as well. Follow this guide to prepare DB migration.
 
-## Create Migration
+After you have edited `models.py` and added or modified some models, you have to prepare DB migrations as well. Follow this guide to prepare DB migration.
 
-Build docker images and up containers: 
+## Create migration
+
+Build docker images and up containers:
 
 ```bash
 docker-compose -p climatemind-backend -f docker/docker-compose.yml up --build -d
 ```
 
-Wait for app and database startup to complete, then run bash in the docker container:
+Wait for app and database startup to finish, then run bash in the docker container:
 
 ```bash
 docker exec -it `docker ps -aqf "name=climatemind-backend_web"` bash
@@ -24,8 +26,7 @@ flask db migrate -m "#TICKET - description"
 
 ## Edit migration
 
-Open the migration file using path from the `flask db migrate` command output.
-Check and modify `upgrade` and `downgrade` functions if needed.
+Open the migration file using the path given by the `flask db migrate` command. Check and modify `upgrade` and `downgrade` functions if needed.
 
 ## Apply migration
 
@@ -37,11 +38,11 @@ To apply the migration run the following `flask` command inside the docker conta
 flask db upgrade
 ```
 
-The second option to apply the migration is to rebuild the `climatemind-backend_web` image.
+Alternatively, the migration can be applied by rebuilding the `climatemind-backend_web` image.
 
 #### Remove local database
 
-To remove local database and start from scratch you could use `docker-compse down` with `-v` argument to remove volumes
+To remove the local database and start from scratch you can use `docker-compose down` with `-v` argument to remove volumes
 
 ```bash
 docker-compose -p climatemind-backend -f docker/docker-compose.yml down -v
@@ -49,8 +50,4 @@ docker-compose -p climatemind-backend -f docker/docker-compose.yml down -v
 
 ### On test and prod databases
 
-The migration will be applied automatically after deployment. 
-
-
-
-
+The migration will be applied automatically after deployment.

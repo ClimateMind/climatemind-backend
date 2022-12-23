@@ -4,14 +4,14 @@
 
 _**Follow these steps every time you are made aware of an update to the Ontology.**_
 
-1. Download a fresh copy of the ontology from web protege. Make sure it's the RDF/XML format (check the downloaded item has .owl at the end of it!).
+1. Download a fresh copy of the Ontology from web protege. Make sure it's the RDF/XML format (check the downloaded item has .owl at the end of it!).
 2. Run the `process_owl` flask command by executing the following (replace `<relative/path/filename.owl>`):
 
 ```
 flask ontology process_owl <relative/path/filename.owl>
 ```
 
-Use `--no-check` argument to skip comparison with the previous ontology.
+Use `--no-check` argument to skip comparison with the previous Ontology.
 
 ## FAQ
 

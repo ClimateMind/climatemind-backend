@@ -4,13 +4,13 @@
 Python unit tests are the primary step in our [Continuous Integration ](ci-continuous-integration.md)pipeline.
 {% endhint %}
 
-Unit testing in a nutshell is just providing some inputs to the function (unit) and checking if the result is the same as expected. You need to think out all possible kinds of inputs that could lead to error output. Unit tests reduce defects in the newly developed features or reduce bugs when changing the existing functionality.
+Unit testing, in a nutshell, is just providing some inputs to the function (unit) and checking if the result is the same as expected. You need to think of all possible inputs that could lead to an error in output. Unit tests reduce defects in newly developed features or reduce bugs when changing existing functionality.
 
 ## PyTest
 
-We are using [PyTest](https://docs.pytest.org/en/6.2.x/getting-started.html) a framework that makes building simple and scalable tests easy. Tests are expressive and readable - no boilerplate code is required.
+We are using [PyTest](https://docs.pytest.org/en/6.2.x/getting-started.html), a framework that makes building simple and scalable tests easy. Tests are expressive and readable - no boilerplate code is required.
 
-To run `pytest` unit tests you need to [execute](../../contribute-as-a-python-dev/docker.md#execute-command-in-docker-container) the `pytest` command in the [docker container](../../contribute-as-a-python-dev/docker.md#running-backend). See below the list of useful arguments you could use with it:
+To run `pytest` unit tests you need to [execute](work-with-docker.md#execute-command-in-docker-container) the `pytest` command in the docker container. Below is a list of useful `pytest` arguments:
 
 * `-x` exit instantly on the first error or failed test
 * `--pdb` start the interactive Python debugger on errors or `KeyboardInterrupt`
@@ -21,7 +21,7 @@ To run `pytest` unit tests you need to [execute](../../contribute-as-a-python-de
 
 ## How to get started writing unit tests
 
-The best way to learn how to write unit tests is to search in the repo for similar test cases.
+The best way to learn how to write unit tests is to search the repo for similar test cases.
 
 Each python module in our flask app should contain a `test` subfolder which contains files with names like `test_MODULE_FILE.py`
 
