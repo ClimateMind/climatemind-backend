@@ -2,9 +2,9 @@
 
 ## Get the docker container id and name
 
-Docker container ID or NAME could be obtained by `docker ps -aqf 'name=climatemind-backend_api'`. Alternatively, you can use the container name which you will find in the output of the `docker ps` command
+Docker container ID or NAME could be obtained by `docker ps -aqf 'name=climatemind-backend_api'`. Alternatively, you can find the container name by running the `docker ps` command.
 
-<figure><img src="../../.gitbook/assets/Screenshot 2022-11-08 at 11.20.30.png" alt=""><figcaption><p>The first column of docker ps command shows container id. The last one shows container name</p></figcaption></figure>
+<figure><img src="../../.gitbook/assets/Screenshot 2022-11-08 at 11.20.30.png" alt=""><figcaption><p>The first column of docker ps command shows container id. The last one shows container name.</p></figcaption></figure>
 
 ## Check the docker container logs
 
@@ -14,7 +14,7 @@ To check docker container logs run the following [logs](https://docs.docker.com/
 docker logs CONTAINER_ID_OR_NAME
 ```
 
-`CONTAINER_ID_OR_NAME` is a container name or id which could be obtained by running the [command above](work-with-docker.md#undefined).
+`CONTAINER_ID_OR_NAME` is a container name or id which can be obtained by running the [command above](work-with-docker.md#undefined).
 
 ## Execute command in docker container
 

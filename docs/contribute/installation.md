@@ -30,7 +30,7 @@ Before doing what's below, be sure the Docker daemon is [running](https://docs.d
 
 ## Project download
 
-To allow everyone to participate in the project development we accept changes from the external [forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks). To start work on a project do the following steps:&#x20;
+To allow everyone to participate in project development we accept changes from external [forks](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/working-with-forks). To start working, do the following steps:&#x20;
 
 1. create a [fork](https://docs.github.com/en/get-started/quickstart/fork-a-repo) of the [climatemind-backend](https://github.com/ClimateMind/climatemind-backend) repository
 2. [clone your fork ](https://docs.github.com/en/get-started/quickstart/fork-a-repo#cloning-your-forked-repository)to your local machine
@@ -41,7 +41,11 @@ To allow everyone to participate in the project development we accept changes fr
 
 ## Up containers
 
-To build and up containers open the terminal and go to the folder containing your clonned repository. Then run the following command:
+To build and up containers open the terminal and go to the folder containing your cloned repository. Then run the following command:
+
+{% hint style="info" %}
+You may need to enable Compose V1/V2 compatibility in Docker Desktop Settings->General if your system reports the "docker-compose" command is not found. Another solution is using "docker compose" instead.
+{% endhint %}
 
 ```
 docker-compose -p climatemind-backend --profile webapp -f docker/docker-compose.yml up -d --build
@@ -50,14 +54,14 @@ docker-compose -p climatemind-backend --profile webapp -f docker/docker-compose.
 It contains some optional arguments that you can omit if needed:
 
 * `--build` can be used if the docker image will need to be re-built (e.g. adding new dependencies)
-* `-d` run containers in the background is a recommended method for development which allows you to run not only the dev server but other tools like migrations, tests, etc. You could also use a[ Docker Desctop](https://www.docker.com/products/docker-desktop/) to run all containers in the background.
+* `-d` run containers in the background is a recommended method for development which allows you to run not only the dev server but other tools like migrations, tests, etc. You could also use a [Docker Desktop](https://www.docker.com/products/docker-desktop/) to run all containers in the background.
 * `--profile webapp` to pull and run the frontend web app which will be accessible by [http://localhost:3000/](http://localhost:3000/)
 
-## Is it work?
+## Is it working?
 
-To check that everything is up and running go into the docker desktop and check you have three running containers under the `climatemind-backend` app.&#x20;
+To check that everything is up and running go into Docker Desktop and check you have three running containers under the `climatemind-backend` app.&#x20;
 
-<figure><img src="../.gitbook/assets/Screenshot 2022-11-08 at 11.17.42.png" alt=""><figcaption><p>Docker desctop window with climate-backend running</p></figcaption></figure>
+<figure><img src="../.gitbook/assets/Screenshot 2022-11-08 at 11.17.42.png" alt=""><figcaption><p>Docker Desktop window with climatemind-backend running</p></figcaption></figure>
 
 You can also do this from the command line with `docker ps`
 
@@ -67,7 +71,7 @@ You can also do this from the command line with `docker ps`
 Note that you need to wait a bit after the new containers are created.
 {% endhint %}
 
-By checking logs you can see if is it ready or not.
+By checking logs you can see if it is ready.
 
 * In `webapp` container's log you should see `You can now view climatemind-frontend in the browser.` after compiling.
 * In `api` container's log search for `Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)` after `sleeping entrypoint`

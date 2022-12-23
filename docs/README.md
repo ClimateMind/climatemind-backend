@@ -8,15 +8,15 @@ New contributors welcome!
 
 ## Who we are?
 
-This [REST API repository](https://github.com/ClimateMind/climatemind-backend) is a part of a [Climate Mind project](https://climatemind.org/). The project motivation, history and target audience could be found on [this page](https://contribute.climatemind.org/v/about-the-project/). Our current team and people who worked on the previous version are [listed on our website](https://climatemind.org/#team).
+This [REST API repository](https://github.com/ClimateMind/climatemind-backend) is a part of the [Climate Mind project](https://climatemind.org/). The project motivation, history, and target audience can be found on [this page](https://contribute.climatemind.org/v/about-the-project/). Our current team and people who worked on the previous version are [listed on our website](https://climatemind.org/#team).
 
-## What we are doing?
+## What are we doing?
 
-Our [web application](https://app-frontend-prod-001.azurewebsites.net/) makes conversations about climate change easier, by letting users explore climate issues that speak to their personal values. In other words, you'll know how to start a good conversation about the most scarifying topic of our time and don't screw up by looking paranoid. See [web app documentation](https://docs.climatemind.org/) for the application's detailed overview.
+Our [web application](https://app-frontend-prod-001.azurewebsites.net/) makes conversations about climate change easier by letting users explore climate issues that speak to their personal values. In other words, you'll know how to start a good conversation about the most scarifying topic of our time and don't screw up by looking paranoid. See [web app documentation](https://docs.climatemind.org/) for the application's detailed overview.
 
 ## How to use REST API?
 
-The full API documentation to use on a front end including methods and request examples could be found [here](https://climatemind.stoplight.io/docs/climatemind-backend/).
+The full API documentation to use on a front end including methods and request examples can be found [here](https://climatemind.stoplight.io/docs/climatemind-backend/).
 
 ## How to contribute?
 
