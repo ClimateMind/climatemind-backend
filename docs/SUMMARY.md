@@ -5,7 +5,7 @@
 * [Contribute](contribute/README.md)
   * [➡ Installation](contribute/installation.md)
   * [🔍 Choosing an issue to do](contribute/choosing-an-issue-to-do.md)
-  * [👨💻 👨💻 Development](contribute/development/README.md)
+  * [💻 Development](contribute/development/README.md)
     * [Work with Docker](contribute/development/work-with-docker.md)
     * [Code style](contribute/development/code-style.md)
     * [Debugging](contribute/development/debugging.md)
