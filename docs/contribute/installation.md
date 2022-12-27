@@ -96,6 +96,31 @@ Happens when you are on **Windows**. `climatemind-backend_db`  and `climatemind-
 
 That means you forgot to take the [required preparation ](installation.md#before-you-start)step. Please remove the `climatemind-backend` folder and start from scratch.
 
+#### \[SQL Server]Invalid object name 'sessions'.
+
+Other symptoms: 
+* Webapp front page generates an error message: "Something went wrong initializing your session. :( Please refresh the page to try again." 
+* Postman API calls to http://localhost:5000/session return: "An error occurred while saving the session to the database."
+
+The database failed to migrate when the project was built and the schema is missing. Run the following commands from the `climatemind-backend` folder.
+
+First, remove broken the containers:
+```shell
+docker-compose -p climatemind-backend -f docker/docker-compose.yml down
+```
+
+Then do one of the following.
+
+Restart without webapp frontend:
+```shell
+docker-compose -p climatemind-backend -f docker/docker-compose.yml down
+```
+
+Or, restart with the webapp:
+```shell
+docker-compose -p climatemind-backend --profile webapp -f docker/docker-compose.yml up -d
+```
+
 ### climatemind-backend\_webapp
 
 #### The container unexpectedly stopped after some time
