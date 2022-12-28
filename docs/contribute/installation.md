@@ -104,21 +104,19 @@ Other symptoms:
 
 The database failed to migrate when the project was built and the schema is missing. Run the following commands from the `climatemind-backend` folder.
 
-First, remove broken the containers:
+First, remove the broken containers:
 ```shell
 docker-compose -p climatemind-backend -f docker/docker-compose.yml down
 ```
 
-Then do one of the following.
-
-Restart without webapp frontend:
+Rebuild project from scratch:
 ```shell
-docker-compose -p climatemind-backend -f docker/docker-compose.yml down
+docker-compose -p climatemind-backend --profile webapp -f docker/docker-compose.yml up -d --build
 ```
 
-Or, restart with the webapp:
+If you are still experiencing issues, try removing the local database completely then rerun the build command above:
 ```shell
-docker-compose -p climatemind-backend --profile webapp -f docker/docker-compose.yml up -d
+docker-compose -p climatemind-backend -f docker/docker-compose.yml down -v
 ```
 
 ### climatemind-backend\_webapp
