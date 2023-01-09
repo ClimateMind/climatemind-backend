@@ -13,56 +13,126 @@ from app.conversations.enums import (
     ConversationUserARating,
     ConversationState,
 )
+from app.user_b.analytics_logging import eventType
 from app.factories import ConversationsFactory, faker, UserBJourneyFactory
-from app.models import Conversations, Users
-
-RANDOM_CONVERSATION_STATE = random.choice(list([s.value for s in ConversationState]))
+from app.models import Conversations, Users, UserBAnalyticsData
 
 
-@pytest.mark.skip("FIXME")
 @pytest.mark.integration
 @pytest.mark.parametrize(
-    "request_data,status_code",
+    "old_state,request_data,event_type,status_code",
     [
-        (
-            {
-                "receiverName": faker.name(),
-                "state": RANDOM_CONVERSATION_STATE,
-            },
+        (  # no fields
+            None,
+            {},
+            None,
             200,
         ),
-        (  # unable to use together
+        (  # just receiver
+            None,
             {
-                "userARating": ConversationUserARating.EXCELLENT,
-                "state": RANDOM_CONVERSATION_STATE,
+                "receiverName": faker.name(),
             },
+            None,
+            200,
+        ),
+        (  # cannot have state and rating together
+            None,
+            {
+                "state": random.choice(list([s.value for s in ConversationState])),
+                "userARating": random.choice(
+                    list([s.value for s in ConversationUserARating])
+                ),
+            },
+            None,
             422,
+        ),
+        (  # valid state transition
+            ConversationState.TopicsButtonClicked,
+            {"state": ConversationState.RatingDone},
+            eventType.UA_RATING_DONE,
+            200,
+        ),
+        (  # valid state transition
+            ConversationState.AlignButtonClicked,
+            {"state": ConversationState.TopicsButtonClicked},
+            eventType.UA_TOPICS_CLICK,
+            200,
+        ),
+        (  # valid state transition
+            ConversationState.TopicsButtonClicked,
+            {"state": ConversationState.TalkedButtonClicked},
+            eventType.UA_TALKED_CLICK,
+            200,
+        ),
+        (  # invalid state transition
+            ConversationState.TalkedButtonClicked,
+            {"state": ConversationState.TopicsButtonClicked},
+            None,
+            422,
+        ),
+        (  # invalid state transition
+            ConversationState.RatingDone,
+            {"state": ConversationState.TalkedButtonClicked},
+            None,
+            422,
+        ),
+        (  # cannot change from state to same state
+            ConversationState.TopicsButtonClicked,
+            {"state": ConversationState.TopicsButtonClicked},
+            None,
+            422,
+        ),
+        (  # receiver and valid state transition
+            ConversationState.TopicsButtonClicked,
+            {"receiverName": faker.name(), "state": ConversationState.RatingDone},
+            eventType.UA_RATING_DONE,
+            200,
         ),
     ],
 )
 def test_edit_conversation_request_data(
-    request_data, status_code, client_with_user_and_header, accept_json
+    old_state,
+    request_data,
+    event_type,
+    status_code,
+    client_with_user_and_header,
+    accept_json,
 ):
     client, user, session_header, _ = client_with_user_and_header
-
-    conversation = ConversationsFactory(sender_user=user)
+    if old_state is None:
+        conversation = ConversationsFactory(sender_user=user)
+    else:
+        conversation = ConversationsFactory(
+            sender_user=user, state=ConversationState(old_state)
+        )
     assert Conversations.query.count() == 1, "Make sure we have a single Conversation"
-
     with mock.patch("flask_jwt_extended.utils.get_current_user", return_value=user):
         url = url_for(
             "conversations.edit_conversation",
             conversation_uuid=conversation.conversation_uuid,
         )
-
         response = client.put(
             url,
             headers=session_header + accept_json,
             json=request_data,
         )
-
         assert response.status_code == status_code, str(response.json)
-
-    assert Conversations.query.count() == 1, "Conversations count kept the same."
+        if event_type is None:
+            assert UserBAnalyticsData.query.count() == 0, "No analytics event logged."
+        else:
+            assert (
+                UserBAnalyticsData.query.count() == 1
+            ), "An analytics event is logged."
+            analytics_event = UserBAnalyticsData.query.first()
+            assert (
+                analytics_event.conversation_uuid == conversation.conversation_uuid
+            ), "Analytics event has matching conversation id"
+            assert (
+                analytics_event.session_uuid == session_header[0][1]
+            ), "Analytics event has matching session id"
+            assert analytics_event.event_type == event_type.value
+            assert analytics_event.event_value
 
 
 def test_delete_conversation(client_with_user_and_header, accept_json):
