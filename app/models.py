@@ -69,6 +69,16 @@ def user_lookup_callback(_jwt_header, jwt_data):
     return Users.query.filter_by(user_uuid=identity).one_or_none()
 
 
+class Feedback(db.Model):
+    feedback_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    session_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"), nullable=False
+    )
+    session = relationship("Sessions", foreign_keys=[session_uuid])
+    created = db.Column("feedback_created_timestamp", db.DateTime, nullable=False)
+    text = db.Column(db.String(2048), index=False, unique=False, nullable=False)
+
+
 class PasswordResetLink(db.Model):
     __tablename__ = "password_reset_links"
 
