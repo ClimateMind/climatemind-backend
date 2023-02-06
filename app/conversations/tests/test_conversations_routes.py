@@ -414,7 +414,6 @@ def test_create_conversations_successful(client_with_user_and_header, accept_jso
     assert isinstance(response.json["conversations"], list), response.json
 
     for conversation in response.json["conversations"]:
-
         assert (
             "conversationId" in conversation.keys()
         ), "Conversation must include conversationId."

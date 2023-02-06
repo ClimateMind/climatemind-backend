@@ -52,7 +52,6 @@ def get_feed_results(quiz_uuid, N_FEED_CARDS, session_uuid):
     scores = db.session.query(Scores).filter_by(quiz_uuid=quiz_uuid).first()
 
     if scores:
-
         scores_map = get_scores_map(scores)
         try:
             SCORE_NODES = score_nodes(scores_map, N_FEED_CARDS, quiz_uuid, session_uuid)
