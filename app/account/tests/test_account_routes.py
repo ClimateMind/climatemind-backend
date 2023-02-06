@@ -163,7 +163,6 @@ def update_password_checks(
     user: Users,
     default_data: typing.Optional[dict] = None,
 ):
-
     weak_password = "password"
     data = default_data if default_data else {}
     data.update(

@@ -87,7 +87,6 @@ def maybe_assign_session(request):
         and "X-Session-Id" in request.headers
         and request.headers["Authorization"] != ""
     ):
-
         verify_jwt_in_request()
         user_uuid = get_jwt_identity()
 
