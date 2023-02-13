@@ -53,6 +53,83 @@ def test_logout(m_unset_jwt_cookies, client):
     m_unset_jwt_cookies.assert_called_once()
 
 
+@pytest.mark.integration
+def test_successful_registry_basic(client):
+    data = get_fake_registration_json()
+    response = client.post(url_for("auth.register"), json=data)
+    assert response.status_code == 201
+    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
+    assert header_map["access-control-allow-origin"] == "http://0.0.0.0:3000"
+    assert header_map["content-type"] == "application/json"
+    assert isinstance(response.json, dict), "Response must be a dict"
+    assert (
+        response.json["message"] == "Successfully created user"
+    ), "Response must have appropriate message"
+
+
+@pytest.mark.integration
+def test_successful_registry_second_user(client):
+    client.post(
+        url_for("auth.register", json=get_fake_registration_json())
+    )  # first user
+    response = client.post(
+        url_for("auth.register"), json=get_fake_registration_json()
+    )  # another user
+    assert response.status_code == 201
+    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
+    assert header_map["access-control-allow-origin"] == "http://0.0.0.0:3000"
+    assert header_map["content-type"] == "application/json"
+    assert isinstance(response.json, dict), "Response must be a dict"
+    assert (
+        response.json["message"] == "Successfully created user"
+    ), "Response must have appropriate success message"
+
+
+@pytest.mark.parametrize(
+    "missing_field",
+    [
+        "firstName",
+        "lastName",
+        "email",
+        "password",
+        "quizId",
+    ],
+)
+@pytest.mark.integration
+def test_failed_registry_missing_field(missing_field, client):
+    data = get_fake_registration_json()
+    data.pop(missing_field)
+    response = client.post(url_for("auth.register"), json=data)
+    assert response.status_code == 400
+    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
+    assert header_map["content-type"] == "application/json"
+    assert response.json == {
+        "error": "{} must be included in the request body.".format(missing_field)
+    }
+
+
+@pytest.mark.integration
+def test_failed_registry_missing_body(client):
+    response = client.post(url_for("auth.register"))
+    assert response.status_code == 400
+    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
+    assert header_map["content-type"] == "application/json"
+    assert response.json == {"error": "JSON body must be included in the request."}
+
+
+@pytest.mark.integration
+def test_failed_registry_reregistry(client):
+    data = get_fake_registration_json()
+    client.post(url_for("auth.register"), json=data)  # first registry
+    response = client.post(url_for("auth.register"), json=data)  # reregistry attempt
+    assert response.status_code == 409
+    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
+    assert header_map["content-type"] == "application/json"
+    assert response.json == {
+        "error": "Cannot register email. Email already exists in the database."
+    }, "Response must have appropriate error message"
+
+
 recaptcha_Token = "03AGdBq27Tmja4W082LAEVoYyuuALGQwMVxOuOGDduLCQSTWWFuTtc4hQsc-KUVhsJQlBzEjdtxTqs1kXHusJCk2husZjY44rA-opJLWOgJuVUIoGtXozHtYhtmR5DibuJ3idGLalZ00niqnaa0zHC73hWPzc1CtnUO258nZLh1uxePi7DI-afWQd6aa4-EuRcPabG_E500r9S4RReTg42WtP8SNrqEdFoG9UdPoIF2aGCArHD6GqhQzwOev8_jeKUzcxq_1wEvxiID2ow7rxK339PCeTgO9Zz9fPnhTZ6mKaa_tmL1bSQ2zvWvA0Z5An3YvMP3sureZVR_mhJP2r84sYw9WbuI6hRr1oUGtTGuACB-IBqqE5m-meetr870N2Gl-vp3veeEyo34HLj5iDOr6YwyIXWBKam7mDHfhjps1QeiN90291e6CxaFd-bOkeazZyu2_aEPblNwIiUBl0BobqJ2dT2HlxXCRma0QDuX4xLvwh8_ayrJGo9t6nRxQHghZ2ZEh450bM0bVFAqkIGAqYv_EvYj7_XgQ"  # this is the string from the cypress test I'm replacing ...
 recaptcha_Token = "abcdef"  # ... but any string works!
 
