@@ -1,27 +1,29 @@
 import pandas as pd
-from sqlalchemy import create_engine
 import os
-import urllib
 
-# Create a connection to the database.
+from app.common.db_utils import create_sqlalchemy_engine
 
-DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
-SQLALCHEMY_DATABASE_URI = "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(
-    DB_CREDENTIALS
-)
 PATH = os.path.dirname(os.path.realpath(__file__))
 # Change file variable when an updated CSV needs to be used.
 
 file = f"{PATH}/lkp_postal_nodes.csv"
-engine = create_engine(SQLALCHEMY_DATABASE_URI, echo=True)
+
+# Create a connection to the database.
+engine = create_sqlalchemy_engine(echo=True, fast_executemany=True)
 
 # Create a new table (with data) based on the CSV file whenever the docker container is rebuilt.
 
 
-def add_lrf_data():
+def add_lrf_data(engine_override=None):
     try:
         data = pd.read_csv(file, index_col=0)
-        data.to_sql("lrf_data", engine, if_exists="replace")
+        data.to_sql(
+            "lrf_data",
+            engine_override or engine,
+            if_exists="replace",
+            method="multi",
+            chunksize=256,
+        )
     except Exception as e:
         print(e)
 

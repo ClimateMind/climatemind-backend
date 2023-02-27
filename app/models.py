@@ -1,6 +1,6 @@
 from datetime import datetime
 
-from flask import url_for
+from flask import current_app, url_for
 from sqlalchemy.dialects.mssql import UNIQUEIDENTIFIER
 from sqlalchemy.orm import relationship
 from sqlalchemy.sql import expression
@@ -69,6 +69,16 @@ def user_lookup_callback(_jwt_header, jwt_data):
     return Users.query.filter_by(user_uuid=identity).one_or_none()
 
 
+class Feedback(db.Model):
+    feedback_id = db.Column(db.Integer, autoincrement=True, primary_key=True)
+    session_uuid = db.Column(
+        UNIQUEIDENTIFIER, db.ForeignKey("sessions.session_uuid"), nullable=False
+    )
+    session = relationship("Sessions", foreign_keys=[session_uuid])
+    created = db.Column("feedback_created_timestamp", db.DateTime, nullable=False)
+    text = db.Column(db.String(2048), index=False, unique=False, nullable=False)
+
+
 class PasswordResetLink(db.Model):
     __tablename__ = "password_reset_links"
 
@@ -90,16 +100,10 @@ class PasswordResetLink(db.Model):
 
     @property
     def reset_url(self):
-        old_broken_url = url_for(
-            "account.check_if_password_reset_link_is_expired_or_used",
-            password_reset_link_uuid=self.uuid,
-            _external=True,
-        ).lower()
-
-        frontend_base_url = "https://app.climatemind.org"
+        base_frontend_url = current_app.config.get("BASE_FRONTEND_URL")
         route_component = "/password-reset/"
-        hard_coded_url = frontend_base_url + route_component + str(self.uuid).lower()
-        return hard_coded_url
+        reset_url = base_frontend_url + route_component + str(self.uuid).lower()
+        return reset_url
 
     @property
     def expired(self):

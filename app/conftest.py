@@ -5,6 +5,7 @@ import pytest
 from flask.testing import FlaskClient
 from flask_jwt_extended import create_access_token
 from flask_sqlalchemy import SQLAlchemy
+from mock import MagicMock, patch
 
 from app.factories import faker
 from app.models import Users
@@ -48,3 +49,14 @@ def client_with_user_and_header(
 
     session_header = [("X-Session-Id", session.session_uuid)]
     return client, user, session_header, password
+
+
+@pytest.fixture()
+def sendgrid_mock():
+    with patch("app.sendgrid.utils.set_up_sendgrid") as m_set_up_sendgrid:
+        sendgrid_mock = MagicMock()
+        m_set_up_sendgrid.return_value = (
+            sendgrid_mock,
+            MagicMock(name="from_email_mock"),
+        )
+        yield sendgrid_mock

@@ -34,7 +34,6 @@ class ProcessScores:
 
         """
         for value in self.questions[set_name]:
-
             if set_name == "SetOne":
                 question_id = value["questionId"]
             elif set_name == "SetTwo":

@@ -69,7 +69,6 @@ class process_solutions:
         general_solutions_details = []
 
         for solution in general_solutions:
-
             current_solution = self.G.nodes[solution]
             self.NX_UTILS.set_current_node(current_solution)
             self.MYTH_PROCESS.set_current_node(current_solution)

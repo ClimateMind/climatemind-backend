@@ -78,7 +78,6 @@ def test_get_ip_address_prod(mocked_check_if_local):
     ],
 )
 def test_maybe_assign_session(target, http_method, client, accept_json):
-
     session = SessionsFactory(user=None)
     session_header = [("X-Session-Id", session.session_uuid)]
 

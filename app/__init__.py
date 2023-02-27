@@ -48,7 +48,6 @@ def create_app(config_class=DevelopmentConfig):
     )
 
     with app.app_context():
-
         from app.auth import bp as auth_bp
 
         app.register_blueprint(auth_bp)
@@ -64,6 +63,10 @@ def create_app(config_class=DevelopmentConfig):
         from app.feed import bp as feed_bp
 
         app.register_blueprint(feed_bp)
+
+        from app.feedback import bp as feedback_bp
+
+        app.register_blueprint(feedback_bp)
 
         from app.myths import bp as myths_bp
 
@@ -138,4 +141,7 @@ def init_sentry(app):
             traces_sample_rate=traces_sample_rate,
             environment=environment,
             attach_stacktrace=True,
+            _experiments={
+                "profiles_sample_rate": 1.0,
+            },
         )

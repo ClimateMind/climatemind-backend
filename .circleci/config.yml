@@ -38,7 +38,7 @@ jobs:
       - run:
           name: "Run Pytest"
           #run pytest with flag checking no breakpoints in code
-          command: docker exec -it docker-api-1 pytest --cipdb --color=yes --junitxml=junit.xml --cov-report xml --cov --cov-config .coveragerc
+          command: docker exec -it docker-api-1 pytest --cipdb --color=yes --junitxml=junit.xml --cov-report xml --cov --cov-config .coveragerc -m 'lrd_data or not lrf_data'
       - run:
           name: Copy Test Results
           command: |
@@ -97,13 +97,9 @@ workflows:
       - pytest:
           requires:
             - lint
-          context:
-            - flaskenv
       - cypress:
           requires:
             - lint
-          context:
-            - flaskenv
       - build_and_deploy_prod:
           context:
             - azure

@@ -291,7 +291,6 @@ def solution_details(G, climate_solutions_iris, nx):
             nx.set_current_node(G.nodes[node])
 
             if nx.get_node_id() == iri:
-
                 # FIXME: code duplication build_shared_solution_details_response
                 solution = {
                     "solutionId": nx.get_node_id(),
@@ -410,7 +409,6 @@ def build_shared_impact_details_response(impact_iri):
         nx.set_current_node(G.nodes[node])
 
         if nx.get_node_id() == impact_iri:
-
             if "effect" in G.nodes[node]["all classes"]:
                 impact = {
                     "effectTitle": G.nodes[node]["label"],
@@ -456,9 +454,7 @@ def build_shared_solution_details_response(solution_iri):
         nx.set_current_node(G.nodes[node])
 
         if nx.get_node_id() == solution_iri:
-
             if "risk solution" in G.nodes[node]["all classes"]:
-
                 solution = {
                     "solutionTitle": G.nodes[node]["label"],
                     "imageUrl": nx.get_image_url_or_none(),
