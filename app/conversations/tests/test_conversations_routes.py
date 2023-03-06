@@ -153,7 +153,7 @@ def test_delete_conversation(client_with_user_and_header, accept_json):
             headers=session_header + accept_json,
         )
 
-        assert response.status_code == 204, str(response.json)
+        assert response.status_code == 200, str(response.json)
 
     assert conversation.is_marked_deleted, "Conversation should not be visible"
     assert Conversations.query.count() == 1, "Conversations count kept the same."

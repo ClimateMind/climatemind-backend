@@ -1,5 +1,6 @@
 from datetime import datetime, timedelta
 
+from time import sleep
 import pytest
 import typing
 from flask import url_for
@@ -19,8 +20,25 @@ def test_current_email(client):
     with mock.patch("flask_jwt_extended.utils.get_current_user", return_value=user):
         response = client.get(url_for("account.current_email"))
         assert response.status_code == 401, "Unauthorized request"
+        assert response.json == {
+            "msg": 'Missing JWT in headers or cookies (Missing Authorization Header; Missing cookie "access_token")'
+        }
 
-        access_token = create_access_token(identity=user, fresh=True)
+        expiry_milliseconds = 1.0
+        access_token = create_access_token(
+            identity=user,
+            fresh=True,
+            expires_delta=timedelta(milliseconds=expiry_milliseconds),
+        )
+        client.set_cookie("localhost", "access_token", access_token)
+        sleep(0.001 * expiry_milliseconds)
+        response = client.get(url_for("account.current_email"))
+        assert response.status_code == 401, "Unauthorized request"
+        assert response.json == {"msg": "Token has expired"}
+
+        access_token = create_access_token(
+            identity=user, fresh=True, expires_delta=timedelta(seconds=60)
+        )
         client.set_cookie("localhost", "access_token", access_token)
         response = client.get(url_for("account.current_email"))
         assert response.status_code == 200, "Is success"
@@ -29,15 +47,74 @@ def test_current_email(client):
 
 @pytest.mark.integration
 def test_update_email(client, accept_json):
-    response = client.put(url_for("account.update_email"), headers=accept_json)
-    assert response.status_code == 401, "Unauthorized request"
-
     password = faker.password()
     user = UsersFactory(password=password)
-
-    access_token = create_access_token(identity=user, fresh=True)
-    client.set_cookie("localhost", "access_token", access_token)
+    old_email = user.user_email
     new_email = faker.email()
+    ok_data = {
+        "password": password,
+        "confirmEmail": new_email,
+        "newEmail": new_email,
+    }
+
+    response = client.put(
+        url_for("account.update_email"), headers=accept_json, json=ok_data
+    )
+    assert response.status_code == 401, "Unauthorized request"
+    assert response.json == {
+        "msg": 'Missing JWT in headers or cookies (Missing Authorization Header; Missing cookie "access_token")'
+    }
+    assert user.user_email == old_email
+
+    expiry_milliseconds = 1.0
+    access_token = create_access_token(
+        identity=user,
+        fresh=True,
+        expires_delta=timedelta(milliseconds=expiry_milliseconds),
+    )
+    client.set_cookie("localhost", "access_token", access_token)
+    sleep(0.001 * expiry_milliseconds)
+    response = client.put(
+        url_for("account.update_email"), headers=accept_json, json=ok_data
+    )
+    assert response.status_code == 401, "Unauthorized request"
+    assert response.json == {"msg": "Token has expired"}
+    assert user.user_email == old_email
+
+    access_token = create_access_token(
+        identity=user, fresh=True, expires_delta=timedelta(hours=1)
+    )
+    client.set_cookie("localhost", "access_token", access_token)
+    response = client.put(
+        url_for("account.update_email"), headers=accept_json, json=ok_data
+    )
+    assert response.status_code == 200, "Email changed successfully"
+    assert user.user_email == new_email
+
+    response_login_with_old_email = client.post(
+        url_for("auth.login"),
+        json={
+            "email": old_email,
+            "password": password,
+        },
+    )
+    assert (
+        response_login_with_old_email.status_code == 401
+    ), "Login with old email denied"
+    assert response_login_with_old_email.json == {
+        "error": "Wrong email or password. Try again."
+    }
+
+    response_login_with_new_email = client.post(
+        url_for("auth.login"),
+        json={
+            "email": new_email,
+            "password": password,
+        },
+    )
+    assert (
+        response_login_with_new_email.status_code == 200
+    ), "Login with new email successful"
 
     response = client.put(
         url_for("account.update_email"),
@@ -48,7 +125,10 @@ def test_update_email(client, accept_json):
             "newEmail": new_email,
         },
     )
-    assert response.status_code == 200, "Email changed successfully"
+    assert response.status_code == 409, "Cannot change email to itself"
+    assert response.json == {
+        "error": "Cannot update email. Email already exists in the database."
+    }
 
     response = client.put(
         url_for("account.update_email"),
@@ -60,6 +140,7 @@ def test_update_email(client, accept_json):
         },
     )
     assert response.status_code == 400, "Password is required"
+    assert response.json == {"error": "password must be included in the request body."}
 
     response = client.put(
         url_for("account.update_email"),
@@ -71,6 +152,9 @@ def test_update_email(client, accept_json):
         },
     )
     assert response.status_code == 400, "Confirm email is required"
+    assert response.json == {
+        "error": "confirmEmail must be included in the request body."
+    }
 
     response = client.put(
         url_for("account.update_email"),
@@ -82,6 +166,7 @@ def test_update_email(client, accept_json):
         },
     )
     assert response.status_code == 400, "New email is required"
+    assert response.json == {"error": "newEmail must be included in the request body."}
 
     invalid_email = "invalid,@email"
     response = client.put(
@@ -94,6 +179,9 @@ def test_update_email(client, accept_json):
         },
     )
     assert response.status_code == 400, "Email is invalid"
+    assert response.json == {
+        "error": "Cannot update email. Email is not formatted correctly."
+    }
 
     response = client.put(
         url_for("account.update_email"),
@@ -105,6 +193,7 @@ def test_update_email(client, accept_json):
         },
     )
     assert response.status_code == 401, "Wrong password"
+    assert response.json == {"error": "Cannot update email. Incorrect password."}
 
     response = client.put(
         url_for("account.update_email"),
@@ -116,6 +205,9 @@ def test_update_email(client, accept_json):
         },
     )
     assert response.status_code == 400, "Emails should be equal"
+    assert response.json == {
+        "error": "Cannot update email. New email address and confirm new email address do not match."
+    }
 
     another_user = UsersFactory()
     response = client.put(
@@ -128,6 +220,9 @@ def test_update_email(client, accept_json):
         },
     )
     assert response.status_code == 409, "Email is not unique"
+    assert response.json == {
+        "error": "Cannot update email. Email already exists in the database."
+    }
 
 
 @pytest.mark.integration
