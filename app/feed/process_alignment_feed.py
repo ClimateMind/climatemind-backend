@@ -134,7 +134,7 @@ def get_aligned_effects(alignment_scores_uuid: uuid.UUID, n_nodes: int) -> list:
 
 def assign_alignment_iris(alignment_feed, field_type, iris):
     """Set the solution iri fields in the alignment feed."""
-    for (index, iri) in enumerate(iris, start=1):
+    for index, iri in enumerate(iris, start=1):
         setattr(alignment_feed, "aligned_{}_{}_iri".format(field_type, index), iri)
 
 
