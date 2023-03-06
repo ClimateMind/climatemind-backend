@@ -281,7 +281,7 @@ def delete_conversation(conversation_uuid):
                 "message": "Conversation has removed successfully.",
                 "conversationId": conversation_uuid,
             }
-            return jsonify(response), 204
+            return jsonify(response), 200
         except SQLAlchemyError:
             return DatabaseError(message="Couldn't edit conversation")
 
