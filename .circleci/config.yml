@@ -1,7 +1,6 @@
 version: 2.1
 orbs:
   azure-acr: circleci/azure-acr@0.2.0
-  node: circleci/node@3.0.0
   python: circleci/python@1.0.0
   codecov: codecov/codecov@3.2.3
 
