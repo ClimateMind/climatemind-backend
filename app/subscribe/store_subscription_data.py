@@ -6,7 +6,6 @@ from datetime import timezone
 
 
 def store_subscription_data(session_uuid, email):
-
     email_in_db = Signup.query.filter_by(signup_email=email).first()
 
     if email_in_db:

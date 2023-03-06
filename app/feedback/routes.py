@@ -1,6 +1,7 @@
 from datetime import datetime, timezone
 
 from flask import jsonify, request
+from flask_cors import cross_origin
 from sqlalchemy.exc import SQLAlchemyError
 
 from app import db
@@ -11,6 +12,7 @@ from app.feedback import bp
 
 
 @bp.route("/feedback", methods=["POST"])
+@cross_origin()
 def post_feedback():
     """
     Returns HTTP codes
