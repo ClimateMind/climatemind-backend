@@ -18,7 +18,6 @@ def test_current_email(client):
     user = UsersFactory()
 
     with mock.patch("flask_jwt_extended.utils.get_current_user", return_value=user):
-
         response = client.get(url_for("account.current_email"))
         assert response.status_code == 401, "Unauthorized request"
         assert response.json == {
