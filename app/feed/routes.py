@@ -9,12 +9,11 @@ from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from app.models import Scores
 from flask_cors import cross_origin
 
-from app import db, auto, cache
+from app import db, cache
 
 
 @bp.route("/feed", methods=["GET"])
 @cross_origin()
-@auto.doc()
 def get_feed():
     """
     The front-end needs to request personalized climate change effects that are most
