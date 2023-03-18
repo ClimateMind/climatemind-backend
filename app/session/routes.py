@@ -7,7 +7,6 @@ from flask_cors import cross_origin
 from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
 
-from app import auto
 from app.session import bp
 from app.session.session_helpers import get_ip_address, store_session
 
@@ -15,7 +14,6 @@ from app.session.session_helpers import get_ip_address, store_session
 @bp.route("/session", methods=["POST"])
 @cross_origin()
 @jwt_required(optional=True)
-@auto.doc()
 def post_session():
     session_uuid = uuid.uuid4()
     session_created_timestamp = datetime.datetime.now(timezone.utc)

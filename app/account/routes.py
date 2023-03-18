@@ -7,7 +7,7 @@ from flask_jwt_extended import current_user
 from flask_jwt_extended import jwt_required
 from sqlalchemy.exc import SQLAlchemyError
 
-from app import auto, db, limiter
+from app import db, limiter
 from app.account import bp
 from app.account.schemas import (
     UserChangePasswordSchema,
@@ -30,7 +30,6 @@ from app.sendgrid.utils import send_reset_password_email
 @bp.route("/quizId", methods=["GET"])
 @cross_origin()
 @jwt_required()
-@auto.doc()
 def current_quizId():
     """
     Returns the current quizId of a logged in user or standard JWT errors if token not available or expired.
@@ -44,7 +43,6 @@ def current_quizId():
 @bp.route("/email", methods=["GET"])
 @cross_origin()
 @jwt_required()
-@auto.doc()
 def current_email():
     """
     Returns the current email address of a logged in user or standard JWT errors if token not available or expired.
@@ -58,7 +56,6 @@ def current_email():
 @bp.route("/email", methods=["PUT"])
 @cross_origin()
 @jwt_required()
-@auto.doc()
 def update_email():
     """
     # FIXME: move to /user-account PUT

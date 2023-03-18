@@ -6,12 +6,9 @@ from flask_cors import cross_origin
 
 MYTH_PROCESSOR = process_myths()
 
-from app import auto
-
 
 @bp.route("/myths", methods=["GET"])
 @cross_origin()
-@auto.doc()
 def get_general_myths():
     """
     The front-end needs a general myths list and information to serve to user when

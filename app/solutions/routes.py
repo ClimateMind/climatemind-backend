@@ -9,14 +9,11 @@ from flask_cors import cross_origin
 import numpy as np
 import pickle
 
-from app import auto
-
 SOLUTION_PROCESSOR = process_solutions(4, 0.5)
 
 
 @bp.route("/get_actions", methods=["GET"])
 @cross_origin()
-@auto.doc()
 def get_actions():
     """
     The front-end needs to request actions to take against climate change
@@ -35,7 +32,6 @@ def get_actions():
 
 @bp.route("/solutions", methods=["GET"])
 @cross_origin()
-@auto.doc()
 def get_general_solutions():
     """
     The front-end needs general solutions list and information to serve to user when

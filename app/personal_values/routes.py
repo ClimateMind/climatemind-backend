@@ -6,7 +6,6 @@ from app.personal_values.enums import PersonalValue
 from app.personal_values import bp
 from app.models import Scores
 from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
-from app import auto
 
 from app.personal_values.normalize import normalize_scores
 from flask_cors import cross_origin
@@ -16,7 +15,6 @@ from app.personal_values.utils import get_value_descriptions_file_data
 
 @bp.route("/personal_values", methods=["GET"])
 @cross_origin()
-@auto.doc()
 def get_personal_values():
     """
     Users want to know their personal values based on their Schwartz questionnaire

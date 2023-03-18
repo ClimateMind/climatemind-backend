@@ -4,7 +4,7 @@ from flask_cors import CORS
 from sentry_sdk.integrations.flask import FlaskIntegration
 
 from app import models
-from app.extensions import db, migrate, login, cache, auto, jwt, limiter
+from app.extensions import db, migrate, login, cache, jwt, limiter
 from config import DevelopmentConfig
 
 
@@ -17,7 +17,6 @@ def create_app(config_class=DevelopmentConfig):
     migrate.init_app(app, db)
     login.init_app(app)
     cache.init_app(app)
-    auto.init_app(app)
     jwt.init_app(app)
     limiter.init_app(app)
 
@@ -87,10 +86,6 @@ def create_app(config_class=DevelopmentConfig):
         from app.personal_values import bp as personal_values_bp
 
         app.register_blueprint(personal_values_bp)
-
-        from app.documentation import bp as documentation_bp
-
-        app.register_blueprint(documentation_bp)
 
         from app.post_code import bp as post_code_bp
 
