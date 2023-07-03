@@ -22,6 +22,7 @@ from collections import OrderedDict
 
 from app.alignment.utils import get_dashed_personal_values_names_from_vector
 
+
 class score_nodes:
 
     """
