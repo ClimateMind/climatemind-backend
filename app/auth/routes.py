@@ -1,5 +1,5 @@
 import os
-from datetime import datetime, timezone
+from datetime import datetime, timezone, timedelta
 from flask import request, jsonify, make_response
 from app.auth import bp
 from app.auth.validators import password_valid
@@ -76,7 +76,7 @@ def login():
     if not user or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
-    if not check_if_local():
+    if not check_if_local() and not r.get("skip_captcha", None):
         # Verify captcha with Google
         secret_key = os.environ.get("RECAPTCHA_SECRET_KEY")
 
