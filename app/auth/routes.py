@@ -76,7 +76,7 @@ def login():
     if not user or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
-    if not check_if_local() and not r.get("skip_captcha", None):
+    if not check_if_local() and not r.get("skipCaptcha", None):
         # Verify captcha with Google
         secret_key = os.environ.get("RECAPTCHA_SECRET_KEY")
 
