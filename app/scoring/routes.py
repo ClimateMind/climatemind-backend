@@ -12,13 +12,10 @@ from flask_cors import cross_origin
 from flask_jwt_extended import jwt_required
 from flask_jwt_extended import current_user
 
-from app import auto
-
 
 @bp.route("/scores", methods=["POST"])
 @cross_origin()
 @jwt_required(optional=True)
-@auto.doc()
 def user_scores():
     """
     User scores are used to determine which solutions are best to serve

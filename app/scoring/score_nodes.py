@@ -20,6 +20,8 @@ import numpy as np
 import random
 from collections import OrderedDict
 
+from app.alignment.utils import get_dashed_personal_values_names_from_vector
+
 
 class score_nodes:
 
@@ -88,6 +90,9 @@ class score_nodes:
                         localised_acyclic_graph.nodes[node]
                     ),
                     "effectSpecificMythIRIs": self.MYTH_PROCESSOR.get_effect_specific_myths(),
+                    "relatedPersonalValues": get_dashed_personal_values_names_from_vector(
+                        current_node["personal_values_10"]
+                    ),
                 }
 
                 if any(v is None for v in node_values_associations_10):

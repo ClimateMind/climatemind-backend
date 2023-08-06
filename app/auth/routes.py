@@ -24,7 +24,7 @@ from app.errors.errors import (
 from app.models import Users
 from app.sendgrid.utils import send_welcome_email
 
-from app import db, auto
+from app import db
 from app import limiter
 
 import uuid
@@ -46,7 +46,6 @@ def ip_whitelist():
 
 
 @bp.route("/login", methods=["POST"])
-@auto.doc()
 @limiter.limit("100/day;50/hour;10/minute;5/second")
 def login():
     """
@@ -77,7 +76,7 @@ def login():
     if not user or not user.check_password(password):
         raise UnauthorizedError(message="Wrong email or password. Try again.")
 
-    if not check_if_local():
+    if not check_if_local() and not r.get("skipCaptcha", None):
         # Verify captcha with Google
         secret_key = os.environ.get("RECAPTCHA_SECRET_KEY")
 

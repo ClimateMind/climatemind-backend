@@ -6,12 +6,9 @@ from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from app.errors.errors import InvalidUsageError
 from flask_cors import cross_origin
 
-from app import auto
-
 
 @bp.route("/post-code", methods=["POST"])
 @cross_origin()
-@auto.doc()
 def post_code():
     """
 

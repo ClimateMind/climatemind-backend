@@ -7,12 +7,9 @@ from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from flask_cors import cross_origin
 from flask import request
 
-from app import auto
-
 
 @bp.route("/subscribe", methods=["POST"])
 @cross_origin()
-@auto.doc()
 def subscribe():
     r = request.get_json(force=True, silent=True)
 
