@@ -38,6 +38,10 @@ class Users(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
+    define delete_user(self, password):
+        # TO DO: delete user here
+        # self.
+
     @classmethod
     def find_by_email(cls, email):
         user = cls.query.filter_by(user_email=email).one_or_none()

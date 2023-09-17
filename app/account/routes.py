@@ -137,6 +137,32 @@ def update_user_account():
     return jsonify(response), 200
 
 
+@bp.route("/user-account", methods=["DELETE"])
+@cross_origin()
+@jwt_required()
+def update_user_account():
+    session_uuid = request.headers.get("X-Session-Id")
+    session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
+    check_uuid_in_db(session_uuid, uuidType.SESSION)
+
+    json_data = request.get_json(force=True, silent=True)
+    # schema = LoggedUserChangePasswordSchema()
+    schema = LoggedUserDeleteAccountScheme()
+    result_data = schema.load(json_data)
+
+    if current_user.check_password(result_data["current_password"]):
+        # current_user.set_password(result_data["new_password"])
+        current_user.delete_account(result_data["delete_account"])
+        # delete account
+        # db.session.commit()
+
+    else:
+        raise ForbiddenError("Invalid password")
+
+    response = {"message": "User account deleted."}
+    return jsonify(response), 200
+
+
 @bp.route("/password-reset", methods=["POST"])
 @limiter.limit("100/day;50/hour;10/minute;5/second")
 def create_and_send_password_reset_link_email():
