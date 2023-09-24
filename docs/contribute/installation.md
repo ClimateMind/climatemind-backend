@@ -86,6 +86,11 @@ After this, you are finally able to test the app manually on your local environm
 
 ### climatemind-backend\_api&#x20;
 
+#### ERROR: for api  Cannot start service api: Ports are not available: listen tcp 0.0.0.0:5000: bind: address already in use
+
+Happens when port 5000 is already in use. Usually occurs with macs because they now devote port 5000 for airplay receiver. To deactivate this setting and free up port 5000, do the following: 
+System Settings -> General -> uncheck ‘AirPlay Receiver’
+
 #### /usr/bin/env: ‘bash\r’: No such file or directory
 
 Happens when you are on **Windows**. `climatemind-backend_db`  and `climatemind-backend_webapp` are up and running, but  `climatemind-backend_api` exits right away after the start. if by [checking docker logs](development/work-with-docker.md#check-the-docker-container-logs) for the container you see the following error.
