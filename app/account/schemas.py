@@ -28,6 +28,6 @@ class LoggedUserChangePasswordSchema(UserChangePasswordSchema):
 class SendPasswordResetLinkSchema(Schema):
     email = fields.Email(required=True)
 
+
 class LoggedUserDeleteAccountScheme(UserChangePasswordSchema):
     current_password = fields.Str(required=True)
-

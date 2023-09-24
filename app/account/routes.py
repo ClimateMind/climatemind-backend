@@ -154,7 +154,7 @@ def delete_user_account():
         # current_user.set_password(result_data["new_password"])
         # delete account
         current_user.delete_account()
-        #TO DO: delete session record
+        # TO DO: delete session record
         db.session.commit()
 
     else:

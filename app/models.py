@@ -41,7 +41,6 @@ class Users(db.Model):
     def delete_user(self):
         self.query.filter_by(user_uuid=self.user_uuid).delete()
 
-
     @classmethod
     def find_by_email(cls, email):
         user = cls.query.filter_by(user_email=email).one_or_none()
