@@ -140,7 +140,7 @@ def update_user_account():
 @bp.route("/user-account", methods=["DELETE"])
 @cross_origin()
 @jwt_required()
-def update_user_account():
+def delete_user_account():
     session_uuid = request.headers.get("X-Session-Id")
     session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
     check_uuid_in_db(session_uuid, uuidType.SESSION)
@@ -152,9 +152,10 @@ def update_user_account():
 
     if current_user.check_password(result_data["current_password"]):
         # current_user.set_password(result_data["new_password"])
-        current_user.delete_account(result_data["delete_account"])
         # delete account
-        # db.session.commit()
+        current_user.delete_account()
+        #TO DO: delete session record
+        db.session.commit()
 
     else:
         raise ForbiddenError("Invalid password")

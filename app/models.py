@@ -38,9 +38,9 @@ class Users(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    define delete_user(self, password):
-        # TO DO: delete user here
-        # self.
+    def delete_user(self):
+        self.query.filter_by(user_uuid=self.user_uuid).delete()
+
 
     @classmethod
     def find_by_email(cls, email):
