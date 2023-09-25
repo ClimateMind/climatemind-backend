@@ -9,7 +9,13 @@ from flask_jwt_extended import create_access_token
 from freezegun import freeze_time
 from mock import mock
 
-from app.factories import UsersFactory, faker, SessionsFactory, PasswordResetLinkFactory
+from app.factories import (
+    UsersFactory,
+    faker,
+    SessionsFactory,
+    PasswordResetLinkFactory,
+    ScoresFactory,
+)
 from app.models import PasswordResetLink, Users
 
 
@@ -450,10 +456,26 @@ def test_delete_user(client, accept_json):
 
     headers = session_header + accept_json
 
-    breakpoint()
+    response = client.post(
+        url_for("auth.login"),
+        json={
+            "email": user.user_email,
+            "password": password,
+        },
+    )
+    assert response.status_code == 200, "Successful login"
+
     response = client.post(
         url_for("account.delete_user_account"), headers=headers, json=ok_data
     )
     assert response.status_code == 200, "User account deleted."
 
-    # TO DO: user should not be able to log back in because their account shouldn't exist
+    # User should not be able to log back in because their account shouldn't exist anymore (was deleted)
+    response = client.post(
+        url_for("auth.login"),
+        json={
+            "email": user.user_email,
+            "password": password,
+        },
+    )
+    assert response.status_code == 401, "Wrong eamil or password. Try again."
