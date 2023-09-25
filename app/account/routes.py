@@ -13,6 +13,7 @@ from app.account.schemas import (
     UserChangePasswordSchema,
     LoggedUserChangePasswordSchema,
     SendPasswordResetLinkSchema,
+    LoggedUserDeleteAccountSchema,
 )
 from app.account.utils import is_email_valid, check_password_reset_link_is_valid
 from app.common.uuid import uuidType, validate_uuid, check_uuid_in_db
@@ -137,7 +138,7 @@ def update_user_account():
     return jsonify(response), 200
 
 
-@bp.route("/user-account", methods=["DELETE"])
+@bp.route("/user-account", methods=["POST"])
 @cross_origin()
 @jwt_required()
 def delete_user_account():
@@ -147,14 +148,14 @@ def delete_user_account():
 
     json_data = request.get_json(force=True, silent=True)
     # schema = LoggedUserChangePasswordSchema()
-    schema = LoggedUserDeleteAccountScheme()
+    schema = LoggedUserDeleteAccountSchema()
     result_data = schema.load(json_data)
 
     if current_user.check_password(result_data["current_password"]):
         # current_user.set_password(result_data["new_password"])
         # delete account
-        current_user.delete_account()
-        # TO DO: delete session record
+        current_user.delete_user()
+        # TO DO: delete session record (or convert that session to not link with user uuid anymore? Or convert all sessions to not link with user uuid?)
         db.session.commit()
 
     else:

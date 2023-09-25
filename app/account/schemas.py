@@ -29,5 +29,5 @@ class SendPasswordResetLinkSchema(Schema):
     email = fields.Email(required=True)
 
 
-class LoggedUserDeleteAccountScheme(UserChangePasswordSchema):
+class LoggedUserDeleteAccountSchema(CamelCaseSchema, Schema):
     current_password = fields.Str(required=True)
