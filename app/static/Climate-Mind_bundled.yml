@@ -1493,6 +1493,74 @@ paths:
               type: object
               properties: {}
         description: ''
+    post:
+      summary: ''
+      operationId: post-user-account
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  '':
+                    type: string
+                    x-stoplight:
+                      id: 5ymf0c3v71auk
+              examples:
+                Example 1:
+                  value:
+                    message: User account deleted.
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  '':
+                    type: string
+                    x-stoplight:
+                      id: twuq78b53var6
+              examples:
+                Example 1:
+                  value:
+                    message: Invalid password
+      x-stoplight:
+        id: 0tnj0bajh4gte
+      description: Delete user account. BEWARE!
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+          description: 'credentials in format "Bearer {jwt_token}"'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                currentPassword:
+                  type: string
+                  x-stoplight:
+                    id: df1nchmmpf0zj
+                  format: password
+                  minLength: 8
+                  maxLength: 128
+                  writeOnly: true
+              required:
+                - currentPassword
+            examples:
+              Example 1:
+                value:
+                  currentPassword: p4ssw0rd1
   '/alignment/:alignmentScoresId/summary':
     get:
       summary: Alignment Summary - GET
