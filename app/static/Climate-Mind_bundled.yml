@@ -1493,9 +1493,9 @@ paths:
               type: object
               properties: {}
         description: ''
-    post:
+    delete:
       summary: ''
-      operationId: post-user-account
+      operationId: delete-user-account
       responses:
         '200':
           description: OK
@@ -1561,6 +1561,7 @@ paths:
               Example 1:
                 value:
                   currentPassword: p4ssw0rd1
+        description: Request body requires password for confirmation to delete account.
   '/alignment/:alignmentScoresId/summary':
     get:
       summary: Alignment Summary - GET
