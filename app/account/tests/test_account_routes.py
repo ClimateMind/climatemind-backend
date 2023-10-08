@@ -465,7 +465,7 @@ def test_delete_user(client, accept_json):
     )
     assert response.status_code == 200, "Successful login"
 
-    response = client.post(
+    response = client.delete(
         url_for("account.delete_user_account"), headers=headers, json=ok_data
     )
     assert response.status_code == 200, "User account deleted."
