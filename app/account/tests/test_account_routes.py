@@ -9,7 +9,13 @@ from flask_jwt_extended import create_access_token
 from freezegun import freeze_time
 from mock import mock
 
-from app.factories import UsersFactory, faker, SessionsFactory, PasswordResetLinkFactory
+from app.factories import (
+    UsersFactory,
+    faker,
+    SessionsFactory,
+    PasswordResetLinkFactory,
+    ScoresFactory,
+)
 from app.models import PasswordResetLink, Users
 
 
@@ -430,3 +436,46 @@ def test_check_if_password_reset_link_is_used(client, accept_json):
     )
     response = client.get(check_if_link_is_valid_url, headers=session_header)
     assert response.status_code == 409, "Is used already"
+
+
+@pytest.mark.integration
+def test_delete_user(client, accept_json):
+    password = faker.password()
+    user = UsersFactory(password=password)
+    ok_data = {
+        "currentPassword": password,
+    }
+
+    session = SessionsFactory()
+    session_header = [("X-Session-Id", session.session_uuid)]
+
+    access_token = create_access_token(
+        identity=user, fresh=True, expires_delta=timedelta(seconds=60)
+    )
+    client.set_cookie("localhost", "access_token", access_token)
+
+    headers = session_header + accept_json
+
+    response = client.post(
+        url_for("auth.login"),
+        json={
+            "email": user.user_email,
+            "password": password,
+        },
+    )
+    assert response.status_code == 200, "Successful login"
+
+    response = client.delete(
+        url_for("account.delete_user_account"), headers=headers, json=ok_data
+    )
+    assert response.status_code == 200, "User account deleted."
+
+    # User should not be able to log back in because their account shouldn't exist anymore (was deleted)
+    response = client.post(
+        url_for("auth.login"),
+        json={
+            "email": user.user_email,
+            "password": password,
+        },
+    )
+    assert response.status_code == 401, "Wrong eamil or password. Try again."
