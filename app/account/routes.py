@@ -138,7 +138,7 @@ def update_user_account():
     return jsonify(response), 200
 
 
-@bp.route("/user-account", methods=["POST"])
+@bp.route("/user-account", methods=["DELETE"])
 @cross_origin()
 @jwt_required()
 def delete_user_account():
