@@ -16,7 +16,10 @@ from app.extensions import db, jwt
 class Sessions(db.Model):
     __tablename__ = "sessions"
     ip_address = db.Column(db.String(255), primary_key=False)
-    user_uuid = db.Column(UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"))
+    user_uuid = db.Column(
+        UNIQUEIDENTIFIER,
+        db.ForeignKey("users.user_uuid", ondelete="SET NULL"),
+    )
     user = relationship("Users", foreign_keys=[user_uuid])
     session_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
     session_created_timestamp = db.Column(db.DateTime)
@@ -37,6 +40,9 @@ class Users(db.Model):
 
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
+
+    def delete_user(self):
+        self.query.filter_by(user_uuid=self.user_uuid).delete()
 
     @classmethod
     def find_by_email(cls, email):
@@ -86,7 +92,10 @@ class PasswordResetLink(db.Model):
 
     uuid = db.Column("password_reset_link_uuid", UNIQUEIDENTIFIER, primary_key=True)
     user_uuid = db.Column(
-        UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"), index=True, nullable=False
+        UNIQUEIDENTIFIER,
+        db.ForeignKey("users.user_uuid", ondelete="CASCADE"),
+        index=True,
+        nullable=False,
     )
     user = relationship("Users", foreign_keys=[user_uuid])
     session_uuid = db.Column(
@@ -159,7 +168,12 @@ class Conversations(db.Model):
     __tablename__ = "conversations"
     conversation_uuid = db.Column(UNIQUEIDENTIFIER, primary_key=True)
     sender_user_uuid = db.Column(
-        UNIQUEIDENTIFIER, db.ForeignKey("users.user_uuid"), index=True, nullable=False
+        UNIQUEIDENTIFIER,
+        db.ForeignKey(
+            "users.user_uuid",
+            ondelete="SET NULL",
+        ),
+        index=True,
     )
     sender_user = relationship("Users", foreign_keys=[sender_user_uuid])
     sender_session_uuid = db.Column(
