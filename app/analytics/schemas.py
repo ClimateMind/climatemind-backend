@@ -13,5 +13,5 @@ class AnalyticsSchema(CamelCaseSchema, Schema):
     action = fields.Str(required=True)
     label = fields.Str(required=True)
     event_value = fields.Str(required=True)
-    event_timestamp = fields.Datetime(required=True)
+    event_timestamp = fields.DateTime(required=True)
     page_url = fields.Str(required=True)

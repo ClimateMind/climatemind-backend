@@ -1,3 +1,4 @@
+from app.account import bp
 from app.analytics.analytics_logging import log_user_a_event
 from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from flask_cors import cross_origin
@@ -8,11 +9,13 @@ from datetime import datetime
 from app.analytics.schemas import (
     AnalyticsSchema,
 )
+from app.models import AnalyticsData
+
 
 
 @bp.route("/analytics", methods=["POST"])
 @cross_origin()
-def post_user_a_event(conversation_uuid):
+def post_user_a_event():
     """
     Logs a user a event in the analytics_data table for analytics tracking.
 
@@ -29,7 +32,6 @@ def post_user_a_event(conversation_uuid):
     JSON - success message
 
     """
-
     session_uuid = request.headers.get("X-Session-Id")
     session_uuid = validate_uuid(session_uuid, uuidType.SESSION)
     check_uuid_in_db(session_uuid, uuidType.SESSION)
