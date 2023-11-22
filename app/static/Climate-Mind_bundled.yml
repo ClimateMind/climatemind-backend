@@ -2016,5 +2016,76 @@ paths:
               required:
                 - email
         description: Data required to send password reset link
+  /analytics:
+    post:
+      summary: analytics
+      tags: []
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    x-stoplight:
+                      id: tzuwqo35n2rgq
+              examples:
+                OK:
+                  value:
+                    message: User event logged.
+      operationId: post-analytics
+      x-stoplight:
+        id: stuyme02xllm1
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: X-Session-Id
+          description: Session uuid
+      description: Logs a user A event in the analytics_data table for analytics tracking.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                category:
+                  type: string
+                  x-stoplight:
+                    id: pa1jncup2zz7h
+                action:
+                  type: string
+                  x-stoplight:
+                    id: aweqa3xo9a1z8
+                label:
+                  type: string
+                  x-stoplight:
+                    id: 8o1e1k2qqqh0y
+                eventValue:
+                  type: string
+                  x-stoplight:
+                    id: 1ifn6lz1grqpr
+                eventTimestamp:
+                  type: string
+                  x-stoplight:
+                    id: ifs0snoziugak
+                  format: date-time
+                pageUrl:
+                  type: string
+                  x-stoplight:
+                    id: y9xlkarog8mdj
+            examples:
+              Example 1:
+                value:
+                  category: landing_page - webapp
+                  action: get_started
+                  label: session_id
+                  eventValue: 4a3d330f-0a87-4e35-a968-bc4218a27dae
+                  eventTimestamp: '2019-08-24T14:15:22Z'
+                  pageUrl: 'https://app.climatemind.org/'
+        description: Required fields and information for the analytics event.
 components:
   schemas: {}
