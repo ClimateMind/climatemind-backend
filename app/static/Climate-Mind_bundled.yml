@@ -2073,6 +2073,7 @@ paths:
                   x-stoplight:
                     id: ifs0snoziugak
                   format: date-time
+                  pattern: '%Y-%m-%d %H:%M:%S'
                 pageUrl:
                   type: string
                   x-stoplight:
@@ -2084,8 +2085,11 @@ paths:
                   action: get_started
                   label: session_id
                   eventValue: 4a3d330f-0a87-4e35-a968-bc4218a27dae
-                  eventTimestamp: '2019-08-24T14:15:22Z'
+                  eventTimestamp: '2020-11-18 07:07:19'
                   pageUrl: 'https://app.climatemind.org/'
-        description: Required fields and information for the analytics event.
+        description: |-
+          Required fields and information for the analytics event.
+          eventTimestamp MUST look like the following string format:
+          %Y-%m-%d %H:%M:%S (ex: 2020-11-18 07:07:19 ) 
 components:
   schemas: {}
