@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, timezone
 
 import pytest
 import typing
@@ -27,7 +27,7 @@ def test_add_event(client, accept_json):
             "action": faker.pystr(20, 50),
             "label": faker.pystr(20, 50),
             "eventValue": faker.pystr(20, 50),
-            "eventTimestamp": faker.date_time(),
+            "eventTimestamp": str(faker.date_time()),
             "pageUrl": faker.pystr(20, 255),
     }
 
