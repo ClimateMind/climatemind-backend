@@ -12,7 +12,6 @@ from app.analytics.schemas import (
 from app.models import AnalyticsData
 
 
-
 @bp.route("/analytics", methods=["POST"])
 @cross_origin()
 def post_user_a_event():
@@ -39,11 +38,16 @@ def post_user_a_event():
     json_data = request.get_json(force=True, silent=True)
     schema = AnalyticsSchema()
     result_data = schema.load(json_data)
-    log_user_a_event(session_uuid,result_data["category"],result_data["action"],result_data["label"],result_data["event_value"],result_data["event_timestamp"],result_data["page_url"])
+    log_user_a_event(
+        session_uuid,
+        result_data["category"],
+        result_data["action"],
+        result_data["label"],
+        result_data["event_value"],
+        result_data["event_timestamp"],
+        result_data["page_url"],
+    )
 
     response = {"message": "User event logged."}
 
     return jsonify(response), 201
-
-
-

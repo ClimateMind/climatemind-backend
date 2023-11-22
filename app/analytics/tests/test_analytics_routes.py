@@ -23,12 +23,12 @@ def test_add_event(client, accept_json):
     session = SessionsFactory()
     session_header = [("X-Session-Id", session.session_uuid)]
     ok_data = {
-            "category": faker.pystr(20, 50),
-            "action": faker.pystr(20, 50),
-            "label": faker.pystr(20, 50),
-            "eventValue": faker.pystr(20, 50),
-            "eventTimestamp": str(faker.date_time()),
-            "pageUrl": faker.pystr(20, 255),
+        "category": faker.pystr(20, 50),
+        "action": faker.pystr(20, 50),
+        "label": faker.pystr(20, 50),
+        "eventValue": faker.pystr(20, 50),
+        "eventTimestamp": str(faker.date_time()),
+        "pageUrl": faker.pystr(20, 255),
     }
 
     url = url_for("analytics.post_user_a_event")
@@ -38,6 +38,3 @@ def test_add_event(client, accept_json):
         json=ok_data,
     )
     assert response.status_code == 201, "User event logged."
-
-
-
