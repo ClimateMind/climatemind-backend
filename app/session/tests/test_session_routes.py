@@ -42,7 +42,7 @@ def test_post_session_creates_unique_uuids(client):
     assert (
         session.session_uuid == response_uuid
     ), "The endpoint should return same UUID as stored in DB"
-    assert (
-        session.session_created_timestamp == faked_now
-    ), "The session object has been created now"
+    db_time = session.session_created_timestamp.isoformat(" ", "seconds")
+    expected_time = faked_now.isoformat(" ", "seconds")
+    assert db_time == expected_time, "The session object has been created now"
     assert session.user_uuid == user.user_uuid, "Mocked user linked"

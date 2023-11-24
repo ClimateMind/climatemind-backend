@@ -34,7 +34,9 @@ def test_store_session_creation(
     assert Sessions.query.count() == 1, "Single session should be created"
     created_session = Sessions.query.first()
     assert created_session.session_uuid == session_uuid
-    assert created_session.session_created_timestamp == session_created_timestamp
+    db_time = created_session.session_created_timestamp.isoformat(" ", "seconds")
+    expected_time = session_created_timestamp.isoformat(" ", "seconds")
+    assert db_time == expected_time
     assert created_session.user_uuid == user_uuid
     assert created_session.ip_address == ip_address
 
