@@ -1,33 +1,65 @@
-import os
-from datetime import datetime, timezone
-from flask import request, jsonify, make_response
-from app.auth import bp
-from app.auth.validators import password_valid
-from app.common.local import check_if_local
-from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
-import requests
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import jwt_required
-from flask_jwt_extended import create_refresh_token
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import unset_jwt_cookies
-from app.account.utils import is_email_valid
-from sqlalchemy.exc import SQLAlchemyError
-
+from .. import create_app
+from app import limiter
+from app import db
+from app.sendgrid.utils import send_welcome_email
+from app.models import Users
 from app.errors.errors import (
     ConflictError,
     InvalidUsageError,
     DatabaseError,
     UnauthorizedError,
 )
-
-from app.models import Users
-from app.sendgrid.utils import send_welcome_email
-
-from app import db
-from app import limiter
-
+from sqlalchemy.exc import SQLAlchemyError
+from app.account.utils import is_email_valid
+from flask_jwt_extended import unset_jwt_cookies
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import create_refresh_token
+from flask_jwt_extended import jwt_required
+from flask_jwt_extended import JWTManager, create_access_token
+import requests
+from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
+from app.common.local import check_if_local
+from app.auth.validators import password_valid
+from app.auth import bp
+from authlib.integrations.flask_client import OAuth
+from flask import redirect, request, jsonify, make_response, session, url_for
+from datetime import datetime, timezone
+import os
 import uuid
+from authlib.jose import JsonWebToken
+
+
+app = create_app()
+
+oauth = OAuth(app)
+
+auth0_domain = os.getenv('AUTH0_DOMAIN')  # Define the auth0_domain variable
+
+auth0 = oauth.register(
+    'auth0',
+    client_id=os.getenv('AUTH0_CLIENT_ID'),
+    client_secret=os.getenv('AUTH0_CLIENT_SECRET'),
+    api_base_url=os.getenv('AUTH0_BASE'),
+    access_token_url=f"{auth0_domain}/oauth/token",
+    authorize_url=f"{auth0_domain}/authorize",  # Use the auth0_domain variable
+    client_kwargs={
+        'scope': 'openid profile email',
+    },
+
+)
+
+google = oauth.register(
+    'google',
+    server_metadata_url="https://accounts.google.com/.well-known/openid-configuration",
+    client_id=os.getenv('GOOGLE_CLIENT_ID'),
+    client_secret=os.getenv('GOOGLE_CLIENT_SECRET'),
+    authorize_url='https://accounts.google.com/o/oauth2/auth',
+    access_token_url='https://www.googleapis.com/oauth2/v4/token',
+    redirect_uri='http://localhost:5000/login/callback',
+    client_kwargs={'scope': 'openid profile email'},
+
+)
+
 
 """
 A series of endpoints for authentication.
@@ -55,6 +87,7 @@ def login():
     Returns: Errors if data is not valid or captcha fails.
     Returns: Access token and refresh token otherwise.
     """
+
     r = request.get_json(force=True, silent=True)
 
     if not r:
@@ -113,8 +146,33 @@ def login():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token,
+                        path="/refresh", httponly=True)
     return response
+
+
+@bp.route('/login/google')
+def login_google():
+    google = oauth.create_client('google')
+    redirect_uri = url_for('auth.callback', _external=True)
+    return google.authorize_redirect(redirect_uri)
+
+
+@bp.route('/login/callback')
+def callback():
+    try:
+        google = oauth.create_client('google')
+        token = google.authorize_access_token()
+        resp = google.get('https://www.googleapis.com/oauth2/v3/userinfo')
+
+        user_info = resp.json()
+        session['user_email'] = user_info['email']
+        print("logged in user: ", session['user_email'])
+        # return redirect('http://localhost:3000')
+        return redirect('http://localhost:3002/google')
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @bp.route("/refresh", methods=["POST"])
@@ -149,7 +207,8 @@ def refresh():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token,
+                        path="/refresh", httponly=True)
     return response
 
 
@@ -180,7 +239,8 @@ def register():
     r = request.get_json(force=True, silent=True)
 
     if not r:
-        raise InvalidUsageError(message="JSON body must be included in the request.")
+        raise InvalidUsageError(
+            message="JSON body must be included in the request.")
 
     for param in ("firstName", "lastName", "email", "password", "quizId"):
         if param not in r:
@@ -236,7 +296,8 @@ def register():
 
     send_welcome_email(user.user_email, user.first_name)
 
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token,
+                        path="/refresh", httponly=True)
     return response
 
 
