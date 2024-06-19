@@ -1,3 +1,4 @@
+import os
 import sentry_sdk
 from flask import Flask
 from flask_cors import CORS
@@ -6,13 +7,19 @@ from sentry_sdk.integrations.flask import FlaskIntegration
 from app import models
 from app.extensions import db, migrate, login, cache, jwt, limiter
 from config import DevelopmentConfig
+from flask_cors import CORS
+
+app = Flask(__name__)
+CORS(app)  # This will enable CORS for all routes by default
 
 
 def create_app(config_class=DevelopmentConfig):
+
     app = Flask(__name__)
+
     app.config.from_object(config_class)
     init_sentry(app)
-
+    app.secret_key = os.getenv('SECRET_KEY')
     db.init_app(app)
     migrate.init_app(app, db)
     login.init_app(app)
@@ -23,8 +30,9 @@ def create_app(config_class=DevelopmentConfig):
     origins = {
         "origins": [
             "http://127.0.0.1:3000",
-            "http://localhost:3000",
+            "http://localhost:3000”,
             "http://0.0.0.0:3000",
+            "http://192.168.1.212:3000"
             "https://app-frontend-test-001.azurewebsites.net:80",
             "https://app-frontend-prod-001.azurewebsites.net:80",
             "https://app.climatemind.org:80",
@@ -128,7 +136,8 @@ def init_sentry(app):
 
     if dsn and environment:
         try:
-            traces_sample_rate = float(app.config.get("SENTRY_TRACES_SAMPLE_RATE"))
+            traces_sample_rate = float(
+                app.config.get("SENTRY_TRACES_SAMPLE_RATE"))
         except (ValueError, TypeError):
             traces_sample_rate = 0.1
 
@@ -144,3 +153,4 @@ def init_sentry(app):
                 "profiles_sample_rate": 1.0,
             },
         )
+
