@@ -18,6 +18,14 @@ services:
       SENDGRID_API_KEY: ${SENDGRID_API_KEY}
       MAIL_DEFAULT_SENDER: ${MAIL_DEFAULT_SENDER}
       BASE_FRONTEND_URL: "http://localhost:3000"
+      AUTH0_CLIENT_ID: ${AUTH0_CLIENT_ID}
+      AUTH0_CLIENT_SECRET: ${AUTH0_CLIENT_SECRET}
+      AUTH0_DOMAIN: "https://dev-qiqkw0k0y2elmojd.us.auth0.com"
+      AUTH0_CALLBACK_URL: "http://localhost:5000/callback"
+      AUTH0_AUDIENCE: "https://dev-qiqkw0k0y2elmojd.us.auth0.com/api/v2/"
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      SECRET_KEY: ${SECRET_KEY}
     command: ["./wait-for-it", "db:1433"]
     stdin_open: true
     tty: true
