@@ -158,19 +158,31 @@ def login_google():
     return google.authorize_redirect(redirect_uri)
 
 
-@bp.route('/login/callback')
+@bp.route('/login/callback', methods=['GET'])
 def callback():
     try:
         google = oauth.create_client('google')
         token = google.authorize_access_token()
         resp = google.get('https://www.googleapis.com/oauth2/v3/userinfo')
-
         user_info = resp.json()
-        session['user_email'] = user_info['email']
-        print("logged in user: ", session['user_email'])
-        # return redirect('http://localhost:3000')
-        return redirect('http://localhost:3002/google')
-
+        email = user_info['email']
+        user = db.session.query(Users).filter_by(
+            user_email=email).one_or_none()
+        print(user)
+        if user:
+            access_token = create_access_token(identity=user, fresh=True)
+            refresh_token = create_refresh_token(identity=user)
+            response = make_response(
+                redirect(f'http://localhost:3000/login?access_token={access_token}&refresh_token={refresh_token}'))
+            response.set_cookie("first_name", user.first_name, secure=True)
+            response.set_cookie("last_name", user.last_name, secure=True)
+            response.set_cookie("user_uuid", user.user_uuid, secure=True)
+            response.set_cookie("quiz_id", user.quiz_uuid, secure=True)
+            response.set_cookie("user_email", email, secure=True)
+            response.set_cookie("refresh_token", refresh_token, httponly=True)
+            return response
+        else:
+            return jsonify({"error": "User not found, please register first."}), 404
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 

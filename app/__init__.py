@@ -30,7 +30,7 @@ def create_app(config_class=DevelopmentConfig):
     origins = {
         "origins": [
             "http://127.0.0.1:3000",
-            "http://localhost:3000”,
+            "http://localhost:3000",
             "http://0.0.0.0:3000",
             "http://192.168.1.212:3000"
             "https://app-frontend-test-001.azurewebsites.net:80",
@@ -153,4 +153,3 @@ def init_sentry(app):
                 "profiles_sample_rate": 1.0,
             },
         )
-
