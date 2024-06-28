@@ -9,8 +9,8 @@ from app.extensions import db, migrate, login, cache, jwt, limiter
 from config import DevelopmentConfig
 from flask_cors import CORS
 
-app = Flask(__name__)
-CORS(app)  # This will enable CORS for all routes by default
+# app = Flask(__name__)
+# CORS(app)  # This will enable CORS for all routes by default
 
 
 def create_app(config_class=DevelopmentConfig):
@@ -32,7 +32,7 @@ def create_app(config_class=DevelopmentConfig):
             "http://127.0.0.1:3000",
             "http://localhost:3000",
             "http://0.0.0.0:3000",
-            "http://192.168.1.212:3000"
+            "http://192.168.1.212:3000",
             "https://app-frontend-test-001.azurewebsites.net:80",
             "https://app-frontend-prod-001.azurewebsites.net:80",
             "https://app.climatemind.org:80",
@@ -50,6 +50,7 @@ def create_app(config_class=DevelopmentConfig):
             r"/captcha": origins,
             r"/email": origins,
             r"/alignment": origins,
+            r"/conversations": origins,
         },
         supports_credentials=True,
     )

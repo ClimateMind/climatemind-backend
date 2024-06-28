@@ -33,21 +33,6 @@ app = create_app()
 
 oauth = OAuth(app)
 
-auth0_domain = os.getenv('AUTH0_DOMAIN')  # Define the auth0_domain variable
-
-auth0 = oauth.register(
-    'auth0',
-    client_id=os.getenv('AUTH0_CLIENT_ID'),
-    client_secret=os.getenv('AUTH0_CLIENT_SECRET'),
-    api_base_url=os.getenv('AUTH0_BASE'),
-    access_token_url=f"{auth0_domain}/oauth/token",
-    authorize_url=f"{auth0_domain}/authorize",  # Use the auth0_domain variable
-    client_kwargs={
-        'scope': 'openid profile email',
-    },
-
-)
-
 google = oauth.register(
     'google',
     server_metadata_url="https://accounts.google.com/.well-known/openid-configuration",
@@ -151,6 +136,43 @@ def login():
     return response
 
 
+@bp.route('/register/google')
+def register_google():
+    google = oauth.create_client('google')
+    redirect_uri = url_for('auth.register_callback', _external=True)
+    return google.authorize_redirect(redirect_uri)
+
+
+@bp.route('/register/google/callback', methods=['GET'])
+def register_callback():
+    r = request.get_json(force=True, silent=True)
+    google = oauth.create_client('google')
+    token = google.authorize_access_token()
+    resp = google.get('https://www.googleapis.com/oauth2/v3/userinfo')
+    user_info = resp.json()
+    email = user_info['email']
+    user = db.session.query(Users).filter_by(
+        user_email=email).one_or_none()
+    if not user:
+        user = Users(  # Create a new user. Try and add them to the database
+            user_uuid=uuid.uuid4(),
+            first_name=user_info['given_name'],
+            last_name=user_info['family_name'],
+            user_email=email,
+            quiz_uuid=uuid.uuid4(),
+            user_created_timestamp=datetime.now(timezone.utc)
+        )
+        try:
+            db.session.add(user)
+            db.session.commit()
+
+        except SQLAlchemyError:
+            raise DatabaseError(
+                message="An error occurred while adding user to the database."
+            )
+        return user
+
+
 @bp.route('/login/google')
 def login_google():
     google = oauth.create_client('google')
@@ -158,7 +180,7 @@ def login_google():
     return google.authorize_redirect(redirect_uri)
 
 
-@bp.route('/login/callback', methods=['GET'])
+@bp.route('/login/google/callback', methods=['GET'])
 def callback():
     try:
         google = oauth.create_client('google')
@@ -182,7 +204,9 @@ def callback():
             response.set_cookie("refresh_token", refresh_token, httponly=True)
             return response
         else:
-            return jsonify({"error": "User not found, please register first."}), 404
+            response = make_response(
+                redirect(f'http://localhost:3000/start'))
+            return response
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -249,6 +273,7 @@ def register():
     """
 
     r = request.get_json(force=True, silent=True)
+    print(r)
 
     if not r:
         raise InvalidUsageError(
