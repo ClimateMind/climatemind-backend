@@ -138,6 +138,8 @@ def login():
 
 @bp.route('/register/google')
 def register_google():
+    quiz_id = request.args.get('quizId')
+    session['quiz_id'] = quiz_id
     google = oauth.create_client('google')
     redirect_uri = url_for('auth.register_callback', _external=True)
     return google.authorize_redirect(redirect_uri)
@@ -145,32 +147,53 @@ def register_google():
 
 @bp.route('/register/google/callback', methods=['GET'])
 def register_callback():
-    r = request.get_json(force=True, silent=True)
-    google = oauth.create_client('google')
-    token = google.authorize_access_token()
-    resp = google.get('https://www.googleapis.com/oauth2/v3/userinfo')
-    user_info = resp.json()
-    email = user_info['email']
-    user = db.session.query(Users).filter_by(
-        user_email=email).one_or_none()
-    if not user:
-        user = Users(  # Create a new user. Try and add them to the database
-            user_uuid=uuid.uuid4(),
-            first_name=user_info['given_name'],
-            last_name=user_info['family_name'],
-            user_email=email,
-            quiz_uuid=uuid.uuid4(),
-            user_created_timestamp=datetime.now(timezone.utc)
-        )
-        try:
+    try:
+        google = oauth.create_client('google')
+        token = google.authorize_access_token()
+        resp = google.get('https://www.googleapis.com/oauth2/v3/userinfo')
+        user_info = resp.json()
+        email = user_info['email']
+        quiz_id = session.pop('quiz_id', None)
+
+        if not quiz_id:
+            return jsonify({"error": "Quiz ID is missing from session"}), 400
+
+        user = db.session.query(Users).filter_by(
+            user_email=email).one_or_none()
+
+        if not user:
+            user = Users(
+                user_uuid=uuid.uuid4(),
+                first_name=user_info['given_name'],
+                last_name=user_info['family_name'],
+                user_email=email,
+                quiz_uuid=quiz_id,
+                user_created_timestamp=datetime.now(timezone.utc)
+            )
             db.session.add(user)
             db.session.commit()
 
-        except SQLAlchemyError:
-            raise DatabaseError(
-                message="An error occurred while adding user to the database."
-            )
-        return user
+        # Create tokens and set cookies here if needed
+        access_token = create_access_token(identity=user, fresh=True)
+        refresh_token = create_refresh_token(identity=user)
+
+        # After successful registration, redirect and login user
+        response = make_response(
+            redirect(f'http://localhost:3000/sign-up?access_token={access_token}&refresh_token={refresh_token}'))
+        response.set_cookie("first_name", user.first_name, secure=True)
+        response.set_cookie("last_name", user.last_name, secure=True)
+        response.set_cookie("user_uuid", user.user_uuid, secure=True)
+        response.set_cookie("quiz_id", user.quiz_uuid, secure=True)
+        response.set_cookie("user_email", email, secure=True)
+        response.set_cookie("refresh_token", refresh_token, httponly=True)
+        return response
+
+    except SQLAlchemyError:
+        db.session.rollback()
+        return jsonify({"error": "An error occurred while adding user to the database."}), 500
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 
 @bp.route('/login/google')
@@ -190,7 +213,7 @@ def callback():
         email = user_info['email']
         user = db.session.query(Users).filter_by(
             user_email=email).one_or_none()
-        print(user)
+
         if user:
             access_token = create_access_token(identity=user, fresh=True)
             refresh_token = create_refresh_token(identity=user)
