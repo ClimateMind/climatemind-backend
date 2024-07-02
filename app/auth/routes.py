@@ -62,6 +62,18 @@ def ip_whitelist():
     return check_if_local()
 
 
+@bp.route('/user/<email>', methods=['DELETE'])
+def delete_user(email):
+    user = db.session.query(Users).filter_by(
+        user_email=email).one_or_none()
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return jsonify({'message': f'User with email {email} has been deleted'})
+    else:
+        return jsonify({'message': f'User with email {email} not found'}), 404
+
+
 @bp.route("/login", methods=["POST"])
 @limiter.limit("100/day;50/hour;10/minute;5/second")
 def login():
@@ -147,6 +159,12 @@ def register_google():
 
 @bp.route('/register/google/callback', methods=['GET'])
 def register_callback():
+    """
+    Finds user by matching google email with user email in the database
+    If user doesn't exist, create a new user and add to the database
+    Create tokens and set cookies here if needed
+    After successful registration, set the user details as cookies and redirect and login user
+    """
     try:
         google = oauth.create_client('google')
         token = google.authorize_access_token()
@@ -157,22 +175,16 @@ def register_callback():
 
         if not quiz_id:
             return jsonify({"error": "Quiz ID is missing from session"}), 400
+
         # find user by matching google email with user email in the database
         user = db.session.query(Users).filter_by(
             user_email=email).one_or_none()
 
         # if user doesn't exist, create a new user and add to the database
         if not user:
-            user = Users(
-                user_uuid=uuid.uuid4(),
-                first_name=user_info['given_name'],
-                last_name=user_info['family_name'],
-                user_email=email,
-                quiz_uuid=quiz_id,
-                user_created_timestamp=datetime.now(timezone.utc)
+            user = add_user_to_db(
+                user_info['given_name'], user_info['family_name'], email, None, quiz_id
             )
-            db.session.add(user)
-            db.session.commit()
 
         # Create tokens and set cookies here if needed
         access_token = create_access_token(identity=user, fresh=True)
@@ -190,7 +202,6 @@ def register_callback():
         return response
 
     except SQLAlchemyError:
-        # roll back the session and changes to the db if an error occurs while adding user to the database
         db.session.rollback()
         return jsonify({"error": "An error occurred while adding user to the database."}), 500
 
@@ -386,7 +397,8 @@ def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
         quiz_uuid=quiz_uuid,
         user_created_timestamp=user_created_timestamp,
     )
-    user.set_password(password)
+    if password:
+        user.set_password(password)
 
     try:
         db.session.add(user)
