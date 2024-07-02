@@ -157,10 +157,11 @@ def register_callback():
 
         if not quiz_id:
             return jsonify({"error": "Quiz ID is missing from session"}), 400
-
+        # find user by matching google email with user email in the database
         user = db.session.query(Users).filter_by(
             user_email=email).one_or_none()
 
+        # if user doesn't exist, create a new user and add to the database
         if not user:
             user = Users(
                 user_uuid=uuid.uuid4(),
@@ -177,7 +178,7 @@ def register_callback():
         access_token = create_access_token(identity=user, fresh=True)
         refresh_token = create_refresh_token(identity=user)
 
-        # After successful registration, redirect and login user
+        # After successful registration, set the user details as cookies and redirect and login user
         response = make_response(
             redirect(f'http://localhost:3000/sign-up?access_token={access_token}&refresh_token={refresh_token}'))
         response.set_cookie("first_name", user.first_name, secure=True)
@@ -189,6 +190,7 @@ def register_callback():
         return response
 
     except SQLAlchemyError:
+        # roll back the session and changes to the db if an error occurs while adding user to the database
         db.session.rollback()
         return jsonify({"error": "An error occurred while adding user to the database."}), 500
 
