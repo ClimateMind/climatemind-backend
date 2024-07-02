@@ -186,19 +186,11 @@ def register_callback():
                 user_info['given_name'], user_info['family_name'], email, None, quiz_id
             )
 
-        # Create tokens and set cookies here if needed
         access_token = create_access_token(identity=user, fresh=True)
         refresh_token = create_refresh_token(identity=user)
 
-        # After successful registration, set the user details as cookies and redirect and login user
-        response = make_response(
-            redirect(f'http://localhost:3000/sign-up?access_token={access_token}&refresh_token={refresh_token}'))
-        response.set_cookie("first_name", user.first_name, secure=True)
-        response.set_cookie("last_name", user.last_name, secure=True)
-        response.set_cookie("user_uuid", user.user_uuid, secure=True)
-        response.set_cookie("quiz_id", user.quiz_uuid, secure=True)
-        response.set_cookie("user_email", email, secure=True)
-        response.set_cookie("refresh_token", refresh_token, httponly=True)
+        response = create_tokens_and_set_cookies(
+            user, email, access_token, refresh_token)
         return response
 
     except SQLAlchemyError:
@@ -371,6 +363,31 @@ def register():
 
     response.set_cookie("refresh_token", refresh_token,
                         path="/refresh", httponly=True)
+    return response
+
+
+def create_tokens_and_set_cookies(user, email, access_token, refresh_token):
+    """
+    Creates access and refresh tokens and sets them as cookies.
+    Also sets user details as cookies and redirects to a specific URL.
+
+    Parameters:
+    - user: User object containing user details (e.g., user.first_name, user.last_name, etc.)
+    - email: User's email address
+    - access_token: Access token generated for the user
+    - refresh_token: Refresh token generated for the user
+
+    Returns:
+    - Flask response object with cookies set and redirect
+    """
+    response = make_response(redirect(
+        f'http://localhost:3000/sign-up?access_token={access_token}&refresh_token={refresh_token}'))
+    response.set_cookie("first_name", user.first_name, secure=True)
+    response.set_cookie("last_name", user.last_name, secure=True)
+    response.set_cookie("user_uuid", user.user_uuid, secure=True)
+    response.set_cookie("quiz_id", user.quiz_uuid, secure=True)
+    response.set_cookie("user_email", email, secure=True)
+    response.set_cookie("refresh_token", refresh_token, httponly=True)
     return response
 
 
