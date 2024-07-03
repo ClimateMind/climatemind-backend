@@ -62,6 +62,12 @@ def ip_whitelist():
     return check_if_local()
 
 
+"""
+delete route for user only to be used for testing purposes
+
+"""
+
+
 @bp.route('/user/<email>', methods=['DELETE'])
 def delete_user(email):
     user = db.session.query(Users).filter_by(
@@ -191,6 +197,8 @@ def register_callback():
 
         response = create_tokens_and_set_cookies(
             user, email, access_token, refresh_token)
+
+        send_welcome_email(user.user_email, user.first_name)
         return response
 
     except SQLAlchemyError:
@@ -222,14 +230,9 @@ def callback():
         if user:
             access_token = create_access_token(identity=user, fresh=True)
             refresh_token = create_refresh_token(identity=user)
-            response = make_response(
-                redirect(f'http://localhost:3000/login?access_token={access_token}&refresh_token={refresh_token}'))
-            response.set_cookie("first_name", user.first_name, secure=True)
-            response.set_cookie("last_name", user.last_name, secure=True)
-            response.set_cookie("user_uuid", user.user_uuid, secure=True)
-            response.set_cookie("quiz_id", user.quiz_uuid, secure=True)
-            response.set_cookie("user_email", email, secure=True)
-            response.set_cookie("refresh_token", refresh_token, httponly=True)
+
+            response = create_tokens_and_set_cookies(
+                user, email, access_token, refresh_token)
             return response
         else:
             response = make_response(
@@ -387,7 +390,9 @@ def create_tokens_and_set_cookies(user, email, access_token, refresh_token):
     response.set_cookie("user_uuid", user.user_uuid, secure=True)
     response.set_cookie("quiz_id", user.quiz_uuid, secure=True)
     response.set_cookie("user_email", email, secure=True)
-    response.set_cookie("refresh_token", refresh_token, httponly=True)
+    # response.set_cookie("refresh_token", refresh_token, httponly=True)
+    response.set_cookie("refresh_token", refresh_token,
+                        path="/refresh", httponly=True)
     return response
 
 
