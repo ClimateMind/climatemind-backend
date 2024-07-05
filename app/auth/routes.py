@@ -1,6 +1,5 @@
 from .. import create_app
-from app import limiter
-from app import db
+from app import limiter, db
 from app.sendgrid.utils import send_welcome_email
 from app.models import Users
 from app.errors.errors import (
@@ -11,23 +10,18 @@ from app.errors.errors import (
 )
 from sqlalchemy.exc import SQLAlchemyError
 from app.account.utils import is_email_valid
-from flask_jwt_extended import unset_jwt_cookies
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import create_refresh_token
-from flask_jwt_extended import jwt_required
-from flask_jwt_extended import JWTManager, create_access_token
+from flask_jwt_extended import unset_jwt_cookies, get_jwt_identity, create_refresh_token, jwt_required, create_access_token
 import requests
 from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from app.common.local import check_if_local
 from app.auth.validators import password_valid
 from app.auth import bp
-from authlib.integrations.flask_client import OAuth
 from flask import redirect, request, jsonify, make_response, session, url_for
 from datetime import datetime, timezone
 import os
 import uuid
-from authlib.jose import JsonWebToken
 from app import google_auth
+
 app = create_app()
 google = google_auth.init_google_auth(app)
 
