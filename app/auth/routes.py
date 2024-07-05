@@ -27,23 +27,9 @@ from datetime import datetime, timezone
 import os
 import uuid
 from authlib.jose import JsonWebToken
-
-
+from app import google_auth
 app = create_app()
-
-oauth = OAuth(app)
-
-google = oauth.register(
-    'google',
-    server_metadata_url="https://accounts.google.com/.well-known/openid-configuration",
-    client_id=os.getenv('GOOGLE_CLIENT_ID'),
-    client_secret=os.getenv('GOOGLE_CLIENT_SECRET'),
-    authorize_url='https://accounts.google.com/o/oauth2/auth',
-    access_token_url='https://www.googleapis.com/oauth2/v4/token',
-    redirect_uri='http://localhost:5000/login/callback',
-    client_kwargs={'scope': 'openid profile email'},
-
-)
+google = google_auth.init_google_auth(app)
 
 
 """
@@ -238,7 +224,6 @@ def login():
 def register_google():
     quiz_id = request.args.get('quizId')
     session['quiz_id'] = quiz_id
-    google = oauth.create_client('google')
     redirect_uri = url_for('auth.register_callback', _external=True)
     return google.authorize_redirect(redirect_uri)
 
@@ -252,7 +237,6 @@ def register_callback():
     After successful registration, set the user details as cookies and redirect and login user
     """
     try:
-        google = oauth.create_client('google')
         token = google.authorize_access_token()
         resp = google.get('https://www.googleapis.com/oauth2/v3/userinfo')
         user_info = resp.json()
@@ -291,7 +275,6 @@ def register_callback():
 
 @bp.route('/login/google')
 def login_google():
-    google = oauth.create_client('google')
     redirect_uri = url_for('auth.callback', _external=True)
     return google.authorize_redirect(redirect_uri)
 
@@ -299,7 +282,6 @@ def login_google():
 @bp.route('/login/google/callback', methods=['GET'])
 def callback():
     try:
-        google = oauth.create_client('google')
         token = google.authorize_access_token()
         resp = google.get('https://www.googleapis.com/oauth2/v3/userinfo')
         user_info = resp.json()
