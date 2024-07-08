@@ -24,6 +24,7 @@ from app import google_auth
 
 app = create_app()
 google = google_auth.init_google_auth(app)
+base_frontend_url = app.config['BASE_FRONTEND_URL']
 
 
 """
@@ -292,7 +293,7 @@ def callback():
             return response
         else:
             response = make_response(
-                redirect(f'http://localhost:3000/start'))
+                redirect(f'{base_frontend_url}/start'))
             return response
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -360,7 +361,7 @@ def create_tokens_and_set_cookies(user, email, access_token, refresh_token):
     - Flask response object with cookies set and redirect
     """
     response = make_response(redirect(
-        f'http://localhost:3000/sign-up?access_token={access_token}&refresh_token={refresh_token}'))
+        f'{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}'))
     response.set_cookie("first_name", user.first_name, secure=True)
     response.set_cookie("last_name", user.last_name, secure=True)
     response.set_cookie("user_uuid", user.user_uuid, secure=True)
