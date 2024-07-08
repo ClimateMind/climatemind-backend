@@ -44,8 +44,7 @@ class DevelopmentConfig(BaseConfig):
 
     CURRENT_DIR = os.getcwd()
     SCHWARTZ_QUESTIONS_PATH = os.path.join(CURRENT_DIR, "app/questions/static")
-    SCHWARTZ_QUESTIONS_SCHEMA = (f"{SCHWARTZ_QUESTIONS_PATH}/schwartz_questions.schema.json"
-                                 )
+    SCHWARTZ_QUESTIONS_SCHEMA = (f"{SCHWARTZ_QUESTIONS_PATH}/schwartz_questions.schema.json")
     SCHWARTZ_QUESTIONS_FILE = f"{SCHWARTZ_QUESTIONS_PATH}/schwartz_questions.json"
 
     VALUE_DESCRIPTIONS_PATH = os.path.join(CURRENT_DIR, "app/personal_values/static")
@@ -67,12 +66,6 @@ class TestingConfig(DevelopmentConfig):
     TESTING = True
 
     DB_NAME = "sqldb-web-pytest-001"
-    DB_CREDENTIALS = os.environ.get(
-        "TEST_DATABASE_PARAMS", "") + f"Database={DB_NAME};"
-    SQLALCHEMY_DATABASE_URI = (
-        "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(
-            DB_CREDENTIALS)
-    )
-    SQLALCHEMY_ENGINE_OPTIONS = {
-        "poolclass": NullPool,
-    }
+    DB_CREDENTIALS = os.environ.get("TEST_DATABASE_PARAMS", "") + f"Database={DB_NAME};"
+    SQLALCHEMY_DATABASE_URI = ( "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(DB_CREDENTIALS))
+    SQLALCHEMY_ENGINE_OPTIONS = {"poolclass": NullPool,}
