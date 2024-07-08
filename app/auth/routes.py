@@ -43,24 +43,6 @@ def ip_whitelist():
     return check_if_local()
 
 
-"""
-**** Delete route for user only to be used for testing purposes ****
-
-"""
-
-
-@bp.route('/user/<email>', methods=['DELETE'])
-def delete_user(email):
-    user = db.session.query(Users).filter_by(
-        user_email=email).one_or_none()
-    if user:
-        db.session.delete(user)
-        db.session.commit()
-        return jsonify({'message': f'User with email {email} has been deleted'})
-    else:
-        return jsonify({'message': f'User with email {email} not found'}), 404
-
-
 @bp.route("/register", methods=["POST"])
 @limiter.limit("100/day;50/hour;10/minute;5/second")
 def register():
