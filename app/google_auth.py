@@ -13,7 +13,7 @@ def init_google_auth(app):
         client_secret=os.getenv('GOOGLE_CLIENT_SECRET'),
         authorize_url='https://accounts.google.com/o/oauth2/auth',
         access_token_url='https://www.googleapis.com/oauth2/v4/token',
-        redirect_uri='http://localhost:5000/login/callback',
+        redirect_uri='https://app-backend-test-001.azurewebsites.net/login/callback',
         client_kwargs={'scope': 'openid profile email'},
     )
     return google
