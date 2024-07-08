@@ -19,6 +19,9 @@ services:
       SENDGRID_API_KEY: ${SENDGRID_API_KEY}
       MAIL_DEFAULT_SENDER: ${MAIL_DEFAULT_SENDER}
       BASE_FRONTEND_URL: "http://localhost:3000"
+      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
+      SECRET_KEY: ${SECRET_KEY}
     command: ["./wait-for-it", "db:1433"]
     stdin_open: true
     tty: true
