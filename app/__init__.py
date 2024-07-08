@@ -7,10 +7,6 @@ from sentry_sdk.integrations.flask import FlaskIntegration
 from app import models
 from app.extensions import db, migrate, login, cache, jwt, limiter
 from config import DevelopmentConfig
-from flask_cors import CORS
-
-# app = Flask(__name__)
-# CORS(app)  # This will enable CORS for all routes by default
 
 
 def create_app(config_class=DevelopmentConfig):
