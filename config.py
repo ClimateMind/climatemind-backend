@@ -37,35 +37,26 @@ class DevelopmentConfig(BaseConfig):
 
     SENTRY_DSN = os.environ.get("SENTRY_DSN")
     SENTRY_ENVIRONMENT = os.environ.get("SENTRY_ENVIRONMENT")
-    SENTRY_TRACES_SAMPLE_RATE = os.environ.get(
-        "SENTRY_TRACES_SAMPLE_RATE", 0.1)
+    SENTRY_TRACES_SAMPLE_RATE = os.environ.get("SENTRY_TRACES_SAMPLE_RATE", 0.1)
 
     DB_CREDENTIALS = os.environ.get("DATABASE_PARAMS")
-    SQLALCHEMY_DATABASE_URI = (
-        "mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(
-            DB_CREDENTIALS)
-    )
+    SQLALCHEMY_DATABASE_URI = ("mssql+pyodbc:///?odbc_connect=%s" % urllib.parse.quote_plus(DB_CREDENTIALS))
 
     CURRENT_DIR = os.getcwd()
     SCHWARTZ_QUESTIONS_PATH = os.path.join(CURRENT_DIR, "app/questions/static")
     SCHWARTZ_QUESTIONS_SCHEMA = (f"{SCHWARTZ_QUESTIONS_PATH}/schwartz_questions.schema.json"
                                  )
-    SCHWARTZ_QUESTIONS_FILE = f"{
-        SCHWARTZ_QUESTIONS_PATH}/schwartz_questions.json"
+    SCHWARTZ_QUESTIONS_FILE = f"{SCHWARTZ_QUESTIONS_PATH}/schwartz_questions.json"
 
-    VALUE_DESCRIPTIONS_PATH = os.path.join(
-        CURRENT_DIR, "app/personal_values/static")
-    VALUE_DESCRIPTIONS_SCHEMA = (
-        f"{VALUE_DESCRIPTIONS_PATH}/value_descriptions.schema.json")
-    VALUE_DESCRIPTIONS_FILE = f"{
-        VALUE_DESCRIPTIONS_PATH}/value_descriptions.json"
+    VALUE_DESCRIPTIONS_PATH = os.path.join(CURRENT_DIR, "app/personal_values/static")
+    VALUE_DESCRIPTIONS_SCHEMA = (f"{VALUE_DESCRIPTIONS_PATH}/value_descriptions.schema.json")
+    VALUE_DESCRIPTIONS_FILE = f"{VALUE_DESCRIPTIONS_PATH}/value_descriptions.json"
 
     GRAPH_FILE_PATH = os.path.join(CURRENT_DIR, "app/ontology/output")
     GRAPH_FILE_EXT = "gpickle"
     GRAPH_FILE_NAME = "Climate_Mind_DiGraph"
     GRAPH_FILE = f"{GRAPH_FILE_PATH}/{GRAPH_FILE_NAME}.{GRAPH_FILE_EXT}"
-    GRAPH_FILE_BACKUP = f"{
-        GRAPH_FILE_PATH}/{GRAPH_FILE_NAME}_backup.{GRAPH_FILE_EXT}"
+    GRAPH_FILE_BACKUP = f"{GRAPH_FILE_PATH}/{GRAPH_FILE_NAME}_backup.{GRAPH_FILE_EXT}"
     nx_processor = network_x_processor(GRAPH_FILE)
     G = nx_processor.get_graph()
     IRI_PREFIX = "webprotege.stanford.edu."
