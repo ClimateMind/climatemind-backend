@@ -43,6 +43,18 @@ def ip_whitelist():
     return check_if_local()
 
 
+@bp.route('/user/<email>', methods=['DELETE'])
+def delete_user(email):
+    user = db.session.query(Users).filter_by(
+        user_email=email).one_or_none()
+    if user:
+        db.session.delete(user)
+        db.session.commit()
+        return jsonify({'message': f'User with email {email} has been deleted'})
+    else:
+        return jsonify({'message': f'User with email {email} not found'}), 404
+
+
 @bp.route("/register", methods=["POST"])
 @limiter.limit("100/day;50/hour;10/minute;5/second")
 def register():
@@ -280,8 +292,14 @@ def callback():
                 user, email, access_token, refresh_token, user_b)
             return response
         else:
-            response = make_response(
-                redirect(f'{base_frontend_url}/start'))
+            if not user_b:
+                response = make_response(
+                    redirect(f'{base_frontend_url}/start'))
+            else:
+                #   if no pre existing account in climate mind then carry on and do the quiz then sign up
+                # # note - may need to redirect to landing instead and have a toast message to say user needs to sign up at the end
+                response = make_response(
+                    redirect(f'{base_frontend_url}/how-cm-works/{user_b}'))
             return response
     except Exception as e:
         return jsonify({"error": str(e)}), 500
