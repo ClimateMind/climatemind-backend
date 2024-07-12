@@ -199,6 +199,8 @@ def login():
 
 @bp.route('/register/google')
 def register_google():
+    user_b = request.args.get('conversationid', None)
+    session['conversation_id'] = user_b
     quiz_id = request.args.get('quizId')
     session['quiz_id'] = quiz_id
     redirect_uri = url_for('auth.register_callback', _external=True)
@@ -219,6 +221,7 @@ def register_callback():
         user_info = resp.json()
         email = user_info['email']
         quiz_id = session.pop('quiz_id', None)
+        user_b = session.pop('conversation_id', None)
 
         if not quiz_id:
             return jsonify({"error": "Quiz ID is missing from session"}), 400
@@ -237,7 +240,7 @@ def register_callback():
         refresh_token = create_refresh_token(identity=user)
 
         response = create_tokens_and_set_cookies(
-            user, email, access_token, refresh_token)
+            user, email, access_token, refresh_token, user_b)
 
         send_welcome_email(user.user_email, user.first_name)
         return response
@@ -252,6 +255,8 @@ def register_callback():
 
 @bp.route('/login/google')
 def login_google():
+    user_b = request.args.get('conversationid', None)
+    session['conversation_id'] = user_b
     redirect_uri = url_for('auth.callback', _external=True)
     return google.authorize_redirect(redirect_uri)
 
@@ -265,13 +270,14 @@ def callback():
         email = user_info['email']
         user = db.session.query(Users).filter_by(
             user_email=email).one_or_none()
+        user_b = session.pop('conversation_id', None)
 
         if user:
             access_token = create_access_token(identity=user, fresh=True)
             refresh_token = create_refresh_token(identity=user)
 
             response = create_tokens_and_set_cookies(
-                user, email, access_token, refresh_token)
+                user, email, access_token, refresh_token, user_b)
             return response
         else:
             response = make_response(
@@ -328,10 +334,11 @@ def logout():
     return response, 200
 
 
-def create_tokens_and_set_cookies(user, email, access_token, refresh_token):
+def create_tokens_and_set_cookies(user, email, access_token, refresh_token, user_b=None):
     """
     Creates access and refresh tokens and sets them as cookies.
     Also sets user details as cookies and redirects to a specific URL.
+
 
     Parameters:
     - user: User object containing user details (e.g., user.first_name, user.last_name, etc.)
@@ -340,10 +347,14 @@ def create_tokens_and_set_cookies(user, email, access_token, refresh_token):
     - refresh_token: Refresh token generated for the user
 
     Returns:
-    - Flask response object with cookies set and redirect
+    - Flask conditional response object with cookies set and redirect
     """
-    response = make_response(redirect(
-        f'{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}'))
+    if user_b:
+        response = make_response(
+            redirect(f'{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}'))
+    else:
+        response = make_response(redirect(
+            f'{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}'))
     response.set_cookie("first_name", user.first_name, secure=True)
     response.set_cookie("last_name", user.last_name, secure=True)
     response.set_cookie("user_uuid", user.user_uuid, secure=True)
