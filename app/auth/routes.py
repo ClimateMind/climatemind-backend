@@ -295,11 +295,12 @@ def callback():
             if not user_b:
                 response = make_response(
                     redirect(f'{base_frontend_url}/start'))
-            else:
-                #   if no pre existing account in climate mind then carry on and do the quiz then sign up
-                # # note - may need to redirect to landing instead and have a toast message to say user needs to sign up at the end
+            elif user_b:
+                # if no account then redirect to login page and show user not found message
+                user_not_found_message = "You need to sign up to continue, please click the cancel below to sign up"
+
                 response = make_response(
-                    redirect(f'{base_frontend_url}/how-cm-works/{user_b}'))
+                    redirect(f'{base_frontend_url}/login/{user_b}?user_not_found={user_not_found_message}'))
             return response
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -367,9 +368,12 @@ def create_tokens_and_set_cookies(user, email, access_token, refresh_token, user
     Returns:
     - Flask conditional response object with cookies set and redirect
     """
+    first_name = user.first_name
+    capitalized_firstName = first_name.capitalize()
     if user_b:
+        message = f"Welcome Back, {capitalized_firstName}!"
         response = make_response(
-            redirect(f'{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}'))
+            redirect(f'{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}&message={message}'))
     else:
         response = make_response(redirect(
             f'{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}'))
