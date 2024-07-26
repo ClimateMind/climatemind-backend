@@ -28,7 +28,7 @@ def create_app(config_class=DevelopmentConfig):
             "https://app-frontend-test-001.azurewebsites.net:80",
             "https://app-frontend-prod-001.azurewebsites.net:80",
             "https://app.climatemind.org:80",
-            "https://climate-mind-prod-frontend-web-sbtw2.ondigitalocean.app",
+            "https://climate-mind-prod-frontend-web-sbtw2.ondigitalocean.app"
         ]
     }
 
