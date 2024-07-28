@@ -20,7 +20,32 @@ def create_app(config_class=DevelopmentConfig):
     jwt.init_app(app)
     limiter.init_app(app)
 
-    CORS(app, resources={r"/*": {"origins": "*"}}, supports_credentials=True)
+    origins = {
+        "origins": [
+            "http://127.0.0.1:3000",
+            "http://localhost:3000",
+            "http://0.0.0.0:3000",
+            "https://app-frontend-test-001.azurewebsites.net:80",
+            "https://app-frontend-prod-001.azurewebsites.net:80",
+            "https://app.climatemind.org:80",
+        ]
+    }
+
+    CORS(
+        app,
+        resources={
+            r"/refresh": origins,
+            r"/login": origins,
+            r"/password-reset": origins,
+            r"/register": origins,
+            r"/logout": origins,
+            r"/captcha": origins,
+            r"/email": origins,
+            r"/alignment": origins,
+            r"/conversations": origins,
+        },
+        supports_credentials=True,
+    )
 
     with app.app_context():
         from app.auth import bp as auth_bp
