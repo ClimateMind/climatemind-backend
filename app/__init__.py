@@ -30,18 +30,8 @@ def create_app(config_class=DevelopmentConfig):
 
     CORS(
         app,
-        resources={
-            r"/refresh": origins,
-            r"/login": origins,
-            r"/password-reset": origins,
-            r"/register": origins,
-            r"/logout": origins,
-            r"/captcha": origins,
-            r"/email": origins,
-            r"/alignment": origins,
-            r"/conversations": origins,
-        },
-        supports_credentials=True,
+        resources={r"/*": {"origins": "*"}},
+        supports_credentials=True
     )
 
     with app.app_context():
