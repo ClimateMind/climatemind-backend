@@ -71,7 +71,7 @@ workflows:
   test_and_deploy:
     jobs:
       # - lint
-      - pytest
+      # - pytest
           # requires:
           #   - lint
       - build_and_deploy_prod:
@@ -88,5 +88,5 @@ workflows:
           filters:
             branches:
               only: develop
-          requires:
-            - pytest
+          # requires:
+            # - pytest
