@@ -375,15 +375,34 @@ def create_tokens_and_set_cookies(user, email, access_token, refresh_token, user
         response = make_response(
             redirect(f'{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}&message={message}'))
     else:
-        response = make_response(redirect(
-            f'{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}'))
-    response.set_cookie("first_name", user.first_name, secure=True)
-    response.set_cookie("last_name", user.last_name, secure=True)
-    response.set_cookie("user_uuid", user.user_uuid, secure=True)
-    response.set_cookie("quiz_id", user.quiz_uuid, secure=True)
-    response.set_cookie("user_email", email, secure=True)
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+        #     response = make_response(redirect(
+        #         f'{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}'))
+        # response.set_cookie("first_name", user.first_name, secure=True)
+        # response.set_cookie("last_name", user.last_name, secure=True)
+        # response.set_cookie("user_uuid", user.user_uuid, secure=True)
+        # response.set_cookie("quiz_id", user.quiz_uuid, secure=True)
+        # response.set_cookie("user_email", email, secure=True)
+        # response.set_cookie("refresh_token", refresh_token,
+        #                     path="/refresh", httponly=True)
+        response = make_response(
+            jsonify(
+                {
+                    "message": "Successfully created user",
+                    "access_token": access_token,
+                    "user": {
+                        "first_name": user.first_name,
+                        "last_name": user.last_name,
+                        "email": user.user_email,
+                        "user_uuid": user.user_uuid,
+                        "quiz_id": user.quiz_uuid,
+                    },
+                }
+            ),
+            201,
+            redirect(
+                f'{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}')
+        )
+
     return response
 
 
