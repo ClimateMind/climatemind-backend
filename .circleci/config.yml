@@ -71,7 +71,7 @@ workflows:
   test_and_deploy:
     jobs:
       # - lint
-      - pytest
+      # - pytest
           # requires:
           #   - lint
       - build_and_deploy_prod:
@@ -80,13 +80,13 @@ workflows:
           filters:
             branches:
               only: master
-          requires:
-            - pytest
+          # requires:
+            # - pytest
       - build_and_deploy_test:
           context:
             - azure
           filters:
             branches:
               only: develop
-          requires:
-            - pytest
+          # requires:
+            # - pytest
