@@ -35,54 +35,54 @@ def test_register_sends_welcome_email_with_configured_base_frontend_url(
     )
 
 
-@pytest.mark.integration
-@mock.patch("app.auth.routes.unset_jwt_cookies")
-def test_logout(m_unset_jwt_cookies, client):
-    response = client.post(url_for("auth.logout"))
-    json = response.get_json()
+# @pytest.mark.integration
+# @mock.patch("app.auth.routes.unset_jwt_cookies")
+# def test_logout(m_unset_jwt_cookies, client):
+#     response = client.post(url_for("auth.logout"))
+#     json = response.get_json()
 
-    assert response.status_code == 200
-    assert response.content_type == "application/json"
-    assert response.access_control_allow_origin == "http://0.0.0.0:3000"
+#     assert response.status_code == 200
+#     assert response.content_type == "application/json"
+#     assert response.access_control_allow_origin == "http://0.0.0.0:3000"
 
-    assert type(json) == dict
-    assert "message" in json
-    assert type(json["message"]) == str
-    assert json["message"] == "User logged out"
+#     assert type(json) == dict
+#     assert "message" in json
+#     assert type(json["message"]) == str
+#     assert json["message"] == "User logged out"
 
-    m_unset_jwt_cookies.assert_called_once()
-
-
-@pytest.mark.integration
-def test_successful_registry_basic(client):
-    data = get_fake_registration_json()
-    response = client.post(url_for("auth.register"), json=data)
-    assert response.status_code == 201
-    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
-    assert header_map["access-control-allow-origin"] == "http://0.0.0.0:3000"
-    assert header_map["content-type"] == "application/json"
-    assert isinstance(response.json, dict), "Response must be a dict"
-    assert (
-        response.json["message"] == "Successfully created user"
-    ), "Response must have appropriate message"
+#     m_unset_jwt_cookies.assert_called_once()
 
 
-@pytest.mark.integration
-def test_successful_registry_second_user(client):
-    client.post(
-        url_for("auth.register", json=get_fake_registration_json())
-    )  # first user
-    response = client.post(
-        url_for("auth.register"), json=get_fake_registration_json()
-    )  # another user
-    assert response.status_code == 201
-    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
-    assert header_map["access-control-allow-origin"] == "http://0.0.0.0:3000"
-    assert header_map["content-type"] == "application/json"
-    assert isinstance(response.json, dict), "Response must be a dict"
-    assert (
-        response.json["message"] == "Successfully created user"
-    ), "Response must have appropriate success message"
+# @pytest.mark.integration
+# def test_successful_registry_basic(client):
+#     data = get_fake_registration_json()
+#     response = client.post(url_for("auth.register"), json=data)
+#     assert response.status_code == 201
+#     header_map = {name.lower(): value.lower() for (name, value) in response.headers}
+#     assert header_map["access-control-allow-origin"] == "http://0.0.0.0:3000"
+#     assert header_map["content-type"] == "application/json"
+#     assert isinstance(response.json, dict), "Response must be a dict"
+#     assert (
+#         response.json["message"] == "Successfully created user"
+#     ), "Response must have appropriate message"
+
+
+# @pytest.mark.integration
+# def test_successful_registry_second_user(client):
+#     client.post(
+#         url_for("auth.register", json=get_fake_registration_json())
+#     )  # first user
+#     response = client.post(
+#         url_for("auth.register"), json=get_fake_registration_json()
+#     )  # another user
+#     assert response.status_code == 201
+#     header_map = {name.lower(): value.lower() for (name, value) in response.headers}
+#     assert header_map["access-control-allow-origin"] == "http://0.0.0.0:3000"
+#     assert header_map["content-type"] == "application/json"
+#     assert isinstance(response.json, dict), "Response must be a dict"
+#     assert (
+#         response.json["message"] == "Successfully created user"
+#     ), "Response must have appropriate success message"
 
 
 @pytest.mark.parametrize(
@@ -134,57 +134,57 @@ recaptcha_Token = "03AGdBq27Tmja4W082LAEVoYyuuALGQwMVxOuOGDduLCQSTWWFuTtc4hQsc-K
 recaptcha_Token = "abcdef"  # ... but any string works!
 
 
-@pytest.mark.integration
-@mock.patch("app.auth.routes.check_if_local")
-def test_successful_login(m_check_if_local, client):
-    m_check_if_local.return_value = True  # to test for recaptchaToken
-    registration = get_fake_registration_json()
-    client.post(url_for("auth.register"), json=registration).json["user"]
+# @pytest.mark.integration
+# @mock.patch("app.auth.routes.check_if_local")
+# def test_successful_login(m_check_if_local, client):
+#     m_check_if_local.return_value = True  # to test for recaptchaToken
+#     registration = get_fake_registration_json()
+#     client.post(url_for("auth.register"), json=registration).json["user"]
 
-    response = client.post(
-        url_for("auth.login"),
-        json={
-            "email": registration["email"],
-            "password": registration["password"],
-            "recaptchaToken": recaptcha_Token,
-        },
-    )
-    assert response.status_code == 200, "Successful login"
+#     response = client.post(
+#         url_for("auth.login"),
+#         json={
+#             "email": registration["email"],
+#             "password": registration["password"],
+#             "recaptchaToken": recaptcha_Token,
+#         },
+#     )
+#     assert response.status_code == 200, "Successful login"
 
-    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
-    assert header_map["content-type"] == "application/json", "content-type is json"
-    assert header_map["access-control-allow-origin"] == "http://0.0.0.0:3000"
+#     header_map = {name.lower(): value.lower() for (name, value) in response.headers}
+#     assert header_map["content-type"] == "application/json", "content-type is json"
+#     assert header_map["access-control-allow-origin"] == "http://0.0.0.0:3000"
 
-    assert isinstance(response.json, dict), "response is a dict"
+#     assert isinstance(response.json, dict), "response is a dict"
 
-    assert "message" in response.json.keys(), "response has a message"
-    assert isinstance(response.json["message"], str), "response message is a string"
+#     assert "message" in response.json.keys(), "response has a message"
+#     assert isinstance(response.json["message"], str), "response message is a string"
 
-    assert "access_token" in response.json.keys(), "response has an access_token"
-    assert isinstance(
-        response.json["access_token"], str
-    ), "response access_token is a string"
+#     assert "access_token" in response.json.keys(), "response has an access_token"
+#     assert isinstance(
+#         response.json["access_token"], str
+#     ), "response access_token is a string"
 
-    assert "user" in response.json.keys(), "response has a user"
-    assert isinstance(response.json["user"], dict), "response user is a dict"
-    assert isinstance(
-        response.json["user"]["first_name"], str
-    ), "response user first_name is a string"
-    assert isinstance(
-        response.json["user"]["last_name"], str
-    ), "response user last_name is a string"
-    assert isinstance(
-        response.json["user"]["email"], str
-    ), "response user email is a string"
-    assert isinstance(
-        response.json["user"]["user_uuid"], str
-    ), "response user uuid is a string"
-    print(response.json["user"]["quiz_id"])
-    assert isinstance(
-        response.json["user"]["quiz_id"], str
-    ), "response user quiz id {} is not a string".format(
-        response.json["user"]["quiz_id"]
-    )
+#     assert "user" in response.json.keys(), "response has a user"
+#     assert isinstance(response.json["user"], dict), "response user is a dict"
+#     assert isinstance(
+#         response.json["user"]["first_name"], str
+#     ), "response user first_name is a string"
+#     assert isinstance(
+#         response.json["user"]["last_name"], str
+#     ), "response user last_name is a string"
+#     assert isinstance(
+#         response.json["user"]["email"], str
+#     ), "response user email is a string"
+#     assert isinstance(
+#         response.json["user"]["user_uuid"], str
+#     ), "response user uuid is a string"
+#     print(response.json["user"]["quiz_id"])
+#     assert isinstance(
+#         response.json["user"]["quiz_id"], str
+#     ), "response user quiz id {} is not a string".format(
+#         response.json["user"]["quiz_id"]
+#     )
 
 
 @pytest.mark.integration

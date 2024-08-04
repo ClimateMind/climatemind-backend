@@ -27,3 +27,4 @@ Other ways to contribute to the project are listed [here](https://contribute.cli
 ## How to report bugs or suggest features?
 
 See our [report bug](https://contribute.climatemind.org/v/rest-api/contribute/report-bug) and [suggest feature](https://contribute.climatemind.org/v/rest-api/contribute/suggest-feature) pages for more information.
+
