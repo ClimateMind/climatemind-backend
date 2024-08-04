@@ -254,7 +254,7 @@ def register_callback():
         access_token = create_access_token(identity=user, fresh=True)
         refresh_token = create_refresh_token(identity=user)
 
-        response = create_tokens_and_set_cookies(
+        response = create_tokens_and_set_params(
             user, email, access_token, refresh_token, user_b)
 
         send_welcome_email(user.user_email, user.first_name)
@@ -291,7 +291,7 @@ def callback():
             access_token = create_access_token(identity=user, fresh=True)
             refresh_token = create_refresh_token(identity=user)
 
-            response = create_tokens_and_set_cookies(
+            response = create_tokens_and_set_params(
                 user, email, access_token, refresh_token, user_b)
             return response
         else:
@@ -401,7 +401,7 @@ def logout():
     return response, 200
 
 
-def create_tokens_and_set_cookies(user, email, access_token, refresh_token, user_b=None):
+def create_tokens_and_set_params(user, email, access_token, refresh_token, user_b=None):
     """
     Creates access and refresh tokens and sets them as cookies.
     Also sets user details as cookies and redirects to a specific URL.
