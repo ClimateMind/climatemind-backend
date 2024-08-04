@@ -403,14 +403,14 @@ def logout():
 
 def create_tokens_and_set_params(user, email, access_token, refresh_token, user_b=None):
     """
-    Creates access and refresh tokens and sets them as cookies.
-    Also sets user details as cookies and redirects to a specific URL.
+    Creates access and refresh tokens and sets them as params in url.
+    Redirects to a specific URL.
     Sends a token to the client and which then sends this back and exchanges the email token for the user's email.
 
 
     Parameters:
     - user: User object containing user details (e.g., user.first_name, user.last_name, etc.)
-    - email: User's email address (used to set the email cookie)
+    - email: User's email address (used to set the email in the param)
     - access_token: Access token generated for the user
     - refresh_token: Refresh token generated for the user
 
