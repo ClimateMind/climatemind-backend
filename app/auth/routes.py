@@ -10,7 +10,13 @@ from app.errors.errors import (
 )
 from sqlalchemy.exc import SQLAlchemyError
 from app.account.utils import is_email_valid
-from flask_jwt_extended import unset_jwt_cookies, get_jwt_identity, create_refresh_token, jwt_required, create_access_token
+from flask_jwt_extended import (
+    unset_jwt_cookies,
+    get_jwt_identity,
+    create_refresh_token,
+    jwt_required,
+    create_access_token,
+)
 import requests
 from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from app.common.local import check_if_local
@@ -24,7 +30,7 @@ from app import google_auth
 
 app = create_app()
 google = google_auth.init_google_auth(app)
-base_frontend_url = app.config['BASE_FRONTEND_URL']
+base_frontend_url = app.config["BASE_FRONTEND_URL"]
 
 
 """
@@ -43,16 +49,15 @@ def ip_whitelist():
     return check_if_local()
 
 
-@bp.route('/user/<email>', methods=['DELETE'])
+@bp.route("/user/<email>", methods=["DELETE"])
 def delete_user(email):
-    user = db.session.query(Users).filter_by(
-        user_email=email).one_or_none()
+    user = db.session.query(Users).filter_by(user_email=email).one_or_none()
     if user:
         db.session.delete(user)
         db.session.commit()
-        return jsonify({'message': f'User with email {email} has been deleted'})
+        return jsonify({"message": f"User with email {email} has been deleted"})
     else:
-        return jsonify({'message': f'User with email {email} not found'}), 404
+        return jsonify({"message": f"User with email {email} not found"}), 404
 
 
 @bp.route("/register", methods=["POST"])
@@ -73,8 +78,7 @@ def register():
     print(r)
 
     if not r:
-        raise InvalidUsageError(
-            message="JSON body must be included in the request.")
+        raise InvalidUsageError(message="JSON body must be included in the request.")
 
     for param in ("firstName", "lastName", "email", "password", "quizId"):
         if param not in r:
@@ -130,8 +134,7 @@ def register():
 
     send_welcome_email(user.user_email, user.first_name)
 
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 
@@ -204,22 +207,21 @@ def login():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 
-@bp.route('/register/google')
+@bp.route("/register/google")
 def register_google():
-    user_b = request.args.get('conversationid', None)
-    session['conversation_id'] = user_b
-    quiz_id = request.args.get('quizId')
-    session['quiz_id'] = quiz_id
-    redirect_uri = url_for('auth.register_callback', _external=True)
+    user_b = request.args.get("conversationid", None)
+    session["conversation_id"] = user_b
+    quiz_id = request.args.get("quizId")
+    session["quiz_id"] = quiz_id
+    redirect_uri = url_for("auth.register_callback", _external=True)
     return google.authorize_redirect(redirect_uri)
 
 
-@bp.route('/register/google/callback', methods=['GET'])
+@bp.route("/register/google/callback", methods=["GET"])
 def register_callback():
     """
     Finds user by matching google email with user email in the database
@@ -229,78 +231,83 @@ def register_callback():
     """
     try:
         token = google.authorize_access_token()
-        resp = google.get('https://www.googleapis.com/oauth2/v3/userinfo')
+        resp = google.get("https://www.googleapis.com/oauth2/v3/userinfo")
         user_info = resp.json()
-        email = user_info['email']
-        quiz_id = session.pop('quiz_id', None)
-        user_b = session.pop('conversation_id', None)
+        email = user_info["email"]
+        quiz_id = session.pop("quiz_id", None)
+        user_b = session.pop("conversation_id", None)
 
         if not quiz_id:
             return jsonify({"error": "Quiz ID is missing from session"}), 400
 
         # find user by matching google email with user email in the database
-        user = db.session.query(Users).filter_by(
-            user_email=email).one_or_none()
+        user = db.session.query(Users).filter_by(user_email=email).one_or_none()
 
         # if user doesn't exist, create a new user and add to the database
         if not user:
             user = add_user_to_db(
-                user_info['given_name'], user_info['family_name'], email, None, quiz_id
+                user_info["given_name"], user_info["family_name"], email, None, quiz_id
             )
 
         access_token = create_access_token(identity=user, fresh=True)
         refresh_token = create_refresh_token(identity=user)
 
         response = create_tokens_and_set_cookies(
-            user, email, access_token, refresh_token, user_b)
+            user, email, access_token, refresh_token, user_b
+        )
 
         send_welcome_email(user.user_email, user.first_name)
         return response
 
     except SQLAlchemyError:
         db.session.rollback()
-        return jsonify({"error": "An error occurred while adding user to the database."}), 500
+        return (
+            jsonify({"error": "An error occurred while adding user to the database."}),
+            500,
+        )
 
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 
-@bp.route('/login/google')
+@bp.route("/login/google")
 def login_google():
-    user_b = request.args.get('conversationid', None)
-    session['conversation_id'] = user_b
-    redirect_uri = url_for('auth.callback', _external=True)
+    user_b = request.args.get("conversationid", None)
+    session["conversation_id"] = user_b
+    redirect_uri = url_for("auth.callback", _external=True)
     return google.authorize_redirect(redirect_uri)
 
 
-@bp.route('/login/google/callback', methods=['GET'])
+@bp.route("/login/google/callback", methods=["GET"])
 def callback():
     try:
         token = google.authorize_access_token()
-        resp = google.get('https://www.googleapis.com/oauth2/v3/userinfo')
+        resp = google.get("https://www.googleapis.com/oauth2/v3/userinfo")
         user_info = resp.json()
-        email = user_info['email']
-        user = db.session.query(Users).filter_by(
-            user_email=email).one_or_none()
-        user_b = session.pop('conversation_id', None)
+        email = user_info["email"]
+        user = db.session.query(Users).filter_by(user_email=email).one_or_none()
+        user_b = session.pop("conversation_id", None)
 
         if user:
             access_token = create_access_token(identity=user, fresh=True)
             refresh_token = create_refresh_token(identity=user)
 
             response = create_tokens_and_set_cookies(
-                user, email, access_token, refresh_token, user_b)
+                user, email, access_token, refresh_token, user_b
+            )
             return response
         else:
             if not user_b:
-                response = make_response(
-                    redirect(f'{base_frontend_url}/start'))
+                response = make_response(redirect(f"{base_frontend_url}/start"))
             elif user_b:
                 # if no account then redirect to login page and show user not found message
                 user_not_found_message = "You need to sign up to continue, please click the cancel below to sign up"
 
                 response = make_response(
-                    redirect(f'{base_frontend_url}/login/{user_b}?user_not_found={user_not_found_message}'))
+                    redirect(
+                        f"{base_frontend_url}/login/{user_b}?user_not_found={user_not_found_message}"
+                    )
+                )
             return response
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -338,8 +345,7 @@ def refresh():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 
@@ -353,7 +359,9 @@ def logout():
     return response, 200
 
 
-def create_tokens_and_set_cookies(user, email, access_token, refresh_token, user_b=None):
+def create_tokens_and_set_cookies(
+    user, email, access_token, refresh_token, user_b=None
+):
     """
     Creates access and refresh tokens and sets them as cookies.
     Also sets user details as cookies and redirects to a specific URL.
@@ -373,17 +381,22 @@ def create_tokens_and_set_cookies(user, email, access_token, refresh_token, user
     if user_b:
         message = f"Welcome Back, {capitalized_firstName}!"
         response = make_response(
-            redirect(f'{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}&message={message}'))
+            redirect(
+                f"{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}&message={message}"
+            )
+        )
     else:
-        response = make_response(redirect(
-            f'{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}'))
+        response = make_response(
+            redirect(
+                f"{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}"
+            )
+        )
     response.set_cookie("first_name", user.first_name, secure=True)
     response.set_cookie("last_name", user.last_name, secure=True)
     response.set_cookie("user_uuid", user.user_uuid, secure=True)
     response.set_cookie("quiz_id", user.quiz_uuid, secure=True)
     response.set_cookie("user_email", email, secure=True)
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
     return response
 
 

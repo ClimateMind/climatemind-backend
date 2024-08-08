@@ -15,7 +15,7 @@ def create_app(config_class=DevelopmentConfig):
 
     app.config.from_object(config_class)
     init_sentry(app)
-    app.secret_key = os.getenv('SECRET_KEY')
+    app.secret_key = os.getenv("SECRET_KEY")
     db.init_app(app)
     migrate.init_app(app, db)
     login.init_app(app)
@@ -140,8 +140,7 @@ def init_sentry(app):
 
     if dsn and environment:
         try:
-            traces_sample_rate = float(
-                app.config.get("SENTRY_TRACES_SAMPLE_RATE"))
+            traces_sample_rate = float(app.config.get("SENTRY_TRACES_SAMPLE_RATE"))
         except (ValueError, TypeError):
             traces_sample_rate = 0.1
 
