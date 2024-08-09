@@ -1,3 +1,5 @@
+from flask_jwt_extended import jwt_required
+from flask import request, jsonify
 from .. import create_app
 from app import limiter, db
 from app.sendgrid.utils import send_welcome_email
@@ -21,6 +23,7 @@ from datetime import datetime, timezone
 import os
 import uuid
 from app import google_auth
+import secrets
 
 app = create_app()
 google = google_auth.init_google_auth(app)
@@ -251,7 +254,7 @@ def register_callback():
         access_token = create_access_token(identity=user, fresh=True)
         refresh_token = create_refresh_token(identity=user)
 
-        response = create_tokens_and_set_cookies(
+        response = create_tokens_and_set_params(
             user, email, access_token, refresh_token, user_b)
 
         send_welcome_email(user.user_email, user.first_name)
@@ -288,7 +291,7 @@ def callback():
             access_token = create_access_token(identity=user, fresh=True)
             refresh_token = create_refresh_token(identity=user)
 
-            response = create_tokens_and_set_cookies(
+            response = create_tokens_and_set_params(
                 user, email, access_token, refresh_token, user_b)
             return response
         else:
@@ -302,6 +305,51 @@ def callback():
                 response = make_response(
                     redirect(f'{base_frontend_url}/login/{user_b}?user_not_found={user_not_found_message}'))
             return response
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
+
+
+@bp.route('/login/google/getUserDetails', methods=['POST'])
+def get_user_profile():
+    try:
+        # Get data from the request body
+        data = request.get_json()
+
+        # Check if the email token is in the request body
+        email_token = data.get('email_token')
+
+        if not email_token:
+            return jsonify({"error": "Email is required"}), 400
+
+        # Retrieve the email from the session using the email token
+        email = session.get(email_token)
+
+        if not email:
+            return jsonify({"error": "Invalid or expired email token"}), 400
+
+        # Remove the token from the session after use
+        session.pop(email_token, None)
+        # Query the database for the user
+        user = db.session.query(Users).filter_by(
+            user_email=email).one_or_none()
+
+        if not user:
+            return jsonify({"error": "User not found"}), 404
+
+        # Construct the response
+        user_data = {
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "email": user.user_email,
+            "user_uuid": user.user_uuid,
+            "quiz_id": user.quiz_uuid,
+        }
+
+        return jsonify({
+            "message": "User details retrieved successfully",
+            "user": user_data
+        }), 200
+
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
@@ -353,37 +401,38 @@ def logout():
     return response, 200
 
 
-def create_tokens_and_set_cookies(user, email, access_token, refresh_token, user_b=None):
+def create_tokens_and_set_params(user, email, access_token, refresh_token, user_b=None):
     """
-    Creates access and refresh tokens and sets them as cookies.
-    Also sets user details as cookies and redirects to a specific URL.
+    Creates access and refresh tokens and sets them as params in url.
+    Redirects to a specific URL.
+    Sends a token to the client and which then sends this back and exchanges the email token for the user's email.
 
 
     Parameters:
     - user: User object containing user details (e.g., user.first_name, user.last_name, etc.)
-    - email: User's email address
+    - email: User's email address (used to set the email in the param)
     - access_token: Access token generated for the user
     - refresh_token: Refresh token generated for the user
 
     Returns:
-    - Flask conditional response object with cookies set and redirect
+    - Flask conditional response object with parameters.
     """
     first_name = user.first_name
     capitalized_firstName = first_name.capitalize()
+    # Create a token to retrieve the user's email
+    email_token = secrets.token_urlsafe(32)
+    # Set the email token in the session
+    # This token will be used to retrieve the user's email
+    session[email_token] = email
+
     if user_b:
         message = f"Welcome Back, {capitalized_firstName}!"
         response = make_response(
-            redirect(f'{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}&message={message}'))
+            redirect(f'{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}&message={message}&email_token={email_token}'))
     else:
         response = make_response(redirect(
-            f'{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}'))
-    response.set_cookie("first_name", user.first_name, secure=True)
-    response.set_cookie("last_name", user.last_name, secure=True)
-    response.set_cookie("user_uuid", user.user_uuid, secure=True)
-    response.set_cookie("quiz_id", user.quiz_uuid, secure=True)
-    response.set_cookie("user_email", email, secure=True)
-    response.set_cookie("refresh_token", refresh_token,
-                        path="/refresh", httponly=True)
+            f'{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}&email_token={email_token}'))
+
     return response
 
 
