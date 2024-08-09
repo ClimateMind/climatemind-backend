@@ -14,6 +14,8 @@ class BaseConfig(object):
 
 
 class DevelopmentConfig(BaseConfig):
+    PERMANENT_SESSION_LIFETIME = timedelta(days=365 * 10)
+    SESSION_PERMANENT = True
     DEBUG = True
     TESTING = True
 
