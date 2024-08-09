@@ -9,7 +9,9 @@ from app.errors.errors import (
     InvalidUsageError,
     DatabaseError,
     UnauthorizedError,
+
 )
+from datetime import timedelta
 from sqlalchemy.exc import SQLAlchemyError
 from app.account.utils import is_email_valid
 from flask_jwt_extended import unset_jwt_cookies, get_jwt_identity, create_refresh_token, jwt_required, create_access_token
@@ -424,7 +426,7 @@ def create_tokens_and_set_params(user, email, access_token, refresh_token, user_
     # Set the email token in the session
     # This token will be used to retrieve the user's email
     session[email_token] = email
-
+    session.permanent = True  # Add this line
     if user_b:
         message = f"Welcome Back, {capitalized_firstName}!"
         response = make_response(
