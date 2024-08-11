@@ -41,11 +41,12 @@ jobs:
           name: Copy Test Results
           command: |
             mkdir -p /tmp/test-results/unit-tests
-            docker cp docker-api-1:/app/coverage.xml /tmp/test-results/unit-tests/coverage.xml
+            mkdir -p /tmp/artifacts
+            docker cp docker-api-1:/app/coverage.xml /tmp/artifacts/coverage.xml
             docker cp docker-api-1:/app/junit.xml /tmp/test-results/unit-tests/results.xml
           when: always
       - codecov/upload:
-          file: /tmp/test-results/unit-tests/coverage.xml
+          file: /tmp/test-results/artifacts/coverage.xml
       - store_test_results:
           path: /tmp/test-results/unit-tests
   build_and_deploy_prod:
