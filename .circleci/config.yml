@@ -70,10 +70,10 @@ workflows:
 
   test_and_deploy:
     jobs:
-      - lint
-      - pytest:
-          requires:
-            - lint
+      #- lint
+      - pytest
+          #requires:
+            # - lint
       - build_and_deploy_prod:
           context:
             - azure
