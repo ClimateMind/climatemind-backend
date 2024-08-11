@@ -82,7 +82,8 @@ def register():
     print(r)
 
     if not r:
-        raise InvalidUsageError(message="JSON body must be included in the request.")
+        raise InvalidUsageError(
+            message="JSON body must be included in the request.")
 
     for param in ("firstName", "lastName", "email", "password", "quizId"):
         if param not in r:
@@ -138,7 +139,8 @@ def register():
 
     send_welcome_email(user.user_email, user.first_name)
 
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token,
+                        path="/refresh", httponly=True)
     return response
 
 
@@ -211,7 +213,8 @@ def login():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token,
+                        path="/refresh", httponly=True)
     return response
 
 
@@ -245,7 +248,8 @@ def register_callback():
             return jsonify({"error": "Quiz ID is missing from session"}), 400
 
         # find user by matching google email with user email in the database
-        user = db.session.query(Users).filter_by(user_email=email).one_or_none()
+        user = db.session.query(Users).filter_by(
+            user_email=email).one_or_none()
 
         # if user doesn't exist, create a new user and add to the database
         if not user:
@@ -266,7 +270,8 @@ def register_callback():
     except SQLAlchemyError:
         db.session.rollback()
         return (
-            jsonify({"error": "An error occurred while adding user to the database."}),
+            jsonify(
+                {"error": "An error occurred while adding user to the database."}),
             500,
         )
 
@@ -289,7 +294,8 @@ def callback():
         resp = google.get("https://www.googleapis.com/oauth2/v3/userinfo")
         user_info = resp.json()
         email = user_info["email"]
-        user = db.session.query(Users).filter_by(user_email=email).one_or_none()
+        user = db.session.query(Users).filter_by(
+            user_email=email).one_or_none()
         user_b = session.pop("conversation_id", None)
 
         if user:
@@ -302,7 +308,8 @@ def callback():
             return response
         else:
             if not user_b:
-                response = make_response(redirect(f"{base_frontend_url}/start"))
+                response = make_response(
+                    redirect(f"{base_frontend_url}/start"))
             elif user_b:
                 # if no account then redirect to login page and show user not found message
                 user_not_found_message = "You need to sign up to continue, please click the cancel below to sign up"
@@ -338,7 +345,8 @@ def get_user_profile():
         # Remove the token from the session after use
         session.pop(email_token, None)
         # Query the database for the user
-        user = db.session.query(Users).filter_by(user_email=email).one_or_none()
+        user = db.session.query(Users).filter_by(
+            user_email=email).one_or_none()
 
         if not user:
             return jsonify({"error": "User not found"}), 404
@@ -395,7 +403,8 @@ def refresh():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token,
+                        path="/refresh", httponly=True)
     return response
 
 
@@ -437,13 +446,15 @@ def create_tokens_and_set_params(user, email, access_token, refresh_token, user_
         message = f"Welcome Back, {capitalized_firstName}!"
         response = make_response(
             redirect(
-                f"{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}&message={message}&email_token={email_token}"
+                f"{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={
+                    refresh_token}&message={message}&email_token={email_token}"
             )
         )
     else:
         response = make_response(
             redirect(
-                f"{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}&email_token={email_token}"
+                f"{base_frontend_url}/login?access_token={access_token}&refresh_token={
+                    refresh_token}&email_token={email_token}"
             )
         )
 

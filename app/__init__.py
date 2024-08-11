@@ -54,6 +54,7 @@ def create_app(config_class=DevelopmentConfig):
             r"/captcha": origins,
             r"/email": origins,
             r"/alignment": origins,
+            r"/login/google/getUserDetails": origins
         },
         supports_credentials=True,
     )
@@ -140,7 +141,8 @@ def init_sentry(app):
 
     if dsn and environment:
         try:
-            traces_sample_rate = float(app.config.get("SENTRY_TRACES_SAMPLE_RATE"))
+            traces_sample_rate = float(
+                app.config.get("SENTRY_TRACES_SAMPLE_RATE"))
         except (ValueError, TypeError):
             traces_sample_rate = 0.1
 
