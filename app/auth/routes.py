@@ -327,23 +327,11 @@ def callback():
 @bp.route("/login/google/getUserDetails", methods=["POST"])
 def get_user_profile():
     try:
-        # Get data from the request body
-        data = request.get_json()
-
-        # Check if the email token is in the request body
-        email_token = data.get("email_token")
-
-        if not email_token:
-            return jsonify({"error": "Email is required"}), 400
-
-        # Retrieve the email from the session using the email token
-        email = session.get(email_token)
+        email = request.cookies.get("user_email")
 
         if not email:
-            return jsonify({"error": "Invalid or expired email token"}), 400
-
-        # Remove the token from the session after use
-        session.pop(email_token, None)
+            return jsonify({"error": "Email cookie is required"}), 400
+        
         # Query the database for the user
         user = db.session.query(Users).filter_by(
             user_email=email).one_or_none()
@@ -351,7 +339,7 @@ def get_user_profile():
         if not user:
             return jsonify({"error": "User not found"}), 404
 
-        # Construct the response
+            # Construct the response
         user_data = {
             "first_name": user.first_name,
             "last_name": user.last_name,
@@ -436,27 +424,16 @@ def create_tokens_and_set_params(user, email, access_token, refresh_token, user_
     """
     first_name = user.first_name
     capitalized_firstName = first_name.capitalize()
-    # Create a token to retrieve the user's email
-    email_token = secrets.token_urlsafe(32)
-    # Set the email token in the session
-    # This token will be used to retrieve the user's email
-    session[email_token] = email
-    session.permanent = True  # Add this line
+
     if user_b:
         message = f"Welcome Back, {capitalized_firstName}!"
-        response = make_response(
-            redirect(
-                f"{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={
-                    refresh_token}&message={message}&email_token={email_token}"
-            )
-        )
+        response = make_response(redirect(f"{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}&message={message}") )
     else:
         response = make_response(
-            redirect(
-                f"{base_frontend_url}/login?access_token={access_token}&refresh_token={
-                    refresh_token}&email_token={email_token}"
-            )
+            redirect(f"{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}")
         )
+
+    response.set_cookie('user_email', email, httponly=True, secure=True)
 
     return response
 

@@ -54,7 +54,7 @@ def create_app(config_class=DevelopmentConfig):
             r"/captcha": origins,
             r"/email": origins,
             r"/alignment": origins,
-            r"/login/google/getUserDetails": origins
+            r"/login/google/getUserDetails": origins,
         },
         supports_credentials=True,
     )
