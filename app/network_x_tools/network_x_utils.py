@@ -1,5 +1,4 @@
 class network_x_utils:
-
     """
 
     This class provides commonly used utils which are shared between all different types

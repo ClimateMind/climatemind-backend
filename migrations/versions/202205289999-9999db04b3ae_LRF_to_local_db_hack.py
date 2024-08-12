@@ -1,5 +1,6 @@
 """This migration created manually to populate local db with a lrf_data
 """
+
 import os
 
 from alembic import op

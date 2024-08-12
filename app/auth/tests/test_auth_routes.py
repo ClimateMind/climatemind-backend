@@ -22,8 +22,8 @@ def test_register_sends_welcome_email(sendgrid_mock, client):
 def test_register_sends_welcome_email_with_configured_base_frontend_url(
     m_current_app, sendgrid_mock, client
 ):
-    m_current_app.config.get.side_effect = (
-        lambda key: "https://fake-url.local" if key == "BASE_FRONTEND_URL" else None
+    m_current_app.config.get.side_effect = lambda key: (
+        "https://fake-url.local" if key == "BASE_FRONTEND_URL" else None
     )
 
     client.post(url_for("auth.register"), json=get_fake_registration_json())

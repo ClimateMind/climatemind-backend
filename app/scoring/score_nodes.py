@@ -24,7 +24,6 @@ from app.alignment.utils import get_dashed_personal_values_names_from_vector
 
 
 class score_nodes:
-
     """
 
     After users have completed their survey, they want to receive personalized suggestions

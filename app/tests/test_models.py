@@ -46,8 +46,8 @@ def test_password_reset_expired_property():
 
 @mock.patch("app.models.current_app")
 def test_password_reset_url_with_configured_base_frontend_url(m_current_app):
-    m_current_app.config.get.side_effect = (
-        lambda key: "https://fake-url.local" if key == "BASE_FRONTEND_URL" else None
+    m_current_app.config.get.side_effect = lambda key: (
+        "https://fake-url.local" if key == "BASE_FRONTEND_URL" else None
     )
 
     password_reset = PasswordResetLinkFactory()
