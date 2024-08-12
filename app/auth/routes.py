@@ -256,7 +256,6 @@ def register_callback():
         access_token = create_access_token(identity=user, fresh=True)
         refresh_token = create_refresh_token(identity=user)
 
-
         response = create_tokens_and_set_params(
             user, email, access_token, refresh_token, user_b
         )
@@ -296,7 +295,6 @@ def callback():
         if user:
             access_token = create_access_token(identity=user, fresh=True)
             refresh_token = create_refresh_token(identity=user)
-
 
             response = create_tokens_and_set_params(
                 user, email, access_token, refresh_token, user_b
