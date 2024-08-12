@@ -46,7 +46,7 @@ jobs:
             docker cp docker-api-1:/app/junit.xml /tmp/test-results/unit-tests/results.xml
           when: always
       # - codecov/upload:
-        - store_artifacts:
+      - store_artifacts:
           path: /tmp/artifacts/coverage.xml
           destination: code_coverage_report
       - store_test_results:
