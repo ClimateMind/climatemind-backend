@@ -425,13 +425,10 @@ def create_tokens_and_set_params(user, email, access_token, refresh_token, user_
 
     if user_b:
         message = f"Welcome Back, {capitalized_firstName}!"
-        response = make_response(redirect(f"{base_frontend_url}/login/{user_b}?access_token={
-                                 access_token}&refresh_token={refresh_token}&message={message}"))
+        response = make_response(redirect(f"{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}&message={message}"))
     else:
         response = make_response(
-            redirect(
-                f"{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}")
-        )
+            redirect(f"{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}"))
 
     response.set_cookie('user_email', email, httponly=True, secure=True)
 
