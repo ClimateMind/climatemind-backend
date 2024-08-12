@@ -1,5 +1,3 @@
-from flask_jwt_extended import jwt_required
-from flask import request, jsonify
 from .. import create_app
 from app import limiter, db
 from app.sendgrid.utils import send_welcome_email
@@ -10,7 +8,7 @@ from app.errors.errors import (
     DatabaseError,
     UnauthorizedError,
 )
-from datetime import timedelta
+
 from sqlalchemy.exc import SQLAlchemyError
 from app.account.utils import is_email_valid
 from flask_jwt_extended import (
@@ -18,7 +16,7 @@ from flask_jwt_extended import (
     get_jwt_identity,
     create_refresh_token,
     jwt_required,
-    create_access_token,
+    create_access_token
 )
 import requests
 from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
@@ -30,7 +28,7 @@ from datetime import datetime, timezone
 import os
 import uuid
 from app import google_auth
-import secrets
+
 
 app = create_app()
 google = google_auth.init_google_auth(app)
@@ -331,7 +329,7 @@ def get_user_profile():
 
         if not email:
             return jsonify({"error": "Email cookie is required"}), 400
-        
+
         # Query the database for the user
         user = db.session.query(Users).filter_by(
             user_email=email).one_or_none()
@@ -427,10 +425,12 @@ def create_tokens_and_set_params(user, email, access_token, refresh_token, user_
 
     if user_b:
         message = f"Welcome Back, {capitalized_firstName}!"
-        response = make_response(redirect(f"{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}&message={message}") )
+        response = make_response(redirect(f"{base_frontend_url}/login/{user_b}?access_token={
+                                 access_token}&refresh_token={refresh_token}&message={message}"))
     else:
         response = make_response(
-            redirect(f"{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}")
+            redirect(
+                f"{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}")
         )
 
     response.set_cookie('user_email', email, httponly=True, secure=True)
