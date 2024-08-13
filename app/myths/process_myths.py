@@ -4,7 +4,6 @@ import networkx as nx
 
 
 class process_myths:
-
     """
 
     Class used for Myth related functions. Uses a fresh copy of the NetworkX graph to
