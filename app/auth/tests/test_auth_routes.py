@@ -22,8 +22,8 @@ def test_register_sends_welcome_email(sendgrid_mock, client):
 def test_register_sends_welcome_email_with_configured_base_frontend_url(
     m_current_app, sendgrid_mock, client
 ):
-    m_current_app.config.get.side_effect = (
-        lambda key: "https://fake-url.local" if key == "BASE_FRONTEND_URL" else None
+    m_current_app.config.get.side_effect = lambda key: (
+        "https://fake-url.local" if key == "BASE_FRONTEND_URL" else None
     )
 
     client.post(url_for("auth.register"), json=get_fake_registration_json())
@@ -58,8 +58,7 @@ def test_successful_registry_basic(client):
     data = get_fake_registration_json()
     response = client.post(url_for("auth.register"), json=data)
     assert response.status_code == 201
-    header_map = {name.lower(): value.lower()
-                  for (name, value) in response.headers}
+    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
     assert header_map["access-control-allow-origin"] == "http://0.0.0.0:3000"
     assert header_map["content-type"] == "application/json"
     assert isinstance(response.json, dict), "Response must be a dict"
@@ -77,8 +76,7 @@ def test_successful_registry_second_user(client):
         url_for("auth.register"), json=get_fake_registration_json()
     )  # another user
     assert response.status_code == 201
-    header_map = {name.lower(): value.lower()
-                  for (name, value) in response.headers}
+    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
     assert header_map["access-control-allow-origin"] == "http://0.0.0.0:3000"
     assert header_map["content-type"] == "application/json"
     assert isinstance(response.json, dict), "Response must be a dict"
@@ -103,8 +101,7 @@ def test_failed_registry_missing_field(missing_field, client):
     data.pop(missing_field)
     response = client.post(url_for("auth.register"), json=data)
     assert response.status_code == 400
-    header_map = {name.lower(): value.lower()
-                  for (name, value) in response.headers}
+    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
     assert header_map["content-type"] == "application/json"
     assert response.json == {
         "error": "{} must be included in the request body.".format(missing_field)
@@ -115,22 +112,18 @@ def test_failed_registry_missing_field(missing_field, client):
 def test_failed_registry_missing_body(client):
     response = client.post(url_for("auth.register"))
     assert response.status_code == 400
-    header_map = {name.lower(): value.lower()
-                  for (name, value) in response.headers}
+    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
     assert header_map["content-type"] == "application/json"
-    assert response.json == {
-        "error": "JSON body must be included in the request."}
+    assert response.json == {"error": "JSON body must be included in the request."}
 
 
 @pytest.mark.integration
 def test_failed_registry_reregistry(client):
     data = get_fake_registration_json()
     client.post(url_for("auth.register"), json=data)  # first registry
-    response = client.post(url_for("auth.register"),
-                           json=data)  # reregistry attempt
+    response = client.post(url_for("auth.register"), json=data)  # reregistry attempt
     assert response.status_code == 409
-    header_map = {name.lower(): value.lower()
-                  for (name, value) in response.headers}
+    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
     assert header_map["content-type"] == "application/json"
     assert response.json == {
         "error": "Cannot register email. Email already exists in the database."
@@ -158,16 +151,14 @@ def test_successful_login(m_check_if_local, client):
     )
     assert response.status_code == 200, "Successful login"
 
-    header_map = {name.lower(): value.lower()
-                  for (name, value) in response.headers}
+    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
     assert header_map["content-type"] == "application/json", "content-type is json"
     assert header_map["access-control-allow-origin"] == "http://0.0.0.0:3000"
 
     assert isinstance(response.json, dict), "response is a dict"
 
     assert "message" in response.json.keys(), "response has a message"
-    assert isinstance(response.json["message"],
-                      str), "response message is a string"
+    assert isinstance(response.json["message"], str), "response message is a string"
 
     assert "access_token" in response.json.keys(), "response has an access_token"
     assert isinstance(
@@ -230,10 +221,8 @@ def test_failed_login(data, client):
         },
     )
 
-    assert response.status_code == status_code, (
-        "Failed login", response.status_code)
-    header_map = {name.lower(): value.lower()
-                  for (name, value) in response.headers}
+    assert response.status_code == status_code, ("Failed login", response.status_code)
+    header_map = {name.lower(): value.lower() for (name, value) in response.headers}
     assert header_map["content-type"] == "application/json"
     assert response.json == {"error": message}, "Expected error message"
 
