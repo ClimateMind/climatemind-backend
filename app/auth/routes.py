@@ -428,7 +428,7 @@ def create_tokens_and_set_params(user, email, access_token, refresh_token, user_
             )
         )
 
-    response.set_cookie("user_email", email, httponly=True, secure=True)
+    response.set_cookie("user_email", email, secure=True)
 
     return response
 
