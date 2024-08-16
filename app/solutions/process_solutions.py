@@ -14,7 +14,6 @@ import sys
 
 
 class process_solutions:
-
     """
 
     Solutions can be divided into two categories, mitigations and adaptations. Both of

@@ -293,8 +293,8 @@ def test_consent_sends_user_b_shared_email(sendgrid_mock, client_with_user_and_h
 def test_consent_sends_user_b_shared_email_with_configured_base_frontend_url(
     m_current_app, sendgrid_mock, client_with_user_and_header
 ):
-    m_current_app.config.get.side_effect = (
-        lambda key: "https://fake-url.local" if key == "BASE_FRONTEND_URL" else None
+    m_current_app.config.get.side_effect = lambda key: (
+        "https://fake-url.local" if key == "BASE_FRONTEND_URL" else None
     )
 
     user_b_journey = UserBJourneyFactory()
