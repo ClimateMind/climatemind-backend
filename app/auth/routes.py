@@ -318,7 +318,8 @@ def callback():
 @bp.route("/login/google/getUserDetails", methods=["POST"])
 def get_user_profile():
     try:
-        email = request.cookies.get("user_email")
+        data = request.get_json()
+        email = data.get("email")
 
         if not email:
             return jsonify({"error": "Email cookie is required"}), 400
@@ -395,41 +396,37 @@ def logout():
     return response, 200
 
 
+from flask import make_response, jsonify
+
+
 def create_tokens_and_set_params(user, email, access_token, refresh_token, user_b=None):
     """
-    Creates access and refresh tokens and sets them as params in url.
-    Redirects to a specific URL.
-    Sends a token to the client and which then sends this back and exchanges the email token for the user's email.
-
-
+    Creates access and refresh tokens and sends them in a JSON response along with the email.
     Parameters:
     - user: User object containing user details (e.g., user.first_name, user.last_name, etc.)
-    - email: User's email address (used to set the email in the param)
+    - email: User's email address (included in the response body)
     - access_token: Access token generated for the user
     - refresh_token: Refresh token generated for the user
+    - user_b: Optional user type for the URL
 
     Returns:
-    - Flask conditional response object with parameters.
+    - Flask JSON response with tokens, email, and a message.
     """
     first_name = user.first_name
     capitalized_firstName = first_name.capitalize()
 
     if user_b:
         message = f"Welcome Back, {capitalized_firstName}!"
-        response = make_response(
-            redirect(
-                f"{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}&message={message}"
-            )
-        )
     else:
-        response = make_response(
-            redirect(
-                f"{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}"
-            )
-        )
-
-    response.set_cookie("user_email", email, secure=True)
-
+        message = f"Welcome, {capitalized_firstName}!"
+    response_data = {
+        "access_token": access_token,
+        "refresh_token": refresh_token,
+        "email": email,
+        "message": message,
+        "user_b": user_b,
+    }
+    response = make_response(jsonify(response_data))
     return response
 
 
@@ -467,5 +464,4 @@ def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
         raise DatabaseError(
             message="An error occurred while adding user to the database."
         )
-
     return user
