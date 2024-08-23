@@ -327,6 +327,8 @@ def auth_google():
     try:
         # Get the ID token from the request
         token = request.json.get("credential")
+        quiz_id = request.json.get("quizId")
+
         if not token:
             return jsonify({"error": "No credential provided"}), 400
 
@@ -346,8 +348,11 @@ def auth_google():
 
         # Find or create user
         user = Users.find_by_email(email)
-        if not user:
-            # User doesn't exist, return a specific response
+
+        if not user and quiz_id:
+            user = add_user_to_db(given_name, family_name, email, None, quiz_id)
+            print(user, "user added")
+        elif not user and not quiz_id:
             return (
                 jsonify(
                     {
