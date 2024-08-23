@@ -214,108 +214,6 @@ def login():
     return response
 
 
-# @bp.route("/register/google")
-# def register_google():
-#     user_b = request.args.get("conversationid", None)
-#     session["conversation_id"] = user_b
-#     quiz_id = request.args.get("quizId")
-#     session["quiz_id"] = quiz_id
-#     redirect_uri = url_for("auth.register_callback", _external=True)
-#     return google.authorize_redirect(redirect_uri)
-
-
-# @bp.route("/register/google/callback", methods=["GET"])
-# def register_callback():
-#     """
-#     Finds user by matching google email with user email in the database
-#     If user doesn't exist, create a new user and add to the database
-#     Create tokens and set cookies here if needed
-#     After successful registration, set the user details as cookies and redirect and login user
-#     """
-#     try:
-#         token = google.authorize_access_token()
-#         resp = google.get("https://www.googleapis.com/oauth2/v3/userinfo")
-#         user_info = resp.json()
-#         email = user_info["email"]
-#         quiz_id = session.pop("quiz_id", None)
-#         user_b = session.pop("conversation_id", None)
-
-#         if not quiz_id:
-#             return jsonify({"error": "Quiz ID is missing from session"}), 400
-
-#         # find user by matching google email with user email in the database
-#         user = db.session.query(Users).filter_by(user_email=email).one_or_none()
-
-#         # if user doesn't exist, create a new user and add to the database
-#         if not user:
-#             user = add_user_to_db(
-#                 user_info["given_name"], user_info["family_name"], email, None, quiz_id
-#             )
-
-#         access_token = create_access_token(identity=user, fresh=True)
-#         refresh_token = create_refresh_token(identity=user)
-
-#         response = create_tokens_and_set_params(
-#             user, email, access_token, refresh_token, user_b
-#         )
-
-#         send_welcome_email(user.user_email, user.first_name)
-#         return response
-
-#     except SQLAlchemyError:
-#         db.session.rollback()
-#         return (
-#             jsonify({"error": "An error occurred while adding user to the database."}),
-#             500,
-#         )
-
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 500
-
-
-# @bp.route("/login/google")
-# def login_google():
-#     user_b = request.args.get("conversationid", None)
-#     session["conversation_id"] = user_b
-#     redirect_uri = url_for("auth.callback", _external=True)
-#     return google.authorize_redirect(redirect_uri)
-
-
-# @bp.route("/login/google/callback", methods=["GET"])
-# def callback():
-#     try:
-#         token = google.authorize_access_token()
-#         resp = google.get("https://www.googleapis.com/oauth2/v3/userinfo")
-#         user_info = resp.json()
-#         email = user_info["email"]
-#         user = db.session.query(Users).filter_by(user_email=email).one_or_none()
-#         user_b = session.pop("conversation_id", None)
-
-#         if user:
-#             access_token = create_access_token(identity=user, fresh=True)
-#             refresh_token = create_refresh_token(identity=user)
-
-#             response = create_tokens_and_set_params(
-#                 user, email, access_token, refresh_token, user_b
-#             )
-#             return response
-#         else:
-#             if not user_b:
-#                 response = make_response(redirect(f"{base_frontend_url}/start"))
-#             elif user_b:
-#                 # if no account then redirect to login page and show user not found message
-#                 user_not_found_message = "You need to sign up to continue, please click the cancel below to sign up"
-
-#                 response = make_response(
-#                     redirect(
-#                         f"{base_frontend_url}/login/{user_b}?user_not_found={user_not_found_message}"
-#                     )
-#                 )
-#             return response
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 500
-
-
 from flask import jsonify, request
 from google.oauth2 import id_token
 from google.auth.transport import requests as google_requests
@@ -327,31 +225,30 @@ def auth_google():
     try:
         # Get the ID token from the request
         token = request.json.get("credential")
+
+        # Get the QuizId token from the request
         quiz_id = request.json.get("quizId")
 
         if not token:
             return jsonify({"error": "No credential provided"}), 400
 
-        print(f"Received token: {token[:10]}...")  # Log first 10 characters of token
-
         # Verify the token
         idinfo = id_token.verify_oauth2_token(
             token, google_requests.Request(), os.environ.get("GOOGLE_CLIENT_ID")
         )
-        print("Token verified successfully")
 
         # Get user info from the token
         email = idinfo["email"]
-        print(f"Email: {email}")
         given_name = idinfo.get("given_name", "")
         family_name = idinfo.get("family_name", "")
 
         # Find or create user
         user = Users.find_by_email(email)
-
+        # if user doesn't exist but there is a quiz_id then add user to database
         if not user and quiz_id:
             user = add_user_to_db(given_name, family_name, email, None, quiz_id)
-            print(user, "user added")
+
+        # if neither then return response for frontend to handle
         elif not user and not quiz_id:
             return (
                 jsonify(
@@ -378,20 +275,17 @@ def auth_google():
                 "last_name": user.last_name,
                 "email": user.user_email,
                 "user_uuid": user.user_uuid,
-                "quiz_id": user.quiz_uuid,  # This might be None
+                "quiz_id": user.quiz_uuid,
             },
         }
 
         return jsonify(response), 200
 
     except ValueError as ve:
-        print(f"ValueError in auth_google: {str(ve)}")
         return jsonify({"error": str(ve)}), 400
     except Exception as e:
         import traceback
 
-        print(f"Unexpected error in auth_google: {str(e)}")
-        print(traceback.format_exc())
         return jsonify({"error": "An unexpected error occurred"}), 500
 
 
