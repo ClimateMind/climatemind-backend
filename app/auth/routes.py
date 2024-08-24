@@ -226,7 +226,7 @@ def auth_google():
         # Get the ID token from the request
         token = request.json.get("credential")
 
-        # Get the QuizId token from the request
+        # Get the QuizId from the request
         quiz_id = request.json.get("quizId")
 
         if not token:
@@ -244,9 +244,10 @@ def auth_google():
 
         # Find or create user
         user = Users.find_by_email(email)
-        # if user doesn't exist but there is a quiz_id then add user to database
+        # if user doesn't exist but there is a quiz_id then add user to database and send welcome email
         if not user and quiz_id:
             user = add_user_to_db(given_name, family_name, email, None, quiz_id)
+            send_welcome_email(user.user_email, user.first_name)
 
         # if neither then return response for frontend to handle
         elif not user and not quiz_id:
