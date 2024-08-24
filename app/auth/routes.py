@@ -28,7 +28,8 @@ from datetime import datetime, timezone
 import os
 import uuid
 from app import google_auth
-
+from google.oauth2 import id_token
+from google.auth.transport import requests as google_requests
 
 app = create_app()
 google = google_auth.init_google_auth(app)
@@ -213,140 +214,80 @@ def login():
     return response
 
 
-@bp.route("/register/google")
-def register_google():
-    user_b = request.args.get("conversationid", None)
-    session["conversation_id"] = user_b
-    quiz_id = request.args.get("quizId")
-    session["quiz_id"] = quiz_id
-    redirect_uri = url_for("auth.register_callback", _external=True)
-    return google.authorize_redirect(redirect_uri)
+from flask import jsonify, request
+from google.oauth2 import id_token
+from google.auth.transport import requests as google_requests
+import os
 
 
-@bp.route("/register/google/callback", methods=["GET"])
-def register_callback():
-    """
-    Finds user by matching google email with user email in the database
-    If user doesn't exist, create a new user and add to the database
-    Create tokens and set cookies here if needed
-    After successful registration, set the user details as cookies and redirect and login user
-    """
+@bp.route("/auth/google", methods=["POST"])
+def auth_google():
     try:
-        token = google.authorize_access_token()
-        resp = google.get("https://www.googleapis.com/oauth2/v3/userinfo")
-        user_info = resp.json()
-        email = user_info["email"]
-        quiz_id = session.pop("quiz_id", None)
-        user_b = session.pop("conversation_id", None)
+        # Get the ID token from the request
+        token = request.json.get("credential")
 
-        if not quiz_id:
-            return jsonify({"error": "Quiz ID is missing from session"}), 400
+        # Get the QuizId from the request
+        quiz_id = request.json.get("quizId")
 
-        # find user by matching google email with user email in the database
-        user = db.session.query(Users).filter_by(user_email=email).one_or_none()
+        if not token:
+            return jsonify({"error": "No credential provided"}), 400
 
-        # if user doesn't exist, create a new user and add to the database
-        if not user:
-            user = add_user_to_db(
-                user_info["given_name"], user_info["family_name"], email, None, quiz_id
+        # Verify the token
+        idinfo = id_token.verify_oauth2_token(
+            token, google_requests.Request(), os.environ.get("GOOGLE_CLIENT_ID")
+        )
+
+        # Get user info from the token
+        email = idinfo["email"]
+        given_name = idinfo.get("given_name", "")
+        family_name = idinfo.get("family_name", "")
+
+        # Find or create user
+        user = Users.find_by_email(email)
+        # if user doesn't exist but there is a quiz_id then add user to database and send welcome email
+        if not user and quiz_id:
+            user = add_user_to_db(given_name, family_name, email, None, quiz_id)
+            send_welcome_email(user.user_email, user.first_name)
+
+        # if neither then return response for frontend to handle
+        elif not user and not quiz_id:
+            return (
+                jsonify(
+                    {
+                        "error": "Please complete the quiz first",
+                        "message": "User not registered",
+                        "email": email,
+                        "given_name": given_name,
+                        "family_name": family_name,
+                    }
+                ),
+                404,
             )
 
+        # Create tokens
         access_token = create_access_token(identity=user, fresh=True)
         refresh_token = create_refresh_token(identity=user)
 
-        response = create_tokens_and_set_params(
-            user, email, access_token, refresh_token, user_b
-        )
-
-        send_welcome_email(user.user_email, user.first_name)
-        return response
-
-    except SQLAlchemyError:
-        db.session.rollback()
-        return (
-            jsonify({"error": "An error occurred while adding user to the database."}),
-            500,
-        )
-
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@bp.route("/login/google")
-def login_google():
-    user_b = request.args.get("conversationid", None)
-    session["conversation_id"] = user_b
-    redirect_uri = url_for("auth.callback", _external=True)
-    return google.authorize_redirect(redirect_uri)
-
-
-@bp.route("/login/google/callback", methods=["GET"])
-def callback():
-    try:
-        token = google.authorize_access_token()
-        resp = google.get("https://www.googleapis.com/oauth2/v3/userinfo")
-        user_info = resp.json()
-        email = user_info["email"]
-        user = db.session.query(Users).filter_by(user_email=email).one_or_none()
-        user_b = session.pop("conversation_id", None)
-
-        if user:
-            access_token = create_access_token(identity=user, fresh=True)
-            refresh_token = create_refresh_token(identity=user)
-
-            response = create_tokens_and_set_params(
-                user, email, access_token, refresh_token, user_b
-            )
-            return response
-        else:
-            if not user_b:
-                response = make_response(redirect(f"{base_frontend_url}/start"))
-            elif user_b:
-                # if no account then redirect to login page and show user not found message
-                user_not_found_message = "You need to sign up to continue, please click the cancel below to sign up"
-
-                response = make_response(
-                    redirect(
-                        f"{base_frontend_url}/login/{user_b}?user_not_found={user_not_found_message}"
-                    )
-                )
-            return response
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-
-@bp.route("/login/google/getUserDetails", methods=["POST"])
-def get_user_profile():
-    try:
-        email = request.cookies.get("user_email")
-
-        if not email:
-            return jsonify({"error": "Email cookie is required"}), 400
-
-        # Query the database for the user
-        user = db.session.query(Users).filter_by(user_email=email).one_or_none()
-
-        if not user:
-            return jsonify({"error": "User not found"}), 404
-
-            # Construct the response
-        user_data = {
-            "first_name": user.first_name,
-            "last_name": user.last_name,
-            "email": user.user_email,
-            "user_uuid": user.user_uuid,
-            "quiz_id": user.quiz_uuid,
+        response = {
+            "message": f"Welcome, {user.first_name}!",
+            "access_token": access_token,
+            "user": {
+                "first_name": user.first_name,
+                "last_name": user.last_name,
+                "email": user.user_email,
+                "user_uuid": user.user_uuid,
+                "quiz_id": user.quiz_uuid,
+            },
         }
 
-        return (
-            jsonify(
-                {"message": "User details retrieved successfully", "user": user_data}
-            ),
-            200,
-        )
+        return jsonify(response), 200
 
+    except ValueError as ve:
+        return jsonify({"error": str(ve)}), 400
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        import traceback
+
+        return jsonify({"error": "An unexpected error occurred"}), 500
 
 
 @bp.route("/refresh", methods=["POST"])
@@ -395,41 +336,37 @@ def logout():
     return response, 200
 
 
+from flask import make_response, jsonify
+
+
 def create_tokens_and_set_params(user, email, access_token, refresh_token, user_b=None):
     """
-    Creates access and refresh tokens and sets them as params in url.
-    Redirects to a specific URL.
-    Sends a token to the client and which then sends this back and exchanges the email token for the user's email.
-
-
+    Creates access and refresh tokens and sends them in a JSON response along with the email.
     Parameters:
     - user: User object containing user details (e.g., user.first_name, user.last_name, etc.)
-    - email: User's email address (used to set the email in the param)
+    - email: User's email address (included in the response body)
     - access_token: Access token generated for the user
     - refresh_token: Refresh token generated for the user
+    - user_b: Optional user type for the URL
 
     Returns:
-    - Flask conditional response object with parameters.
+    - Flask JSON response with tokens, email, and a message.
     """
     first_name = user.first_name
     capitalized_firstName = first_name.capitalize()
 
     if user_b:
         message = f"Welcome Back, {capitalized_firstName}!"
-        response = make_response(
-            redirect(
-                f"{base_frontend_url}/login/{user_b}?access_token={access_token}&refresh_token={refresh_token}&message={message}"
-            )
-        )
     else:
-        response = make_response(
-            redirect(
-                f"{base_frontend_url}/login?access_token={access_token}&refresh_token={refresh_token}"
-            )
-        )
-
-    response.set_cookie("user_email", email, secure=True)
-
+        message = f"Welcome, {capitalized_firstName}!"
+    response_data = {
+        "access_token": access_token,
+        "refresh_token": refresh_token,
+        "email": email,
+        "message": message,
+        "user_b": user_b,
+    }
+    response = make_response(jsonify(response_data))
     return response
 
 
@@ -467,5 +404,4 @@ def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
         raise DatabaseError(
             message="An error occurred while adding user to the database."
         )
-
     return user

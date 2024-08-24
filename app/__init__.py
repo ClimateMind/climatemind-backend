@@ -40,7 +40,9 @@ def create_app(config_class=DevelopmentConfig):
             "https://app-frontend-prod-001.azurewebsites.net",
             "http://app.climatemind.org",
             "https://app.climatemind.org",
-        ]
+        ],
+        "methods": ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+        "allow_headers": ["Content-Type", "Authorization", "X-Session-Id"],
     }
 
     CORS(
@@ -55,6 +57,7 @@ def create_app(config_class=DevelopmentConfig):
             r"/email": origins,
             r"/alignment": origins,
             r"/login/google/getUserDetails": origins,
+            r"/auth/google": origins,
         },
         supports_credentials=True,
     )
