@@ -1,6 +1,7 @@
 import pytest
 from flask import url_for
 from mock import mock
+from unittest.mock import patch, MagicMock
 
 from app.common.tests.utils import assert_email_sent
 from app.factories import faker, ScoresFactory
@@ -51,6 +52,109 @@ def test_logout(m_unset_jwt_cookies, client):
     assert json["message"] == "User logged out"
 
     m_unset_jwt_cookies.assert_called_once()
+
+
+@pytest.mark.integration
+def test_auth_google_success_existing_user(client):
+    mock_user = MagicMock(
+        first_name="John",
+        last_name="Doe",
+        user_email="john@example.com",
+        user_uuid="123",
+        quiz_uuid="456",
+    )
+
+    with patch("app.auth.routes.id_token.verify_oauth2_token") as mock_verify, patch(
+        "app.auth.routes.Users.find_by_email", return_value=mock_user
+    ) as mock_find, patch(
+        "app.auth.routes.create_access_token", return_value="access_token"
+    ) as mock_access, patch(
+        "app.auth.routes.create_refresh_token", return_value="refresh_token"
+    ) as mock_refresh:
+
+        mock_verify.return_value = {
+            "email": "john@example.com",
+            "given_name": "John",
+            "family_name": "Doe",
+        }
+
+        response = client.post(
+            url_for("auth.auth_google"),
+            json={"credential": "fake_token", "quizId": "456"},
+        )
+
+        assert response.status_code == 200
+        data = response.get_json()
+        assert data["message"] == "Welcome, John!"
+        assert data["access_token"] == "access_token"
+        assert data["user"]["email"] == "john@example.com"
+
+
+@pytest.mark.integration
+def test_auth_google_success_new_user(client):
+    mock_user = MagicMock(
+        first_name="Jane",
+        last_name="Doe",
+        user_email="jane@example.com",
+        user_uuid="789",
+        quiz_uuid="101",
+    )
+
+    with patch("app.auth.routes.id_token.verify_oauth2_token") as mock_verify, patch(
+        "app.auth.routes.Users.find_by_email", return_value=None
+    ) as mock_find, patch(
+        "app.auth.routes.add_user_to_db", return_value=mock_user
+    ) as mock_add, patch(
+        "app.auth.routes.send_welcome_email"
+    ) as mock_send, patch(
+        "app.auth.routes.create_access_token", return_value="access_token"
+    ) as mock_access, patch(
+        "app.auth.routes.create_refresh_token", return_value="refresh_token"
+    ) as mock_refresh:
+
+        mock_verify.return_value = {
+            "email": "jane@example.com",
+            "given_name": "Jane",
+            "family_name": "Doe",
+        }
+
+        response = client.post(
+            url_for("auth.auth_google"),
+            json={"credential": "fake_token", "quizId": "101"},
+        )
+
+        assert response.status_code == 200
+        data = response.get_json()
+        assert data["message"] == "Welcome, Jane!"
+        assert data["access_token"] == "access_token"
+        assert data["user"]["email"] == "jane@example.com"
+        mock_add.assert_called_once()
+        mock_send.assert_called_once()
+
+
+@pytest.mark.integration
+def test_auth_google_no_credential(client):
+    response = client.post(url_for("auth.auth_google"), json={})
+
+    assert response.status_code == 400
+    data = response.get_json()
+    assert data["error"] == "No credential provided"
+
+
+@pytest.mark.integration
+def test_auth_google_invalid_token(client):
+    with patch(
+        "app.auth.routes.id_token.verify_oauth2_token",
+        side_effect=ValueError("Invalid token"),
+    ):
+        response = client.post(
+            url_for("auth.auth_google"),
+            json={"credential": "invalid_token", "quizId": "456"},
+        )
+
+        assert response.status_code == 400
+        data = response.get_json()
+        assert data["error"] == "Invalid token"
 
 
 @pytest.mark.integration
