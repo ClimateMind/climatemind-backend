@@ -287,6 +287,9 @@ def auth_google():
     except Exception as e:
         import traceback
 
+        response.set_cookie(
+            "refresh_token", refresh_token, path="/refresh", httponly=True
+        )
         return jsonify({"error": "An unexpected error occurred"}), 500
 
 
