@@ -18,6 +18,7 @@ from flask_jwt_extended import (
     jwt_required,
     create_access_token,
 )
+
 import requests
 from app.common.uuid import validate_uuid, uuidType, check_uuid_in_db
 from app.common.local import check_if_local
@@ -331,40 +332,6 @@ def logout():
     response = make_response({"message": "User logged out"})
     unset_jwt_cookies(response)
     return response, 200
-
-
-from flask import make_response, jsonify
-
-
-def create_tokens_and_set_params(user, email, access_token, refresh_token, user_b=None):
-    """
-    Creates access and refresh tokens and sends them in a JSON response along with the email.
-    Parameters:
-    - user: User object containing user details (e.g., user.first_name, user.last_name, etc.)
-    - email: User's email address (included in the response body)
-    - access_token: Access token generated for the user
-    - refresh_token: Refresh token generated for the user
-    - user_b: Optional user type for the URL
-
-    Returns:
-    - Flask JSON response with tokens, email, and a message.
-    """
-    first_name = user.first_name
-    capitalized_firstName = first_name.capitalize()
-
-    if user_b:
-        message = f"Welcome Back, {capitalized_firstName}!"
-    else:
-        message = f"Welcome, {capitalized_firstName}!"
-    response_data = {
-        "access_token": access_token,
-        "refresh_token": refresh_token,
-        "email": email,
-        "message": message,
-        "user_b": user_b,
-    }
-    response = make_response(jsonify(response_data))
-    return response
 
 
 def add_user_to_db(first_name, last_name, email, password, quiz_uuid):
