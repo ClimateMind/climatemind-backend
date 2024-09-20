@@ -214,12 +214,6 @@ def login():
     return response
 
 
-from flask import jsonify, request
-from google.oauth2 import id_token
-from google.auth.transport import requests as google_requests
-import os
-
-
 @bp.route("/auth/google", methods=["POST"])
 def auth_google():
     try:
