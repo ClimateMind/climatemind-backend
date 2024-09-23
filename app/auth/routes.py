@@ -2,6 +2,8 @@ from .. import create_app
 from app import limiter, db
 from app.sendgrid.utils import send_welcome_email
 from app.models import Users
+from datetime import timedelta
+
 from app.errors.errors import (
     ConflictError,
     InvalidUsageError,
@@ -266,6 +268,7 @@ def auth_google():
         response = {
             "message": f"Welcome, {user.first_name}!",
             "access_token": access_token,
+            "refresh_token": refresh_token,
             "user": {
                 "first_name": user.first_name,
                 "last_name": user.last_name,
@@ -274,7 +277,9 @@ def auth_google():
                 "quiz_id": user.quiz_uuid,
             },
         }
-
+        # response.set_cookie(
+        #     "refresh_token", refresh_token, path="/refresh", httponly=True
+        # )
         return jsonify(response), 200
 
     except ValueError as ve:
@@ -282,9 +287,6 @@ def auth_google():
     except Exception as e:
         import traceback
 
-        response.set_cookie(
-            "refresh_token", refresh_token, path="/refresh", httponly=True
-        )
         return jsonify({"error": "An unexpected error occurred"}), 500
 
 
@@ -300,8 +302,11 @@ def refresh():
     Returns: A new refresh token and access token.
     """
     identity = get_jwt_identity()
+    print(identity, "identity")
     user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
-    access_token = create_access_token(identity=user)
+    access_token = create_access_token(
+        identity=user, expires_delta=timedelta(minutes=15)
+    )
     refresh_token = create_refresh_token(identity=user)
 
     response = make_response(
@@ -320,7 +325,8 @@ def refresh():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token)
+
     return response
 
 
