@@ -2,7 +2,6 @@ from .. import create_app
 from app import limiter, db
 from app.sendgrid.utils import send_welcome_email
 from app.models import Users
-from datetime import timedelta
 
 from app.errors.errors import (
     ConflictError,
@@ -300,11 +299,8 @@ def refresh():
     Returns: A new refresh token and access token.
     """
     identity = get_jwt_identity()
-    print(identity, "identity")
     user = db.session.query(Users).filter_by(user_uuid=identity).one_or_none()
-    access_token = create_access_token(
-        identity=user, expires_delta=timedelta(minutes=15)
-    )
+    access_token = create_access_token(identity=user)
     refresh_token = create_refresh_token(identity=user)
 
     response = make_response(
