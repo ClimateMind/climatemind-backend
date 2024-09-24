@@ -277,9 +277,7 @@ def auth_google():
                 "quiz_id": user.quiz_uuid,
             },
         }
-        # response.set_cookie(
-        #     "refresh_token", refresh_token, path="/refresh", httponly=True
-        # )
+
         return jsonify(response), 200
 
     except ValueError as ve:
