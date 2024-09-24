@@ -323,7 +323,7 @@ def refresh():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
 
     return response
 
