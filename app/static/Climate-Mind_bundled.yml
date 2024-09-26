@@ -2091,5 +2091,33 @@ paths:
           Required fields and information for the analytics event.
           eventTimestamp MUST look like the following string format:
           %Y-%m-%d %H:%M:%S (ex: 2020-11-18 07:07:19 ) 
+  /auth/google:
+    post:
+      summary: googleToken
+      tags: []
+      responses:
+        '200':
+          description: OK
+      operationId: post-auth-google
+      x-stoplight:
+        id: e0giowqn0f3jt
+      parameters: []
+      requestBody:
+        description: |-
+          credential which is the google token.
+          quizId which is generated after the quiz.
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                credential:
+                  type: string
+                  x-stoplight:
+                    id: 8vlfhtyygugew
+                quizId:
+                  type: string
+                  x-stoplight:
+                    id: ijzbgprknmzi9
 components:
   schemas: {}
