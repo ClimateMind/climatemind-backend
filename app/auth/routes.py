@@ -212,7 +212,7 @@ def login():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", secure=True)
     return response
 
 
@@ -276,7 +276,9 @@ def auth_google():
                 "quiz_id": user.quiz_uuid,
             },
         }
-
+        response.set_cookie(
+            "refresh_token", refresh_token, path="/refresh", secure=True
+        )
         return jsonify(response), 200
 
     except ValueError as ve:
@@ -319,7 +321,7 @@ def refresh():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh", secure=True)
 
     return response
 
