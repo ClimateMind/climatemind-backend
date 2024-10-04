@@ -139,7 +139,7 @@ def register():
 
     send_welcome_email(user.user_email, user.first_name)
 
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", httponly=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh")
     return response
 
 
@@ -212,7 +212,7 @@ def login():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", secure=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh")
     return response
 
 
@@ -259,7 +259,7 @@ def auth_google():
                 ),
                 404,
             )
-
+        response.set_cookie("refresh_token", refresh_token, path="/refresh")
         # Create tokens
         access_token = create_access_token(identity=user, fresh=True)
         refresh_token = create_refresh_token(identity=user)
@@ -276,10 +276,6 @@ def auth_google():
                 "quiz_id": user.quiz_uuid,
             },
         }
-        response.set_cookie(
-            "refresh_token", refresh_token, path="/refresh", secure=True
-        )
-        return jsonify(response), 200
 
     except ValueError as ve:
         return jsonify({"error": str(ve)}), 400
@@ -321,7 +317,7 @@ def refresh():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh", secure=True)
+    response.set_cookie("refresh_token", refresh_token, path="/refresh")
 
     return response
 
