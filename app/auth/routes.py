@@ -140,7 +140,12 @@ def register():
     send_welcome_email(user.user_email, user.first_name)
 
     response.set_cookie(
-        "refresh_token", refresh_token, path="/refresh", samesite="None", secure=True
+        "refresh_token",
+        refresh_token,
+        path="/refresh",
+        samesite="None",
+        secure=True,
+        domain=".azurewebsites.net",
     )
     return response
 
@@ -215,7 +220,12 @@ def login():
         200,
     )
     response.set_cookie(
-        "refresh_token", refresh_token, path="/refresh", samesite="None", secure=True
+        "refresh_token",
+        refresh_token,
+        path="/refresh",
+        samesite="None",
+        secure=True,
+        domain=".azurewebsites.net",
     )
     return response
 
@@ -238,18 +248,18 @@ def auth_google():
         )
 
         # Get user info from the token
-        email = idinfo["email"]
+        email = idinfo.get("email")
         given_name = idinfo.get("given_name", "")
         family_name = idinfo.get("family_name", "")
 
+        if not email:
+            return jsonify({"error": "Email not found in token"}), 400
+
         # Find or create user
         user = Users.find_by_email(email)
-        # if user doesn't exist but there is a quiz_id then add user to database and send welcome email
         if not user and quiz_id:
             user = add_user_to_db(given_name, family_name, email, None, quiz_id)
             send_welcome_email(user.user_email, user.first_name)
-
-        # if neither then return response for frontend to handle
         elif not user and not quiz_id:
             return (
                 jsonify(
@@ -268,26 +278,41 @@ def auth_google():
         access_token = create_access_token(identity=user, fresh=True)
         refresh_token = create_refresh_token(identity=user)
 
-        response = {
-            "message": f"Welcome, {user.first_name}!",
-            "access_token": access_token,
-            "refresh_token": refresh_token,
-            "user": {
-                "first_name": user.first_name,
-                "last_name": user.last_name,
-                "email": user.user_email,
-                "user_uuid": user.user_uuid,
-                "quiz_id": user.quiz_uuid,
-            },
-        }
+        # Create response object
+        response = make_response(
+            jsonify(
+                {
+                    "message": f"Welcome, {user.first_name}!",
+                    "access_token": access_token,
+                    "user": {
+                        "first_name": user.first_name,
+                        "last_name": user.last_name,
+                        "email": user.user_email,
+                        "user_uuid": user.user_uuid,
+                        "quiz_id": user.quiz_uuid,
+                    },
+                }
+            )
+        )
 
-        return jsonify(response), 200
+        # Set refresh token in cookie
+        response.set_cookie(
+            "refresh_token",
+            refresh_token,
+            path="/refresh",
+            samesite="None",
+            secure=True,
+            domain=".azurewebsites.net",
+        )
+
+        return response, 200
 
     except ValueError as ve:
         return jsonify({"error": str(ve)}), 400
     except Exception as e:
         import traceback
 
+        print(traceback.format_exc())
         return jsonify({"error": "An unexpected error occurred"}), 500
 
 
@@ -324,7 +349,12 @@ def refresh():
         200,
     )
     response.set_cookie(
-        "refresh_token", refresh_token, path="/refresh", secure=True, samesite="None"
+        "refresh_token",
+        refresh_token,
+        path="/refresh",
+        secure=True,
+        samesite="None",
+        domain=".azurewebsites.net",
     )
 
     return response
