@@ -302,18 +302,13 @@ def auth_google():
             path="/refresh",
             samesite="None",
             secure=True,
-            domain=".azurewebsites.net",
         )
 
         return response, 200
 
-    except ValueError as ve:
-        return jsonify({"error": str(ve)}), 400
-    except Exception as e:
-        import traceback
-
-        print(traceback.format_exc())
-        return jsonify({"error": "An unexpected error occurred"}), 500
+    except ValueError as e:
+        # Invalid token
+        return jsonify({"error": "Invalid token"}), 400
 
 
 @bp.route("/refresh", methods=["POST"])
