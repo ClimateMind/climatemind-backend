@@ -139,7 +139,9 @@ def register():
 
     send_welcome_email(user.user_email, user.first_name)
 
-    response.set_cookie("refresh_token", refresh_token, path="/refresh")
+    response.set_cookie(
+        "refresh_token", refresh_token, path="/refresh", SameSite="None", secure=True
+    )
     return response
 
 
@@ -212,7 +214,9 @@ def login():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh")
+    response.set_cookie(
+        "refresh_token", refresh_token, path="/refresh", SameSite="None", secure=True
+    )
     return response
 
 
@@ -319,7 +323,9 @@ def refresh():
         ),
         200,
     )
-    response.set_cookie("refresh_token", refresh_token, path="/refresh")
+    response.set_cookie(
+        "refresh_token", refresh_token, path="/refresh", SameSite="None", secure=True
+    )
 
     return response
 
